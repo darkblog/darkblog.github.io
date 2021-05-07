@@ -1,0 +1,12 @@
+---
+layout: index
+---
+
+{% for post in site.posts limit:20 %}
+<article class="post">
+<a href="{{ site.url }}{{ post.url }}">
+<h2>{{ post.title }}</h2>
+{{ post.excerpt }}
+</a>
+</article>
+{% endfor %}
