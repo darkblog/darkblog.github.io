@@ -1,0 +1,22 @@
+name: احسایدر
+
+description: وبلاگ احسایدر
+
+url: https://ehsaider.ir
+
+permalink: /:title
+
+encoding: UTF-8
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+kramdown:
+   syntax_highlighter_opts:
+      disable : true
+
+gems:
+  - jekyll-sitemap
+  - jekyll-feed
