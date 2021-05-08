@@ -1,0 +1,32 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+<link rel="alternate" type="application/atom+xml" href="{{ site.url }}/feed.xml">
+<style>body{font:100%/1.6 Tahoma}.container{margin:16px auto;padding:0 10px;max-width:740px}h1,h2,h3,h4,h5,h6{font-size:x-large;font-weight:400}p{margin:15px 0}a{color:black;text-decoration:none}ul{list-style-type:square}img{max-width:100%}video{max-width:100%}nav{margin-top:-15px;padding-bottom:20px}.post{padding-bottom:2em;border-bottom:1px solid #e1e4e8}blockquote{margin:1.8em 0.8em;padding:0.1em 1em;font-style:italic;direction:rtl;border-left:none;border-right:4px solid green}.center{display:block;margin:auto;text-align:center}pre{direction:ltr;border:1px solid green;border-radius:6px;padding:8px;overflow-x:auto}.button{border:1px solid green;padding:8px 16px;display:inline-block;margin:3px;border-radius:6px}hr{border: 1px solid green}</style>
+</head>
+<body>
+<header class="container">
+<h1>
+<a title="{{ site.name }}" href="{{ site.url }}/">
+<svg width="155" height="55" viewBox="0 0 4184.6 1340"><title>احسایدر</title><path d="M0,476h238.3l12.7,3v866H0V476z"/><path d="M903.8,473v314h86.1v250H306.5V786h343.6v-63H309V473H903.8z"/><path d="M1557.8,1037.6l-652.9-0.6V781h394.9V472h258V1037.6z M990.8,1094h251v246h-251V1094z M1305.8,1093h251v246h-251V1093z"/><path d="M1878.1-1v781.7h68V1037h-319V-1H1878.1z"/><path fill="#22B14C" d="M1973,473h251.4v308h60.6V473h239.1l11.3,1v307h58.6V473h249.4v308h101.9l0.6,256H1878.7l-0.6-256h94.9V473z"/><path fill="#22B14C" d="M2873.1,1037V781h726.5v-58h-673.3V472h929v565H2873.1z"/><path fill="#22B14C" d="M4175.9,0v1038h-251V0H4175.9z"/></svg>
+</a>
+</h1>
+<nav>
+<a href="{{ site.url }}/ehsanchehri" class="button">تماس</a>
+</nav>
+</header>
+<main class="container">{{ content }}</main>
+<footer class="center">
+<a href="{{ site.url }}/feed.xml" class="button">فید</a>
+</footer>
+</body>
+</html>
