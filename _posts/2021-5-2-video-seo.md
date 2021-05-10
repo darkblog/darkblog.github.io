@@ -29,7 +29,7 @@ title: سئو ویدیوهای سایت در 8 مرحله
 
 کد اچ تی ام ال نمایش ویدیو:
 
-<pre><video class="center" controls preload="none"><source src="URL" type="video/mp4"></video></pre>
+<code><video class="center" controls preload="none"><source src="URL" type="video/mp4"></video></code>
 
 <script src="https://gist.github.com/EhsanChehri/adad1cddde7471efdf55d5ab2afe36df.js"></script>
 
