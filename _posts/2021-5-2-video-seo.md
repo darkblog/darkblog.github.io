@@ -33,8 +33,6 @@ title: سئو ویدیوهای سایت در 8 مرحله
 <video><source src="https://ehsaider.ir/x/en-passant.mp4" type="video/mp4"></video>
 ```
 
-<script src="https://gist.github.com/EhsanChehri/adad1cddde7471efdf55d5ab2afe36df.js"></script>
-
 **توجه به آدرس فایل‌های ویدیویی**
 
 یکی دیگه از مواردی که باید در سئو انواع فایل‌های چندرسانه‌ای مثل تصاویر، mp3 و mp4 مورد توجه قرار بدید استفاده از url مناسبه تا موتور جستجو درک بهتری از محتوای فایل داشته باشه
