@@ -54,7 +54,3 @@ title: ابزارهای بررسی بک لینک رقبا
 مثلا با جستجوی intext:moz.com می‌تونید درون متن سایت‌ها دنبال آدرس سایت ماز بگردید. الگوهای زیادی با این ابزار می‌شه ساخت
 
 <a rel="nofollow" href="https://www.google.com/advanced_search" target="_blank">google.com/advanced_search</a>
-
-<br>
-
-<a href="{{ site.url }}/seo" class="button">سئو</a>
