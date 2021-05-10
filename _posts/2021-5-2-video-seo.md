@@ -29,9 +29,7 @@ title: سئو ویدیوهای سایت در 8 مرحله
 
 کد اچ تی ام ال نمایش ویدیو:
 
-<pre><code>
-<video><source src="https://ehsaider.ir/x/en-passant.mp4" type="video/mp4"></video>
-</code></pre>
+<script src="https://gist.github.com/EhsanChehri/adad1cddde7471efdf55d5ab2afe36df.js" defer></script>
 
 **توجه به آدرس فایل‌های ویدیویی**
 
