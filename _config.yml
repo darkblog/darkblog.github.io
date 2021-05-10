@@ -17,6 +17,14 @@ kramdown:
    syntax_highlighter_opts:
       disable : true
 
+whitelist:
+  - jekyll-redirect-from
+
+redirect_from:
+  - /p2
+  - /tempo
+
 gems:
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-redirect-from
