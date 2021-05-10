@@ -84,5 +84,3 @@ AddOutputFilterByType DEFLATE application/x-javascript
 **کاهش اسکریپت‌های خارجی**
 
 استفاده از اسکریپت‌های مختلف آمارگیر و لایک شبکه‌های اجتماعی احتمالا به پیشرفت سایت شما کمکی نمی‌کنن
-
-<a href="{{ site.url }}/seo" class="button">سئو</a>
