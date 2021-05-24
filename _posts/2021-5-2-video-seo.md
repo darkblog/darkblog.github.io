@@ -29,7 +29,7 @@ title: سئو ویدیوهای سایت در 8 مرحله
 
 کد اچ تی ام ال نمایش ویدیو:
 
-``` html
+```
 <video><source src="https://ehsaider.ir/x/en-passant.mp4" type="video/mp4"></video>
 ```
 
