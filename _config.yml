@@ -10,11 +10,6 @@ permalink: /:title
 
 encoding: UTF-8
 
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
-
 kramdown:
    syntax_highlighter_opts:
       disable : true
