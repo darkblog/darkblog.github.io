@@ -47,14 +47,14 @@ title: چک لیست سئو وردپرس
 
 نمونه کد:
 
-<pre>
-<ifModule mod_expires.c>  
-ExpiresActive On  
-ExpiresDefault "access plus 5 seconds"  
-ExpiresByType image/x-icon "access plus 2592000 seconds"  
-ExpiresByType image/jpeg "access plus 2592000 seconds"  
-ExpiresByType image/png "access plus 2592000 seconds"  
-ExpiresByType image/gif "access plus 2592000 seconds"  
+```
+<ifModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access plus 5 seconds"
+ExpiresByType image/x-icon "access plus 2592000 seconds"
+ExpiresByType image/jpeg "access plus 2592000 seconds"
+ExpiresByType image/png "access plus 2592000 seconds"
+ExpiresByType image/gif "access plus 2592000 seconds"
 ExpiresByType image/svg+xml "access plus 2592000 seconds"
 ExpiresByType application/x-font-ttf "access plus 2592000 seconds"
 ExpiresByType application/x-font-truetype "access plus 2592000 seconds"
@@ -63,13 +63,13 @@ ExpiresByType application/x-font-woff "access plus 2592000 seconds"
 ExpiresByType application/font-woff2 "access plus 2592000 seconds"
 ExpiresByType application/vnd.ms-fontobject "access plus 2592000 seconds"
 ExpiresByType application/font-sfnt "access plus 2592000 seconds"
-ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"  
-ExpiresByType text/css "access plus 604800 seconds"  
-ExpiresByType text/javascript "access plus 216000 seconds"  
-ExpiresByType application/javascript "access plus 216000 seconds"  
-ExpiresByType application/x-javascript "access plus 216000 seconds"  
-ExpiresByType text/html "access plus 5 seconds"  
-ExpiresByType application/xhtml+xml "access plus 600 seconds"  
+ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+ExpiresByType text/css "access plus 604800 seconds"
+ExpiresByType text/javascript "access plus 216000 seconds"
+ExpiresByType application/javascript "access plus 216000 seconds"
+ExpiresByType application/x-javascript "access plus 216000 seconds"
+ExpiresByType text/html "access plus 5 seconds"
+ExpiresByType application/xhtml+xml "access plus 600 seconds"
 </ifModule>
 
 <IfModule mod_deflate.c>
@@ -114,7 +114,7 @@ Header append Vary User-Agent
     Header set Cache-Control "private, must-revalidate"
   </filesMatch>
 </ifModule>
-</pre>
+```
 
 **راه‌اندازی سرویس cdn**
 
