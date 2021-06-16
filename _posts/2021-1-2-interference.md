@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post2
 title: تاکتیک انسداد یا تداخل در شطرنج
 ---
 
