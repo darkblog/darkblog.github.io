@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post2
 title: لیست تاکتیک های شطرنج
 ---
 
