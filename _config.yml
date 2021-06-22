@@ -18,4 +18,5 @@ feed:
   excerpt_only: true
 
 gems:
+  - jekyll-sitemap
   - jekyll-feed
