@@ -84,3 +84,8 @@ AddOutputFilterByType DEFLATE application/x-javascript
 ## کاهش اسکریپت‌های خارجی
 
 استفاده از اسکریپت‌های مختلف آمارگیر و لایک شبکه‌های اجتماعی احتمالا به پیشرفت سایت شما کمکی نمی‌کنن
+
+***
+{% for post in site.posts limit:3 %}
+<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+{% endfor %}
