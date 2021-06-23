@@ -27,7 +27,7 @@ title: ابزارهای بررسی بک لینک رقبا
 
 این سایت پر از ابزارهای کاربردی مختلفه و ابزار بررسی لینکش از api سایت semrush استفاده می‌کنه. این ابزار به شما 100 بک لینک معتبر هر سایت رو نمایش می‌ده که خیلی خوبه و احتمالا برای لینک سازی با بررسی چندتا سایت مختلف می‌تونید یه لیست با کیفیت تهیه کنید
 
-<a rel="nofollow" href="https://smallseotools.com/backlink-checker/" target="_blank">smallseotools.com</a>
+<a rel="nofollow" href="https://smallseotools.com/backlink-checker/" target="_blank">smallseotools</a>
 
 <br>
 
@@ -35,7 +35,7 @@ title: ابزارهای بررسی بک لینک رقبا
 
 یک ابزار بررسی بک لینک به زبان روسی. چندباری ازش استفاده کردم لیست خوبی گزارش می‌کنه و البته نتایج غیرتکراری زیادی نمایش می‌ده که از بقیه ابزارهای معرفی شده می‌تونه کاربردی‌تر باشه
 
-<a rel="nofollow" href="https://xtool.ru/backlinks/" target="_blank">xtool.ru</a>
+<a rel="nofollow" href="https://xtool.ru/backlinks/" target="_blank">xtool</a>
 
 <br>
 
@@ -43,7 +43,7 @@ title: ابزارهای بررسی بک لینک رقبا
 
 با استفاده از این ابزار می‌تونید محتوای جدیدی که شامل کلیدواژه مورد نظرتونه پیدا کنید. مثلا میتونید کلیدواژه اصلی سایت خودتون رو بهش بدید و به صورت روزانه بررسی کنید چه سایت‌هایی ازش استفاده کردن. در این بین هم بک لینک هایی که در طول روزهای گذشته پیدا می‌کنید و هم فعالیت رقبا زیر ذره بین شماست
 
-<a rel="nofollow" href="https://www.google.com/alerts?hl=fa" target="_blank">google.com/alerts</a>
+<a rel="nofollow" href="https://www.google.com/alerts?hl=fa" target="_blank">google alerts</a>
 
 <br>
 
@@ -53,4 +53,9 @@ title: ابزارهای بررسی بک لینک رقبا
 
 مثلا با جستجوی intext:moz.com می‌تونید درون متن سایت‌ها دنبال آدرس سایت ماز بگردید. الگوهای زیادی با این ابزار می‌شه ساخت
 
-<a rel="nofollow" href="https://www.google.com/advanced_search" target="_blank">google.com/advanced_search</a>
+<a rel="nofollow" href="https://www.google.com/advanced_search" target="_blank">google search</a>
+
+***
+{% for post in site.posts limit:3 %}
+<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+{% endfor %}
