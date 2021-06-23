@@ -19,7 +19,7 @@ title: ابزارهای بررسی بک لینک رقبا
 
 این ابزار با قدرت api سایت ahrefs کار می‌کنه 100 لینک برتر سایت رقیب رو لیست می‌کنه. اگه به نتایج بیشتری نیاز دارید پیشنهاد می‌کنم اکانت ahrefs تهیه کنید
 
-<a rel="nofollow" href="https://www.seoreviewtools.com/valuable-backlinks-checker/" target="_blank">seoreviewtools.com</a>
+<a rel="nofollow" href="https://www.seoreviewtools.com/valuable-backlinks-checker/" target="_blank">seoreviewtools</a>
 
 <br>
 
