@@ -19,6 +19,10 @@
 </nav>
 </header>
 <main class="container">{{ content }}</main>
+<aside class="container">
+{%- assign latest_post = site.posts[0] -%}
+Latest post: <a href="{{ latest_post.url }}">{{ latest_post.title }}</a>
+</aside>
 <footer class="center">
 <a href="{{ site.url }}/seo" class="button">سئو</a>
 <a href="{{ site.url }}/ehsanchehri" class="button">تماس با من</a>
