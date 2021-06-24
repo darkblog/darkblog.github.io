@@ -72,8 +72,3 @@ title: تکنیک های سئو کلاه سیاه
 ## ارسال محتوای اسپم توسط کاربرها
 
 گوگل اهمیتی نمی‌ده محتوای ارسالی در سایت شما توسط کاربرهاست یا شخص شما. اگر راهکارهای مقابله با اسپم اتخاذ نکنید به سایت شما ضربه می‌زنه. [google](https://support.google.com/webmasters/topic/6001971)
-
-***
-{% for post in site.posts limit:3 %}
-<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
-{% endfor %}
