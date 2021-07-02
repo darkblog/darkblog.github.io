@@ -30,7 +30,7 @@ title: سئو ویدیوها در 8 مرحله
 کد اچ تی ام ال نمایش ویدیو:
 
 ```
-<video><source src="https://ehsaider.ir/x/en-passant.mp4" type="video/mp4"></video>
+<video><source src="https://ehsaider.ir/cdn/seo.mp4" type="video/mp4"></video>
 ```
 
 ## توجه به آدرس فایل‌های ویدیویی
