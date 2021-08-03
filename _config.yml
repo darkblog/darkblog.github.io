@@ -1,6 +1,6 @@
 name: احسایدر
 
-description: یادداشت‌های روزانه پیرامون سئو و طراحی سایت به زبان ساده و قابل درک برای مبتدی‌ها
+description: یادداشت‌های روزانه یک گیک
 
 url: https://ehsaider.ir
 
@@ -18,5 +18,4 @@ feed:
   excerpt_only: true
 
 gems:
-  - jekyll-sitemap
   - jekyll-feed
