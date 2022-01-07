@@ -19,3 +19,6 @@ feed:
 
 gems:
   - jekyll-feed
+
+plugins:
+  - jekyll-sitemap
