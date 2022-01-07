@@ -18,7 +18,5 @@ feed:
   excerpt_only: true
 
 gems:
-  - jekyll-feed
-
-plugins:
   - jekyll-sitemap
+  - jekyll-feed
