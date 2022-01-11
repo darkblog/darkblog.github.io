@@ -3,11 +3,11 @@ layout: post
 title: edit
 ---
 
-<img class="center" src="https://ehsaider.ir/cdn/seo.png" loading="lazy" alt="سئو">
+<img class="center" src="https://ehsaider.ir/up/seo.png" loading="lazy" alt="سئو">
 
-<video class="center" controls preload="none"><source src="https://ehsaider.ir/cdn/seo.mp4" type="video/mp4"></video>
+<video class="center" controls preload="none"><source src="https://ehsaider.ir/up/seo.mp4" type="video/mp4"></video>
 
-<audio class="center" controls preload="none"><source src="https://ehsaider.ir/cdn/seo.mp3" type="audio/mp3"></audio>
+<audio class="center" controls preload="none"><source src="https://ehsaider.ir/up/seo.mp3" type="audio/mp3"></audio>
 
 ```
 
