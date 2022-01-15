@@ -17,14 +17,6 @@ kramdown:
 feed:
   excerpt_only: true
 
-whitelist:
-  - jekyll-redirect-from
-
-title: My amazing post
-redirect_from:
-  - /65
-  - /99
-
 gems:
   - jekyll-sitemap
   - jekyll-feed
