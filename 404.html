@@ -4,5 +4,5 @@ sitemap: false
 ---
 
 {% for post in site.posts limit:100 %}
-<article class="post"><a href="{{ site.url }}{{ post.url }}"><h1>{{ post.title }}</h1>{{ post.excerpt }}</a></article>
+<h1><header class="post"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></header></h1>
 {% endfor %}
