@@ -3,6 +3,7 @@ layout: index
 sitemap: false
 ---
 
+<h1>وبلاگ احسایدر</h1>
 {% for post in site.posts limit:100 %}
-<h1 class="post"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h1>
+<h2 class="post"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
 {% endfor %}
