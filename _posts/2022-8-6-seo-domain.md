@@ -1,6 +1,7 @@
 ---
 layout: post
 title: دامنه ir برای سئو بهتره یا com
+redirect_to: "https://ehsaider.ir/seo"
 ---
 
 دامنه‌های محلی بنا بر گفته اکثر بچه‌ها برای موقعیت مکانی اون منطقه بهتره
