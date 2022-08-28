@@ -1,7 +1,371 @@
----
-layout: index
----
 
-{% for post in site.posts limit:20 %}
-<h2 class="post"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
-{% endfor %}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>احسایدر</title>
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+<meta name="description" content="وبلاگ احسایدر؛ تمرین‌های سئو و یادگیری با روش‌های عملیاتی" />
+<link rel="canonical" href="https://ehsaider.ir/" />
+<meta property="og:locale" content="fa_IR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="احسایدر" />
+<meta property="og:description" content="وبلاگ احسایدر؛ تمرین‌های سئو و یادگیری با روش‌های عملیاتی" />
+<meta property="og:url" content="https://ehsaider.ir/" />
+<meta property="og:site_name" content="احسایدر" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://ehsaider.ir/","url":"https://ehsaider.ir/","name":"احسایدر","isPartOf":{"@id":"https://ehsaider.ir/#website"},"about":{"@id":"https://ehsaider.ir/#/schema/person/06c04627210763da8c9ba75d55dc8970"},"description":"وبلاگ احسایدر؛ تمرین‌های سئو و یادگیری با روش‌های عملیاتی","breadcrumb":{"@id":"https://ehsaider.ir/#breadcrumb"},"inLanguage":"fa-IR"},{"@type":"BreadcrumbList","@id":"https://ehsaider.ir/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"خانه"}]},{"@type":"WebSite","@id":"https://ehsaider.ir/#website","url":"https://ehsaider.ir/","name":"احسایدر","description":"وبلاگ احسایدر؛ تمرین‌های سئو و یادگیری با روش‌های عملیاتی","publisher":{"@id":"https://ehsaider.ir/#/schema/person/06c04627210763da8c9ba75d55dc8970"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://ehsaider.ir/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"fa-IR"},{"@type":["Person","Organization"],"@id":"https://ehsaider.ir/#/schema/person/06c04627210763da8c9ba75d55dc8970","name":"احسان چهری","logo":{"@id":"https://ehsaider.ir/#/schema/person/image/"},"sameAs":["https://ehsaider.ir"]}]}</script>
+
+<link rel="alternate" type="application/rss+xml" title="احسایدر &raquo; خوراک" href="https://ehsaider.ir/feed" />
+<link rel='stylesheet' id='wp-block-library-rtl-css' href='https://ehsaider.ir/wp-includes/css/dist/block-library/style-rtl.min.css?ver=6.0.1' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--blue: #21759b;--wp--preset--color--dark-gray: #444;--wp--preset--color--medium-gray: #9f9f9f;--wp--preset--color--light-gray: #e6e6e6;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='uaf_client_css-css' href='https://ehsaider.ir/wp-content/uploads/useanyfont/uaf.css?ver=1661154392' type='text/css' media='all' />
+<link rel='stylesheet' id='twentytwelve-style-css' href='https://ehsaider.ir/wp-content/themes/twentytwelve/style.css?ver=20190507' type='text/css' media='all' />
+<link rel='stylesheet' id='twentytwelve-block-style-css' href='https://ehsaider.ir/wp-content/themes/twentytwelve/css/blocks.css?ver=20190406' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentytwelve-ie-css'  href='https://ehsaider.ir/wp-content/themes/twentytwelve/css/ie.css?ver=20150214' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='https://ehsaider.ir/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://ehsaider.ir/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="stylesheet" href="https://ehsaider.ir/wp-content/themes/twentytwelve/rtl.css" type="text/css" media="screen" /></head>
+<body class="rtl home blog wp-embed-responsive single-author">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div id="page" class="hfeed site">
+<header id="masthead" class="site-header">
+<hgroup>
+<h1 class="site-title"><a href="https://ehsaider.ir/" title="احسایدر" rel="home">احسایدر</a></h1>
+</hgroup>
+<nav id="site-navigation" class="main-navigation">
+<button class="menu-toggle">فهرست</button>
+<a class="assistive-text" href="#content" title="رفتن به نوشته‌ها">رفتن به نوشته‌ها</a>
+<div class="menu-%d9%81%d9%87%d8%b1%d8%b3%d8%aa-container"><ul id="menu-%d9%81%d9%87%d8%b1%d8%b3%d8%aa" class="nav-menu"><li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="https://ehsaider.ir/seo">آموزش سئو</a></li>
+<li id="menu-item-112" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-112"><a href="https://ehsaider.ir/google-ranking-factors">فاکتورهای سئو</a></li>
+</ul></div> </nav>
+</header>
+<div id="main" class="wrapper">
+<div id="primary" class="site-content">
+<div id="content" role="main">
+
+<article id="post-41" class="post-41 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/seo-hacks" rel="bookmark">هک سئو چیست؟ + روش‌های هک سئو</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>هک سئو می‌تونه مثل انواع مختلف هک رشد مورد استفاده سایت‌ها قرار بگیره اگه رقابت در حوزه کاری شما زیاده و دنبال رتبه خوب با جادو هستید!</p>
+<a href="https://ehsaider.ir/seo-hacks#more-41" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-94" class="post-94 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/image-seo" rel="bookmark">سئو تصاویر سایت &#8211; تسخیر عکس های گوگل</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>سئو تصاویر سایت علاوه بر افزایش رتبه سایت می‌تونه نقش مهمی در رابط کاربری و سرعت سایت داشته باشه که در این پست بررسی می‌کنیم</p>
+<a href="https://ehsaider.ir/image-seo#more-94" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-92" class="post-92 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/keyword-research" rel="bookmark">تحقیق کلمات کلیدی با 6 استراتژی سئو</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>کلمات کلیدی در نهایت باید به تقویت استراتژی سئو کمک کنه. کلیدواژه اصلی در استراتژی سئو تحقیق کلمات کلیدی کلیدواژه اصلی فقط 1 صفحه از سایته</p>
+<a href="https://ehsaider.ir/keyword-research#more-92" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-90" class="post-90 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/negative-seo" rel="bookmark">سئو منفی &#8211; خنجر از پشت سایت رقیب</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>سئو منفی یکی از مواردیه که کسب و کارهای رقابتی معمولا باهاش دست و پنجه نرم می‌کنن. اگر موضوع سایت شما رقابتیه بامن همراه باشید</p>
+<a href="https://ehsaider.ir/negative-seo#more-90" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-88" class="post-88 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/pagination-seo" rel="bookmark">سئو صفحه بندی های سایت در 9 مرحله</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>صفحه بندی پست‌ها در نگاه اول خیلی ساده و پیش پا افتادست اما وقتی وارد ریز ماجرا می‌شیم می‌بینیم چندین نکته برای سئو صفحه بندی وجود داره</p>
+<a href="https://ehsaider.ir/pagination-seo#more-88" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-86" class="post-86 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/category-seo" rel="bookmark">سئو دسته بندی ها و برچسب ها &#8211; کم‌تر=بهتر</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>دسته بندی ها و برچسب ها در سئو مثل چاقوی دولبه هستن. برای سئو دسته بندی ها و برچسب باید نکاتی رو مورد توجه قرار بدیم که اینجا مرور می‌کنیم</p>
+<a href="https://ehsaider.ir/category-seo#more-86" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-84" class="post-84 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/seo-content" rel="bookmark">اصول سئو محتوا &#8211; قدم به قدم تا ویکی‌پدیا شدن</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>محتوا بدون سئو و بازاریابی بین هزاران محتوای دیگه قطعا شانسی برای دیده شدن نداره و یکی از اصول اولیه سئو محتوا اولیت قرار دادن کاربرهاست</p>
+<a href="https://ehsaider.ir/seo-content#more-84" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-82" class="post-82 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/duplicate-content" rel="bookmark">حذف محتوای تکراری &#8211; معرفی قاتل سئو</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>یکی از عوامل مانع پیشرفت سایت ایجاد محتوای تکراری و دو به شک کردن گوگل برای رتبه بندی صفحات سایته و بهترین راه حذف محتوای تکراریه</p>
+<a href="https://ehsaider.ir/duplicate-content#more-82" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-80" class="post-80 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/google-index" rel="bookmark">افزایش سرعت ایندکس صفحات سایت در گوگل</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>افزایش سرعت ایندکس وابسته به عوامل مختلفیه اما ساختار اصلی سایت و رعایت چند نکته ساده می‌تونه بهبودش بده</p>
+<a href="https://ehsaider.ir/google-index#more-80" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-78" class="post-78 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/google-penalty" rel="bookmark">پنالتی گوگل چیست؟ دلایل پنالتی گوگل</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>برای رفع پنالتی گوگل باید در ابتدا تشخیص بدیم پنالتی شدیم یا دلایلی دیگه مثل خطاهای سایت یا محتوای تکراری باعثش شده</p>
+<a href="https://ehsaider.ir/google-penalty#more-78" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-73" class="post-73 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/website-traffic" rel="bookmark">افزایش ترافیک سایت با روش‌های رایگان</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>برای افزایش ترافیک سایت انواع روش‌های رایگان و پولی وجود داره اما می‌خوام اینجا بهترین روش‌های افزایش ترافیک رایگان رو باهم مرور کنیم</p>
+<a href="https://ehsaider.ir/website-traffic#more-73" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-71" class="post-71 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/seo-mistakes" rel="bookmark">اشتباهات سئو فروشگاه اینترنتی</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>اشتباهات سئو در فروشگاه های اینترنتی با توجه به رقابت بالایی که وجود داره می‌تونه خسارات جبران ناپذیری به بار بیاره و خیلی ساده میشه ازشون جلوگیری کرد</p>
+<a href="https://ehsaider.ir/seo-mistakes#more-71" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-67" class="post-67 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/404-seo" rel="bookmark">خطای 404 چیست؟ تبدیل خطای 404 به امتیاز</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>خطای ۴۰۴ و بهینه‌سازی اصولی صفحات خطا برای سئو</p>
+<a href="https://ehsaider.ir/404-seo#more-67" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-63" class="post-63 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/url-seo" rel="bookmark">سئو آدرس صفحات سایت &#8211; فارسی یا انگلیسی؟</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>انتخاب url می‌تونه معماری سایت رو پایه ریزی کنه و نقش مهمی در آینده سئو سایت شما بازی کنه اما تمام ماجرا این نیست!</p>
+<a href="https://ehsaider.ir/url-seo#more-63" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-61" class="post-61 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/website-speed" rel="bookmark">افزایش سرعت سایت با 14 روش فنی</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>حالا که سرعت سایت جزو فاکتورهای اصلی قرار گرفته دلیلی برای توضیح اینکه چرا باید به فکر افزایش سرعت سایت باشیم وجود نداره!</p>
+<a href="https://ehsaider.ir/website-speed#more-61" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+
+</article>
+<article id="post-57" class="post-57 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/video-seo" rel="bookmark">سئو ویدیوها در 8 مرحله</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>سئو ویدیوها از این نظر مهمه که جایگاه ویژه‌ای در نتایج دارن (بالاتر از همه نتایج نمایش داده می‌شن) و البته بخاطر توجه ویژه کاربرها به محتوای تصویریه</p>
+<a href="https://ehsaider.ir/video-seo#more-57" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-54" class="post-54 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/backlink" rel="bookmark">بک لینک چیست؟ + ابزارهای بک لینک رایگان</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>بک لینک ها تاثیرگذارترین بخش سئو خارجی سایت شما هستن. با بررسی بک لینک های سایت رقبا می‌تونید علاوه بر قوی کردن پروفایل لیتک خودتون بفهمید تا چه اندازه باید روی کلمات کلیدی سخت پافشاری کنید!</p>
+<a href="https://ehsaider.ir/backlink#more-54" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-49" class="post-49 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/black-hat-seo" rel="bookmark">سئو کلاه سیاه چیست؟ آموزش black hat seo</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>آموزش سئو کلاه سیاه به شما کمک می‌کنه بیشتر با موتور جستجوی گوگل آشنا بشید و البته این آشنایی منجر به سواستفاده از الگوریتم‌های مختلفه. و حالا این بر عهده شماست بخواید ازشون استفاده کنید یا اینکه می‌خواید باهاشون آشنا بشید تا ازشون دوری کنید و سایت شما در معرض خطر نباشه</p>
+<a href="https://ehsaider.ir/black-hat-seo#more-49" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-47" class="post-47 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/google-ranking-factors" rel="bookmark">فاکتورهای سئو گوگل</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>فاکتورهای سئو گوگل به شما کمک می‌کنن دیدگاه کلی از سئو داخلی و خارج از سایتتون داشته باشید و از ابتدای طراحی سایت تا اجرای پروژه سئوی ساییتون همواره درنظر داشته باشید چه مواردی ضروری هستن</p>
+<a href="https://ehsaider.ir/google-ranking-factors#more-47" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-45" class="post-45 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/seo" rel="bookmark">سئو چیست؟ آموزش سئو سایت (SEO)</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>سئو یا بهینه سازی سایت برای موتورهای جستجو شامل هر نوع تکنیک و روشی می‌شه که در نهایت منجر به صعود کلیدواژه‌ صفحات شما در نتایج موتورهای جستجو بشه</p>
+<a href="https://ehsaider.ir/seo#more-45" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+<article id="post-30" class="post-30 post type-post status-publish format-standard hentry category-blog">
+<header class="entry-header">
+<h1 class="entry-title">
+<a href="https://ehsaider.ir/wordpress-seo" rel="bookmark">چک لیست سئو وردپرس</a>
+</h1>
+</header>
+<div class="entry-content">
+<p>چک لیست سئو وردپرس به شما کمک می‌کنه بعد از راه اندازی وردپرس اقدامات اولیه رو انجام بدید. سئو وردپرس بعد از نصب انجام می‌شه!</p>
+<a href="https://ehsaider.ir/wordpress-seo#more-30" class="more-link">ادامه مطلب <span class="meta-nav">&#8230;</span></a> </div>
+</article>
+</div>
+</div>
+<div id="secondary" class="widget-area" role="complementary">
+<style>
+        .rpwe-block ul {
+            list-style: none !important;
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+        }
+
+        .rpwe-block li {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            list-style-type: none;
+        }
+
+        .rpwe-block a {
+            display: inline !important;
+            text-decoration: none;
+        }
+
+        .rpwe-block h3 {
+            background: none !important;
+            clear: none;
+            margin-bottom: 0 !important;
+            margin-top: 0 !important;
+            font-weight: 400;
+            font-size: 12px !important;
+            line-height: 1.5em;
+        }
+
+        .rpwe-thumb {
+            border: 1px solid #EEE !important;
+            box-shadow: none !important;
+            margin: 2px 10px 2px 0;
+            padding: 3px !important;
+        }
+
+        .rpwe-summary {
+            font-size: 12px;
+        }
+
+        .rpwe-time {
+            color: #bbb;
+            font-size: 11px;
+        }
+
+        .rpwe-comment {
+            color: #bbb;
+            font-size: 11px;
+            padding-left: 5px;
+        }
+
+        .rpwe-alignleft {
+            display: inline;
+            float: left;
+        }
+
+        .rpwe-alignright {
+            display: inline;
+            float: right;
+        }
+
+        .rpwe-aligncenter {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rpwe-clearfix:before,
+        .rpwe-clearfix:after {
+            content: "";
+            display: table !important;
+        }
+
+        .rpwe-clearfix:after {
+            clear: both;
+        }
+
+        .rpwe-clearfix {
+            zoom: 1;
+        }
+    </style>
+<aside id="rpwe_widget-2" class="widget rpwe_widget recent-posts-extended"><div class="rpwe-block "><ul class="rpwe-ul"><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/seo-hacks" title="پیوند یکتا به هک سئو چیست؟ + روش‌های هک سئو" rel="bookmark">هک سئو چیست؟ + روش‌های هک سئو</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/image-seo" title="پیوند یکتا به سئو تصاویر سایت &#8211; تسخیر عکس های گوگل" rel="bookmark">سئو تصاویر سایت &#8211; تسخیر عکس های گوگل</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/keyword-research" title="پیوند یکتا به تحقیق کلمات کلیدی با 6 استراتژی سئو" rel="bookmark">تحقیق کلمات کلیدی با 6 استراتژی سئو</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/negative-seo" title="پیوند یکتا به سئو منفی &#8211; خنجر از پشت سایت رقیب" rel="bookmark">سئو منفی &#8211; خنجر از پشت سایت رقیب</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/pagination-seo" title="پیوند یکتا به سئو صفحه بندی های سایت در 9 مرحله" rel="bookmark">سئو صفحه بندی های سایت در 9 مرحله</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/category-seo" title="پیوند یکتا به سئو دسته بندی ها و برچسب ها &#8211; کم‌تر=بهتر" rel="bookmark">سئو دسته بندی ها و برچسب ها &#8211; کم‌تر=بهتر</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/seo-content" title="پیوند یکتا به اصول سئو محتوا &#8211; قدم به قدم تا ویکی‌پدیا شدن" rel="bookmark">اصول سئو محتوا &#8211; قدم به قدم تا ویکی‌پدیا شدن</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/duplicate-content" title="پیوند یکتا به حذف محتوای تکراری &#8211; معرفی قاتل سئو" rel="bookmark">حذف محتوای تکراری &#8211; معرفی قاتل سئو</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/google-index" title="پیوند یکتا به افزایش سرعت ایندکس صفحات سایت در گوگل" rel="bookmark">افزایش سرعت ایندکس صفحات سایت در گوگل</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/google-penalty" title="پیوند یکتا به پنالتی گوگل چیست؟ دلایل پنالتی گوگل" rel="bookmark">پنالتی گوگل چیست؟ دلایل پنالتی گوگل</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/website-traffic" title="پیوند یکتا به افزایش ترافیک سایت با روش‌های رایگان" rel="bookmark">افزایش ترافیک سایت با روش‌های رایگان</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/seo-mistakes" title="پیوند یکتا به اشتباهات سئو فروشگاه اینترنتی" rel="bookmark">اشتباهات سئو فروشگاه اینترنتی</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/404-seo" title="پیوند یکتا به خطای 404 چیست؟ تبدیل خطای 404 به امتیاز" rel="bookmark">خطای 404 چیست؟ تبدیل خطای 404 به امتیاز</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/url-seo" title="پیوند یکتا به سئو آدرس صفحات سایت &#8211; فارسی یا انگلیسی؟" rel="bookmark">سئو آدرس صفحات سایت &#8211; فارسی یا انگلیسی؟</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/website-speed" title="پیوند یکتا به افزایش سرعت سایت با 14 روش فنی" rel="bookmark">افزایش سرعت سایت با 14 روش فنی</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/video-seo" title="پیوند یکتا به سئو ویدیوها در 8 مرحله" rel="bookmark">سئو ویدیوها در 8 مرحله</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/backlink" title="پیوند یکتا به بک لینک چیست؟ + ابزارهای بک لینک رایگان" rel="bookmark">بک لینک چیست؟ + ابزارهای بک لینک رایگان</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/black-hat-seo" title="پیوند یکتا به سئو کلاه سیاه چیست؟ آموزش black hat seo" rel="bookmark">سئو کلاه سیاه چیست؟ آموزش black hat seo</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/google-ranking-factors" title="پیوند یکتا به فاکتورهای سئو گوگل" rel="bookmark">فاکتورهای سئو گوگل</a></h3></li><li class="rpwe-li rpwe-clearfix"><h3 class="rpwe-title"><a href="https://ehsaider.ir/seo" title="پیوند یکتا به سئو چیست؟ آموزش سئو سایت (SEO)" rel="bookmark">سئو چیست؟ آموزش سئو سایت (SEO)</a></h3></li></ul></div></aside><aside id="block-3" class="widget widget_block">
+<div class="wp-container-4 wp-block-group"><div class="wp-block-group__inner-container">
+<div class="wp-container-3 wp-block-columns are-vertically-aligned-top">
+<div class="wp-container-2 wp-block-column is-vertically-aligned-top" style="flex-basis:100%">
+<aside class="wp-container-1 wp-block-group"><div class="wp-block-group__inner-container"></div></aside>
+</div>
+</div>
+</div></div>
+</aside> </div>
+</div>
+<footer id="colophon" role="contentinfo">
+<div class="site-info">
+</div>
+</footer>
+</div>
+<style>.wp-container-1 > .alignleft { float: left; margin-inline-start: 0; margin-inline-end: 2em; }.wp-container-1 > .alignright { float: right; margin-inline-start: 2em; margin-inline-end: 0; }.wp-container-1 > .aligncenter { margin-left: auto !important; margin-right: auto !important; }</style>
+<style>.wp-container-2 > .alignleft { float: left; margin-inline-start: 0; margin-inline-end: 2em; }.wp-container-2 > .alignright { float: right; margin-inline-start: 2em; margin-inline-end: 0; }.wp-container-2 > .aligncenter { margin-left: auto !important; margin-right: auto !important; }</style>
+<style>.wp-container-3 {display: flex;gap: 2em;flex-wrap: nowrap;align-items: center;}.wp-container-3 > * { margin: 0; }</style>
+<style>.wp-container-4 > .alignleft { float: left; margin-inline-start: 0; margin-inline-end: 2em; }.wp-container-4 > .alignright { float: right; margin-inline-start: 2em; margin-inline-end: 0; }.wp-container-4 > .aligncenter { margin-left: auto !important; margin-right: auto !important; }</style>
+<script type='text/javascript' src='https://ehsaider.ir/wp-content/themes/twentytwelve/js/navigation.js?ver=20141205' id='twentytwelve-navigation-js'></script>
+</body>
+</html>
