@@ -13,3 +13,10 @@ encoding: UTF-8
 kramdown:
    syntax_highlighter_opts:
       disable : true
+
+feed:
+  excerpt_only: true
+
+gems:
+  - jekyll-sitemap
+  - jekyll-feed
