@@ -2,9 +2,6 @@ User-agent: *
 Disallow: /*/*
 Disallow: /*.*
 Allow: /sitemap.xml
-Allow: /robots.txt
-Disallow: /sitemap.xml*
-Dissalow: /robots.txt*
 
 
 Sitemap: https://biganeh.com/sitemap.xml
