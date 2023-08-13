@@ -1,6 +1,10 @@
 User-agent: *
 Disallow: /*/*
 Disallow: /*.*
+Disallow: /*-*
+Disallow: /*_*
+Disallow: /*+*
+Disallow: /*?*
 Allow: /sitemap.xml
 Allow: /favicon.ico
 Sitemap: https://biganeh.com/sitemap.xml
