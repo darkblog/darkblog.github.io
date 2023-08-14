@@ -29,15 +29,6 @@
      "@id": "{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}",
      "name": "{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}"
    }
-  },
-   {
-   "@type": "ListItem",
-  "position": 3,
-  "item":
-   {
-     "@id": "{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}",
-     "name": "{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}"
-   }
   }
  ]
 }
