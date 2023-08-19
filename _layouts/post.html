@@ -4,5 +4,5 @@ layout: default
 
 <h2><a href="https://biganeh.com/">بیگانه</a>&nbsp;-&nbsp;{{ page.title }}</h2>{{ content }}
 {% for post in site.posts limit:10000 %}
-<h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
 {% endfor %}
