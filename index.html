@@ -3,5 +3,5 @@ layout: index
 ---
 
 {% for post in site.posts limit:10000 %}
-<article><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></article>
+<h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
 {% endfor %}
