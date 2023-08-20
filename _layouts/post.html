@@ -3,6 +3,6 @@ layout: default
 ---
 
 <h2><a href="https://biganeh.com/">بیگانه</a>&nbsp;{{ page.title }}</h2>{{ content }}
-{% for post in site.posts limit:5 %}
+{% for post in site.posts limit:50 %}
 <h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
 {% endfor %}
