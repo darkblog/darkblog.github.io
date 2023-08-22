@@ -3,22 +3,18 @@ layout: compress
 ---
 
 <!DOCTYPE html>
-<html amp dir="rtl" lang="fa">
+<html dir="rtl" lang="fa">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page.title }}</title>
 <meta name="description" content="{{ page.title }}">
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-<style amp-custom>body{font-family:sans-serif;margin:auto;padding:20px;max-width:800px;text-align:center}a{color:blue;text-decoration:none}p{text-align:right;font-size:large}</style>
+<style>body{font-family:sans-serif;margin:auto;padding:20px;max-width:800px;text-align:center}a{color:blue;text-decoration:none}p{text-align:right;font-size:large}</style>
 </head>
 <body>
-<header>
 <h1><a href="https://biganeh.com/">بیگانه</a></h1>
 <h1>{{ page.title }}</h1>
-</header>
-<article>
 {{ content }}
-</article>
 </body>
 </html>
