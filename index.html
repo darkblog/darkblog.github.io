@@ -15,7 +15,7 @@ layout: compress
 <body>
 <h1>بیگانه</h1>
 {% for post in site.posts limit:1000 %}
-<h2 id="{{ post.title }}">{{ post.title }}</h2>
+<h2>{{ post.title }}</h2>
 {{ post.content }}
 {% endfor %}
 </body>
