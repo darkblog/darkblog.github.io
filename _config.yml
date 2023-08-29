@@ -4,7 +4,7 @@ description: بیگانه
 
 url: https://biganeh.com
 
-permalink: /:title
+permalink: /#:title
 
 encoding: UTF-8
 
