@@ -8,7 +8,6 @@ layout: compress
 <title>بیگانه</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="بیگانه">
 <link rel="canonical" href="https://biganeh.com/">
 <style>body{font-family:sans-serif;margin:auto;padding:0 1.25em 0 1.25em;max-width:48em}p{font-size:large}hr{border:thick solid blue}</style>
 </head>
@@ -16,6 +15,7 @@ layout: compress
 <h1>بیگانه</h1>
 {% for post in site.posts limit:1000 %}
 <hr>
+<h2>{{ post.title }}</h2>
 {{ post.content }}
 {% endfor %}
 </body>
