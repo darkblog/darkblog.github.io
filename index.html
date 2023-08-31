@@ -9,12 +9,13 @@ layout: compress
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://biganeh.com/">
-<style>body{font-family:sans-serif;margin:auto;padding:0 1.25em 0 1.25em;max-width:48em}p{font-size:large}a{text-decoration:none;border:transparent blue blue blue;border-radius:10px;padding:10px;text-align:center}hr{border:thick solid blue}</style>
+<style>body{font-family:sans-serif;margin:auto;padding:0 1.25em 0 1.25em;max-width:48em}p{font-size:large}a{text-decoration:none}hr{border:thick solid blue}</style>
 </head>
 <body>
 <h1>بیگانه</h1>
 {% for post in site.posts limit:1000 %}
-<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+<hr>
+[<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>]
 {{ post.content }}
 {% endfor %}
 </body>
