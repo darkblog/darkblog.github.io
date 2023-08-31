@@ -9,12 +9,12 @@ sitemap: false
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<style>body{font-family:sans-serif;margin:auto;padding:0 1.25em;max-width:48em}p{font-size:large}</style>
+<style>body{font-family:sans-serif;margin:auto;padding:0 1.25em;max-width:48em}p{font-size:large}a{text-decoration:none;padding:10px}a,hr{border:thick solid black}</style>
 </head>
 <body>
 <h1>بیگانه</h1>
 {% for post in site.posts limit:1000 %}
-<h2>{{ post.title }}</h2>
+<hr>
 {{ post.content }}
 {% endfor %}
 </body>
