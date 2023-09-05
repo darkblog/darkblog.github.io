@@ -13,8 +13,7 @@ sitemap: false
 <body>
 <h1>بیگانه</h1>
 {% for post in site.posts limit:1000 %}
-<hr>
-<a href="{{ site.url }}{{ post.url }}">[{{ post.title }}]</a>
+<hr><a href="{{ site.url }}{{ post.url }}">[{{ post.title }}]</a>
 {{ post.content }}
 {% endfor %}
 </body>
