@@ -13,7 +13,7 @@ layout: compress
 <body>
 <h1>بیگانه</h1>
 {% for post in site.posts %}
-<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+<a href="{{ site.url }}{{ post.url }}"><hr>{{ post.title }}</a>
 {{ post.content }}
 {% endfor %}
 </body>
