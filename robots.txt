@@ -1,6 +1,1 @@
-User-agent: *
-Disallow: /search/
-
-
-Sitemap: https://blog.google/sitemap.xml
-
+Sitemap: https://biganeh.com/sitemap.xml
