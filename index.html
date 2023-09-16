@@ -10,9 +10,9 @@ layout: compress
 <style>body{font-family:sans-serif;margin:auto;padding:0 1em;max-width:48em}p{font-size:large}a{text-decoration:none;color:black}</style>
 </head>
 <body>
-{% for post in site.posts limit:1 %}
-<h1><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h1>
-{{ post.content }}
+<h1>بیگانه</h1>
+{% for post in site.posts limit:1000 %}
+•<h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
 {% endfor %}
 </body>
 </html>
