@@ -11,7 +11,7 @@ layout: compress
 </head>
 <body>
 {% for post in site.posts limit:1 %}
-<h1><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h1>
+<h1><a href="{{ site.url }}{{ post.url }}">{{ site.posts.last.title }}</a></h1>
 {{ post.content }}
 {% endfor %}
 </body>
