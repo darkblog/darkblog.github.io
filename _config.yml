@@ -6,3 +6,6 @@ encoding: UTF-8
 
 compress_html:
   clippings: all
+
+gems:
+  - jekyll-sitemap
