@@ -9,4 +9,3 @@ compress_html:
 
 gems:
   - jekyll-sitemap
-  - jekyll-tagging-related_posts
