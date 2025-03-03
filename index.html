@@ -8,12 +8,12 @@ layout: compress
 <title>وبلاگ دارک</title>
 <meta name="description" content="وبلاگ دارک یه وبلاگ شخصی با مطالب پراکنده و دقدقه‌های یک پسر وطن‌پرسته">
 <meta name="viewport" content="width=device-width">
-<style>body{font-family:sans-serif;margin:auto;padding:1em;max-width:80ch}a{text-decoration:none}</style>
+<style>body{font-family:sans-serif;margin:auto;padding:1em;max-width:80ch}a{text-decoration:none;color:blue}</style>
 </head>
 <body>
 <h1>وبلاگ دارک</h1>
 {% for post in site.posts %}
-<h2>⭐<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+<h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
 {% endfor %}
 </body>
 </html>
