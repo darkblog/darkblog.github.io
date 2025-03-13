@@ -1,4 +1,5 @@
 url: https://darkblog.github.io
+
 permalink: /:title
 
 encoding: UTF-8
