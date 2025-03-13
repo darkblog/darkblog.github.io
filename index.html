@@ -14,7 +14,7 @@ layout: compress
 <h1>وبلاگ دارک</h1>
 <h2>وبلاگ دارک؛ علم از نگاه من!</h2>
 {% for post in site.posts %}
-<h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3>
+<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>
 {% endfor %}
 </body>
 </html>
