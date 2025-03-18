@@ -11,5 +11,10 @@
 {% for related_post in site.related_posts %}
 <a href="{{ site.url }}{{ related_post.url }}">{{ related_post.title }}</a><hr>
 {% endfor %}
+<ul>
+{% for related_post in site.related_posts limit: 1000 %}
+<li><a href="{{ related_post.url }}">{{ related_post.title }}</a></li>
+{% endfor %}
+</ul>
 </body>
 </html>
