@@ -10,7 +10,7 @@ sitemap: false
 </head>
 <body>
 {% for post in site.posts %}
-<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>
+<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
 {% endfor %}
 </body>
 </html>
