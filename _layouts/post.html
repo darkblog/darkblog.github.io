@@ -14,5 +14,11 @@
 <li><a href="{{ related_post.url }}">{{ related_post.title }}</a></li>
 {% endfor %}
 </ul>
+<hr>
+<ul>
+{% for post in site.posts %}
+<li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
 </body>
 </html>
