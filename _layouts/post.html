@@ -10,7 +10,7 @@
 {{ content }}
 <hr>
 <ul>
-{% for related_post in site.related_posts limit: 1000 %}
+{% for related_post in site.related_posts limit: 99 %}
 <li><a href="{{ related_post.url }}">{{ related_post.title }}</a></li>
 {% endfor %}
 </ul>
