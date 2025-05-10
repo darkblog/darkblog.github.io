@@ -12,8 +12,9 @@ layout: index.html
 <body>
 <h1>وبلاگ دارک</h1>
 <h2>وبلاگ دارک؛ ناگفته‌های علمی!</h2>
+<hr><a href="https://sites.google.com/view/ehsanchehri">سئو</a>
 {% for post in site.posts %}
-<hr><a href="https://sites.google.com/view/ehsanchehri">سئو</a><hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
 {% endfor %}
 <hr>
 </body>
