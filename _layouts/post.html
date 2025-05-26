@@ -12,11 +12,10 @@
 <body>
 <h1>{{ page.title }}</h1>
 {{ content }}
-<hr>
 {% for post in site.posts %}
+<hr>
 <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
 {% endfor %}
 <hr>
-<a href="https://bamdad.pages.dev/">بامداد</a><hr>
 </body>
 </html>
