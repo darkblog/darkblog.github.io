@@ -8,14 +8,13 @@ layout: index.html
 <meta charset="UTF-8">
 <title>وبلاگ دارک</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=1.0,minimum-scale=1.0">
-<style>body{font-family:Vazirmatn;margin:auto;padding:1em;max-width:80ch}a{text-decoration:none}h1{color:red}hr{border:1px dashed #333}img{width:100%}</style>
+<style>body{font-family:Vazirmatn;margin:auto;padding:1em;max-width:80ch}a{text-decoration:none}h1{color:red}hr{border:1px dashed #333}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <h1>وبلاگ دارک</h1>
-<img src="https://raw.githubusercontent.com/darkblog/cdn/refs/heads/main/dark.jpg" alt="dark" loading="lazy">
 <hr>
 {% for post in site.posts %}
 <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
