@@ -8,9 +8,10 @@
 </head>
 <body>
 <h1>{{ page.title }}</h1>
-<nav>+<a href="https://darkblog.github.io/">وبلاگ</a></nav>
 {{ content }}
 {% for post in site.posts %}
+<hr>
+<a href="https://darkblog.github.io/">وبلاگ</a>
 <hr>
 <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
 {% endfor %}
