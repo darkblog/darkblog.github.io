@@ -11,7 +11,7 @@ layout: index.html
 <style>@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');body{font-family:Vazirmatn;margin:auto;padding:1em;max-width:50ch}a{text-decoration:none}h1{color:red}hr{border:1px dashed #d4d4d4}#c1{color:black}</style>
 </head>
 <body>
-<h1>وبلاگ&nbsp;<div id="c1">دارک</div></h1>
+<h1>وبلاگ&nbsp;<id="c1">دارک</id></h1>
 <hr>{% for post in site.posts %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>{% endfor %}
 </body>
 </html>
