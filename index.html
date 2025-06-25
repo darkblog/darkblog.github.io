@@ -12,10 +12,6 @@ layout: index.html
 </head>
 <body>
 <h1>وبلاگ&nbsp<font color="black">دارک</font></h1>
-<hr>
-{% for post in site.posts %}
-<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
-<hr>
-{% endfor %}
+<hr>{% for post in site.posts %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>{% endfor %}
 </body>
 </html>
