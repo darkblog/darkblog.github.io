@@ -12,6 +12,6 @@ layout: index.html
 </head>
 <body>
 <h1>وبلاگ&nbsp;<span style="color:black">دارک</span></h1>
-<hr>{% for post in site.posts limit:20 %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>{% endfor %}
+<hr>{% for post in site.posts limit:10 %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>{% endfor %}
 </body>
 </html>
