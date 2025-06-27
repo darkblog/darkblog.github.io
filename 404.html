@@ -10,8 +10,7 @@ sitemap: false
 <style>@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');body{font-family:Vazirmatn;margin:auto;padding:10px;max-width:768px}a{text-decoration:none}h1{color:red}hr{border:1px dashed #d4d4d4}</style>
 </head>
 <body>
-<h1>آدرس اشتباه!</h1>
-<hr><h2><a href="https://darkblog.github.io/">&#9728; وبلاگ دارک</a></h2>
-{% for post in site.posts limit:20 %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
+<h1><a href="https://darkblog.github.io/">&#9728; وبلاگ دارک</a></h1>
+<hr>{% for post in site.posts limit:20 %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
 </body>
 </html>
