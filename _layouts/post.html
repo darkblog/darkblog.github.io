@@ -10,6 +10,6 @@
 <h1>{{ page.title }}</h1>
 <article>{{ content }}</article>
 <hr><h2><a href="https://darkblog.github.io/">&#9728; وبلاگ دارک</a></h2>
-{% for post in site.posts offset:1 limit:3 %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
+{% for related_post in site.related_posts limit: 3 %}<hr><a href="{{ site.url }}{{ related_post.url }}">{{ related_post.title }}</a>{% endfor %}<hr>
 </body>
 </html>
