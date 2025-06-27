@@ -13,10 +13,6 @@ sitemap: false
 <h1>آدرس اشتباه!</h1>
 <hr>
 <a href="https://darkblog.github.io/">وبلاگ</a>
-{% for post in site.posts limit:10 %}
-<hr>
-<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
-{% endfor %}
-<hr>
+{% for post in site.posts limit:10 %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
 </body>
 </html>
