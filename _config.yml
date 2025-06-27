@@ -6,3 +6,4 @@ encoding: UTF-8
 
 gems:
   - jekyll-sitemap
+  - jekyll-tagging-related_posts
