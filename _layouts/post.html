@@ -10,7 +10,7 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "{{ page.title }}",
-  "datePublished": "2020-01-05T08:00:00+08:00",
+  "datePublished": "{{ page.date | date: "%Y-%m-%d" }}T08:00:00+08:00",
   "dateModified": "{{ page.date | date: "%Y-%m-%d" }}T09:20:00+08:00",
   "author": [{
       "@type": "Organization",
@@ -24,6 +24,6 @@
 <h1>{{ page.title }}</h1>
 {{ content }}
 <hr><h2><a href="https://darkblog.github.io/"><span style="color:red">وبلاگ</span>&nbsp;<span style="color:black">دارک</span></a></h2>
-{% for related_post in site.related_posts limit:10 %}<hr><a href="{{ site.url }}{{ related_post.url }}">{{ related_post.title }}</a>{% endfor %}<hr>
+{% for related_post in site.related_posts limit:100 %}<hr><a href="{{ site.url }}{{ related_post.url }}">{{ related_post.title }}</a>{% endfor %}<hr>
 </body>
 </html>
