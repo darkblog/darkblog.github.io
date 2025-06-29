@@ -11,6 +11,6 @@ sitemap: false
 </head>
 <body>
 <h1><a href="https://darkblog.github.io/"><span style="color:red">وبلاگ</span>&nbsp;<span style="color:black">دارک</span></a></h1>
-{% for post in site.posts limit:20 %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
+{% for post in site.posts limit:100 %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
 </body>
 </html>
