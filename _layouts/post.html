@@ -23,7 +23,7 @@
 </head>
 <body>
 <h1>{{ page.title }}</h1>
-<p><a href="https://darkblog.github.io/">وبلاگ</a>&nbsp;.&nbsp;<time>{{ page.date | date: "%Y-%m-%d" }}</time></p>
+<h2><a href="https://darkblog.github.io/"><span style="color:red">وبلاگ</span>&nbsp;<span style="color:black">دارک</span></a></h2>
 {{ content }}
 {% for related_post in site.related_posts limit:10 %}<hr><a href="{{ site.url }}{{ related_post.url }}">{{ related_post.title }}</a>{% endfor %}<hr>
 </body>
