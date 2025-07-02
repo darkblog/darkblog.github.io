@@ -13,7 +13,7 @@ layout: index.html
 <meta name="theme-color" content="red">
 </head>
 <body>
-<h1>وبلاگ&nbsp;<span style="color:black">دارک</span></h1>
-<hr>{% for post in site.posts limit:100 %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>{% endfor %}
+<h1>زندگینامه مشاهیر</h1>
+<hr>{% for post in site.posts %}<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><hr>{% endfor %}
 </body>
 </html>
