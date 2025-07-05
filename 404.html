@@ -2,16 +2,498 @@
 sitemap: false
 ---
 
-<!doctype html>
-<html dir="rtl" lang="fa">
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');body{font-family:Vazirmatn;margin:auto;padding:10px;max-width:768px}a{text-decoration:none}hr{border:1px dashed #d4d4d4}</style>
-<meta name="theme-color" content="red">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #c62828;
+            --primary-dark: #8e0000;
+            --primary-light: #ff5f52;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        /* Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 404 Graphic */
+        .error-graphic {
+            position: relative;
+            margin: 2rem auto;
+            width: 300px;
+            height: 300px;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            z-index: 2;
+        }
+        
+        .circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 8px solid rgba(198, 40, 40, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        
+        .magnifier {
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            font-size: 5rem;
+            color: rgba(198, 40, 40, 0.3);
+            transform: rotate(20deg);
+        }
+        
+        .book {
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            font-size: 4rem;
+            color: rgba(198, 40, 40, 0.2);
+            transform: rotate(-15deg);
+        }
+        
+        /* Content */
+        .error-content {
+            animation: fadeIn 1s ease-out;
+            margin-top: 2rem;
+        }
+        
+        .error-title {
+            font-size: 3.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .error-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        /* Search */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 16px 25px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-family: 'Vazirmatn', sans-serif;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+        }
+        
+        #search-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.2);
+        }
+        
+        .search-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+        
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(198, 40, 40, 0.3);
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(198, 40, 40, 0.4);
+        }
+        
+        .btn i {
+            margin-left: 0.5rem;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+        }
+        
+        /* Popular Links */
+        .popular-links {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-dark));
+            border-radius: 3px;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .link-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-light);
+        }
+        
+        .link-card i {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .link-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .link-card a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            width: 100%;
+            color: #666;
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .error-title {
+                font-size: 2.8rem;
+            }
+            
+            .error-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .error-graphic {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .circle {
+                font-size: 6rem;
+            }
+            
+            .magnifier {
+                font-size: 4rem;
+            }
+            
+            .book {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-title {
+                font-size: 2.2rem;
+            }
+            
+            .error-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .error-graphic {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .circle {
+                font-size: 5rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1><a href="https://indexes.ir/"><span style="color:red">زندگینامه مشاهیر</span></a></h1>
-{% for post in site.posts %}<hr><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>{% endfor %}<hr>
+    <div class="container">
+        <div class="error-graphic">
+            <div class="circle">404</div>
+            <i class="fas fa-search magnifier"></i>
+            <i class="fas fa-book-open book"></i>
+        </div>
+        
+        <div class="error-content">
+            <h1 class="error-title">صفحه مورد نظر پیدا نشد!</h1>
+            <p class="error-subtitle">متأسفانه صفحه‌ای که به دنبال آن هستید وجود ندارد یا حذف شده است.</p>
+            <p class="error-description">شما می‌توانید از طریق جستجو، صفحه مورد نظر خود را پیدا کنید یا با استفاده از دکمه‌های زیر به بخش‌های مختلف سایت مراجعه کنید.</p>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="جستجوی زندگینامه مشاهیر...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="btn-container">
+                <a href="https://indexes.ir/" class="btn">
+                    <i class="fas fa-home"></i> بازگشت به صفحه اصلی
+                </a>
+                <a href="https://indexes.ir/" class="btn btn-secondary">
+                    <i class="fas fa-user-friends"></i> مشاهده لیست مشاهیر
+                </a>
+            </div>
+        </div>
+        
+        <div class="popular-links">
+            <h3 class="section-title">صفحات محبوب سایت</h3>
+            <div class="links-grid">
+                <div class="link-card">
+                    <i class="fas fa-brain"></i>
+                    <a href="#">زندگینامه فلاسفه</a>
+                </div>
+                <div class="link-card">
+                    <i class="fas fa-pen"></i>
+                    <a href="#">نویسندگان مشهور</a>
+                </div>
+                <div class="link-card">
+                    <i class="fas fa-book"></i>
+                    <a href="#">زندگینامه شعرا</a>
+                </div>
+                <div class="link-card">
+                    <i class="fas fa-flask"></i>
+                    <a href="#">دانشمندان جهان</a>
+                </div>
+                <div class="link-card">
+                    <i class="fas fa-landmark"></i>
+                    <a href="#">سیاستمداران تاریخ</a>
+                </div>
+                <div class="link-card">
+                    <i class="fas fa-microchip"></i>
+                    <a href="#">مشاهیر تکنولوژی</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>کلیه حقوق مادی و معنوی این سایت متعلق به <strong>زندگینامه مشاهیر</strong> می‌باشد. © ۱۴۰۳</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>تلفن پشتیبانی: 09381029914 | ایمیل: ehsanchehri@gmail.com</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Search functionality
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                    alert(`جستجو برای: ${searchTerm}\nدر سایت واقعی این جستجو انجام می‌شد.`);
+                }
+            }
+        });
+        
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchTerm = document.getElementById('search-input').value.trim();
+            if (searchTerm) {
+                alert(`جستجو برای: ${searchTerm}\nدر سایت واقعی این جستجو انجام می‌شد.`);
+            }
+        });
+        
+        // Simple animation on load
+        document.querySelectorAll('.btn, .link-card').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
 </body>
 </html>
