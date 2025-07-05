@@ -765,68 +765,14 @@
             
             <div class="home-button-container">
                 <a href="{{ site.baseurl }}/" class="home-button">
-                    <i class="fas fa-arrow-right"></i> صفحه اصلی
+                    <i class="fas fa-arrow-right"></i> زندگینامه‌ها
                 </a>
             </div>
         </article>
     </main>
     
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>درباره ما</h3>
-                    
-                </div>
-                
-                <div class="footer-section">
-                    <h3>دسترسی سریع</h3>
-                    <ul class="footer-links">
-                        {% for category in site.categories %}
-                        <li>
-                            <a href="{{ site.baseurl }}/categories/{{ category | first | slugify }}">
-                                <i class="fas fa-arrow-left"></i> {{ category | first }}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>ارتباط با ما</h3>
-                    <ul class="footer-links">
-                        {% if site.contact.email %}
-                        <li>
-                            <a href="mailto:{{ site.contact.email }}">
-                                <i class="fas fa-envelope"></i> ایمیل: {{ site.contact.email }}
-                            </a>
-                        </li>
-                        {% endif %}
-                        {% if site.contact.phone %}
-                        <li>
-                            <a href="tel:{{ site.contact.phone }}">
-                                <i class="fas fa-phone"></i> تلفن: {{ site.contact.phone }}
-                            </a>
-                        </li>
-                        {% endif %}
-                        {% if site.social.instagram %}
-                        <li>
-                            <a href="{{ site.social.instagram }}">
-                                <i class="fab fa-instagram"></i> اینستاگرام
-                            </a>
-                        </li>
-                        {% endif %}
-                        {% if site.social.telegram %}
-                        <li>
-                            <a href="{{ site.social.telegram }}">
-                                <i class="fab fa-telegram"></i> تلگرام
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-            
+        <div class="container">            
             <div class="copyright">
                 <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. تمامی حقوق محفوظ است.</p>
             </div>
