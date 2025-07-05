@@ -1,31 +1,32 @@
-<!doctype html>
-<html dir="rtl" lang="fa">
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
-    
-    <!-- Open Graph / Social Media Meta Tags -->
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta name="author" content="{{ site.author }}">
+    <meta name="robots" content="index, follow">
     <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:type" content="website">
-    
-    <!-- Preconnect for Google Fonts -->
+    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    <meta property="article:author" content="{{ site.author }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap">
-    
-    <!-- Icons & Theme -->
-    <meta name="theme-color" content="#c62828">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Variables for maintainability */
         :root {
-            --primary: #b91c1c;
-            --primary-dark: #991b1b;
-            --text: #1f2937;
-            --light-bg: #fafafa;
-            --border: #e5e7eb;
+            --primary-color: #c62828;
+            --primary-dark: #8e0000;
+            --primary-light: #ff5f52;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
         
-        /* Base Styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -34,126 +35,933 @@
         
         body {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
-            line-height: 2.1;
-            color: var(--text);
-            background-color: var(--light-bg);
-            padding: 20px;
-            max-width: 768px;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
             margin: 0 auto;
-            text-align: justify;
+            padding: 0 20px;
         }
         
-        /* Typography */
-        h1 {
-            color: var(--primary);
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            line-height: 1.3;
-        }
-        
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-        }
-        
-        /* Separator */
-        hr {
-            border: 1px dashed var(--border);
-            margin: 2rem 0;
-        }
-        
-        /* Button Styles */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-align: center;
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 0.5rem;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin-right: 1.5rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            margin: 1.5rem 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb-container {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb-container a {
+            color: var(--primary-color);
             text-decoration: none;
         }
         
-        .btn:hover,
-        .btn:focus {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        .breadcrumb-container i {
+            margin: 0 0.5rem;
+            font-size: 0.8rem;
+            color: #999;
         }
         
-        .btn:active {
-            transform: translateY(0);
+        /* Post Content */
+        .post-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 0 1rem;
         }
         
-        /* Link Styling */
-        a:not(.btn) {
-            color: var(--primary);
-            transition: color 0.2s;
-        }
-        
-        a:not(.btn):hover {
+        .post-title {
+            font-size: 2.2rem;
             color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
         }
         
-        /* Content Container */
-        .content {
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .meta-item i {
+            margin-left: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto 2rem;
+            box-shadow: var(--box-shadow);
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .featured-image i {
+            font-size: 5rem;
+            color: #bdbdbd;
+        }
+        
+        .post-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+        
+        .post-content h2 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+            position: relative;
+        }
+        
+        .post-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100px;
+            height: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .post-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin: 1.8rem 0 1rem;
+        }
+        
+        .post-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .post-content blockquote {
+            background-color: rgba(198, 40, 40, 0.05);
+            border-right: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .post-content blockquote::before {
+            content: '"';
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 3rem;
+            color: rgba(198, 40, 40, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .post-content ul, .post-content ol {
+            padding-right: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.7rem;
+            position: relative;
+        }
+        
+        .post-content ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            right: -1.2rem;
+        }
+        
+        .post-content pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        
+        .post-content code {
+            background-color: rgba(198, 40, 40, 0.1);
+            color: var(--primary-dark);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             padding: 1.5rem 0;
-            min-height: 60vh;
+            border-top: 2px solid var(--light-gray);
+            border-bottom: 2px solid var(--light-gray);
+            margin: 2rem 0;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .tag {
+            background-color: rgba(198, 40, 40, 0.1);
+            color: var(--primary-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .share-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Author Box */
+        .author-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .author-avatar i {
+            font-size: 2.5rem;
+            color: #bdbdbd;
+        }
+        
+        .author-info h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+        
+        .author-social {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .author-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .author-social a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Related Posts */
+        .related-posts {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            background-color: var(--primary-color);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .post-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .post-card-image {
+            height: 180px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .post-card-image i {
+            font-size: 3rem;
+            color: #bdbdbd;
+        }
+        
+        .post-card-content {
+            padding: 1.2rem;
+        }
+        
+        .post-card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .post-card-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+        
+        .post-card-link {
+            display: block;
+            padding: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .post-card-link:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Comments */
+        .comments-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .comment {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .comment-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .comment-avatar i {
+            font-size: 1.5rem;
+            color: #bdbdbd;
+        }
+        
+        .comment-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary-color);
+        }
+        
+        .comment-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comment-text {
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .comment-form {
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark), #5a0000);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(198, 40, 40, 0.3);
         }
         
         /* Footer */
-        .footer {
-            text-align: center;
-            padding: 1rem 0;
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            border-top: 1px solid var(--border);
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), #5a0000);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
         }
         
-        /* Responsive Adjustments */
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-links a i {
+            margin-left: 0.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .posts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            h1 {
+            .featured-image {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .post-title {
                 font-size: 1.8rem;
             }
             
-            .btn {
-                width: 100%;
-                padding: 14px;
+            .post-meta {
+                gap: 1rem;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+            
+            .post-content {
+                padding: 1.5rem;
+            }
+            
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-social {
+                justify-content: center;
+            }
+            
+            .post-footer {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .post-title {
+                font-size: 1.6rem;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            .post-content h2 {
+                font-size: 1.4rem;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>{{ page.title }}</h1>
+        <div class="header-container">
+            <a href="{{ site.baseurl }}/" class="logo">
+                <i class="fas fa-book-open"></i>
+                زندگینامه مشاهیر
+            </a>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> خانه</a>
+                <a href="#"><i class="fas fa-user-friends"></i> مشاهیر</a>
+                <a href="#"><i class="fas fa-book"></i> مقالات</a>
+                <a href="#"><i class="fas fa-address-card"></i> درباره ما</a>
+            </div>
+        </div>
     </header>
     
-    <main class="content">
-        {{ content }}
-    </main>
-    
-    <hr>
-    
-    <div style="text-align: center">
-        <a href="https://indexes.ir/" class="btn" aria-label="مشاهده زندگینامه مشاهیر">
-            زندگینامه مشاهیر
-        </a>
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-container">
+                <a href="{{ site.baseurl }}/"><i class="fas fa-home"></i> خانه</a>
+                <i class="fas fa-chevron-left"></i>
+                <a href="#">مقالات</a>
+                <i class="fas fa-chevron-left"></i>
+                <span>{{ page.title }}</span>
+            </div>
+        </div>
     </div>
     
-    <footer class="footer">
-        © کلیه‌ی حقوق محفوظ است
+    <main class="container">
+        <article>
+            <div class="post-header">
+                <h1 class="post-title">{{ page.title }}</h1>
+                
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>{{ page.date | date: "%Y/%m/%d" }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user"></i>
+                        <span>{{ site.author }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>زمان مطالعه: {{ page.reading_time }} دقیقه</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-eye"></i>
+                        <span>{{ page.views }} بازدید</span>
+                    </div>
+                </div>
+                
+                <div class="featured-image">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            
+            <div class="post-content">
+                {{ content }}
+                
+                <div class="post-footer">
+                    <div class="tags">
+                        <i class="fas fa-tags"></i>
+                        {% for tag in page.tags %}
+                        <a href="#" class="tag">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="author-box">
+                <div class="author-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="author-info">
+                    <h3>{{ site.author }}</h3>
+                    <p>نویسنده و پژوهشگر در زمینه تاریخ و زندگینامه مشاهیر ایران و جهان. علاقه‌مند به ادبیات، فلسفه و تاریخ معاصر.</p>
+                    <div class="author-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        <div class="related-posts">
+            <h2 class="section-title">
+                <i class="fas fa-book-reader"></i>
+                مطالب مرتبط
+            </h2>
+            
+            <div class="posts-grid">
+                {% for i in (1..3) %}
+                <div class="post-card">
+                    <div class="post-card-image">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="post-card-content">
+                        <h3>تأثیر فلسفه کانت بر اندیشه مدرن</h3>
+                        <div class="post-card-meta">
+                            <span><i class="fas fa-calendar"></i> 1402/05/15</span>
+                            <span><i class="fas fa-clock"></i> 8 دقیقه</span>
+                        </div>
+                        <p>بررسی تأثیرات فلسفه کانت بر اندیشه مدرن در غرب و تأثیر آن بر فیلسوفان پس از او</p>
+                        <a href="#" class="post-card-link">مطالعه بیشتر</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="comments-section">
+            <h2 class="section-title">
+                <i class="fas fa-comments"></i>
+                دیدگاه‌ها
+            </h2>
+            
+            {% for i in (1..2) %}
+            <div class="comment">
+                <div class="comment-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="comment-content">
+                    <h4>محمد رضایی</h4>
+                    <div class="comment-meta">
+                        <span>1402/05/20</span>
+                        <span><i class="fas fa-reply"></i> پاسخ</span>
+                    </div>
+                    <p class="comment-text">مقاله بسیار جامع و کاملی بود. ممنون از زحمات شما. لطفاً در مورد تأثیر فلسفه نیچه بر ادبیات مدرن هم مطلب بنویسید.</p>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <form class="comment-form">
+                <h3>افزودن دیدگاه</h3>
+                <div class="form-group">
+                    <label for="name">نام *</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">ایمیل *</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">دیدگاه *</label>
+                    <textarea id="comment" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">ارسال دیدگاه</button>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>درباره ما</h3>
+                    <p>سایت زندگینامه مشاهیر با هدف ارائه اطلاعات جامع و معتبر درباره بزرگان تاریخ ایران و جهان در حوزه‌های مختلف فعالیت می‌کند. ما تلاش می‌کنیم با ارائه بیوگرافی دقیق، دستاوردها و جملات ماندگار این مشاهیر، گامی در جهت آشنایی بیشتر با این شخصیت‌ها برداریم.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>دسترسی سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> فلاسفه</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> نویسندگان</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> شعرا</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> دانشمندان</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> سیاسیون</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> مشاهیر تکنولوژی</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>ارتباط با ما</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> ایمیل: info@mashahir.ir</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> اینستاگرام</a></li>
+                        <li><a href="#"><i class="fab fa-telegram"></i> تلگرام</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>تمامی حقوق مادی و معنوی این سایت متعلق به زندگینامه مشاهیر می‌باشد. © ۱۴۰۳</p>
+            </div>
+        </div>
     </footer>
+    
+    <script>
+        // Text resizing functionality
+        const resizeText = (factor) => {
+            const content = document.querySelector('.post-content');
+            const currentSize = parseFloat(window.getComputedStyle(content, null).getPropertyValue('font-size'));
+            content.style.fontSize = (currentSize + factor) + 'px';
+        };
+        
+        // Add event listeners for text resize buttons
+        document.getElementById('text-increase').addEventListener('click', () => resizeText(1));
+        document.getElementById('text-decrease').addEventListener('click', () => resizeText(-1));
+        document.getElementById('text-reset').addEventListener('click', () => {
+            document.querySelector('.post-content').style.fontSize = '1.05rem';
+        });
+        
+        // Print functionality
+        document.getElementById('print-page').addEventListener('click', () => {
+            window.print();
+        });
+        
+        // Share functionality
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('در سایت واقعی، این دکمه صفحه را در شبکه اجتماعی مربوطه به اشتراک می‌گذارد.');
+            });
+        });
+    </script>
 </body>
 </html>
