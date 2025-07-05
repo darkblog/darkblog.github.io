@@ -2,100 +2,904 @@
 layout: index.html
 ---
 
-<!doctype html>
-<html dir="rtl" lang="fa">
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
 <head>
-<title>زندگینامه مشاهیر</title>
-<meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان | بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های سیاست، هنر، ادبیات، علم و فلسفه. زندگی‌نامه افراد مشهور">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');body{font-family:Vazirmatn;margin:auto;padding:10px;max-width:768px}a{text-decoration:none}h1{color:red}hr{border:1px dashed #d4d4d4}</style>
-<meta name="theme-color" content="red">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زندگینامه مشاهیر ایران و جهان | بیوگرافی، دستاوردها و جملات ماندگار</title>
+    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان در حوزه‌های مختلف شامل فلاسفه، نویسندگان، شعرا، دانشمندان، سیاستمداران و بزرگان تکنولوژی. بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ">
+    <meta name="keywords" content="زندگینامه مشاهیر, بیوگرافی بزرگان, تاریخچه مشاهیر, فلاسفه بزرگ, نویسندگان مشهور, شعرای ایرانی, دانشمندان جهان, سیاستمداران تاریخ, بزرگان تکنولوژی">
+    <meta name="author" content="سایت زندگینامه مشاهیر">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
+    <meta property="og:description" content="مجموعه کامل بیوگرافی مشاهیر ایران و جهان در حوزه‌های مختلف">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#c62828">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #c62828;
+            --primary-dark: #8e0000;
+            --primary-light: #ff5f52;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: #fff;
+            padding: 0;
+            margin: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .header-description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            position: relative;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Vazirmatn', sans-serif;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #search-input:focus {
+            outline: 2px solid var(--primary-light);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 0.8rem 0;
+            scrollbar-width: none;
+        }
+        
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .nav-item {
+            padding: 0.5rem 1.2rem;
+            white-space: nowrap;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        /* Category Section */
+        .category-section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .section-header i {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        /* People Grid */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .person-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .person-image {
+            height: 180px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .person-image i {
+            font-size: 4rem;
+            color: #bdbdbd;
+        }
+        
+        .person-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .person-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .person-category {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            background-color: rgba(198, 40, 40, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        
+        .person-link {
+            display: inline-block;
+            margin-top: auto;
+            padding: 0.6rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .person-link:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), #5a0000);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-links a i {
+            margin-left: 0.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .people-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .header-description {
+                font-size: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .people-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-container {
+                justify-content: flex-start;
+            }
+            
+            .people-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .person-card {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>زندگینامه مشاهیر</h1>
-<hr>
-<h2>زندگینامه فلاسفه</h2>
-<ul>
-<li><a href="https://indexes.ir/58">کانت</a></li>
-<li><a href="https://indexes.ir/57">نیچه</a></li>
-<li><a href="https://indexes.ir/56">هگل</a></li>
-<li><a href="https://indexes.ir/55">دموکریت</a></li>
-<li><a href="https://indexes.ir/54">پارمندیس</a></li>
-<li><a href="https://indexes.ir/53">هراکلیتوس</a></li>
-<li><a href="https://indexes.ir/52">تالس</a></li>
-<li><a href="https://indexes.ir/51">سقراط</a></li>
-<li><a href="https://indexes.ir/50">افلاطون</a></li>
-<li><a href="https://indexes.ir/49">فیثاغورس</a></li>
-<li><a href="https://indexes.ir/48">ارسطو</a></li>
-<li><a href="https://indexes.ir/10">کارل مارکس</a></li>
-<li><a href="https://indexes.ir/1">آلدوس هاکسلی</a></li>
-</ul>
-<hr>
-<h2>زندگینامه نویسندگان مشهور</h2>
-<ul>
-<li><a href="https://indexes.ir/11">صادق هدایت</a></li>
-<li><a href="https://indexes.ir/12">امیلی برونته</a></li>
-<li><a href="https://indexes.ir/14">ارنست همینگوی</a></li>
-<li><a href="https://indexes.ir/6">جبران خلیل جبران</a></li>
-<li><a href="https://indexes.ir/7">جورج اورول</a></li>
-<li><a href="https://indexes.ir/8">سیمین دانشور</a></li>
-<li><a href="https://indexes.ir/38">بزرگ علوی</a></li>
-<li><a href="https://indexes.ir/39">صادق چوبک</a></li>
-<li><a href="https://indexes.ir/43">ویکتور هوگو</a></li>
-</ul>
-<hr>
-<h2>زندگینامه شعرا</h2>
-<ul>
-<li><a href="https://indexes.ir/28">فردوسی</a></li>
-<li><a href="https://indexes.ir/9">سعدی</a></li>
-<li><a href="https://indexes.ir/46">عطار</a></li>
-<li><a href="https://indexes.ir/47">حافظ</a></li>
-<li><a href="https://indexes.ir/45">سهراب سپهری</a></li>
-</ul>
-<hr>
-<h2>زندگینامه دانشمندان</h2>
-<ul>
-<li><a href="https://indexes.ir/44">توماس ادیسون</a></li>
-<li><a href="https://indexes.ir/27">آلبرت اینشتین</a></li>
-<li><a href="https://indexes.ir/16">نیکولا تسلا</a></li>
-<li><a href="https://indexes.ir/3">مریم میرزاخانی</a></li>
-</ul>
-<hr>
-<h2>زندگینامه سیاسیون</h2>
-<ul>
-<li><a href="https://indexes.ir/2">کوروش بزرگ</a></li>
-<li><a href="https://indexes.ir/22">آدولف هیتلر</a></li>
-<li><a href="https://indexes.ir/37">بنیتو موسولینی</a></li>
-<li><a href="https://indexes.ir/36">فرانسیسکو فرانکو</a></li>
-<li><a href="https://indexes.ir/35">مائو تسه‌تونگ</a></li>
-<li><a href="https://indexes.ir/34">صدام حسین</a></li>
-<li><a href="https://indexes.ir/33">معمر قذافی</a></li>
-<li><a href="https://indexes.ir/32">نیکلای چائوشسکو</a></li>
-<li><a href="https://indexes.ir/31">رافائل تروخیو</a></li>
-<li><a href="https://indexes.ir/30">کیم جونگ اون</a></li>
-<li><a href="https://indexes.ir/29">ژولیوس سزار</a></li>
-<li><a href="https://indexes.ir/42">آبراهام لینکلن</a></li>
-<li><a href="https://indexes.ir/41">دونالد ترامپ</a></li>
-<li><a href="https://indexes.ir/5">مارتین لوتر کینگ</a></li>
-<li><a href="https://indexes.ir/4">رضاشاه پهلوی</a></li>
-<li><a href="https://indexes.ir/26">محمدرضا پهلوی</a></li>
-<li><a href="https://indexes.ir/23">امیرعباس هویدا</a></li>
-<li><a href="https://indexes.ir/21">استالین</a></li>
-<li><a href="https://indexes.ir/40">بنیامین نتانیاهو</a></li>
-</ul>
-<hr>
-<h2>زندگینامه مشاهیر تکنولوژی</h2>
-<ul>
-<li><a href="https://indexes.ir/13">بیل گیتس</a></li>
-<li><a href="https://indexes.ir/15">جک دورسی</a></li>
-<li><a href="https://indexes.ir/17">ایلان ماسک</a></li>
-<li><a href="https://indexes.ir/18">مارک زاکربرگ</a></li>
-<li><a href="https://indexes.ir/19">تیم برنرز لی</a></li>
-<li><a href="https://indexes.ir/20">وارن بافت</a></li>
-<li><a href="https://indexes.ir/24">لینوس توروالدز</a></li>
-<li><a href="https://indexes.ir/25">استیو جابز</a></li>
-</ul>
-<hr>
+    <header>
+        <div class="container">
+            <h1>زندگینامه مشاهیر ایران و جهان</h1>
+            <p class="header-description">مجموعه جامع بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های مختلف علمی، ادبی، فلسفی، سیاسی و تکنولوژی</p>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="جستجوی مشاهیر...">
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="nav-item active" data-category="all">همه مشاهیر</div>
+            <div class="nav-item" data-category="philosophers">فلاسفه</div>
+            <div class="nav-item" data-category="writers">نویسندگان</div>
+            <div class="nav-item" data-category="poets">شعرا</div>
+            <div class="nav-item" data-category="scientists">دانشمندان</div>
+            <div class="nav-item" data-category="politicians">سیاستمداران</div>
+            <div class="nav-item" data-category="tech">تکنولوژی</div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <!-- Philosophers Section -->
+        <section class="category-section" id="philosophers">
+            <div class="section-header">
+                <i class="fas fa-brain"></i>
+                <h2>زندگینامه فلاسفه</h2>
+            </div>
+            
+            <div class="people-grid">
+                <!-- Kant -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>ایمانوئل کانت</h3>
+                        <span class="person-category">فلسفه</span>
+                        <p>فیلسوف آلمانی و از مهم‌ترین چهره‌های فلسفه غرب</p>
+                        <a href="https://indexes.ir/58" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Nietzsche -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>فریدریش نیچه</h3>
+                        <span class="person-category">فلسفه</span>
+                        <p>فیلسوف، شاعر و منتقد فرهنگی آلمانی</p>
+                        <a href="https://indexes.ir/57" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Hegel -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>گئورگ ویلهلم فریدریش هگل</h3>
+                        <span class="person-category">فلسفه</span>
+                        <p>فیلسوف بزرگ آلمانی و از مهم‌ترین چهره‌های ایده‌آلیسم</p>
+                        <a href="https://indexes.ir/56" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Socrates -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>سقراط</h3>
+                        <span class="person-category">فلسفه</span>
+                        <p>فیلسوف یونانی و یکی از بنیانگذاران فلسفه غرب</p>
+                        <a href="https://indexes.ir/51" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Plato -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>افلاطون</h3>
+                        <span class="person-category">فلسفه</span>
+                        <p>فیلسوف یونانی و بنیانگذار آکادمی در آتن</p>
+                        <a href="https://indexes.ir/50" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Aristotle -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>ارسطو</h3>
+                        <span class="person-category">فلسفه</span>
+                        <p>فیلسوف یونانی و شاگرد افلاطون، معلم اسکندر مقدونی</p>
+                        <a href="https://indexes.ir/48" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Writers Section -->
+        <section class="category-section" id="writers">
+            <div class="section-header">
+                <i class="fas fa-pen"></i>
+                <h2>زندگینامه نویسندگان مشهور</h2>
+            </div>
+            
+            <div class="people-grid">
+                <!-- Sadegh Hedayat -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>صادق هدایت</h3>
+                        <span class="person-category">ادبیات</span>
+                        <p>نویسنده، مترجم و روشنفکر ایرانی، نویسنده بوف کور</p>
+                        <a href="https://indexes.ir/11" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Victor Hugo -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>ویکتور هوگو</h3>
+                        <span class="person-category">ادبیات</span>
+                        <p>شاعر، داستان‌نویس و نمایشنامه‌نویس فرانسوی</p>
+                        <a href="https://indexes.ir/43" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Ernest Hemingway -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>ارنست همینگوی</h3>
+                        <span class="person-category">ادبیات</span>
+                        <p>نویسنده آمریکایی و برنده جایزه نوبل ادبیات</p>
+                        <a href="https://indexes.ir/14" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- George Orwell -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>جورج اورول</h3>
+                        <span class="person-category">ادبیات</span>
+                        <p>نویسنده و روزنامه‌نگار انگلیسی، خالق مزرعه حیوانات</p>
+                        <a href="https://indexes.ir/7" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Khalil Gibran -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>جبران خلیل جبران</h3>
+                        <span class="person-category">ادبیات</span>
+                        <p>شاعر، نویسنده و نقاش لبنانی-آمریکایی</p>
+                        <a href="https://indexes.ir/6" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Simin Daneshvar -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>سیمین دانشور</h3>
+                        <span class="person-category">ادبیات</span>
+                        <p>نویسنده، مترجم و استاد دانشگاه ایرانی</p>
+                        <a href="https://indexes.ir/8" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Poets Section -->
+        <section class="category-section" id="poets">
+            <div class="section-header">
+                <i class="fas fa-book"></i>
+                <h2>زندگینامه شعرا</h2>
+            </div>
+            
+            <div class="people-grid">
+                <!-- Ferdowsi -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>فردوسی</h3>
+                        <span class="person-category">شعر</span>
+                        <p>شاعر حماسه‌سرای ایرانی و خالق شاهنامه</p>
+                        <a href="https://indexes.ir/28" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Saadi -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>سعدی</h3>
+                        <span class="person-category">شعر</span>
+                        <p>شاعر و نویسنده پارسی‌گوی ایرانی</p>
+                        <a href="https://indexes.ir/9" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Hafez -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>حافظ</h3>
+                        <span class="person-category">شعر</span>
+                        <p>شاعر بزرگ سده هشتم ایران و غزلسرای نامی</p>
+                        <a href="https://indexes.ir/47" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Attar -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>عطار</h3>
+                        <span class="person-category">شعر</span>
+                        <p>عارف و شاعر ایرانی سده ششم هجری</p>
+                        <a href="https://indexes.ir/46" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Sohrab Sepehri -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>سهراب سپهری</h3>
+                        <span class="person-category">شعر</span>
+                        <p>شاعر، نویسنده و نقاش معاصر ایرانی</p>
+                        <a href="https://indexes.ir/45" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Scientists Section -->
+        <section class="category-section" id="scientists">
+            <div class="section-header">
+                <i class="fas fa-flask"></i>
+                <h2>زندگینامه دانشمندان</h2>
+            </div>
+            
+            <div class="people-grid">
+                <!-- Albert Einstein -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>آلبرت اینشتین</h3>
+                        <span class="person-category">فیزیک</span>
+                        <p>فیزیکدان نظری آلمانی و خالق نظریه نسبیت</p>
+                        <a href="https://indexes.ir/27" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Thomas Edison -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>توماس ادیسون</h3>
+                        <span class="person-category">اختراع</span>
+                        <p>مخترع و بازرگان آمریکایی، توسعه‌دهنده لامپ رشتهای</p>
+                        <a href="https://indexes.ir/44" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Nikola Tesla -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>نیکولا تسلا</h3>
+                        <span class="person-category">فیزیک</span>
+                        <p>مخترع، مهندس برق و مهندس مکانیک صربی‌الاصل</p>
+                        <a href="https://indexes.ir/16" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Maryam Mirzakhani -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>مریم میرزاخانی</h3>
+                        <span class="person-category">ریاضیات</span>
+                        <p>ریاضیدان ایرانی و برنده مدال فیلدز</p>
+                        <a href="https://indexes.ir/3" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Politicians Section -->
+        <section class="category-section" id="politicians">
+            <div class="section-header">
+                <i class="fas fa-landmark"></i>
+                <h2>زندگینامه سیاسیون</h2>
+            </div>
+            
+            <div class="people-grid">
+                <!-- Cyrus the Great -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>کوروش بزرگ</h3>
+                        <span class="person-category">تاریخ</span>
+                        <p>بنیانگذار و نخستین شاه شاهنشاهی هخامنشی</p>
+                        <a href="https://indexes.ir/2" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Reza Shah -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>رضاشاه پهلوی</h3>
+                        <span class="person-category">تاریخ</span>
+                        <p>بنیانگذار دودمان پهلوی و شاه ایران از ۱۳۰۴ تا ۱۳۲۰</p>
+                        <a href="https://indexes.ir/4" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Mohammad Reza Shah -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>محمدرضا پهلوی</h3>
+                        <span class="person-category">تاریخ</span>
+                        <p>دومین شاه دودمان پهلوی و آخرین پادشاه ایران</p>
+                        <a href="https://indexes.ir/26" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Abraham Lincoln -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>آبراهام لینکلن</h3>
+                        <span class="person-category">تاریخ</span>
+                        <p>شانزدهمین رئیس‌جمهور ایالات متحده آمریکا</p>
+                        <a href="https://indexes.ir/42" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tech Figures Section -->
+        <section class="category-section" id="tech">
+            <div class="section-header">
+                <i class="fas fa-microchip"></i>
+                <h2>زندگینامه مشاهیر تکنولوژی</h2>
+            </div>
+            
+            <div class="people-grid">
+                <!-- Bill Gates -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>بیل گیتس</h3>
+                        <span class="person-category">تکنولوژی</span>
+                        <p>بنیانگذار مایکروسافت و فعال بشردوستانه</p>
+                        <a href="https://indexes.ir/13" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Steve Jobs -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>استیو جابز</h3>
+                        <span class="person-category">تکنولوژی</span>
+                        <p>بنیانگذار اپل و از پیشگامان صنعت رایانه</p>
+                        <a href="https://indexes.ir/25" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Elon Musk -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>ایلان ماسک</h3>
+                        <span class="person-category">تکنولوژی</span>
+                        <p>کارآفرین و مهندس، بنیانگذار اسپیس‌اکس و تسلا</p>
+                        <a href="https://indexes.ir/17" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+                
+                <!-- Mark Zuckerberg -->
+                <div class="person-card">
+                    <div class="person-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="person-content">
+                        <h3>مارک زاکربرگ</h3>
+                        <span class="person-category">تکنولوژی</span>
+                        <p>بنیانگذار فیسبوک و مدیرعامل متا</p>
+                        <a href="https://indexes.ir/18" class="person-link">مشاهده بیوگرافی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>درباره ما</h3>
+                    <p>سایت زندگینامه مشاهیر با هدف ارائه اطلاعات جامع و معتبر درباره بزرگان تاریخ ایران و جهان در حوزه‌های مختلف فعالیت می‌کند. ما تلاش می‌کنیم با ارائه بیوگرافی دقیق، دستاوردها و جملات ماندگار این مشاهیر، گامی در جهت آشنایی بیشتر با این شخصیت‌ها برداریم.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>دسترسی سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="#philosophers"><i class="fas fa-arrow-left"></i> فلاسفه</a></li>
+                        <li><a href="#writers"><i class="fas fa-arrow-left"></i> نویسندگان</a></li>
+                        <li><a href="#poets"><i class="fas fa-arrow-left"></i> شعرا</a></li>
+                        <li><a href="#scientists"><i class="fas fa-arrow-left"></i> دانشمندان</a></li>
+                        <li><a href="#politicians"><i class="fas fa-arrow-left"></i> سیاسیون</a></li>
+                        <li><a href="#tech"><i class="fas fa-arrow-left"></i> مشاهیر تکنولوژی</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>ارتباط با ما</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> ایمیل: ehsanchehri@gmail.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> تلفن: 989381029914</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> اینستاگرام</a></li>
+                        <li><a href="#"><i class="fab fa-telegram"></i> تلگرام</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>تمامی حقوق مادی و معنوی این سایت متعلق به زندگینامه مشاهیر می‌باشد. © ۱۴۰۳</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                if (category === 'all') {
+                    // Show all sections
+                    document.querySelectorAll('.category-section').forEach(section => {
+                        section.style.display = 'block';
+                    });
+                } else {
+                    // Hide all sections
+                    document.querySelectorAll('.category-section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show selected section
+                    document.getElementById(category).style.display = 'block';
+                }
+            });
+        });
+        
+        // Simple search functionality
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            document.querySelectorAll('.person-card').forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
