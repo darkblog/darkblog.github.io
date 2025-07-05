@@ -723,9 +723,6 @@
                     <i class="fas fa-calendar-alt"></i> 
                     {{ page.date | date: "%Y/%m/%d" }}
                     <span class="meta-divider">|</span>
-                    <i class="fas fa-user"></i> 
-                    {{ site.author }}
-                    <span class="meta-divider">|</span>
                     <i class="fas fa-clock"></i> 
                     {% assign words = content | number_of_words %}
                     {% if words < 360 %}
