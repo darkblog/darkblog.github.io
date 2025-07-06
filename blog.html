@@ -3,715 +3,553 @@ sitemap: false
 ---
 
 <!DOCTYPE html>
-<html dir="rtl" lang="fa-IR">
+<html dir="rtl" lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زندگینامه مشاهیر ایران و جهان | بیوگرافی، دستاوردها و جملات ماندگار</title>
-    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان در حوزه‌های مختلف شامل فلاسفه، نویسندگان، شعرا، دانشمندان، سیاستمداران و بزرگان تکنولوژی. بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ">
-    <meta name="keywords" content="زندگینامه مشاهیر, بیوگرافی بزرگان, تاریخچه مشاهیر, فلاسفه بزرگ, نویسندگان مشهور, شعرای ایرانی, دانشمندان جهان, سیاستمداران تاریخ, بزرگان تکنولوژی">
-    <meta name="author" content="ehsan chehri">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
-    <meta property="og:description" content="مجموعه کامل بیوگرافی مشاهیر ایران و جهان در حوزه‌های مختلف">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#c62828">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>زندگینامه مشاهیر</title>
+    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان | بیوگرافی، عکس‌ها، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های سیاست، هنر، علم و ورزش. با زندگی‌نامه افراد مشهور بیشتر آشنا شوید!">
+    <meta name="theme-color" content="#dc3545">
     
-    <!-- Font Awesome -->
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "زندگینامه مشاهیر ایران و جهان",
-      "description": "مجموعه جامع بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ",
-      "url": "https://indexes.ir",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://indexes.ir/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
+    <!-- Vazirmatn Persian Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #c62828;
-            --primary-dark: #8e0000;
-            --primary-light: #ff5f52;
-            --text-color: #333;
-            --light-gray: #f5f5f5;
-            --border-color: #e0e0e0;
-            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --card-bg: #ffffff;
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --primary-color: #dc3545;
+            --secondary-color: #f8f9fa;
+            --border-color: #dee2e6;
         }
         
         body {
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
-            line-height: 1.8;
-            color: var(--text-color);
-            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
-            padding: 0;
-            margin: 0;
-            max-width: 100%;
-            overflow-x: hidden;
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 60px;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        .header {
+            background: linear-gradient(135deg, #dc3545, #a71d2a);
             color: white;
-            padding: 2.5rem 0;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px 20px;
+            margin-bottom: 25px;
             position: relative;
             overflow: hidden;
         }
         
-        header::before {
+        .header::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
         }
         
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
+        .header h1 {
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             position: relative;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
-        .header-description {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
+        .header p {
             opacity: 0.9;
-            position: relative;
-        }
-        
-        /* Search Bar */
-        .search-container {
-            max-width: 700px;
-            margin: 2rem auto 0;
-            position: relative;
-        }
-        
-        #search-input {
-            width: 100%;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 50px;
             font-size: 1.1rem;
-            font-family: 'Vazirmatn', sans-serif;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-        
-        #search-input:focus {
-            outline: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-        
-        /* Main Content */
-        .main-title {
-            text-align: center;
-            margin: 2rem 0;
             position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .main-title h2 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            display: inline-block;
-            background: white;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .main-title::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
-            z-index: 1;
-        }
-        
-        /* Posts Grid */
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.8rem;
-            margin-bottom: 3rem;
         }
         
         .post-card {
-            background: var(--card-bg);
-            border-radius: 12px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
+            border: none;
         }
         
         .post-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-light);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
         }
         
-        .post-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            z-index: 2;
+        .post-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
         }
         
         .post-content {
-            padding: 1.8rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
         }
         
-        .post-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-color);
+        .post-title {
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .post-excerpt {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 12px;
+        }
+        
+        .category-badge {
+            background-color: #e9ecef;
+            color: #495057;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .search-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding-right: 45px;
+            border-radius: 30px;
+        }
+        
+        .search-box .btn {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #343a40, #212529);
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        
+        .footer h5 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
         }
         
-        .post-content h3::after {
+        .footer h5::after {
             content: "";
             position: absolute;
             bottom: 0;
             right: 0;
             width: 50px;
             height: 3px;
-            background: var(--primary-light);
-        }
-        
-        .post-meta {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .post-meta i {
-            margin-left: 8px;
-            color: var(--primary-color);
-        }
-        
-        .post-excerpt {
-            margin-bottom: 1.5rem;
-            color: #444;
-            flex-grow: 1;
-        }
-        
-        .post-link {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: var(--transition);
-            text-decoration: none;
-            align-self: flex-start;
-            border: 2px solid var(--primary-color);
-        }
-        
-        .post-link:hover {
-            background: transparent;
-            color: var(--primary-color);
-        }
-        
-        .load-more-container {
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-        .load-more {
-            padding: 12px 35px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-family: 'Vazirmatn', sans-serif;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
-        }
-        
-        .load-more:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.4);
-        }
-        
-        .load-more:active {
-            transform: translateY(0);
-        }
-        
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--primary-dark), #5a0000);
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 3rem;
-            position: relative;
-        }
-        
-        footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-light), var(--primary-color), var(--primary-light));
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary-light);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.7rem;
+            background-color: var(--primary-color);
+            border-radius: 3px;
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
         }
         
         .footer-links a:hover {
             color: white;
+            transform: translateX(5px);
         }
         
-        .footer-links a i {
-            margin-left: 0.5rem;
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
+            padding-top: 20px;
+            margin-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
         }
         
-        /* Scroll to Top */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+            display: none;
         }
         
-        .scroll-top.show {
-            opacity: 1;
-            transform: translateY(0);
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
         
-        .scroll-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-5px);
+        .empty-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
         }
         
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .posts-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
+        .empty-message i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #adb5bd;
         }
         
+        .no-more {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-weight: 500;
+            display: none;
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            .header {
+                padding: 20px 15px;
             }
             
-            .header-description {
-                font-size: 1rem;
-            }
-            
-            .main-title h2 {
-                font-size: 1.6rem;
-            }
-            
-            .posts-grid {
-                grid-template-columns: 1fr;
+            .header h1 {
+                font-size: 1.8rem;
             }
             
             .post-card {
-                max-width: 500px;
-                margin: 0 auto;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .search-container {
-                padding: 0 15px;
+                margin-bottom: 15px;
             }
             
-            #search-input {
-                padding: 12px 20px 12px 45px;
-            }
-            
-            .search-icon {
-                left: 15px;
+            .footer .col-md-4 {
+                margin-bottom: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>زندگینامه مشاهیر ایران و جهان</h1>
-            <p class="header-description">مجموعه جامع بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های مختلف</p>
-            
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="search-input" placeholder="جستجوی مشاهیر بر اساس نام، حوزه فعالیت یا دوره تاریخی...">
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header text-center mb-5">
+            <h1 class="mb-3"><i class="fas fa-book-open me-2"></i>زندگینامه مشاهیر</h1>
+            <p class="mb-0">بیوگرافی، عکس‌ها، دستاوردها و جملات ماندگار بزرگان تاریخ</p>
+        </div>
+        
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="form-control form-control-lg" placeholder="جستجو در میان مشاهیر...">
+                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
             </div>
         </div>
-    </header>
-    
-    <main class="container">
-        <div class="main-title">
-            <h2>آخرین پست‌ها</h2>
+        
+        <!-- Categories Section -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <button class="btn btn-sm btn-outline-primary active">همه</button>
+            <button class="btn btn-sm btn-outline-primary">ایرانی</button>
+            <button class="btn btn-sm btn-outline-primary">سیاستمداران</button>
+            <button class="btn btn-sm btn-outline-primary">هنرمندان</button>
+            <button class="btn btn-sm btn-outline-primary">دانشمندان</button>
+            <button class="btn btn-sm btn-outline-primary">ورزشکاران</button>
         </div>
         
-        <div class="posts-grid" id="posts-container">
-            <!-- Posts will be dynamically added here -->
+        <!-- Posts Container -->
+        <div id="posts-container">
+            <!-- Post items will be loaded here -->
         </div>
         
-        <div class="load-more-container">
-            <button class="load-more" id="load-more">بارگذاری پست‌های بیشتر</button>
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading">
+            <div class="spinner-border loading-spinner" role="status"></div>
+            <p>در حال بارگذاری مشاهیر بیشتر...</p>
         </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>درباره ما</h3>
-                    <p>زندگینامه مشاهیر ایران و جهان، مرجعی جامع برای مطالعه زندگی و آثار بزرگان تاریخ است. ما با دقت و حساسیت، زندگی‌نامه‌ها را گردآوری و ارائه می‌دهیم.</p>
+        
+        <!-- No More Items -->
+        <div class="no-more" id="no-more">
+            <i class="fas fa-check-circle"></i>
+            <p>همه مشاهیر را دیده‌اید!</p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer mt-5">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>درباره ما</h5>
+                    <p>سایت زندگینامه مشاهیر با هدف آشنایی بیشتر با بزرگان تاریخ ایران و جهان ایجاد شده است. ما تلاش می‌کنیم بیوگرافی دقیق و جامعی از این افراد ارائه دهیم.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>دسترسی سریع</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-arrow-left"></i> صفحه نخست</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-left"></i> پست‌های پرطرفدار</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-left"></i> مشاهیر ایرانی</a></li>
-                        <li><a href="#"><i class="fas fa-arrow-left"></i> مشاهیر جهانی</a></li>
-                    </ul>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>دسته‌بندی‌ها</h5>
+                    <div class="footer-links">
+                        <a href="#">مشاهیر ایرانی</a>
+                        <a href="#">سیاستمداران جهان</a>
+                        <a href="#">هنرمندان بزرگ</a>
+                        <a href="#">دانشمندان تاریخ</a>
+                        <a href="#">ورزشکاران مشهور</a>
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>ارتباط با ما</h3>
-                    <ul class="footer-links">
-                        <li><a href="mailto:ehsanchehri@gmail.com"><i class="fas fa-envelope"></i> ایمیل: ehsanchehri@gmail.com</a></li>
-                        <li><a href="tel:+989381029914"><i class="fas fa-phone"></i> تلفن: 09381029914</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> اینستاگرام</a></li>
-                        <li><a href="#"><i class="fab fa-telegram"></i> تلگرام</a></li>
-                    </ul>
+                <div class="col-md-4">
+                    <h5>لینک‌های مفید</h5>
+                    <div class="footer-links">
+                        <a href="#">صفحه اصلی</a>
+                        <a href="#">درباره ما</a>
+                        <a href="#">تماس با ما</a>
+                        <a href="#">حریم خصوصی</a>
+                        <a href="#">قوانین و مقررات</a>
+                    </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>تمامی حقوق مادی و معنوی این سایت متعلق به زندگینامه مشاهیر ایران و جهان می‌باشد. در صورت استفاده از مطالب سایت لطفا لینک کنید</p>
+                <p>© 2023 سایت زندگینامه مشاهیر. تمامی حقوق محفوظ است.</p>
             </div>
         </div>
-    </footer>
-    
-    <div class="scroll-top" id="scroll-top">
-        <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script>
-        // Sample data for posts (in real app, this would come from a database)
-        const allPosts = [
-            {
-                id: 1,
-                title: "فردوسی",
-                category: "شعر",
-                excerpt: "شاعر حماسه‌سرای ایرانی و خالق شاهنامه، بزرگترین اثر حماسی زبان فارسی که حافظ فرهنگ و زبان ایران زمین است.",
-                date: "۱۴۰۲/۰۵/۱۲",
-                link: "https://indexes.ir/28"
-            },
-            {
-                id: 2,
-                title: "آلبرت اینشتین",
-                category: "علم",
-                excerpt: "فیزیکدان نظری آلمانی و خالق نظریه نسبیت که انقلابی در فیزیک مدرن ایجاد کرد و به عنوان یکی از بزرگترین دانشمندان تاریخ شناخته می‌شود.",
-                date: "۱۴۰۲/۰۵/۱۰",
-                link: "https://indexes.ir/27"
-            },
-            {
-                id: 3,
-                title: "صادق هدایت",
-                category: "ادبیات",
-                excerpt: "نویسنده، مترجم و روشنفکر ایرانی، خالق اثر ماندگار بوف کور که از مهم‌ترین آثار ادبیات معاصر فارسی به شمار می‌رود.",
-                date: "۱۴۰۲/۰۵/۰۸",
-                link: "https://indexes.ir/11"
-            },
-            {
-                id: 4,
-                title: "کوروش بزرگ",
-                category: "سیاست",
-                excerpt: "بنیانگذار و نخستین شاه شاهنشاهی هخامنشی که به خاطر عدالت و انسانیتش در تاریخ مشهور است. منشور حقوق بشر کوروش از مهم‌ترین اسناد تاریخی است.",
-                date: "۱۴۰۲/۰۵/۰۵",
-                link: "https://indexes.ir/2"
-            },
-            {
-                id: 5,
-                title: "مریم میرزاخانی",
-                category: "علم",
-                excerpt: "ریاضیدان ایرانی و برنده مدال فیلدز، بالاترین نشان علمی در ریاضیات. او اولین زن و اولین ایرانی برنده این جایزه بود.",
-                date: "۱۴۰۲/۰۵/۰۲",
-                link: "https://indexes.ir/3"
-            },
-            {
-                id: 6,
-                title: "نیچه",
-                category: "فلسفه",
-                excerpt: "فیلسوف، شاعر و منتقد فرهنگی آلمانی که با آثارش مانند چنین گفت زرتشت تأثیر عمیقی بر فلسفه غرب گذاشت.",
-                date: "۱۴۰۲/۰۴/۲۸",
-                link: "https://indexes.ir/57"
-            },
-            {
-                id: 7,
-                title: "استیو جابز",
-                category: "تکنولوژی",
-                excerpt: "بنیانگذار اپل و از پیشگامان صنعت رایانه که انقلابی در فناوری‌های شخصی و تلفن‌های همراه ایجاد کرد.",
-                date: "۱۴۰۲/۰۴/۲۵",
-                link: "https://indexes.ir/25"
-            },
-            {
-                id: 8,
-                title: "سهراب سپهری",
-                category: "شعر",
-                excerpt: "شاعر، نویسنده و نقاش معاصر ایرانی که با مجموعه شعر هشت کتاب به شهرت رسید. اشعار او آمیخته با عرفان و طبیعت‌گرایی است.",
-                date: "۱۴۰۲/۰۴/۲۲",
-                link: "https://indexes.ir/45"
-            },
-            {
-                id: 9,
-                title: "ویکتور هوگو",
-                category: "ادبیات",
-                excerpt: "شاعر، داستان‌نویس و نمایشنامه‌نویس فرانسوی، خارج بینوایان و گوژپشت نتردام که از بزرگ‌ترین نویسندگان رمانتیک جهان به شمار می‌رود.",
-                date: "۱۴۰۲/۰۴/۱۸",
-                link: "https://indexes.ir/43"
-            },
-            {
-                id: 10,
-                title: "سقراط",
-                category: "فلسفه",
-                excerpt: "فیلسوف یونانی و یکی از بنیانگذاران فلسفه غرب که روش دیالکتیک را ابداع کرد و تأثیر عمیقی بر فلسفه غرب گذاشت.",
-                date: "۱۴۰۲/۰۴/۱۵",
-                link: "https://indexes.ir/51"
-            },
-            {
-                id: 11,
-                title: "ماری کوری",
-                category: "علم",
-                excerpt: "فیزیکدان و شیمی‌دان فرانسوی-لهستانی، اولین زنی که برنده جایزه نوبل شد و تنها کسی که این جایزه را در دو رشته مختلف دریافت کرده است.",
-                date: "۱۴۰۲/۰۴/۱۲",
-                link: "https://indexes.ir/64"
-            },
-            {
-                id: 12,
-                title: "مارتین لوتر کینگ",
-                category: "سیاست",
-                excerpt: "رهبر جنبش حقوق مدنی آمریکایی‌های آفریقایی‌تبار که با مبارزات غیرخشونت‌آمیز خود برای برابری نژادی تلاش کرد و برنده جایزه صلح نوبل شد.",
-                date: "۱۴۰۲/۰۴/۰۸",
-                link: "https://indexes.ir/5"
-            }
-        ];
-
-        // Function to render posts
-        function renderPosts(posts) {
-            const container = document.getElementById('posts-container');
+        $(document).ready(function() {
+            // Sample data for demonstration
+            const celebrities = [
+                {
+                    id: 1,
+                    title: "ابوعلی سینا",
+                    excerpt: "پزشک، فیلسوف و دانشمند بزرگ ایرانی که تأثیر شگرفی بر علم پزشکی و فلسفه جهان گذاشت.",
+                    category: "دانشمندان",
+                    date: "980-1037 میلادی",
+                    image: "url('https://via.placeholder.com/300/ffcccc/000000?text=ابوعلی+سینا')"
+                },
+                {
+                    id: 2,
+                    title: "مولانا جلال‌الدین رومی",
+                    excerpt: "شاعر، عارف و صوفی بزرگ ایرانی که آثار او در سراسر جهان مورد احترام است.",
+                    category: "هنرمندان",
+                    date: "1207-1273 میلادی",
+                    image: "url('https://via.placeholder.com/300/ccffcc/000000?text=مولانا')"
+                },
+                {
+                    id: 3,
+                    title: "مهاتما گاندی",
+                    excerpt: "رهبر سیاسی و معنوی هند که ملتش را در راه آزادی از استعمار بریتانیا رهبری کرد.",
+                    category: "سیاستمداران",
+                    date: "1869-1948 میلادی",
+                    image: "url('https://via.placeholder.com/300/ccccff/000000?text=گاندی')"
+                },
+                {
+                    id: 4,
+                    title: "ماری کوری",
+                    excerpt: "فیزیکدان و شیمیدان لهستانی که برنده دو جایزه نوبل در دو رشته مختلف شد.",
+                    category: "دانشمندان",
+                    date: "1867-1934 میلادی",
+                    image: "url('https://via.placeholder.com/300/ffccff/000000?text=ماری+کوری')"
+                },
+                {
+                    id: 5,
+                    title: "لئوناردو داوینچی",
+                    excerpt: "نابغه‌ای همه‌فن‌حریف در نقاشی، مجسمه‌سازی، معماری، موسیقی، ریاضیات و مهندسی.",
+                    category: "هنرمندان",
+                    date: "1452-1519 میلادی",
+                    image: "url('https://via.placeholder.com/300/ffffcc/000000?text=داوینچی')"
+                },
+                {
+                    id: 6,
+                    title: "نیما یوشیج",
+                    excerpt: "پدر شعر نو فارسی که تحولی عظیم در شعر معاصر ایران ایجاد کرد.",
+                    category: "هنرمندان",
+                    date: "1895-1960 میلادی",
+                    image: "url('https://via.placeholder.com/300/ccffff/000000?text=نیما+یوشیج')"
+                },
+                {
+                    id: 7,
+                    title: "استیو جابز",
+                    excerpt: "کارآفرین، مخترع و بنیان‌گذار شرکت اپل که انقلابی در صنعت کامپیوتر و موبایل ایجاد کرد.",
+                    category: "دانشمندان",
+                    date: "1955-2011 میلادی",
+                    image: "url('https://via.placeholder.com/300/ffccff/000000?text=استیو+جابز')"
+                },
+                {
+                    id: 8,
+                    title: "محمدعلی کلی",
+                    excerpt: "بزرگترین بوکسور تاریخ که سه بار قهرمان سنگین‌وزن جهان شد.",
+                    category: "ورزشکاران",
+                    date: "1942-2016 میلادی",
+                    image: "url('https://via.placeholder.com/300/ccccff/000000?text=محمدعلی+کلی')"
+                }
+            ];
             
-            posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = 'post-card';
-                postElement.innerHTML = `
-                    <span class="post-badge">${post.category}</span>
+            // Generate post HTML
+            function generatePostHTML(post) {
+                return `
+                <div class="post-card" data-id="${post.id}">
+                    <div class="post-image" style="background-image: ${post.image};"></div>
                     <div class="post-content">
-                        <h3>${post.title}</h3>
+                        <h3 class="post-title">${post.title}</h3>
+                        <p class="post-excerpt">${post.excerpt}</p>
                         <div class="post-meta">
-                            <i class="far fa-calendar-alt"></i>
+                            <span class="category-badge">${post.category}</span>
                             <span>${post.date}</span>
                         </div>
-                        <p class="post-excerpt">${post.excerpt}</p>
-                        <a href="${post.link}" class="post-link">مشاهده بیوگرافی</a>
                     </div>
-                `;
-                container.appendChild(postElement);
-            });
-        }
-
-        // Initial render
-        renderPosts(allPosts);
-
-        // Load more functionality
-        let visiblePosts = 8;
-        const loadMoreBtn = document.getElementById('load-more');
-        
-        loadMoreBtn.addEventListener('click', () => {
-            // In a real app, this would load more from server
-            visiblePosts += 4;
-            
-            // Clear container and render visible posts
-            document.getElementById('posts-container').innerHTML = '';
-            renderPosts(allPosts.slice(0, visiblePosts));
-            
-            // Hide button if all posts are visible
-            if (visiblePosts >= allPosts.length) {
-                loadMoreBtn.style.display = 'none';
-            }
-        });
-
-        // Search functionality
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const container = document.getElementById('posts-container');
-            container.innerHTML = '';
-            
-            const filteredPosts = allPosts.filter(post => {
-                return post.title.toLowerCase().includes(searchTerm) || 
-                       post.category.toLowerCase().includes(searchTerm) || 
-                       post.excerpt.toLowerCase().includes(searchTerm);
-            });
-            
-            if (filteredPosts.length > 0) {
-                renderPosts(filteredPosts);
-                loadMoreBtn.style.display = 'none';
-            } else {
-                container.innerHTML = `
-                    <div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 50px;">
-                        <i class="fas fa-search fa-3x" style="color: #c62828; margin-bottom: 20px;"></i>
-                        <h3 style="color: #555;">نتیجه‌ای یافت نشد</h3>
-                        <p>متأسفانه هیچ پستی با عبارت "${searchTerm}" پیدا نشد.</p>
-                    </div>
+                </div>
                 `;
             }
-        });
-
-        // Scroll to top functionality
-        const scrollTopBtn = document.getElementById('scroll-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
+            
+            // Initialize posts
+            const postsContainer = $('#posts-container');
+            let loadedPosts = 0;
+            const postsPerLoad = 4;
+            
+            function loadMorePosts() {
+                $('#loading').show();
+                
+                // Simulate network delay
+                setTimeout(function() {
+                    const remainingPosts = celebrities.slice(loadedPosts, loadedPosts + postsPerLoad);
+                    
+                    if (remainingPosts.length === 0) {
+                        $('#no-more').show();
+                        $('#loading').hide();
+                        return;
+                    }
+                    
+                    remainingPosts.forEach(post => {
+                        postsContainer.append(generatePostHTML(post));
+                    });
+                    
+                    loadedPosts += remainingPosts.length;
+                    
+                    if (loadedPosts >= celebrities.length) {
+                        $('#no-more').show();
+                    }
+                    
+                    $('#loading').hide();
+                }, 1000);
             }
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            
+            // Load initial posts
+            loadMorePosts();
+            
+            // Infinite scroll
+            let loading = false;
+            
+            $(window).scroll(function() {
+                if (loading) return;
+                
+                const scrollTop = $(window).scrollTop();
+                const windowHeight = $(window).height();
+                const documentHeight = $(document).height();
+                
+                if (scrollTop + windowHeight >= documentHeight - 200) {
+                    loading = true;
+                    loadMorePosts();
+                    
+                    // Add a small delay to prevent multiple rapid calls
+                    setTimeout(function() {
+                        loading = false;
+                    }, 1000);
+                }
+            });
+            
+            // Search functionality
+            $('.search-box input').on('keyup', function() {
+                const searchTerm = $(this).val().toLowerCase();
+                
+                if (searchTerm.length < 2) {
+                    postsContainer.children('.post-card').show();
+                    return;
+                }
+                
+                postsContainer.children('.post-card').each(function() {
+                    const title = $(this).find('.post-title').text().toLowerCase();
+                    const excerpt = $(this).find('.post-excerpt').text().toLowerCase();
+                    
+                    if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+            
+            // Category filter
+            $('.btn-outline-primary').click(function() {
+                $('.btn-outline-primary').removeClass('active');
+                $(this).addClass('active');
+                const category = $(this).text();
+                
+                if (category === 'همه') {
+                    postsContainer.children('.post-card').show();
+                    return;
+                }
+                
+                postsContainer.children('.post-card').each(function() {
+                    const postCategory = $(this).find('.category-badge').text();
+                    
+                    if (postCategory === category) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
             });
         });
     </script>
