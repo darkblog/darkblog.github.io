@@ -76,6 +76,9 @@ sitemap: false
             transition: all 0.3s ease;
             overflow: hidden;
             border: none;
+            display: block;
+            text-decoration: none !important;
+            color: inherit;
         }
         
         .post-card:hover {
@@ -114,15 +117,6 @@ sitemap: false
             margin-top: 15px;
             border-top: 1px dashed var(--border-color);
             padding-top: 12px;
-        }
-        
-        .category-badge {
-            background-color: #e9ecef;
-            color: #495057;
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
         }
         
         .search-container {
@@ -220,40 +214,6 @@ sitemap: false
             color: rgba(255, 255, 255, 0.6);
         }
         
-        .loading {
-            text-align: center;
-            padding: 30px;
-            color: #6c757d;
-            display: none;
-        }
-        
-        .loading-spinner {
-            width: 3rem;
-            height: 3rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .empty-message {
-            text-align: center;
-            padding: 40px 20px;
-            color: #6c757d;
-        }
-        
-        .empty-message i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #adb5bd;
-        }
-        
-        .no-more {
-            text-align: center;
-            padding: 20px;
-            color: #6c757d;
-            font-weight: 500;
-            display: none;
-        }
-        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .header {
@@ -284,37 +244,30 @@ sitemap: false
         
         <!-- Search Section -->
         <div class="search-container">
-            <div class="search-box">
-                <input type="text" class="form-control form-control-lg" placeholder="جستجو در میان مشاهیر...">
-                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-        
-        <!-- Categories Section -->
-        <div class="d-flex flex-wrap gap-2 mb-4">
-            <button class="btn btn-sm btn-outline-primary active">همه</button>
-            <button class="btn btn-sm btn-outline-primary">ایرانی</button>
-            <button class="btn btn-sm btn-outline-primary">سیاستمداران</button>
-            <button class="btn btn-sm btn-outline-primary">هنرمندان</button>
-            <button class="btn btn-sm btn-outline-primary">دانشمندان</button>
-            <button class="btn btn-sm btn-outline-primary">ورزشکاران</button>
+            <form action="https://www.google.com/search" method="get" target="_blank">
+                <div class="search-box">
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو در گوگل برای زندگینامه مشاهیر...">
+                    <input type="hidden" name="sitesearch" value="yourdomain.com"> <!-- جایگزین با دامنه واقعی سایت -->
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
         </div>
         
         <!-- Posts Container -->
         <div id="posts-container">
-            <!-- Post items will be loaded here -->
-        </div>
-        
-        <!-- Loading Indicator -->
-        <div class="loading" id="loading">
-            <div class="spinner-border loading-spinner" role="status"></div>
-            <p>در حال بارگذاری مشاهیر بیشتر...</p>
-        </div>
-        
-        <!-- No More Items -->
-        <div class="no-more" id="no-more">
-            <i class="fas fa-check-circle"></i>
-            <p>همه مشاهیر را دیده‌اید!</p>
+            <!-- Jekyll posts loop -->
+            {% for post in site.posts %}
+                <a href="{{ site.url }}{{ post.url }}" class="post-card">
+                    <div class="post-image" style="background-image: url('{{ post.image | default: 'https://via.placeholder.com/300x150/f8f9fa/495057?text=بدون+تصویر' }}');"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">{{ post.title }}</h3>
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                        <div class="post-meta">
+                            <span><i class="fas fa-calendar-alt me-2"></i>{{ post.date | date: "%Y-%m-%d" }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
         
         <!-- Footer -->
@@ -332,13 +285,13 @@ sitemap: false
                 </div>
                 
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>دسته‌بندی‌ها</h5>
+                    <h5>مشاهیر برجسته</h5>
                     <div class="footer-links">
-                        <a href="#">مشاهیر ایرانی</a>
-                        <a href="#">سیاستمداران جهان</a>
-                        <a href="#">هنرمندان بزرگ</a>
-                        <a href="#">دانشمندان تاریخ</a>
-                        <a href="#">ورزشکاران مشهور</a>
+                        <a href="#">ابوعلی سینا</a>
+                        <a href="#">مولانا جلال‌الدین رومی</a>
+                        <a href="#">مهاتما گاندی</a>
+                        <a href="#">ماری کوری</a>
+                        <a href="#">نیما یوشیج</a>
                     </div>
                 </div>
                 
@@ -362,196 +315,5 @@ sitemap: false
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <script>
-        $(document).ready(function() {
-            // Sample data for demonstration
-            const celebrities = [
-                {
-                    id: 1,
-                    title: "ابوعلی سینا",
-                    excerpt: "پزشک، فیلسوف و دانشمند بزرگ ایرانی که تأثیر شگرفی بر علم پزشکی و فلسفه جهان گذاشت.",
-                    category: "دانشمندان",
-                    date: "980-1037 میلادی",
-                    image: "url('https://via.placeholder.com/300/ffcccc/000000?text=ابوعلی+سینا')"
-                },
-                {
-                    id: 2,
-                    title: "مولانا جلال‌الدین رومی",
-                    excerpt: "شاعر، عارف و صوفی بزرگ ایرانی که آثار او در سراسر جهان مورد احترام است.",
-                    category: "هنرمندان",
-                    date: "1207-1273 میلادی",
-                    image: "url('https://via.placeholder.com/300/ccffcc/000000?text=مولانا')"
-                },
-                {
-                    id: 3,
-                    title: "مهاتما گاندی",
-                    excerpt: "رهبر سیاسی و معنوی هند که ملتش را در راه آزادی از استعمار بریتانیا رهبری کرد.",
-                    category: "سیاستمداران",
-                    date: "1869-1948 میلادی",
-                    image: "url('https://via.placeholder.com/300/ccccff/000000?text=گاندی')"
-                },
-                {
-                    id: 4,
-                    title: "ماری کوری",
-                    excerpt: "فیزیکدان و شیمیدان لهستانی که برنده دو جایزه نوبل در دو رشته مختلف شد.",
-                    category: "دانشمندان",
-                    date: "1867-1934 میلادی",
-                    image: "url('https://via.placeholder.com/300/ffccff/000000?text=ماری+کوری')"
-                },
-                {
-                    id: 5,
-                    title: "لئوناردو داوینچی",
-                    excerpt: "نابغه‌ای همه‌فن‌حریف در نقاشی، مجسمه‌سازی، معماری، موسیقی، ریاضیات و مهندسی.",
-                    category: "هنرمندان",
-                    date: "1452-1519 میلادی",
-                    image: "url('https://via.placeholder.com/300/ffffcc/000000?text=داوینچی')"
-                },
-                {
-                    id: 6,
-                    title: "نیما یوشیج",
-                    excerpt: "پدر شعر نو فارسی که تحولی عظیم در شعر معاصر ایران ایجاد کرد.",
-                    category: "هنرمندان",
-                    date: "1895-1960 میلادی",
-                    image: "url('https://via.placeholder.com/300/ccffff/000000?text=نیما+یوشیج')"
-                },
-                {
-                    id: 7,
-                    title: "استیو جابز",
-                    excerpt: "کارآفرین، مخترع و بنیان‌گذار شرکت اپل که انقلابی در صنعت کامپیوتر و موبایل ایجاد کرد.",
-                    category: "دانشمندان",
-                    date: "1955-2011 میلادی",
-                    image: "url('https://via.placeholder.com/300/ffccff/000000?text=استیو+جابز')"
-                },
-                {
-                    id: 8,
-                    title: "محمدعلی کلی",
-                    excerpt: "بزرگترین بوکسور تاریخ که سه بار قهرمان سنگین‌وزن جهان شد.",
-                    category: "ورزشکاران",
-                    date: "1942-2016 میلادی",
-                    image: "url('https://via.placeholder.com/300/ccccff/000000?text=محمدعلی+کلی')"
-                }
-            ];
-            
-            // Generate post HTML
-            function generatePostHTML(post) {
-                return `
-                <div class="post-card" data-id="${post.id}">
-                    <div class="post-image" style="background-image: ${post.image};"></div>
-                    <div class="post-content">
-                        <h3 class="post-title">${post.title}</h3>
-                        <p class="post-excerpt">${post.excerpt}</p>
-                        <div class="post-meta">
-                            <span class="category-badge">${post.category}</span>
-                            <span>${post.date}</span>
-                        </div>
-                    </div>
-                </div>
-                `;
-            }
-            
-            // Initialize posts
-            const postsContainer = $('#posts-container');
-            let loadedPosts = 0;
-            const postsPerLoad = 4;
-            
-            function loadMorePosts() {
-                $('#loading').show();
-                
-                // Simulate network delay
-                setTimeout(function() {
-                    const remainingPosts = celebrities.slice(loadedPosts, loadedPosts + postsPerLoad);
-                    
-                    if (remainingPosts.length === 0) {
-                        $('#no-more').show();
-                        $('#loading').hide();
-                        return;
-                    }
-                    
-                    remainingPosts.forEach(post => {
-                        postsContainer.append(generatePostHTML(post));
-                    });
-                    
-                    loadedPosts += remainingPosts.length;
-                    
-                    if (loadedPosts >= celebrities.length) {
-                        $('#no-more').show();
-                    }
-                    
-                    $('#loading').hide();
-                }, 1000);
-            }
-            
-            // Load initial posts
-            loadMorePosts();
-            
-            // Infinite scroll
-            let loading = false;
-            
-            $(window).scroll(function() {
-                if (loading) return;
-                
-                const scrollTop = $(window).scrollTop();
-                const windowHeight = $(window).height();
-                const documentHeight = $(document).height();
-                
-                if (scrollTop + windowHeight >= documentHeight - 200) {
-                    loading = true;
-                    loadMorePosts();
-                    
-                    // Add a small delay to prevent multiple rapid calls
-                    setTimeout(function() {
-                        loading = false;
-                    }, 1000);
-                }
-            });
-            
-            // Search functionality
-            $('.search-box input').on('keyup', function() {
-                const searchTerm = $(this).val().toLowerCase();
-                
-                if (searchTerm.length < 2) {
-                    postsContainer.children('.post-card').show();
-                    return;
-                }
-                
-                postsContainer.children('.post-card').each(function() {
-                    const title = $(this).find('.post-title').text().toLowerCase();
-                    const excerpt = $(this).find('.post-excerpt').text().toLowerCase();
-                    
-                    if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            });
-            
-            // Category filter
-            $('.btn-outline-primary').click(function() {
-                $('.btn-outline-primary').removeClass('active');
-                $(this).addClass('active');
-                const category = $(this).text();
-                
-                if (category === 'همه') {
-                    postsContainer.children('.post-card').show();
-                    return;
-                }
-                
-                postsContainer.children('.post-card').each(function() {
-                    const postCategory = $(this).find('.category-badge').text();
-                    
-                    if (postCategory === category) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
