@@ -240,7 +240,7 @@
             margin-bottom: 10px;
         }
         
-        /* Professional Table Styles - به روز شده برای ریسپانسیو */
+        /* Professional Table Styles - تغییرات اساسی برای ریسپانسیو */
         .post-content table {
             width: 100%;
             border-collapse: collapse;
@@ -249,7 +249,7 @@
             border-radius: 10px;
             overflow: hidden;
             font-size: 1rem;
-            min-width: 600px; /* حداقل عرض برای حفظ ساختار */
+            min-width: 100%; /* تغییر مهم: حداقل عرض 100% */
         }
         
         .post-content th {
@@ -259,12 +259,14 @@
             padding: 15px 20px;
             text-align: right;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap; /* جلوگیری از شکستن سرفصل‌ها */
         }
         
         .post-content td {
             padding: 15px 20px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease;
+            min-width: 120px; /* حداقل عرض برای سلول‌ها */
         }
         
         .post-content tr:nth-child(even) {
@@ -283,6 +285,18 @@
             margin: 30px 0;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            -ms-overflow-style: -ms-autohiding-scrollbar; /* بهبود در اینترنت اکسپلورر */
+        }
+        
+        /* مخفی کردن اسکرولبار در مرورگرهای وبکیت */
+        .table-responsive::-webkit-scrollbar {
+            -webkit-appearance: none;
+            height: 8px;
+        }
+        
+        .table-responsive::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0,0,0,.2);
         }
         
         .back-to-home {
@@ -399,7 +413,13 @@
             position: relative;
         }
         
-        /* Responsive adjustments */
+        /* Responsive adjustments - تغییرات مهم برای جدول */
+        @media (max-width: 992px) {
+            .post-content table {
+                min-width: 800px; /* برای تبلت‌ها */
+            }
+        }
+        
         @media (max-width: 768px) {
             .post-header {
                 height: 220px;
@@ -431,10 +451,9 @@
                 font-size: 1.3rem;
             }
             
-            /* تنظیمات جدول برای تبلت */
             .post-content table {
                 font-size: 0.9rem;
-                min-width: 500px;
+                min-width: 650px; /* تنظیم حداقل عرض برای تبلت */
             }
             
             .post-content th,
@@ -469,15 +488,27 @@
                 padding: 30px 20px;
             }
             
-            /* تنظیمات جدول برای موبایل */
             .post-content table {
                 font-size: 0.85rem;
-                min-width: 400px;
+                min-width: 500px; /* تنظیم حداقل عرض برای موبایل */
             }
             
             .post-content th,
             .post-content td {
                 padding: 10px 12px;
+                min-width: 100px; /* حداقل عرض برای سلول‌ها در موبایل */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .post-content table {
+                min-width: 400px; /* تنظیم برای دستگاه‌های بسیار کوچک */
+            }
+            
+            .post-content th,
+            .post-content td {
+                padding: 8px 10px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -561,5 +592,29 @@
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- اسکریپت برای بهبود عملکرد جدول‌های ریسپانسیو -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // اضافه کردن نشانگر اسکرول برای جدول‌ها
+            const tables = document.querySelectorAll('.table-responsive');
+            
+            tables.forEach(table => {
+                // بررسی اگر جدول نیاز به اسکرول افقی دارد
+                if (table.scrollWidth > table.clientWidth) {
+                    table.classList.add('has-scroll');
+                }
+                
+                // اضافه کردن رویداد اسکرول برای نشان دادن اسکرول
+                table.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 0) {
+                        this.classList.add('scrolling');
+                    } else {
+                        this.classList.remove('scrolling');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
