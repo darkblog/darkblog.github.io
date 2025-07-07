@@ -502,7 +502,7 @@ sitemap: false
             <div class="floating-search-container">
                 <form action="https://www.google.com/search" method="get" target="_blank">
                     <div class="search-box floating-search">
-                        <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی مشاهیر (حافظ، سعدی، انیشتین...)" required>
+                        <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required>
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                     </div>
@@ -517,7 +517,7 @@ sitemap: false
             
             <!-- Posts Container -->
             <div class="posts-container">
-                {% for post in site.posts limit:6 %}
+                {% for post in site.posts limit:200 %}
                 <a href="{{ post.url }}" class="post-card">
                     <div class="post-content">
                         <h3 class="post-title">{{ post.title }}</h3>
