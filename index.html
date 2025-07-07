@@ -7,10 +7,10 @@ layout: index.html
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>زندگینامه مشاهیر ایران و جهان</title>
-    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان در حوزه‌های مختلف شامل فلسفه، ادبیات، شعر، علم، سیاست و بزرگان تکنولوژی. بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ">
-    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
-    <meta property="og:description" content="مجموعه کامل بیوگرافی مشاهیر ایران و جهان در حوزه‌های مختلف">
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:description" content="{{ site.description }}">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#dc3545">
     
@@ -27,91 +27,137 @@ layout: index.html
         :root {
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
+            --primary-light: #ff6b7a;
             --text-color: #333;
             --text-secondary: #6c757d;
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
+            --header-height: 380px;
         }
         
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
-            padding-top: 20px;
-            padding-bottom: 60px;
+            padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
         }
         
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        /* Modern Minimalist Header Styles */
+        .modern-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
-            border-radius: 16px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-            padding: 35px 30px;
-            margin-bottom: 35px;
+            height: var(--header-height);
             position: relative;
             overflow: hidden;
-            text-align: center;
-        }
-        
-        .header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-        }
-        
-        .header h1 {
-            font-weight: 900;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-            position: relative;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .header p {
-            opacity: 0.92;
-            font-size: 1.25rem;
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Professional Search Styles */
-        .search-container {
-            background: transparent;
-            border-radius: 16px;
             padding: 0;
             margin-bottom: 40px;
-            border: none;
-            box-shadow: none;
-            max-width: 700px;
-            margin: 0 auto 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .search-box {
+        .modern-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+        
+        .modern-header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+        
+        .header-content {
             position: relative;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .modern-header h1 {
+            font-weight: 900;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
+        }
+        
+        .modern-header p {
+            opacity: 0.92;
+            font-size: 1.35rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-badge i {
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Floating Search */
+        .floating-search-container {
+            position: relative;
+            z-index: 20;
+            max-width: 700px;
+            width: 90%;
+            margin: -40px auto 60px;
+        }
+        
+        .floating-search {
+            background: white;
+            border-radius: 50px;
+            padding: 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-search:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
         .search-box input {
-            padding: 15px 60px 15px 20px;
+            padding: 16px 65px 16px 25px;
             border-radius: 50px;
             font-size: 1.1rem;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: none;
+            background: transparent;
+            height: 60px;
         }
         
         .search-box input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
         }
         
         .search-box .btn {
@@ -119,21 +165,26 @@ layout: index.html
             left: 8px;
             top: 8px;
             border-radius: 50%;
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             padding: 0;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
             transition: all 0.3s ease;
         }
         
         .search-box .btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
+        }
+        
+        .search-hint {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
         
         /* Post Card Styles */
@@ -360,16 +411,16 @@ layout: index.html
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .header {
-                padding: 25px 20px;
+            .modern-header {
+                height: 320px;
             }
             
-            .header h1 {
-                font-size: 2rem;
+            .modern-header h1 {
+                font-size: 2.5rem;
             }
             
-            .header p {
-                font-size: 1.1rem;
+            .modern-header p {
+                font-size: 1.15rem;
             }
             
             .post-content {
@@ -386,6 +437,7 @@ layout: index.html
             
             .search-box input {
                 padding: 12px 50px 12px 15px;
+                height: 54px;
             }
             
             .search-box .btn {
@@ -404,17 +456,20 @@ layout: index.html
         }
         
         @media (max-width: 576px) {
+            .modern-header {
+                height: 280px;
+            }
+            
             .post-title {
                 font-size: 1.3rem;
             }
             
-            .header {
-                padding: 20px 15px;
-                border-radius: 12px;
+            .modern-header h1 {
+                font-size: 2rem;
             }
             
-            .header h1 {
-                font-size: 1.8rem;
+            .modern-header p {
+                font-size: 1rem;
             }
             
             .footer {
@@ -429,34 +484,41 @@ layout: index.html
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <h1>زندگینامه مشاهیر</h1>
-            <p>بیوگرافی بزرگان ایران و جهان</p>
-        </div>
-        
-        <!-- Professional Search Section -->
-        <div class="search-container">
-            <form action="https://www.google.com/search" method="get" target="_blank">
-                <div class="search-box">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی مشاهیر..." required>
-                    <input type="hidden" name="sitesearch" value="indexes.ir">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+    <div class="container-fluid px-0">
+        <!-- Modern Header Section -->
+        <div class="modern-header">
+            <div class="header-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>مجموعه‌ای جامع از زندگینامه‌ها</span>
                 </div>
-            </form>
+                <h1>{{ site.title }}</h1>
+                <p>{{ site.description }}</p>
+            </div>
         </div>
         
-        <!-- Posts Section Title -->
-        <div class="section-title">
-            <h2>آخرین زندگینامه‌ها</h2>
-        </div>
-        
-        <!-- Posts Container -->
-        <div class="posts-container">
-            <!-- Jekyll posts loop -->
-            {% for post in site.posts %}
-                <a href="{{ site.url }}{{ post.url }}" class="post-card">
+        <!-- Floating Search Section -->
+        <div class="container">
+            <div class="floating-search-container">
+                <form action="https://www.google.com/search" method="get" target="_blank">
+                    <div class="search-box floating-search">
+                        <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required>
+                        <input type="hidden" name="sitesearch" value="indexes.ir">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <p class="search-hint">نام شخصیت مورد نظر خود را وارد کنید</p>
+            </div>
+            
+            <!-- Posts Section Title -->
+            <div class="section-title">
+                <h2>آخرین زندگینامه‌ها</h2>
+            </div>
+            
+            <!-- Posts Container -->
+            <div class="posts-container">
+                {% for post in site.posts limit:200 %}
+                <a href="{{ post.url }}" class="post-card">
                     <div class="post-content">
                         <h3 class="post-title">{{ post.title }}</h3>
                         <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
@@ -466,40 +528,35 @@ layout: index.html
                         </div>
                     </div>
                 </a>
-            {% endfor %}
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <div class="row">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h5>درباره سایت زندگینامه مشاهیر</h5>
-                    <p>این سایت با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است.</p>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                    <h5>مشاهیر پرطرفدار</h5>
-                    <div class="footer-links">
-                        <a href="#">حافظ شیرازی</a>
-                        <a href="#">ابوعلی سینا</a>
-                        <a href="#">مولانا جلال‌الدین</a>
-                        <a href="#">مهاتما گاندی</a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <h5>دسترسی سریع</h5>
-                    <div class="footer-links">
-                        <a href="#">صفحه اصلی</a>
-                        <a href="#">تماس با ما</a>
-                        <a href="#">درباره ما</a>
-                        <a href="#">ارسال پیشنهاد</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             
-            <div class="copyright">
-                <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © {{ site.time | date: "%Y" }}</p>
+            <!-- Footer -->
+            <div class="footer">
+                <div class="row">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h5>درباره سایت زندگینامه مشاهیر</h5>
+                        <p>این سایت با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است.</p>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                        <h5>مشاهیر پرطرفدار</h5>
+                        <div class="footer-links">
+                            <a href="https://indexes.ir/9">سعدی</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <h5>دسترسی سریع</h5>
+                        <div class="footer-links">
+                            <a href="https://indexes.ir/">صفحه اصلی</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © {{ site.time | date: "%Y" }}</p>
+                </div>
             </div>
         </div>
     </div>
