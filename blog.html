@@ -8,7 +8,7 @@ sitemap: false
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>آیکون جدید - زندگینامه مشاهیر</title>
-    <meta name="description" content="آیکون جدید برای سایت زندگینامه مشاهیر با نماد انسان و کتاب">
+    <meta name="description" content="آیکون جدید برای سایت زندگینامه مشاهیر با نماد انسان در حال راه رفتن">
     <meta name="theme-color" content="#dc3545">
     
     <!-- Favicon جدید -->
@@ -518,6 +518,26 @@ sitemap: false
                 padding: 30px 20px;
             }
         }
+        
+        /* Animation for walking icon */
+        .walking-icon {
+            animation: walk 2s infinite linear;
+        }
+        
+        @keyframes walk {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(3px);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            75% {
+                transform: translateX(-3px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -547,44 +567,50 @@ sitemap: false
         <!-- Post Content -->
         <div class="post-container">
             <div class="post-content">
-                <h2>آیکون جدید برند: نماد انسان + کتاب</h2>
-                <p>آیکون جدید با ترکیب نماد انسان (مشاهیر) و کتاب (بیوگرافی و دانش) طراحی شده است که به خوبی مفهوم سایت شما را منتقل می‌کند.</p>
+                <h2>آیکون جدید برند: نماد انسان در حال راه رفتن</h2>
+                <p>آیکون جدید با نماد انسان در حال راه رفتن طراحی شده است که نشان‌دهنده پویایی، حرکت رو به جلو و پیشرفت مشاهیر در طول زندگی خود می‌باشد. این آیکون به خوبی مفهوم سایت شما را منتقل می‌کند.</p>
                 
                 <div class="brand-icon-showcase">
                     <div class="icon-container">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="walking-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <!-- سر انسان -->
                             <circle cx="12" cy="9" r="4" fill="white" />
                             
-                            <!-- بدن (کتاب) -->
-                            <path d="M9 13H15V20H9V13Z" fill="white" />
+                            <!-- بدن -->
+                            <path d="M10 13H14V20H10V13Z" fill="white" />
                             
-                            <!-- خطوط کتاب -->
+                            <!-- پاها در حالت راه رفتن -->
+                            <path d="M10 20L8 22" stroke="white" stroke-width="2" />
+                            <path d="M14 20L16 22" stroke="white" stroke-width="2" />
+                            
+                            <!-- بازوها در حالت راه رفتن -->
+                            <path d="M7 16L9 14" stroke="white" stroke-width="2" />
+                            <path d="M17 16L15 18" stroke="white" stroke-width="2" />
+                            
+                            <!-- خطوط کتاب در بدن -->
                             <path d="M12 13V20" stroke="#dc3545" stroke-width="1.5" />
                             <path d="M10 15H14" stroke="#dc3545" stroke-width="1" />
                             <path d="M10 17H14" stroke="#dc3545" stroke-width="1" />
                             <path d="M10 19H14" stroke="#dc3545" stroke-width="1" />
-                            
-                            <!-- بازوها -->
-                            <line x1="7" y1="15" x2="9" y2="15" stroke="white" stroke-width="2" />
-                            <line x1="15" y1="15" x2="17" y2="15" stroke="white" stroke-width="2" />
                         </svg>
                     </div>
-                    <h3>نماد انسان + کتاب</h3>
-                    <p>این آیکون به سادگی و زیبایی مفهوم زندگینامه مشاهیر را منتقل می‌کند.</p>
+                    <h3>نماد انسان در حال راه رفتن + کتاب</h3>
+                    <p>این آیکون به سادگی و زیبایی مفهوم پویایی و حرکت رو به جلو در زندگینامه مشاهیر را منتقل می‌کند.</p>
                     
                     <div class="icon-variations">
                         <div class="icon-variant">
                             <div class="variant-box" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
                                     <circle cx="12" cy="9" r="4" fill="white" />
-                                    <path d="M9 13H15V20H9V13Z" fill="white" />
+                                    <path d="M10 13H14V20H10V13Z" fill="white" />
+                                    <path d="M10 20L8 22" stroke="white" stroke-width="2" />
+                                    <path d="M14 20L16 22" stroke="white" stroke-width="2" />
+                                    <path d="M7 16L9 14" stroke="white" stroke-width="2" />
+                                    <path d="M17 16L15 18" stroke="white" stroke-width="2" />
                                     <path d="M12 13V20" stroke="#dc3545" stroke-width="1.5" />
                                     <path d="M10 15H14" stroke="#dc3545" stroke-width="1" />
                                     <path d="M10 17H14" stroke="#dc3545" stroke-width="1" />
                                     <path d="M10 19H14" stroke="#dc3545" stroke-width="1" />
-                                    <line x1="7" y1="15" x2="9" y2="15" stroke="white" stroke-width="2" />
-                                    <line x1="15" y1="15" x2="17" y2="15" stroke="white" stroke-width="2" />
                                 </svg>
                             </div>
                             <span>نسخه اصلی</span>
@@ -594,13 +620,15 @@ sitemap: false
                             <div class="variant-box" style="background: white; border: 2px solid var(--primary-color);">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
                                     <circle cx="12" cy="9" r="4" fill="var(--primary-color)" />
-                                    <path d="M9 13H15V20H9V13Z" fill="var(--primary-color)" />
+                                    <path d="M10 13H14V20H10V13Z" fill="var(--primary-color)" />
+                                    <path d="M10 20L8 22" stroke="var(--primary-color)" stroke-width="2" />
+                                    <path d="M14 20L16 22" stroke="var(--primary-color)" stroke-width="2" />
+                                    <path d="M7 16L9 14" stroke="var(--primary-color)" stroke-width="2" />
+                                    <path d="M17 16L15 18" stroke="var(--primary-color)" stroke-width="2" />
                                     <path d="M12 13V20" stroke="white" stroke-width="1.5" />
                                     <path d="M10 15H14" stroke="white" stroke-width="1" />
                                     <path d="M10 17H14" stroke="white" stroke-width="1" />
                                     <path d="M10 19H14" stroke="white" stroke-width="1" />
-                                    <line x1="7" y1="15" x2="9" y2="15" stroke="var(--primary-color)" stroke-width="2" />
-                                    <line x1="15" y1="15" x2="17" y2="15" stroke="var(--primary-color)" stroke-width="2" />
                                 </svg>
                             </div>
                             <span>نسخه تک رنگ</span>
@@ -610,13 +638,15 @@ sitemap: false
                             <div class="variant-box" style="background: var(--primary-dark);">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
                                     <circle cx="12" cy="9" r="4" fill="white" />
-                                    <path d="M9 13H15V20H9V13Z" fill="white" />
+                                    <path d="M10 13H14V20H10V13Z" fill="white" />
+                                    <path d="M10 20L8 22" stroke="white" stroke-width="2" />
+                                    <path d="M14 20L16 22" stroke="white" stroke-width="2" />
+                                    <path d="M7 16L9 14" stroke="white" stroke-width="2" />
+                                    <path d="M17 16L15 18" stroke="white" stroke-width="2" />
                                     <path d="M12 13V20" stroke="var(--primary-dark)" stroke-width="1.5" />
                                     <path d="M10 15H14" stroke="var(--primary-dark)" stroke-width="1" />
                                     <path d="M10 17H14" stroke="var(--primary-dark)" stroke-width="1" />
                                     <path d="M10 19H14" stroke="var(--primary-dark)" stroke-width="1" />
-                                    <line x1="7" y1="15" x2="9" y2="15" stroke="white" stroke-width="2" />
-                                    <line x1="15" y1="15" x2="17" y2="15" stroke="white" stroke-width="2" />
                                 </svg>
                             </div>
                             <span>پس زمینه تیره</span>
@@ -624,17 +654,52 @@ sitemap: false
                     </div>
                 </div>
                 
-                <h3>معنای آیکون</h3>
-                <p>آیکون جدید شامل عناصر زیر است:</p>
+                <h3>معنای آیکون جدید</h3>
+                <p>آیکون جدید شامل عناصر زیر است که مفهوم پویایی و حرکت رو به جلو را منتقل می‌کند:</p>
                 <ul>
                     <li><strong>سر انسان</strong>: نماد شخصیت‌ها و مشاهیر</li>
                     <li><strong>بدن به شکل کتاب</strong>: نماد بیوگرافی و دانش</li>
+                    <li><strong>پاها در حالت راه رفتن</strong>: نشان‌دهنده حرکت رو به جلو، پیشرفت و پویایی</li>
+                    <li><strong>بازوها در حالت حرکت</strong>: نماد فعالیت و تعامل با دانش</li>
                     <li><strong>خطوط داخل کتاب</strong>: نشان‌دهنده صفحات کتاب و محتوای ارزشمند</li>
-                    <li><strong>بازوها</strong>: نماد ارتباط و تعامل با دانش</li>
                     <li><strong>گرادیان قرمز</strong>: حفظ هویت برند فعلی شما</li>
                 </ul>
                 
                 <p>این آیکون به گونه‌ای طراحی شده که در ابعاد مختلف از فاوآیکون کوچک تا لوگوهای بزرگ به خوبی قابل تشخیص باشد و مفهوم اصلی سایت شما را به سادگی و زیبایی منتقل کند.</p>
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>عنصر آیکون</th>
+                                <th>نمادشناسی</th>
+                                <th>اهمیت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>انسان در حال راه رفتن</td>
+                                <td>پویایی، حرکت رو به جلو، پیشرفت</td>
+                                <td>نشان‌دهنده سیر تکاملی مشاهیر در زندگی</td>
+                            </tr>
+                            <tr>
+                                <td>کتاب</td>
+                                <td>دانش، بیوگرافی، تاریخ</td>
+                                <td>نماد محتوای ارزشمند زندگینامه‌ها</td>
+                            </tr>
+                            <tr>
+                                <td>رنگ قرمز</td>
+                                <td>انرژی، اشتیاق، اهمیت</td>
+                                <td>حفظ هویت برند و جلب توجه</td>
+                            </tr>
+                            <tr>
+                                <td>طرح مینیمال</td>
+                                <td>سادگی، مدرنیته، وضوح</td>
+                                <td>قابل تشخیص در ابعاد مختلف</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
                 <div class="text-center my-5">
                     <div style="display: inline-block; background: var(--light-bg); padding: 20px; border-radius: 12px;">
@@ -644,7 +709,9 @@ sitemap: false
                                 <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 6px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="9" r="2" fill="white" />
-                                        <path d="M10 12H14V18H10V12Z" fill="white" />
+                                        <path d="M11 12H13V17H11V12Z" fill="white" />
+                                        <path d="M11 17L10 19" stroke="white" stroke-width="1.5" />
+                                        <path d="M13 17L14 19" stroke="white" stroke-width="1.5" />
                                     </svg>
                                 </div>
                                 <small>فاوآیکون (32×32)</small>
@@ -654,7 +721,9 @@ sitemap: false
                                 <div style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="9" r="3" fill="white" />
-                                        <path d="M9 12H15V19H9V12Z" fill="white" />
+                                        <path d="M10 12H14V19H10V12Z" fill="white" />
+                                        <path d="M10 19L8 21" stroke="white" stroke-width="2" />
+                                        <path d="M14 19L16 21" stroke="white" stroke-width="2" />
                                         <path d="M12 12V19" stroke="#dc3545" stroke-width="1" />
                                     </svg>
                                 </div>
@@ -665,16 +734,79 @@ sitemap: false
                                 <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                                     <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="9" r="4" fill="white" />
-                                        <path d="M9 13H15V20H9V13Z" fill="white" />
+                                        <path d="M10 13H14V20H10V13Z" fill="white" />
+                                        <path d="M10 20L8 22" stroke="white" stroke-width="2" />
+                                        <path d="M14 20L16 22" stroke="white" stroke-width="2" />
+                                        <path d="M7 16L9 14" stroke="white" stroke-width="2" />
+                                        <path d="M17 16L15 18" stroke="white" stroke-width="2" />
                                         <path d="M12 13V20" stroke="#dc3545" stroke-width="1.5" />
                                         <path d="M10 15H14" stroke="#dc3545" stroke-width="1" />
                                         <path d="M10 17H14" stroke="#dc3545" stroke-width="1" />
                                         <path d="M10 19H14" stroke="#dc3545" stroke-width="1" />
-                                        <line x1="7" y1="15" x2="9" y2="15" stroke="white" stroke-width="2" />
-                                        <line x1="15" y1="15" x2="17" y2="15" stroke="white" stroke-width="2" />
                                     </svg>
                                 </div>
                                 <small>لوگو متوسط (120×120)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>مزایای آیکون جدید</h3>
+                <p>طراحی جدید آیکون با نماد انسان در حال راه رفتن دارای مزایای متعددی است:</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-walking text-white fs-5"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5>پویایی و حرکت</h5>
+                                <p>نماد انسان در حال راه رفتن نشان‌دهنده پویایی، پیشرفت و حرکت رو به جلو در زندگی مشاهیر است.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-lightbulb text-white fs-5"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5>مفهوم‌رسانی قوی</h5>
+                                <p>ترکیب انسان در حال حرکت با کتاب، مفهوم زندگینامه و سیر تکامل مشاهیر را به خوبی منتقل می‌کند.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-eye text-white fs-5"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5>جلب توجه</h5>
+                                <p>طرح پویا و منحصر به‌فرد آیکون جدید، توجه بیشتری را به خود جلب می‌کند.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-sync-alt text-white fs-5"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5>تداوم هویت برند</h5>
+                                <p>با حفظ رنگ‌ها و المان‌های اصلی، هویت برند شما حفظ شده است.</p>
                             </div>
                         </div>
                     </div>
