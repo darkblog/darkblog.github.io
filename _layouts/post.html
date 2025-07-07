@@ -313,19 +313,17 @@
             transform: translateX(5px);
         }
         
-        /* لیست‌ها و آیتم‌ها - عریض‌تر شده */
+        /* لیست‌ها و آیتم‌ها */
         .post-content ul,
         .post-content ol {
-            padding-right: 40px; /* افزایش فاصله داخلی از راست */
+            padding-right: 30px;
             margin-bottom: 1.5rem;
-            width: 100%; /* پر کردن عرض کامل */
         }
         
         .post-content li {
-            margin-bottom: 1rem; /* افزایش فاصله بین آیتم‌ها */
+            margin-bottom: 0.8rem;
             position: relative;
-            padding-right: 25px; /* افزایش فاصله داخلی راست */
-            width: 100%; /* پر کردن عرض کامل */
+            padding-right: 15px;
         }
         
         .post-content ul li::before {
@@ -333,9 +331,9 @@
             color: var(--primary-color);
             font-weight: bold;
             position: absolute;
-            right: -25px; /* انتقال بولت به راست */
+            right: -15px;
             top: 0;
-            font-size: 1.5rem; /* افزایش سایز بولت */
+            font-size: 1.2rem;
         }
         
         .post-content ol {
@@ -344,7 +342,6 @@
         
         .post-content ol li {
             counter-increment: my-counter;
-            padding-right: 30px; /* افزایش فاصله داخلی راست برای لیست‌های شماره‌دار */
         }
         
         .post-content ol li::before {
@@ -352,9 +349,8 @@
             color: var(--primary-color);
             font-weight: bold;
             position: absolute;
-            right: -30px; /* انتقال شماره به راست */
+            right: -20px;
             top: 0;
-            font-size: 1.2rem;
         }
         
         /* Footer Styles */
@@ -487,51 +483,32 @@
             .post-content td {
                 padding: 12px 15px;
             }
-            
-            /* لیست‌ها در تبلت */
-            .post-content ul,
-            .post-content ol {
-                padding-right: 35px;
-            }
-            
-            .post-content li {
-                padding-right: 22px;
-            }
-            
-            .post-content ul li::before {
-                right: -22px;
-            }
-            
-            .post-content ol li::before {
-                right: -26px;
-            }
         }
         
         /* استایل مخصوص تلفن‌های عریض (577px تا 768px) */
         @media (min-width: 577px) and (max-width: 768px) {
             .post-content ul,
             .post-content ol {
-                padding-right: 45px; /* افزایش فاصله داخلی راست */
+                padding-right: 35px;
                 margin-left: 15px;
             }
             
             .post-content li {
-                margin-bottom: 15px; /* افزایش فاصله عمودی */
-                font-size: 1.15rem; /* افزایش سایز فونت */
-                line-height: 1.9;
-                padding-right: 35px; /* افزایش فاصله داخلی راست */
-                width: 100%; /* پر کردن عرض کامل */
+                margin-bottom: 12px;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                padding-right: 25px;
             }
             
             .post-content ul li::before {
-                font-size: 1.6rem; /* افزایش سایز بولت */
-                right: -30px; /* انتقال بولت به راست */
+                font-size: 1.4rem;
+                right: -20px;
                 top: -2px;
             }
             
             .post-content ol li::before {
-                font-size: 1.3rem; /* افزایش سایز شماره */
-                right: -35px; /* انتقال شماره به راست */
+                font-size: 1.2rem;
+                right: -25px;
                 top: 0;
             }
         }
@@ -559,7 +536,7 @@
             }
             
             .post-content {
-                font-size: 1.05rem; /* افزایش سایز فونت در موبایل */
+                font-size: 1rem;
             }
             
             .post-content table {
@@ -571,26 +548,21 @@
                 padding: 10px 12px;
             }
             
-            /* لیست‌ها در موبایل */
             .post-content ul,
             .post-content ol {
-                padding-right: 35px; /* افزایش فاصله داخلی راست */
-                width: 100%; /* پر کردن عرض کامل */
+                padding-right: 25px;
             }
             
             .post-content li {
-                padding-right: 28px; /* افزایش فاصله داخلی راست */
-                margin-bottom: 12px; /* افزایش فاصله عمودی */
+                padding-right: 20px;
             }
             
             .post-content ul li::before {
-                right: -25px; /* انتقال بولت به راست */
-                font-size: 1.4rem; /* افزایش سایز بولت */
+                right: -18px;
             }
             
             .post-content ol li::before {
-                right: -30px; /* انتقال شماره به راست */
-                font-size: 1.1rem; /* افزایش سایز شماره */
+                right: -22px;
             }
         }
     </style>
