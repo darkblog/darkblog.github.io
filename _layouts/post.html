@@ -241,62 +241,69 @@
         }
         
         /* Professional Table Styles - تغییرات اساسی برای ریسپانسیو */
-        .post-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 40px 0;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        .post-content .table-container {
+            margin: 30px 0;
             border-radius: 10px;
             overflow: hidden;
-            font-size: 1rem;
-            min-width: 100%; /* تغییر مهم: حداقل عرض 100% */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .post-content th {
+        .post-content .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+        
+        .post-content table {
+            width: 100%;
+            min-width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .post-content table th {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             font-weight: 700;
             padding: 15px 20px;
             text-align: right;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            white-space: nowrap; /* جلوگیری از شکستن سرفصل‌ها */
+            white-space: nowrap;
         }
         
-        .post-content td {
+        .post-content table td {
             padding: 15px 20px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease;
-            min-width: 120px; /* حداقل عرض برای سلول‌ها */
         }
         
-        .post-content tr:nth-child(even) {
+        .post-content table tr:nth-child(even) {
             background-color: rgba(0, 0, 0, 0.02);
         }
         
-        .post-content tr:hover td {
+        .post-content table tr:hover td {
             background-color: rgba(220, 53, 69, 0.03);
         }
         
-        .table-responsive {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 30px 0;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            -ms-overflow-style: -ms-autohiding-scrollbar; /* بهبود در اینترنت اکسپلورر */
-        }
-        
-        /* مخفی کردن اسکرولبار در مرورگرهای وبکیت */
-        .table-responsive::-webkit-scrollbar {
-            -webkit-appearance: none;
+        /* استایل اسکرولبار برای جدول */
+        .post-content .table-responsive::-webkit-scrollbar {
             height: 8px;
         }
         
-        .table-responsive::-webkit-scrollbar-thumb {
+        .post-content .table-responsive::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
             border-radius: 4px;
-            background-color: rgba(0,0,0,.2);
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
         }
         
         .back-to-home {
@@ -415,8 +422,9 @@
         
         /* Responsive adjustments - تغییرات مهم برای جدول */
         @media (max-width: 992px) {
-            .post-content table {
-                min-width: 800px; /* برای تبلت‌ها */
+            .post-content table th,
+            .post-content table td {
+                padding: 12px 15px;
             }
         }
         
@@ -451,14 +459,10 @@
                 font-size: 1.3rem;
             }
             
-            .post-content table {
+            .post-content table th,
+            .post-content table td {
+                padding: 10px 12px;
                 font-size: 0.9rem;
-                min-width: 650px; /* تنظیم حداقل عرض برای تبلت */
-            }
-            
-            .post-content th,
-            .post-content td {
-                padding: 12px 15px;
             }
         }
         
@@ -488,26 +492,22 @@
                 padding: 30px 20px;
             }
             
-            .post-content table {
+            .post-content table th,
+            .post-content table td {
+                padding: 8px 10px;
                 font-size: 0.85rem;
-                min-width: 500px; /* تنظیم حداقل عرض برای موبایل */
-            }
-            
-            .post-content th,
-            .post-content td {
-                padding: 10px 12px;
-                min-width: 100px; /* حداقل عرض برای سلول‌ها در موبایل */
             }
         }
         
+        /* استایل برای دستگاه‌های بسیار کوچک */
         @media (max-width: 480px) {
-            .post-content table {
-                min-width: 400px; /* تنظیم برای دستگاه‌های بسیار کوچک */
+            .post-content .table-responsive {
+                border-radius: 8px;
             }
             
-            .post-content th,
-            .post-content td {
-                padding: 8px 10px;
+            .post-content table th,
+            .post-content table td {
+                padding: 6px 8px;
                 font-size: 0.8rem;
             }
         }
@@ -596,7 +596,7 @@
     <!-- اسکریپت برای بهبود عملکرد جدول‌های ریسپانسیو -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // اضافه کردن نشانگر اسکرول برای جدول‌ها
+            // اضافه کردن کلاس فعال برای نشان دادن اسکرول
             const tables = document.querySelectorAll('.table-responsive');
             
             tables.forEach(table => {
