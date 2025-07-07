@@ -7,11 +7,8 @@ sitemap: false
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>زندگینامه مشاهیر ایران و جهان</title>
-    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان در حوزه‌های مختلف شامل فلسفه، ادبیات، شعر، علم، سیاست و بزرگان تکنولوژی. بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ">
-    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
-    <meta property="og:description" content="مجموعه کامل بیوگرافی مشاهیر ایران و جهان در حوزه‌های مختلف">
-    <meta property="og:type" content="website">
+    <title>زندگینامه مشاهیر</title>
+    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان | بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های سیاست، هنر، علم و ورزش">
     <meta name="theme-color" content="#dc3545">
     
     <!-- Bootstrap 5 CSS -->
@@ -85,12 +82,12 @@ sitemap: false
         
         /* Professional Search Styles */
         .search-container {
-            background: transparent; /* Background removed */
+            background: transparent;
             border-radius: 16px;
-            padding: 0; /* Padding adjusted */
-            margin-bottom: 35px;
-            border: none; /* Border removed */
-            box-shadow: none; /* Box shadow removed */
+            padding: 0;
+            margin-bottom: 40px;
+            border: none;
+            box-shadow: none;
             max-width: 700px;
             margin: 0 auto 40px;
         }
@@ -213,32 +210,16 @@ sitemap: false
             line-height: 1;
         }
         
-        .post-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            padding-top: 20px;
-            border-top: 1px dashed rgba(0, 0, 0, 0.1);
-        }
-        
-        .post-date {
-            display: flex;
-            align-items: center;
-        }
-        
-        .post-date i {
-            margin-left: 8px;
-            color: var(--primary-color);
-        }
-        
         .read-more {
             color: var(--primary-color);
             font-weight: 600;
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             transition: all 0.3s ease;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
         }
         
         .read-more i {
@@ -420,12 +401,6 @@ sitemap: false
         }
         
         @media (max-width: 576px) {
-            .post-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
             .post-title {
                 font-size: 1.3rem;
             }
@@ -455,15 +430,15 @@ sitemap: false
         <!-- Header Section -->
         <div class="header">
             <h1>زندگینامه مشاهیر</h1>
-            <p>بیوگرافی بزرگان ایران و جهان به زبان ساده</p>
+            <p>بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های سیاست، هنر، علم و ورزش</p>
         </div>
         
         <!-- Professional Search Section -->
         <div class="search-container">
             <form action="https://www.google.com/search" method="get" target="_blank">
                 <div class="search-box">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی مشاهیر" required>
-                    <input type="hidden" name="sitesearch" value="indexes.ir">
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی گوگل برای زندگینامه مشاهیر..." required>
+                    <input type="hidden" name="sitesearch" value="example.com"> <!-- جایگزین با دامنه سایت -->
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
             </form>
@@ -482,15 +457,9 @@ sitemap: false
                     <div class="post-content">
                         <h3 class="post-title">{{ post.title }}</h3>
                         <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                        <div class="post-meta">
-                            <div class="post-date">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>{{ post.date | date: "%Y/%m/%d" }}</span>
-                            </div>
-                            <div class="read-more">
-                                <span>مطالعه کامل زندگینامه</span>
-                                <i class="fas fa-arrow-left"></i>
-                            </div>
+                        <div class="read-more">
+                            <span>مطالعه کامل زندگینامه</span>
+                            <i class="fas fa-arrow-left"></i>
                         </div>
                     </div>
                 </a>
@@ -501,8 +470,8 @@ sitemap: false
         <div class="footer">
             <div class="row">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h5>درباره سایت</h5>
-                    <p>این سایت با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است.</p>
+                    <h5>درباره مجموعه زندگینامه مشاهیر</h5>
+                    <p>این مجموعه با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است.</p>
                 </div>
                 
                 <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
