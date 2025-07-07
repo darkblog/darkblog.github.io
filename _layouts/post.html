@@ -313,6 +313,46 @@
             transform: translateX(5px);
         }
         
+        /* لیست‌ها و آیتم‌ها */
+        .post-content ul,
+        .post-content ol {
+            padding-right: 30px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-right: 15px;
+        }
+        
+        .post-content ul li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            right: -15px;
+            top: 0;
+            font-size: 1.2rem;
+        }
+        
+        .post-content ol {
+            counter-reset: my-counter;
+        }
+        
+        .post-content ol li {
+            counter-increment: my-counter;
+        }
+        
+        .post-content ol li::before {
+            content: counter(my-counter) ".";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            right: -20px;
+            top: 0;
+        }
+        
         /* Footer Styles */
         .footer {
             background: linear-gradient(135deg, #343a40, #212529);
@@ -445,6 +485,34 @@
             }
         }
         
+        /* استایل مخصوص تلفن‌های عریض (577px تا 768px) */
+        @media (min-width: 577px) and (max-width: 768px) {
+            .post-content ul,
+            .post-content ol {
+                padding-right: 35px;
+                margin-left: 15px;
+            }
+            
+            .post-content li {
+                margin-bottom: 12px;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                padding-right: 25px;
+            }
+            
+            .post-content ul li::before {
+                font-size: 1.4rem;
+                right: -20px;
+                top: -2px;
+            }
+            
+            .post-content ol li::before {
+                font-size: 1.2rem;
+                right: -25px;
+                top: 0;
+            }
+        }
+        
         @media (max-width: 576px) {
             .post-title {
                 font-size: 1.5rem;
@@ -478,6 +546,23 @@
             .post-content th,
             .post-content td {
                 padding: 10px 12px;
+            }
+            
+            .post-content ul,
+            .post-content ol {
+                padding-right: 25px;
+            }
+            
+            .post-content li {
+                padding-right: 20px;
+            }
+            
+            .post-content ul li::before {
+                right: -18px;
+            }
+            
+            .post-content ol li::before {
+                right: -22px;
             }
         }
     </style>
