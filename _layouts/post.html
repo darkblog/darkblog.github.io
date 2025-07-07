@@ -20,99 +20,139 @@
         :root {
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
+            --primary-light: #ff6b7a;
             --text-color: #333;
             --text-secondary: #6c757d;
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
+            --header-height: 280px;
         }
         
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
-            padding-top: 20px;
-            padding-bottom: 60px;
+            padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
         }
         
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        /* Modern Minimalist Header Styles */
+        .post-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
-            border-radius: 16px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-            padding: 35px 30px;
-            margin-bottom: 35px;
+            height: var(--header-height);
             position: relative;
             overflow: hidden;
+            padding: 0;
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            display: block;
-            text-decoration: none !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .post-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+        }
+        
+        .post-header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .post-header h1 {
+            font-weight: 900;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .post-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Floating Search */
+        .floating-search-container {
+            position: relative;
+            z-index: 20;
+            max-width: 700px;
+            width: 90%;
+            margin: -40px auto 60px;
+        }
+        
+        .floating-search {
+            background: white;
+            border-radius: 50px;
+            padding: 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         
-        .header:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
-        }
-        
-        .header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-        }
-        
-        .header h1 {
-            font-weight: 900;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-            position: relative;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .header p {
-            opacity: 0.92;
-            font-size: 1.25rem;
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Professional Search Styles */
-        .search-container {
-            background: transparent;
-            border-radius: 16px;
-            padding: 0;
-            margin-bottom: 40px;
-            border: none;
-            box-shadow: none;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-        
-        .search-box {
-            position: relative;
+        .floating-search:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
         .search-box input {
-            padding: 15px 60px 15px 20px;
+            padding: 16px 65px 16px 25px;
             border-radius: 50px;
             font-size: 1.1rem;
-            border: 2px solid #e9ecef;
-            transition: all 0.3s ease;
-            background-color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: none;
+            background: transparent;
+            height: 60px;
         }
         
         .search-box input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
         }
         
         .search-box .btn {
@@ -120,46 +160,31 @@
             left: 8px;
             top: 8px;
             border-radius: 50%;
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             padding: 0;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
             transition: all 0.3s ease;
         }
         
         .search-box .btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
         }
         
         /* Post Content Styles */
         .post-container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 60px;
             background-color: var(--card-bg);
             border-radius: 16px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             position: relative;
-            border-left: 5px solid var(--primary-color);
             padding: 40px;
-        }
-        
-        .post-title {
-            font-weight: 900;
-            color: #212529;
-            margin-bottom: 25px;
-            font-size: 2rem;
-            line-height: 1.4;
-            position: relative;
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
         }
         
         .post-content {
@@ -168,49 +193,72 @@
         }
         
         .post-content p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            text-align: justify;
         }
         
         .post-content img {
             max-width: 100%;
             height: auto;
             border-radius: 12px;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            display: block;
         }
         
         .post-content blockquote {
             border-right: 4px solid var(--primary-color);
-            padding: 20px 30px;
-            margin: 30px 0;
-            background-color: rgba(220, 53, 69, 0.05);
-            border-radius: 8px;
+            padding: 25px 30px;
+            margin: 40px 0;
+            background-color: rgba(220, 53, 69, 0.03);
+            border-radius: 12px;
             font-style: italic;
-            font-size: 1.2rem;
-            line-height: 1.8;
+            font-size: 1.25rem;
+            line-height: 1.9;
+            position: relative;
+        }
+        
+        .post-content blockquote::before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            color: rgba(220, 53, 69, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
         }
         
         .post-content h2 {
             font-weight: 800;
-            margin: 40px 0 20px;
+            margin: 50px 0 25px;
             color: var(--primary-dark);
             padding-right: 15px;
             border-right: 3px solid var(--primary-color);
-        }
-        
-        .post-content h2 {
-            font-size: 1.7rem;
+            font-size: 1.8rem;
         }
         
         .post-content h3 {
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--primary-dark);
             font-size: 1.5rem;
+        }
+        
+        .post-content ul, .post-content ol {
+            padding-right: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .post-content li {
+            margin-bottom: 10px;
         }
         
         /* Professional Table Styles */
         .post-content table {
             width: 100%;
             border-collapse: collapse;
-            margin: 30px 0;
+            margin: 40px 0;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
             border-radius: 10px;
             overflow: hidden;
@@ -240,11 +288,6 @@
             background-color: rgba(220, 53, 69, 0.03);
         }
         
-        .post-content th:first-child,
-        .post-content td:first-child {
-            border-right: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
         .table-responsive {
             display: block;
             width: 100%;
@@ -255,53 +298,26 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .table-caption {
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin: 15px 0;
-            color: var(--primary-dark);
-        }
-        
-        .quote-box {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(108, 117, 125, 0.05));
-            border-radius: 16px;
-            padding: 30px;
-            margin: 40px 0;
-            border: 1px dashed rgba(220, 53, 69, 0.2);
-            text-align: center;
-            font-style: italic;
-            font-size: 1.2rem;
-            position: relative;
-        }
-        
-        .quote-box::before {
-            content: """;
-            position: absolute;
-            top: -30px;
-            right: 20px;
-            font-size: 6rem;
-            color: rgba(220, 53, 69, 0.15);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-        
         .back-to-home {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             color: var(--primary-color);
             font-weight: 600;
-            margin-top: 40px;
+            margin: 40px auto 0;
             text-decoration: none;
             transition: all 0.3s ease;
-            padding: 10px 20px;
+            padding: 12px 30px;
             border-radius: 50px;
             background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            max-width: 250px;
         }
         
         .back-to-home:hover {
             background-color: rgba(220, 53, 69, 0.2);
-            transform: translateX(-5px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
         }
         
         .back-to-home i {
@@ -398,28 +414,21 @@
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .header {
-                padding: 25px 20px;
+            .post-header {
+                height: 240px;
             }
             
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .header p {
-                font-size: 1.1rem;
+            .post-header h1 {
+                font-size: 2.2rem;
             }
             
             .post-container {
                 padding: 30px;
             }
             
-            .post-title {
-                font-size: 1.7rem;
-            }
-            
             .search-box input {
                 padding: 12px 50px 12px 15px;
+                height: 54px;
             }
             
             .search-box .btn {
@@ -428,39 +437,26 @@
             }
             
             .post-content h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             
             .post-content h3 {
                 font-size: 1.3rem;
             }
-            
-            .post-content table {
-                font-size: 0.95rem;
-            }
-            
-            .post-content th,
-            .post-content td {
-                padding: 12px 15px;
-            }
         }
         
         @media (max-width: 576px) {
-            .post-title {
-                font-size: 1.5rem;
+            .post-header {
+                height: 220px;
             }
             
-            .header {
-                padding: 20px 15px;
-                border-radius: 12px;
+            .post-header h1 {
+                font-size: 1.9rem;
             }
             
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .footer {
-                padding: 30px 20px;
+            .post-meta {
+                flex-direction: column;
+                gap: 10px;
             }
             
             .post-container {
@@ -471,30 +467,41 @@
                 font-size: 1rem;
             }
             
-            .post-content table {
-                font-size: 0.9rem;
+            .post-content blockquote {
+                font-size: 1.1rem;
+                padding: 20px;
             }
             
-            .post-content th,
-            .post-content td {
-                padding: 10px 12px;
+            .footer {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Modern Header with Post Title -->
+    <div class="post-header">
+        <div class="header-content">
+            <div class="hero-badge">
+                <i class="fas fa-user-circle"></i>
+                <span>زندگینامه مشاهیر</span>
+            </div>
+            <h1>{{ page.title }}</h1>
+            <div class="post-meta">
+                {% if page.read_time %}
+                <span><i class="fas fa-clock"></i> زمان مطالعه: {{ page.read_time }} دقیقه</span>
+                {% endif %}
+                <span><i class="fas fa-calendar"></i> {{ page.date | date: "%Y/%m/%d" }}</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Search Section -->
     <div class="container">
-        <!-- Header Section (Linked to Homepage) -->
-        <a href="https://indexes.ir/" class="header">
-            <h1>زندگینامه مشاهیر</h1>
-            <p>بیوگرافی بزرگان ایران و جهان</p>
-        </a>
-        
-        <!-- Professional Search Section -->
-        <div class="search-container">
+        <div class="floating-search-container">
             <form action="https://www.google.com/search" method="get" target="_blank">
-                <div class="search-box">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی مشاهیر..." required>
+                <div class="search-box floating-search">
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required>
                     <input type="hidden" name="sitesearch" value="indexes.ir">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
@@ -503,23 +510,22 @@
         
         <!-- Post Content -->
         <div class="post-container">
-            <h1 class="post-title">{{ page.title }}</h1>
-            
             <div class="post-content">
                 {{ content }}
                 
-                <!-- Sample quote box -->
                 {% if page.quote %}
-                <div class="quote-box">
+                <blockquote>
                     "{{ page.quote }}"
-                </div>
+                </blockquote>
                 {% endif %}
             </div>
             
-            <a href="https://indexes.ir/" class="back-to-home">
-                <i class="fas fa-arrow-right"></i>
-                بازگشت به صفحه اصلی
-            </a>
+            <div class="text-center mt-5">
+                <a href="{{ site.url }}" class="back-to-home">
+                    <i class="fas fa-arrow-right"></i>
+                    بازگشت به صفحه اصلی
+                </a>
+            </div>
         </div>
         
         <!-- Footer -->
@@ -533,20 +539,18 @@
                 <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
                     <h5>مشاهیر پرطرفدار</h5>
                     <div class="footer-links">
-                        <a href="#">حافظ شیرازی</a>
-                        <a href="#">ابوعلی سینا</a>
-                        <a href="#">مولانا جلال‌الدین</a>
-                        <a href="#">مهاتما گاندی</a>
+                        {% for celeb in site.data.popular_celebrities %}
+                        <a href="{{ celeb.url }}">{{ celeb.name }}</a>
+                        {% endfor %}
                     </div>
                 </div>
                 
                 <div class="col-lg-3 col-md-6">
                     <h5>دسترسی سریع</h5>
                     <div class="footer-links">
-                        <a href="https://indexes.ir/">صفحه اصلی</a>
-                        <a href="#">تماس با ما</a>
-                        <a href="#">درباره ما</a>
-                        <a href="#">ارسال پیشنهاد</a>
+                        {% for link in site.data.quick_links %}
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
