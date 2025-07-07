@@ -7,8 +7,8 @@ sitemap: false
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>آیکون جدید - زندگینامه مشاهیر</title>
-    <meta name="description" content="آیکون خلاقانه جدید برای سایت زندگینامه مشاهیر">
+    <title>آیکون جدید کتاب - زندگینامه مشاهیر</title>
+    <meta name="description" content="آیکون خلاقانه کتاب برای سایت زندگینامه مشاهیر">
     <meta name="theme-color" content="#dc3545">
     
     <!-- Bootstrap 5 CSS -->
@@ -31,7 +31,7 @@ sitemap: false
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 280px;
+            --header-height: 300px;
         }
         
         body {
@@ -477,142 +477,111 @@ sitemap: false
             position: relative;
         }
         
-        /* Creative Icon Design */
-        .creative-icon {
+        /* Creative Book Icon Design */
+        .book-icon {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
+            perspective: 1000px;
         }
         
-        .creative-icon .head {
+        .book {
             position: absolute;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background: white;
-            border-radius: 50%;
-            z-index: 3;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            border-radius: 5px 10px 10px 5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transform: rotateY(-15deg);
+            transition: all 0.5s ease;
         }
         
-        .creative-icon .body {
+        .book:hover {
+            transform: translateX(-50%) rotateY(-30deg);
+        }
+        
+        .book::before {
+            content: "";
             position: absolute;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 50px;
-            background: white;
-            border-radius: 15px;
-            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary-color));
+            border-radius: 5px 0 0 5px;
         }
         
-        .creative-icon .book {
-            position: absolute;
-            top: 35px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            z-index: 1;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .creative-icon .book::before {
+        .book::after {
             content: "";
             position: absolute;
             top: 10px;
             left: 15px;
-            width: 40px;
+            width: 50px;
             height: 2px;
             background: #dc3545;
             border-radius: 2px;
+            box-shadow: 0 15px 0 #dc3545, 0 30px 0 #dc3545, 0 45px 0 #dc3545, 0 60px 0 #dc3545;
         }
         
-        .creative-icon .book::after {
-            content: "";
+        .light-rays {
             position: absolute;
-            top: 20px;
-            left: 15px;
-            width: 40px;
-            height: 2px;
-            background: #dc3545;
-            border-radius: 2px;
-        }
-        
-        .creative-icon .leg1 {
-            position: absolute;
-            top: 75px;
-            left: 35px;
-            width: 8px;
-            height: 25px;
-            background: white;
-            border-radius: 4px;
-            transform: rotate(15deg);
-            z-index: 2;
-        }
-        
-        .creative-icon .leg2 {
-            position: absolute;
-            top: 75px;
-            left: 57px;
-            width: 8px;
-            height: 25px;
-            background: white;
-            border-radius: 4px;
-            transform: rotate(-15deg);
-            z-index: 2;
-        }
-        
-        .creative-icon .arm1 {
-            position: absolute;
-            top: 35px;
-            left: 15px;
-            width: 25px;
-            height: 8px;
-            background: white;
-            border-radius: 4px;
-            transform: rotate(-30deg);
-            z-index: 3;
-        }
-        
-        .creative-icon .arm2 {
-            position: absolute;
-            top: 35px;
-            left: 60px;
-            width: 25px;
-            height: 8px;
-            background: white;
-            border-radius: 4px;
-            transform: rotate(30deg);
-            z-index: 3;
-        }
-        
-        .creative-icon .path {
-            position: absolute;
-            bottom: 0;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        .light-ray {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+            border-radius: 2px;
+            transform-origin: top center;
+        }
+        
+        .light-ray:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
+        .light-ray:nth-child(2) { transform: translate(-50%, -50%) rotate(30deg); }
+        .light-ray:nth-child(3) { transform: translate(-50%, -50%) rotate(60deg); }
+        .light-ray:nth-child(4) { transform: translate(-50%, -50%) rotate(90deg); }
+        .light-ray:nth-child(5) { transform: translate(-50%, -50%) rotate(120deg); }
+        .light-ray:nth-child(6) { transform: translate(-50%, -50%) rotate(150deg); }
+        .light-ray:nth-child(7) { transform: translate(-50%, -50%) rotate(180deg); }
+        .light-ray:nth-child(8) { transform: translate(-50%, -50%) rotate(210deg); }
+        .light-ray:nth-child(9) { transform: translate(-50%, -50%) rotate(240deg); }
+        .light-ray:nth-child(10) { transform: translate(-50%, -50%) rotate(270deg); }
+        .light-ray:nth-child(11) { transform: translate(-50%, -50%) rotate(300deg); }
+        .light-ray:nth-child(12) { transform: translate(-50%, -50%) rotate(330deg); }
+        
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 80px;
-            height: 15px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 10px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s infinite ease-in-out;
+            z-index: 0;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
         }
         
         /* Animation for icon */
         .animated-icon {
             animation: float 4s infinite ease-in-out;
-        }
-        
-        .animated-icon .leg1, .animated-icon .leg2 {
-            animation: walk 1.5s infinite ease-in-out;
-        }
-        
-        .animated-icon .arm1, .animated-icon .arm2 {
-            animation: swing 1.5s infinite ease-in-out;
         }
         
         @keyframes float {
@@ -624,28 +593,8 @@ sitemap: false
             }
         }
         
-        @keyframes walk {
-            0%, 100% {
-                transform: rotate(0);
-            }
-            25% {
-                transform: rotate(15deg);
-            }
-            75% {
-                transform: rotate(-15deg);
-            }
-        }
-        
-        @keyframes swing {
-            0%, 100% {
-                transform: rotate(0);
-            }
-            25% {
-                transform: rotate(30deg);
-            }
-            75% {
-                transform: rotate(-30deg);
-            }
+        .icon-shadow {
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
         }
         
         /* Responsive adjustments */
@@ -687,6 +636,16 @@ sitemap: false
             .variant-box {
                 width: 80px;
                 height: 80px;
+            }
+            
+            .book-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .book {
+                width: 70px;
+                height: 85px;
             }
         }
         
@@ -731,10 +690,10 @@ sitemap: false
     <div class="post-header">
         <div class="header-content">
             <div class="hero-badge">
-                <i class="fas fa-lightbulb"></i>
-                <span>طرح خلاقانه جدید</span>
+                <i class="fas fa-book"></i>
+                <span>طرح خلاقانه کتاب</span>
             </div>
-            <h1>آیکون جدید برای سایت زندگینامه مشاهیر</h1>
+            <h1>آیکون جدید کتاب برای سایت زندگینامه مشاهیر</h1>
         </div>
     </div>
     
@@ -753,36 +712,38 @@ sitemap: false
         <!-- Post Content -->
         <div class="post-container">
             <div class="post-content">
-                <h2>آیکون خلاقانه: انسان در حال حرکت با کتاب دانش</h2>
-                <p class="lead">این آیکون جدید با ترکیب نماد انسان در حال حرکت و کتابی که از آن دانش می‌تراود، بیانگر مفهوم پویایی مشاهیر و دانشی است که از آنها به نسل‌های بعد منتقل شده است.</p>
+                <h2>آیکون خلاقانه: کتابی که دانش می‌تراود</h2>
+                <p class="lead">این آیکون جدید با نماد کتابی طراحی شده که از آن نور و دانش می‌تراود، بیانگر این مفهوم است که زندگی و دستاوردهای مشاهیر همچنان نورافشانی کرده و جهان را روشن می‌سازد.</p>
                 
                 <div class="brand-icon-showcase">
                     <div class="icon-container animated-icon">
-                        <div class="creative-icon">
-                            <div class="head"></div>
-                            <div class="body"></div>
+                        <div class="book-icon">
+                            <div class="glow"></div>
+                            <div class="light-rays">
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                                <div class="light-ray"></div>
+                            </div>
                             <div class="book"></div>
-                            <div class="leg1"></div>
-                            <div class="leg2"></div>
-                            <div class="arm1"></div>
-                            <div class="arm2"></div>
-                            <div class="path"></div>
                         </div>
                     </div>
-                    <h3>نماد انسان پویا و کتاب دانش</h3>
-                    <p>این آیکون به سادگی و زیبایی مفهوم زندگینامه مشاهیر را در قالب نمادی مدرن و پویا منتقل می‌کند.</p>
+                    <h3>کتاب دانش و نور</h3>
+                    <p>این آیکون به سادگی و زیبایی مفهوم زندگینامه مشاهیر را در قالب کتابی که منبع دانش است منتقل می‌کند.</p>
                     
                     <div class="icon-variations">
                         <div class="icon-variant">
                             <div class="variant-box" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));">
-                                <div class="creative-icon">
-                                    <div class="head"></div>
-                                    <div class="body"></div>
-                                    <div class="book"></div>
-                                    <div class="leg1"></div>
-                                    <div class="leg2"></div>
-                                    <div class="arm1"></div>
-                                    <div class="arm2"></div>
+                                <div class="book-icon" style="width: 70px; height: 70px;">
+                                    <div class="book" style="width: 50px; height: 65px;"></div>
                                 </div>
                             </div>
                             <span>نسخه اصلی</span>
@@ -790,14 +751,8 @@ sitemap: false
                         
                         <div class="icon-variant">
                             <div class="variant-box" style="background: white; border: 2px solid var(--primary-color);">
-                                <div class="creative-icon">
-                                    <div class="head" style="background: var(--primary-color);"></div>
-                                    <div class="body" style="background: var(--primary-color);"></div>
-                                    <div class="book" style="background: rgba(220,53,69,0.1);"></div>
-                                    <div class="leg1" style="background: var(--primary-color);"></div>
-                                    <div class="leg2" style="background: var(--primary-color);"></div>
-                                    <div class="arm1" style="background: var(--primary-color);"></div>
-                                    <div class="arm2" style="background: var(--primary-color);"></div>
+                                <div class="book-icon" style="width: 70px; height: 70px;">
+                                    <div class="book" style="width: 50px; height: 65px; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));"></div>
                                 </div>
                             </div>
                             <span>نسخه تک رنگ</span>
@@ -805,14 +760,8 @@ sitemap: false
                         
                         <div class="icon-variant">
                             <div class="variant-box" style="background: var(--primary-dark);">
-                                <div class="creative-icon">
-                                    <div class="head" style="background: white;"></div>
-                                    <div class="body" style="background: white;"></div>
-                                    <div class="book" style="background: rgba(255,255,255,0.8);"></div>
-                                    <div class="leg1" style="background: white;"></div>
-                                    <div class="leg2" style="background: white;"></div>
-                                    <div class="arm1" style="background: white;"></div>
-                                    <div class="arm2" style="background: white;"></div>
+                                <div class="book-icon" style="width: 70px; height: 70px;">
+                                    <div class="book" style="width: 50px; height: 65px; background: white;"></div>
                                 </div>
                             </div>
                             <span>پس زمینه تیره</span>
@@ -828,26 +777,12 @@ sitemap: false
                         <div class="d-flex align-items-start mb-4">
                             <div class="flex-shrink-0">
                                 <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                    <i class="fas fa-walking text-white fs-4"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="text-primary">انسان در حال حرکت</h4>
-                                <p>نماد پویایی، پیشرفت و مسیر زندگی مشاهیر که همواره رو به جلو در حرکت بوده‌اند.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="flex-shrink-0">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                    <i class="fas fa-book text-white fs-4"></i>
+                                    <i class="fas fa-book-open text-white fs-4"></i>
                                 </div>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h4 class="text-primary">کتاب دانش</h4>
-                                <p>نماد دانش، بیوگرافی و میراث فکری که از مشاهیر به جا مانده و به نسل‌های بعد منتقل شده است.</p>
+                                <p>نماد دانش، تاریخ و میراث فکری که از مشاهیر به جا مانده و به نسل‌های بعد منتقل شده است.</p>
                             </div>
                         </div>
                     </div>
@@ -860,8 +795,22 @@ sitemap: false
                                 </div>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h4 class="text-primary">اشعه‌های دانش</h4>
-                                <p>خطوط داخل کتاب نماد دانش و اندیشه‌هایی است که از زندگی مشاهیر ساطع شده و جهان را روشن کرده است.</p>
+                                <h4 class="text-primary">نور دانش</h4>
+                                <p>پرتوهای نور نماد تأثیر ماندگار مشاهیر که همچنان جهان را روشن می‌کند.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-infinity text-white fs-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h4 class="text-primary">تأثیر ماندگار</h4>
+                                <p>طراحی دایره‌ای نور نشان‌دهنده تأثیر بی‌پایان و ماندگار مشاهیر در طول تاریخ است.</p>
                             </div>
                         </div>
                     </div>
@@ -894,13 +843,13 @@ sitemap: false
                         <tbody>
                             <tr>
                                 <td>طراحی خلاقانه</td>
-                                <td>ترکیب مفهومی انسان در حال حرکت و کتاب دانش</td>
-                                <td>انتقال پیام عمیق در قالب ساده</td>
+                                <td>ترکیب کتاب با پرتوهای نور به شکل مدرن و نمادین</td>
+                                <td>انتقال پیام عمیق در قالب ساده و زیبا</td>
                             </tr>
                             <tr>
-                                <td>پویایی و حرکت</td>
-                                <td>انیمیشن ملایم راه رفتن و تاب خوردن دست‌ها</td>
-                                <td>جذابیت بصری و بیان مفهوم پویایی زندگی</td>
+                                <td>پویایی بصری</td>
+                                <td>انیمیشن ملایم شناور شدن و پالس نور</td>
+                                <td>جذابیت بصری و بیان مفهوم تأثیر ماندگار</td>
                             </tr>
                             <tr>
                                 <td>سازگاری با اندازه‌ها</td>
@@ -950,6 +899,42 @@ sitemap: false
                             </div>
                             <h4 class="mt-3">محصولات چاپی</h4>
                             <p>استفاده در سربرگ، کارت ویزیت و بروشورهای سایت</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center my-5">
+                    <div style="display: inline-block; background: var(--light-bg); padding: 20px; border-radius: 12px;">
+                        <h4>آیکون در اندازه‌های مختلف</h4>
+                        <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+                            <div class="text-center">
+                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 6px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                    <div style="width: 16px; height: 20px; background: white; border-radius: 2px; position: relative;">
+                                        <div style="position: absolute; left: 2px; width: 2px; height: 100%; background: var(--primary-color);"></div>
+                                    </div>
+                                </div>
+                                <small>فاوآیکون (32×32)</small>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                    <div style="width: 40px; height: 50px; background: white; border-radius: 4px; position: relative;">
+                                        <div style="position: absolute; left: 5px; width: 3px; height: 100%; background: var(--primary-color);"></div>
+                                        <div style="position: absolute; left: 12px; top: 10px; width: 20px; height: 2px; background: var(--primary-color);"></div>
+                                        <div style="position: absolute; left: 12px; top: 20px; width: 20px; height: 2px; background: var(--primary-color);"></div>
+                                    </div>
+                                </div>
+                                <small>لوگو کوچک (64×64)</small>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                    <div class="book-icon" style="width: 80px; height: 80px;">
+                                        <div class="book" style="width: 60px; height: 75px;"></div>
+                                    </div>
+                                </div>
+                                <small>لوگو متوسط (120×120)</small>
+                            </div>
                         </div>
                     </div>
                 </div>
