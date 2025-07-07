@@ -336,32 +336,6 @@ sitemap: false
             right: -5px;
         }
         
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.12);
-            color: white;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .social-icons a:hover {
-            background: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
-        }
-        
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -409,6 +383,32 @@ sitemap: false
             left: 100%;
         }
         
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(108, 117, 125, 0.05));
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            text-align: center;
+            border: 1px dashed rgba(220, 53, 69, 0.2);
+        }
+        
+        .quote-section p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--primary-dark);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quote-section .author {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            color: var(--text-secondary);
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .header {
@@ -451,6 +451,14 @@ sitemap: false
             .section-title h2::before,
             .section-title h2::after {
                 width: 50px;
+            }
+            
+            .quote-section {
+                padding: 25px;
+            }
+            
+            .quote-section p {
+                font-size: 1.1rem;
             }
         }
         
@@ -504,6 +512,12 @@ sitemap: false
             </form>
         </div>
         
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <p>"تاریخ، زندگی‌نامه انسان‌های بزرگ است که با اندیشه‌ها و اعمالشان جهان را تغییر داده‌اند"</p>
+            <div class="author">- توماس کارلایل</div>
+        </div>
+        
         <!-- Posts Section Title -->
         <div class="section-title">
             <h2><i class="fas fa-users me-3"></i>آخرین زندگینامه‌ها</h2>
@@ -535,15 +549,9 @@ sitemap: false
         <!-- Footer -->
         <div class="footer">
             <div class="row">
-                <div class="col-lg-5 mb-5 mb-lg-0">
+                <div class="col-lg-6 mb-5 mb-lg-0">
                     <h5>درباره مجموعه زندگینامه مشاهیر</h5>
                     <p>این مجموعه با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است. ما با دقت و وسواس، زندگی‌نامه‌ها را از معتبرترین منابع گردآوری کرده‌ایم.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 
                 <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
@@ -557,7 +565,7 @@ sitemap: false
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <h5>دسترسی سریع</h5>
                     <div class="footer-links">
                         <a href="#">صفحه اصلی</a>
