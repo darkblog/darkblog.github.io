@@ -84,18 +84,18 @@ sitemap: false
             color: var(--text-secondary);
         }
         
-        /* Search Box Styles */
+        /* Search Box Styles - FIXED */
         .error-search-container {
             max-width: 600px;
             margin: 0 auto 40px;
         }
         
         .error-search-box {
-            position: relative;
+            position: relative; /* Added for proper button positioning */
         }
         
         .error-search-box input {
-            padding: 15px 60px 15px 20px;
+            padding: 15px 50px 15px 20px; /* Adjusted padding for RTL */
             border-radius: 50px;
             font-size: 1.1rem;
             border: 2px solid #e9ecef;
@@ -113,7 +113,7 @@ sitemap: false
         
         .error-search-box .btn {
             position: absolute;
-            left: 8px;
+            left: 8px; /* Changed to left for RTL */
             top: 8px;
             border-radius: 50%;
             width: 46px;
@@ -126,6 +126,7 @@ sitemap: false
             justify-content: center;
             box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
             transition: all 0.3s ease;
+            z-index: 2; /* Ensure button stays above input */
         }
         
         .error-search-box .btn:hover {
@@ -250,13 +251,14 @@ sitemap: false
             }
             
             .error-search-box input {
-                padding: 12px 50px 12px 15px;
+                padding: 12px 45px 12px 15px; /* Adjusted padding */
                 font-size: 1rem;
             }
             
             .error-search-box .btn {
                 width: 40px;
                 height: 40px;
+                left: 6px; /* Adjusted position */
             }
             
             .error-reasons li {
@@ -290,7 +292,7 @@ sitemap: false
             <h1 class="error-title">خطای 404</h1>
             <h2 class="error-subtitle">صفحه مورد نظر یافت نشد!</h2>
             
-            <!-- Search Box Inside Content -->
+            <!-- Search Box Inside Content - FIXED -->
             <div class="error-search-container">
                 <form action="https://www.google.com/search" method="get" target="_blank">
                     <div class="error-search-box">
