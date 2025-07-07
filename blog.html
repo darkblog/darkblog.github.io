@@ -7,10 +7,10 @@ sitemap: false
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>زندگینامه مشاهیر ایران و جهان</title>
-    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان در حوزه‌های مختلف شامل فلسفه، ادبیات، شعر، علم، سیاست و بزرگان تکنولوژی. بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ">
-    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
-    <meta property="og:description" content="مجموعه کامل بیوگرافی مشاهیر ایران و جهان در حوزه‌های مختلف">
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:description" content="{{ site.description }}">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#dc3545">
     
@@ -492,8 +492,8 @@ sitemap: false
                     <i class="fas fa-star"></i>
                     <span>مجموعه‌ای جامع از زندگینامه‌ها</span>
                 </div>
-                <h1>زندگینامه مشاهیر ایران و جهان</h1>
-                <p>کشف داستان زندگی، دستاوردها و جملات ماندگار بزرگترین شخصیت‌های تاریخ</p>
+                <h1>{{ site.title }}</h1>
+                <p>{{ site.description }}</p>
             </div>
         </div>
         
@@ -517,41 +517,18 @@ sitemap: false
             
             <!-- Posts Container -->
             <div class="posts-container">
-                <!-- Post 1 -->
-                <a href="#" class="post-card">
+                {% for post in site.posts limit:6 %}
+                <a href="{{ post.url }}" class="post-card">
                     <div class="post-content">
-                        <h3 class="post-title">حافظ شیرازی - شاعر بزرگ ایرانی</h3>
-                        <p class="post-excerpt">زندگی نامه کامل خواجه شمس‌الدین محمد حافظ شیرازی، شاعر بزرگ قرن هشتم ایران. بررسی سبک شعری، دیوان غزلیات و تأثیر او بر ادبیات جهان...</p>
+                        <h3 class="post-title">{{ post.title }}</h3>
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
                         <div class="read-more">
                             <span>مطالعه کامل زندگینامه</span>
                             <i class="fas fa-arrow-left"></i>
                         </div>
                     </div>
                 </a>
-                
-                <!-- Post 2 -->
-                <a href="#" class="post-card">
-                    <div class="post-content">
-                        <h3 class="post-title">ماری کوری - پیشگام علم رادیواکتیویته</h3>
-                        <p class="post-excerpt">زندگینامه ماری کوری، دانشمند لهستانی-فرانسوی و تنها برنده دو جایزه نوبل در دو رشته مختلف علمی. مبارزات او در دنیای علم و تأثیر اکتشافاتش...</p>
-                        <div class="read-more">
-                            <span>مطالعه کامل زندگینامه</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Post 3 -->
-                <a href="#" class="post-card">
-                    <div class="post-content">
-                        <h3 class="post-title">ابوعلی سینا - دانشمند و فیلسوف برجسته</h3>
-                        <p class="post-excerpt">زندگی پرفراز و نشیب ابوعلی حسین بن عبدالله بن سینا، فیلسوف، پزشک و دانشمند بزرگ ایرانی. بررسی آثار مهم او از جمله کتاب قانون در طب و شفا...</p>
-                        <div class="read-more">
-                            <span>مطالعه کامل زندگینامه</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-                    </div>
-                </a>
+                {% endfor %}
             </div>
             
             <!-- Footer -->
@@ -565,26 +542,24 @@ sitemap: false
                     <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
                         <h5>مشاهیر پرطرفدار</h5>
                         <div class="footer-links">
-                            <a href="#">حافظ شیرازی</a>
-                            <a href="#">ابوعلی سینا</a>
-                            <a href="#">مولانا جلال‌الدین</a>
-                            <a href="#">مهاتما گاندی</a>
+                            {% for celeb in site.data.popular_celebrities %}
+                            <a href="{{ celeb.link }}">{{ celeb.name }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                     
                     <div class="col-lg-3 col-md-6">
                         <h5>دسترسی سریع</h5>
                         <div class="footer-links">
-                            <a href="#">صفحه اصلی</a>
-                            <a href="#">تماس با ما</a>
-                            <a href="#">درباره ما</a>
-                            <a href="#">ارسال پیشنهاد</a>
+                            {% for link in site.data.quick_links %}
+                            <a href="{{ link.url }}">{{ link.title }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
                 
                 <div class="copyright">
-                    <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © ۲۰۲۴</p>
+                    <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © {{ site.time | date: "%Y" }}</p>
                 </div>
             </div>
         </div>
