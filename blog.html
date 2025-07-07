@@ -8,7 +8,7 @@ sitemap: false
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>زندگینامه مشاهیر</title>
-    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان | بیوگرافی، عکس‌ها، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های سیاست، هنر، علم و ورزش. با زندگی‌نامه افراد مشهور بیشتر آشنا شوید!">
+    <meta name="description" content="زندگینامه کامل مشاهیر ایران و جهان | بیوگرافی، دستاوردها و جملات ماندگار بزرگان تاریخ در حوزه‌های سیاست، هنر، علم و ورزش">
     <meta name="theme-color" content="#dc3545">
     
     <!-- Bootstrap 5 CSS -->
@@ -23,16 +23,17 @@ sitemap: false
     <style>
         :root {
             --primary-color: #dc3545;
-            --secondary-color: #f8f9fa;
-            --border-color: #dee2e6;
-            --card-bg: #ffffff;
-            --text-color: #333333;
+            --primary-dark: #a71d2a;
+            --text-color: #333;
             --text-secondary: #6c757d;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
         }
         
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background-color: #f8f9fa;
+            background-color: var(--light-bg);
             padding-top: 20px;
             padding-bottom: 60px;
             color: var(--text-color);
@@ -41,12 +42,12 @@ sitemap: false
         
         /* Header Styles */
         .header {
-            background: linear-gradient(135deg, #dc3545, #a71d2a);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
-            border-radius: 15px;
+            border-radius: 16px;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-            padding: 30px 25px;
-            margin-bottom: 30px;
+            padding: 35px 30px;
+            margin-bottom: 35px;
             position: relative;
             overflow: hidden;
             text-align: center;
@@ -82,7 +83,7 @@ sitemap: false
         /* Search Styles */
         .search-container {
             background-color: white;
-            border-radius: 15px;
+            border-radius: 16px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             margin-bottom: 35px;
@@ -116,7 +117,7 @@ sitemap: false
             width: 46px;
             height: 46px;
             padding: 0;
-            background: linear-gradient(135deg, #dc3545, #c82333);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
             display: flex;
             align-items: center;
@@ -138,7 +139,7 @@ sitemap: false
         
         .post-card {
             background-color: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 16px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             margin-bottom: 25px;
             transition: all 0.3s ease;
@@ -147,14 +148,14 @@ sitemap: false
             display: block;
             text-decoration: none !important;
             color: inherit;
-            border-left: 4px solid var(--primary-color);
             position: relative;
+            border-left: 5px solid var(--primary-color);
         }
         
         .post-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-            border-left: 4px solid #a71d2a;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-left: 5px solid var(--primary-dark);
         }
         
         .post-card::before {
@@ -213,9 +214,9 @@ sitemap: false
         .post-excerpt::before {
             content: """;
             position: absolute;
-            top: -10px;
+            top: -15px;
             right: 0;
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: rgba(220, 53, 69, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
@@ -255,43 +256,18 @@ sitemap: false
         }
         
         .post-card:hover .read-more {
-            color: #a71d2a;
+            color: var(--primary-dark);
         }
         
         .post-card:hover .read-more i {
             transform: translateX(5px);
         }
         
-        /* Divider Styles */
-        .divider {
-            text-align: center;
-            position: relative;
-            margin: 40px 0;
-        }
-        
-        .divider::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: 0;
-            left: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
-        }
-        
-        .divider i {
-            position: relative;
-            background: #f8f9fa;
-            padding: 0 20px;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-        
         /* Footer Styles */
         .footer {
             background: linear-gradient(135deg, #343a40, #212529);
             color: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
+            border-radius: 16px;
             padding: 40px 30px;
             margin-top: 50px;
             position: relative;
@@ -325,7 +301,7 @@ sitemap: false
             right: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(to right, var(--primary-color), #c82333);
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
             border-radius: 4px;
         }
         
@@ -396,6 +372,43 @@ sitemap: false
             position: relative;
         }
         
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            position: relative;
+            margin: 40px 0 35px;
+        }
+        
+        .section-title h2 {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            font-size: 2rem;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .section-title h2::before,
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        }
+        
+        .section-title h2::before {
+            right: 100%;
+        }
+        
+        .section-title h2::after {
+            left: 100%;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .header {
@@ -430,6 +443,15 @@ sitemap: false
                 width: 40px;
                 height: 40px;
             }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .section-title h2::before,
+            .section-title h2::after {
+                width: 50px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -455,6 +477,11 @@ sitemap: false
             .footer {
                 padding: 30px 20px;
             }
+            
+            .section-title h2::before,
+            .section-title h2::after {
+                width: 30px;
+            }
         }
     </style>
 </head>
@@ -477,12 +504,13 @@ sitemap: false
             </form>
         </div>
         
+        <!-- Posts Section Title -->
+        <div class="section-title">
+            <h2><i class="fas fa-users me-3"></i>آخرین زندگینامه‌ها</h2>
+        </div>
+        
         <!-- Posts Container -->
         <div class="posts-container">
-            <div class="divider">
-                <i class="fas fa-star"></i>
-            </div>
-            
             <!-- Jekyll posts loop -->
             {% for post in site.posts %}
                 <a href="{{ site.url }}{{ post.url }}" class="post-card">
@@ -501,12 +529,6 @@ sitemap: false
                         </div>
                     </div>
                 </a>
-                
-                {% unless forloop.last %}
-                <div class="divider">
-                    <i class="fas fa-book"></i>
-                </div>
-                {% endunless %}
             {% endfor %}
         </div>
         
@@ -548,7 +570,7 @@ sitemap: false
             </div>
             
             <div class="copyright">
-                <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © 2023</p>
+                <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © {{ site.time | date: "%Y" }}</p>
             </div>
         </div>
     </div>
