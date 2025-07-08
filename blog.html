@@ -7,12 +7,9 @@ sitemap: false
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>آیکون جدید لامپ - زندگینامه مشاهیر</title>
-    <meta name="description" content="آیکون خلاقانه لامپ برای سایت زندگینامه مشاهیر">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta name="theme-color" content="#dc3545">
-
-    <!-- Favicon SVG (برای مرورگرهای مدرن) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23dc3545' d='M256 48C141.3 48 48 141.3 48 256s93.3 208 208 208 208-93.3 208-208S370.7 48 256 48zm69.3 96.2a72.5 72.5 0 1 1-72.6 72.5 72.55 72.55 0 0 1 72.6-72.5zm-155 26.33a59.32 59.32 0 1 1-59.4 59.32 59.35 59.35 0 0 1 59.4-59.32zm-75.85 155c24.5-13.29 55.87-19.94 75.85-19.94 15 0 34.32 3 53.33 10.2a133 133 0 0 0-34 27.11c-13.19 15-20.76 32.92-20.76 50.83v15a177 177 0 0 1-74.42-84.2zM256 432a175 175 0 0 1-59.4-10.33v27.05c0 52.59 85.75 79.09 128.7 79.09 23 0 58.38-7.63 86.21-22.81A176 176 0 0 1 256 432z'/></svg>">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,13 +25,12 @@ sitemap: false
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
             --primary-light: #ff6b7a;
-            --accent-color: #ffc107;
             --text-color: #333;
             --text-secondary: #6c757d;
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 300px;
+            --header-height: 250px;
         }
         
         body {
@@ -43,8 +39,6 @@ sitemap: false
             padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
-            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
-            min-height: 100vh;
         }
         
         /* Modern Minimalist Header Styles */
@@ -55,14 +49,13 @@ sitemap: false
             position: relative;
             overflow: hidden;
             padding: 0;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
         }
         
         .post-header::before {
@@ -76,6 +69,19 @@ sitemap: false
             pointer-events: none;
         }
         
+        .post-header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+        
         .header-content {
             position: relative;
             z-index: 10;
@@ -85,7 +91,7 @@ sitemap: false
         
         .post-header h1 {
             font-weight: 900;
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             margin-bottom: 15px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             letter-spacing: -0.5px;
@@ -103,86 +109,10 @@ sitemap: false
             font-size: 0.95rem;
             margin-bottom: 20px;
         }
-        
-        /* Brand Icon Showcase */
-        .brand-icon-showcase {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin: 40px 0;
-            padding: 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .brand-icon-showcase::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(220,53,69,0.05) 0%, rgba(220,53,69,0) 70%);
-            transform: rotate(30deg);
-            z-index: 0;
-        }
-        
-        .icon-container {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 15px 35px rgba(167, 29, 42, 0.3);
-        }
-        
-        .icon-container svg {
-            width: 100px;
-            height: 100px;
-        }
-        
-        .icon-variations {
-            display: flex;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .icon-variant {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .icon-variant:hover {
-            transform: translateY(-10px);
-        }
-        
-        .variant-box {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .variant-box:hover {
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+
+        .hero-badge i {
+            margin-left: 8px;
+            font-size: 1.1rem;
         }
         
         /* Floating Search */
@@ -191,7 +121,7 @@ sitemap: false
             z-index: 20;
             max-width: 700px;
             width: 90%;
-            margin: -50px auto 60px;
+            margin: -40px auto 50px;
         }
         
         .floating-search {
@@ -201,7 +131,6 @@ sitemap: false
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            overflow: hidden;
         }
         
         .floating-search:hover {
@@ -209,12 +138,12 @@ sitemap: false
         }
         
         .search-box input {
-            padding: 18px 70px 18px 25px;
+            padding: 16px 65px 16px 25px;
             border-radius: 50px;
             font-size: 1.1rem;
             border: none;
             background: transparent;
-            height: 65px;
+            height: 60px;
         }
         
         .search-box input:focus {
@@ -223,11 +152,11 @@ sitemap: false
         
         .search-box .btn {
             position: absolute;
-            left: 10px;
-            top: 10px;
+            left: 8px;
+            top: 8px;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
             padding: 0;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
@@ -243,22 +172,19 @@ sitemap: false
         
         /* Post Content Styles */
         .post-container {
-            max-width: 900px;
-            margin: 0 auto 80px;
+            max-width: 800px;
+            margin: 0 auto 60px;
             background-color: var(--card-bg);
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             position: relative;
-            padding: 50px;
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            padding: 40px;
         }
         
         .post-content {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.9;
-            position: relative;
-            z-index: 10;
         }
         
         .post-content p {
@@ -266,100 +192,127 @@ sitemap: false
             text-align: justify;
         }
         
-        .post-content h2 {
-            font-weight: 800;
-            margin: 60px 0 30px;
-            color: var(--primary-dark);
-            padding-right: 20px;
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
+        
+        .post-content blockquote {
             border-right: 4px solid var(--primary-color);
-            font-size: 2rem;
+            padding: 25px 30px;
+            margin: 40px 0;
+            background-color: rgba(220, 53, 69, 0.03);
+            border-radius: 12px;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.9;
             position: relative;
         }
         
-        .post-content h2::after {
-            content: "";
+        .post-content blockquote::before {
+            content: """;
             position: absolute;
-            bottom: -10px;
-            right: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
-            border-radius: 4px;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            color: rgba(220, 53, 69, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .post-content h2 {
+            font-weight: 800;
+            margin: 50px 0 25px;
+            color: var(--primary-dark);
+            padding-right: 15px;
+            border-right: 3px solid var(--primary-color);
+            font-size: 1.8rem;
         }
         
         .post-content h3 {
             font-weight: 700;
-            margin: 50px 0 25px;
+            margin: 40px 0 20px;
             color: var(--primary-dark);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
         }
         
-        .post-content ul {
+        .post-content ul, .post-content ol {
             padding-right: 30px;
-            margin-bottom: 35px;
-            list-style-type: none;
+            margin-bottom: 25px;
         }
         
         .post-content li {
-            margin-bottom: 15px;
-            padding-right: 25px;
-            position: relative;
+            margin-bottom: 10px;
         }
         
-        .post-content li::before {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 10px;
-            width: 12px;
-            height: 12px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: 50%;
-        }
-        
-        /* Professional Table Styles */
-        .post-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 40px 0;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
-            border-radius: 15px;
+        /* Professional Table Styles - تغییرات اساسی برای ریسپانسیو */
+        .post-content .table-container {
+            margin: 30px 0;
+            border-radius: 10px;
             overflow: hidden;
-            font-size: 1.05rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .post-content th {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            font-weight: 700;
-            padding: 18px 25px;
-            text-align: right;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            font-size: 1.1rem;
-        }
-        
-        .post-content td {
-            padding: 16px 25px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-        }
-        
-        .post-content tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-        
-        .post-content tr:hover td {
-            background-color: rgba(220, 53, 69, 0.04);
-        }
-        
-        .table-responsive {
+        .post-content .table-responsive {
             display: block;
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            margin: 40px 0;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+        
+        .post-content table {
+            width: 100%;
+            min-width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .post-content table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-weight: 700;
+            padding: 15px 20px;
+            text-align: right;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+        
+        .post-content table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .post-content table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .post-content table tr:hover td {
+            background-color: rgba(220, 53, 69, 0.03);
+        }
+        
+        /* استایل اسکرولبار برای جدول */
+        .post-content .table-responsive::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
         }
         
         .back-to-home {
@@ -367,27 +320,25 @@ sitemap: false
             align-items: center;
             justify-content: center;
             color: var(--primary-color);
-            font-weight: 700;
-            margin: 50px auto 0;
+            font-weight: 600;
+            margin: 40px auto 0;
             text-decoration: none;
             transition: all 0.3s ease;
-            padding: 15px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
-            background: rgba(220, 53, 69, 0.1);
+            background-color: rgba(220, 53, 69, 0.1);
             border: 1px solid rgba(220, 53, 69, 0.2);
-            max-width: 280px;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.1);
+            max-width: 250px;
         }
         
         .back-to-home:hover {
-            background: rgba(220, 53, 69, 0.2);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.2);
+            background-color: rgba(220, 53, 69, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
         }
         
         .back-to-home i {
-            margin-left: 10px;
+            margin-left: 8px;
             transition: transform 0.3s ease;
         }
         
@@ -395,16 +346,15 @@ sitemap: false
             transform: translateX(5px);
         }
         
-        /* Footer Styles */
+        /* Footer Styles - بهینه‌سازی فوتر */
         .footer {
             background: linear-gradient(135deg, #343a40, #212529);
             color: rgba(255, 255, 255, 0.85);
-            border-radius: 25px;
-            padding: 50px 40px;
-            margin-top: 60px;
+            border-radius: 16px;
+            padding: 40px 30px;
+            margin-top: 50px;
             position: relative;
             overflow: hidden;
-            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
         }
         
         .footer::before {
@@ -424,7 +374,7 @@ sitemap: false
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
         
         .footer h5::after {
@@ -444,9 +394,9 @@ sitemap: false
             text-decoration: none;
             margin-bottom: 15px;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             position: relative;
-            padding-right: 25px;
+            padding-right: 20px;
         }
         
         .footer-links a::before {
@@ -457,7 +407,6 @@ sitemap: false
             color: var(--primary-color);
             opacity: 0;
             transition: all 0.3s ease;
-            font-size: 1.3rem;
         }
         
         .footer-links a:hover {
@@ -472,142 +421,43 @@ sitemap: false
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
+            padding-top: 30px;
+            margin-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
+            font-size: 0.95rem;
             position: relative;
         }
         
-        /* Creative Lamp Icon Design */
-        .lamp-icon {
-            position: relative;
-            width: 120px;
-            height: 120px;
+        /* تنظیمات جدید برای شبکه‌بندی فوتر */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
         
-        .lamp-base {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 10px;
-            background: white;
-            border-radius: 5px;
-            z-index: 3;
-        }
-        
-        .lamp-stem {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 40px;
-            background: white;
-            border-radius: 4px;
-            z-index: 2;
-        }
-        
-        .lamp-bulb {
-            position: absolute;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
-            z-index: 3;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-        }
-        
-        .light-rays {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 120px;
-            height: 120px;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-        }
-        
-        .light-ray {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 60px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
-            border-radius: 2px;
-            transform-origin: top center;
-        }
-        
-        .light-ray:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
-        .light-ray:nth-child(2) { transform: translate(-50%, -50%) rotate(30deg); }
-        .light-ray:nth-child(3) { transform: translate(-50%, -50%) rotate(60deg); }
-        .light-ray:nth-child(4) { transform: translate(-50%, -50%) rotate(90deg); }
-        .light-ray:nth-child(5) { transform: translate(-50%, -50%) rotate(120deg); }
-        .light-ray:nth-child(6) { transform: translate(-50%, -50%) rotate(150deg); }
-        .light-ray:nth-child(7) { transform: translate(-50%, -50%) rotate(180deg); }
-        .light-ray:nth-child(8) { transform: translate(-50%, -50%) rotate(210deg); }
-        .light-ray:nth-child(9) { transform: translate(-50%, -50%) rotate(240deg); }
-        .light-ray:nth-child(10) { transform: translate(-50%, -50%) rotate(270deg); }
-        .light-ray:nth-child(11) { transform: translate(-50%, -50%) rotate(300deg); }
-        .light-ray:nth-child(12) { transform: translate(-50%, -50%) rotate(330deg); }
-        
-        .light-particles {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-            animation: floatParticle 4s infinite ease-in-out;
-        }
-        
-        @keyframes floatParticle {
-            0%, 100% { transform: translate(0, 0); opacity: 0; }
-            50% { opacity: 1; }
-        }
-        
-        /* Animation for icon */
-        .animated-icon {
-            animation: float 4s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
         
-        .icon-shadow {
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+        /* Responsive adjustments - تغییرات مهم برای جدول */
+        @media (max-width: 992px) {
+            .post-content table th,
+            .post-content table td {
+                padding: 12px 15px;
+            }
         }
         
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .post-header {
-                height: 240px;
+                height: 220px;
             }
             
             .post-header h1 {
-                font-size: 2.2rem;
+                font-size: 2.1rem;
             }
             
             .post-container {
@@ -615,8 +465,8 @@ sitemap: false
             }
             
             .search-box input {
-                padding: 14px 60px 14px 20px;
-                height: 58px;
+                padding: 12px 50px 12px 15px;
+                height: 54px;
             }
             
             .search-box .btn {
@@ -625,55 +475,63 @@ sitemap: false
             }
             
             .post-content h2 {
-                font-size: 1.7rem;
+                font-size: 1.6rem;
             }
             
             .post-content h3 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             
-            .icon-variations {
-                gap: 20px;
+            .post-content table th,
+            .post-content table td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
             }
             
-            .variant-box {
-                width: 80px;
-                height: 80px;
+            .footer {
+                padding: 30px 20px;
             }
         }
         
         @media (max-width: 576px) {
             .post-header {
-                height: 220px;
+                height: 200px;
             }
             
             .post-header h1 {
-                font-size: 1.9rem;
+                font-size: 1.8rem;
             }
             
             .post-container {
-                padding: 25px;
+                padding: 25px 20px;
             }
             
             .post-content {
                 font-size: 1rem;
             }
             
-            .footer {
-                padding: 30px 25px;
+            .post-content blockquote {
+                font-size: 1.1rem;
+                padding: 20px;
             }
             
-            .floating-search-container {
-                margin: -40px auto 50px;
+            .post-content table th,
+            .post-content table td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* استایل برای دستگاه‌های بسیار کوچک */
+        @media (max-width: 480px) {
+            .post-content .table-responsive {
+                border-radius: 8px;
             }
             
-            .brand-icon-showcase {
-                padding: 30px 20px;
-            }
-            
-            .icon-container {
-                width: 150px;
-                height: 150px;
+            .post-content table th,
+            .post-content table td {
+                padding: 6px 8px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -684,9 +542,9 @@ sitemap: false
         <div class="header-content">
             <div class="hero-badge">
                 <i class="fas fa-lightbulb"></i>
-                <span>طرح خلاقانه لامپ</span>
+                <span>بیوگرافی</span>
             </div>
-            <h1>آیکون جدید لامپ برای سایت زندگینامه مشاهیر</h1>
+            <h1>{{ page.title }}</h1>
         </div>
     </div>
     
@@ -695,7 +553,7 @@ sitemap: false
         <div class="floating-search-container">
             <form action="https://www.google.com/search" method="get" target="_blank">
                 <div class="search-box floating-search">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی مشاهیر..." required>
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required>
                     <input type="hidden" name="sitesearch" value="indexes.ir">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
@@ -705,292 +563,74 @@ sitemap: false
         <!-- Post Content -->
         <div class="post-container">
             <div class="post-content">
-                <h2>آیکون خلاقانه: لامپ دانش و روشنگری</h2>
-                <p class="lead">این آیکون جدید با نماد لامپ طراحی شده که از آن نور و دانش می‌تراود، بیانگر این مفهوم است که زندگی و دستاوردهای مشاهیر همچنان جهان را روشن کرده و الهام‌بخش نسل‌هاست.</p>
+                {{ content }}
                 
-                <div class="brand-icon-showcase">
-                    <div class="icon-container animated-icon">
-                        <div class="lamp-icon">
-                            <div class="light-rays">
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                                <div class="light-ray"></div>
-                            </div>
-                            <div class="light-particles">
-                                <div class="particle" style="top: 20px; left: 40px; animation-delay: 0s;"></div>
-                                <div class="particle" style="top: 30px; left: 60px; animation-delay: 0.5s;"></div>
-                                <div class="particle" style="top: 50px; left: 30px; animation-delay: 1s;"></div>
-                                <div class="particle" style="top: 40px; left: 70px; animation-delay: 1.5s;"></div>
-                                <div class="particle" style="top: 60px; left: 50px; animation-delay: 2s;"></div>
-                            </div>
-                            <div class="lamp-base"></div>
-                            <div class="lamp-stem"></div>
-                            <div class="lamp-bulb"></div>
-                        </div>
-                    </div>
-                    <h3>لامپ دانش و روشنگری</h3>
-                    <p>این آیکون به سادگی و زیبایی مفهوم زندگینامه مشاهیر را در قالب منبع نور و الهام منتقل می‌کند.</p>
-                    
-                    <div class="icon-variations">
-                        <div class="icon-variant">
-                            <div class="variant-box" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));">
-                                <div class="lamp-icon" style="width: 70px; height: 70px;">
-                                    <div class="lamp-base" style="width: 20px; height: 5px; bottom: 5px;"></div>
-                                    <div class="lamp-stem" style="width: 5px; height: 25px; bottom: 10px;"></div>
-                                    <div class="lamp-bulb" style="width: 25px; height: 25px; bottom: 35px;"></div>
-                                </div>
-                            </div>
-                            <span>نسخه اصلی</span>
-                        </div>
-                        
-                        <div class="icon-variant">
-                            <div class="variant-box" style="background: white; border: 2px solid var(--primary-color);">
-                                <div class="lamp-icon" style="width: 70px; height: 70px;">
-                                    <div class="lamp-base" style="width: 20px; height: 5px; bottom: 5px; background: var(--primary-color);"></div>
-                                    <div class="lamp-stem" style="width: 5px; height: 25px; bottom: 10px; background: var(--primary-color);"></div>
-                                    <div class="lamp-bulb" style="width: 25px; height: 25px; bottom: 35px; background: var(--primary-color); box-shadow: 0 0 10px var(--primary-color);"></div>
-                                </div>
-                            </div>
-                            <span>نسخه تک رنگ</span>
-                        </div>
-                        
-                        <div class="icon-variant">
-                            <div class="variant-box" style="background: var(--primary-dark);">
-                                <div class="lamp-icon" style="width: 70px; height: 70px;">
-                                    <div class="lamp-base" style="width: 20px; height: 5px; bottom: 5px; background: white;"></div>
-                                    <div class="lamp-stem" style="width: 5px; height: 25px; bottom: 10px; background: white;"></div>
-                                    <div class="lamp-bulb" style="width: 25px; height: 25px; bottom: 35px; background: white; box-shadow: 0 0 10px white;"></div>
-                                </div>
-                            </div>
-                            <span>پس زمینه تیره</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3>معنای آیکون جدید</h3>
-                <p>هر عنصر این آیکون مفهومی خاص و عمیق را در رابطه با زندگینامه مشاهیر منتقل می‌کند:</p>
-                
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="flex-shrink-0">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                    <i class="fas fa-lightbulb text-white fs-4"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="text-primary">لامپ روشنگری</h4>
-                                <p>نماد ایده‌های درخشان، دانش و الهامی که از زندگی مشاهیر نشأت می‌گیرد.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="flex-shrink-0">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                    <i class="fas fa-sun text-white fs-4"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="text-primary">پرتوهای نور</h4>
-                                <p>نماد تأثیر ماندگار مشاهیر که همچنان جهان را روشن می‌کند و به نسل‌ها نور می‌بخشد.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="flex-shrink-0">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                    <i class="fas fa-atom text-white fs-4"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="text-primary">ذرات انرژی</h4>
-                                <p>نماد ایده‌ها و دانشی که از زندگی مشاهیر منتشر شده و در جهان پخش می‌شود.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="flex-shrink-0">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                    <i class="fas fa-palette text-white fs-4"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h4 class="text-primary">رنگ قرمز</h4>
-                                <p>نماد انرژی، اشتیاق و اهمیت موضوع که هویت برند شما را حفظ کرده و جلب توجه می‌کند.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3>ویژگی‌های آیکون جدید</h3>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ویژگی</th>
-                                <th>توضیح</th>
-                                <th>مزیت</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>طراحی خلاقانه</td>
-                                <td>ترکیب لامپ با پرتوهای نور به شکل مدرن و نمادین</td>
-                                <td>انتقال پیام عمیق در قالب ساده و زیبا</td>
-                            </tr>
-                            <tr>
-                                <td>پویایی بصری</td>
-                                <td>انیمیشن ملایم شناور شدن و ذرات نور</td>
-                                <td>جذابیت بصری و بیان مفهوم تأثیر ماندگار</td>
-                            </tr>
-                            <tr>
-                                <td>سازگاری با اندازه‌ها</td>
-                                <td>طراحی به گونه‌ای که در ابعاد مختلف قابل تشخیص است</td>
-                                <td>قابلیت استفاده در تمام پلتفرم‌ها</td>
-                            </tr>
-                            <tr>
-                                <td>انعطاف پذیری</td>
-                                <td>سه نسخه مختلف برای کاربردهای گوناگون</td>
-                                <td>قابلیت استفاده در زمینه‌های مختلف</td>
-                            </tr>
-                            <tr>
-                                <td>هویت برند</td>
-                                <td>حفظ رنگ‌ها و المان‌های اصلی برند شما</td>
-                                <td>تداوم هویت بصری</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <h3>کاربرد آیکون جدید</h3>
-                <div class="row mt-4">
-                    <div class="col-md-4 mb-4">
-                        <div class="text-center p-4 bg-light rounded-lg h-100">
-                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 70px; height: 70px;">
-                                <i class="fas fa-globe text-white fs-3"></i>
-                            </div>
-                            <h4 class="mt-3">فاوآیکون سایت</h4>
-                            <p>استفاده به عنوان نماد اصلی سایت در تب مرورگرها</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-4">
-                        <div class="text-center p-4 bg-light rounded-lg h-100">
-                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 70px; height: 70px;">
-                                <i class="fas fa-mobile-alt text-white fs-3"></i>
-                            </div>
-                            <h4 class="mt-3">اپلیکیشن موبایل</h4>
-                            <p>استفاده به عنوان آیکون اپلیکیشن در استورها و صفحه اصلی</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-4">
-                        <div class="text-center p-4 bg-light rounded-lg h-100">
-                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 70px; height: 70px;">
-                                <i class="fas fa-print text-white fs-3"></i>
-                            </div>
-                            <h4 class="mt-3">محصولات چاپی</h4>
-                            <p>استفاده در سربرگ، کارت ویزیت و بروشورهای سایت</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center my-5">
-                    <div style="display: inline-block; background: var(--light-bg); padding: 20px; border-radius: 12px;">
-                        <h4>آیکون در اندازه‌های مختلف</h4>
-                        <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
-                            <div class="text-center">
-                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 6px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                                    <div style="width: 12px; height: 12px; background: white; border-radius: 50%; box-shadow: 0 0 5px white;"></div>
-                                </div>
-                                <small>فاوآیکون (32×32)</small>
-                            </div>
-                            
-                            <div class="text-center">
-                                <div style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                                    <div style="position: relative; width: 25px; height: 40px;">
-                                        <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 10px; height: 3px; background: white;"></div>
-                                        <div style="position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 4px; height: 15px; background: white;"></div>
-                                        <div style="position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 0 8px white;"></div>
-                                    </div>
-                                </div>
-                                <small>لوگو کوچک (64×64)</small>
-                            </div>
-                            
-                            <div class="text-center">
-                                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                                    <div class="lamp-icon" style="width: 80px; height: 80px;">
-                                        <div class="lamp-base" style="width: 20px; height: 5px; bottom: 5px;"></div>
-                                        <div class="lamp-stem" style="width: 5px; height: 30px; bottom: 10px;"></div>
-                                        <div class="lamp-bulb" style="width: 30px; height: 30px; bottom: 40px;"></div>
-                                    </div>
-                                </div>
-                                <small>لوگو متوسط (120×120)</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% if page.quote %}
+                <blockquote>
+                    "{{ page.quote }}"
+                </blockquote>
+                {% endif %}
             </div>
             
             <div class="text-center mt-5">
-                <a href="#" class="back-to-home">
+                <a href="{{ site.url }}" class="back-to-home">
                     <i class="fas fa-arrow-right"></i>
                     بازگشت به صفحه اصلی
                 </a>
             </div>
         </div>
         
-        <!-- Footer -->
+        <!-- Footer - بهینه‌سازی شده -->
         <div class="footer">
-            <div class="row">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h5>درباره سایت زندگینامه مشاهیر</h5>
-                    <p>این سایت با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است.</p>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+            <div class="footer-grid">
+                <div>
                     <h5>مشاهیر پرطرفدار</h5>
                     <div class="footer-links">
-                        <a href="#">سعدی</a>
-                        <a href="#">حافظ</a>
-                        <a href="#">فردوسی</a>
-                        <a href="#">مولانا</a>
+                        <a href="https://indexes.ir/9">سعدی</a>
+                        <!-- سایر لینک‌ها در صورت نیاز -->
                     </div>
                 </div>
                 
-                <div class="col-lg-3 col-md-6">
+                <div>
                     <h5>دسترسی سریع</h5>
                     <div class="footer-links">
-                        <a href="#">صفحه اصلی</a>
-                        <a href="#">درباره ما</a>
-                        <a href="#">تماس با ما</a>
-                        <a href="#">حریم خصوصی</a>
+                        <a href="https://indexes.ir/">صفحه اصلی</a>
+                        <!-- سایر لینک‌ها در صورت نیاز -->
                     </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © ۲۰۲۳</p>
+                <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © {{ site.time | date: "%Y" }}</p>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- اسکریپت برای بهبود عملکرد جدول‌های ریسپانسیو -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // اضافه کردن کلاس فعال برای نشان دادن اسکرول
+            const tables = document.querySelectorAll('.table-responsive');
+            
+            tables.forEach(table => {
+                // بررسی اگر جدول نیاز به اسکرول افقی دارد
+                if (table.scrollWidth > table.clientWidth) {
+                    table.classList.add('has-scroll');
+                }
+                
+                // اضافه کردن رویداد اسکرول برای نشان دادن اسکرول
+                table.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 0) {
+                        this.classList.add('scrolling');
+                    } else {
+                        this.classList.remove('scrolling');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
