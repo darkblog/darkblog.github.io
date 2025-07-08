@@ -8,7 +8,6 @@ sitemap: false
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#dc3545">
-    <title>جستجو | indexes.ir</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,25 +41,23 @@ sitemap: false
             text-align: center;
             padding: 20px;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            margin: 0;
         }
         
         .minimal-container {
             width: 100%;
             max-width: 700px;
-            padding: 40px 20px;
+            padding: 20px;
             margin: 0 auto;
         }
         
-        .logo {
+        /* Error Indicator */
+        .error-indicator {
             color: var(--primary-color);
-            font-weight: 800;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            letter-spacing: -1px;
-        }
-        
-        .logo span {
-            color: #333;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: pulse 2s infinite;
         }
         
         /* Floating Search */
@@ -151,42 +148,17 @@ sitemap: false
             transform: translateX(5px);
         }
         
-        .search-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
-        
-        .search-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Animation for focus */
+        /* Animation for error indicator */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
-        }
-        
-        .search-box input:focus {
-            animation: pulse 2s infinite;
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
         }
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .search-title {
-                font-size: 1.5rem;
+            .error-indicator {
+                font-size: 3rem;
             }
             
             .search-box input {
@@ -202,17 +174,8 @@ sitemap: false
         }
         
         @media (max-width: 576px) {
-            .logo {
-                font-size: 1.8rem;
-                margin-bottom: 30px;
-            }
-            
-            .search-title {
-                font-size: 1.3rem;
-            }
-            
-            .search-subtitle {
-                font-size: 1rem;
+            .error-indicator {
+                font-size: 2.5rem;
             }
             
             .back-to-home {
@@ -224,18 +187,16 @@ sitemap: false
 </head>
 <body>
     <div class="minimal-container">
-        <!-- Logo -->
-        <div class="logo">indexes<span>.ir</span></div>
-        
-        <!-- Search Title -->
-        <h1 class="search-title">جستجو در محتوای سایت</h1>
-        <p class="search-subtitle">زندگینامه شخص مورد نظرت رو جستجو کن، فقط کافیه اسمشو وارد کنی</p>
+        <!-- Error Indicator -->
+        <div class="error-indicator">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
         
         <!-- Floating Search Section -->
         <div class="floating-search-container">
             <form action="https://www.google.com/search" method="get" target="_blank">
                 <div class="search-box floating-search">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required autofocus>
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو در سایت..." required autofocus>
                     <input type="hidden" name="sitesearch" value="indexes.ir">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
