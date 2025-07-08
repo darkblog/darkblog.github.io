@@ -8,6 +8,7 @@ sitemap: false
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#dc3545">
+    <title>جستجو | indexes.ir</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -33,85 +34,33 @@ sitemap: false
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
-            padding: 20px;
-            color: var(--text-color);
-            line-height: 1.8;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23dc3545' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        
-        .error-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
             padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
         }
         
-        /* Modern Minimalist Header Styles */
-        .error-header {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            color: white;
-            padding: 40px 30px;
-            border-radius: 20px;
+        .minimal-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 40px 20px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 2.5rem;
             margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            width: 100%;
-        }
-        
-        .error-header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            pointer-events: none;
-        }
-        
-        .error-header h1 {
-            font-weight: 900;
-            font-size: 4.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: -1px;
         }
         
-        .error-header h2 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-        
-        .error-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 8px 20px;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+        .logo span {
+            color: #333;
         }
         
         /* Floating Search */
@@ -119,7 +68,6 @@ sitemap: false
             position: relative;
             z-index: 20;
             width: 100%;
-            max-width: 700px;
             margin: 0 auto 40px;
         }
         
@@ -127,13 +75,13 @@ sitemap: false
             background: white;
             border-radius: 50px;
             padding: 0;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         
         .floating-search:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .search-box input {
@@ -148,6 +96,7 @@ sitemap: false
         
         .search-box input:focus {
             box-shadow: none;
+            outline: none;
         }
         
         .search-box .btn {
@@ -202,92 +151,91 @@ sitemap: false
             transform: translateX(5px);
         }
         
-        /* Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .search-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.4;
         }
         
-        .error-icon {
-            font-size: 8rem;
-            color: var(--primary-color);
-            margin: 30px 0;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(220, 53, 69, 0.3));
+        .search-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Animation for focus */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        }
+        
+        .search-box input:focus {
+            animation: pulse 2s infinite;
         }
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .error-header h1 {
-                font-size: 3.5rem;
+            .logo {
+                font-size: 2rem;
             }
             
-            .error-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .error-header p {
-                font-size: 1.1rem;
-            }
-            
-            .error-icon {
-                font-size: 6rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .error-header {
-                padding: 30px 20px;
-            }
-            
-            .error-header h1 {
-                font-size: 2.8rem;
-            }
-            
-            .error-header h2 {
+            .search-title {
                 font-size: 1.5rem;
             }
             
             .search-box input {
                 padding: 12px 50px 12px 15px;
                 height: 54px;
+                font-size: 1rem;
             }
             
             .search-box .btn {
                 width: 40px;
                 height: 40px;
             }
+        }
+        
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
             
-            .error-icon {
-                font-size: 5rem;
+            .search-title {
+                font-size: 1.3rem;
+            }
+            
+            .search-subtitle {
+                font-size: 1rem;
+            }
+            
+            .back-to-home {
+                padding: 10px 25px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="error-container">
-        <!-- Error Icon -->
-        <div class="error-icon">
-            <i class="fas fa-exclamation-triangle"></i>
-        </div>
+    <div class="minimal-container">
+        <!-- Logo -->
+        <div class="logo">indexes<span>.ir</span></div>
         
-        <!-- Header Section -->
-        <div class="error-header">
-            <div class="hero-badge">
-                <i class="fas fa-exclamation-circle"></i>
-                <span>اوپس!</span>
-            </div>
-            <h1>۴۰۴</h1>
-            <h2>صفحه مورد نظر یافت نشد</h2>
-            <p>متاسفانه صفحه‌ای که به دنبال آن هستید وجود ندارد، حذف شده یا نام آن تغییر کرده است.</p>
-        </div>
+        <!-- Search Title -->
+        <h1 class="search-title">جستجو در محتوای سایت</h1>
+        <p class="search-subtitle">زندگینامه شخص مورد نظرت رو جستجو کن، فقط کافیه اسمشو وارد کنی</p>
         
         <!-- Floating Search Section -->
         <div class="floating-search-container">
             <form action="https://www.google.com/search" method="get" target="_blank">
                 <div class="search-box floating-search">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو در سایت..." required>
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required autofocus>
                     <input type="hidden" name="sitesearch" value="indexes.ir">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
@@ -300,8 +248,5 @@ sitemap: false
             بازگشت به صفحه اصلی
         </a>
     </div>
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
