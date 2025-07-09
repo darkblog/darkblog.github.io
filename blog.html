@@ -282,6 +282,72 @@ sitemap: false
             margin-bottom: 10px;
         }
         
+        /* Professional Table Styles -->
+        .post-content .table-container {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .post-content .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+        
+        .post-content table {
+            width: 100%;
+            min-width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .post-content table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-weight: 700;
+            padding: 15px 20px;
+            text-align: right;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+        
+        .post-content table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .post-content table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .post-content table tr:hover td {
+            background-color: rgba(220, 53, 69, 0.03);
+        }
+        
+        /* استایل اسکرولبار برای جدول */
+        .post-content .table-responsive::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
         .back-to-home {
             display: inline-flex;
             align-items: center;
@@ -378,6 +444,12 @@ sitemap: false
             .breadcrumb-item + .breadcrumb-item::before {
                 margin: 0 15px;
             }
+            
+            .post-content table th,
+            .post-content table td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -414,6 +486,12 @@ sitemap: false
             .breadcrumb-item + .breadcrumb-item::before {
                 margin: 0 12px;
             }
+            
+            .post-content table th,
+            .post-content table td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -431,6 +509,16 @@ sitemap: false
             .breadcrumb-item + .breadcrumb-item::before {
                 content: "";
                 display: none;
+            }
+            
+            .post-content .table-responsive {
+                border-radius: 8px;
+            }
+            
+            .post-content table th,
+            .post-content table td {
+                padding: 6px 8px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -470,17 +558,54 @@ sitemap: false
             </nav>
         </div>
         
-        <!-- Post Content -->
+        <!-- Post Content - Standard Structure -->
         <div class="post-container">
-            <div class="post-content">
+            <article class="post-content">
+                <!-- Main Post Content -->
                 {{ content }}
                 
+                <!-- Optional Quote -->
                 {% if page.quote %}
                 <blockquote>
                     "{{ page.quote }}"
                 </blockquote>
                 {% endif %}
-            </div>
+                
+                <!-- Optional Gallery -->
+                {% if page.gallery %}
+                <div class="gallery">
+                    {% for image in page.gallery %}
+                    <img src="{{ image.url }}" alt="{{ image.alt }}">
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <!-- Optional Table -->
+                {% if page.table %}
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    {% for header in page.table.headers %}
+                                    <th>{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in page.table.rows %}
+                                <tr>
+                                    {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </article>
             
             <div class="text-center mt-5">
                 <a href="{{ site.url }}" class="back-to-home">
@@ -504,5 +629,29 @@ sitemap: false
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- اسکریپت برای بهبود عملکرد جدول‌های ریسپانسیو -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // اضافه کردن کلاس فعال برای نشان دادن اسکرول
+            const tables = document.querySelectorAll('.table-responsive');
+            
+            tables.forEach(table => {
+                // بررسی اگر جدول نیاز به اسکرول افقی دارد
+                if (table.scrollWidth > table.clientWidth) {
+                    table.classList.add('has-scroll');
+                }
+                
+                // اضافه کردن رویداد اسکرول برای نشان دادن اسکرول
+                table.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 0) {
+                        this.classList.add('scrolling');
+                    } else {
+                        this.classList.remove('scrolling');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
