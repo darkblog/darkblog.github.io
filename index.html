@@ -131,7 +131,8 @@ layout: index.html
             z-index: 20;
             max-width: 700px;
             width: 90%;
-            margin: -40px auto 30px; /* کاهش فاصله زیر جستجو */
+            margin: 0 auto 40px; /* افزایش فاصله پایین */
+            padding-top: 40px; /* افزایش فاصله بالا */
         }
         
         .floating-search {
@@ -191,7 +192,7 @@ layout: index.html
         .posts-container {
             max-width: 800px;
             margin: 0 auto;
-            padding-top: 20px; /* فاصله کوچک بالای پست‌ها */
+            padding-top: 20px;
         }
         
         .post-card {
@@ -325,6 +326,10 @@ layout: index.html
                 width: 40px;
                 height: 40px;
             }
+            
+            .floating-search-container {
+                padding-top: 30px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -343,6 +348,11 @@ layout: index.html
             .modern-header p {
                 font-size: 1rem;
             }
+            
+            .floating-search-container {
+                padding-top: 25px;
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
@@ -360,7 +370,7 @@ layout: index.html
             </div>
         </div>
         
-        <!-- Floating Search Section -->
+        <!-- Floating Search Section - Now with more space -->
         <div class="container">
             <div class="floating-search-container">
                 <form action="https://www.google.com/search" method="get" target="_blank">
