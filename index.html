@@ -131,7 +131,7 @@ layout: index.html
             z-index: 20;
             max-width: 700px;
             width: 90%;
-            margin: -40px auto 60px;
+            margin: -40px auto 30px; /* کاهش فاصله زیر جستجو */
         }
         
         .floating-search {
@@ -191,6 +191,7 @@ layout: index.html
         .posts-container {
             max-width: 800px;
             margin: 0 auto;
+            padding-top: 20px; /* فاصله کوچک بالای پست‌ها */
         }
         
         .post-card {
@@ -289,126 +290,6 @@ layout: index.html
             transform: translateX(5px);
         }
         
-        /* Footer Styles */
-        .footer {
-            background: linear-gradient(135deg, #343a40, #212529);
-            color: rgba(255, 255, 255, 0.85);
-            border-radius: 16px;
-            padding: 40px 30px;
-            margin-top: 50px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .footer::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-        }
-        
-        .footer h5 {
-            color: white;
-            font-weight: 800;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        
-        .footer h5::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
-            border-radius: 4px;
-        }
-        
-        .footer-links a {
-            display: block;
-            color: rgba(255, 255, 255, 0.75);
-            text-decoration: none;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            position: relative;
-            padding-right: 20px;
-        }
-        
-        .footer-links a::before {
-            content: "›";
-            position: absolute;
-            right: 0;
-            top: 0;
-            color: var(--primary-color);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            transform: translateX(10px);
-        }
-        
-        .footer-links a:hover::before {
-            opacity: 1;
-            right: -5px;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
-            position: relative;
-        }
-        
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            position: relative;
-            margin: 40px 0 35px;
-        }
-        
-        .section-title h2 {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 900;
-            font-size: 2rem;
-            padding: 0 20px;
-            position: relative;
-        }
-        
-        .section-title h2::before,
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
-        }
-        
-        .section-title h2::before {
-            right: 100%;
-        }
-        
-        .section-title h2::after {
-            left: 100%;
-        }
-        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .modern-header {
@@ -444,15 +325,6 @@ layout: index.html
                 width: 40px;
                 height: 40px;
             }
-            
-            .section-title h2 {
-                font-size: 1.7rem;
-            }
-            
-            .section-title h2::before,
-            .section-title h2::after {
-                width: 50px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -470,15 +342,6 @@ layout: index.html
             
             .modern-header p {
                 font-size: 1rem;
-            }
-            
-            .footer {
-                padding: 30px 20px;
-            }
-            
-            .section-title h2::before,
-            .section-title h2::after {
-                width: 30px;
             }
         }
     </style>
@@ -510,11 +373,6 @@ layout: index.html
                 <p class="search-hint">نام شخصیت مورد نظر خود را وارد کنید</p>
             </div>
             
-            <!-- Posts Section Title -->
-            <div class="section-title">
-                <h2>آخرین زندگینامه‌ها</h2>
-            </div>
-            
             <!-- Posts Container -->
             <div class="posts-container">
                 {% for post in site.posts limit:200 %}
@@ -529,34 +387,6 @@ layout: index.html
                     </div>
                 </a>
                 {% endfor %}
-            </div>
-            
-            <!-- Footer -->
-            <div class="footer">
-                <div class="row">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <h5>درباره سایت زندگینامه مشاهیر</h5>
-                        <p>این سایت با هدف گردآوری و ارائه دقیق‌ترین اطلاعات درباره زندگی و دستاوردهای بزرگترین شخصیت‌های تاریخ ایران و جهان ایجاد شده است.</p>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                        <h5>مشاهیر پرطرفدار</h5>
-                        <div class="footer-links">
-                            <a href="https://indexes.ir/9">سعدی</a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <h5>دسترسی سریع</h5>
-                        <div class="footer-links">
-                            <a href="https://indexes.ir/">صفحه اصلی</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="copyright">
-                    <p>تمامی حقوق برای سایت «زندگینامه مشاهیر» محفوظ است. © {{ site.time | date: "%Y" }}</p>
-                </div>
             </div>
         </div>
     </div>
