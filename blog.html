@@ -128,21 +128,27 @@ sitemap: false
         /* نوار جستجوی جدید بالای پست‌ها */
         .posts-search-container {
             max-width: 800px;
-            margin: 0 auto 30px;
+            margin: -30px auto 30px; /* فاصله منفی برای بالا کشیدن نوار */
             padding: 0 15px;
+            position: relative;
+            z-index: 100;
         }
         
         .posts-search-box {
             background: white;
             border-radius: 12px;
             padding: 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         
         .posts-search-box:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-box {
+            position: relative;
         }
         
         .posts-search-box input {
@@ -152,6 +158,7 @@ sitemap: false
             border: none;
             background: transparent;
             height: 56px;
+            width: 100%;
         }
         
         .posts-search-box input:focus {
@@ -161,8 +168,9 @@ sitemap: false
         
         .posts-search-box .btn {
             position: absolute;
-            left: 8px;
-            top: 8px;
+            right: 8px; /* تغییر به راست برای RTL */
+            top: 50%;
+            transform: translateY(-50%);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -176,7 +184,7 @@ sitemap: false
         }
         
         .posts-search-box .btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-50%) scale(1.05);
         }
         
         .posts-search-hint {
@@ -324,8 +332,7 @@ sitemap: false
             .posts-search-box .btn {
                 width: 36px;
                 height: 36px;
-                top: 7px;
-                left: 7px;
+                right: 7px;
             }
         }
         
@@ -344,6 +351,10 @@ sitemap: false
             
             .modern-header p {
                 font-size: 1rem;
+            }
+            
+            .posts-search-container {
+                margin-top: -20px;
             }
             
             .posts-search-box input {
