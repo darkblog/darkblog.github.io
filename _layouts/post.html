@@ -67,7 +67,7 @@
             position: relative;
             overflow: hidden;
             padding: 0;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -133,59 +133,51 @@
             font-size: 1.1rem;
         }
         
-        /* Floating Search */
-        .floating-search-container {
-            position: relative;
-            z-index: 20;
-            max-width: 700px;
-            width: 90%;
-            margin: -40px auto 50px;
+        /* Breadcrumb Navigation */
+        .breadcrumb-container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 0 15px;
         }
         
-        .floating-search {
-            background: white;
-            border-radius: 50px;
+        .breadcrumb-nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 12px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+        }
+        
+        .breadcrumb-nav .breadcrumb {
+            margin-bottom: 0;
             padding: 0;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
         }
         
-        .floating-search:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .search-box input {
-            padding: 16px 65px 16px 25px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            border: none;
-            background: transparent;
-            height: 60px;
-        }
-        
-        .search-box input:focus {
-            box-shadow: none;
-        }
-        
-        .search-box .btn {
-            position: absolute;
-            left: 8px;
-            top: 8px;
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border: none;
+        .breadcrumb-nav .breadcrumb-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
         }
         
-        .search-box .btn:hover {
-            transform: scale(1.05);
+        .breadcrumb-nav .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .breadcrumb-nav .breadcrumb-item.active {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            color: var(--text-secondary);
+            padding: 0 10px;
         }
         
         /* Post Content Styles */
@@ -399,16 +391,6 @@
                 padding: 30px;
             }
             
-            .search-box input {
-                padding: 12px 50px 12px 15px;
-                height: 54px;
-            }
-            
-            .search-box .btn {
-                width: 40px;
-                height: 40px;
-            }
-            
             .post-content h2 {
                 font-size: 1.6rem;
             }
@@ -420,6 +402,15 @@
             .post-content table th,
             .post-content table td {
                 padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .breadcrumb-container {
+                margin-bottom: 20px;
+            }
+            
+            .breadcrumb-nav {
+                padding: 10px 15px;
                 font-size: 0.9rem;
             }
         }
@@ -451,6 +442,11 @@
                 padding: 8px 10px;
                 font-size: 0.85rem;
             }
+            
+            .breadcrumb-nav {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
         }
         
         /* استایل برای دستگاه‌های بسیار کوچک */
@@ -463,6 +459,10 @@
             .post-content table td {
                 padding: 6px 8px;
                 font-size: 0.8rem;
+            }
+            
+            .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+                padding: 0 6px;
             }
         }
 
@@ -520,16 +520,15 @@
         </div>
     </div>
     
-    <!-- Floating Search Section -->
+    <!-- Breadcrumb Navigation -->
     <div class="container">
-        <div class="floating-search-container">
-            <form action="https://www.google.com/search" method="get" target="_blank">
-                <div class="search-box floating-search">
-                    <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required>
-                    <input type="hidden" name="sitesearch" value="indexes.ir">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="https://indexes.ir/"><i class="fas fa-home me-2"></i>صفحه اصلی</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+                </ol>
+            </nav>
         </div>
         
         <!-- Post Content -->
