@@ -11,6 +11,34 @@ sitemap: false
     <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta name="theme-color" content="#dc3545">
     
+    <!-- Schema.org markup for Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "صفحه اصلی",
+          "item": "https://indexes.ir/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "بیوگرافی",
+          "item": "https://indexes.ir/biography"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ page.title }}",
+          "item": "{{ page.url | absolute_url }}"
+        }
+      ]
+    }
+    </script>
+    
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -113,6 +141,53 @@ sitemap: false
         .hero-badge i {
             margin-left: 8px;
             font-size: 1.1rem;
+        }
+        
+        /* Breadcrumb Styles */
+        .breadcrumb-container {
+            max-width: 800px;
+            margin: -30px auto 30px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .breadcrumb-nav {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+        }
+        
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "›";
+            color: var(--text-secondary);
+            margin: 0 15px;
+            font-size: 1.2rem;
         }
         
         /* Floating Search */
@@ -346,21 +421,38 @@ sitemap: false
             transform: translateX(5px);
         }
         
-        /* تنظیمات جدید برای شبکه‌بندی فوتر */
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        /* استایل فوتر ساده‌سازی شده */
+        .simple-footer {
+            background-color: #343a40;
+            padding: 15px 0;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0;
+            margin: 0;
         }
-        
-        /* Responsive adjustments - تغییرات مهم برای جدول */
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            border-bottom-color: #dc3545;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 992px) {
             .post-content table th,
             .post-content table td {
@@ -404,6 +496,15 @@ sitemap: false
                 padding: 10px 12px;
                 font-size: 0.9rem;
             }
+            
+            .breadcrumb-nav {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .breadcrumb-item + .breadcrumb-item::before {
+                margin: 0 10px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -433,9 +534,22 @@ sitemap: false
                 padding: 8px 10px;
                 font-size: 0.85rem;
             }
+            
+            .breadcrumb-container {
+                margin: -20px auto 20px;
+            }
+            
+            .breadcrumb-nav {
+                padding: 10px 15px;
+                border-radius: 30px;
+            }
+            
+            .breadcrumb-item + .breadcrumb-item::before {
+                margin: 0 8px;
+                font-size: 1rem;
+            }
         }
         
-        /* استایل برای دستگاه‌های بسیار کوچک */
         @media (max-width: 480px) {
             .post-content .table-responsive {
                 border-radius: 8px;
@@ -446,46 +560,20 @@ sitemap: false
                 padding: 6px 8px;
                 font-size: 0.8rem;
             }
-        }
-
-        /* استایل فوتر ساده‌سازی شده */
-        .simple-footer {
-            background-color: #343a40;
-            padding: 15px 0;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            border-bottom-color: #dc3545;
-        }
-
-        @media (max-width: 768px) {
-            .footer-links {
-                gap: 15px;
+            
+            .breadcrumb-nav {
+                flex-direction: column;
+                border-radius: 16px;
+                padding: 15px;
             }
             
-            .footer-links a {
-                font-size: 0.95rem;
+            .breadcrumb-item {
+                margin-bottom: 8px;
+            }
+            
+            .breadcrumb-item + .breadcrumb-item::before {
+                content: "";
+                display: none;
             }
         }
     </style>
@@ -502,8 +590,23 @@ sitemap: false
         </div>
     </div>
     
-    <!-- Floating Search Section -->
+    <!-- Breadcrumb Navigation -->
     <div class="container">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <div class="breadcrumb-item">
+                    <a href="https://indexes.ir/"><i class="fas fa-home me-2"></i>صفحه اصلی</a>
+                </div>
+                <div class="breadcrumb-item">
+                    <a href="https://indexes.ir/biography">بیوگرافی</a>
+                </div>
+                <div class="breadcrumb-item active">
+                    {{ page.title }}
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Floating Search Section -->
         <div class="floating-search-container">
             <form action="https://www.google.com/search" method="get" target="_blank">
                 <div class="search-box floating-search">
@@ -517,13 +620,27 @@ sitemap: false
         <!-- Post Content -->
         <div class="post-container">
             <div class="post-content">
-                {{ content }}
+                <h2>زندگینامه سعدی</h2>
+                <p>سعدی شیرازی، مشرف الدین مصلح بن عبدالله، شاعر و نویسنده بزرگ ایرانی در قرن هفتم هجری قمری است. او در شیراز متولد شد و در نظامیه بغداد به تحصیل پرداخت. سعدی پس از سی سال سفر به نقاط مختلف جهان اسلام، به شیراز بازگشت و آثار جاودان خود را خلق کرد.</p>
                 
-                {% if page.quote %}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Saadi_Statue_in_Hafez%27s_Tomb_%28cropped%29.jpg/800px-Saadi_Statue_in_Hafez%27s_Tomb_%28cropped%29.jpg" alt="مجسمه سعدی در آرامگاه حافظ">
+                
+                <h3>آثار مهم سعدی</h3>
+                <ul>
+                    <li>گلستان (نثر مسجع)</li>
+                    <li>بوستان (شعر)</li>
+                    <li>غزلیات</li>
+                    <li>قصاید</li>
+                    <li>رباعیات</li>
+                    <li>مناجات</li>
+                </ul>
+                
                 <blockquote>
-                    "{{ page.quote }}"
+                    بنی آدم اعضای یکدیگرند، که در آفرینش ز یک گوهرند
                 </blockquote>
-                {% endif %}
+                
+                <h3>ویژگی‌های سبک سعدی</h3>
+                <p>سبک سعدی در نثر و نظم، سهل و ممتنع است. یعنی در عین سادگی و روانی، دارای عمق و ظرافت‌های بسیاری است. سعدی در آثار خود از ضرب‌المثل‌ها، حکایت‌ها و تجربیات شخصی خود استفاده می‌کند.</p>
             </div>
             
             <div class="text-center mt-5">
@@ -539,9 +656,8 @@ sitemap: false
             <div class="footer-links">
                 <a href="https://indexes.ir/">صفحه اصلی</a>
                 <a href="https://indexes.ir/9">سعدی</a>
-                <a href="#">لینک نمونه ۱</a>
-                <a href="#">لینک نمونه ۲</a>
-                <!-- افزودن لینک‌های بیشتر -->
+                <a href="https://indexes.ir/5">حافظ</a>
+                <a href="https://indexes.ir/7">مولوی</a>
             </div>
         </div>
     </div>
