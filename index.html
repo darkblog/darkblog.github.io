@@ -125,48 +125,55 @@ layout: index.html
             font-size: 1.1rem;
         }
         
-        /* Floating Search */
-        .floating-search-container {
+        /* نوار جستجوی جدید بالای پست‌ها */
+        .posts-search-container {
+            max-width: 800px;
+            margin: -30px auto 30px;
+            padding: 0 15px;
             position: relative;
-            z-index: 20;
-            max-width: 700px;
-            width: 90%;
-            margin: -40px auto 30px; /* کاهش فاصله زیر جستجو */
+            z-index: 100;
         }
         
-        .floating-search {
+        .posts-search-box {
             background: white;
-            border-radius: 50px;
+            border-radius: 12px;
             padding: 0;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         
-        .floating-search:hover {
+        .posts-search-box:hover {
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
-        .search-box input {
-            padding: 16px 65px 16px 25px;
-            border-radius: 50px;
+        .search-box {
+            position: relative;
+        }
+        
+        .posts-search-box input {
+            padding: 15px 20px 15px 60px; /* تغییر جهت padding */
+            border-radius: 12px;
             font-size: 1.1rem;
             border: none;
             background: transparent;
-            height: 60px;
+            height: 56px;
+            width: 100%;
         }
         
-        .search-box input:focus {
+        .posts-search-box input:focus {
             box-shadow: none;
+            outline: none;
         }
         
-        .search-box .btn {
+        .posts-search-box .btn {
             position: absolute;
-            left: 8px;
-            top: 8px;
+            left: 8px; /* تغییر به چپ */
+            top: 50%;
+            transform: translateY(-50%);
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             padding: 0;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
@@ -176,13 +183,13 @@ layout: index.html
             transition: all 0.3s ease;
         }
         
-        .search-box .btn:hover {
-            transform: scale(1.05);
+        .posts-search-box .btn:hover {
+            transform: translateY(-50%) scale(1.05);
         }
         
-        .search-hint {
+        .posts-search-hint {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 12px;
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
@@ -191,7 +198,7 @@ layout: index.html
         .posts-container {
             max-width: 800px;
             margin: 0 auto;
-            padding-top: 20px; /* فاصله کوچک بالای پست‌ها */
+            padding: 0 15px;
         }
         
         .post-card {
@@ -316,14 +323,16 @@ layout: index.html
                 font-size: 1rem;
             }
             
-            .search-box input {
-                padding: 12px 50px 12px 15px;
-                height: 54px;
+            .posts-search-box input {
+                padding: 14px 15px 14px 50px; /* تغییر جهت padding */
+                height: 50px;
+                font-size: 1rem;
             }
             
-            .search-box .btn {
-                width: 40px;
-                height: 40px;
+            .posts-search-box .btn {
+                width: 36px;
+                height: 36px;
+                left: 7px; /* تغییر به چپ */
             }
         }
         
@@ -343,6 +352,15 @@ layout: index.html
             .modern-header p {
                 font-size: 1rem;
             }
+            
+            .posts-search-container {
+                margin-top: -20px;
+            }
+            
+            .posts-search-box input {
+                padding: 12px 12px 12px 45px; /* تغییر جهت padding */
+                height: 48px;
+            }
         }
     </style>
 </head>
@@ -360,17 +378,18 @@ layout: index.html
             </div>
         </div>
         
-        <!-- Floating Search Section -->
+        <!-- Container for Posts and Search -->
         <div class="container">
-            <div class="floating-search-container">
+            <!-- نوار جستجوی جدید بالای پست‌ها -->
+            <div class="posts-search-container">
                 <form action="https://www.google.com/search" method="get" target="_blank">
-                    <div class="search-box floating-search">
-                        <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجو..." required>
+                    <div class="search-box posts-search-box">
+                        <input type="text" name="q" class="form-control form-control-lg" placeholder="جستجوی شخصیت‌ها..." required>
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
-                <p class="search-hint">نام شخصیت مورد نظر خود را وارد کنید</p>
+                <p class="posts-search-hint">نام شخصیت مورد نظر خود را برای یافتن زندگینامه وارد کنید</p>
             </div>
             
             <!-- Posts Container -->
