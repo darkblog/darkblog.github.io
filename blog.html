@@ -16,7 +16,7 @@ sitemap: false
     <meta property="og:description" content="{{ site.description }}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
-    <meta property="og:image" content="https://indexes.ir/favicon.ico">
+    <meta property="og:image" content="#">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ site.url }}">
@@ -70,6 +70,11 @@ sitemap: false
             padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
+        }
+        
+        /* رفع مشکل خط زیر لینک‌ها */
+        a {
+            text-decoration: none !important;
         }
         
         /* Modern Minimalist Header Styles */
