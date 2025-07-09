@@ -128,7 +128,7 @@ sitemap: false
         /* نوار جستجوی جدید بالای پست‌ها */
         .posts-search-container {
             max-width: 800px;
-            margin: -30px auto 30px; /* فاصله منفی برای بالا کشیدن نوار */
+            margin: -30px auto 30px;
             padding: 0 15px;
             position: relative;
             z-index: 100;
@@ -152,7 +152,7 @@ sitemap: false
         }
         
         .posts-search-box input {
-            padding: 15px 60px 15px 20px;
+            padding: 15px 20px 15px 60px; /* تغییر جهت padding */
             border-radius: 12px;
             font-size: 1.1rem;
             border: none;
@@ -168,7 +168,7 @@ sitemap: false
         
         .posts-search-box .btn {
             position: absolute;
-            right: 8px; /* تغییر به راست برای RTL */
+            left: 8px; /* تغییر به چپ */
             top: 50%;
             transform: translateY(-50%);
             border-radius: 50%;
@@ -324,7 +324,7 @@ sitemap: false
             }
             
             .posts-search-box input {
-                padding: 14px 50px 14px 15px;
+                padding: 14px 15px 14px 50px; /* تغییر جهت padding */
                 height: 50px;
                 font-size: 1rem;
             }
@@ -332,7 +332,7 @@ sitemap: false
             .posts-search-box .btn {
                 width: 36px;
                 height: 36px;
-                right: 7px;
+                left: 7px; /* تغییر به چپ */
             }
         }
         
@@ -358,7 +358,7 @@ sitemap: false
             }
             
             .posts-search-box input {
-                padding: 12px 45px 12px 12px;
+                padding: 12px 12px 12px 45px; /* تغییر جهت padding */
                 height: 48px;
             }
         }
