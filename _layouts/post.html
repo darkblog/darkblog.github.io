@@ -625,16 +625,13 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // اضافه کردن کلاس فعال برای نشان دادن اسکرول
             const tables = document.querySelectorAll('.table-responsive');
             
             tables.forEach(table => {
-                // بررسی اگر جدول نیاز به اسکرول افقی دارد
                 if (table.scrollWidth > table.clientWidth) {
                     table.classList.add('has-scroll');
                 }
                 
-                // اضافه کردن رویداد اسکرول برای نشان دادن اسکرول
                 table.addEventListener('scroll', function() {
                     if (this.scrollLeft > 0) {
                         this.classList.add('scrolling');
