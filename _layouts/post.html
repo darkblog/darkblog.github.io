@@ -238,7 +238,7 @@
         
         .post-container {
             max-width: 800px;
-            margin: 0 auto 60px;
+            margin: 0 auto;
             background-color: var(--card-bg);
             border-radius: 16px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -384,7 +384,6 @@
             justify-content: center;
             color: var(--primary-color);
             font-weight: 600;
-            margin: 40px auto 0;
             text-decoration: none;
             transition: all 0.3s ease;
             padding: 12px 30px;
@@ -407,6 +406,17 @@
         
         .back-to-home:hover i {
             transform: translateX(5px);
+        }
+        
+        .button-spacer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2.5rem 0;
+        }
+        
+        .button-spacer + .simple-footer {
+            margin-top: 0;
         }
         
         .footer-grid {
@@ -464,6 +474,10 @@
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
+            
+            .button-spacer {
+                margin: 2rem 0;
+            }
         }
         
         @media (max-width: 576px) {
@@ -498,6 +512,10 @@
                 padding: 8px 12px;
                 font-size: 0.85rem;
             }
+            
+            .button-spacer {
+                margin: 1.5rem 0;
+            }
         }
         
         @media (max-width: 480px) {
@@ -514,12 +532,20 @@
             .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
                 padding: 0 6px;
             }
+            
+            .button-spacer {
+                margin: 1.2rem 0;
+            }
+            
+            .back-to-home {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
         }
         
         .simple-footer {
             background-color: #343a40;
             padding: 15px 0;
-            margin-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -592,7 +618,7 @@
     </nav>
         
     <main class="container" role="main">
-        <article class="post-container" itemscope itemtype="https://schema.org/Article">
+        <article class="post-container" itemscope itemtype="https://chema.org/Article">
             <div class="post-content" itemprop="articleBody">
                 {{ content }}
                 
@@ -601,14 +627,14 @@
                     "{{ page.quote }}"
                 </blockquote>
                 {% endif %}
-            </article>
-            
-            <div class="text-center mt-5">
-                <a href="https://indexes.ir" class="back-to-home" aria-label="بازگشت به صفحه اصلی">
-                    <i class="fas fa-arrow-right"></i>
-                    بازگشت به صفحه اصلی
-                </a>
             </div>
+        </article>
+            
+        <div class="button-spacer">
+            <a href="https://indexes.ir" class="back-to-home" aria-label="بازگشت به صفحه اصلی">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به صفحه اصلی
+            </a>
         </div>
         
         <footer class="simple-footer" role="contentinfo">
