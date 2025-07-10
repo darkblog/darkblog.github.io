@@ -35,13 +35,21 @@
       "headline": "{{ page.title }}",
       "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
       "author": {
-        "@type": "Organization",
-        "name": "indexes.ir",
-        "url": "https://indexes.ir"
+        "@type": "Person",
+        "name": "ehsan chehri",
+        "url": "https://www.linkedin.com/in/ehsanchehri"
       },
       "publisher": {
-        "@type": "Organization",
-        "name": "indexes.ir",
+      "@type": "Organization",
+      "name": "زندگینامه مشاهیر",
+      "url": "https://indexes.ir",
+      "logo": {
+      "@type": "ImageObject",
+      "url": "https://indexes.ir/logo.png",
+      "width": 600,
+      "height": 60
+      },
+      "sameAs": "https://x.com/minigash"
       },
       "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
       "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
