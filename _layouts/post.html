@@ -56,7 +56,7 @@
       "sameAs": "https://x.com/pbstwi"
       },
       "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
-      "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
       "articleBody": "{{ content | strip_html | truncate: 10000 }}"
     }
     </script>
