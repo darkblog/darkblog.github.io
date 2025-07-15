@@ -131,14 +131,15 @@ sitemap: false
         }
         
         .navbar-brand {
-            font-weight: 700;
-            font-size: 1.2rem;
             display: flex;
             align-items: center;
+            margin: 0 auto;
+            padding: 5px 0;
         }
         
-        .navbar-brand i {
-            margin-left: 8px;
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
         }
         
         .navbar-nav .nav-link {
@@ -633,9 +634,9 @@ sitemap: false
     <!-- Fixed Header -->
     <nav class="navbar navbar-expand-lg fixed-header navbar-dark">
         <div class="container">
+            <!-- Centered logo instead of text -->
             <a class="navbar-brand" href="https://indexes.ir/">
-                <i class="fas fa-book-open"></i>
-                زندگینامه مشاهیر
+                <img src="https://indexes.ir/logo.png" alt="زندگینامه مشاهیر">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
@@ -643,32 +644,15 @@ sitemap: false
             </button>
             
             <div class="collapse navbar-collapse" id="navbarMenu">
+                <!-- Simplified menu with only one sample link -->
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-bookmark me-1"></i>
-                            دسته‌بندی‌ها
-                        </a>
-                        <!-- Simplified dropdown menu -->
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-users me-2"></i>لینک آزمایشی</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="fas fa-calendar-day me-1"></i>
-                            مشاهیر امروز
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-star me-1"></i>
-                            برترین‌ها
+                            <i class="fas fa-link me-1"></i>
+                            لینک نمونه
                         </a>
                     </li>
                 </ul>
-                
-                <!-- Search section removed -->
             </div>
         </div>
     </nav>
@@ -689,16 +673,9 @@ sitemap: false
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <a href="https://indexes.ir/" itemprop="item">
-                            <span itemprop="name">زندگینامه مشاهیر</span>
+                            <i class="fas fa-home"></i>
                         </a>
                         <meta itemprop="position" content="1" />
-                    </li>
-                    <li class="breadcrumb-item active" 
-                        itemprop="itemListElement" 
-                        itemscope itemtype="https://schema.org/ListItem"
-                        aria-current="page">
-                        <span itemprop="name">{{ page.title }}</span>
-                        <meta itemprop="position" content="2" />
                     </li>
                 </ol>
             </div>
@@ -720,8 +697,6 @@ sitemap: false
                 {% endif %}
             </div>
         </article>
-            
-        <!-- Back to home button removed -->
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
