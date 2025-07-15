@@ -3,168 +3,100 @@ sitemap: false
 ---
 
 <!DOCTYPE html>
-<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/Article">
+<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/WebPage">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title itemprop="headline">{{ page.title }}</title>
-    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
-    <meta name="author" content="pbstwi">
+    <title itemprop="name">{{ site.title }}</title>
+    <meta name="description" itemprop="description" content="{{ site.description }}">
+    <meta name="keywords" content="زندگینامه, بیوگرافی, شخصیت‌های معروف, مشاهیر ایران, مشاهیر جهان, تاریخ">
     
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="زندگینامه مشاهیر">
+    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:description" content="{{ site.description }}">
+    <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/logo.png">
-    
+
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/logo.png">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    <meta name="theme-color" content="#dc3545">
+    
+    <link rel="canonical" href="{{ site.url }}">
     
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Article",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ page.url | absolute_url }}"
-      },
-      "headline": "{{ page.title }}",
-      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
-      "author": {
-        "@type": "Person",
-        "name": "pbstwi",
-        "sameAs": "https://x.com/pbstwi"
-      },
-      "publisher": {
-      "@type": "Organization",
-      "name": "زندگینامه مشاهیر",
-      "url": "https://indexes.ir",
-      "logo": {
-      "@type": "ImageObject",
-      "url": "https://indexes.ir/logo.png",
-      "width": 512,
-      "height": 512
-      },
-      "sameAs": "https://x.com/pbstwi"
-      },
-      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
-      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
-      "articleBody": "{{ content | strip_html | truncate: 10000 }}"
+      "@type": "WebSite",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}",
+      "description": "{{ site.description }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.google.com/search?q={search_term_string}&sitesearch=indexes.ir",
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "زندگینامه مشاهیر",
-          "item": "https://indexes.ir"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "{{ page.title }}",
-          "item": "{{ page.url | absolute_url }}"
-        }
-      ]
-    }
-    </script>
+    <meta name="theme-color" content="#0d6efd">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #dc3545;
-            --primary-dark: #a71d2a;
-            --primary-light: #ff6b7a;
-            --text-color: #333;
-            --text-secondary: #6c757d;
-            --light-bg: #f8f9fa;
+            --primary-color: #0d6efd;
+            --primary-dark: #0b5ed7;
+            --primary-light: #3d8bfd;
+            --secondary-color: #6c757d;
+            --accent-color: #fd7e14;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 180px;
+            --header-height: 320px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--light-bg);
-            padding-top: 0;
-            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            color: var(--dark-color);
             line-height: 1.8;
-            margin: 0;
+            padding-top: 0;
+            min-height: 100vh;
         }
         
         a {
             text-decoration: none !important;
             color: var(--primary-color);
+            transition: var(--transition);
         }
         
-        .top-menu {
-            background-color: #fff;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .menu-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        
-        .menu-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-            font-weight: 500;
-        }
-        
-        .menu-links a:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-        
-        .post-header {
+        .modern-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
             height: var(--header-height);
             position: relative;
             overflow: hidden;
             padding: 0;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+            border-radius: 0 0 40px 40px;
         }
         
-        .post-header::before {
+        .modern-header::before {
             content: "";
             position: absolute;
             top: 0;
@@ -175,481 +107,591 @@ sitemap: false
             pointer-events: none;
         }
         
+        .modern-header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+        
         .header-content {
             position: relative;
             z-index: 10;
             max-width: 800px;
             padding: 0 20px;
         }
-
-        .post-title {
-            font-size: 2.5rem;
+        
+        .modern-header h1 {
             font-weight: 900;
-            margin: 10px 0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            color: white;
-            line-height: 1.3;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: -0.5px;
         }
         
-        .breadcrumb-container {
-            max-width: 800px;
+        .modern-header p {
+            opacity: 0.92;
+            font-size: 1.35rem;
+            max-width: 700px;
             margin: 0 auto 30px;
-            padding: 0 15px;
+            font-weight: 300;
         }
         
-        .breadcrumb-nav {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 12px 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-badge i {
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .posts-search-container {
+            max-width: 800px;
+            margin: -40px auto 40px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .posts-search-box {
+            background: white;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .posts-search-box:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .posts-search-box input {
+            padding: 15px 20px 15px 60px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            border: none;
+            background: transparent;
+            height: 60px;
+            width: 100%;
+        }
+        
+        .posts-search-box input:focus {
+            box-shadow: none;
+            outline: none;
+        }
+        
+        .posts-search-box .btn {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            padding: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .posts-search-box .btn:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .posts-search-hint {
+            text-align: center;
+            margin-top: 15px;
+            color: var(--secondary-color);
             font-size: 0.95rem;
         }
         
-        .breadcrumb-nav .breadcrumb {
-            margin-bottom: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
+        .posts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
         
-        .breadcrumb-nav .breadcrumb-item {
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .post-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            overflow: hidden;
+            border: none;
+            display: block;
+            height: 100%;
+            position: relative;
+            transform: translateY(0);
+        }
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .post-image {
+            height: 180px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
             display: flex;
             align-items: center;
-        }
-        
-        .breadcrumb-nav .breadcrumb-item a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .breadcrumb-nav .breadcrumb-item a:hover {
-            color: var(--primary-dark);
-        }
-        
-        .breadcrumb-nav .breadcrumb-item a i {
-            margin-left: 8px;
-        }
-        
-        .breadcrumb-nav .breadcrumb-item.active {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
-            content: "›";
-            color: var(--text-secondary);
-            padding: 0 10px;
-        }
-        
-        .post-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
+            justify-content: center;
             position: relative;
-            padding: 40px;
+            overflow: hidden;
+        }
+        
+        .post-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230b5ed7' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .post-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         .post-content {
-            font-size: 1.1rem;
-            line-height: 1.9;
+            padding: 25px;
         }
         
-        .post-content p {
-            margin-bottom: 1.8rem;
-            text-align: justify;
-        }
-        
-        .post-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin: 40px 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            display: block;
-        }
-        
-        .post-content blockquote {
-            border-right: 4px solid var(--primary-color);
-            padding: 25px 30px;
-            margin: 40px 0;
-            background-color: rgba(220, 53, 69, 0.03);
-            border-radius: 12px;
-            font-style: italic;
-            font-size: 1.25rem;
-            line-height: 1.9;
-            position: relative;
-        }
-        
-        .post-content blockquote::before {
-            content: """;
-            position: absolute;
-            top: -20px;
-            right: 20px;
-            font-size: 6rem;
-            color: rgba(220, 53, 69, 0.1);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-        
-        .post-content h2 {
+        .post-title {
             font-weight: 800;
-            margin: 50px 0 25px;
-            color: var(--primary-dark);
-            padding-right: 15px;
-            border-right: 3px solid var(--primary-color);
-            font-size: 1.8rem;
-        }
-        
-        .post-content h3 {
-            font-weight: 700;
-            margin: 40px 0 20px;
-            color: var(--primary-dark);
+            color: var(--dark-color);
+            margin-bottom: 15px;
             font-size: 1.5rem;
-        }
-        
-        .post-content ul, .post-content ol {
-            padding-right: 30px;
-            margin-bottom: 25px;
-        }
-        
-        .post-content li {
-            margin-bottom: 10px;
-        }
-        
-        .post-content .table-container {
-            margin: 30px 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .post-content .table-responsive {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-        }
-        
-        .post-content table {
-            width: 100%;
-            min-width: 100%;
-            border-collapse: collapse;
-            margin: 0;
-        }
-        
-        .post-content table th {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            font-weight: 700;
-            padding: 15px 20px;
-            text-align: right;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            white-space: nowrap;
-        }
-        
-        .post-content table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-        }
-        
-        .post-content table tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-        
-        .post-content table tr:hover td {
-            background-color: rgba(220, 53, 69, 0.03);
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 4px;
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 4px;
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-color);
-        }
-        
-        .back-to-home {
-            display: inline-flex;
+            line-height: 1.4;
+            position: relative;
+            min-height: 70px;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
+        }
+        
+        .post-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        
+        .post-category {
+            background: rgba(13, 110, 253, 0.1);
+            color: var(--primary-dark);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 12px 30px;
-            border-radius: 50px;
-            background-color: rgba(220, 53, 69, 0.1);
-            border: 1px solid rgba(220, 53, 69, 0.2);
-            max-width: 250px;
         }
         
-        .back-to-home:hover {
-            background-color: rgba(220, 53, 69, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            margin-top: 20px;
         }
         
-        .back-to-home i {
-            margin-left: 8px;
+        .read-more i {
+            margin-right: 8px;
             transition: transform 0.3s ease;
         }
         
-        .back-to-home:hover i {
+        .post-card:hover .read-more {
+            color: var(--primary-dark);
+        }
+        
+        .post-card:hover .read-more i {
             transform: translateX(5px);
         }
         
-        .button-spacer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2.5rem 0;
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            font-weight: 800;
+            color: var(--dark-color);
+            text-align: center;
+            padding-bottom: 15px;
         }
         
-        .button-spacer + .simple-footer {
-            margin-top: 0;
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
         }
         
-        .simple-footer {
-            background-color: #343a40;
-            padding: 15px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
+        .category-filter {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 25px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
+            gap: 10px;
+            margin-bottom: 40px;
         }
-
+        
+        .category-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .category-btn:hover, 
+        .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #000);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+            border-radius: 40px 40px 0 0;
+        }
+        
+        .footer h5 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer h5::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
         .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            transition: var(--transition);
         }
-
+        
         .footer-links a:hover {
             color: white;
-            border-bottom-color: #dc3545;
+            transform: translateX(5px);
         }
-
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .posts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
-            .menu-links, .footer-links {
-                gap: 15px;
+            .modern-header {
+                height: 280px;
             }
             
-            .menu-links a, .footer-links a {
-                font-size: 0.95rem;
+            .modern-header h1 {
+                font-size: 2.5rem;
             }
             
-            .post-header {
+            .modern-header p {
+                font-size: 1.15rem;
+            }
+            
+            .post-image {
                 height: 160px;
             }
             
-            .post-container {
-                padding: 30px;
+            .post-icon {
+                font-size: 3.5rem;
+            }
+            
+            .post-content {
+                padding: 20px;
             }
             
             .post-title {
-                font-size: 2rem;
+                font-size: 1.35rem;
+                min-height: 60px;
             }
             
-            .post-content h2 {
-                font-size: 1.6rem;
+            .posts-search-box input {
+                padding: 14px 15px 14px 50px;
+                height: 55px;
+                font-size: 1rem;
             }
             
-            .post-content h3 {
-                font-size: 1.3rem;
-            }
-            
-            .post-content table th,
-            .post-content table td {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-            
-            .breadcrumb-container {
-                margin-bottom: 20px;
-            }
-            
-            .breadcrumb-nav {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .button-spacer {
-                margin: 2rem 0;
+            .posts-search-box .btn {
+                width: 40px;
+                height: 40px;
+                left: 7px;
             }
         }
         
         @media (max-width: 576px) {
-            .post-header {
-                height: 140px;
+            .modern-header {
+                height: 250px;
             }
             
-            .post-container {
-                padding: 25px 20px;
+            .modern-header h1 {
+                font-size: 2rem;
             }
             
-            .post-content {
+            .modern-header p {
                 font-size: 1rem;
             }
             
-            .post-title {
-                font-size: 1.7rem;
+            .posts-search-container {
+                margin-top: -30px;
             }
             
-            .post-content blockquote {
-                font-size: 1.1rem;
-                padding: 20px;
+            .posts-search-box input {
+                padding: 12px 12px 12px 45px;
+                height: 50px;
             }
             
-            .post-content table th,
-            .post-content table td {
-                padding: 8px 10px;
-                font-size: 0.85rem;
+            .section-title {
+                font-size: 1.6rem;
             }
             
-            .breadcrumb-nav {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-            
-            .button-spacer {
-                margin: 1.5rem 0;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .menu-links, .footer-links {
-                gap: 8px;
-            }
-            
-            .menu-links a, .footer-links a {
-                font-size: 0.85rem;
-            }
-            
-            .post-title {
-                font-size: 1.5rem;
-            }
-            
-            .back-to-home {
-                padding: 10px 25px;
-                font-size: 0.95rem;
+            .posts-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
     </style>
 </head>
-<body itemscope itemtype="https://schema.org/Article">
-    <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
-        <ul class="menu-links">
-            <li><a href="https://indexes.ir/">زندگینامه مشاهیر</a></li>
-            <li><a href="https://indexes.ir/89">شکسپیر</a></li>
-            <li><a href="https://indexes.ir/88">چخوف</a></li>
-            <li><a href="https://indexes.ir/87">آلبر کامو</a></li>
-            <li><a href="https://indexes.ir/86">کافکا</a></li>
-        </ul>
-    </nav>
-    
-    <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
-        <div class="header-content">
-            <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
-        </div>
-    </header>
-    
-    <nav class="container" aria-label="breadcrumb">
-        <div class="breadcrumb-container">
-            <div class="breadcrumb-nav" itemscope itemtype="https://schema.org/BreadcrumbList">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="https://indexes.ir/" itemprop="item">
-                            <i class="fas fa-home me-2"></i>
-                            <span itemprop="name">صفحه اصلی</span>
-                        </a>
-                        <meta itemprop="position" content="1" />
-                    </li>
-                    <li class="breadcrumb-item active" 
-                        itemprop="itemListElement" 
-                        itemscope itemtype="https://schema.org/ListItem"
-                        aria-current="page">
-                        <span itemprop="name">{{ page.title }}</span>
-                        <meta itemprop="position" content="2" />
-                    </li>
-                </ol>
+<body itemscope itemtype="https://schema.org/Blog">
+    <div class="container-fluid px-0">
+        <header class="modern-header" role="banner">
+            <div class="header-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>صفحه اصلی</span>
+                </div>
+                <h1 itemprop="headline">{{ site.title }}</h1>
+                <p itemprop="description">{{ site.description }}</p>
             </div>
-        </div>
-    </nav>
+        </header>
         
-    <main class="container" role="main">
-        <article class="post-container" itemscope itemtype="https://schema.org/Article">
-            <div class="post-content" itemprop="articleBody">
-                {{ content }}
-                
-                {% if page.quote %}
-                <blockquote itemprop="citation">
-                    "{{ page.quote }}"
-                </blockquote>
-                {% endif %}
+        <main class="container" role="main">
+            <div class="posts-search-container">
+                <form action="https://www.google.com/search" method="get" target="_blank" role="search">
+                    <div class="search-box posts-search-box">
+                        <input type="text" 
+                               name="q" 
+                               class="form-control form-control-lg" 
+                               placeholder="جستجوی شخصیت‌ها..." 
+                               required
+                               aria-label="جستجوی زندگینامه شخصیت‌ها"
+                               aria-required="true">
+                        <input type="hidden" name="sitesearch" value="indexes.ir">
+                        <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <p class="posts-search-hint">نام شخصیت مورد نظر خود را برای یافتن زندگینامه وارد کنید</p>
             </div>
-        </article>
             
-        <div class="button-spacer">
-            <a href="https://indexes.ir/" class="back-to-home" aria-label="زندگینامه مشاهیر">
-                <i class="fas fa-arrow-right"></i>
-                زندگینامه مشاهیر
-            </a>
-        </div>
+            <div class="category-filter">
+                <button class="category-btn active">همه</button>
+                <button class="category-btn">ایرانی</button>
+                <button class="category-btn">جهانی</button>
+                <button class="category-btn">تاریخی</button>
+                <button class="category-btn">معاصر</button>
+                <button class="category-btn">فرهنگی</button>
+                <button class="category-btn">علمی</button>
+            </div>
+            
+            <h2 class="section-title">شخصیت‌های برجسته</h2>
+            
+            <div class="posts-container">
+                <div class="posts-grid">
+                    {% for post in site.posts limit:200 %}
+                    <article class="post-card" 
+                             itemscope 
+                             itemtype="https://schema.org/BlogPosting"
+                             role="article"
+                             aria-label="پست: {{ post.title }}">
+                        <a href="{{ post.url }}" itemprop="url">
+                            <div class="post-image">
+                                <div class="post-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <h2 class="post-title" itemprop="headline">{{ post.title }}</h2>
+                                <div class="post-meta">
+                                    <span class="post-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{ post.date | date: "%Y/%m/%d" }}
+                                    </span>
+                                    <span class="post-category">شخصیت تاریخی</span>
+                                </div>
+                                <div class="read-more">
+                                    <span>مطالعه زندگینامه</span>
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
         
-        <footer class="simple-footer" role="contentinfo">
-            <ul class="footer-links">
-                <li><a href="https://indexes.ir/47">حافظ</a></li>
-                <li><a href="https://indexes.ir/9">سعدی</a></li>
-                <li><a href="https://indexes.ir/70">هاوکینگ</a></li>
-                <li><a href="https://indexes.ir/69">داروین</a></li>
-            </ul>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <h5>درباره ما</h5>
+                        <p>پایگاه تخصصی زندگینامه شخصیت‌های برجسته ایرانی و جهانی با هدف حفظ و انتقال میراث فرهنگی و تاریخی ایجاد شده است.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h5>دسته‌بندی‌ها</h5>
+                        <div class="footer-links">
+                            <a href="#">شخصیت‌های ایرانی</a>
+                            <a href="#">شخصیت‌های جهانی</a>
+                            <a href="#">شخصیت‌های تاریخی</a>
+                            <a href="#">شخصیت‌های معاصر</a>
+                            <a href="#">دانشمندان</a>
+                            <a href="#">هنرمندان</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h5>لینک‌های مفید</h5>
+                        <div class="footer-links">
+                            <a href="#">تماس با ما</a>
+                            <a href="#">درباره ما</a>
+                            <a href="#">همکاری با ما</a>
+                            <a href="#">قوانین و مقررات</a>
+                            <a href="#">حریم خصوصی</a>
+                            <a href="#">پرسش‌های متداول</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    © ۲۰۲۴ تمامی حقوق برای {{ site.title }} محفوظ است.
+                </div>
+            </div>
         </footer>
-    </main>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    
     <script>
+        // Filter functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const tables = document.querySelectorAll('.table-responsive');
+            const filterButtons = document.querySelectorAll('.category-btn');
             
-            tables.forEach(table => {
-                if (table.scrollWidth > table.clientWidth) {
-                    table.classList.add('has-scroll');
-                }
-                
-                table.addEventListener('scroll', function() {
-                    if (this.scrollLeft > 0) {
-                        this.classList.add('scrolling');
-                    } else {
-                        this.classList.remove('scrolling');
-                    }
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Here you would typically filter the posts
+                    // For this example, we'll just show a message
+                    console.log('Filter by: ' + this.textContent);
                 });
             });
         });
