@@ -7,7 +7,6 @@ sitemap: false
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <title itemprop="headline">{{ page.title }}</title>
     <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
@@ -27,9 +26,7 @@ sitemap: false
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/logo.png">
-    
     <link rel="canonical" href="{{ page.url | absolute_url }}">
-    
     <meta name="theme-color" content="#dc3545">
     
     <script type="application/ld+json">
@@ -87,9 +84,7 @@ sitemap: false
     </script>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
@@ -113,51 +108,45 @@ sitemap: false
             padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
+            margin: 0;
         }
         
         a {
             text-decoration: none !important;
+            color: var(--primary-color);
         }
         
-        /* نوار منوی جدید در بالای صفحه */
-        .top-navbar {
-            background-color: #343a40;
-            padding: 12px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* منوی ساده جدید در بالای صفحه */
+        .top-menu {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .nav-links {
+        .menu-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
             padding: 0;
             margin: 0;
+            list-style: none;
         }
         
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
+        .menu-links a {
+            color: var(--text-color);
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 1.1rem;
             padding: 5px;
             border-bottom: 2px solid transparent;
-            display: flex;
-            align-items: center;
+            font-weight: 500;
         }
         
-        .nav-links a i {
-            margin-left: 8px;
-            font-size: 1.2rem;
-        }
-        
-        .nav-links a:hover {
-            color: white;
-            border-bottom-color: #dc3545;
+        .menu-links a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
         }
         
         .post-header {
@@ -250,6 +239,8 @@ sitemap: false
         .breadcrumb-nav .breadcrumb {
             margin-bottom: 0;
             padding: 0;
+            list-style: none;
+            display: flex;
         }
         
         .breadcrumb-nav .breadcrumb-item {
@@ -466,35 +457,45 @@ sitemap: false
             margin-top: 0;
         }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        .simple-footer {
+            background-color: #343a40;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            border-bottom-color: #dc3545;
+        }
+
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .nav-links {
+            .menu-links, .footer-links {
                 gap: 15px;
             }
             
-            .nav-links a {
+            .menu-links a, .footer-links a {
                 font-size: 0.95rem;
             }
-        }
-        
-        @media (max-width: 992px) {
-            .post-content table th,
-            .post-content table td {
-                padding: 12px 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
+            
             .post-header {
                 height: 220px;
             }
@@ -532,15 +533,6 @@ sitemap: false
             
             .button-spacer {
                 margin: 2rem 0;
-            }
-            
-            .nav-links {
-                gap: 12px;
-            }
-            
-            .nav-links a i {
-                font-size: 1rem;
-                margin-left: 5px;
             }
         }
         
@@ -580,103 +572,34 @@ sitemap: false
             .button-spacer {
                 margin: 1.5rem 0;
             }
-            
-            .nav-links {
-                gap: 10px;
-            }
-            
-            .nav-links a {
-                font-size: 0.9rem;
-            }
         }
         
         @media (max-width: 480px) {
-            .post-content .table-responsive {
-                border-radius: 8px;
+            .menu-links, .footer-links {
+                gap: 8px;
             }
             
-            .post-content table th,
-            .post-content table td {
-                padding: 6px 8px;
-                font-size: 0.8rem;
-            }
-            
-            .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
-                padding: 0 6px;
-            }
-            
-            .button-spacer {
-                margin: 1.2rem 0;
+            .menu-links a, .footer-links a {
+                font-size: 0.85rem;
             }
             
             .back-to-home {
                 padding: 10px 25px;
                 font-size: 0.95rem;
             }
-            
-            .nav-links {
-                gap: 8px;
-            }
-            
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-            
-            .nav-links a i {
-                font-size: 0.9rem;
-            }
-        }
-        
-        .simple-footer {
-            background-color: #343a40;
-            padding: 15px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            border-bottom-color: #dc3545;
-        }
-
-        @media (max-width: 768px) {
-            .footer-links {
-                gap: 15px;
-            }
-            
-            .footer-links a {
-                font-size: 0.95rem;
-            }
         }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Article">
-    <!-- نوار منوی جدید در بالای صفحه -->
-    <nav class="top-navbar" role="navigation" aria-label="منوی اصلی">
-        <div class="nav-links">
-            <a href="https://indexes.ir/"><i class="fas fa-home"></i> صفحه اصلی</a>
-            <a href="https://indexes.ir/categories"><i class="fas fa-list"></i> دسته بندی‌ها</a>
-            <a href="https://indexes.ir/tags"><i class="fas fa-tags"></i> برچسب‌ها</a>
-            <a href="https://indexes.ir/search"><i class="fas fa-search"></i> جستجو</a>
-            <a href="https://indexes.ir/about"><i class="fas fa-info-circle"></i> درباره ما</a>
-        </div>
+    <!-- منوی ساده جدید در بالای صفحه -->
+    <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
+        <ul class="menu-links">
+            <li><a href="https://indexes.ir/">صفحه اصلی</a></li>
+            <li><a href="https://indexes.ir/categories">دسته بندی‌ها</a></li>
+            <li><a href="https://indexes.ir/tags">برچسب‌ها</a></li>
+            <li><a href="https://indexes.ir/search">جستجو</a></li>
+            <li><a href="https://indexes.ir/about">درباره ما</a></li>
+        </ul>
     </nav>
     
     <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
@@ -712,75 +635,19 @@ sitemap: false
     </nav>
         
     <main class="container" role="main">
-        <article class="post-container" itemscope itemtype="https://chema.org/Article">
+        <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
                 <h1 itemprop="headline" style="font-weight: 900; font-size: 2.6rem; margin-bottom: 1.8rem; color: var(--primary-dark); text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 20px;">
                     {{ page.title }}
                 </h1>
                 
-                <p>زندگینامه‌ها آینه‌ای از تجربیات و دستاوردهای انسان‌های بزرگ هستند که می‌توانند الهام‌بخش نسل‌های آینده باشند. در این صفحه، به بررسی زندگی و آثار یکی از مشاهیر برجسته جهان می‌پردازیم.</p>
+                {{ content }}
                 
-                <h2>تولد و سال‌های ابتدایی زندگی</h2>
-                <p>در یک روز بهاری در خانوادهای متوسط متولد شد. پدرش معلم و مادرش خانهدار بود. از همان کودکی، نبوغ و استعدادش در زمینه‌های مختلف آشکار شد. در سنین پایین شروع به خواندن کتاب‌های پیچیده کرد و در مدرسه همیشه از همسالان خود جلوتر بود.</p>
-                
-                <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="محیط رشد و پرورش" style="max-width: 100%;">
-                
-                <h2>تحصیلات و شکل‌گیری شخصیت</h2>
-                <p>تحصیلات دانشگاهی خود را در رشته‌ای که بعدها به آن شهرت جهانی یافت، آغاز کرد. در دوران دانشجویی، مقالات متعددی منتشر کرد که توجه اساتید و محافل علمی را به خود جلب نمود. پس از فارغ‌التحصیلی، به تحقیق و پژوهش در حوزه تخصصی خود ادامه داد.</p>
-                
-                <h3>دستاوردهای مهم علمی</h3>
-                <ul>
-                    <li>کشف نظریه‌ای که تحول بزرگی در رشته تخصصی‌اش ایجاد کرد</li>
-                    <li>تألیف بیش از ۱۰ کتاب مرجع در زمینه تخصصی</li>
-                    <li>ارائه روش‌های نوین برای حل مشکلات رایج در حوزه فعالیتش</li>
-                    <li>تدریس در برجسته‌ترین دانشگاه‌های جهان</li>
-                </ul>
-                
-                <blockquote>
-                    "موفقیت حاصل تلاش مستمر و پشتکار است. هیچ کس یک شبه به جایگاه بزرگی نمی‌رسد."
+                {% if page.quote %}
+                <blockquote itemprop="citation">
+                    "{{ page.quote }}"
                 </blockquote>
-                
-                <h2>چالش‌ها و موانع</h2>
-                <p>مسیر زندگی این شخصیت برجسته هموار نبود. در طول زندگی با چالش‌های متعددی روبرو شد که هر کدام می‌توانست مسیر زندگی‌اش را تغییر دهد. اما با اراده قوی و پشتکار فراوان، بر همه این مشکلات غلبه کرد و به اهداف والای خود دست یافت.</p>
-                
-                <div class="table-container">
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>سال</th>
-                                    <th>رویداد مهم</th>
-                                    <th>دستاورد</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>۱۹۸۵</td>
-                                    <td>انتشار اولین مقاله علمی</td>
-                                    <td>برنده جایزه بهترین مقاله سال</td>
-                                </tr>
-                                <tr>
-                                    <td>۱۹۹۲</td>
-                                    <td>تألیف کتاب مرجع</td>
-                                    <td>بهترین کتاب علمی سال</td>
-                                </tr>
-                                <tr>
-                                    <td>۲۰۰۱</td>
-                                    <td>کشف نظریه جدید</td>
-                                    <td>جایزه نوبل در رشته تخصصی</td>
-                                </tr>
-                                <tr>
-                                    <td>۲۰۱۰</td>
-                                    <td>تأسیس مؤسسه تحقیقاتی</td>
-                                    <td>پرورش نسل جدیدی از دانشمندان</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <h2>میراث و تأثیر بر جهان</h2>
-                <p>میراث این شخصیت بزرگ فراتر از دستاوردهای علمی اوست. او الهام‌بخش میلیون‌ها انسان در سراسر جهان بوده و نشان داده است که با اراده و پشتکار می‌توان بر هر مانعی غلبه کرد و به اهداف بزرگ دست یافت. روش‌ها و نظریه‌های او هنوز هم در دانشگاه‌ها و مراکز تحقیقاتی سراسر جهان تدریس و به کار گرفته می‌شود.</p>
+                {% endif %}
             </div>
         </article>
             
@@ -792,12 +659,12 @@ sitemap: false
         </div>
         
         <footer class="simple-footer" role="contentinfo">
-            <div class="footer-links">
-                <a href="https://indexes.ir/47">حافظ</a>
-                <a href="https://indexes.ir/9">سعدی</a>
-                <a href="https://indexes.ir/70">هاوکینگ</a>
-                <a href="https://indexes.ir/69">داروین</a>
-            </div>
+            <ul class="footer-links">
+                <li><a href="https://indexes.ir/47">حافظ</a></li>
+                <li><a href="https://indexes.ir/9">سعدی</a></li>
+                <li><a href="https://indexes.ir/70">هاوکینگ</a></li>
+                <li><a href="https://indexes.ir/69">داروین</a></li>
+            </ul>
         </footer>
     </main>
     
@@ -819,18 +686,6 @@ sitemap: false
                         this.classList.remove('scrolling');
                     }
                 });
-            });
-            
-            // افزودن کلاس فعال به لینک منو
-            const currentPage = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                    link.style.borderBottomColor = '#dc3545';
-                    link.style.color = 'white';
-                }
             });
         });
     </script>
