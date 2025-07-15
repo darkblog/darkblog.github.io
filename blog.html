@@ -119,6 +119,47 @@ sitemap: false
             text-decoration: none !important;
         }
         
+        /* نوار منوی جدید در بالای صفحه */
+        .top-navbar {
+            background-color: #343a40;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a i {
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+            border-bottom-color: #dc3545;
+        }
+        
         .post-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
@@ -436,6 +477,14 @@ sitemap: false
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 0.95rem;
+            }
         }
         
         @media (max-width: 992px) {
@@ -484,6 +533,15 @@ sitemap: false
             .button-spacer {
                 margin: 2rem 0;
             }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-links a i {
+                font-size: 1rem;
+                margin-left: 5px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -522,6 +580,14 @@ sitemap: false
             .button-spacer {
                 margin: 1.5rem 0;
             }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -546,6 +612,18 @@ sitemap: false
             .back-to-home {
                 padding: 10px 25px;
                 font-size: 0.95rem;
+            }
+            
+            .nav-links {
+                gap: 8px;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            
+            .nav-links a i {
+                font-size: 0.9rem;
             }
         }
         
@@ -590,6 +668,17 @@ sitemap: false
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Article">
+    <!-- نوار منوی جدید در بالای صفحه -->
+    <nav class="top-navbar" role="navigation" aria-label="منوی اصلی">
+        <div class="nav-links">
+            <a href="https://indexes.ir/"><i class="fas fa-home"></i> صفحه اصلی</a>
+            <a href="https://indexes.ir/categories"><i class="fas fa-list"></i> دسته بندی‌ها</a>
+            <a href="https://indexes.ir/tags"><i class="fas fa-tags"></i> برچسب‌ها</a>
+            <a href="https://indexes.ir/search"><i class="fas fa-search"></i> جستجو</a>
+            <a href="https://indexes.ir/about"><i class="fas fa-info-circle"></i> درباره ما</a>
+        </div>
+    </nav>
+    
     <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
         <div class="header-content">
             <div class="hero-badge">
@@ -628,18 +717,75 @@ sitemap: false
                 <h1 itemprop="headline" style="font-weight: 900; font-size: 2.6rem; margin-bottom: 1.8rem; color: var(--primary-dark); text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 20px;">
                     {{ page.title }}
                 </h1>
-                {{ content }}
                 
-                {% if page.quote %}
-                <blockquote itemprop="citation">
-                    "{{ page.quote }}"
+                <p>زندگینامه‌ها آینه‌ای از تجربیات و دستاوردهای انسان‌های بزرگ هستند که می‌توانند الهام‌بخش نسل‌های آینده باشند. در این صفحه، به بررسی زندگی و آثار یکی از مشاهیر برجسته جهان می‌پردازیم.</p>
+                
+                <h2>تولد و سال‌های ابتدایی زندگی</h2>
+                <p>در یک روز بهاری در خانوادهای متوسط متولد شد. پدرش معلم و مادرش خانهدار بود. از همان کودکی، نبوغ و استعدادش در زمینه‌های مختلف آشکار شد. در سنین پایین شروع به خواندن کتاب‌های پیچیده کرد و در مدرسه همیشه از همسالان خود جلوتر بود.</p>
+                
+                <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="محیط رشد و پرورش" style="max-width: 100%;">
+                
+                <h2>تحصیلات و شکل‌گیری شخصیت</h2>
+                <p>تحصیلات دانشگاهی خود را در رشته‌ای که بعدها به آن شهرت جهانی یافت، آغاز کرد. در دوران دانشجویی، مقالات متعددی منتشر کرد که توجه اساتید و محافل علمی را به خود جلب نمود. پس از فارغ‌التحصیلی، به تحقیق و پژوهش در حوزه تخصصی خود ادامه داد.</p>
+                
+                <h3>دستاوردهای مهم علمی</h3>
+                <ul>
+                    <li>کشف نظریه‌ای که تحول بزرگی در رشته تخصصی‌اش ایجاد کرد</li>
+                    <li>تألیف بیش از ۱۰ کتاب مرجع در زمینه تخصصی</li>
+                    <li>ارائه روش‌های نوین برای حل مشکلات رایج در حوزه فعالیتش</li>
+                    <li>تدریس در برجسته‌ترین دانشگاه‌های جهان</li>
+                </ul>
+                
+                <blockquote>
+                    "موفقیت حاصل تلاش مستمر و پشتکار است. هیچ کس یک شبه به جایگاه بزرگی نمی‌رسد."
                 </blockquote>
-                {% endif %}
+                
+                <h2>چالش‌ها و موانع</h2>
+                <p>مسیر زندگی این شخصیت برجسته هموار نبود. در طول زندگی با چالش‌های متعددی روبرو شد که هر کدام می‌توانست مسیر زندگی‌اش را تغییر دهد. اما با اراده قوی و پشتکار فراوان، بر همه این مشکلات غلبه کرد و به اهداف والای خود دست یافت.</p>
+                
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>سال</th>
+                                    <th>رویداد مهم</th>
+                                    <th>دستاورد</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>۱۹۸۵</td>
+                                    <td>انتشار اولین مقاله علمی</td>
+                                    <td>برنده جایزه بهترین مقاله سال</td>
+                                </tr>
+                                <tr>
+                                    <td>۱۹۹۲</td>
+                                    <td>تألیف کتاب مرجع</td>
+                                    <td>بهترین کتاب علمی سال</td>
+                                </tr>
+                                <tr>
+                                    <td>۲۰۰۱</td>
+                                    <td>کشف نظریه جدید</td>
+                                    <td>جایزه نوبل در رشته تخصصی</td>
+                                </tr>
+                                <tr>
+                                    <td>۲۰۱۰</td>
+                                    <td>تأسیس مؤسسه تحقیقاتی</td>
+                                    <td>پرورش نسل جدیدی از دانشمندان</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <h2>میراث و تأثیر بر جهان</h2>
+                <p>میراث این شخصیت بزرگ فراتر از دستاوردهای علمی اوست. او الهام‌بخش میلیون‌ها انسان در سراسر جهان بوده و نشان داده است که با اراده و پشتکار می‌توان بر هر مانعی غلبه کرد و به اهداف بزرگ دست یافت. روش‌ها و نظریه‌های او هنوز هم در دانشگاه‌ها و مراکز تحقیقاتی سراسر جهان تدریس و به کار گرفته می‌شود.</p>
             </div>
         </article>
             
         <div class="button-spacer">
-            <a href="https://indexes.ir" class="back-to-home" aria-label="زندگینامه مشاهیر">
+            <a href="https://indexes.ir" class="back-to-home" aria-label="بازگشت به صفحه اصلی">
                 <i class="fas fa-arrow-right"></i>
                 زندگینامه مشاهیر
             </a>
@@ -673,6 +819,18 @@ sitemap: false
                         this.classList.remove('scrolling');
                     }
                 });
+            });
+            
+            // افزودن کلاس فعال به لینک منو
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                    link.style.borderBottomColor = '#dc3545';
+                    link.style.color = 'white';
+                }
             });
         });
     </script>
