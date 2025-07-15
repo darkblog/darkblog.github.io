@@ -99,7 +99,7 @@ sitemap: false
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 180px; /* کاهش ارتفاع هدر */
+            --header-height: 180px;
         }
         
         body {
@@ -161,7 +161,7 @@ sitemap: false
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* کاهش شدت سایه */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
         }
         
         .post-header::before {
@@ -182,16 +182,6 @@ sitemap: false
             padding: 0 20px;
         }
         
-        .post-header h1 {
-            font-weight: 900;
-            font-size: 2.2rem; /* کاهش سایز فونت */
-            margin-bottom: 10px; /* کاهش حاشیه */
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.5px;
-            line-height: 1.3;
-            padding: 0 15px;
-        }
-        
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -199,14 +189,13 @@ sitemap: false
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            padding: 6px 16px; /* کاهش padding */
-            font-size: 0.9rem; /* کاهش سایز فونت */
-            margin-bottom: 15px; /* کاهش حاشیه */
+            padding: 6px 16px;
+            font-size: 0.9rem;
         }
 
         .hero-badge i {
             margin-left: 8px;
-            font-size: 1rem; /* کاهش سایز آیکون */
+            font-size: 1rem;
         }
         
         .breadcrumb-container {
@@ -312,6 +301,16 @@ sitemap: false
             color: rgba(220, 53, 69, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
+        }
+        
+        .post-content h1 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary-dark);
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
         }
         
         .post-content h2 {
@@ -484,15 +483,16 @@ sitemap: false
             }
             
             .post-header {
-                height: 160px; /* تنظیم مجدد برای موبایل */
-            }
-            
-            .post-header h1 {
-                font-size: 1.8rem; /* تنظیم مجدد برای موبایل */
+                height: 160px;
             }
             
             .post-container {
                 padding: 30px;
+            }
+            
+            .post-content h1 {
+                font-size: 1.8rem;
+                padding-bottom: 15px;
             }
             
             .post-content h2 {
@@ -525,11 +525,7 @@ sitemap: false
         
         @media (max-width: 576px) {
             .post-header {
-                height: 140px; /* تنظیم مجدد برای موبایل */
-            }
-            
-            .post-header h1 {
-                font-size: 1.5rem; /* تنظیم مجدد برای موبایل */
+                height: 140px;
             }
             
             .post-container {
@@ -538,6 +534,11 @@ sitemap: false
             
             .post-content {
                 font-size: 1rem;
+            }
+            
+            .post-content h1 {
+                font-size: 1.5rem;
+                padding-bottom: 10px;
             }
             
             .post-content blockquote {
@@ -594,7 +595,6 @@ sitemap: false
                 <i class="fas fa-lightbulb"></i>
                 <span>بیوگرافی</span>
             </div>
-            <h1>{{ page.title }}</h1>
         </div>
     </header>
     
@@ -624,6 +624,8 @@ sitemap: false
     <main class="container" role="main">
         <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
+                <h1 itemprop="headline">{{ page.title }}</h1>
+                
                 {{ content }}
                 
                 {% if page.quote %}
