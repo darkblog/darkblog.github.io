@@ -3,16 +3,97 @@ sitemap: false
 ---
 
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/Article">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>زندگینامه مشاهیر</title>
+    
+    <title itemprop="headline">{{ page.title }}</title>
+    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
+    <meta name="author" content="pbstwi">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="زندگینامه مشاهیر">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:image" content="https://indexes.ir/logo.png">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/logo.png">
+    
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    
+    <meta name="theme-color" content="#6200ea">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.url | absolute_url }}"
+      },
+      "headline": "{{ page.title }}",
+      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
+      "author": {
+        "@type": "Person",
+        "name": "pbstwi",
+        "sameAs": "https://x.com/pbstwi"
+      },
+      "publisher": {
+      "@type": "Organization",
+      "name": "زندگینامه مشاهیر",
+      "url": "https://indexes.ir",
+      "logo": {
+      "@type": "ImageObject",
+      "url": "https://indexes.ir/logo.png",
+      "width": 512,
+      "height": 512
+      },
+      "sameAs": "https://x.com/pbstwi"
+      },
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+      "articleBody": "{{ content | strip_html | truncate: 10000 }}"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "زندگینامه مشاهیر",
+          "item": "https://indexes.ir"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.title }}",
+          "item": "{{ page.url | absolute_url }}"
+        }
+      ]
+    }
+    </script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-color: #6200ea;
@@ -36,7 +117,6 @@ sitemap: false
         
         a {
             text-decoration: none !important;
-            color: var(--primary-color);
         }
         
         /* Material Design Header */
@@ -358,92 +438,35 @@ sitemap: false
                 margin: 1.5rem 0;
             }
         }
-        
-        .material-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin: 20px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .material-card:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-        }
-        
-        .material-card h4 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .bio-timeline {
-            position: relative;
-            padding-right: 20px;
-        }
-        
-        .bio-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--primary-light);
-        }
-        
-        .bio-event {
-            position: relative;
-            padding-bottom: 30px;
-            padding-right: 30px;
-        }
-        
-        .bio-event::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            right: -6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            border: 2px solid white;
-            box-shadow: 0 0 0 2px var(--primary-color);
-        }
-        
-        .bio-event h5 {
-            color: var(--primary-dark);
-            margin-bottom: 5px;
-        }
-        
-        .bio-event .date {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
     </style>
 </head>
-<body>
-    <header class="material-header" role="banner">
+<body itemscope itemtype="https://schema.org/Article">
+    <header class="material-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
         <div class="header-content">
             <div class="hero-badge">
-                <i class="fas fa-user-graduate"></i>
-                <span>بیوگرافی مشاهیر</span>
+                <i class="fas fa-lightbulb"></i>
+                <span>بیوگرافی</span>
             </div>
-            <h1>زندگینامه جامع مشاهیر جهان</h1>
+            <h1 itemprop="headline">{{ page.title }}</h1>
         </div>
     </header>
     
     <nav class="container" aria-label="breadcrumb">
         <div class="breadcrumb-container">
-            <div class="breadcrumb-nav">
+            <div class="breadcrumb-nav" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#">زندگینامه مشاهیر</a>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="https://indexes.ir/" itemprop="item">
+                            <span itemprop="name">زندگینامه مشاهیر</span>
+                        </a>
+                        <meta itemprop="position" content="1" />
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span>آلبرت اینشتین</span>
+                    <li class="breadcrumb-item active" 
+                        itemprop="itemListElement" 
+                        itemscope itemtype="https://schema.org/ListItem"
+                        aria-current="page">
+                        <span itemprop="name">{{ page.title }}</span>
+                        <meta itemprop="position" content="2" />
                     </li>
                 </ol>
             </div>
@@ -451,103 +474,46 @@ sitemap: false
     </nav>
         
     <main class="container" role="main">
-        <article class="post-container">
-            <div class="post-content">
-                <h2>آلبرت اینشتین: نابغه فیزیک مدرن</h2>
+        <article class="post-container" itemscope itemtype="https://schema.org/Article">
+            <div class="post-content" itemprop="articleBody">
+                {{ content }}
                 
-                <p>آلبرت اینشتین، فیزیکدان نظری آلمانی، یکی از تأثیرگذارترین دانشمندان تمام دوران محسوب می‌شود. شهرت او بیشتر به خاطر نظریه نسبیت است که یکی از دو پایه فیزیک مدرن (همراه با مکانیک کوانتومی) به شمار می‌رود.</p>
-                
-                <div class="text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg" alt="آلبرت اینشتین" class="img-fluid">
-                    <p class="text-muted mt-2">آلبرت اینشتین در سال ۱۹۲۱</p>
-                </div>
-                
-                <div class="material-card">
-                    <div class="row">
-                        <div class="col-md-4 text-center mb-3">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg" alt="آلبرت اینشتین" class="img-fluid rounded-circle" style="max-height: 200px;">
-                        </div>
-                        <div class="col-md-8">
-                            <h3 class="text-primary">اطلاعات کلی</h3>
-                            <ul>
-                                <li><strong>تولد:</strong> ۱۴ مارس ۱۸۷۹، اولم، پادشاهی وورتمبرگ، امپراتوری آلمان</li>
-                                <li><strong>مرگ:</strong> ۱۸ آوریل ۱۹۵۵ (۷۶ سال)، پرینستون، نیوجرسی، ایالات متحده آمریکا</li>
-                                <li><strong>ملیت:</strong> آلمانی، سوئیسی، آمریکایی</li>
-                                <li><strong>رشته:</strong> فیزیک نظری</li>
-                                <li><strong>مهم‌ترین دستاوردها:</strong> نسبیت خاص، نسبیت عام، اثر فوتوالکتریک</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3>زندگی و تحصیلات</h3>
-                <p>آلبرت اینشتین در ۱۴ مارس ۱۸۷۹ در شهر اولم در وورتمبرگ آلمان به دنیا آمد. خانواده او از یهودیان غیرمذهبی بودند. پدرش هرمان اینشتین تاجر بود و مادرش پولین کخ خانه‌دار بود.</p>
-                
-                <div class="material-card">
-                    <h4>زندگی علمی اینشتین</h4>
-                    <div class="bio-timeline">
-                        <div class="bio-event">
-                            <h5>سال ۱۹۰۵: سال معجزه‌آسا</h5>
-                            <div class="date">۱۹۰۵</div>
-                            <p>اینشتین در این سال چهار مقاله انقلابی منتشر کرد که مفاهیم فیزیک را دگرگون ساخت: اثر فوتوالکتریک، حرکت براونی، نسبیت خاص و هم‌ارزی جرم و انرژی (E=mc²).</p>
-                        </div>
-                        
-                        <div class="bio-event">
-                            <h5>نظریه نسبیت عام</h5>
-                            <div class="date">۱۹۱۵</div>
-                            <p>اینشتین نظریه نسبیت عام خود را منتشر کرد که در آن گرانش را به عنوان خمیدگی فضا-زمان توصیف می‌کند.</p>
-                        </div>
-                        
-                        <div class="bio-event">
-                            <h5>جایزه نوبل فیزیک</h5>
-                            <div class="date">۱۹۲۱</div>
-                            <p>به خاطر خدماتش به فیزیک نظری و به خصوص کشف قانون اثر فوتوالکتریک، جایزه نوبل فیزیک به او اعطا شد.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3>دستاوردهای علمی</h3>
-                <p>اینشتین با ارائه نظریه نسبیت خاص در سال ۱۹۰۵ و نسبیت عام در سال ۱۹۱۵، درک ما از فضا، زمان و گرانش را متحول کرد. معادله مشهور او E=mc² که بیانگر هم‌ارزی جرم و انرژی است، پایه‌ای برای توسعه انرژی هسته‌ای شد.</p>
-                
-                <div class="material-card">
-                    <h4>مهم‌ترین نظریه‌های اینشتین</h4>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">نسبیت خاص</h5>
-                                    <p class="card-text">نظریه‌ای که حرکت را در چارچوب‌های مرجع لخت توصیف می‌کند و مفاهیم زمان و مکان مطلق را کنار می‌گذارد.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">نسبیت عام</h5>
-                                    <p class="card-text">نظریه‌ای که گرانش را به عنوان خمیدگی فضا-زمان در حضور جرم و انرژی توصیف می‌کند.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <blockquote>
-                    "تخیل مهم‌تر از دانش است. دانش محدود است، تخیل دنیا را دربرمی‌گیرد."
+                {% if page.quote %}
+                <blockquote itemprop="citation">
+                    "{{ page.quote }}"
                 </blockquote>
-                
-                <h3>مهاجرت به آمریکا و سال‌های پایانی</h3>
-                <p>با قدرت گرفتن نازی‌ها در آلمان، اینشتین در سال ۱۹۳۳ به آمریکا مهاجرت کرد و در مؤسسه مطالعات پیشرفته پرینستون مشغول به کار شد. او در ۱۸ آوریل ۱۹۵۵ در سن ۷۶ سالگی در پرینستون درگذشت.</p>
-            </div>
-            
-            <div class="button-spacer">
-                <a href="#" class="back-to-home">
-                    <i class="fas fa-arrow-right"></i>
-                    بازگشت به صفحه اصلی
-                </a>
+                {% endif %}
             </div>
         </article>
+            
+        <div class="button-spacer">
+            <a href="https://indexes.ir" class="back-to-home" aria-label="بازگشت به صفحه اصلی">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به صفحه اصلی
+            </a>
+        </div>
     </main>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tables = document.querySelectorAll('.table-responsive');
+            
+            tables.forEach(table => {
+                if (table.scrollWidth > table.clientWidth) {
+                    table.classList.add('has-scroll');
+                }
+                
+                table.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 0) {
+                        this.classList.add('scrolling');
+                    } else {
+                        this.classList.remove('scrolling');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
