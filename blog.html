@@ -1,0 +1,611 @@
+---
+sitemap: false
+---
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/Article">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title itemprop="headline">{{ page.title }}</title>
+    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
+    <meta name="author" content="pbstwi">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="زندگینامه مشاهیر">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:image" content="https://indexes.ir/logo.png">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta name="theme-color" content="#dc3545">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.url | absolute_url }}"
+      },
+      "headline": "{{ page.title }}",
+      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
+      "author": {
+        "@type": "Person",
+        "name": "pbstwi",
+        "sameAs": "https://x.com/pbstwi"
+      },
+      "publisher": {
+      "@type": "Organization",
+      "name": "زندگینامه مشاهیر",
+      "url": "https://indexes.ir",
+      "logo": {
+      "@type": "ImageObject",
+      "url": "https://indexes.ir/logo.png",
+      "width": 512,
+      "height": 512
+      },
+      "sameAs": "https://x.com/pbstwi"
+      },
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+      "articleBody": "{{ content | strip_html | truncate: 10000 }}"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "زندگینامه مشاهیر",
+          "item": "https://indexes.ir"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.title }}",
+          "item": "{{ page.url | absolute_url }}"
+        }
+      ]
+    }
+    </script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #dc3545;
+            --primary-dark: #a71d2a;
+            --primary-light: #ff6b7a;
+            --text-color: #333;
+            --text-secondary: #6c757d;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--light-bg);
+            padding-top: 0;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        a {
+            text-decoration: none !important;
+            color: var(--primary-color);
+        }
+        
+        .top-menu {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        
+        .menu-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .menu-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+        
+        .menu-links a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .breadcrumb-container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 0 15px;
+        }
+        
+        .breadcrumb-nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 12px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+        }
+        
+        .breadcrumb-nav .breadcrumb {
+            margin-bottom: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .breadcrumb-nav .breadcrumb-item a i {
+            margin-left: 8px;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item.active {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+            content: "›";
+            color: var(--text-secondary);
+            padding: 0 10px;
+        }
+        
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+            padding: 40px;
+        }
+        
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+        
+        .post-content p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
+        
+        .post-content blockquote {
+            border-right: 4px solid var(--primary-color);
+            padding: 25px 30px;
+            margin: 40px 0;
+            background-color: rgba(220, 53, 69, 0.03);
+            border-radius: 12px;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.9;
+            position: relative;
+        }
+        
+        .post-content blockquote::before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            color: rgba(220, 53, 69, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .post-content h1 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary-dark);
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+        }
+        
+        .post-content h2 {
+            font-weight: 800;
+            margin: 50px 0 25px;
+            color: var(--primary-dark);
+            padding-right: 15px;
+            border-right: 3px solid var(--primary-color);
+            font-size: 1.8rem;
+        }
+        
+        .post-content h3 {
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+        }
+        
+        .post-content ul, .post-content ol {
+            padding-right: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .post-content li {
+            margin-bottom: 10px;
+        }
+        
+        .post-content .table-container {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .post-content .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+        
+        .post-content table {
+            width: 100%;
+            min-width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .post-content table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-weight: 700;
+            padding: 15px 20px;
+            text-align: right;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+        
+        .post-content table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .post-content table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .post-content table tr:hover td {
+            background-color: rgba(220, 53, 69, 0.03);
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        .post-content .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 12px 30px;
+            border-radius: 50px;
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            max-width: 250px;
+        }
+        
+        .back-to-home:hover {
+            background-color: rgba(220, 53, 69, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
+        }
+        
+        .back-to-home i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-home:hover i {
+            transform: translateX(5px);
+        }
+        
+        .button-spacer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2.5rem 0;
+        }
+        
+        .button-spacer + .simple-footer {
+            margin-top: 0;
+        }
+        
+        .simple-footer {
+            background-color: #343a40;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            border-bottom-color: #dc3545;
+        }
+
+        @media (max-width: 768px) {
+            .menu-links, .footer-links {
+                gap: 15px;
+            }
+            
+            .menu-links a, .footer-links a {
+                font-size: 0.95rem;
+            }
+            
+            .post-container {
+                padding: 30px;
+            }
+            
+            .post-content h1 {
+                font-size: 1.8rem;
+                padding-bottom: 15px;
+            }
+            
+            .post-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .post-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .post-content table th,
+            .post-content table td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .breadcrumb-container {
+                margin-bottom: 20px;
+            }
+            
+            .breadcrumb-nav {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .button-spacer {
+                margin: 2rem 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .post-container {
+                padding: 25px 20px;
+            }
+            
+            .post-content {
+                font-size: 1rem;
+            }
+            
+            .post-content h1 {
+                font-size: 1.5rem;
+                padding-bottom: 10px;
+            }
+            
+            .post-content blockquote {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+            
+            .post-content table th,
+            .post-content table td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .breadcrumb-nav {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .button-spacer {
+                margin: 1.5rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .menu-links, .footer-links {
+                gap: 8px;
+            }
+            
+            .menu-links a, .footer-links a {
+                font-size: 0.85rem;
+            }
+            
+            .back-to-home {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body itemscope itemtype="https://schema.org/Article">
+    <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
+        <ul class="menu-links">
+            <li><a href="https://indexes.ir/">صفحه اصلی</a></li>
+            <li><a href="https://indexes.ir/categories">دسته بندی‌ها</a></li>
+            <li><a href="https://indexes.ir/tags">برچسب‌ها</a></li>
+            <li><a href="https://indexes.ir/search">جستجو</a></li>
+            <li><a href="https://indexes.ir/about">درباره ما</a></li>
+        </ul>
+    </nav>
+    
+    <nav class="container" aria-label="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-nav" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="https://indexes.ir/" itemprop="item">
+                            <i class="fas fa-home me-2"></i>
+                            <span itemprop="name">زندگینامه مشاهیر</span>
+                        </a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li class="breadcrumb-item active" 
+                        itemprop="itemListElement" 
+                        itemscope itemtype="https://schema.org/ListItem"
+                        aria-current="page">
+                        <span itemprop="name">{{ page.title }}</span>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </nav>
+        
+    <main class="container" role="main">
+        <article class="post-container" itemscope itemtype="https://schema.org/Article">
+            <div class="post-content" itemprop="articleBody">
+                <h1 itemprop="headline">{{ page.title }}</h1>
+                
+                {{ content }}
+                
+                {% if page.quote %}
+                <blockquote itemprop="citation">
+                    "{{ page.quote }}"
+                </blockquote>
+                {% endif %}
+            </div>
+        </article>
+            
+        <div class="button-spacer">
+            <a href="https://indexes.ir" class="back-to-home" aria-label="زندگینامه مشاهیر">
+                <i class="fas fa-arrow-right"></i>
+                زندگینامه مشاهیر
+            </a>
+        </div>
+        
+        <footer class="simple-footer" role="contentinfo">
+            <ul class="footer-links">
+                <li><a href="https://indexes.ir/47">حافظ</a></li>
+                <li><a href="https://indexes.ir/9">سعدی</a></li>
+                <li><a href="https://indexes.ir/70">هاوکینگ</a></li>
+                <li><a href="https://indexes.ir/69">داروین</a></li>
+            </ul>
+        </footer>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tables = document.querySelectorAll('.table-responsive');
+            
+            tables.forEach(table => {
+                if (table.scrollWidth > table.clientWidth) {
+                    table.classList.add('has-scroll');
+                }
+                
+                table.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 0) {
+                        this.classList.add('scrolling');
+                    } else {
+                        this.classList.remove('scrolling');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
