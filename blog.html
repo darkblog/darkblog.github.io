@@ -175,19 +175,6 @@ sitemap: false
             pointer-events: none;
         }
         
-        .post-header::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center bottom;
-            background-repeat: no-repeat;
-        }
-        
         .header-content {
             position: relative;
             z-index: 10;
@@ -228,11 +215,10 @@ sitemap: false
         }
         
         .breadcrumb-nav {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 12px 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            font-size: 0.95rem;
+            background-color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .breadcrumb-nav .breadcrumb {
