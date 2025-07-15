@@ -3,86 +3,47 @@ sitemap: false
 ---
 
 <!DOCTYPE html>
-<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/Article">
+<html dir="rtl" lang="fa">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title itemprop="headline">{{ page.title }}</title>
-    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
-    <meta name="author" content="indexes.ir">
-    
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="زندگینامه مشاهیر">
-    <meta property="og:locale" content="fa_IR">
-    <meta property="og:image" content="https://indexes.ir/logo.png">
-    
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/logo.png">
-    
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    
-    <meta name="theme-color" content="#673AB7">
-    
-    <!-- JSON-LD structured data remains unchanged -->
-
+    <title>زندگینامه مشاهیر</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
-            --m3-primary: #673AB7;
-            --m3-primary-dark: #512DA8;
-            --m3-primary-light: #D1C4E9;
-            --m3-secondary: #FF9800;
-            --m3-surface: #FFFFFF;
-            --m3-background: #F5F5F5;
-            --m3-on-primary: #FFFFFF;
-            --m3-on-surface: #212121;
-            --m3-on-surface-variant: #757575;
-            --m3-elevation-1: 0 1px 3px rgba(0,0,0,0.12);
-            --m3-elevation-2: 0 3px 6px rgba(0,0,0,0.16);
-            --m3-elevation-3: 0 10px 20px rgba(0,0,0,0.19);
-            --m3-border-radius: 12px;
-            --m3-border-radius-sm: 8px;
-            --m3-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-color: #6200ea;
+            --primary-dark: #3700b3;
+            --primary-light: #bb86fc;
+            --text-color: #333;
+            --text-secondary: #6c757d;
+            --light-bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --header-height: 250px;
         }
         
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--m3-background);
+            background-color: var(--light-bg);
             padding-top: 0;
-            color: var(--m3-on-surface);
+            color: var(--text-color);
             line-height: 1.8;
-            transition: var(--m3-transition);
         }
         
         a {
             text-decoration: none !important;
-            color: var(--m3-primary);
-            transition: var(--m3-transition);
+            color: var(--primary-color);
         }
         
-        a:hover {
-            color: var(--m3-primary-dark);
-        }
-        
-        /* Material Header */
-        .post-header {
-            background: var(--m3-primary);
-            color: var(--m3-on-primary);
-            height: 280px;
+        /* Material Design Header */
+        .material-header {
+            background-color: var(--primary-color);
+            color: white;
+            height: var(--header-height);
             position: relative;
             overflow: hidden;
             padding: 0;
@@ -92,19 +53,33 @@ sitemap: false
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: var(--m3-elevation-2);
-            transition: var(--m3-transition);
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 
+                        0 7px 12px -5px rgba(98, 0, 234, 0.4);
+            z-index: 10;
         }
         
-        .post-header::before {
+        .material-header::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
             pointer-events: none;
+        }
+        
+        .material-header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f5f5f5' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
         }
         
         .header-content {
@@ -114,14 +89,25 @@ sitemap: false
             padding: 0 20px;
         }
         
-        .post-header h1 {
+        .material-header h1 {
             font-weight: 900;
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-size: 2.6rem;
+            margin-bottom: 15px;
             letter-spacing: -0.5px;
             line-height: 1.3;
-            transition: var(--m3-transition);
+            position: relative;
+        }
+        
+        .material-header h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
         }
         
         .hero-badge {
@@ -130,19 +116,18 @@ sitemap: false
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(5px);
             border-radius: 24px;
-            padding: 10px 24px;
-            font-size: 1rem;
+            padding: 8px 24px;
+            font-size: 0.95rem;
             margin-bottom: 20px;
-            box-shadow: var(--m3-elevation-1);
-            transition: var(--m3-transition);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .hero-badge i {
             margin-left: 8px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
-        /* Material Breadcrumb */
+        /* Breadcrumb without home icon */
         .breadcrumb-container {
             max-width: 800px;
             margin: 0 auto 30px;
@@ -150,17 +135,17 @@ sitemap: false
         }
         
         .breadcrumb-nav {
-            background-color: var(--m3-surface);
-            border-radius: var(--m3-border-radius-sm);
-            padding: 14px 24px;
-            box-shadow: var(--m3-elevation-1);
+            background-color: white;
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             font-size: 0.95rem;
+            border: 1px solid var(--border-color);
         }
         
         .breadcrumb-nav .breadcrumb {
             margin-bottom: 0;
             padding: 0;
-            background: transparent;
         }
         
         .breadcrumb-nav .breadcrumb-item {
@@ -169,47 +154,38 @@ sitemap: false
         }
         
         .breadcrumb-nav .breadcrumb-item a {
-            color: var(--m3-primary);
+            color: var(--primary-color);
+            transition: all 0.3s ease;
             font-weight: 500;
-            display: flex;
-            align-items: center;
         }
         
         .breadcrumb-nav .breadcrumb-item a:hover {
-            color: var(--m3-primary-dark);
-        }
-        
-        .breadcrumb-nav .breadcrumb-item a i {
-            margin-left: 8px;
+            color: var(--primary-dark);
         }
         
         .breadcrumb-nav .breadcrumb-item.active {
-            color: var(--m3-on-surface-variant);
+            color: var(--text-secondary);
             font-weight: 500;
         }
         
         .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
             content: "›";
-            color: var(--m3-on-surface-variant);
-            padding: 0 12px;
-            font-weight: bold;
+            color: var(--text-secondary);
+            padding: 0 10px;
+            font-size: 1.2rem;
         }
         
-        /* Material Card */
+        /* Main content */
         .post-container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: var(--m3-surface);
-            border-radius: var(--m3-border-radius);
-            box-shadow: var(--m3-elevation-1);
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             position: relative;
             padding: 40px;
-            transition: var(--m3-transition);
-        }
-        
-        .post-container:hover {
-            box-shadow: var(--m3-elevation-2);
+            border: none;
         }
         
         .post-content {
@@ -225,32 +201,22 @@ sitemap: false
         .post-content img {
             max-width: 100%;
             height: auto;
-            border-radius: var(--m3-border-radius-sm);
+            border-radius: 12px;
             margin: 40px 0;
-            box-shadow: var(--m3-elevation-1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             display: block;
-            transition: var(--m3-transition);
-        }
-        
-        .post-content img:hover {
-            box-shadow: var(--m3-elevation-2);
         }
         
         .post-content blockquote {
-            border-right: 4px solid var(--m3-primary);
+            border-right: 4px solid var(--primary-color);
             padding: 25px 30px;
             margin: 40px 0;
-            background-color: rgba(103, 58, 183, 0.05);
-            border-radius: var(--m3-border-radius-sm);
+            background-color: rgba(98, 0, 234, 0.03);
+            border-radius: 12px;
             font-style: italic;
             font-size: 1.25rem;
             line-height: 1.9;
             position: relative;
-            transition: var(--m3-transition);
-        }
-        
-        .post-content blockquote:hover {
-            background-color: rgba(103, 58, 183, 0.08);
         }
         
         .post-content blockquote::before {
@@ -259,7 +225,7 @@ sitemap: false
             top: -20px;
             right: 20px;
             font-size: 6rem;
-            color: rgba(103, 58, 183, 0.1);
+            color: rgba(98, 0, 234, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
         }
@@ -267,17 +233,16 @@ sitemap: false
         .post-content h2 {
             font-weight: 800;
             margin: 50px 0 25px;
-            color: var(--m3-primary-dark);
+            color: var(--primary-dark);
             padding-right: 15px;
-            border-right: 3px solid var(--m3-primary);
+            border-right: 3px solid var(--primary-color);
             font-size: 1.8rem;
-            transition: var(--m3-transition);
         }
         
         .post-content h3 {
             font-weight: 700;
             margin: 40px 0 20px;
-            color: var(--m3-primary-dark);
+            color: var(--primary-dark);
             font-size: 1.5rem;
         }
         
@@ -288,137 +253,27 @@ sitemap: false
         
         .post-content li {
             margin-bottom: 10px;
-            position: relative;
-            padding-right: 20px;
         }
         
-        .post-content li::before {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 10px;
-            width: 8px;
-            height: 8px;
-            background: var(--m3-primary);
-            border-radius: 50%;
-        }
-        
-        /* Material Table */
-        .post-content .table-container {
-            margin: 30px 0;
-            border-radius: var(--m3-border-radius-sm);
-            overflow: hidden;
-            box-shadow: var(--m3-elevation-1);
-            transition: var(--m3-transition);
-        }
-        
-        .post-content .table-container:hover {
-            box-shadow: var(--m3-elevation-2);
-        }
-        
-        .post-content .table-responsive {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-        }
-        
-        .post-content table {
-            width: 100%;
-            min-width: 100%;
-            border-collapse: collapse;
-            margin: 0;
-        }
-        
-        .post-content table th {
-            background: var(--m3-primary);
-            color: var(--m3-on-primary);
-            font-weight: 700;
-            padding: 15px 20px;
-            text-align: right;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            white-space: nowrap;
-        }
-        
-        .post-content table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-        }
-        
-        .post-content table tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-        
-        .post-content table tr:hover td {
-            background-color: rgba(103, 58, 183, 0.05);
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 4px;
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar-thumb {
-            background: var(--m3-primary-light);
-            border-radius: 4px;
-        }
-        
-        .post-content .table-responsive::-webkit-scrollbar-thumb:hover {
-            background: var(--m3-primary);
-        }
-        
-        /* Material Button */
         .back-to-home {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: var(--m3-on-primary);
-            background: var(--m3-primary);
+            color: var(--primary-color);
             font-weight: 600;
-            text-decoration: none;
-            transition: var(--m3-transition);
-            padding: 14px 32px;
+            padding: 12px 30px;
             border-radius: 50px;
-            box-shadow: var(--m3-elevation-2);
+            background-color: rgba(98, 0, 234, 0.1);
+            border: 1px solid rgba(98, 0, 234, 0.2);
             max-width: 250px;
-            border: none;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-top: 30px;
         }
         
         .back-to-home:hover {
-            background: var(--m3-primary-dark);
+            background-color: rgba(98, 0, 234, 0.2);
             transform: translateY(-3px);
-            box-shadow: var(--m3-elevation-3);
-        }
-        
-        .back-to-home:active {
-            transform: translateY(1px);
-            box-shadow: var(--m3-elevation-1);
-        }
-        
-        .back-to-home::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        
-        .back-to-home:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
+            box-shadow: 0 5px 15px rgba(98, 0, 234, 0.15);
         }
         
         .back-to-home i {
@@ -430,21 +285,6 @@ sitemap: false
             transform: translateX(5px);
         }
         
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 1;
-            }
-            20% {
-                transform: scale(25, 25);
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: scale(40, 40);
-            }
-        }
-        
         .button-spacer {
             display: flex;
             justify-content: center;
@@ -452,114 +292,12 @@ sitemap: false
             margin: 2.5rem 0;
         }
         
-        .button-spacer + .simple-footer {
-            margin-top: 0;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-        
-        /* Material Footer */
-        .simple-footer {
-            background-color: #1A1A1A;
-            padding: 30px 0;
-            border-top: none;
-            margin-top: 40px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            transition: var(--m3-transition);
-            font-size: 1.05rem;
-            padding: 5px;
-            position: relative;
-        }
-
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--m3-secondary);
-            transition: var(--m3-transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .footer-links a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        /* Material FAB */
-        .material-fab {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--m3-primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--m3-elevation-3);
-            z-index: 1000;
-            transition: var(--m3-transition);
-            cursor: pointer;
-            border: none;
-        }
-        
-        .material-fab:hover {
-            background: var(--m3-primary-dark);
-            box-shadow: var(--m3-elevation-4);
-            transform: translateY(-3px);
-        }
-        
-        .material-fab:active {
-            transform: translateY(1px);
-            box-shadow: var(--m3-elevation-2);
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .post-content table th,
-            .post-content table td {
-                padding: 12px 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .post-header {
-                height: 240px;
+            .material-header {
+                height: 220px;
             }
             
-            .post-header h1 {
+            .material-header h1 {
                 font-size: 2.1rem;
             }
             
@@ -575,12 +313,6 @@ sitemap: false
                 font-size: 1.3rem;
             }
             
-            .post-content table th,
-            .post-content table td {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-            
             .breadcrumb-container {
                 margin-bottom: 20px;
             }
@@ -593,19 +325,14 @@ sitemap: false
             .button-spacer {
                 margin: 2rem 0;
             }
-            
-            .material-fab {
-                bottom: 20px;
-                left: 20px;
-            }
         }
         
         @media (max-width: 576px) {
-            .post-header {
-                height: 220px;
+            .material-header {
+                height: 200px;
             }
             
-            .post-header h1 {
+            .material-header h1 {
                 font-size: 1.8rem;
             }
             
@@ -622,12 +349,6 @@ sitemap: false
                 padding: 20px;
             }
             
-            .post-content table th,
-            .post-content table td {
-                padding: 8px 10px;
-                font-size: 0.85rem;
-            }
-            
             .breadcrumb-nav {
                 padding: 8px 12px;
                 font-size: 0.85rem;
@@ -636,79 +357,93 @@ sitemap: false
             .button-spacer {
                 margin: 1.5rem 0;
             }
-            
-            .footer-links {
-                gap: 20px;
-            }
         }
         
-        @media (max-width: 480px) {
-            .post-content .table-responsive {
-                border-radius: 8px;
-            }
-            
-            .post-content table th,
-            .post-content table td {
-                padding: 6px 8px;
-                font-size: 0.8rem;
-            }
-            
-            .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
-                padding: 0 6px;
-            }
-            
-            .button-spacer {
-                margin: 1.2rem 0;
-            }
-            
-            .back-to-home {
-                padding: 12px 28px;
-                font-size: 0.95rem;
-            }
-            
-            .footer-links {
-                gap: 15px;
-            }
-            
-            .footer-links a {
-                font-size: 0.95rem;
-            }
+        .material-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .material-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+        
+        .material-card h4 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .bio-timeline {
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .bio-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--primary-light);
+        }
+        
+        .bio-event {
+            position: relative;
+            padding-bottom: 30px;
+            padding-right: 30px;
+        }
+        
+        .bio-event::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: -6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        .bio-event h5 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .bio-event .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
     </style>
 </head>
-<body itemscope itemtype="https://schema.org/Article">
-    <!-- Material FAB for navigation -->
-    <button class="material-fab" aria-label="بازگشت به صفحه اصلی" onclick="window.location.href='https://indexes.ir'">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-    
-    <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
+<body>
+    <header class="material-header" role="banner">
         <div class="header-content">
             <div class="hero-badge">
-                <i class="fas fa-lightbulb"></i>
-                <span>بیوگرافی</span>
+                <i class="fas fa-user-graduate"></i>
+                <span>بیوگرافی مشاهیر</span>
             </div>
-            <h1 itemprop="headline">{{ page.title }}</h1>
+            <h1>زندگینامه جامع مشاهیر جهان</h1>
         </div>
     </header>
     
     <nav class="container" aria-label="breadcrumb">
         <div class="breadcrumb-container">
-            <div class="breadcrumb-nav" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <div class="breadcrumb-nav">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="https://indexes.ir/" itemprop="item">
-                            <i class="fas fa-home me-2"></i>
-                            <span itemprop="name">زندگینامه مشاهیر</span>
-                        </a>
-                        <meta itemprop="position" content="1" />
+                    <li class="breadcrumb-item">
+                        <a href="#">زندگینامه مشاهیر</a>
                     </li>
-                    <li class="breadcrumb-item active" 
-                        itemprop="itemListElement" 
-                        itemscope itemtype="https://schema.org/ListItem"
-                        aria-current="page">
-                        <span itemprop="name">{{ page.title }}</span>
-                        <meta itemprop="position" content="2" />
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span>آلبرت اینشتین</span>
                     </li>
                 </ol>
             </div>
@@ -716,76 +451,103 @@ sitemap: false
     </nav>
         
     <main class="container" role="main">
-        <article class="post-container" itemscope itemtype="https://schema.org/Article">
-            <div class="post-content" itemprop="articleBody">
-                {{ content }}
+        <article class="post-container">
+            <div class="post-content">
+                <h2>آلبرت اینشتین: نابغه فیزیک مدرن</h2>
                 
-                {% if page.quote %}
-                <blockquote itemprop="citation">
-                    "{{ page.quote }}"
+                <p>آلبرت اینشتین، فیزیکدان نظری آلمانی، یکی از تأثیرگذارترین دانشمندان تمام دوران محسوب می‌شود. شهرت او بیشتر به خاطر نظریه نسبیت است که یکی از دو پایه فیزیک مدرن (همراه با مکانیک کوانتومی) به شمار می‌رود.</p>
+                
+                <div class="text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg" alt="آلبرت اینشتین" class="img-fluid">
+                    <p class="text-muted mt-2">آلبرت اینشتین در سال ۱۹۲۱</p>
+                </div>
+                
+                <div class="material-card">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-3">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg" alt="آلبرت اینشتین" class="img-fluid rounded-circle" style="max-height: 200px;">
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="text-primary">اطلاعات کلی</h3>
+                            <ul>
+                                <li><strong>تولد:</strong> ۱۴ مارس ۱۸۷۹، اولم، پادشاهی وورتمبرگ، امپراتوری آلمان</li>
+                                <li><strong>مرگ:</strong> ۱۸ آوریل ۱۹۵۵ (۷۶ سال)، پرینستون، نیوجرسی، ایالات متحده آمریکا</li>
+                                <li><strong>ملیت:</strong> آلمانی، سوئیسی، آمریکایی</li>
+                                <li><strong>رشته:</strong> فیزیک نظری</li>
+                                <li><strong>مهم‌ترین دستاوردها:</strong> نسبیت خاص، نسبیت عام، اثر فوتوالکتریک</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>زندگی و تحصیلات</h3>
+                <p>آلبرت اینشتین در ۱۴ مارس ۱۸۷۹ در شهر اولم در وورتمبرگ آلمان به دنیا آمد. خانواده او از یهودیان غیرمذهبی بودند. پدرش هرمان اینشتین تاجر بود و مادرش پولین کخ خانه‌دار بود.</p>
+                
+                <div class="material-card">
+                    <h4>زندگی علمی اینشتین</h4>
+                    <div class="bio-timeline">
+                        <div class="bio-event">
+                            <h5>سال ۱۹۰۵: سال معجزه‌آسا</h5>
+                            <div class="date">۱۹۰۵</div>
+                            <p>اینشتین در این سال چهار مقاله انقلابی منتشر کرد که مفاهیم فیزیک را دگرگون ساخت: اثر فوتوالکتریک، حرکت براونی، نسبیت خاص و هم‌ارزی جرم و انرژی (E=mc²).</p>
+                        </div>
+                        
+                        <div class="bio-event">
+                            <h5>نظریه نسبیت عام</h5>
+                            <div class="date">۱۹۱۵</div>
+                            <p>اینشتین نظریه نسبیت عام خود را منتشر کرد که در آن گرانش را به عنوان خمیدگی فضا-زمان توصیف می‌کند.</p>
+                        </div>
+                        
+                        <div class="bio-event">
+                            <h5>جایزه نوبل فیزیک</h5>
+                            <div class="date">۱۹۲۱</div>
+                            <p>به خاطر خدماتش به فیزیک نظری و به خصوص کشف قانون اثر فوتوالکتریک، جایزه نوبل فیزیک به او اعطا شد.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>دستاوردهای علمی</h3>
+                <p>اینشتین با ارائه نظریه نسبیت خاص در سال ۱۹۰۵ و نسبیت عام در سال ۱۹۱۵، درک ما از فضا، زمان و گرانش را متحول کرد. معادله مشهور او E=mc² که بیانگر هم‌ارزی جرم و انرژی است، پایه‌ای برای توسعه انرژی هسته‌ای شد.</p>
+                
+                <div class="material-card">
+                    <h4>مهم‌ترین نظریه‌های اینشتین</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">نسبیت خاص</h5>
+                                    <p class="card-text">نظریه‌ای که حرکت را در چارچوب‌های مرجع لخت توصیف می‌کند و مفاهیم زمان و مکان مطلق را کنار می‌گذارد.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">نسبیت عام</h5>
+                                    <p class="card-text">نظریه‌ای که گرانش را به عنوان خمیدگی فضا-زمان در حضور جرم و انرژی توصیف می‌کند.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <blockquote>
+                    "تخیل مهم‌تر از دانش است. دانش محدود است، تخیل دنیا را دربرمی‌گیرد."
                 </blockquote>
-                {% endif %}
+                
+                <h3>مهاجرت به آمریکا و سال‌های پایانی</h3>
+                <p>با قدرت گرفتن نازی‌ها در آلمان، اینشتین در سال ۱۹۳۳ به آمریکا مهاجرت کرد و در مؤسسه مطالعات پیشرفته پرینستون مشغول به کار شد. او در ۱۸ آوریل ۱۹۵۵ در سن ۷۶ سالگی در پرینستون درگذشت.</p>
+            </div>
+            
+            <div class="button-spacer">
+                <a href="#" class="back-to-home">
+                    <i class="fas fa-arrow-right"></i>
+                    بازگشت به صفحه اصلی
+                </a>
             </div>
         </article>
-            
-        <div class="button-spacer">
-            <a href="https://indexes.ir" class="back-to-home" aria-label="بازگشت به صفحه اصلی">
-                <i class="fas fa-arrow-right"></i>
-                بازگشت به صفحه اصلی
-            </a>
-        </div>
-        
-        <footer class="simple-footer" role="contentinfo">
-            <div class="footer-links">
-                <a href="https://indexes.ir/47">حافظ</a>
-                <a href="https://indexes.ir/9">سعدی</a>
-                <a href="https://indexes.ir/70">هاوکینگ</a>
-                <a href="https://indexes.ir/69">داروین</a>
-                <a href="https://indexes.ir/12">فردوسی</a>
-                <a href="https://indexes.ir/5">خیام</a>
-            </div>
-        </footer>
     </main>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tables = document.querySelectorAll('.table-responsive');
-            
-            tables.forEach(table => {
-                if (table.scrollWidth > table.clientWidth) {
-                    table.classList.add('has-scroll');
-                }
-                
-                table.addEventListener('scroll', function() {
-                    if (this.scrollLeft > 0) {
-                        this.classList.add('scrolling');
-                    } else {
-                        this.classList.remove('scrolling');
-                    }
-                });
-            });
-            
-            // Add ripple effect to buttons
-            const buttons = document.querySelectorAll('.back-to-home');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    let x = e.pageX - button.offsetLeft;
-                    let y = e.pageY - button.offsetTop;
-                    
-                    let ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
