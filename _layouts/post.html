@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <title itemprop="headline">{{ page.title }}</title>
     <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
@@ -23,9 +22,7 @@
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/logo.png">
-    
     <link rel="canonical" href="{{ page.url | absolute_url }}">
-    
     <meta name="theme-color" content="#dc3545">
     
     <script type="application/ld+json">
@@ -83,9 +80,7 @@
     </script>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
@@ -100,7 +95,7 @@
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 250px;
+            --header-height: 180px;
         }
         
         body {
@@ -109,10 +104,44 @@
             padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
+            margin: 0;
         }
         
         a {
             text-decoration: none !important;
+            color: var(--primary-color);
+        }
+        
+        .top-menu {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .menu-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .menu-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+        
+        .menu-links a:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
         }
         
         .post-header {
@@ -128,7 +157,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
         }
         
         .post-header::before {
@@ -142,33 +171,11 @@
             pointer-events: none;
         }
         
-        .post-header::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center bottom;
-            background-repeat: no-repeat;
-        }
-        
         .header-content {
             position: relative;
             z-index: 10;
             max-width: 800px;
             padding: 0 20px;
-        }
-        
-        .post-header h1 {
-            font-weight: 900;
-            font-size: 2.6rem;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.5px;
-            line-height: 1.3;
         }
         
         .hero-badge {
@@ -178,14 +185,13 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            padding: 8px 20px;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            padding: 6px 16px;
+            font-size: 0.9rem;
         }
 
         .hero-badge i {
             margin-left: 8px;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         .breadcrumb-container {
@@ -205,6 +211,8 @@
         .breadcrumb-nav .breadcrumb {
             margin-bottom: 0;
             padding: 0;
+            list-style: none;
+            display: flex;
         }
         
         .breadcrumb-nav .breadcrumb-item {
@@ -233,7 +241,7 @@
         }
         
         .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
-            content: "/";
+            content: "›";
             color: var(--text-secondary);
             padding: 0 10px;
         }
@@ -289,6 +297,16 @@
             color: rgba(220, 53, 69, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
+        }
+        
+        .post-content h1 {
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
+            color: var(--primary-dark);
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
         }
         
         .post-content h2 {
@@ -421,37 +439,56 @@
             margin-top: 0;
         }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        .simple-footer {
+            background-color: #343a40;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            padding: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            border-bottom-color: #dc3545;
+        }
+
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .post-content table th,
-            .post-content table td {
-                padding: 12px 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .post-header {
-                height: 220px;
+            .menu-links, .footer-links {
+                gap: 15px;
             }
             
-            .post-header h1 {
-                font-size: 2.1rem;
+            .menu-links a, .footer-links a {
+                font-size: 0.95rem;
+            }
+            
+            .post-header {
+                height: 160px;
             }
             
             .post-container {
                 padding: 30px;
+            }
+            
+            .post-content h1 {
+                font-size: 1.8rem;
+                padding-bottom: 15px;
             }
             
             .post-content h2 {
@@ -484,11 +521,7 @@
         
         @media (max-width: 576px) {
             .post-header {
-                height: 200px;
-            }
-            
-            .post-header h1 {
-                font-size: 1.8rem;
+                height: 140px;
             }
             
             .post-container {
@@ -497,6 +530,11 @@
             
             .post-content {
                 font-size: 1rem;
+            }
+            
+            .post-content h1 {
+                font-size: 1.5rem;
+                padding-bottom: 10px;
             }
             
             .post-content blockquote {
@@ -521,22 +559,12 @@
         }
         
         @media (max-width: 480px) {
-            .post-content .table-responsive {
-                border-radius: 8px;
+            .menu-links, .footer-links {
+                gap: 8px;
             }
             
-            .post-content table th,
-            .post-content table td {
-                padding: 6px 8px;
-                font-size: 0.8rem;
-            }
-            
-            .breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
-                padding: 0 6px;
-            }
-            
-            .button-spacer {
-                margin: 1.2rem 0;
+            .menu-links a, .footer-links a {
+                font-size: 0.85rem;
             }
             
             .back-to-home {
@@ -544,55 +572,25 @@
                 font-size: 0.95rem;
             }
         }
-        
-        .simple-footer {
-            background-color: #343a40;
-            padding: 15px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            border-bottom-color: #dc3545;
-        }
-
-        @media (max-width: 768px) {
-            .footer-links {
-                gap: 15px;
-            }
-            
-            .footer-links a {
-                font-size: 0.95rem;
-            }
-        }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Article">
+    <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
+        <ul class="menu-links">
+            <li><a href="https://indexes.ir/">زندگینامه مشاهیر</a></li>
+            <li><a href="https://indexes.ir/89">شکسپیر</a></li>
+            <li><a href="https://indexes.ir/88">چخوف</a></li>
+            <li><a href="https://indexes.ir/87">آلبر کامو</a></li>
+            <li><a href="https://indexes.ir/86">کافکا</a></li>
+        </ul>
+    </nav>
+    
     <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
         <div class="header-content">
             <div class="hero-badge">
                 <i class="fas fa-lightbulb"></i>
                 <span>بیوگرافی</span>
             </div>
-            <h1 itemprop="headline">{{ page.title }}</h1>
         </div>
     </header>
     
@@ -603,7 +601,7 @@
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <a href="https://indexes.ir/" itemprop="item">
                             <i class="fas fa-home me-2"></i>
-                            <span itemprop="name">زندگینامه مشاهیر</span>
+                            <span itemprop="name">صفحه اصلی</span>
                         </a>
                         <meta itemprop="position" content="1" />
                     </li>
@@ -620,8 +618,10 @@
     </nav>
         
     <main class="container" role="main">
-        <article class="post-container" itemscope itemtype="https://chema.org/Article">
+        <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
+                <h1 itemprop="headline">{{ page.title }}</h1>
+                
                 {{ content }}
                 
                 {% if page.quote %}
@@ -633,19 +633,19 @@
         </article>
             
         <div class="button-spacer">
-            <a href="https://indexes.ir" class="back-to-home" aria-label="بازگشت به صفحه اصلی">
+            <a href="https://indexes.ir" class="back-to-home" aria-label="زندگینامه مشاهیر">
                 <i class="fas fa-arrow-right"></i>
-                بازگشت به صفحه اصلی
+                زندگینامه مشاهیر
             </a>
         </div>
         
         <footer class="simple-footer" role="contentinfo">
-            <div class="footer-links">
-                <a href="https://indexes.ir/47">حافظ</a>
-                <a href="https://indexes.ir/9">سعدی</a>
-                <a href="https://indexes.ir/70">هاوکینگ</a>
-                <a href="https://indexes.ir/69">داروین</a>
-            </div>
+            <ul class="footer-links">
+                <li><a href="https://indexes.ir/47">حافظ</a></li>
+                <li><a href="https://indexes.ir/9">سعدی</a></li>
+                <li><a href="https://indexes.ir/70">هاوکینگ</a></li>
+                <li><a href="https://indexes.ir/69">داروین</a></li>
+            </ul>
         </footer>
     </main>
     
