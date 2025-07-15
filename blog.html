@@ -99,7 +99,7 @@ sitemap: false
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 100px;
+            --header-height: 180px; /* کاهش ارتفاع هدر */
         }
         
         body {
@@ -161,7 +161,7 @@ sitemap: false
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* کاهش شدت سایه */
         }
         
         .post-header::before {
@@ -184,11 +184,12 @@ sitemap: false
         
         .post-header h1 {
             font-weight: 900;
-            font-size: 2.6rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem; /* کاهش سایز فونت */
+            margin-bottom: 10px; /* کاهش حاشیه */
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             letter-spacing: -0.5px;
             line-height: 1.3;
+            padding: 0 15px;
         }
         
         .hero-badge {
@@ -198,14 +199,14 @@ sitemap: false
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-            padding: 8px 20px;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            padding: 6px 16px; /* کاهش padding */
+            font-size: 0.9rem; /* کاهش سایز فونت */
+            margin-bottom: 15px; /* کاهش حاشیه */
         }
 
         .hero-badge i {
             margin-left: 8px;
-            font-size: 1.1rem;
+            font-size: 1rem; /* کاهش سایز آیکون */
         }
         
         .breadcrumb-container {
@@ -483,11 +484,11 @@ sitemap: false
             }
             
             .post-header {
-                height: 220px;
+                height: 160px; /* تنظیم مجدد برای موبایل */
             }
             
             .post-header h1 {
-                font-size: 2.1rem;
+                font-size: 1.8rem; /* تنظیم مجدد برای موبایل */
             }
             
             .post-container {
@@ -524,11 +525,11 @@ sitemap: false
         
         @media (max-width: 576px) {
             .post-header {
-                height: 200px;
+                height: 140px; /* تنظیم مجدد برای موبایل */
             }
             
             .post-header h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem; /* تنظیم مجدد برای موبایل */
             }
             
             .post-container {
@@ -593,6 +594,7 @@ sitemap: false
                 <i class="fas fa-lightbulb"></i>
                 <span>بیوگرافی</span>
             </div>
+            <h1>{{ page.title }}</h1>
         </div>
     </header>
     
@@ -622,10 +624,6 @@ sitemap: false
     <main class="container" role="main">
         <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
-                <h1 itemprop="headline" style="font-weight: 900; font-size: 2.6rem; margin-bottom: 1.8rem; color: var(--primary-dark); text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 20px;">
-                    {{ page.title }}
-                </h1>
-                
                 {{ content }}
                 
                 {% if page.quote %}
