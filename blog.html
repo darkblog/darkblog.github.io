@@ -7,26 +7,26 @@ sitemap: false
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title itemprop="headline">زندگینامه ویلیام شکسپیر</title>
-    <meta name="description" itemprop="description" content="زندگینامه کامل ویلیام شکسپیر، نمایشنامه‌نویس و شاعر بزرگ انگلیسی">
-    <meta name="keywords" content="زندگینامه شکسپیر, بیوگرافی شکسپیر, شکسپیر کیست">
+    <title itemprop="headline">{{ page.title }}</title>
+    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
     <meta name="author" content="pbstwi">
     
     <meta property="og:type" content="article">
-    <meta property="og:title" content="زندگینامه ویلیام شکسپیر">
-    <meta property="og:description" content="زندگینامه کامل ویلیام شکسپیر، نمایشنامه‌نویس و شاعر بزرگ انگلیسی">
-    <meta property="og:url" content="https://indexes.ir/89">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:site_name" content="زندگینامه مشاهیر">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/logo.png">
     
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="زندگینامه ویلیام شکسپیر">
-    <meta name="twitter:description" content="زندگینامه کامل ویلیام شکسپیر، نمایشنامه‌نویس و شاعر بزرگ انگلیسی">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/logo.png">
-    <link rel="canonical" href="https://indexes.ir/89">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
     <meta name="theme-color" content="#dc3545">
     
     <script type="application/ld+json">
@@ -35,10 +35,10 @@ sitemap: false
       "@type": "Article",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://indexes.ir/89"
+        "@id": "{{ page.url | absolute_url }}"
       },
-      "headline": "زندگینامه ویلیام شکسپیر",
-      "description": "زندگینامه کامل ویلیام شکسپیر، نمایشنامه‌نویس و شاعر بزرگ انگلیسی",
+      "headline": "{{ page.title }}",
+      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
       "author": {
         "@type": "Person",
         "name": "pbstwi",
@@ -56,9 +56,9 @@ sitemap: false
       },
       "sameAs": "https://x.com/pbstwi"
       },
-      "datePublished": "2024-01-15",
-      "dateModified": "2024-01-15",
-      "articleBody": "ویلیام شکسپیر نمایشنامه‌نویس، شاعر و بازیگر انگلیسی بود که او را بزرگ‌ترین نویسنده در زبان انگلیسی دانسته‌اند..."
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+      "articleBody": "{{ content | strip_html | truncate: 10000 }}"
     }
     </script>
     
@@ -76,8 +76,8 @@ sitemap: false
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "ویلیام شکسپیر",
-          "item": "https://indexes.ir/89"
+          "name": "{{ page.title }}",
+          "item": "{{ page.url | absolute_url }}"
         }
       ]
     }
@@ -607,7 +607,7 @@ sitemap: false
     <!-- Page header with title -->
     <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
         <div class="header-content">
-            <h1 class="post-title" itemprop="headline">ویلیام شکسپیر</h1>
+            <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
         </div>
     </header>
     
@@ -620,79 +620,13 @@ sitemap: false
         <!-- Main content -->
         <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
-                <p>ویلیام شکسپیر (William Shakespeare) نمایشنامه‌نویس، شاعر و بازیگر انگلیسی بود که او را بزرگ‌ترین نویسنده در زبان انگلیسی دانسته‌اند. شکسپیر در استراتفورد آپون ایون در انگلستان به دنیا آمد و در سال ۱۵۶۴ متولد شد.</p>
+                {{ content }}
                 
-                <h2>زندگی نامه</h2>
-                <p>شکسپیر در سال ۱۵۶۴ در شهر استراتفورد در انگلستان به دنیا آمد. پدرش، جان شکسپیر، دستکش‌ساز و مادرش مری آردن نام داشت. او احتمالاً در مدرسه گرامر استراتفورد تحصیل کرده و در آنجا با ادبیات لاتین آشنا شده است.</p>
-                
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Shakespeare.jpg/800px-Shakespeare.jpg" alt="ویلیام شکسپیر" style="max-height: 400px; width: auto; margin: 0 auto;">
-                
-                <h2>آثار مشهور</h2>
-                <p>شکسپیر در طول زندگی خود حدود ۳۹ نمایشنامه، ۱۵۴ سونات و دو شعر روایی بلند نوشت. آثار او به چندین دسته تقسیم می‌شوند:</p>
-                
-                <ul>
-                    <li><strong>تراژدی‌ها:</strong> هملت، مکبث، اتللو، شاه لیر</li>
-                    <li><strong>کمدی‌ها:</strong> رویای شب نیمه تابستان، تاجر ونیزی، هیاهوی بسیار برای هیچ</li>
-                    <li><strong>تاریخی‌ها:</strong> ریچارد سوم، هنری پنجم</li>
-                    <li><strong>رمانس‌ها:</strong> طوفان، داستان زمستان</li>
-                </ul>
-                
-                <blockquote>
-                    بودن یا نبودن، مسئله این است: آیا شریف‌تر است که تیر و تیغ بلا را به جان بخریم یا به جنگ دریای مصیبت‌ها رفته و با جنگیدن به آخرش برسیم؟
+                {% if page.quote %}
+                <blockquote itemprop="citation">
+                    "{{ page.quote }}"
                 </blockquote>
-                
-                <h2>سبک نوشتاری</h2>
-                <p>شکسپیر در نمایشنامه‌های خود از زبان بسیار غنی و استعاره‌های پیچیده استفاده می‌کرد. او توانایی بی‌نظیری در خلق شخصیت‌های عمیق و چندبعدی داشت. بسیاری از شخصیت‌های او مانند هملت، مکبث و اتللو به نمادهای جهانی تبدیل شده‌اند.</p>
-                
-                <h2>جدول آثار شکسپیر</h2>
-                <div class="table-container">
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>نوع اثر</th>
-                                    <th>نام اثر</th>
-                                    <th>سال نگارش</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>تراژدی</td>
-                                    <td>هملت</td>
-                                    <td>1600-1601</td>
-                                </tr>
-                                <tr>
-                                    <td>تراژدی</td>
-                                    <td>مکبث</td>
-                                    <td>1606</td>
-                                </tr>
-                                <tr>
-                                    <td>تراژدی</td>
-                                    <td>اتللو</td>
-                                    <td>1603-1604</td>
-                                </tr>
-                                <tr>
-                                    <td>کمدی</td>
-                                    <td>رویای شب نیمه تابستان</td>
-                                    <td>1595-1596</td>
-                                </tr>
-                                <tr>
-                                    <td>کمدی</td>
-                                    <td>تاجر ونیزی</td>
-                                    <td>1596-1599</td>
-                                </tr>
-                                <tr>
-                                    <td>تاریخی</td>
-                                    <td>ریچارد سوم</td>
-                                    <td>1592-1593</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <h2>مرگ و میراث</h2>
-                <p>شکسپیر در ۲۳ آوریل ۱۶۱۶ در سن ۵۲ سالگی درگذشت. او در کلیسای ترینیتی در استراتفورد به خاک سپرده شد. میراث شکسپیر در ادبیات جهان بی‌همتاست و آثار او همچنان در سراسر جهان اجرا و مطالعه می‌شود.</p>
+                {% endif %}
             </div>
         </article>
         
