@@ -384,7 +384,7 @@ layout: blog.html
                     <span class="logo-text">زندگینامه مشاهیر</span>
                 </a>
             </li>
-            <li><a href="https://indexes.ir/blog">وبلاگ</a></li>
+            <li><a href="https://indexes.ir/84">داستایفسکی</a></li>
             <li><a href="https://indexes.ir/89">شکسپیر</a></li>
             <li><a href="https://indexes.ir/88">چخوف</a></li>
             <li><a href="https://indexes.ir/87">آلبر کامو</a></li>
@@ -394,8 +394,8 @@ layout: blog.html
     
     <header class="home-header" role="banner">
         <div class="container">
-            <h1 class="home-title">زندگینامه مشاهیر جهان</h1>
-            <p class="home-subtitle">مرجع جامع بیوگرافی شخصیت‌های برجسته تاریخی، علمی و فرهنگی</p>
+            <h1 class="home-title">وبلاگ</h1>
+            <p class="home-subtitle">آخرین مطالب منتشر شده در وبلاگ</p>
         </div>
     </header>
         
@@ -403,7 +403,7 @@ layout: blog.html
         <div class="home-container">
             <h2 class="section-title">آخرین پست‌ها</h2>
             <ul class="latest-posts">
-                {% for post in site.posts limit:10 %}
+                {% for post in site.posts limit:1000 %}
                 <li>
                     <a href="{{ post.url }}">{{ post.title }}</a>
                     <span class="post-date">
