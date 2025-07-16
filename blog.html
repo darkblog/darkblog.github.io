@@ -161,7 +161,7 @@ sitemap: false
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: transform 0.3s ease;
         }
         
@@ -472,8 +472,8 @@ sitemap: false
             }
             
             .logo-svg {
-                width: 40px;
-                height: 40px;
+                width: 42px;
+                height: 42px;
             }
             
             .logo-text {
@@ -519,12 +519,12 @@ sitemap: false
             }
             
             .logo-container {
-                gap: 5px;
+                gap: 8px;
             }
             
             .logo-svg {
-                width: 35px;
-                height: 35px;
+                width: 38px;
+                height: 38px;
             }
             
             .logo-text {
@@ -556,19 +556,19 @@ sitemap: false
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Article">
-    <!-- Sticky top menu with logo -->
+    <!-- Sticky top menu with new logo -->
     <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
         <ul class="menu-links">
             <li>
                 <a href="https://indexes.ir/" class="logo-container">
-                    <!-- SVG Logo -->
+                    <!-- New SVG Logo - Red circle with white 'i' -->
                     <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#dc3545" />
                                 <stop offset="100%" stop-color="#a71d2a" />
                             </linearGradient>
-                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <filter id="circleGlow" x="-20%" y="-20%" width="140%" height="140%">
                                 <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
                                 <feFlood flood-color="#dc3545" flood-opacity="0.6" result="glowColor"/>
                                 <feComposite in="glowColor" in2="blur" operator="in" result="glow"/>
@@ -579,18 +579,13 @@ sitemap: false
                             </filter>
                         </defs>
                         
-                        <!-- Book -->
-                        <path d="M20,20 L20,80 C20,85 25,90 30,90 L70,90 C75,90 80,85 80,80 L80,20 C80,15 75,10 70,10 L30,10 C25,10 20,15 20,20 Z" 
-                              fill="url(#bookGradient)" stroke="#fff" stroke-width="2" filter="url(#glow)" />
+                        <!-- Red Circle -->
+                        <circle cx="50" cy="50" r="45" fill="url(#circleGradient)" 
+                                stroke="#fff" stroke-width="2" filter="url(#circleGlow)" />
                         
-                        <!-- Pages -->
-                        <path d="M30,15 L30,85" stroke="#fff" stroke-width="1" stroke-dasharray="3,3" />
-                        <path d="M35,15 L35,85" stroke="#fff" stroke-width="1" stroke-dasharray="3,3" />
-                        <path d="M40,15 L40,85" stroke="#fff" stroke-width="1" stroke-dasharray="3,3" />
-                        
-                        <!-- Star -->
-                        <path d="M50,35 L54,45 L65,45 L57,52 L60,62 L50,56 L40,62 L43,52 L35,45 L46,45 Z" 
-                              fill="#FFD700" stroke="#fff" stroke-width="1" />
+                        <!-- White 'i' -->
+                        <rect x="45" y="30" width="10" height="30" rx="5" ry="5" fill="#fff" />
+                        <circle cx="50" cy="75" r="5" fill="#fff" />
                     </svg>
                     <span class="logo-text">زندگینامه مشاهیر</span>
                 </a>
