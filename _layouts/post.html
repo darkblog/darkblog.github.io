@@ -54,7 +54,7 @@
       },
       "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
       "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
-      "articleBody": "{{ content | strip_html | truncate: 10000 }}"
+      "articleBody": "{{ content | strip_html | truncate: 160 }}"
     }
     </script>
     
@@ -113,10 +113,9 @@
             color: var(--primary-color);
         }
         
-        /* Sticky menu styles */
         .top-menu {
             background-color: #fff;
-            padding: 15px 0;
+            padding: 12px 0;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
@@ -128,6 +127,7 @@
         .menu-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 30px;
             padding: 0;
@@ -143,11 +143,43 @@
             padding: 5px;
             border-bottom: 2px solid transparent;
             font-weight: 500;
+            display: flex;
+            align-items: center;
         }
         
         .menu-links a:hover {
             color: var(--primary-color);
             border-bottom-color: var(--primary-color);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-svg {
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover .logo-svg {
+            transform: rotate(5deg);
+            filter: drop-shadow(0 0 5px rgba(220, 53, 69, 0.3));
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-top: 3px;
+            letter-spacing: -0.5px;
         }
         
         .post-header {
@@ -193,7 +225,6 @@
             line-height: 1.3;
         }
         
-        /* Wave styles */
         .wave-container {
             position: relative;
             width: 100%;
@@ -432,6 +463,15 @@
             .wave-container {
                 height: 70px;
             }
+            
+            .logo-svg {
+                width: 42px;
+                height: 42px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -470,6 +510,19 @@
             .wave-container {
                 height: 60px;
             }
+            
+            .logo-container {
+                gap: 8px;
+            }
+            
+            .logo-svg {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -488,14 +541,27 @@
             .wave-container {
                 height: 50px;
             }
+            
+            .logo-text {
+                display: none;
+            }
         }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Article">
-    <!-- Sticky top menu -->
     <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
         <ul class="menu-links">
-            <li><a href="https://indexes.ir/">زندگینامه مشاهیر</a></li>
+            <li>
+                <a href="https://indexes.ir/" class="logo-container">
+                    <img src="https://indexes.ir/logo.png" 
+                         alt="زندگینامه مشاهیر" 
+                         class="logo-svg"
+                         width="50" 
+                         height="50">
+                    <span class="logo-text">زندگینامه مشاهیر</span>
+                </a>
+            </li>
+            <li><a href="https://indexes.ir/blog">وبلاگ</a></li>
             <li><a href="https://indexes.ir/89">شکسپیر</a></li>
             <li><a href="https://indexes.ir/88">چخوف</a></li>
             <li><a href="https://indexes.ir/87">آلبر کامو</a></li>
@@ -503,20 +569,17 @@
         </ul>
     </nav>
     
-    <!-- Page header with title -->
     <header class="post-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
         <div class="header-content">
             <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
         </div>
     </header>
     
-    <!-- Wave divider -->
     <div class="wave-container">
         <div class="wave"></div>
     </div>
         
     <main class="container" role="main">
-        <!-- Main content -->
         <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
                 {{ content }}
@@ -529,13 +592,12 @@
             </div>
         </article>
         
-        <!-- Footer links -->
         <footer class="simple-footer" role="contentinfo">
             <ul class="footer-links">
                 <li><a href="https://indexes.ir/47">حافظ</a></li>
                 <li><a href="https://indexes.ir/9">سعدی</a></li>
-                <li><a href="https://indexes.ir/70">هاوکینگ</a></li>
-                <li><a href="https://indexes.ir/69">داروین</a></li>
+                <li><a href="https://indexes.ir/60">مولانا</a></li>
+                <li><a href="https://indexes.ir/46">عطار</a></li>
             </ul>
         </footer>
     </main>
@@ -561,14 +623,13 @@
                 });
             });
             
-            // Sticky menu effect on scroll
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
                     topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                    topMenu.style.padding = '10px 0';
+                    topMenu.style.padding = '8px 0';
                 } else {
                     topMenu.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-                    topMenu.style.padding = '15px 0';
+                    topMenu.style.padding = '12px 0';
                 }
             });
         });
