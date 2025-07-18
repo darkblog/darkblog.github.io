@@ -399,6 +399,17 @@
             background: var(--primary-color);
         }
         
+        /* Added styles for auto-responsive tables */
+        .post-content .auto-responsive-table {
+            width: 100%;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
         .simple-footer {
             background-color: #343a40;
             padding: 15px 0;
@@ -611,10 +622,21 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const tables = document.querySelectorAll('.table-responsive');
-            const topMenu = document.querySelector('.top-menu');
-            
-            tables.forEach(table => {
+            // Wrap all tables in .post-content with responsive wrapper
+            const contentTables = document.querySelectorAll('.post-content table');
+            contentTables.forEach(table => {
+                // Check if already wrapped
+                if (!table.closest('.auto-responsive-table')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('auto-responsive-table');
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+
+            // Existing functionality for responsive tables
+            const responsiveTables = document.querySelectorAll('.table-responsive, .auto-responsive-table');
+            responsiveTables.forEach(table => {
                 if (table.scrollWidth > table.clientWidth) {
                     table.classList.add('has-scroll');
                 }
@@ -628,6 +650,8 @@
                 });
             });
             
+            // Menu scroll effect
+            const topMenu = document.querySelector('.top-menu');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
                     topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
