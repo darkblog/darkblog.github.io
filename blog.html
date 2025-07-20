@@ -317,56 +317,12 @@ layout: blog.html
             opacity: 1;
         }
         
-        .simple-footer {
-            background-color: #343a40;
-            padding: 25px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding: 0;
-            margin: 0 0 20px;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-        }
-
-        .footer-links a:hover,
-        .footer-links a:focus {
-            color: white;
-            border-bottom-color: #dc3545;
-        }
-        
-        .copyright {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 10px;
-        }
-
         @media (max-width: 768px) {
-            .menu-links, .footer-links {
+            .menu-links {
                 gap: 15px;
             }
             
-            .menu-links a, .footer-links a {
+            .menu-links a {
                 font-size: 0.95rem;
             }
             
@@ -446,18 +402,14 @@ layout: blog.html
             .logo-text {
                 font-size: 1rem;
             }
-            
-            .footer-links {
-                gap: 15px;
-            }
         }
         
         @media (max-width: 480px) {
-            .menu-links, .footer-links {
+            .menu-links {
                 gap: 8px;
             }
             
-            .menu-links a, .footer-links a {
+            .menu-links a {
                 font-size: 0.85rem;
             }
             
@@ -467,12 +419,6 @@ layout: blog.html
             
             .logo-text {
                 display: none;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
             }
         }
         
@@ -537,17 +483,6 @@ layout: blog.html
                 {% endfor %}
             </ul>
         </div>
-        
-        <footer class="simple-footer" role="contentinfo">
-            <div class="footer-content">
-                <ul class="footer-links">
-                    <li><a href="https://indexes.ir/47">حافظ</a></li>
-                    <li><a href="https://indexes.ir/9">سعدی</a></li>
-                    <li><a href="https://indexes.ir/60">مولانا</a></li>
-                    <li><a href="https://indexes.ir/46">عطار</a></li>
-                </ul>
-            </div>
-        </footer>
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
