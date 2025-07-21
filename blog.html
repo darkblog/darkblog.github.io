@@ -451,7 +451,7 @@ layout: blog.html
         </div>
     </header>
         
-    <main class="container" role="main" id="main-content">
+    <main class="container" role="main">
         <div class="home-container">
             <h2 class="section-title">آخرین مطالب</h2>
             <ul class="latest-posts">
@@ -481,12 +481,6 @@ layout: blog.html
                     topMenu.style.padding = '12px 0';
                 }
             });
-            
-            const mainContent = document.getElementById('main-content');
-            if (mainContent) {
-                mainContent.setAttribute('tabindex', '-1');
-                mainContent.focus();
-            }
         });
     </script>
 </body>
