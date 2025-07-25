@@ -53,8 +53,8 @@ layout: blog.html
             "@type": "WebPage",
             "@id": "https://indexes.ir/blog"
         },
-        "headline": "وبلاگ زندگینامه مشاهیر",
-        "description": "لیست مطالب منتشر شده",
+        "headline": "وبلاگ مشاهیر",
+        "description": "وبلاگ مشاهیر",
         "publisher": {
             "@type": "Organization",
             "name": "زندگینامه مشاهیر",
@@ -65,7 +65,7 @@ layout: blog.html
                 "height": 512
             }
         },
-        "inLanguage": "fa-IR"
+        "inLanguage": "fa"
     }
     </script>
     
@@ -83,7 +83,7 @@ layout: blog.html
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "وبلاگ",
+                "name": "وبلاگ مشاهیر",
                 "item": "https://indexes.ir/blog"
             }
         ]
@@ -429,7 +429,7 @@ layout: blog.html
             <li>
                 <a href="https://indexes.ir/" class="logo-container" aria-label="صفحه اصلی">
                     <img src="https://indexes.ir/logo.png" 
-                         alt="لوگو زندگینامه مشاهیر" 
+                         alt="زندگینامه مشاهیر" 
                          class="logo-svg"
                          width="50" 
                          height="50"
@@ -446,14 +446,14 @@ layout: blog.html
     
     <header class="home-header" role="banner">
         <div class="container">
-            <h1 class="home-title">وبلاگ</h1>
-            <p class="home-subtitle">لیست مطالب منتشر شده</p>
+            <h1 class="home-title">وبلاگ مشاهیر</h1>
+            <p class="home-subtitle">لیست مشاهیر ایران و جهان</p>
         </div>
     </header>
         
     <main class="container" role="main">
         <div class="home-container">
-            <h2 class="section-title">آخرین مطالب</h2>
+            <h2 class="section-title">لیست مشاهیر</h2>
             <ul class="latest-posts">
                 {% for post in site.posts limit:1000 %}
                 <li>
