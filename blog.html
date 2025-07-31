@@ -7,9 +7,9 @@ layout: blog.html
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>وبلاگ مشاهیر | لیست بزرگان ایران و جهان</title>
+    <title>وبلاگ مشاهیر | اسامی مشاهیر ایران و جهان</title>
     <meta name="description" content="وبلاگ مشاهیر">
-    <meta name="keywords" content="زندگینامه مشاهیر, وبلاگ ادبی, داستایفسکی, شکسپیر, چخوف, حافظ, سعدی, مولانا, عطار">
+    <meta name="keywords" content="زندگینامه مشاهیر, وبلاگ مشاهیر, داستایفسکی, شکسپیر, چخوف, حافظ, سعدی, مولانا, عطار">
     <meta name="author" content="ehsan chehri">
     
     <!-- Open Graph Meta Tags -->
@@ -225,17 +225,6 @@ layout: blog.html
             z-index: 10;
         }
         
-        .home-subtitle {
-            font-size: 1.3rem;
-            margin-top: 15px;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            z-index: 10;
-        }
-        
         .home-container {
             max-width: 800px;
             margin: 0 auto 50px;
@@ -334,10 +323,6 @@ layout: blog.html
                 font-size: 2.2rem;
             }
             
-            .home-subtitle {
-                font-size: 1.1rem;
-            }
-            
             .home-container {
                 padding: 30px;
             }
@@ -424,10 +409,10 @@ layout: blog.html
     </style>
 </head>
 <body>
-    <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
+    <nav class="top-menu" role="navigation" aria-label="زندگینامه مشاهیر">
         <ul class="menu-links">
             <li>
-                <a href="https://indexes.ir/" class="logo-container" aria-label="صفحه اصلی">
+                <a href="https://indexes.ir/" class="logo-container" aria-label="زندگینامه مشاهیر">
                     <img src="https://indexes.ir/logo.png" 
                          alt="زندگینامه مشاهیر" 
                          class="logo-svg"
@@ -447,13 +432,12 @@ layout: blog.html
     <header class="home-header" role="banner">
         <div class="container">
             <h1 class="home-title">وبلاگ مشاهیر</h1>
-            <p class="home-subtitle">لیست مشاهیر ایران و جهان</p>
         </div>
     </header>
         
     <main class="container" role="main">
         <div class="home-container">
-            <h2 class="section-title">لیست مشاهیر</h2>
+            <h2 class="section-title">اسامی مشاهیر ایران و جهان</h2>
             <ul class="latest-posts">
                 {% for post in site.posts limit:1000 %}
                 <li>
