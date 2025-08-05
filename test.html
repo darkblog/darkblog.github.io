@@ -304,7 +304,7 @@ layout: index.html
             font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: flex-start; /* تغییر به flex-start */
             transition: all 0.3s ease;
             margin-top: 15px;
             padding-top: 15px;
@@ -312,7 +312,7 @@ layout: index.html
         }
         
         .read-more i {
-            margin-left: 8px;
+            margin-left: 8px; /* فاصله بین متن و آیکون */
             transition: transform 0.3s ease;
         }
         
@@ -321,7 +321,7 @@ layout: index.html
         }
         
         .post-card:hover .read-more i {
-            transform: translateX(5px);
+            transform: translateX(-5px); /* حرکت آیکون به سمت چپ */
         }
         
         .blog-button-container {
@@ -354,7 +354,7 @@ layout: index.html
         }
 
         .blog-button i {
-            margin-right: 8px;
+            margin-left: 8px;
             transition: transform 0.3s ease;
         }
 
@@ -491,7 +491,7 @@ layout: index.html
                 
                 <div class="blog-button-container">
                     <a href="/blog" class="blog-button">
-                        لیست مشاهیر ایران و جهان
+                        وبلاگ مشاهیر
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>
