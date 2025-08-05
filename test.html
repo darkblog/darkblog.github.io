@@ -309,10 +309,10 @@ layout: index
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            gap: 10px; /* استفاده از gap برای فاصله‌گذاری */
         }
         
         .read-more i {
-            margin-left: 10px; /* افزایش فاصله بین متن و آیکون */
             transition: transform 0.3s ease;
         }
         
@@ -345,6 +345,7 @@ layout: index
             border: 1px solid rgba(220, 53, 69, 0.2);
             max-width: 250px;
             font-size: 1.1rem;
+            gap: 10px; /* استفاده از gap برای فاصله‌گذاری */
         }
 
         .blog-button:hover {
@@ -354,7 +355,6 @@ layout: index
         }
 
         .blog-button i {
-            margin-left: 10px; /* افزایش فاصله بین متن و آیکون */
             transition: transform 0.3s ease;
         }
 
@@ -404,9 +404,9 @@ layout: index
                 font-size: 1rem;
             }
             
-            .read-more i,
-            .blog-button i {
-                margin-left: 8px; /* کاهش فاصله در نسخه موبایل */
+            .read-more,
+            .blog-button {
+                gap: 8px; /* کاهش فاصله در نسخه موبایل */
             }
         }
         
@@ -441,9 +441,9 @@ layout: index
                 font-size: 0.95rem;
             }
             
-            .read-more i,
-            .blog-button i {
-                margin-left: 6px; /* کاهش بیشتر فاصله در صفحات کوچک */
+            .read-more,
+            .blog-button {
+                gap: 6px; /* کاهش بیشتر فاصله در صفحات کوچک */
             }
         }
     </style>
