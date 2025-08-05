@@ -1,5 +1,5 @@
 ---
-layout: index.html
+layout: index
 ---
 
 <!DOCTYPE html>
@@ -304,7 +304,7 @@ layout: index.html
             font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* تغییر به flex-start */
+            justify-content: flex-start;
             transition: all 0.3s ease;
             margin-top: 15px;
             padding-top: 15px;
@@ -312,7 +312,7 @@ layout: index.html
         }
         
         .read-more i {
-            margin-left: 8px; /* فاصله بین متن و آیکون */
+            margin-left: 10px; /* افزایش فاصله بین متن و آیکون */
             transition: transform 0.3s ease;
         }
         
@@ -321,7 +321,7 @@ layout: index.html
         }
         
         .post-card:hover .read-more i {
-            transform: translateX(-5px); /* حرکت آیکون به سمت چپ */
+            transform: translateX(-5px);
         }
         
         .blog-button-container {
@@ -354,7 +354,7 @@ layout: index.html
         }
 
         .blog-button i {
-            margin-left: 8px;
+            margin-left: 10px; /* افزایش فاصله بین متن و آیکون */
             transition: transform 0.3s ease;
         }
 
@@ -403,6 +403,11 @@ layout: index.html
                 padding: 10px 25px;
                 font-size: 1rem;
             }
+            
+            .read-more i,
+            .blog-button i {
+                margin-left: 8px; /* کاهش فاصله در نسخه موبایل */
+            }
         }
         
         @media (max-width: 576px) {
@@ -434,6 +439,11 @@ layout: index.html
             .blog-button {
                 padding: 9px 20px;
                 font-size: 0.95rem;
+            }
+            
+            .read-more i,
+            .blog-button i {
+                margin-left: 6px; /* کاهش بیشتر فاصله در صفحات کوچک */
             }
         }
     </style>
