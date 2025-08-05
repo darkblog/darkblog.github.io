@@ -448,6 +448,68 @@
             border-bottom-color: #dc3545;
         }
 
+        /* تغییرات جدید برای راست‌چین کردن لینک‌های پست */
+        .post-content a {
+            display: inline-flex;
+            align-items: center;
+            direction: rtl;
+            text-align: right;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        /* استایل برای فلش لینک‌ها (پیکان چپ) */
+        .post-content a:after {
+            content: "\f060"; /* کد آیکون فلش چپ در Font Awesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 6px;
+            margin-left: 0;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            font-size: 0.85em;
+        }
+
+        /* افکت hover برای لینک‌ها */
+        .post-content a:hover {
+            color: var(--primary-dark);
+            padding-right: 8px;
+            padding-left: 0;
+        }
+
+        /* افکت hover برای فلش */
+        .post-content a:hover:after {
+            opacity: 1;
+            margin-right: 8px;
+            margin-left: -3px;
+        }
+
+        /* راست‌چین کردن لیست‌ها */
+        .post-content ul, 
+        .post-content ol {
+            padding-right: 1.5em;
+            padding-left: 0;
+        }
+
+        /* راست‌چین کردن عناصر داخل لیست */
+        .post-content li {
+            text-align: right;
+            direction: rtl;
+        }
+
+        /* راست‌چین کردن جداول */
+        .post-content table {
+            direction: rtl;
+        }
+
+        /* راست‌چین کردن سلول‌های جدول */
+        .post-content th, 
+        .post-content td {
+            text-align: right;
+        }
+
         @media (max-width: 768px) {
             .menu-links, .footer-links {
                 gap: 15px;
