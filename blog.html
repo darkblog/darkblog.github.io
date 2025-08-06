@@ -282,13 +282,13 @@ layout: blog.html
         
         .post-item:hover {
             color: var(--primary-color);
-            padding-right: 15px;
+            padding-left: 15px;
         }
         
         .post-item::before {
-            content: "→";
+            content: "←";
             position: absolute;
-            right: -20px;
+            left: -20px;
             top: 50%;
             transform: translateY(-50%);
             opacity: 0;
@@ -297,7 +297,7 @@ layout: blog.html
         }
         
         .post-item:hover::before {
-            right: -15px;
+            left: -10px;
             opacity: 1;
         }
         
