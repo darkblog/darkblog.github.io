@@ -12,35 +12,40 @@ layout: blog.html
     <meta name="keywords" content="وبلاگ, وبلاگ مشاهیر, لیست مشاهیر, مشاهیر, مشاهیر ایران, مشاهیر جهان">
     <meta name="author" content="ehsan chehri">
     
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="وبلاگ مشاهیر">
     <meta property="og:description" content="لیست مشاهیر ایران و جهان">
     <meta property="og:url" content="https://indexes.ir/blog">
     <meta property="og:site_name" content="زندگینامه مشاهیر">
-    <meta property="og:locale" content="fa">
+    <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
     <meta property="og:image:alt" content="زندگینامه مشاهیر">
     
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="وبلاگ مشاهیر">
     <meta name="twitter:description" content="لیست مشاهیر ایران و جهان">
     <meta name="twitter:image" content="https://indexes.ir/logo.png">
     <meta name="twitter:site" content="@pbstwi">
 
+    <!-- Favicon & Links -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/logo.png">
     <link rel="canonical" href="https://indexes.ir/blog">
     <meta name="theme-color" content="#dc3545">
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Preload Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
+    <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -61,28 +66,24 @@ layout: blog.html
                 "height": 512
             }
         },
-        "inLanguage": "fa"
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "زندگینامه مشاهیر",
-                "item": "https://indexes.ir/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "وبلاگ مشاهیر",
-                "item": "https://indexes.ir/blog"
-            }
-        ]
+        "inLanguage": "fa",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "زندگینامه مشاهیر",
+                    "item": "https://indexes.ir/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "وبلاگ مشاهیر",
+                    "item": "https://indexes.ir/blog"
+                }
+            ]
+        }
     }
     </script>
     
@@ -352,10 +353,6 @@ layout: blog.html
                 font-size: 1.8rem;
             }
             
-            .home-subtitle {
-                font-size: 1rem;
-            }
-            
             .home-container {
                 padding: 25px 20px;
                 border-radius: 12px;
@@ -419,22 +416,22 @@ layout: blog.html
     </style>
 </head>
 <body>
-    <nav class="top-menu" role="navigation" aria-label="زندگینامه مشاهیر">
+    <nav class="top-menu" role="navigation" aria-label="منوی اصلی">
         <ul class="menu-links">
             <li>
-                <a href="https://indexes.ir/" class="logo-container" aria-label="زندگینامه مشاهیر">
-                    <i class="fas fa-home"></i>
+                <a href="https://indexes.ir/" class="logo-container" aria-label="صفحه اصلی زندگینامه مشاهیر">
+                    <i class="fas fa-home" aria-hidden="true"></i>
                     <span class="logo-text">زندگینامه مشاهیر</span>
                 </a>
             </li>
             <li>
                 <a href="https://www.facebook.com/ehsanchehri/" aria-label="فیسبوک" class="social-icon">
-                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://x.com/pbstwi" aria-label="ایکس" class="social-icon">
-                    <i class="fab fa-x-twitter"></i>
+                <a href="https://x.com/pbstwi" aria-label="توئیتر" class="social-icon">
+                    <i class="fab fa-x-twitter" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
