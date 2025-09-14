@@ -11,19 +11,35 @@ layout: index.html
     <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر و دیگران!">
     <meta name="keywords" content="زندگینامه, زندگینامه مشاهیر, بیوگرافی, بیوگرافی مشاهیر, زندگینامه مشاهیر ایران, زندگینامه مشاهیر ایران و جهان">
     
-    <meta property="og:title" content="{{ site.title }}">
-    <meta property="og:description" content="{{ site.description }}">
+    <!-- Open Graph -->
+    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
+    <meta property="og:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="fa">
+    <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/logo.png">
+    <meta property="og:url" content="https://indexes.ir/">
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="زندگینامه مشاهیر ایران و جهان">
+    <meta name="twitter:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان">
+    <meta name="twitter:image" content="https://indexes.ir/logo.png">
 
+    <!-- Favicon & Links -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/logo.png">
-    
     <link rel="canonical" href="https://indexes.ir/">
+    <meta name="theme-color" content="#dc3545">
     
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -35,21 +51,19 @@ layout: index.html
         "@type": "SearchAction",
         "target": "https://www.google.com/search?q={search_term_string}&sitesearch=indexes.ir",
         "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "زندگینامه مشاهیر",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://indexes.ir/logo.png",
+          "width": 512,
+          "height": 512
+        }
       }
     }
     </script>
-    
-    <meta name="theme-color" content="#dc3545">
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -70,10 +84,19 @@ layout: index.html
             padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
+            margin: 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
         
         a {
             text-decoration: none !important;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
         }
         
         .modern-header {
@@ -452,9 +475,9 @@ layout: index.html
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
     <div class="container-fluid px-0">
-        <header class="modern-header" role="banner">
+        <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
-                <h1 itemprop="headline">زندگینامه مشاهیر</h1>
+                <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
                 <p itemprop="description">زندگینامه مشاهیر ایران و جهان</p>
             </div>
         </header>
@@ -472,7 +495,7 @@ layout: index.html
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
                 </form>
@@ -485,16 +508,16 @@ layout: index.html
                          itemscope 
                          itemtype="https://schema.org/BlogPosting"
                          role="article"
-                         aria-label="پست: {{ post.title }}">
+                         aria-labelledby="post-title-{{ forloop.index }}">
                     <a href="{{ post.url }}" itemprop="url">
                         <div class="post-content">
-                            <h2 class="post-title" itemprop="headline">{{ post.title }}</h2>
+                            <h2 class="post-title" itemprop="headline" id="post-title-{{ forloop.index }}">{{ post.title }}</h2>
                             <p class="post-excerpt" itemprop="description">
                                 {{ post.excerpt | strip_html | truncate: 200 }}
                             </p>
                             <div class="read-more">
                                 <span>مطالعه کامل زندگینامه</span>
-                                <i class="fas fa-arrow-left"></i>
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             </div>
                         </div>
                     </a>
@@ -504,7 +527,7 @@ layout: index.html
                 <div class="blog-button-container">
                     <a href="/blog" class="blog-button">
                         وبلاگ مشاهیر
-                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
