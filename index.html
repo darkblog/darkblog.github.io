@@ -8,7 +8,7 @@ layout: index.html
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title itemprop="name">زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات افراد مشهور</title>
-    <meta name="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر و دیگران!">
+    <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر و دیگران!">
     <meta name="keywords" content="زندگینامه, زندگینامه مشاهیر, بیوگرافی, بیوگرافی مشاهیر, زندگینامه مشاهیر ایران, زندگینامه مشاهیر ایران و جهان">
     
     <!-- Open Graph -->
@@ -26,19 +26,18 @@ layout: index.html
     <meta name="twitter:image" content="https://indexes.ir/logo.png">
 
     <!-- Favicon & Links -->
-    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="icon" href="/logo.png">
     <link rel="apple-touch-icon" href="/logo.png">
     <link rel="canonical" href="https://indexes.ir/">
     <meta name="theme-color" content="#dc3545">
     
     <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Load CSS normally for maximum compatibility -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-MZ9cBy8gZk+2k2Lk6oKZOD/6U+8OVe5G5O0V5VF+hF8fYpO0bE+qMKbc0lZJL8gyrKs0nSovrQwZ8y4nqdUsww==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-+N0QNONaiqjGOcLZ/95k0i+ch3cL8qqp0JNpqaV3zCVV+nMnmvx4sh2P8pRaZbKkGQlGXkO8y76eOohV/0lDw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -512,7 +511,7 @@ layout: index.html
                      height="512"
                      itemprop="image">
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
-                <p>زندگینامه مشاهیر ایران و جهان</p>
+                <p itemprop="description">زندگینامه مشاهیر ایران و جهان</p>
             </div>
         </header>
         
@@ -568,6 +567,6 @@ layout: index.html
         </main>
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" integrity="sha512-s0c+bKk1FWEe8TQRJf8KknFbzQ5Fbh2ca1MhYVH5XzmQnQ5K7ddlG+WwW1GWuW7O+Wj1MfDqQO6FZf0VPhqo2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
