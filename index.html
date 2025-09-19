@@ -180,18 +180,29 @@ layout: index.html
             font-size: 1.1rem;
         }
         
-        .header-image {
+        .logo-container {
             width: 160px;
             height: 160px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
         
-        .header-image:hover {
+        .header-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: contain;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
             transform: scale(1.05);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
@@ -417,9 +428,14 @@ layout: index.html
                 font-size: 1.15rem;
             }
             
-            .header-image {
+            .logo-container {
                 width: 140px;
                 height: 140px;
+            }
+            
+            .header-image {
+                width: 130px;
+                height: 130px;
             }
             
             .post-content {
@@ -474,9 +490,14 @@ layout: index.html
                 font-size: 1rem;
             }
             
-            .header-image {
+            .logo-container {
                 width: 120px;
                 height: 120px;
+            }
+            
+            .header-image {
+                width: 110px;
+                height: 110px;
             }
             
             .posts-search-container {
@@ -504,13 +525,15 @@ layout: index.html
     <div class="container-fluid px-0">
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
-                <img src="https://indexes.ir/logo.png" 
-                     alt="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی افراد مشهور" 
-                     class="header-image"
-                     loading="lazy"
-                     width="512"
-                     height="512"
-                     itemprop="image">
+                <div class="logo-container">
+                    <img src="https://indexes.ir/logo.png" 
+                         alt="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی افراد مشهور" 
+                         class="header-image"
+                         loading="lazy"
+                         width="512"
+                         height="512"
+                         itemprop="image">
+                </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
                 <p itemprop="description">زندگینامه مشاهیر ایران و جهان</p>
             </div>
