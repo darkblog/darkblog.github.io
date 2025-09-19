@@ -12,7 +12,6 @@ layout: blog.html
     <meta name="keywords" content="وبلاگ, وبلاگ مشاهیر, لیست مشاهیر, مشاهیر, مشاهیر ایران, مشاهیر جهان">
     <meta name="author" content="ehsan chehri">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="وبلاگ مشاهیر">
     <meta property="og:description" content="لیست مشاهیر ایران و جهان">
@@ -24,20 +23,17 @@ layout: blog.html
     <meta property="og:image:height" content="512">
     <meta property="og:image:alt" content="زندگینامه مشاهیر">
     
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="وبلاگ مشاهیر">
     <meta name="twitter:description" content="لیست مشاهیر ایران و جهان">
     <meta name="twitter:image" content="https://indexes.ir/logo.png">
     <meta name="twitter:site" content="@pbstwi">
-
-    <!-- Favicon & Links -->
+    
     <link rel="icon" href="/logo.png">
     <link rel="apple-touch-icon" href="/logo.png">
     <link rel="canonical" href="https://indexes.ir/blog">
     <meta name="theme-color" content="#dc3545">
     
-    <!-- Preload Resources -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -46,7 +42,6 @@ layout: blog.html
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
-    <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -349,10 +344,6 @@ layout: blog.html
                 padding: 30px;
             }
             
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
             .post-item {
                 font-size: 1.1rem;
             }
@@ -485,7 +476,6 @@ layout: blog.html
         
     <main class="container" role="main">
         <div class="home-container">
-            <h2 class="section-title">لیست مشاهیر ایران و جهان</h2>
             <ul class="latest-posts">
                 {% for post in site.posts limit:1000 %}
                 <li>
