@@ -214,13 +214,6 @@ layout: index.html
             transform: translateY(-50%) scale(1.05);
         }
         
-        .posts-search-hint {
-            text-align: center;
-            margin-top: 12px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
         .posts-container {
             max-width: 800px;
             margin: 0 auto;
@@ -445,7 +438,7 @@ layout: index.html
             <div class="header-content">
                 <div class="logo-container">
                     <img src="https://indexes.ir/indexes.webp" 
-                         alt="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی افراد مشهور" 
+                         alt="زندگینامه مشاهیر" 
                          class="header-image"
                          loading="lazy"
                          width="512"
@@ -463,7 +456,7 @@ layout: index.html
                         <input type="text" 
                                name="q" 
                                class="form-control form-control-lg" 
-                               placeholder="جستجوی مشاهیر..." 
+                               placeholder="جستجوی مشاهیر" 
                                required
                                aria-label="جستجوی زندگینامه مشاهیر"
                                aria-required="true">
@@ -473,7 +466,7 @@ layout: index.html
                         </button>
                     </div>
                 </form>
-                <p class="posts-search-hint">نام شخصیت مورد نظر خود را برای یافتن زندگینامه وارد کنید</p>
+                <p class="posts-search-hint">نام شخصیت مورد نظر خود را وارد کنید</p>
             </div>
             
             <div class="posts-container">
@@ -490,7 +483,7 @@ layout: index.html
                                 {{ post.excerpt | strip_html | truncate: 200 }}
                             </p>
                             <div class="read-more">
-                                <span>مطالعه کامل زندگینامه</span>
+                                <span>ادامه بیوگرافی</span>
                                 <i class="fas fa-arrow-left" aria-hidden="true"></i>
                             </div>
                         </div>
