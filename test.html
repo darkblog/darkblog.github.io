@@ -7,11 +7,11 @@ layout: test.html
 <head>
     <meta charset="utf-8">
     <title itemprop="name">زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات افراد مشهور</title>
-    <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر و دیگران">
+    <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر и دیگران">
     <meta name="keywords" content="زندگینامه, زندگینامه مشاهیر, بیوگرافی, بیوگرافی مشاهیر, زندگینامه مشاهیر ایران, زندگینامه مشاهیر ایران و جهان">
     
     <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
-    <meta property="og:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری">
+    <meta property="og:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان в حوزه های علمی، فرهنگی، تاریخی و هنری">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/logo.png">
@@ -81,8 +81,13 @@ layout: test.html
         }
         
         a:hover {
-            /* حذف تغییر رنگ در هنگام هاور */
             color: var(--primary-color);
+        }
+        
+        /* حذف حالت active برای لینک‌ها */
+        a:active, a:focus {
+            color: var(--primary-color);
+            outline: none;
         }
         
         .container-fluid {
@@ -333,12 +338,7 @@ layout: test.html
             direction: rtl;
         }
         
-        .read-more i {
-            transition: transform 0.3s ease;
-        }
-        
         .post-card:hover .read-more {
-            /* حذف تغییر رنگ در هنگام هاور */
             color: var(--primary-color);
         }
         
@@ -379,7 +379,6 @@ layout: test.html
             background-color: rgba(220, 53, 69, 0.2);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
-            /* حذف تغییر رنگ در هنگام هاور */
             color: var(--primary-color);
         }
 
@@ -538,20 +537,26 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <!-- لوگوی جدید SVG سرو ایرانی -->
+                    <!-- لوگوی جدید SVG پرنده ایرانی (سیمرغ) -->
                     <svg class="header-image" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="75" cy="75" r="75" fill="white"/>
-                        <!-- نماد سرو ایرانی -->
-                        <path d="M75 25L65 45H85L75 25Z" fill="#2e7d32"/>
-                        <path d="M75 35L65 55H85L75 35Z" fill="#388e3c"/>
-                        <path d="M75 45L65 65H85L75 45Z" fill="#4caf50"/>
-                        <path d="M75 55L65 75H85L75 55Z" fill="#66bb6a"/>
-                        <path d="M75 65L65 85H85L75 65Z" fill="#81c784"/>
-                        <path d="M75 75L65 95H85L75 75Z" fill="#a5d6a7"/>
-                        <path d="M70 95H80V115H70V95Z" fill="#5d4037"/>
-                        <path d="M75 20V25" stroke="#5d4037" stroke-width="3"/>
-                        <path d="M65 45L60 50" stroke="#5d4037" stroke-width="2"/>
-                        <path d="M85 45L90 50" stroke="#5d4037" stroke-width="2"/>
+                        <!-- طراحی پرنده سیمرغ ایرانی -->
+                        <path d="M75 30C75 30 55 40 50 60C45 80 60 90 75 100C90 90 105 80 100 60C95 40 75 30 75 30Z" fill="#dc3545"/>
+                        <path d="M60 70C60 70 45 75 40 85C35 95 45 105 60 105C75 105 85 95 80 85C75 75 60 70 60 70Z" fill="#a71d2a"/>
+                        <path d="M90 70C90 70 105 75 110 85C115 95 105 105 90 105C75 105 65 95 70 85C75 75 90 70 90 70Z" fill="#a71d2a"/>
+                        <path d="M75 105C75 105 70 115 70 125C70 135 80 140 90 140C100 140 110 135 110 125C110 115 105 105 105 105" stroke="#dc3545" stroke-width="5" fill="none"/>
+                        <path d="M40 50C40 50 25 40 20 55C15 70 30 80 45 75" stroke="#a71d2a" stroke-width="4" fill="none"/>
+                        <path d="M110 50C110 50 125 40 130 55C135 70 120 80 105 75" stroke="#a71d2a" stroke-width="4" fill="none"/>
+                        <circle cx="65" cy="80" r="5" fill="white"/>
+                        <circle cx="85" cy="80" r="5" fill="white"/>
+                        <circle cx="65" cy="80" r="2" fill="black"/>
+                        <circle cx="85" cy="80" r="2" fill="black"/>
+                        <path d="M70 95C70 95 75 100 80 95" stroke="black" stroke-width="2" fill="none"/>
+                        <!-- جزئیات اضافی برای زیبایی -->
+                        <path d="M50 40L45 35" stroke="#a71d2a" stroke-width="2"/>
+                        <path d="M100 40L105 35" stroke="#a71d2a" stroke-width="2"/>
+                        <path d="M55 110L50 115" stroke="#dc3545" stroke-width="2"/>
+                        <path d="M95 110L100 115" stroke="#dc3545" stroke-width="2"/>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
