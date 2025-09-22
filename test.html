@@ -40,6 +40,18 @@ layout: test.html
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
     
     <style amp-custom>
+        /* اضافه کردن rule برای جلوگیری از اسکرول افقی */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* استفاده از box-sizing: border-box برای همه عناصر */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
         :root {
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
@@ -59,6 +71,7 @@ layout: test.html
             line-height: 1.8;
             margin: 0;
             padding: 0;
+            width: 100%;
         }
         
         a {
@@ -69,6 +82,11 @@ layout: test.html
         
         a:hover {
             color: var(--primary-dark);
+        }
+        
+        .container-fluid {
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .modern-header {
@@ -84,6 +102,7 @@ layout: test.html
             align-items: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
         
         .modern-header::before {
@@ -119,12 +138,15 @@ layout: test.html
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100%;
         }
         
         .modern-header h1 {
             font-weight: 900;
             font-size: 3.2rem;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            padding: 0 15px;
         }
         
         .modern-header p {
@@ -133,6 +155,7 @@ layout: test.html
             max-width: 700px;
             margin: 0 auto 30px;
             font-weight: 300;
+            padding: 0 15px;
         }
         
         .logo-container {
@@ -153,6 +176,7 @@ layout: test.html
             height: 150px;
             border-radius: 50%;
             object-fit: contain;
+            max-width: 100%;
         }
         
         .logo-container:hover {
@@ -166,6 +190,7 @@ layout: test.html
             padding: 0 15px;
             position: relative;
             z-index: 100;
+            width: 100%;
         }
         
         .posts-search-box {
@@ -175,6 +200,7 @@ layout: test.html
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            width: 100%;
         }
         
         .posts-search-box:hover {
@@ -183,6 +209,7 @@ layout: test.html
         
         .search-box {
             position: relative;
+            width: 100%;
         }
         
         .posts-search-box input {
@@ -193,6 +220,7 @@ layout: test.html
             background: transparent;
             height: 56px;
             width: 100%;
+            max-width: 100%;
         }
         
         .posts-search-box input:focus {
@@ -225,6 +253,7 @@ layout: test.html
             max-width: 800px;
             margin: 0 auto;
             padding: 0 15px;
+            width: 100%;
         }
         
         .post-card {
@@ -239,6 +268,7 @@ layout: test.html
             color: inherit;
             position: relative;
             border-left: 5px solid var(--primary-color);
+            width: 100%;
         }
         
         .post-card:hover {
@@ -257,6 +287,7 @@ layout: test.html
             margin-bottom: 15px;
             font-size: 1.5rem;
             line-height: 1.4;
+            max-width: 100%;
         }
         
         .post-excerpt {
@@ -266,6 +297,7 @@ layout: test.html
             margin-bottom: 20px;
             position: relative;
             padding-right: 25px;
+            max-width: 100%;
         }
         
         .post-excerpt::before {
@@ -290,6 +322,7 @@ layout: test.html
             padding-top: 15px;
             border-top: 1px dashed rgba(0, 0, 0, 0.1);
             gap: 10px;
+            max-width: 100%;
         }
         
         .read-more i {
@@ -309,6 +342,7 @@ layout: test.html
             margin: 40px auto;
             padding: 0 15px;
             text-align: center;
+            width: 100%;
         }
         
         .blog-button {
