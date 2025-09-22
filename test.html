@@ -274,7 +274,7 @@ layout: test.html
         }
         
         .post-card:hover {
-            transform: translateX(-7px);
+            transform: translateY(-7px); /* تغییر از translateX به translateY برای حرکت به بالا */
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
             border-left: 5px solid var(--primary-dark);
         }
@@ -340,8 +340,8 @@ layout: test.html
             color: var(--primary-dark);
         }
         
-        .post-card:hover .read-more i {
-            transform: translateX(5px); /* تغییر جهت hover به سمت چپ */
+        .post-card:hover .read-more svg {
+            transform: translateX(-5px); /* تغییر جهت hover به سمت چپ */
         }
         
         .blog-button-container {
@@ -375,16 +375,12 @@ layout: test.html
 
         .blog-button:hover {
             background-color: rgba(220, 53, 69, 0.2);
-            transform: translateX(-3px);
+            transform: translateY(-3px); /* تغییر از translateX به translateY برای حرکت به بالا */
             box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
         }
 
-        .blog-button i {
-            transition: transform 0.3s ease;
-        }
-
-        .blog-button:hover i {
-            transform: translateX(5px); /* تغییر جهت hover به سمت چپ */
+        .blog-button:hover svg {
+            transform: translateX(-5px); /* تغییر جهت hover به سمت چپ */
         }
         
         @media (max-width: 768px) {
@@ -495,6 +491,7 @@ layout: test.html
             width: 1em;
             height: 1em;
             fill: currentColor;
+            transition: transform 0.3s ease;
         }
         
         /* رفع مشکل جهت hover برای راست به چپ */
@@ -503,9 +500,9 @@ layout: test.html
             flex-direction: row-reverse;
         }
         
-        [dir="rtl"] .post-card:hover .read-more i,
-        [dir="rtl"] .blog-button:hover i {
-            transform: translateX(-5px);
+        /* استایل برای آیکون جستجو */
+        .search-icon {
+            fill: white; /* تغییر رنگ آیکون جستجو به سفید */
         }
     </style>
     
@@ -533,15 +530,18 @@ layout: test.html
                     <!-- لوگوی جدید SVG سیمرغ -->
                     <svg class="header-image" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="75" cy="75" r="75" fill="white"/>
-                        <path d="M75 30C75 30 60 45 60 60C60 75 67.5 82.5 75 90C82.5 82.5 90 75 90 60C90 45 75 30 75 30Z" fill="#dc3545"/>
-                        <path d="M60 75C60 75 52.5 82.5 45 82.5C37.5 82.5 30 75 30 75C30 75 37.5 67.5 45 67.5C52.5 67.5 60 75 60 75Z" fill="#dc3545"/>
-                        <path d="M90 75C90 75 97.5 82.5 105 82.5C112.5 82.5 120 75 120 75C120 75 112.5 67.5 105 67.5C97.5 67.5 90 75 90 75Z" fill="#dc3545"/>
-                        <path d="M75 90C75 90 67.5 97.5 67.5 105C67.5 112.5 75 120 75 120C75 120 82.5 112.5 82.5 105C82.5 97.5 75 90 75 90Z" fill="#dc3545"/>
-                        <path d="M52.5 52.5C52.5 52.5 45 45 37.5 45C30 45 22.5 52.5 22.5 52.5C22.5 52.5 30 60 37.5 60C45 60 52.5 52.5 52.5 52.5Z" fill="#a71d2a"/>
-                        <path d="M97.5 52.5C97.5 52.5 105 45 112.5 45C120 45 127.5 52.5 127.5 52.5C127.5 52.5 120 60 112.5 60C105 60 97.5 52.5 97.5 52.5Z" fill="#a71d2a"/>
-                        <path d="M52.5 97.5C52.5 97.5 45 105 37.5 105C30 105 22.5 97.5 22.5 97.5C22.5 97.5 30 90 37.5 90C45 90 52.5 97.5 52.5 97.5Z" fill="#a71d2a"/>
-                        <path d="M97.5 97.5C97.5 97.5 105 105 112.5 105C120 105 127.5 97.5 127.5 97.5C127.5 97.5 120 90 112.5 90C105 90 97.5 97.5 97.5 97.5Z" fill="#a71d2a"/>
-                        <circle cx="75" cy="75" r="7.5" fill="#a71d2a"/>
+                        <!-- طرح سیمرغ افسانه‌ای -->
+                        <path d="M75 30C75 30 55 40 50 60C45 80 60 90 75 100C90 90 105 80 100 60C95 40 75 30 75 30Z" fill="#dc3545"/>
+                        <path d="M60 70C60 70 45 75 40 85C35 95 45 105 60 105C75 105 85 95 80 85C75 75 60 70 60 70Z" fill="#a71d2a"/>
+                        <path d="M90 70C90 70 105 75 110 85C115 95 105 105 90 105C75 105 65 95 70 85C75 75 90 70 90 70Z" fill="#a71d2a"/>
+                        <path d="M75 105C75 105 70 115 70 125C70 135 80 140 90 140C100 140 110 135 110 125C110 115 105 105 105 105" stroke="#dc3545" stroke-width="5" fill="none"/>
+                        <path d="M40 50C40 50 25 40 20 55C15 70 30 80 45 75" stroke="#a71d2a" stroke-width="4" fill="none"/>
+                        <path d="M110 50C110 50 125 40 130 55C135 70 120 80 105 75" stroke="#a71d2a" stroke-width="4" fill="none"/>
+                        <circle cx="65" cy="80" r="5" fill="white"/>
+                        <circle cx="85" cy="80" r="5" fill="white"/>
+                        <circle cx="65" cy="80" r="2" fill="black"/>
+                        <circle cx="85" cy="80" r="2" fill="black"/>
+                        <path d="M70 95C70 95 75 100 80 95" stroke="black" stroke-width="2" fill="none"/>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
@@ -561,8 +561,8 @@ layout: test.html
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
-                            <!-- Search icon as SVG -->
-                            <svg class="svg-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <!-- Search icon as SVG با رنگ سفید -->
+                            <svg class="svg-icon search-icon" viewBox="0 0 24 24" width="24" height="24">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                             </svg>
                         </button>
