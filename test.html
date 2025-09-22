@@ -213,7 +213,7 @@ layout: test.html
         }
         
         .posts-search-box input {
-            padding: 15px 60px 15px 20px;
+            padding: 15px 20px 15px 60px;
             border-radius: 12px;
             font-size: 1.1rem;
             border: none;
@@ -221,7 +221,7 @@ layout: test.html
             height: 56px;
             width: 100%;
             max-width: 100%;
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            font-family: 'Vazirmatn', Tahoma, sans-serif; /* رفع مشکل فونت */
         }
         
         .posts-search-box input:focus {
@@ -231,7 +231,7 @@ layout: test.html
         
         .posts-search-box .btn {
             position: absolute;
-            right: 8px;
+            left: 8px;
             top: 50%;
             transform: translateY(-50%);
             border-radius: 50%;
@@ -268,14 +268,14 @@ layout: test.html
             display: block;
             color: inherit;
             position: relative;
-            border-right: 5px solid var(--primary-color);
+            border-left: 5px solid var(--primary-color);
             width: 100%;
         }
         
         .post-card:hover {
-            transform: translateX(7px);
+            transform: translateX(-7px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            border-right: 5px solid var(--primary-dark);
+            border-left: 5px solid var(--primary-dark);
         }
         
         .post-content {
@@ -297,15 +297,15 @@ layout: test.html
             line-height: 1.9;
             margin-bottom: 20px;
             position: relative;
-            padding-left: 25px;
+            padding-right: 25px;
             max-width: 100%;
         }
         
         .post-excerpt::before {
-            content: '"';
+            content: """;
             position: absolute;
             top: -15px;
-            left: 0;
+            right: 0;
             font-size: 3.5rem;
             color: rgba(220, 53, 69, 0.1);
             font-family: Georgia, serif;
@@ -324,14 +324,14 @@ layout: test.html
             border-top: 1px dashed rgba(0, 0, 0, 0.1);
             gap: 10px;
             max-width: 100%;
-            direction: ltr;
+            direction: ltr; /* جهت‌دهی به محتوای داخلی */
         }
         
         .read-more span {
-            direction: rtl;
+            direction: rtl; /* متن به راست چین شود */
         }
         
-        .read-more .svg-icon {
+        .read-more i {
             transition: transform 0.3s ease;
         }
         
@@ -339,8 +339,8 @@ layout: test.html
             color: var(--primary-dark);
         }
         
-        .post-card:hover .read-more .svg-icon {
-            transform: translateX(5px);
+        .post-card:hover .read-more i {
+            transform: translateX(5px); /* تغییر جهت hover به سمت چپ */
         }
         
         .blog-button-container {
@@ -365,25 +365,25 @@ layout: test.html
             font-size: 1.1rem;
             gap: 10px;
             transition: all 0.3s ease;
-            direction: ltr;
+            direction: ltr; /* جهت‌دهی به محتوای داخلی */
         }
 
         .blog-button span {
-            direction: rtl;
+            direction: rtl; /* متن به راست چین شود */
         }
 
         .blog-button:hover {
             background-color: rgba(220, 53, 69, 0.2);
-            transform: translateX(3px);
+            transform: translateX(-3px);
             box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
         }
 
-        .blog-button .svg-icon {
+        .blog-button i {
             transition: transform 0.3s ease;
         }
 
-        .blog-button:hover .svg-icon {
-            transform: translateX(5px);
+        .blog-button:hover i {
+            transform: translateX(5px); /* تغییر جهت hover به سمت چپ */
         }
         
         @media (max-width: 768px) {
@@ -423,7 +423,7 @@ layout: test.html
             }
             
             .posts-search-box input {
-                padding: 14px 50px 14px 15px;
+                padding: 14px 15px 14px 50px;
                 height: 50px;
                 font-size: 1rem;
             }
@@ -431,7 +431,7 @@ layout: test.html
             .posts-search-box .btn {
                 width: 36px;
                 height: 36px;
-                right: 7px;
+                left: 7px;
             }
 
             .blog-button {
@@ -473,7 +473,7 @@ layout: test.html
             }
             
             .posts-search-box input {
-                padding: 12px 45px 12px 12px;
+                padding: 12px 12px 12px 45px;
                 height: 48px;
             }
 
@@ -500,6 +500,11 @@ layout: test.html
         [dir="rtl"] .read-more,
         [dir="rtl"] .blog-button {
             flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .post-card:hover .read-more i,
+        [dir="rtl"] .blog-button:hover i {
+            transform: translateX(-5px);
         }
     </style>
     
