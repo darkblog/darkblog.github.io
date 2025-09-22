@@ -147,6 +147,7 @@ layout: test.html
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             max-width: 100%;
             padding: 0 15px;
+            margin-top: 10px; /* کاهش فاصله بین لوگو و h1 */
         }
         
         .modern-header p {
@@ -166,7 +167,7 @@ layout: test.html
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0 20px 0;
+            margin: 0 0 10px 0; /* کاهش margin-bottom از 20px به 10px */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
@@ -529,14 +530,19 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <amp-img src="https://indexes.ir/logo.png" 
-                         alt="زندگینامه مشاهیر" 
-                         class="header-image"
-                         width="512"
-                         height="512"
-                         layout="responsive"
-                         itemprop="image">
-                    </amp-img>
+                    <!-- لوگوی جدید SVG سیمرغ -->
+                    <svg class="header-image" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="75" cy="75" r="75" fill="white"/>
+                        <path d="M75 30C75 30 60 45 60 60C60 75 67.5 82.5 75 90C82.5 82.5 90 75 90 60C90 45 75 30 75 30Z" fill="#dc3545"/>
+                        <path d="M60 75C60 75 52.5 82.5 45 82.5C37.5 82.5 30 75 30 75C30 75 37.5 67.5 45 67.5C52.5 67.5 60 75 60 75Z" fill="#dc3545"/>
+                        <path d="M90 75C90 75 97.5 82.5 105 82.5C112.5 82.5 120 75 120 75C120 75 112.5 67.5 105 67.5C97.5 67.5 90 75 90 75Z" fill="#dc3545"/>
+                        <path d="M75 90C75 90 67.5 97.5 67.5 105C67.5 112.5 75 120 75 120C75 120 82.5 112.5 82.5 105C82.5 97.5 75 90 75 90Z" fill="#dc3545"/>
+                        <path d="M52.5 52.5C52.5 52.5 45 45 37.5 45C30 45 22.5 52.5 22.5 52.5C22.5 52.5 30 60 37.5 60C45 60 52.5 52.5 52.5 52.5Z" fill="#a71d2a"/>
+                        <path d="M97.5 52.5C97.5 52.5 105 45 112.5 45C120 45 127.5 52.5 127.5 52.5C127.5 52.5 120 60 112.5 60C105 60 97.5 52.5 97.5 52.5Z" fill="#a71d2a"/>
+                        <path d="M52.5 97.5C52.5 97.5 45 105 37.5 105C30 105 22.5 97.5 22.5 97.5C22.5 97.5 30 90 37.5 90C45 90 52.5 97.5 52.5 97.5Z" fill="#a71d2a"/>
+                        <path d="M97.5 97.5C97.5 97.5 105 105 112.5 105C120 105 127.5 97.5 127.5 97.5C127.5 97.5 120 90 112.5 90C105 90 97.5 97.5 97.5 97.5Z" fill="#a71d2a"/>
+                        <circle cx="75" cy="75" r="7.5" fill="#a71d2a"/>
+                    </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
             </div>
