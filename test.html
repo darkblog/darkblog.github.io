@@ -36,8 +36,8 @@ layout: test.html
     <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
     
     <!-- Google Fonts for AMP -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
     
     <style amp-custom>
         :root {
@@ -449,18 +449,6 @@ layout: test.html
             width: 1em;
             height: 1em;
             fill: currentColor;
-        }
-    </style>
-    
-    <!-- Include Vazirmatn font -->
-    <style amp-custom>
-        @font-face {
-            font-family: 'Vazirmatn';
-            font-style: normal;
-            font-weight: 100 900;
-            font-display: swap;
-            src: url('https://fonts.gstatic.com/s/vazirmatn/v5/Dxx78j6PP2D_kU2muijPEe1n2vVbfJRklWg6okg.woff2') format('woff2');
-            unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
         }
     </style>
     
