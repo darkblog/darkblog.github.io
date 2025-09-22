@@ -323,7 +323,7 @@ layout: test.html
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed rgba(0, 0, 0, 0.1);
-            gap: 10px;
+            gap: 5px; /* کاهش فاصله بین فلش و متن از 10px به 5px */
             max-width: 100%;
             direction: ltr; /* جهت‌دهی به محتوای داخلی */
         }
@@ -364,7 +364,7 @@ layout: test.html
             border: 1px solid rgba(220, 53, 69, 0.2);
             max-width: 250px;
             font-size: 1.1rem;
-            gap: 10px;
+            gap: 5px; /* کاهش فاصله بین فلش و متن از 10px به 5px */
             transition: all 0.3s ease;
             direction: ltr; /* جهت‌دهی به محتوای داخلی */
         }
@@ -504,6 +504,13 @@ layout: test.html
         .search-icon {
             fill: white; /* تغییر رنگ آیکون جستجو به سفید */
         }
+        
+        /* بزرگتر و ضخیم‌تر کردن آیکون جستجو */
+        .search-icon-lg {
+            width: 26px;
+            height: 26px;
+            stroke-width: 2;
+        }
     </style>
     
     <!-- Structured data -->
@@ -527,10 +534,10 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <!-- لوگوی جدید SVG سیمرغ -->
+                    <!-- لوگوی جدید SVG نماد ایرانی (سرو) -->
                     <svg class="header-image" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="75" cy="75" r="75" fill="white"/>
-                        <!-- طرح سیمرغ افسانه‌ای -->
+                        <!-- نماد سرو ایرانی -->
                         <path d="M75 30C75 30 55 40 50 60C45 80 60 90 75 100C90 90 105 80 100 60C95 40 75 30 75 30Z" fill="#dc3545"/>
                         <path d="M60 70C60 70 45 75 40 85C35 95 45 105 60 105C75 105 85 95 80 85C75 75 60 70 60 70Z" fill="#a71d2a"/>
                         <path d="M90 70C90 70 105 75 110 85C115 95 105 105 90 105C75 105 65 95 70 85C75 75 90 70 90 70Z" fill="#a71d2a"/>
@@ -561,9 +568,12 @@ layout: test.html
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
-                            <!-- Search icon as SVG با رنگ سفید -->
-                            <svg class="svg-icon search-icon" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            <!-- آیکون جستجوی بزرگتر و ضخیم‌تر -->
+                            <svg class="search-icon search-icon-lg" viewBox="0 0 24 24" width="26" height="26">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
+                                      stroke="white" 
+                                      stroke-width="1.5" 
+                                      fill="white"/>
                             </svg>
                         </button>
                     </div>
