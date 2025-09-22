@@ -7,11 +7,11 @@ layout: test.html
 <head>
     <meta charset="utf-8">
     <title itemprop="name">زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات افراد مشهور</title>
-    <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر и دیگران">
+    <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر و دیگران">
     <meta name="keywords" content="زندگینامه, زندگینامه مشاهیر, بیوگرافی, بیوگرافی مشاهیر, زندگینامه مشاهیر ایران, زندگینامه مشاهیر ایران و جهان">
     
     <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان">
-    <meta property="og:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان в حوزه های علمی، فرهنگی، تاریخی و هنری">
+    <meta property="og:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/logo.png">
@@ -40,12 +40,14 @@ layout: test.html
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
     
     <style amp-custom>
+        /* اضافه کردن rule برای جلوگیری از اسکرول افقی */
         html, body {
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
         }
         
+        /* استفاده از box-sizing: border-box برای همه عناصر */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -82,6 +84,7 @@ layout: test.html
             color: var(--primary-color);
         }
         
+        /* حذف حالت active برای لینک‌ها */
         a:active, a:focus {
             color: var(--primary-color);
             outline: none;
@@ -480,6 +483,7 @@ layout: test.html
             }
         }
         
+        /* AMP-specific adjustments */
         amp-img {
             max-width: 100%;
             height: auto;
@@ -493,15 +497,18 @@ layout: test.html
             transition: transform 0.3s ease;
         }
         
+        /* رفع مشکل جهت hover برای راست به چپ */
         [dir="rtl"] .read-more,
         [dir="rtl"] .blog-button {
             flex-direction: row-reverse;
         }
         
+        /* استایل برای آیکون جستجو */
         .search-icon {
             fill: white;
         }
         
+        /* بزرگتر و ضخیم‌تر کردن آیکون جستجو */
         .search-icon-lg {
             width: 26px;
             height: 26px;
@@ -509,6 +516,7 @@ layout: test.html
         }
     </style>
     
+    <!-- Structured data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -529,26 +537,28 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <!-- لوگوی جدید SVG پرنده ایرانی (سیمرغ) -->
+                    <!-- لوگوی جدید SVG دانشمند در حال تفکر -->
                     <svg class="header-image" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="75" cy="75" r="75" fill="white"/>
-                        <!-- طراحی پرنده سیمرغ ایرانی -->
-                        <path d="M75 30C75 30 55 40 50 60C45 80 60 90 75 100C90 90 105 80 100 60C95 40 75 30 75 30Z" fill="#dc3545"/>
-                        <path d="M60 70C60 70 45 75 40 85C35 95 45 105 60 105C75 105 85 95 80 85C75 75 60 70 60 70Z" fill="#a71d2a"/>
-                        <path d="M90 70C90 70 105 75 110 85C115 95 105 105 90 105C75 105 65 95 70 85C75 75 90 70 90 70Z" fill="#a71d2a"/>
-                        <path d="M75 105C75 105 70 115 70 125C70 135 80 140 90 140C100 140 110 135 110 125C110 115 105 105 105 105" stroke="#dc3545" stroke-width="5" fill="none"/>
-                        <path d="M40 50C40 50 25 40 20 55C15 70 30 80 45 75" stroke="#a71d2a" stroke-width="4" fill="none"/>
-                        <path d="M110 50C110 50 125 40 130 55C135 70 120 80 105 75" stroke="#a71d2a" stroke-width="4" fill="none"/>
-                        <circle cx="65" cy="80" r="5" fill="white"/>
-                        <circle cx="85" cy="80" r="5" fill="white"/>
-                        <circle cx="65" cy="80" r="2" fill="black"/>
-                        <circle cx="85" cy="80" r="2" fill="black"/>
-                        <path d="M70 95C70 95 75 100 80 95" stroke="black" stroke-width="2" fill="none"/>
-                        <!-- جزئیات اضافی برای زیبایی -->
-                        <path d="M50 40L45 35" stroke="#a71d2a" stroke-width="2"/>
-                        <path d="M100 40L105 35" stroke="#a71d2a" stroke-width="2"/>
-                        <path d="M55 110L50 115" stroke="#dc3545" stroke-width="2"/>
-                        <path d="M95 110L100 115" stroke="#dc3545" stroke-width="2"/>
+                        <!-- طرح دانشمند در حال تفکر -->
+                        <circle cx="75" cy="60" r="25" fill="#dc3545" stroke="#a71d2a" stroke-width="2"/>
+                        <path d="M65 50C65 50 60 55 65 60" stroke="white" stroke-width="2"/>
+                        <path d="M85 50C85 50 90 55 85 60" stroke="white" stroke-width="2"/>
+                        <path d="M70 70C70 70 75 75 80 70" stroke="white" stroke-width="2" fill="none"/>
+                        <path d="M60 95C60 95 65 85 75 85C85 85 90 95 90 95" stroke="#a71d2a" stroke-width="3" fill="none"/>
+                        <path d="M75 85V105" stroke="#a71d2a" stroke-width="3"/>
+                        <path d="M65 105H85" stroke="#a71d2a" stroke-width="3"/>
+                        <!-- کتاب -->
+                        <path d="M50 110H100V120H50V110Z" fill="#dc3545"/>
+                        <path d="M50 110H100V115H50V110Z" fill="#a71d2a"/>
+                        <path d="M60 112H90" stroke="white" stroke-width="0.5"/>
+                        <path d="M60 114H90" stroke="white" stroke-width="0.5"/>
+                        <path d="M60 116H90" stroke="white" stroke-width="0.5"/>
+                        <!-- علامت تفکر -->
+                        <path d="M95 40C95 40 105 35 110 45C115 55 105 60 100 55" stroke="#a71d2a" stroke-width="2" fill="none"/>
+                        <circle cx="112" cy="48" r="3" fill="#a71d2a"/>
+                        <circle cx="107" cy="38" r="2" fill="#a71d2a"/>
+                        <circle cx="100" cy="33" r="1.5" fill="#a71d2a"/>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
@@ -568,6 +578,7 @@ layout: test.html
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
+                            <!-- آیکون جستجوی بزرگتر و ضخیم‌تر -->
                             <svg class="search-icon search-icon-lg" viewBox="0 0 24 24" width="26" height="26">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
                                       stroke="white" 
@@ -594,6 +605,7 @@ layout: test.html
                             </p>
                             <div class="read-more">
                                 <span>ادامه زندگینامه</span>
+                                <!-- Left arrow as SVG -->
                                 <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16">
                                     <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
                                 </svg>
