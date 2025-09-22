@@ -221,6 +221,7 @@ layout: test.html
             height: 56px;
             width: 100%;
             max-width: 100%;
+            font-family: 'Vazirmatn', Tahoma, sans-serif; /* رفع مشکل فونت */
         }
         
         .posts-search-box input:focus {
@@ -323,6 +324,11 @@ layout: test.html
             border-top: 1px dashed rgba(0, 0, 0, 0.1);
             gap: 10px;
             max-width: 100%;
+            direction: ltr; /* جهت‌دهی به محتوای داخلی */
+        }
+        
+        .read-more span {
+            direction: rtl; /* متن به راست چین شود */
         }
         
         .read-more i {
@@ -334,7 +340,7 @@ layout: test.html
         }
         
         .post-card:hover .read-more i {
-            transform: translateX(-5px);
+            transform: translateX(5px); /* تغییر جهت hover به سمت چپ */
         }
         
         .blog-button-container {
@@ -359,6 +365,11 @@ layout: test.html
             font-size: 1.1rem;
             gap: 10px;
             transition: all 0.3s ease;
+            direction: ltr; /* جهت‌دهی به محتوای داخلی */
+        }
+
+        .blog-button span {
+            direction: rtl; /* متن به راست چین شود */
         }
 
         .blog-button:hover {
@@ -372,7 +383,7 @@ layout: test.html
         }
 
         .blog-button:hover i {
-            transform: translateX(-5px);
+            transform: translateX(5px); /* تغییر جهت hover به سمت چپ */
         }
         
         @media (max-width: 768px) {
@@ -484,6 +495,17 @@ layout: test.html
             height: 1em;
             fill: currentColor;
         }
+        
+        /* رفع مشکل جهت hover برای راست به چپ */
+        [dir="rtl"] .read-more,
+        [dir="rtl"] .blog-button {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .post-card:hover .read-more i,
+        [dir="rtl"] .blog-button:hover i {
+            transform: translateX(-5px);
+        }
     </style>
     
     <!-- Structured data -->
@@ -569,7 +591,7 @@ layout: test.html
                 
                 <div class="blog-button-container">
                     <a href="/blog" class="blog-button">
-                        وبلاگ مشاهیر
+                        <span>وبلاگ مشاهیر</span>
                         <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16">
                             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
                         </svg>
