@@ -40,14 +40,12 @@ layout: test.html
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
     
     <style amp-custom>
-        /* اضافه کردن rule برای جلوگیری از اسکرول افقی */
         html, body {
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
         }
         
-        /* استفاده از box-sizing: border-box برای همه عناصر */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -84,7 +82,6 @@ layout: test.html
             color: var(--primary-color);
         }
         
-        /* حذف حالت active برای لینک‌ها */
         a:active, a:focus {
             color: var(--primary-color);
             outline: none;
@@ -483,7 +480,6 @@ layout: test.html
             }
         }
         
-        /* AMP-specific adjustments */
         amp-img {
             max-width: 100%;
             height: auto;
@@ -497,18 +493,15 @@ layout: test.html
             transition: transform 0.3s ease;
         }
         
-        /* رفع مشکل جهت hover برای راست به چپ */
         [dir="rtl"] .read-more,
         [dir="rtl"] .blog-button {
             flex-direction: row-reverse;
         }
         
-        /* استایل برای آیکون جستجو */
         .search-icon {
             fill: white;
         }
         
-        /* بزرگتر و ضخیم‌تر کردن آیکون جستجو */
         .search-icon-lg {
             width: 26px;
             height: 26px;
@@ -516,7 +509,6 @@ layout: test.html
         }
     </style>
     
-    <!-- Structured data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -576,7 +568,6 @@ layout: test.html
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
-                            <!-- آیکون جستجوی بزرگتر و ضخیم‌تر -->
                             <svg class="search-icon search-icon-lg" viewBox="0 0 24 24" width="26" height="26">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
                                       stroke="white" 
@@ -603,7 +594,6 @@ layout: test.html
                             </p>
                             <div class="read-more">
                                 <span>ادامه زندگینامه</span>
-                                <!-- Left arrow as SVG -->
                                 <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16">
                                     <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
                                 </svg>
