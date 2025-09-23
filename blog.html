@@ -51,7 +51,7 @@ layout: blog.html
             "@id": "https://indexes.ir/blog"
         },
         "headline": "وبلاگ مشاهیر - لیست مشاهیر ایران و جهان",
-        "description": "کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از жизни آنان بیاموزید.",
+        "description": "کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از زندگی آنان بیاموزید.",
         "image": {
             "@type": "ImageObject",
             "url": "https://indexes.ir/logo.png",
@@ -99,6 +99,8 @@ layout: blog.html
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
+            --even-bg: #f9f9f9;
+            --odd-bg: #ffffff;
         }
         
         body {
@@ -263,7 +265,7 @@ layout: blog.html
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
             padding: 40px;
             position: relative;
-            ز-index: 10;
+            z-index: 10;
         }
         
         .section-title {
@@ -290,20 +292,28 @@ layout: blog.html
             list-style: none;
             padding: 0;
             margin: 0;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         .latest-posts li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
             transition: all 0.3s ease;
+            margin-bottom: 0;
         }
         
-        .latest-posts li:last-child {
-            border-bottom: none;
+        /* رنگ‌های متناوب برای پس‌زمینه پست‌ها */
+        .latest-posts li:nth-child(even) {
+            background-color: var(--even-bg);
+        }
+        
+        .latest-posts li:nth-child(odd) {
+            background-color: var(--odd-bg);
         }
         
         .latest-posts li:hover {
-            background-color: rgba(220, 53, 69, 0.03);
+            background-color: rgba(220, 53, 69, 0.1);
+            transform: translateX(-5px);
         }
         
         .post-item {
