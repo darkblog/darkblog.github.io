@@ -272,68 +272,6 @@ layout: index.html
             line-height: 1;
         }
         
-        .read-more {
-            color: var(--primary-color);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed rgba(0, 0, 0, 0.1);
-            gap: 5px;
-        }
-        
-        .read-more i {
-            transition: transform 0.3s ease;
-        }
-        
-        .post-card:hover .read-more {
-            color: var(--primary-dark);
-        }
-        
-        .post-card:hover .read-more i {
-            transform: translateX(-5px);
-        }
-        
-        .blog-button-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 15px;
-            text-align: center;
-        }
-        
-        .blog-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 16px;
-            background-color: rgba(220, 53, 69, 0.1);
-            border: 1px solid rgba(220, 53, 69, 0.2);
-            max-width: 250px;
-            font-size: 1.1rem;
-            gap: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .blog-button:hover {
-            background-color: rgba(220, 53, 69, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
-        }
-
-        .blog-button i {
-            transition: transform 0.3s ease;
-        }
-
-        .blog-button:hover i {
-            transform: translateX(-5px);
-        }
-        
         @media (max-width: 768px) {
             .modern-header {
                 height: 320px;
@@ -381,11 +319,6 @@ layout: index.html
                 height: 36px;
                 left: 7px;
             }
-
-            .blog-button {
-                padding: 10px 25px;
-                font-size: 1rem;
-            }
         }
         
         @media (max-width: 576px) {
@@ -423,11 +356,6 @@ layout: index.html
             .posts-search-box input {
                 padding: 12px 12px 12px 45px;
                 height: 48px;
-            }
-
-            .blog-button {
-                padding: 9px 20px;
-                font-size: 0.95rem;
             }
         }
     </style>
@@ -481,21 +409,10 @@ layout: index.html
                             <p class="post-excerpt" itemprop="description">
                                 {{ post.excerpt | strip_html | truncate: 200 }}
                             </p>
-                            <div class="read-more">
-                                <span>ادامه زندگینامه</span>
-                                <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                            </div>
                         </div>
                     </a>
                 </article>
                 {% endfor %}
-                
-                <div class="blog-button-container">
-                    <a href="/blog" class="blog-button">
-                        وبلاگ مشاهیر
-                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                    </a>
-                </div>
             </div>
         </main>
     </div>
