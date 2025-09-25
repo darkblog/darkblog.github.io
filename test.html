@@ -2,10 +2,11 @@
 layout: test.html
 ---
 
-<!doctype html>
-<html ⚡ dir="rtl" lang="fa" itemscope itemtype="https://schema.org/WebPage">
+<!DOCTYPE html>
+<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/WebPage">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title itemprop="name">زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات افراد مشهور</title>
     <meta name="description" itemprop="description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. کشف داستان زندگی بزرگان مانند ایلان ماسک، ماری کوری، امیرکبیر و دیگران">
     <meta name="keywords" content="زندگینامه, زندگینامه مشاهیر, بیوگرافی, بیوگرافی مشاهیر, زندگینامه مشاهیر ایران, زندگینامه مشاهیر ایران و جهان">
@@ -22,36 +23,16 @@ layout: test.html
     <meta name="twitter:description" content="کاملترین مجموعه زندگینامه مشاهیر ایران و جهان">
     <meta name="twitter:image" content="https://indexes.ir/logo.png">
     
-    <link rel="icon" href="https://indexes.ir/logo.png">
+    <link rel="icon" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png" sizes="any">
     <link rel="canonical" href="https://indexes.ir/">
     <meta name="theme-color" content="#dc3545">
     
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
     
-    <!-- Load AMP components -->
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
-    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-    <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
-    
-    <!-- Google Fonts for AMP -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
-    
-    <style amp-custom>
-        /* اضافه کردن rule برای جلوگیری از اسکرول افقی */
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* استفاده از box-sizing: border-box برای همه عناصر */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        
+    <style>
         :root {
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
@@ -65,13 +46,12 @@ layout: test.html
         }
         
         body {
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            width: 100%;
         }
         
         a {
@@ -81,18 +61,7 @@ layout: test.html
         }
         
         a:hover {
-            color: var(--primary-color);
-        }
-        
-        /* حذف حالت active برای لینک‌ها */
-        a:active, a:focus {
-            color: var(--primary-color);
-            outline: none;
-        }
-        
-        .container-fluid {
-            width: 100%;
-            overflow-x: hidden;
+            color: var(--primary-dark);
         }
         
         .modern-header {
@@ -108,7 +77,6 @@ layout: test.html
             align-items: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            width: 100%;
         }
         
         .modern-header::before {
@@ -144,16 +112,12 @@ layout: test.html
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
         }
         
         .modern-header h1 {
             font-weight: 900;
             font-size: 3.2rem;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            max-width: 100%;
-            padding: 0 15px;
-            margin-top: 10px;
         }
         
         .modern-header p {
@@ -162,7 +126,6 @@ layout: test.html
             max-width: 700px;
             margin: 0 auto 30px;
             font-weight: 300;
-            padding: 0 15px;
         }
         
         .logo-container {
@@ -173,7 +136,7 @@ layout: test.html
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0 10px 0;
+            margin: 0 0 20px 0;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
@@ -183,7 +146,6 @@ layout: test.html
             height: 150px;
             border-radius: 50%;
             object-fit: contain;
-            max-width: 100%;
         }
         
         .logo-container:hover {
@@ -197,7 +159,6 @@ layout: test.html
             padding: 0 15px;
             position: relative;
             z-index: 100;
-            width: 100%;
         }
         
         .posts-search-box {
@@ -207,7 +168,6 @@ layout: test.html
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            width: 100%;
         }
         
         .posts-search-box:hover {
@@ -216,7 +176,6 @@ layout: test.html
         
         .search-box {
             position: relative;
-            width: 100%;
         }
         
         .posts-search-box input {
@@ -227,8 +186,6 @@ layout: test.html
             background: transparent;
             height: 56px;
             width: 100%;
-            max-width: 100%;
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
         }
         
         .posts-search-box input:focus {
@@ -261,7 +218,6 @@ layout: test.html
             max-width: 800px;
             margin: 0 auto;
             padding: 0 15px;
-            width: 100%;
         }
         
         .post-card {
@@ -276,7 +232,6 @@ layout: test.html
             color: inherit;
             position: relative;
             border-left: 5px solid var(--primary-color);
-            width: 100%;
         }
         
         .post-card:hover {
@@ -295,7 +250,6 @@ layout: test.html
             margin-bottom: 15px;
             font-size: 1.5rem;
             line-height: 1.4;
-            max-width: 100%;
         }
         
         .post-excerpt {
@@ -305,7 +259,6 @@ layout: test.html
             margin-bottom: 20px;
             position: relative;
             padding-right: 25px;
-            max-width: 100%;
         }
         
         .post-excerpt::before {
@@ -319,39 +272,11 @@ layout: test.html
             line-height: 1;
         }
         
-        .read-more {
-            color: var(--primary-color);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed rgba(0, 0, 0, 0.1);
-            gap: 5px;
-            max-width: 100%;
-            direction: ltr;
-        }
-        
-        .read-more span {
-            direction: rtl;
-        }
-        
-        .post-card:hover .read-more {
-            color: var(--primary-color);
-        }
-        
-        .post-card:hover .read-more svg {
-            transform: translateX(-5px);
-        }
-        
         .blog-button-container {
             max-width: 800px;
             margin: 40px auto;
             padding: 0 15px;
             text-align: center;
-            width: 100%;
         }
         
         .blog-button {
@@ -361,29 +286,18 @@ layout: test.html
             color: var(--primary-color);
             font-weight: 600;
             padding: 12px 30px;
-            border-radius: 50px;
+            border-radius: 16px;
             background-color: rgba(220, 53, 69, 0.1);
             border: 1px solid rgba(220, 53, 69, 0.2);
             max-width: 250px;
             font-size: 1.1rem;
-            gap: 5px;
             transition: all 0.3s ease;
-            direction: ltr;
-        }
-
-        .blog-button span {
-            direction: rtl;
         }
 
         .blog-button:hover {
             background-color: rgba(220, 53, 69, 0.2);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
-            color: var(--primary-color);
-        }
-
-        .blog-button:hover svg {
-            transform: translateX(-5px);
         }
         
         @media (max-width: 768px) {
@@ -482,83 +396,21 @@ layout: test.html
                 font-size: 0.95rem;
             }
         }
-        
-        /* AMP-specific adjustments */
-        amp-img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .svg-icon {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            fill: currentColor;
-            transition: transform 0.3s ease;
-        }
-        
-        /* رفع مشکل جهت hover برای راست به چپ */
-        [dir="rtl"] .read-more,
-        [dir="rtl"] .blog-button {
-            flex-direction: row-reverse;
-        }
-        
-        /* استایل برای آیکون جستجو */
-        .search-icon {
-            fill: white;
-        }
-        
-        /* بزرگتر و ضخیم‌تر کردن آیکون جستجو */
-        .search-icon-lg {
-            width: 26px;
-            height: 26px;
-            stroke-width: 2;
-        }
     </style>
-    
-    <!-- Structured data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "زندگینامه مشاهیر ایران و جهان",
-        "url": "https://indexes.ir/",
-        "description": "کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.google.com/search?q={search_term_string}&sitesearch=indexes.ir",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
     <div class="container-fluid px-0">
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <!-- لوگوی جدید SVG دانشمند در حال تفکر -->
-                    <svg class="header-image" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="75" cy="75" r="75" fill="white"/>
-                        <!-- طرح دانشمند در حال تفکر -->
-                        <circle cx="75" cy="60" r="25" fill="#dc3545" stroke="#a71d2a" stroke-width="2"/>
-                        <path d="M65 50C65 50 60 55 65 60" stroke="white" stroke-width="2"/>
-                        <path d="M85 50C85 50 90 55 85 60" stroke="white" stroke-width="2"/>
-                        <path d="M70 70C70 70 75 75 80 70" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M60 95C60 95 65 85 75 85C85 85 90 95 90 95" stroke="#a71d2a" stroke-width="3" fill="none"/>
-                        <path d="M75 85V105" stroke="#a71d2a" stroke-width="3"/>
-                        <path d="M65 105H85" stroke="#a71d2a" stroke-width="3"/>
-                        <!-- کتاب -->
-                        <path d="M50 110H100V120H50V110Z" fill="#dc3545"/>
-                        <path d="M50 110H100V115H50V110Z" fill="#a71d2a"/>
-                        <path d="M60 112H90" stroke="white" stroke-width="0.5"/>
-                        <path d="M60 114H90" stroke="white" stroke-width="0.5"/>
-                        <path d="M60 116H90" stroke="white" stroke-width="0.5"/>
-                        <!-- علامت تفکر -->
-                        <path d="M95 40C95 40 105 35 110 45C115 55 105 60 100 55" stroke="#a71d2a" stroke-width="2" fill="none"/>
-                        <circle cx="112" cy="48" r="3" fill="#a71d2a"/>
-                        <circle cx="107" cy="38" r="2" fill="#a71d2a"/>
-                        <circle cx="100" cy="33" r="1.5" fill="#a71d2a"/>
+                    <svg class="header-image" viewBox="0 0 512 512" width="150" height="150" aria-labelledby="logo-title" role="img">
+                        <title id="logo-title">زندگینامه مشاهیر</title>
+                        <circle cx="256" cy="256" r="256" fill="#dc3545"/>
+                        <path d="M256 128c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128z" fill="white"/>
+                        <path d="M256 192c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64z" fill="#dc3545"/>
+                        <path d="M256 160c-19.9 0-38.7 5.6-54.6 15.3-12.1 7.4-22.3 17.6-29.7 29.7-9.7 15.9-15.3 34.7-15.3 54.6s5.6 38.7 15.3 54.6c7.4 12.1 17.6 22.3 29.7 29.7 15.9 9.7 34.7 15.3 54.6 15.3s38.7-5.6 54.6-15.3c12.1-7.4 22.3-17.6 29.7-29.7 9.7-15.9 15.3-34.7 15.3-54.6s-5.6-38.7-15.3-54.6c-7.4-12.1-17.6-22.3-29.7-29.7C294.7 165.6 275.9 160 256 160z" fill="none" stroke="white" stroke-width="16"/>
+                        <path d="M256 224c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32z" fill="white"/>
+                        <path d="M256 240c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16z" fill="#dc3545"/>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
@@ -578,13 +430,7 @@ layout: test.html
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
                         <button type="submit" class="btn btn-primary" aria-label="اجرای جستجو">
-                            <!-- آیکون جستجوی بزرگتر و ضخیم‌تر -->
-                            <svg class="search-icon search-icon-lg" viewBox="0 0 24 24" width="26" height="26">
-                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
-                                      stroke="white" 
-                                      stroke-width="1.5" 
-                                      fill="white"/>
-                            </svg>
+                            <i class="fas fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
                 </form>
@@ -603,13 +449,6 @@ layout: test.html
                             <p class="post-excerpt" itemprop="description">
                                 {{ post.excerpt | strip_html | truncate: 200 }}
                             </p>
-                            <div class="read-more">
-                                <span>ادامه زندگینامه</span>
-                                <!-- Left arrow as SVG -->
-                                <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16">
-                                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-                                </svg>
-                            </div>
                         </div>
                     </a>
                 </article>
@@ -617,14 +456,13 @@ layout: test.html
                 
                 <div class="blog-button-container">
                     <a href="/blog" class="blog-button">
-                        <span>وبلاگ مشاهیر</span>
-                        <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16">
-                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-                        </svg>
+                        وبلاگ مشاهیر
                     </a>
                 </div>
             </div>
         </main>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
