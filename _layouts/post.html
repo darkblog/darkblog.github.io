@@ -106,7 +106,7 @@
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 220px;
+            --header-height: 280px;
         }
         
         body {
@@ -182,23 +182,22 @@
             transform: translateY(-2px);
         }
         
-        .post-header {
+        .modern-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
             height: var(--header-height);
             position: relative;
             overflow: hidden;
-            padding: 0;
-            margin-bottom: 0;
+            padding-top: 50px;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .post-header::before {
+        .modern-header::before {
             content: "";
             position: absolute;
             top: 0;
@@ -209,25 +208,42 @@
             pointer-events: none;
         }
         
+        .modern-header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+        
         .header-content {
             position: relative;
             z-index: 10;
             max-width: 800px;
             padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-
+        
         .post-title {
-            font-size: 2.7rem;
             font-weight: 900;
-            margin: 10px 0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-size: 3.2rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             color: white;
             line-height: 1.3;
+            margin: 10px 0;
         }
         
         .post-container {
             max-width: 800px;
-            margin: 60px auto 30px;
+            margin: 0 auto 50px;
             background-color: var(--card-bg);
             border-radius: 16px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -403,17 +419,17 @@
                 font-size: 0.95rem;
             }
             
-            .post-header {
-                height: 180px;
+            .modern-header {
+                height: 220px;
+                padding-top: 40px;
+            }
+            
+            .post-title {
+                font-size: 2.5rem;
             }
             
             .post-container {
                 padding: 30px;
-                margin-top: 40px;
-            }
-            
-            .post-title {
-                font-size: 2.2rem;
             }
             
             .post-content h2 {
@@ -443,13 +459,13 @@
         }
         
         @media (max-width: 576px) {
-            .post-header {
-                height: 160px;
+            .modern-header {
+                height: 180px;
+                padding-top: 30px;
             }
             
             .post-container {
                 padding: 25px 20px;
-                margin-top: 30px;
             }
             
             .post-content {
@@ -457,7 +473,7 @@
             }
             
             .post-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .post-content blockquote {
@@ -539,7 +555,7 @@
         </ul>
     </nav>
     
-    <header class="post-header" role="banner" aria-labelledby="post-title">
+    <header class="modern-header" role="banner" aria-labelledby="post-title">
         <div class="header-content">
             <h1 class="post-title" id="post-title" itemprop="headline">{{ page.title }}</h1>
         </div>
