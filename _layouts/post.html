@@ -182,20 +182,6 @@
             transform: translateY(-2px);
         }
         
-        .footer-icon {
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-icon:hover {
-            transform: translateY(-2px);
-        }
-        
         .post-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
@@ -241,7 +227,7 @@
         
         .post-container {
             max-width: 800px;
-            margin: 60px auto 30px; /* تغییر: افزایش margin-top از 20px به 60px */
+            margin: 60px auto 30px;
             background-color: var(--card-bg);
             border-radius: 16px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -380,44 +366,40 @@
             background: var(--primary-color);
         }
         
-        .simple-footer {
-            background-color: #343a40;
-            padding: 15px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 40px;
+        .blog-button-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 15px;
+            text-align: center;
         }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.85);
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-            display: flex;
+        
+        .blog-button {
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 16px;
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            max-width: 250px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: white;
-            border-bottom-color: #dc3545;
+        .blog-button:hover {
+            background-color: rgba(220, 53, 69, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
         }
-
+        
         @media (max-width: 768px) {
-            .menu-links, .footer-links {
+            .menu-links {
                 gap: 15px;
             }
             
-            .menu-links a, .footer-links a {
+            .menu-links a {
                 font-size: 0.95rem;
             }
             
@@ -427,7 +409,7 @@
             
             .post-container {
                 padding: 30px;
-                margin-top: 40px; /* تغییر: افزایش margin-top برای تبلت */
+                margin-top: 40px;
             }
             
             .post-title {
@@ -454,10 +436,9 @@
                 height: 35px;
             }
             
-            .footer-icon {
-                font-size: 1.1rem;
-                width: 32px;
-                height: 32px;
+            .blog-button {
+                padding: 10px 25px;
+                font-size: 1rem;
             }
         }
         
@@ -468,7 +449,7 @@
             
             .post-container {
                 padding: 25px 20px;
-                margin-top: 30px; /* تغییر: افزایش margin-top برای موبایل */
+                margin-top: 30px;
             }
             
             .post-content {
@@ -500,19 +481,18 @@
                 height: 32px;
             }
             
-            .footer-icon {
-                font-size: 1rem;
-                width: 30px;
-                height: 30px;
+            .blog-button {
+                padding: 9px 20px;
+                font-size: 0.95rem;
             }
         }
         
         @media (max-width: 480px) {
-            .menu-links, .footer-links {
+            .menu-links {
                 gap: 8px;
             }
             
-            .menu-links a, .footer-links a {
+            .menu-links a {
                 font-size: 0.85rem;
             }
             
@@ -526,10 +506,9 @@
                 height: 30px;
             }
             
-            .footer-icon {
+            .blog-button {
+                padding: 8px 18px;
                 font-size: 0.9rem;
-                width: 28px;
-                height: 28px;
             }
         }
     </style>
@@ -543,8 +522,13 @@
                 </a>
             </li>
             <li>
-                <a href="https://indexes.ir/blog" aria-label="وبلاگ" class="social-icon">
-                    <i class="fas fa-blog" aria-hidden="true"></i>
+                <a href="https://www.facebook.com/ehsanchehri/" aria-label="فیسبوک" class="social-icon">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/ehsanchehri/" aria-label="لینکدین" class="social-icon">
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
@@ -574,25 +558,11 @@
             </div>
         </article>
         
-        <footer class="simple-footer" role="contentinfo" aria-label="پاورقی سایت">
-            <ul class="footer-links">
-                <li>
-                    <a href="https://www.facebook.com/ehsanchehri/" aria-label="فیسبوک" class="footer-icon">
-                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/ehsanchehri/" aria-label="لینکدین" class="footer-icon">
-                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://graph.org/%D9%85%D9%82%D8%A7%D9%84%D9%87-%D9%85%D8%B4%D8%A7%D9%87%DB%8C%D8%B1-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D9%88-%D8%AC%D9%87%D8%A7%D9%86---%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE-%D8%AA%DA%A9%D8%B1%D8%A7%D8%B1-%D9%85%DB%8C%D8%B4%D9%88%D8%AF-09-13" aria-label="گراف" class="footer-icon">
-                        <i class="fas fa-link" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
-        </footer>
+        <div class="blog-button-container">
+            <a href="/blog" class="blog-button">
+                وبلاگ مشاهیر
+            </a>
+        </div>
     </main>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
