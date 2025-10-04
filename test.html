@@ -142,7 +142,7 @@ layout: test.html
             border: 3px solid rgba(255, 255, 255, 0.8);
         }
         
-        .persian-logo {
+        .tree-logo {
             width: 140px;
             height: 140px;
             transition: all 0.3s ease;
@@ -154,7 +154,7 @@ layout: test.html
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .logo-container:hover .persian-logo {
+        .logo-container:hover .tree-logo {
             transform: scale(1.1);
             filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
         }
@@ -325,7 +325,7 @@ layout: test.html
                 height: 140px;
             }
             
-            .persian-logo {
+            .tree-logo {
                 width: 120px;
                 height: 120px;
             }
@@ -383,7 +383,7 @@ layout: test.html
                 height: 120px;
             }
             
-            .persian-logo {
+            .tree-logo {
                 width: 100px;
                 height: 100px;
             }
@@ -409,55 +409,55 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <svg class="persian-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی شیر و خورشید - نماد زندگینامه مشاهیر ایران">
-                        <!-- حلقه اصلی -->
-                        <circle cx="100" cy="100" r="85" fill="none" stroke="#dc3545" stroke-width="3" opacity="0.8"/>
+                    <svg class="tree-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی درخت دانش - نماد زندگینامه مشاهیر">
+                        <!-- حلقه قرمز بزرگ -->
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#dc3545" stroke-width="4" opacity="0.9"/>
                         
-                        <!-- حلقه داخلی دکوراتیو -->
-                        <circle cx="100" cy="100" r="75" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.6" stroke-dasharray="8,4"/>
+                        <!-- تنه درخت -->
+                        <path d="M95 120 L95 80 Q100 75 105 80 L105 120 Q100 125 95 120 Z" 
+                              fill="#8B4513" stroke="#654321" stroke-width="1.5"/>
                         
-                        <!-- شیر -->
-                        <path d="M75 110 Q70 95 80 85 Q85 75 95 80 Q105 75 110 85 Q120 95 115 110 Q125 120 115 130 Q110 140 100 135 Q90 140 85 130 Q75 120 75 110 Z" 
-                              fill="#dc3545" stroke="#a71d2a" stroke-width="1.5"/>
+                        <!-- تاج درخت - شاخه اصلی -->
+                        <path d="M100 80 Q70 60 80 40 Q90 30 100 35 Q110 30 120 40 Q130 60 100 80 Z" 
+                              fill="#28a745" stroke="#1e7e34" stroke-width="1.5"/>
                         
-                        <!-- دم شیر -->
-                        <path d="M115 110 Q130 100 135 115 Q140 125 130 130 Z" 
-                              fill="#dc3545" stroke="#a71d2a" stroke-width="1.5"/>
+                        <!-- شاخه چپ -->
+                        <path d="M85 70 Q60 65 65 50 Q70 40 80 45 Q75 55 85 70 Z" 
+                              fill="#28a745" stroke="#1e7e34" stroke-width="1"/>
                         
-                        <!-- صورت شیر -->
-                        <circle cx="90" cy="95" r="8" fill="#a71d2a" opacity="0.7"/>
-                        <circle cx="110" cy="95" r="8" fill="#a71d2a" opacity="0.7"/>
+                        <!-- شاخه راست -->
+                        <path d="M115 70 Q140 65 135 50 Q130 40 120 45 Q125 55 115 70 Z" 
+                              fill="#28a745" stroke="#1e7e34" stroke-width="1"/>
                         
-                        <!-- یال شیر -->
-                        <path d="M85 80 Q80 70 90 65 Q100 60 110 65 Q120 70 115 80" 
-                              fill="#a71d2a" stroke="#8c1c24" stroke-width="1" opacity="0.8"/>
+                        <!-- شاخه بالایی -->
+                        <path d="M100 40 Q95 20 110 25 Q115 15 100 20 Q85 15 90 25 Q105 20 100 40 Z" 
+                              fill="#20c997" stroke="#199d74" stroke-width="1"/>
                         
-                        <!-- خورشید -->
-                        <circle cx="100" cy="65" r="15" fill="#ffd700" stroke="#ffc107" stroke-width="1.5"/>
+                        <!-- میوه‌های دانش -->
+                        <circle cx="75" cy="55" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
+                        <circle cx="125" cy="55" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
+                        <circle cx="95" cy="35" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
+                        <circle cx="105" cy="35" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
+                        <circle cx="100" cy="25" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
                         
-                        <!-- پرتوهای خورشید -->
-                        <g fill="#ffd700" opacity="0.8">
-                            <path d="M100 45 L105 50 L100 48 L95 50 Z"/>
-                            <path d="M120 55 L125 60 L120 65 L115 60 Z"/>
-                            <path d="M80 55 L75 60 L80 65 L85 60 Z"/>
-                            <path d="M110 70 L115 75 L110 80 L105 75 Z"/>
-                            <path d="M90 70 L85 75 L90 80 L95 75 Z"/>
-                            <path d="M125 75 L130 80 L125 85 L120 80 Z"/>
-                            <path d="M75 75 L70 80 L75 85 L80 80 Z"/>
+                        <!-- ریشه‌های دانش -->
+                        <path d="M90 120 Q85 135 75 130 Q70 140 80 145 Q85 135 90 120 Z" 
+                              fill="#8B4513" stroke="#654321" stroke-width="1" opacity="0.8"/>
+                        <path d="M110 120 Q115 135 125 130 Q130 140 120 145 Q115 135 110 120 Z" 
+                              fill="#8B4513" stroke="#654321" stroke-width="1" opacity="0.8"/>
+                        
+                        <!-- برگ‌های تزئینی -->
+                        <g opacity="0.7">
+                            <path d="M70 60 Q65 55 68 50 Q72 48 70 60 Z" fill="#20c997"/>
+                            <path d="M130 60 Q135 55 132 50 Q128 48 130 60 Z" fill="#20c997"/>
+                            <path d="M100 15 Q105 10 102 5 Q98 3 100 15 Z" fill="#20c997"/>
                         </g>
                         
-                        <!-- شمشیر -->
-                        <path d="M100 140 L100 50" stroke="#6c757d" stroke-width="3" opacity="0.7"/>
-                        <path d="M95 50 L105 50 L100 40 Z" fill="#6c757d" opacity="0.7"/>
-                        <path d="M95 140 L105 140 L100 150 Z" fill="#6c757d" opacity="0.7"/>
-                        
-                        <!-- تزئینات حلقه -->
-                        <g opacity="0.4">
-                            <circle cx="60" cy="100" r="5" fill="#dc3545"/>
-                            <circle cx="140" cy="100" r="5" fill="#dc3545"/>
-                            <circle cx="100" cy="60" r="5" fill="#dc3545"/>
-                            <circle cx="100" cy="140" r="5" fill="#dc3545"/>
-                        </g>
+                        <!-- نماد کتاب در پایین درخت -->
+                        <path d="M85 140 L115 140 L113 145 L87 145 Z" 
+                              fill="#6f42c1" stroke="#5a2d91" stroke-width="1" opacity="0.8"/>
+                        <path d="M87 145 L113 145 L111 150 L89 150 Z" 
+                              fill="#5a2d91" stroke="#4a2378" stroke-width="1" opacity="0.8"/>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
