@@ -132,19 +132,21 @@ layout: test.html
             width: 160px;
             height: 160px;
             border-radius: 50%;
-            background-color: white;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 0 20px 0;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.8);
         }
         
-        .phoenix-logo {
+        .bird-logo {
             width: 140px;
             height: 140px;
             transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         }
         
         .logo-container:hover {
@@ -152,8 +154,9 @@ layout: test.html
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .logo-container:hover .phoenix-logo {
-            transform: scale(1.1) rotate(5deg);
+        .logo-container:hover .bird-logo {
+            transform: scale(1.1);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
         }
         
         .posts-search-container {
@@ -322,7 +325,7 @@ layout: test.html
                 height: 140px;
             }
             
-            .phoenix-logo {
+            .bird-logo {
                 width: 120px;
                 height: 120px;
             }
@@ -380,7 +383,7 @@ layout: test.html
                 height: 120px;
             }
             
-            .phoenix-logo {
+            .bird-logo {
                 width: 100px;
                 height: 100px;
             }
@@ -406,36 +409,41 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <svg class="phoenix-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی ققنوس - نماد سایت زندگینامه مشاهیر">
-                        <!-- بدن ققنوس -->
-                        <path d="M100 150 C80 140 70 120 75 100 C70 80 85 60 100 50 C115 60 130 80 125 100 C130 120 120 140 100 150 Z" 
-                              fill="#ff4444" stroke="#cc0000" stroke-width="2"/>
+                    <svg class="bird-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی پرنده - نماد سایت زندگینامه مشاهیر">
+                        <!-- بدن اصلی پرنده -->
+                        <path d="M100 140 Q80 120 85 100 Q80 80 100 70 Q120 80 115 100 Q120 120 100 140 Z" 
+                              fill="#dc3545" stroke="#a71d2a" stroke-width="2"/>
                         
                         <!-- سر -->
-                        <circle cx="100" cy="45" r="12" fill="#ff6666"/>
+                        <circle cx="100" cy="65" r="15" fill="#dc3545"/>
                         
-                        <!-- منقار -->
-                        <path d="M100 35 L110 30 L105 40 Z" fill="#ffaa00"/>
+                        <!-- منقار ظریف -->
+                        <path d="M100 55 L110 50 L105 60 Z" fill="#ffd700"/>
                         
                         <!-- چشم -->
-                        <circle cx="95" cy="42" r="2" fill="#000"/>
+                        <circle cx="94" cy="62" r="3" fill="#fff"/>
+                        <circle cx="94" cy="62" r="1.5" fill="#000"/>
                         
-                        <!-- پرهای دم -->
-                        <path d="M85 155 L40 130 L80 145 Z" fill="#ff2222"/>
-                        <path d="M90 160 L30 170 L85 155 Z" fill="#ff3333"/>
-                        <path d="M95 162 L35 190 L90 160 Z" fill="#ff4444"/>
-                        <path d="M115 162 L165 190 L110 160 Z" fill="#ff4444"/>
-                        <path d="M110 160 L170 170 L115 155 Z" fill="#ff3333"/>
-                        <path d="M115 155 L160 130 L120 145 Z" fill="#ff2222"/>
+                        <!-- پرهای دم ظریف -->
+                        <path d="M90 145 L60 120 L85 140 Z" fill="#c82333"/>
+                        <path d="M95 150 L50 140 L90 145 Z" fill="#bd2130"/>
+                        <path d="M100 152 L45 160 L95 150 Z" fill="#a71d2a"/>
                         
-                        <!-- پرهای بال -->
-                        <path d="M70 100 L30 70 L65 95 Z" fill="#ff5555"/>
-                        <path d="M75 90 L20 50 L70 85 Z" fill="#ff4444"/>
-                        <path d="M130 100 L170 70 L135 95 Z" fill="#ff5555"/>
-                        <path d="M125 90 L180 50 L130 85 Z" fill="#ff4444"/>
+                        <!-- پرهای بال ظریف -->
+                        <path d="M75 100 L50 70 L70 95 Z" fill="#e83e8c"/>
+                        <path d="M80 85 L40 50 L75 80 Z" fill="#dc3545"/>
+                        <path d="M125 100 L150 70 L130 95 Z" fill="#e83e8c"/>
+                        <path d="M120 85 L160 50 L125 80 Z" fill="#dc3545"/>
                         
-                        <!-- تاج -->
-                        <path d="M95 30 L90 15 L95 20 L100 15 L105 20 L110 15 L105 30 Z" fill="#ffaa00"/>
+                        <!-- تاج ظریف -->
+                        <path d="M92 45 L88 30 L92 35 L100 30 L108 35 L112 30 L108 45 Z" fill="#ffd700"/>
+                        
+                        <!-- جزئیات پرها -->
+                        <path d="M85 120 L75 110 L80 115 Z" fill="#fff" opacity="0.3"/>
+                        <path d="M115 120 L125 110 L120 115 Z" fill="#fff" opacity="0.3"/>
+                        
+                        <!-- سایه‌های ظریف -->
+                        <path d="M95 75 L90 85 L100 80 Z" fill="#a71d2a" opacity="0.2"/>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
