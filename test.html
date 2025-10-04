@@ -142,7 +142,7 @@ layout: test.html
             border: 3px solid rgba(255, 255, 255, 0.8);
         }
         
-        .heritage-logo {
+        .persian-logo {
             width: 140px;
             height: 140px;
             transition: all 0.3s ease;
@@ -154,7 +154,7 @@ layout: test.html
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .logo-container:hover .heritage-logo {
+        .logo-container:hover .persian-logo {
             transform: scale(1.1);
             filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
         }
@@ -325,7 +325,7 @@ layout: test.html
                 height: 140px;
             }
             
-            .heritage-logo {
+            .persian-logo {
                 width: 120px;
                 height: 120px;
             }
@@ -383,7 +383,7 @@ layout: test.html
                 height: 120px;
             }
             
-            .heritage-logo {
+            .persian-logo {
                 width: 100px;
                 height: 100px;
             }
@@ -409,47 +409,55 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <svg class="heritage-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی زندگینامه مشاهیر - نماد تاریخ و دانش">
-                        <!-- دایره زمینه -->
-                        <circle cx="100" cy="100" r="95" fill="none" stroke="#dc3545" stroke-width="2" opacity="0.3"/>
+                    <svg class="persian-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی شیر و خورشید - نماد زندگینامه مشاهیر ایران">
+                        <!-- حلقه اصلی -->
+                        <circle cx="100" cy="100" r="85" fill="none" stroke="#dc3545" stroke-width="3" opacity="0.8"/>
                         
-                        <!-- کتاب باز شده - نماد دانش و تاریخ -->
-                        <path d="M60 70 Q100 50 140 70 L140 130 Q100 150 60 130 Z" 
+                        <!-- حلقه داخلی دکوراتیو -->
+                        <circle cx="100" cy="100" r="75" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.6" stroke-dasharray="8,4"/>
+                        
+                        <!-- شیر -->
+                        <path d="M75 110 Q70 95 80 85 Q85 75 95 80 Q105 75 110 85 Q120 95 115 110 Q125 120 115 130 Q110 140 100 135 Q90 140 85 130 Q75 120 75 110 Z" 
                               fill="#dc3545" stroke="#a71d2a" stroke-width="1.5"/>
                         
-                        <!-- خطوط صفحات کتاب -->
-                        <path d="M75 80 L125 80" stroke="#fff" stroke-width="1" opacity="0.6"/>
-                        <path d="M75 90 L125 90" stroke="#fff" stroke-width="1" opacity="0.5"/>
-                        <path d="M75 100 L125 100" stroke="#fff" stroke-width="1" opacity="0.4"/>
-                        <path d="M75 110 L125 110" stroke="#fff" stroke-width="1" opacity="0.3"/>
-                        <path d="M75 120 L125 120" stroke="#fff" stroke-width="1" opacity="0.2"/>
+                        <!-- دم شیر -->
+                        <path d="M115 110 Q130 100 135 115 Q140 125 130 130 Z" 
+                              fill="#dc3545" stroke="#a71d2a" stroke-width="1.5"/>
                         
-                        <!-- تاج افتخار - نماد بزرگی و موفقیت -->
-                        <path d="M85 60 L95 45 L100 55 L105 45 L115 60 Z" 
-                              fill="#ffd700" stroke="#ffc107" stroke-width="1"/>
+                        <!-- صورت شیر -->
+                        <circle cx="90" cy="95" r="8" fill="#a71d2a" opacity="0.7"/>
+                        <circle cx="110" cy="95" r="8" fill="#a71d2a" opacity="0.7"/>
                         
-                        <!-- ستاره دانش -->
-                        <path d="M100 35 L103 45 L113 45 L106 52 L108 62 L100 57 L92 62 L94 52 L87 45 L97 45 Z" 
-                              fill="#ffd700" stroke="#ffc107" stroke-width="0.5"/>
+                        <!-- یال شیر -->
+                        <path d="M85 80 Q80 70 90 65 Q100 60 110 65 Q120 70 115 80" 
+                              fill="#a71d2a" stroke="#8c1c24" stroke-width="1" opacity="0.8"/>
                         
-                        <!-- پرچم تاریخ -->
-                        <path d="M140 85 L160 80 L160 100 L140 95 Z" 
-                              fill="#e83e8c" stroke="#d63384" stroke-width="1"/>
+                        <!-- خورشید -->
+                        <circle cx="100" cy="65" r="15" fill="#ffd700" stroke="#ffc107" stroke-width="1.5"/>
                         
-                        <!-- حلقه اتحاد -->
-                        <circle cx="100" cy="100" r="40" fill="none" stroke="#28a745" stroke-width="2" opacity="0.7" stroke-dasharray="5,3"/>
-                        
-                        <!-- نور دانش -->
-                        <g opacity="0.4">
-                            <path d="M100 30 L105 40 L100 35 L95 40 Z" fill="#ffd700"/>
-                            <path d="M130 50 L135 55 L130 60 L125 55 Z" fill="#ffd700"/>
-                            <path d="M70 50 L65 55 L70 60 L75 55 Z" fill="#ffd700"/>
-                            <path d="M100 170 L105 160 L100 165 L95 160 Z" fill="#ffd700"/>
+                        <!-- پرتوهای خورشید -->
+                        <g fill="#ffd700" opacity="0.8">
+                            <path d="M100 45 L105 50 L100 48 L95 50 Z"/>
+                            <path d="M120 55 L125 60 L120 65 L115 60 Z"/>
+                            <path d="M80 55 L75 60 L80 65 L85 60 Z"/>
+                            <path d="M110 70 L115 75 L110 80 L105 75 Z"/>
+                            <path d="M90 70 L85 75 L90 80 L95 75 Z"/>
+                            <path d="M125 75 L130 80 L125 85 L120 80 Z"/>
+                            <path d="M75 75 L70 80 L75 85 L80 80 Z"/>
                         </g>
                         
-                        <!-- نماد میراث فرهنگی -->
-                        <path d="M85 140 Q100 130 115 140 Q110 150 100 155 Q90 150 85 140 Z" 
-                              fill="#17a2b8" stroke="#138496" stroke-width="1" opacity="0.8"/>
+                        <!-- شمشیر -->
+                        <path d="M100 140 L100 50" stroke="#6c757d" stroke-width="3" opacity="0.7"/>
+                        <path d="M95 50 L105 50 L100 40 Z" fill="#6c757d" opacity="0.7"/>
+                        <path d="M95 140 L105 140 L100 150 Z" fill="#6c757d" opacity="0.7"/>
+                        
+                        <!-- تزئینات حلقه -->
+                        <g opacity="0.4">
+                            <circle cx="60" cy="100" r="5" fill="#dc3545"/>
+                            <circle cx="140" cy="100" r="5" fill="#dc3545"/>
+                            <circle cx="100" cy="60" r="5" fill="#dc3545"/>
+                            <circle cx="100" cy="140" r="5" fill="#dc3545"/>
+                        </g>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
