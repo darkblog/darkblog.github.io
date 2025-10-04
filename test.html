@@ -411,8 +411,23 @@ layout: test.html
                 <div class="logo-container">
                     <svg class="faravahar-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="نماد فر کیانی (فروهر)">
             
-  <path d="M50,50 L20,75 A25,25 0 0,1 80,75 A25,25 0 0,1 20,25 A25,25 0 0,1 80,25 L50,50 M50,75 L25,90 L75,90 Z" fill="#000000"/>
-  <circle cx="50" cy="50" r="10" fill="#ffffff"/>
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#000" stroke-width="5"/>
+  
+  <!-- Wings -->
+  <path d="M50,100 Q75,50 100,100 Q125,50 150,100" fill="none" stroke="#000" stroke-width="5"/>
+  <path d="M50,100 Q75,150 100,100 Q125,150 150,100" fill="none" stroke="#000" stroke-width="5"/>
+  
+  <!-- Human Figure -->
+  <circle cx="100" cy="80" r="15" fill="none" stroke="#000" stroke-width="5"/>
+  <path d="M100,95 L100,130" stroke="#000" stroke-width="5"/>
+  <path d="M85,110 L100,95 L115,110" fill="none" stroke="#000" stroke-width="5"/>
+  
+  <!-- Tail Feathers -->
+  <path d="M90,130 L90,160" stroke="#000" stroke-width="5"/>
+  <path d="M100,130 L100,160" stroke="#000" stroke-width="5"/>
+  <path d="M110,130 L110,160" stroke="#000" stroke-width="5"/>
+
 </svg>
 
                 </div>
