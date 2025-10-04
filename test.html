@@ -28,13 +28,6 @@ layout: test.html
     <link rel="canonical" href="https://indexes.ir/">
     <meta name="theme-color" content="#dc3545">
     
-    <!-- Milligram CSS Framework -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Vazirmatn Persian Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
-    
     <style>
         :root {
             --primary-color: #dc3545;
@@ -48,13 +41,20 @@ layout: test.html
             --header-height: 380px;
         }
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Tahoma', sans-serif;
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.8;
             margin: 0;
             padding: 0;
+            font-size: 16px;
         }
         
         a {
@@ -65,6 +65,13 @@ layout: test.html
         
         a:hover {
             color: var(--primary-dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
         
         .modern-header {
@@ -180,6 +187,8 @@ layout: test.html
         
         .search-box {
             position: relative;
+            display: flex;
+            align-items: center;
         }
         
         .posts-search-box input {
@@ -190,6 +199,7 @@ layout: test.html
             background: transparent;
             height: 56px;
             width: 100%;
+            font-family: inherit;
         }
         
         .posts-search-box input:focus {
@@ -197,10 +207,9 @@ layout: test.html
             outline: none;
         }
         
-        .posts-search-box .button {
+        .posts-search-box button {
             position: absolute;
             right: 8px;
-            left: auto;
             top: 50%;
             transform: translateY(-50%);
             border-radius: 50%;
@@ -214,9 +223,11 @@ layout: test.html
             justify-content: center;
             transition: all 0.3s ease;
             color: white;
+            cursor: pointer;
+            font-family: inherit;
         }
         
-        .posts-search-box .button:hover {
+        .posts-search-box button:hover {
             transform: translateY(-50%) scale(1.05);
         }
         
@@ -278,6 +289,14 @@ layout: test.html
             line-height: 1;
         }
         
+        .post-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
         .blog-button-container {
             max-width: 800px;
             margin: 40px auto;
@@ -298,6 +317,7 @@ layout: test.html
             max-width: 250px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .blog-button:hover {
@@ -307,21 +327,33 @@ layout: test.html
             color: var(--primary-dark);
         }
         
-        /* RTL-specific adjustments based on search results */
-        .button {
-            margin-left: 0;
-            margin-right: 0.25rem;
+        /* Search icon using pure CSS */
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
         }
         
-        /* Ensure proper RTL layout for all elements */
-        .row {
-            flex-direction: row;
+        .search-icon::before {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
         }
         
-        /* Improve spacing for RTL */
-        .container {
-            padding-right: 0.5rem;
-            padding-left: 0.5rem;
+        .search-icon::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: currentColor;
+            transform: rotate(-45deg);
+            top: 14px;
+            left: 14px;
         }
         
         @media (max-width: 768px) {
@@ -366,7 +398,7 @@ layout: test.html
                 font-size: 1rem;
             }
             
-            .posts-search-box .button {
+            .posts-search-box button {
                 width: 36px;
                 height: 36px;
                 right: 7px;
@@ -375,6 +407,11 @@ layout: test.html
             .blog-button {
                 padding: 10px 25px;
                 font-size: 1rem;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                gap: 5px;
             }
         }
         
@@ -446,80 +483,103 @@ layout: test.html
                     <div class="search-box posts-search-box">
                         <input type="text" 
                                name="q" 
-                               placeholder="جستجو..." 
+                               placeholder="جستجو در زندگینامه مشاهیر..." 
                                required
                                aria-label="جستجوی زندگینامه مشاهیر"
                                aria-required="true">
                         <input type="hidden" name="sitesearch" value="indexes.ir">
-                        <button type="submit" class="button" aria-label="اجرای جستجو">
-                            <i class="fas fa-search" aria-hidden="true"></i>
+                        <button type="submit" aria-label="اجرای جستجو">
+                            <span class="search-icon"></span>
                         </button>
                     </div>
                 </form>
             </div>
             
             <div class="posts-container">
-                <!-- Sample post cards - replace with your dynamic content -->
+                {% for post in site.posts limit:10 %}
                 <article class="post-card" 
                          itemscope 
                          itemtype="https://schema.org/BlogPosting"
                          role="article"
-                         aria-labelledby="post-title-1">
-                    <a href="/blog/elon-musk" itemprop="url">
+                         aria-labelledby="post-title-{{ forloop.index }}">
+                    <a href="{{ post.url }}" itemprop="url">
                         <div class="post-content">
-                            <h2 class="post-title" itemprop="headline" id="post-title-1">ایلان ماسک - نابغه فناوری و کارآفرین</h2>
+                            <h2 class="post-title" itemprop="headline" id="post-title-{{ forloop.index }}">
+                                {{ post.title }}
+                            </h2>
                             <p class="post-excerpt" itemprop="description">
-                                زندگینامه ایلان ماسک، کارآفرین، مهندس و سرمایه گذار مشهور. بنیانگذار اسپیس ایکس، تسلا موتورز و چندین شرکت نوآورانه دیگر که در حال تغییر دنیای ما هستند.
+                                {{ post.excerpt | strip_html | truncate: 200 }}
                             </p>
+                            <div class="post-meta">
+                                {% if post.date %}
+                                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                                    {{ post.date | jdate: "%d %b %Y" }}
+                                </time>
+                                {% endif %}
+                                {% if post.categories %}
+                                <span itemprop="articleSection">
+                                    {{ post.categories | first }}
+                                </span>
+                                {% endif %}
+                            </div>
                         </div>
                     </a>
                 </article>
+                {% endfor %}
                 
-                <article class="post-card" 
-                         itemscope 
-                         itemtype="https://schema.org/BlogPosting"
-                         role="article"
-                         aria-labelledby="post-title-2">
-                    <a href="/blog/marie-curie" itemprop="url">
-                        <div class="post-content">
-                            <h2 class="post-title" itemprop="headline" id="post-title-2">ماری کوری - پیشگام علم فیزیک و شیمی</h2>
-                            <p class="post-excerpt" itemprop="description">
-                                داستان زندگی ماری کوری، دانشمند لهستانی-فرانسوی، برنده دو جایزه نوبل و کاشف عناصر رادیواکتیو رادیم و پولونیوم.
-                            </p>
-                        </div>
-                    </a>
-                </article>
-                
-                <article class="post-card" 
-                         itemscope 
-                         itemtype="https://schema.org/BlogPosting"
-                         role="article"
-                         aria-labelledby="post-title-3">
-                    <a href="/blog/amir-kabir" itemprop="url">
-                        <div class="post-content">
-                            <h2 class="post-title" itemprop="headline" id="post-title-3">میرزا تقی خان فراهانی (امیرکبیر)</h2>
-                            <p class="post-excerpt" itemprop="description">
-                                زندگینامه امیرکبیر، صدراعظم نامدار ایران در دوره ناصرالدین شاه قاجار و بنیانگذار دارالفنون که نقش مهمی در نوسازی ایران داشت.
-                            </p>
-                        </div>
-                    </a>
-                </article>
-                
+                {% if site.posts.size > 10 %}
                 <div class="blog-button-container">
                     <a href="/blog" class="blog-button">
                         وبلاگ مشاهیر
                     </a>
                 </div>
+                {% endif %}
             </div>
         </main>
     </div>
     
-    <!-- Optional JavaScript if needed -->
     <script>
-        // Simple JavaScript for interactive elements if needed
         document.addEventListener('DOMContentLoaded', function() {
-            // Add any interactive functionality here
-            console.log('Milligram RTL site loaded successfully');
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Search form enhancement
+            const searchForm = document.querySelector('form[role="search"]');
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    const searchInput = this.querySelector('input[name="q"]');
+                    if (searchInput.value.trim() === '') {
+                        e.preventDefault();
+                        searchInput.focus();
+                    }
+                });
+            }
+            
+            // Add loading state to buttons
+            document.querySelectorAll('button, .blog-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.type === 'submit' || this.getAttribute('href')) {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<span>در حال بارگذاری...</span>';
+                        this.style.opacity = '0.7';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.opacity = '';
+                        }, 2000);
+                    }
+                });
+            });
         });
     </script>
 </body>
