@@ -142,7 +142,7 @@ layout: test.html
             border: 3px solid rgba(255, 255, 255, 0.8);
         }
         
-        .tree-logo {
+        .faravahar-logo {
             width: 140px;
             height: 140px;
             transition: all 0.3s ease;
@@ -154,7 +154,7 @@ layout: test.html
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .logo-container:hover .tree-logo {
+        .logo-container:hover .faravahar-logo {
             transform: scale(1.1);
             filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
         }
@@ -325,7 +325,7 @@ layout: test.html
                 height: 140px;
             }
             
-            .tree-logo {
+            .faravahar-logo {
                 width: 120px;
                 height: 120px;
             }
@@ -383,7 +383,7 @@ layout: test.html
                 height: 120px;
             }
             
-            .tree-logo {
+            .faravahar-logo {
                 width: 100px;
                 height: 100px;
             }
@@ -409,55 +409,46 @@ layout: test.html
         <header class="modern-header" role="banner" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
-                    <svg class="tree-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی درخت دانش - نماد زندگینامه مشاهیر">
+                    <svg class="faravahar-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی فروهر - نماد زندگینامه مشاهیر ایران">
                         <!-- حلقه قرمز بزرگ -->
-                        <circle cx="100" cy="100" r="90" fill="none" stroke="#dc3545" stroke-width="4" opacity="0.9"/>
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="#dc3545" stroke-width="4" opacity="0.9"/>
                         
-                        <!-- تنه درخت -->
-                        <path d="M95 120 L95 80 Q100 75 105 80 L105 120 Q100 125 95 120 Z" 
-                              fill="#8B4513" stroke="#654321" stroke-width="1.5"/>
+                        <!-- دایره مرکزی فروهر -->
+                        <circle cx="100" cy="100" r="25" fill="none" stroke="#333" stroke-width="3"/>
                         
-                        <!-- تاج درخت - شاخه اصلی -->
-                        <path d="M100 80 Q70 60 80 40 Q90 30 100 35 Q110 30 120 40 Q130 60 100 80 Z" 
-                              fill="#28a745" stroke="#1e7e34" stroke-width="1.5"/>
+                        <!-- بالای فروهر -->
+                        <path d="M100 75 Q85 60 100 45 Q115 60 100 75 Z" 
+                              fill="#333" stroke="#000" stroke-width="2"/>
                         
-                        <!-- شاخه چپ -->
-                        <path d="M85 70 Q60 65 65 50 Q70 40 80 45 Q75 55 85 70 Z" 
-                              fill="#28a745" stroke="#1e7e34" stroke-width="1"/>
+                        <!-- بدن اصلی فروهر -->
+                        <path d="M100 75 L100 125" 
+                              stroke="#333" stroke-width="4"/>
                         
-                        <!-- شاخه راست -->
-                        <path d="M115 70 Q140 65 135 50 Q130 40 120 45 Q125 55 115 70 Z" 
-                              fill="#28a745" stroke="#1e7e34" stroke-width="1"/>
+                        <!-- دست راست (به سمت بالا) -->
+                        <path d="M100 90 L115 85" 
+                              stroke="#333" stroke-width="3"/>
                         
-                        <!-- شاخه بالایی -->
-                        <path d="M100 40 Q95 20 110 25 Q115 15 100 20 Q85 15 90 25 Q105 20 100 40 Z" 
-                              fill="#20c997" stroke="#199d74" stroke-width="1"/>
+                        <!-- دست چپ (به سمت پایین) -->
+                        <path d="M100 110 L85 115" 
+                              stroke="#333" stroke-width="3"/>
                         
-                        <!-- میوه‌های دانش -->
-                        <circle cx="75" cy="55" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
-                        <circle cx="125" cy="55" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
-                        <circle cx="95" cy="35" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
-                        <circle cx="105" cy="35" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
-                        <circle cx="100" cy="25" r="4" fill="#dc3545" stroke="#a71d2a" stroke-width="1"/>
+                        <!-- حلقه پایینی -->
+                        <circle cx="100" cy="140" r="15" fill="none" stroke="#333" stroke-width="3"/>
                         
-                        <!-- ریشه‌های دانش -->
-                        <path d="M90 120 Q85 135 75 130 Q70 140 80 145 Q85 135 90 120 Z" 
-                              fill="#8B4513" stroke="#654321" stroke-width="1" opacity="0.8"/>
-                        <path d="M110 120 Q115 135 125 130 Q130 140 120 145 Q115 135 110 120 Z" 
-                              fill="#8B4513" stroke="#654321" stroke-width="1" opacity="0.8"/>
-                        
-                        <!-- برگ‌های تزئینی -->
-                        <g opacity="0.7">
-                            <path d="M70 60 Q65 55 68 50 Q72 48 70 60 Z" fill="#20c997"/>
-                            <path d="M130 60 Q135 55 132 50 Q128 48 130 60 Z" fill="#20c997"/>
-                            <path d="M100 15 Q105 10 102 5 Q98 3 100 15 Z" fill="#20c997"/>
+                        <!-- پرتوهای حلقه پایینی -->
+                        <g stroke="#333" stroke-width="2">
+                            <path d="M100 125 L100 140 M100 155 L100 140"/>
+                            <path d="M85 140 L100 140 M115 140 L100 140"/>
+                            <path d="M92 127 L100 140 M108 127 L100 140"/>
+                            <path d="M92 153 L100 140 M108 153 L100 140"/>
                         </g>
                         
-                        <!-- نماد کتاب در پایین درخت -->
-                        <path d="M85 140 L115 140 L113 145 L87 145 Z" 
-                              fill="#6f42c1" stroke="#5a2d91" stroke-width="1" opacity="0.8"/>
-                        <path d="M87 145 L113 145 L111 150 L89 150 Z" 
-                              fill="#5a2d91" stroke="#4a2378" stroke-width="1" opacity="0.8"/>
+                        <!-- نمادهای سه گانه در بال -->
+                        <g fill="#333">
+                            <circle cx="85" cy="60" r="3"/>
+                            <circle cx="100" cy="55" r="3"/>
+                            <circle cx="115" cy="60" r="3"/>
+                        </g>
                     </svg>
                 </div>
                 <h1 itemprop="headline" id="page-title">زندگینامه مشاهیر</h1>
