@@ -7,14 +7,15 @@ layout: biography.html
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>لیست بیوگرافی مشاهیر ایران و جهان</title>
     <meta name="description" content="کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از زندگی آنان بیاموزید.">
     <meta name="keywords" content="وبلاگ, وبلاگ مشاهیر, لیست مشاهیر, مشاهیر, مشاهیر ایران, مشاهیر جهان">
     <meta name="author" content="ehsan chehri">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="وبلاگ مشاهیر">
-    <meta property="og:description" content="لیست مشاهیر ایران و جهان">
+    <meta property="og:title" content="لیست بیوگرافی مشاهیر ایران و جهان">
+    <meta property="og:description" content="کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از زندگی آنان بیاموزید.">
     <meta property="og:url" content="https://indexes.ir/biography">
     <meta property="og:site_name" content="زندگینامه مشاهیر">
     <meta property="og:locale" content="fa_IR">
@@ -24,21 +25,28 @@ layout: biography.html
     <meta property="og:image:alt" content="زندگینامه مشاهیر">
     
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="وبلاگ مشاهیر">
-    <meta name="twitter:description" content="لیست مشاهیر ایران و جهان">
+    <meta name="twitter:title" content="لیست بیوگرافی مشاهیر ایران و جهان">
+    <meta name="twitter:description" content="کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از زندگی آنان بیاموزید.">
     <meta name="twitter:image" content="https://indexes.ir/biography.svg">
     <meta name="twitter:site" content="@pbstwi">
     
-    <link rel="icon apple-touch-icon" href="/biography.svg" sizes="any">
+    <link rel="icon" href="/biography.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/biography.svg">
     <link rel="canonical" href="https://indexes.ir/biography">
     <meta name="theme-color" content="#dc3545">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"></noscript>
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"></noscript>
+    
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap"></noscript>
     
     <script type="application/ld+json">
     {
@@ -109,13 +117,14 @@ layout: biography.html
             color: var(--text-color);
             line-height: 1.8;
             margin: 0;
-            overflow-x: hidden;
+            overflow-x: hidden; /* در صورت امکان، بهتر است عامل overflow را پیدا و رفع کنید */
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
         
         a {
-            text-decoration: none !important;
+            /* حذف !important - استفاده از آن توصیه نمی‌شود */
+            text-decoration: none;
             color: var(--primary-color);
             transition: all 0.3s ease;
         }
@@ -133,6 +142,12 @@ layout: biography.html
             top: 0;
             z-index: 1020;
             transition: all 0.3s ease;
+        }
+
+        /* این کلاس توسط جاوا اسکریپت برای بهینه‌سازی اضافه می‌شود */
+        .top-menu.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
         }
         
         .menu-links {
@@ -408,7 +423,7 @@ layout: biography.html
     <main class="container" role="main">
         <div class="home-container">
             <ul class="latest-posts">
-                {% for post in site.posts limit:1000 %}
+                {% for post in site.posts %}
                 <li>
                     <a href="{{ post.url }}" class="post-item">
                         {{ post.title }}
@@ -422,18 +437,17 @@ layout: biography.html
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
     
     <script>
+        // بهینه‌سازی اسکریپت اسکرول
         document.addEventListener('DOMContentLoaded', function() {
             const topMenu = document.querySelector('.top-menu');
             
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                    topMenu.style.padding = '8px 0';
-                } else {
-                    topMenu.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-                    topMenu.style.padding = '12px 0';
-                }
-            });
+            if (topMenu) {
+                window.addEventListener('scroll', () => {
+                    // استفاده از classList.toggle به جای دستکاری مستقیم style
+                    // این روش خواناتر و بهینه‌تر است
+                    topMenu.classList.toggle('scrolled', window.scrollY > 50);
+                }, { passive: true }); // افزودن passive:true برای بهبود عملکرد اسکرول
+            }
         });
     </script>
 </body>
