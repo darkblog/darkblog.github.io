@@ -155,10 +155,31 @@ layout: index.html
             document.head.appendChild(link);
         }
         
-        window.addEventListener('load', function() {
-            loadCSS('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css');
-            loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
-            loadCSS('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+        function loadNonCriticalResources() {
+            requestAnimationFrame(function() {
+                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css');
+                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
+                loadCSS('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+            });
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadNonCriticalResources);
+        } else {
+            loadNonCriticalResources();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.post-card, .posts-search-box, .blog-button, .logo-container');
+            animatedElements.forEach(el => {
+                el.style.willChange = 'transform, opacity';
+            });
+            
+            setTimeout(() => {
+                animatedElements.forEach(el => {
+                    el.style.willChange = 'auto';
+                });
+            }, 1000);
         });
     </script>
     
