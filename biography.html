@@ -10,7 +10,6 @@ layout: biography.html
     
     <title>لیست بیوگرافی مشاهیر ایران و جهان</title>
     <meta name="description" content="کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از زندگی آنان بیاموزید.">
-    <meta name="keywords" content="وبلاگ, وبلاگ مشاهیر, لیست مشاهیر, مشاهیر, مشاهیر ایران, مشاهیر جهان">
     <meta name="author" content="ehsan chehri">
     
     <meta property="og:type" content="website">
@@ -56,7 +55,7 @@ layout: biography.html
             "@type": "WebPage",
             "@id": "https://indexes.ir/biography"
         },
-        "headline": "وبلاگ مشاهیر - لیست مشاهیر ایران و جهان",
+        "headline": "لیست بیوگرافی مشاهیر ایران و جهان",
         "description": "کشف داستان‌های الهام‌بخش، شکست‌ها و موفقیت‌های مشاهیر جهان. با ما همراه شوید تا از زندگی آنان بیاموزید.",
         "image": {
             "@type": "ImageObject",
@@ -117,13 +116,12 @@ layout: biography.html
             color: var(--text-color);
             line-height: 1.8;
             margin: 0;
-            overflow-x: hidden; /* در صورت امکان، بهتر است عامل overflow را پیدا و رفع کنید */
+            overflow-x: hidden;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
         
         a {
-            /* حذف !important - استفاده از آن توصیه نمی‌شود */
             text-decoration: none;
             color: var(--primary-color);
             transition: all 0.3s ease;
@@ -143,8 +141,7 @@ layout: biography.html
             z-index: 1020;
             transition: all 0.3s ease;
         }
-
-        /* این کلاس توسط جاوا اسکریپت برای بهینه‌سازی اضافه می‌شود */
+        
         .top-menu.scrolled {
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
             padding: 8px 0;
@@ -437,16 +434,13 @@ layout: biography.html
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
     
     <script>
-        // بهینه‌سازی اسکریپت اسکرول
         document.addEventListener('DOMContentLoaded', function() {
             const topMenu = document.querySelector('.top-menu');
             
             if (topMenu) {
                 window.addEventListener('scroll', () => {
-                    // استفاده از classList.toggle به جای دستکاری مستقیم style
-                    // این روش خواناتر و بهینه‌تر است
                     topMenu.classList.toggle('scrolled', window.scrollY > 50);
-                }, { passive: true }); // افزودن passive:true برای بهبود عملکرد اسکرول
+                }, { passive: true });
             }
         });
     </script>
