@@ -3,15 +3,14 @@ layout: test.html
 ---
 
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
-<head>
+<html dir="rtl" lang="fa"> <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>{{ page.title }}</title>
     
-    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta name="author" content="ehsan chehri">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
     
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title }}">
@@ -19,97 +18,31 @@ layout: test.html
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:site_name" content="زندگینامه مشاهیر">
     <meta property="og:locale" content="fa_IR">
-    <meta property="og:image" content="{{ page.image | default: 'https://indexes.ir/biography-default.jpg' | absolute_url }}">
-    <meta property="og:image:width" content="1200"> <meta property="og:image:height" content="630"> <meta property="og:image:alt" content="تصویر مرتبط با {{ page.title }}">
+    <meta property="og:image" content="https://indexes.ir/biography.svg">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="{{ page.title }}">
     
-    <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta name="twitter:image" content="{{ page.image | default: 'https://indexes.ir/biography-default.jpg' | absolute_url }}">
+    <meta name="twitter:image" content="https://indexes.ir/biography.svg">
     <meta name="twitter:creator" content="@pbstwi">
     <meta name="twitter:site" content="@pbstwi">
     
-    <link rel="icon" href="/biography.svg" sizes="any">
-    <link rel="apple-touch-icon" href="/biography.png"> <meta name="theme-color" content="#dc3545">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'"> <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" as="style" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"></noscript>
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"></noscript>
+    <link rel="icon" href="/biography.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/biography.svg"> <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta name="theme-color" content="#dc3545">
     
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <style>
-        /* CSS بهینه‌سازی شده */
-        :root {
-            --primary-color: #dc3545;
-            --primary-dark: #a71d2a;
-            --primary-light: #ff6b7a;
-            --text-color: #333;
-            --text-secondary: #6c757d;
-            --light-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #e9ecef;
-            --header-height: 280px;
-        }
-        
-        /* حذف وزن‌های غیرضروری از Vazirmatn در صورت عدم نیاز (اگر فقط از 400، 600، 900 استفاده می‌کنید) */
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--light-bg);
-            padding-top: 0;
-            color: var(--text-color);
-            line-height: 1.8;
-            margin: 0;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh; /* اطمینان از پوشش کامل ارتفاع در دستگاه‌های موبایل */
-        }
-        
-        /*... بقیه استایل‌ها (بدون تغییر عمده در ماهیت) ...*/
-        /* تگ h1 و دیگر تگ‌های هدر در محتوا باید با وزن‌های فونت مناسب استفاده شوند. */
-        .post-title {
-            font-weight: 900; /* اطمینان از استفاده از وزن فونت لود شده */
-            /* ... بقیه استایل‌های post-title ... */
-        }
-        
-        .top-menu {
-            /* ... استایل‌های قبلی ... */
-            transition: all 0.2s ease; /* کاهش زمان انیمیشن برای حس سرعت بیشتر */
-            min-height: 60px; /* برای جلوگیری از پرش محتوا در هنگام لود */
-        }
-        
-        /* افزودن استایل Breadcrumb برای نمایش بهتر و دسترسی */
-        .post-breadcrumb {
-            padding: 10px 0;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-        .post-breadcrumb a {
-            color: var(--text-secondary);
-        }
-        .post-breadcrumb span {
-            margin: 0 5px;
-        }
-        
-        /* بهبود استایل‌های Media Query */
-        @media (max-width: 768px) {
-            .modern-header {
-                height: 180px; /* کاهش بیشتر ارتفاع در موبایل */
-            }
-            
-            .post-title {
-                font-size: 2.2rem;
-            }
-            
-            /* ... بقیه Media Query ... */
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
     
-    <script type="application/ld+json">
+    <link rel="stylesheet" href="/assets/css/main.css"> <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -118,22 +51,19 @@ layout: test.html
         "@id": "{{ page.url | absolute_url }}"
       },
       "headline": "{{ page.title }}",
-      "image": {
-        "@type": "ImageObject",
-        "url": "{{ page.image | default: 'https://indexes.ir/biography-default.jpg' | absolute_url }}",
-        "width": 1200,
-        "height": 630
-      },
-      "datePublished": "{{ page.date | date_to_xmlschema }}",
-      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
       "author": {
         "@type": "Person",
         "name": "ehsan chehri",
-        "url": "https://indexes.ir/author/ehsanchehri" 
+        "sameAs": [
+          "https://www.facebook.com/ehsanchehri",
+          "https://www.linkedin.com/in/ehsanchehri"
+        ]
       },
       "publisher": {
         "@type": "Organization",
         "name": "زندگینامه مشاهیر",
+        "url": "https://indexes.ir/",
         "logo": {
           "@type": "ImageObject",
           "url": "https://indexes.ir/biography.svg",
@@ -141,100 +71,85 @@ layout: test.html
           "height": 512
         }
       },
-      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
-      "articleBody": "{{ content | strip_html | truncate: 500 }}" 
-      // Breadcrumb بهتر است در یک اسکریپت مجزا یا بالاتر در Schema باشد اگرچه در اینجا نیز کار می‌کند
+      
+      "articleBody": "{{ content | strip_html }}",
+      
+      "image": "https://indexes.ir/biography.svg",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "زندگینامه مشاهیر",
+            "item": "https://indexes.ir/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "بیوگرافی",
+            "item": "https://indexes.ir/biography"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ page.title }}",
+            "item": "{{ page.url | absolute_url }}"
+          }
+        ]
+      }
     }
     </script>
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "خانه",
-          "item": "https://indexes.ir/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "بیوگرافی",
-          "item": "https://indexes.ir/biography"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "{{ page.title }}"
-        }
-      ]
-    }
-    </script>
-    
-</head>
-<body itemscope itemtype="https://schema.org/Article">
-    <nav class="top-menu" role="navigation" aria-label="منوی سایت">
+    </head>
+
+<body>
+    <nav class="top-menu" role="navigation" aria-label="منو">
         <ul class="menu-links">
             <li>
-                <a href="https://indexes.ir/" aria-label="صفحه اصلی زندگینامه مشاهیر" title="صفحه اصلی" class="social-icon">
+                <a href="https://indexes.ir/" aria-label="زندگینامه مشاهیر" class="social-icon">
                     <i class="fas fa-home" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://www.facebook.com/ehsanchehri/" aria-label="فیسبوک نویسنده" title="فیسبوک" class="social-icon" rel="nofollow noopener" target="_blank">
+                <a href="https://www.facebook.com/ehsanchehri/" aria-label="فیسبوک" class="social-icon">
                     <i class="fab fa-facebook-f" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://www.linkedin.com/in/ehsanchehri/" aria-label="لینکدین نویسنده" title="لینکدین" class="social-icon" rel="nofollow noopener" target="_blank">
+                <a href="https://www.linkedin.com/in/ehsanchehri/" aria-label="لینکدین" class="social-icon">
                     <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://x.com/pbstwi" aria-label="ایکس (توییتر سابق) نویسنده" title="ایکس" class="social-icon" rel="nofollow noopener" target="_blank">
+                <a href="https://x.com/pbstwi" aria-label="ایکس" class="social-icon">
                     <i class="fab fa-x-twitter" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
     </nav>
     
-    <header class="modern-header" role="banner">
+    <header class="modern-header" role="banner" aria-labelledby="post-title">
         <div class="header-content">
-            <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
+            <h1 class="post-title" id="post-title" itemprop="headline">{{ page.title }}</h1>
         </div>
     </header>
         
     <main class="container" role="main" id="main-content">
-        <nav aria-label="مسیر یابی" class="post-breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="https://indexes.ir/">خانه</a></li>
-                <li class="breadcrumb-item"><a href="https://indexes.ir/biography">بیوگرافی</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
-            </ol>
-        </nav>
-        
         <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
                 {{ content }}
                 
                 {% if page.quote %}
                 <blockquote itemprop="citation">
-                    "{{ page.quote }}" 
+                    "{{ page.quote }}"
                 </blockquote>
                 {% endif %}
-            </div>
-            
-            <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-            <meta itemprop="dateModified" content="{{ page.last_modified_at | default: page.date | date_to_xmlschema }}">
-            <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <meta itemprop="name" content="ehsan chehri">
             </div>
         </article>
         
         <div class="blog-button-container">
-            <a href="https://indexes.ir/biography" class="blog-button" title="مشاهده فهرست کامل بیوگرافی‌ها">
+            <a href="https://indexes.ir/biography" class="blog-button">
                 لیست بیوگرافی‌ها
             </a>
         </div>
@@ -242,65 +157,5 @@ layout: test.html
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
     
-    <script>
-        // بهینه‌سازی رویداد scroll برای عملکرد بهتر (Throttle/Debounce)
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // ... [بخش‌های مربوط به جدول دست نخورده باقی می‌مانند، زیرا عملکرد خوبی دارند] ...
-            const contentTables = document.querySelectorAll('.post-content table');
-            contentTables.forEach(table => {
-                if (!table.closest('.auto-responsive-table')) {
-                    const wrapper = document.createElement('div');
-                    wrapper.classList.add('auto-responsive-table');
-                    table.parentNode.insertBefore(wrapper, table);
-                    wrapper.appendChild(table);
-                }
-                table.setAttribute('role', 'table');
-                table.setAttribute('aria-label', 'جدول اطلاعات');
-                table.querySelectorAll('th').forEach(header => header.setAttribute('scope', 'col'));
-            });
-            
-            const responsiveTables = document.querySelectorAll('.auto-responsive-table');
-            responsiveTables.forEach(table => {
-                if (table.scrollWidth > table.clientWidth) {
-                    table.classList.add('has-scroll');
-                }
-                table.addEventListener('scroll', function() {
-                    if (this.scrollLeft > 0) {
-                        this.classList.add('scrolling');
-                    } else {
-                        this.classList.remove('scrolling');
-                    }
-                });
-            });
-            // ... [پایان بخش مربوط به جدول] ...
-
-            const topMenu = document.querySelector('.top-menu');
-            const handleScroll = () => {
-                if (window.scrollY > 50) {
-                    topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                    topMenu.style.padding = '8px 0';
-                } else {
-                    topMenu.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-                    topMenu.style.padding = '12px 0';
-                }
-            };
-            
-            // استفاده از throttle برای کاهش تعداد دفعات اجرای تابع در هنگام اسکرول
-            window.addEventListener('scroll', throttle(handleScroll, 100)); 
-        });
-    </script>
-</body>
+    <script src="/assets/js/main.js" defer></script> </body>
 </html>
