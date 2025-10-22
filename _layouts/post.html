@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa" itemscope itemtype="https://schema.org/Article">
-<head>
+<html dir="rtl" lang="fa">
+    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title itemprop="headline">{{ page.title }}</title>
+    
+    <title>{{ page.title }}</title>
+    
     <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta name="keywords" content="زندگینامه {{ page.title }}, بیوگرافی {{ page.title }}, {{ page.title }} کیست">
     <meta name="author" content="ehsan chehri">
     
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="زندگینامه مشاهیر">
+    <meta property="og:site_name" content="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:image" content="https://indexes.ir/biography.svg">
     <meta property="og:image:width" content="512">
@@ -26,17 +27,24 @@
     <meta name="twitter:creator" content="@pbstwi">
     <meta name="twitter:site" content="@pbstwi">
     
-    <link rel="icon apple-touch-icon" href="/biography.svg" sizes="any">
+    <link rel="icon" href="/biography.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/biography.svg">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <meta name="theme-color" content="#dc3545">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"></noscript>
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"></noscript>
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap"></noscript>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -57,7 +65,7 @@
       },
       "publisher": {
         "@type": "Organization",
-        "name": "زندگینامه مشاهیر",
+        "name": "زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر",
         "url": "https://indexes.ir/",
         "logo": {
           "@type": "ImageObject",
@@ -66,7 +74,9 @@
           "height": 512
         }
       },
-      "articleBody": "{{ content | strip_html | truncate: 160 }}",
+      
+      "articleBody": "{{ content | strip_html }}",
+      
       "image": "https://indexes.ir/biography.svg",
       "breadcrumb": {
         "@type": "BreadcrumbList",
@@ -74,13 +84,13 @@
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "زندگینامه مشاهیر",
+            "name": "زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر",
             "item": "https://indexes.ir/"
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "بیوگرافی",
+            "name": "لیست بیوگرافی مشاهیر ایران و جهان",
             "item": "https://indexes.ir/biography"
           },
           {
@@ -93,7 +103,7 @@
       }
     }
     </script>
-    
+        
     <style>
         :root {
             --primary-color: #dc3545;
@@ -526,12 +536,14 @@
             }
         }
     </style>
-</head>
-<body itemscope itemtype="https://schema.org/Article">
+
+    </head>
+
+<body>
     <nav class="top-menu" role="navigation" aria-label="منو">
         <ul class="menu-links">
             <li>
-                <a href="https://indexes.ir/" aria-label="زندگینامه مشاهیر" class="social-icon">
+                <a href="https://indexes.ir/" aria-label="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر" class="social-icon">
                     <i class="fas fa-home" aria-hidden="true"></i>
                 </a>
             </li>
@@ -581,7 +593,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
     
-    <script>
+        <script>
         document.addEventListener('DOMContentLoaded', function() {
             const contentTables = document.querySelectorAll('.post-content table');
             contentTables.forEach(table => {
