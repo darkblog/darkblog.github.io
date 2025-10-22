@@ -592,6 +592,52 @@ layout: test.html
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" defer></script>
     
-    <script src="/assets/js/main.js" defer></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentTables = document.querySelectorAll('.post-content table');
+            contentTables.forEach(table => {
+                if (!table.closest('.auto-responsive-table')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('auto-responsive-table');
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+                
+                table.setAttribute('role', 'table');
+                table.setAttribute('aria-label', 'جدول اطلاعات');
+                
+                const headers = table.querySelectorAll('th');
+                headers.forEach(header => {
+                    header.setAttribute('scope', 'col');
+                });
+            });
+            
+            const responsiveTables = document.querySelectorAll('.auto-responsive-table');
+            responsiveTables.forEach(table => {
+                if (table.scrollWidth > table.clientWidth) {
+                    table.classList.add('has-scroll');
+                }
+                
+                table.addEventListener('scroll', function() {
+                    if (this.scrollLeft > 0) {
+                        this.classList.add('scrolling');
+                    } else {
+                        this.classList.remove('scrolling');
+                    }
+                });
+            });
+            
+            const topMenu = document.querySelector('.top-menu');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+                    topMenu.style.padding = '8px 0';
+                } else {
+                    topMenu.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+                    topMenu.style.padding = '12px 0';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
