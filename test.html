@@ -153,7 +153,7 @@ layout: test.html
     
     <!-- بارگذاری منابع غیرضروری بعد از لود صفحه -->
     <script>
-        // بارگذاری منابع CSS به صورت غیرهمزمان
+        // تابع برای بارگذاری منابع CSS بدون ایجاد forced reflow
         function loadCSS(href) {
             var link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -161,12 +161,38 @@ layout: test.html
             document.head.appendChild(link);
         }
         
+        // تابع برای بارگذاری منابع بعد از لود کامل صفحه
+        function loadNonCriticalResources() {
+            // استفاده از requestAnimationFrame برای جلوگیری از forced reflow
+            requestAnimationFrame(function() {
+                // بارگذاری فونت‌ها و استایل‌های غیرضروری
+                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css');
+                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
+                loadCSS('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+            });
+        }
+        
         // بارگذاری منابع بعد از لود کامل صفحه
-        window.addEventListener('load', function() {
-            // بارگذاری فونت‌ها و استایل‌های غیرضروری
-            loadCSS('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css');
-            loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
-            loadCSS('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadNonCriticalResources);
+        } else {
+            loadNonCriticalResources();
+        }
+        
+        // بهینه‌سازی انیمیشن‌ها و transitionها
+        document.addEventListener('DOMContentLoaded', function() {
+            // استفاده از will-change برای المان‌های متحرک
+            const animatedElements = document.querySelectorAll('.post-card, .posts-search-box, .blog-button, .logo-container');
+            animatedElements.forEach(el => {
+                el.style.willChange = 'transform, opacity';
+            });
+            
+            // حذف will-change بعد از انیمیشن برای آزاد کردن منابع
+            setTimeout(() => {
+                animatedElements.forEach(el => {
+                    el.style.willChange = 'auto';
+                });
+            }, 1000);
         });
     </script>
     
