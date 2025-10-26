@@ -6,7 +6,7 @@
     
     <title>{{ page.title }}</title>
     
-    <meta name="description" itemprop="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
     <meta name="author" content="ehsan chehri">
     
     <meta property="og:type" content="article">
@@ -531,7 +531,7 @@
     </head>
 
 <body>
-    <nav class="top-menu" role="navigation" aria-label="منو">
+    <nav class="top-menu" aria-label="منو">
         <ul class="menu-links">
             <li>
                 <a href="https://indexes.ir/" aria-label="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر" class="social-icon">
@@ -556,13 +556,13 @@
         </ul>
     </nav>
     
-    <header class="modern-header" role="banner" aria-labelledby="post-title">
+    <header class="modern-header" aria-labelledby="post-title">
         <div class="header-content">
-            <h1 class="post-title" id="post-title" itemprop="headline">{{ page.title }}</h1>
+            <h1 class="post-title" id="post-title">{{ page.title }}</h1>
         </div>
     </header>
         
-    <main class="container" role="main" id="main-content">
+    <main class="container" id="main-content">
         <article class="post-container" itemscope itemtype="https://schema.org/Article">
             <div class="post-content" itemprop="articleBody">
                 {{ content }}
