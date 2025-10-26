@@ -61,7 +61,7 @@ layout: index.html
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
     <div class="container-fluid px-0">
-        <header class="modern-header" role="banner" aria-labelledby="page-title">
+        <header class="modern-header" aria-labelledby="page-title">
             <div class="header-content">
                 <div class="logo-container">
                     <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" 
@@ -91,7 +91,7 @@ layout: index.html
             </div>
         </header>
         
-        <main class="container" role="main">
+        <main class="container">
             <div class="posts-search-container">
                 <form action="https://www.google.com/search" method="get" target="_blank" role="search">
                     <div class="search-box posts-search-box">
@@ -115,7 +115,6 @@ layout: index.html
                 <article class="post-card" 
                          itemscope 
                          itemtype="https://schema.org/BlogPosting"
-                         role="article"
                          aria-labelledby="post-title-{{ forloop.index }}">
                     <a href="{{ post.url }}" itemprop="url">
                         <div class="post-content">
