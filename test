@@ -3,8 +3,8 @@
   "@type": "WebSite",
   "url": "https://indexes.ir/",
   "name": "Indexes",
-  "alternateName": "زندگینامه مشاهیر ایران و جهان",
-  "description": "پایگاه جامع زندگینامه مشاهیر ایران و جهان با معرفی زندگی، آثار و دستاوردهای شخصیت‌های برجسته تاریخی و معاصر.",
+  "alternateName": "زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر",
+  "description": "کاملترین مجموعه زندگینامه مشاهیر ایران و جهان در حوزه های علمی، فرهنگی، تاریخی و هنری. بیوگرافی و خطرات مشاهیر",
   "inLanguage": "fa",
   "publisher": {
     "@type": "Organization",
@@ -12,17 +12,17 @@
     "url": "https://indexes.ir/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://indexes.ir/logo.png"
+      "url": "https://indexes.ir/biography.svg"
     }
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://indexes.ir/search?q={search_term_string}",
+    "target": "https://www.google.com/search?q=site:indexes.ir{search_term_string}",
     "query-input": "required name=search_term_string"
   },
   "sameAs": [
-    "https://www.facebook.com/yourpage",
-    "https://www.instagram.com/yourpage",
-    "https://twitter.com/yourpage"
+    "https://www.facebook.com/ehsanchehri",
+    "https://www.linkedin.com/in/ehsanchehri",
+    "https://x.com/pbstwi"
   ]
 }
