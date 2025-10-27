@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://indexes.ir/",
+  "name": "Indexes",
+  "alternateName": "زندگینامه مشاهیر ایران و جهان",
+  "description": "پایگاه جامع زندگینامه مشاهیر ایران و جهان با معرفی زندگی، آثار و دستاوردهای شخصیت‌های برجسته تاریخی و معاصر.",
+  "inLanguage": "fa",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Indexes",
+    "url": "https://indexes.ir/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://indexes.ir/logo.png"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://indexes.ir/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "sameAs": [
+    "https://www.facebook.com/yourpage",
+    "https://www.instagram.com/yourpage",
+    "https://twitter.com/yourpage"
+  ]
+}
