@@ -117,7 +117,7 @@ layout: index.html
             
             <div class="posts-container">
                 {% for post in site.posts limit:10 %}
-                <article class="post-card" aria-labelledby="post-title-{{ forloop.index }}">
+                <article class="post-card">
                     <a href="{{ post.url }}">
                         <div class="post-content">
                             <h2 class="post-title" id="post-title-{{ forloop.index }}">{{ post.title }}</h2>
