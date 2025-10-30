@@ -527,44 +527,44 @@
     </head>
 
 <body>
-    <nav class="top-menu" aria-label="منو">
+    <nav class="top-menu">
         <ul class="menu-links">
             <li>
-                <a href="https://indexes.ir/" aria-label="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر" class="social-icon">
-                    <i class="fas fa-home" aria-hidden="true"></i>
+                <a href="https://indexes.ir/" class="social-icon">
+                    <i class="fas fa-home"></i>
                 </a>
             </li>
             <li>
-                <a href="https://www.facebook.com/ehsanchehri/" aria-label="فیسبوک" class="social-icon" target="_blank">
-                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                <a href="https://www.facebook.com/ehsanchehri/" class="social-icon" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
             </li>
             <li>
-                <a href="https://www.linkedin.com/in/ehsanchehri/" aria-label="لینکدین" class="social-icon" target="_blank">
-                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                <a href="https://www.linkedin.com/in/ehsanchehri/" class="social-icon" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
             </li>
             <li>
-                <a href="https://x.com/pbstwi" aria-label="ایکس" class="social-icon" target="_blank">
-                    <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                <a href="https://x.com/pbstwi" class="social-icon" target="_blank">
+                    <i class="fab fa-x-twitter"></i>
                 </a>
             </li>
         </ul>
     </nav>
     
-    <header class="modern-header" aria-labelledby="post-title">
+    <header class="modern-header">
         <div class="header-content">
             <h1 class="post-title" id="post-title">{{ page.title }}</h1>
         </div>
     </header>
         
     <main class="container" id="main-content">
-        <article class="post-container" itemscope itemtype="https://schema.org/Article">
-            <div class="post-content" itemprop="articleBody">
+        <article class="post-container">
+            <div class="post-content">
                 {{ content }}
                 
                 {% if page.quote %}
-                <blockquote itemprop="citation">
+                <blockquote>
                     "{{ page.quote }}"
                 </blockquote>
                 {% endif %}
