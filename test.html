@@ -323,7 +323,7 @@
             box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
         }
         
-        /* آیکون جستجو با CSS - نسخه نهایی */
+        /* آیکون جستجو با CSS - نسخه نهایی با ضخامت بیشتر */
         .search-icon {
             display: inline-block;
             width: 20px;
@@ -336,7 +336,7 @@
             position: absolute;
             width: 12px;
             height: 12px;
-            border: 2px solid white;
+            border: 2.5px solid white;
             border-radius: 50%;
             top: 2px;
             left: 2px;
@@ -345,12 +345,12 @@
         .search-icon::after {
             content: "";
             position: absolute;
-            width: 2px;
-            height: 8px;
+            width: 3px;
+            height: 7px;
             background: white;
             transform: rotate(-45deg);
-            top: 12px;
-            left: 12px;
+            top: 10px;
+            left: 10px;
             border-radius: 1px;
         }
         
@@ -415,15 +415,16 @@
             .search-icon::before {
                 width: 11px;
                 height: 11px;
+                border-width: 2.5px;
                 top: 2px;
                 left: 2px;
             }
             
             .search-icon::after {
-                width: 2px;
-                height: 7px;
-                top: 10px;
-                left: 10px;
+                width: 2.5px;
+                height: 6px;
+                top: 9px;
+                left: 9px;
             }
         }
         
@@ -477,15 +478,16 @@
             .search-icon::before {
                 width: 10px;
                 height: 10px;
+                border-width: 2px;
                 top: 2px;
                 left: 2px;
             }
             
             .search-icon::after {
                 width: 2px;
-                height: 6px;
-                top: 9px;
-                left: 9px;
+                height: 5px;
+                top: 8px;
+                left: 8px;
             }
         }
     </style>
