@@ -28,7 +28,6 @@ layout: biography.html
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
     
     <script type="application/ld+json">
     {
@@ -78,6 +77,14 @@ layout: biography.html
     </script>
     
     <style>
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('/biography/Vazirmatn.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
         :root {
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
@@ -233,7 +240,7 @@ layout: biography.html
             font-size: 1.35rem;
             max-width: 700px;
             margin: 0 auto 30px;
-            font-weight: 300;
+            font-weight: 400;
         }
         
         .home-container {
@@ -280,6 +287,7 @@ layout: biography.html
             color: var(--text-color);
             transition: all 0.3s ease;
             padding: 5px;
+            font-weight: 500;
         }
         
         .post-item:hover {
