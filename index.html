@@ -332,37 +332,6 @@ layout: index.html
             font-weight: 700;
         }
 
-        .blog-button-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 15px;
-            text-align: center;
-        }
-
-        .blog-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            font-weight: 900;
-            padding: 12px 30px;
-            border-radius: 16px;
-            background-color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            max-width: 250px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .blog-button:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
-        }
-
         .row {
             display: flex;
             flex-wrap: wrap;
@@ -533,11 +502,6 @@ layout: index.html
                 font-size: 1rem;
             }
             
-            .blog-button {
-                padding: 10px 25px;
-                font-size: 1rem;
-            }
-            
             .container {
                 padding-right: 10px;
                 padding-left: 10px;
@@ -576,11 +540,6 @@ layout: index.html
                 padding: 20px;
             }
             
-            .blog-button {
-                padding: 9px 20px;
-                font-size: 0.95rem;
-            }
-            
             .posts-container,
             .description-container {
                 padding: 0 10px;
@@ -597,10 +556,6 @@ layout: index.html
             .post-card {
                 box-shadow: none !important;
                 border: 1px solid #ddd !important;
-            }
-            
-            .blog-button {
-                display: none !important;
             }
             
             a {
@@ -652,12 +607,6 @@ layout: index.html
                     </a>
                 </article>
                 {% endfor %}
-                
-                <div class="blog-button-container">
-                    <a href="/biography" class="blog-button">
-                        بیوگرافی مشاهیر
-                    </a>
-                </div>
             </div>
         </main>
     </div>
