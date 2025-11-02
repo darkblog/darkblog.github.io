@@ -185,11 +185,11 @@ layout: biography.html
             height: var(--header-height);
             position: relative;
             overflow: hidden;
-            padding-top: 50px;
             margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
@@ -227,12 +227,17 @@ layout: biography.html
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100%;
+            width: 100%;
+            transform: translateY(-10px);
         }
         
         .modern-header h1 {
             font-weight: 900;
             font-size: 3.2rem;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            margin: 0;
+            padding: 0;
         }
         
         .modern-header p {
@@ -311,6 +316,10 @@ layout: biography.html
                 font-size: 1.15rem;
             }
             
+            .header-content {
+                transform: translateY(-8px);
+            }
+            
             .home-container {
                 padding: 30px;
             }
@@ -333,6 +342,10 @@ layout: biography.html
             
             .modern-header p {
                 font-size: 1rem;
+            }
+            
+            .header-content {
+                transform: translateY(-6px);
             }
             
             .home-container {
