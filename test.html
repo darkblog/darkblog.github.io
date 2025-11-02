@@ -185,12 +185,11 @@
             height: var(--header-height);
             position: relative;
             overflow: hidden;
-            /* padding-top حذف شده */
             margin-bottom: 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* اضافه شده برای مرکز عمودی */
+            justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
@@ -229,7 +228,8 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            width: 100%; /* اضافه شده */
+            width: 100%;
+            transform: translateY(-15px); /* انتقال به سمت بالا */
         }
         
         .post-title {
@@ -239,8 +239,8 @@
             color: white;
             line-height: 1.3;
             margin: 0;
-            padding: 0; /* padding تغییر کرده */
-            width: 100%; /* اضافه شده */
+            padding: 0;
+            width: 100%;
         }
         
         .post-container {
@@ -425,13 +425,15 @@
             
             .modern-header {
                 height: 220px;
-                /* padding-top حذف شده */
                 margin-bottom: 40px;
+            }
+            
+            .header-content {
+                transform: translateY(-10px); /* تنظیم برای موبایل */
             }
             
             .post-title {
                 font-size: 2.5rem;
-                padding: 0; /* padding تغییر کرده */
             }
             
             .post-container {
@@ -468,8 +470,11 @@
         @media (max-width: 576px) {
             .modern-header {
                 height: 200px;
-                /* padding-top حذف شده */
                 margin-bottom: 35px;
+            }
+            
+            .header-content {
+                transform: translateY(-8px); /* تنظیم برای موبایل کوچک */
             }
             
             .post-container {
@@ -483,7 +488,6 @@
             
             .post-title {
                 font-size: 2rem;
-                padding: 0; /* padding تغییر کرده */
             }
             
             .post-content blockquote {
@@ -544,7 +548,7 @@
     
     <header class="modern-header">
         <div class="header-content">
-            <h1 class="post-title" id="post-title">تست ارتفاع کامل پست های سایت برای تست ارتفاع باید یکم طولانی باشه</h1>
+            <h1 class="post-title" id="post-title">انتخاب عنوان فیک برای تست ارتفاع عمودی عنوان پست ها مثل سعدی و مولانا و حافظ و بلخ عراق</h1>
         </div>
     </header>
         
