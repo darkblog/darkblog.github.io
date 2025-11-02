@@ -1,11 +1,9 @@
-/* Reset and Base Styles */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Vazirmatn Font Face */
 @font-face {
     font-family: 'Vazirmatn';
     src: url('/biography/Vazirmatn.woff2') format('woff2');
@@ -14,7 +12,6 @@
     font-display: swap;
 }
 
-/* CSS Variables */
 :root {
     --primary-color: #dc3545;
     --primary-dark: #a71d2a;
@@ -31,7 +28,6 @@
     --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-/* Base Body Styles */
 body {
     font-family: 'Vazirmatn', Tahoma, sans-serif;
     background-color: var(--light-bg);
@@ -43,7 +39,6 @@ body {
     text-align: right;
 }
 
-/* Links */
 a {
     text-decoration: none;
     color: var(--primary-color);
@@ -54,7 +49,6 @@ a:hover {
     color: var(--primary-dark);
 }
 
-/* Container Utilities */
 .container-fluid {
     width: 100%;
     padding-right: 0;
@@ -76,7 +70,6 @@ a:hover {
     margin-left: auto;
 }
 
-/* Modern Header */
 .modern-header {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
     color: white;
@@ -134,7 +127,6 @@ a:hover {
     margin-bottom: 15px;
 }
 
-/* Logo Container */
 .logo-container {
     width: 160px;
     height: 160px;
@@ -160,7 +152,6 @@ a:hover {
     box-shadow: var(--shadow-xl);
 }
 
-/* Description Container */
 .description-container {
     max-width: 800px;
     margin: -30px auto 30px;
@@ -223,7 +214,6 @@ a:hover {
     margin-left: 10px;
 }
 
-/* Posts Container */
 .posts-container {
     max-width: 800px;
     margin: 0 auto;
@@ -282,7 +272,6 @@ a:hover {
     font-weight: 700;
 }
 
-/* Blog Button */
 .blog-button-container {
     max-width: 800px;
     margin: 40px auto;
@@ -314,7 +303,6 @@ a:hover {
     box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
 }
 
-/* Grid System (Bootstrap-like) */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -331,7 +319,6 @@ a:hover {
     width: 100%;
 }
 
-/* Utility Classes */
 .text-center {
     text-align: center !important;
 }
@@ -436,14 +423,12 @@ a:hover {
     overflow: hidden !important;
 }
 
-/* Focus styles for accessibility */
 a:focus,
 button:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .modern-header {
         height: 320px;
@@ -542,7 +527,6 @@ button:focus {
     }
 }
 
-/* Print Styles */
 @media print {
     .modern-header {
         background: #dc3545 !important;
