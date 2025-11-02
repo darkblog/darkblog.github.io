@@ -219,7 +219,7 @@ layout: test.html
             justify-content: center;
             height: 100%;
             width: 100%;
-            transform: translateY(-10px);
+            /* حذف transform برای قرارگیری در مرکز دقیق */
         }
         
         .modern-header h1 {
@@ -294,10 +294,6 @@ layout: test.html
                 font-size: 2.5rem;
             }
             
-            .header-content {
-                transform: translateY(-8px);
-            }
-            
             .home-container {
                 padding: 30px;
             }
@@ -326,10 +322,6 @@ layout: test.html
         @media (max-width: 576px) {           
             .modern-header h1 {
                 font-size: 2rem;
-            }
-            
-            .header-content {
-                transform: translateY(-6px);
             }
             
             .home-container {
