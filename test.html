@@ -1,89 +1,61 @@
+---
+layout: test.html
+---
+
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">
-    <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر</title>
+    <meta name="description" content="زندگینامه مشاهیر ایران و جهان را بخوانید؛ از شاعران و دانشمندان تا رهبران و هنرمندان. مرجعی کامل برای آشنایی با زندگی و آثار بزرگان تاریخ">
     
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="زندگینامه مشاهیر">
+    <meta property="og:title" content="زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر">
+    <meta property="og:description" content="زندگینامه مشاهیر ایران و جهان را بخوانید؛ از شاعران و دانشمندان تا رهبران و هنرمندان. مرجعی کامل برای آشنایی با زندگی و آثار بزرگان تاریخ">
+    <meta property="og:type" content="website">
     <meta property="og:locale" content="fa_IR">
-    <meta property="article:publisher" content="https://www.facebook.com/ehsanchehri/">
-    <meta name="article-author" content="Ehsan Chehri">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://indexes.ir/biography.svg">
+    <meta property="og:url" content="https://indexes.ir/">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@pbstwi">
     <link rel="icon" href="/biography.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/biography.svg">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="canonical" href="https://indexes.ir/">
     <meta name="theme-color" content="#dc3545">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Article",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ page.url | absolute_url }}"
-      },
-      "headline": "{{ page.title }}",
-      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
-      "author": {
-        "@type": "Person",
-        "name": "Ehsan Chehri",
-        "sameAs": [
-          "https://www.facebook.com/ehsanchehri/",
-          "https://www.linkedin.com/in/ehsanchehri/",
-          "https://x.com/pbstwi"
-        ]
-      },
+      "@type": "WebSite",
+      "url": "https://indexes.ir/",
+      "name": "زندگینامه مشاهیر",
+      "alternateName": "زندگینامه مشاهیر",
+      "description": "زندگینامه مشاهیر ایران و جهان را بخوانید؛ از شاعران و دانشمندان تا رهبران و هنرمندان. مرجعی کامل برای آشنایی با زندگی و آثار بزرگان تاریخ",
+      "inLanguage": "fa",
       "publisher": {
         "@type": "Organization",
         "name": "زندگینامه مشاهیر",
         "url": "https://indexes.ir/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://indexes.ir/biography.svg",
-          "width": 200,
-          "height": 200
+          "url": "https://indexes.ir/biography.svg"
         }
       },
-      
-      "articleBody": "{{ content | strip_html }}",
-      
-      "image": "https://indexes.ir/biography.svg",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "زندگینامه مشاهیر",
-            "item": "https://indexes.ir/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "بیوگرافی مشاهیر",
-            "item": "https://indexes.ir/biography"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ page.title }}",
-            "item": "{{ page.url | absolute_url }}"
-          }
-        ]
-      }
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.google.com/search?q=site:indexes.ir{search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "sameAs": [
+        "https://www.facebook.com/ehsanchehri",
+        "https://www.linkedin.com/in/ehsanchehri",
+        "https://x.com/pbstwi"
+      ]
     }
     </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
     <style>
         @font-face {
@@ -103,22 +75,20 @@
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e9ecef;
-            --header-height: 280px;
+            --header-height: 380px;
         }
         
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
-            padding-top: 0;
             color: var(--text-color);
             line-height: 1.8;
             margin: 0;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
+            padding: 0;
         }
         
         a {
-            text-decoration: none !important;
+            text-decoration: none;
             color: var(--primary-color);
             transition: all 0.3s ease;
         }
@@ -127,69 +97,17 @@
             color: var(--primary-dark);
         }
         
-        .top-menu {
-            background-color: #fff;
-            padding: 12px 0;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1020;
-            transition: all 0.3s ease;
-        }
-        
-        .menu-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        
-        .menu-links a {
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            padding: 5px;
-            border-bottom: 2px solid transparent;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-        
-        .menu-links a:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-        
-        .social-icon {
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
-        }
-        
         .modern-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
             height: var(--header-height);
             position: relative;
             overflow: hidden;
-            margin-bottom: 50px;
+            padding-top: 50px;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
@@ -227,166 +145,169 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            width: 100%;
-            transform: translateY(-15px);
+        }
+        
+        .modern-header h1 {
+            font-weight: 900;
+            font-size: 3.2rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modern-header p {
+            opacity: 0.92;
+            font-size: 1.35rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 400;
+        }
+        
+        .logo-container {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0 20px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .header-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .description-container {
+            max-width: 800px;
+            margin: -30px auto 30px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .description-box {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-right: 5px solid var(--primary-color);
+        }
+        
+        .description-box:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-right: 5px solid var(--primary-dark);
+        }
+        
+        .description-title {
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .description-content {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.9;
+            text-align: justify;
+        }
+        
+        .description-content p {
+            margin-bottom: 15px;
+        }
+        
+        .description-content ul {
+            padding-right: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .description-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .description-content li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: 10px;
+        }
+        
+        .posts-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .post-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: none;
+            display: block;
+            color: inherit;
+            position: relative;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .post-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-left: 5px solid var(--primary-dark);
+        }
+        
+        .post-content {
+            padding: 30px;
         }
         
         .post-title {
             font-weight: 900;
-            font-size: 3.2rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            color: white;
-            line-height: 1.3;
-            margin: 0;
-            padding: 0;
-            width: 100%;
+            color: #212529;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            line-height: 1.4;
         }
         
-        .post-container {
-            max-width: 800px;
-            margin: 0 auto 60px;
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            position: relative;
-            padding: 50px;
-            z-index: 10;
-        }
-        
-        .post-content {
-            font-size: 1.1rem;
+        .post-excerpt {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
             line-height: 1.9;
-        }
-        
-        .post-content p {
-            margin-bottom: 1.8rem;
-            text-align: justify;
-        }
-        
-        .post-content img {
-            max-width: 100%;
-            max-height: 512px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            border-radius: 12px;
-            margin: 40px auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            display: block;
-        }
-        
-        .post-content blockquote {
-            border-right: 4px solid var(--primary-color);
-            padding: 25px 30px;
-            margin: 40px 0;
-            background-color: rgba(220, 53, 69, 0.03);
-            border-radius: 12px;
-            font-style: italic;
-            font-size: 1.25rem;
-            line-height: 1.9;
+            margin-bottom: 20px;
             position: relative;
+            padding-right: 25px;
         }
         
-        .post-content blockquote::before {
+        .post-excerpt::before {
             content: "“";
             position: absolute;
-            top: -20px;
-            right: 20px;
-            font-size: 6rem;
+            top: -15px;
+            right: 0;
+            font-size: 3.5rem;
             color: rgba(220, 53, 69, 0.1);
             font-family: Georgia, serif;
             line-height: 1;
         }
         
-        .post-content h2 {
-            font-weight: 800;
-            margin: 50px 0 25px;
-            color: var(--primary-dark);
-            padding-right: 15px;
-            border-right: 3px solid var(--primary-color);
-            font-size: 1.8rem;
-        }
-        
-        .post-content h3 {
-            font-weight: 700;
-            margin: 40px 0 20px;
-            color: var(--primary-dark);
-            font-size: 1.5rem;
-        }
-        
-        .post-content ul, .post-content ol {
-            padding-right: 30px;
-            margin-bottom: 25px;
-        }
-        
-        .post-content li {
-            margin-bottom: 10px;
-        }
-        
-        .auto-responsive-table {
-            width: 100%;
-            display: block;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 30px 0;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .post-content table {
-            width: 100%;
-            min-width: 100%;
-            border-collapse: collapse;
-            margin: 0;
-        }
-        
-        .post-content table th {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            font-weight: 700;
-            padding: 15px 20px;
-            text-align: right;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            white-space: nowrap;
-        }
-        
-        .post-content table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-        }
-        
-        .post-content table tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-        
-        .post-content table tr:hover td {
-            background-color: rgba(220, 53, 69, 0.03);
-        }
-        
-        .auto-responsive-table::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .auto-responsive-table::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 4px;
-        }
-        
-        .auto-responsive-table::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 4px;
-        }
-        
-        .auto-responsive-table::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-color);
-        }
-        
         .blog-button-container {
             max-width: 800px;
-            margin: 50px auto;
+            margin: 40px auto;
             padding: 0 15px;
             text-align: center;
         }
@@ -396,7 +317,7 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 900;
             padding: 12px 30px;
             border-radius: 16px;
             background-color: #dc3545;
@@ -405,7 +326,7 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
-
+        
         .blog-button:hover {
             background-color: #a71d2a;
             border-color: #a71d2a;
@@ -415,50 +336,51 @@
         }
         
         @media (max-width: 768px) {
-            .menu-links {
-                gap: 15px;
-            }
-            
-            .menu-links a {
-                font-size: 0.95rem;
-            }
-            
             .modern-header {
-                height: 220px;
-                margin-bottom: 40px;
+                height: 320px;
+                padding-top: 40px;
             }
             
-            .header-content {
-                transform: translateY(-10px);
-            }
-            
-            .post-title {
+            .modern-header h1 {
                 font-size: 2.5rem;
             }
             
-            .post-container {
-                padding: 35px;
-                margin-bottom: 50px;
+            .modern-header p {
+                font-size: 1.15rem;
             }
             
-            .post-content h2 {
-                font-size: 1.6rem;
+            .logo-container {
+                width: 140px;
+                height: 140px;
             }
             
-            .post-content h3 {
-                font-size: 1.3rem;
+            .header-image {
+                width: 130px;
+                height: 130px;
             }
             
-            .post-content table th,
-            .post-content table td {
-                padding: 10px 12px;
-                font-size: 0.9rem;
+            .description-box {
+                padding: 25px;
             }
             
-            .social-icon {
-                font-size: 1.2rem;
-                width: 35px;
-                height: 35px;
+            .description-title {
+                font-size: 1.35rem;
+            }
+            
+            .description-content {
+                font-size: 1rem;
+            }
+            
+            .post-content {
+                padding: 25px;
+            }
+            
+            .post-title {
+                font-size: 1.35rem;
+            }
+            
+            .post-excerpt {
+                font-size: 1rem;
             }
             
             .blog-button {
@@ -469,46 +391,38 @@
         
         @media (max-width: 576px) {
             .modern-header {
-                height: 200px;
-                margin-bottom: 35px;
-            }
-            
-            .header-content {
-                transform: translateY(-8px);
-            }
-            
-            .post-container {
-                padding: 30px 25px;
-                margin-bottom: 40px;
-            }
-            
-            .post-content {
-                font-size: 1rem;
+                height: 280px;
+                padding-top: 30px;
             }
             
             .post-title {
+                font-size: 1.3rem;
+            }
+            
+            .modern-header h1 {
                 font-size: 2rem;
             }
             
-            .post-content blockquote {
-                font-size: 1.1rem;
+            .modern-header p {
+                font-size: 1rem;
+            }
+            
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .header-image {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .description-container {
+                margin-top: -20px;
+            }
+            
+            .description-box {
                 padding: 20px;
-            }
-            
-            .post-content table th,
-            .post-content table td {
-                padding: 8px 10px;
-                font-size: 0.85rem;
-            }
-            
-            .menu-links {
-                gap: 10px;
-            }
-            
-            .social-icon {
-                font-size: 1.1rem;
-                width: 32px;
-                height: 32px;
             }
             
             .blog-button {
@@ -517,107 +431,57 @@
             }
         }
     </style>
-
-    </head>
-
+</head>
 <body>
-    <nav class="top-menu">
-        <ul class="menu-links">
-            <li>
-                <a href="https://indexes.ir/" class="social-icon">
-                    <i class="fas fa-home"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.facebook.com/ehsanchehri/" class="social-icon" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/ehsanchehri/" class="social-icon" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://x.com/pbstwi" class="social-icon" target="_blank">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    
-    <header class="modern-header">
-        <div class="header-content">
-            <h1 class="post-title" id="post-title">{{ page.title }}</h1>
-        </div>
-    </header>
-        
-    <main class="container" id="main-content">
-        <article class="post-container">
-            <div class="post-content">
-                {{ content }}
-                
-                {% if page.quote %}
-                <blockquote>
-                    "{{ page.quote }}"
-                </blockquote>
-                {% endif %}
+    <div class="container-fluid px-0">
+        <header class="modern-header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="https://indexes.ir/biography.svg" alt="زندگینامه مشاهیر" class="header-image">
+                </div>
+                <h1 id="page-title">زندگینامه مشاهیر</h1>
             </div>
-        </article>
+        </header>
         
-        <div class="blog-button-container">
-            <a href="https://indexes.ir/biography" class="blog-button">
-                بیوگرافی مشاهیر
-            </a>
-        </div>
-    </main>
-    
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const contentTables = document.querySelectorAll('.post-content table');
-            contentTables.forEach(table => {
-                if (!table.closest('.auto-responsive-table')) {
-                    const wrapper = document.createElement('div');
-                    wrapper.classList.add('auto-responsive-table');
-                    table.parentNode.insertBefore(wrapper, table);
-                    wrapper.appendChild(table);
-                }
-                
-                table.setAttribute('role', 'table');
-                table.setAttribute('aria-label', 'جدول اطلاعات');
-                
-                const headers = table.querySelectorAll('th');
-                headers.forEach(header => {
-                    header.setAttribute('scope', 'col');
-                });
-            });
+        <main class="container">
+            <div class="description-container">
+                <div class="description-box">
+                    <h2 class="description-title">عملکرد و اهداف سایت</h2>
+                    <div class="description-content">
+                        <p>سایت "زندگینامه مشاهیر" با هدف ارائه اطلاعات جامع و معتبر درباره زندگی‌نامه بزرگان ایران و جهان ایجاد شده است. در این مجموعه می‌توانید:</p>
+                        <ul>
+                            <li>زندگینامه کامل مشاهیر ایرانی و جهانی</li>
+                            <li>دستاوردها و آثار ماندگار بزرگان</li>
+                            <li>خاطرات و نکات برجسته از زندگی آنان</li>
+                            <li>تأثیرات فرهنگی و اجتماعی مشاهیر بر جامعه</li>
+                            <li>تصاویر و مستندات مرتبط با زندگی مشاهیر</li>
+                        </ul>
+                        <p>این سایت به صورت مستمر به روزرسانی می‌شود و محتوای جدیدی از زندگی‌نامه شخصیت‌های تأثیرگذار تاریخ را ارائه می‌دهد.</p>
+                    </div>
+                </div>
+            </div>
             
-            const responsiveTables = document.querySelectorAll('.auto-responsive-table');
-            responsiveTables.forEach(table => {
-                if (table.scrollWidth > table.clientWidth) {
-                    table.classList.add('has-scroll');
-                }
+            <div class="posts-container">
+                {% for post in site.posts limit:10 %}
+                <article class="post-card">
+                    <a href="{{ post.url }}">
+                        <div class="post-content">
+                            <h2 class="post-title" id="post-title-{{ forloop.index }}">{{ post.title }}</h2>
+                            <p class="post-excerpt">
+                                {{ post.excerpt | strip_html | truncate: 200 }}
+                            </p>
+                        </div>
+                    </a>
+                </article>
+                {% endfor %}
                 
-                table.addEventListener('scroll', function() {
-                    if (this.scrollLeft > 0) {
-                        this.classList.add('scrolling');
-                    } else {
-                        this.classList.remove('scrolling');
-                    }
-                });
-            });
-            
-            const topMenu = document.querySelector('.top-menu');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                    topMenu.style.padding = '8px 0';
-                } else {
-                    topMenu.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-                    topMenu.style.padding = '12px 0';
-                }
-            });
-        });
-    </script>
+                <div class="blog-button-container">
+                    <a href="/biography" class="blog-button">
+                        بیوگرافی مشاهیر
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
