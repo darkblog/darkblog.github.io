@@ -13,7 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
     
     <style>
-        /* فونت */
+        /* ریست کامل */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         @font-face {
             font-family: 'Vazirmatn';
             src: url('/biography/Vazirmatn.woff2') format('woff2');
@@ -22,7 +28,6 @@
             font-display: swap;
         }
         
-        /* متغیرها */
         :root {
             --primary-color: #dc3545;
             --primary-dark: #a71d2a;
@@ -35,38 +40,27 @@
             --header-height: 280px;
         }
         
-        /* استایل اصلی */
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.8;
+            padding-top: 70px; /* این مهمترین خط است */
             margin: 0;
-            padding: 0;
-            padding-top: 70px; /* فضای برای منوی ثابت */
         }
         
-        a {
-            text-decoration: none !important;
-            color: var(--primary-color);
-        }
-        
-        a:hover {
-            color: var(--primary-dark);
-        }
-        
-        /* منوی ثابت - اینجا مشکل بود */
+        /* منوی کاملاً ثابت - بدون هیچ حرکت */
         .top-menu {
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 15px 0;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid var(--border-color);
-            position: fixed; /* این خط مهمه - باید fixed باشه نه sticky */
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             width: 100%;
-            z-index: 9999;
+            z-index: 10000;
             height: 60px;
         }
         
@@ -91,7 +85,6 @@
         .logo-icon img {
             width: 100%;
             height: auto;
-            max-height: 100%;
             object-fit: contain;
         }
         
@@ -104,7 +97,6 @@
             overflow: hidden;
             margin-bottom: 50px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -118,7 +110,6 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            pointer-events: none;
         }
         
         .modern-header::after {
@@ -131,7 +122,6 @@
             background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
             background-size: cover;
             background-position: center bottom;
-            background-repeat: no-repeat;
         }
         
         .header-content {
@@ -150,7 +140,7 @@
             margin: 0;
         }
         
-        /* محتوای اصلی */
+        /* محتوا */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -199,6 +189,31 @@
             border-right: 3px solid var(--primary-color);
         }
         
+        .auto-responsive-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        
+        .post-content table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .post-content table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-weight: 700;
+            padding: 15px 20px;
+            text-align: right;
+        }
+        
+        .post-content table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
         /* رسپانسیو */
         @media (max-width: 768px) {
             body {
@@ -223,63 +238,31 @@
                 padding: 35px;
                 margin-bottom: 50px;
             }
-            
-            .logo-icon {
-                width: 35px;
-                height: 35px;
-            }
         }
         
         @media (max-width: 576px) {
             body {
                 padding-top: 55px;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-bottom: 10px;
-            overflow-x: hidden;
-            position: relative;
-            width: 100%;
-            height: auto;
-            min-height: 100vh;
-            display: block;
-            box-sizing: border-box;
-        }
-        
-        .top-menu {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            z-index: 9999 !important;
-            transform: none !important;
-            will-change: auto;
-            height: 45px;
-            padding: 8px 0;
-        }
-        
-        .modern-header {
-            height: 200px;
-            margin-bottom: 35px;
-            margin-top: 0;
-        }
-        
-        .post-container {
-            padding: 30px 25px;
-            margin-bottom: 40px;
-        }
-        
-        .post-content {
-            font-size: 1rem;
-        }
-        
-        .post-title {
-            font-size: 2rem;
-        }
-        
-        .logo-icon {
-            width: 32px;
-            height: 32px;
+            }
+            
+            .top-menu {
+                height: 45px;
+                padding: 8px 0;
+            }
+            
+            .modern-header {
+                height: 200px;
+                margin-bottom: 35px;
+            }
+            
+            .post-container {
+                padding: 30px 25px;
+                margin-bottom: 40px;
+            }
+            
+            .post-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -318,31 +301,10 @@
         </article>
     </main>
 
-    <!-- اسکریپت برای اطمینان از ثابت بودن منو -->
+    <!-- اسکریپت ساده -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // اطمینان از ثابت بودن منو
-            const topMenu = document.querySelector('.top-menu');
-            
-            // حذف هرگونه ویژگی که ممکنه باعث حرکت منو بشه
-            topMenu.style.position = 'fixed';
-            topMenu.style.top = '0';
-            topMenu.style.left = '0';
-            topMenu.style.right = '0';
-            topMenu.style.width = '100%';
-            topMenu.style.zIndex = '9999';
-            
-            // غیرفعال کردن هرگونه انیمیشن یا ترنزیشن
-            topMenu.style.transition = 'none';
-            topMenu.style.transform = 'none';
-            
-            // حذف هر event listener مربوط به اسکرول
-            window.onscroll = null;
-            window.addEventListener('scroll', function() {
-                // هیچ کاری نکن - منو باید ثابت بمونه
-            }, {passive: true});
-            
-            // همچنین برای محتواهای جدول
+            // فقط برای جداول ریسپانسیو
             const contentTables = document.querySelectorAll('.post-content table');
             contentTables.forEach(table => {
                 if (!table.closest('.auto-responsive-table')) {
@@ -352,38 +314,41 @@
                     wrapper.appendChild(table);
                 }
             });
+            
+            // مطمئن شو منو ثابت است
+            const topMenu = document.querySelector('.top-menu');
+            topMenu.style.position = 'fixed';
+            topMenu.style.top = '0';
+            topMenu.style.left = '0';
+            topMenu.style.right = '0';
         });
 
-        // اضافه کردن استایل اضافی برای اطمینان از ثابت بودن منو
-        const style = document.createElement('style');
-        style.textContent = `
+        // اضافه کردن استایل با !important برای اطمینان بیشتر
+        const fixedStyle = document.createElement('style');
+        fixedStyle.textContent = `
             .top-menu {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
                 right: 0 !important;
                 width: 100% !important;
-                z-index: 9999 !important;
-                transform: none !important;
+                z-index: 10000 !important;
             }
-            
             body {
                 padding-top: 70px !important;
             }
-            
             @media (max-width: 768px) {
                 body {
                     padding-top: 60px !important;
                 }
             }
-            
             @media (max-width: 576px) {
                 body {
                     padding-top: 55px !important;
                 }
             }
         `;
-        document.head.appendChild(style);
+        document.head.appendChild(fixedStyle);
     </script>
 </body>
 </html>
