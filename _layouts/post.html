@@ -11,7 +11,6 @@
     <meta name="theme-color" content="#dc3545">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
     <style>
         @font-face {
@@ -37,7 +36,7 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-bg);
-            padding-top: 0;
+            padding-top: 70px; /* فضای برای منوی ثابت */
             color: var(--text-color);
             line-height: 1.8;
             margin: 0;
@@ -57,7 +56,7 @@
         
         .top-menu {
             background-color: #fff;
-            padding: 12px 0;
+            padding: 15px 0;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid var(--border-color);
             position: fixed;
@@ -66,26 +65,17 @@
             right: 0;
             width: 100%;
             z-index: 1020;
+            height: 60px;
         }
         
         .menu-links {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
             padding: 0;
             margin: 0;
             list-style: none;
-        }
-        
-        .menu-links a {
-            color: var(--text-color);
-            font-size: 1.1rem;
-            padding: 5px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
+            height: 100%;
         }
         
         .logo-icon {
@@ -116,7 +106,6 @@
             justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin-top: 64px;
         }
         
         .modern-header::before {
@@ -310,18 +299,18 @@
         }
         
         @media (max-width: 768px) {
-            .menu-links {
-                gap: 15px;
+            body {
+                padding-top: 60px;
             }
             
-            .menu-links a {
-                font-size: 0.95rem;
+            .top-menu {
+                height: 50px;
+                padding: 10px 0;
             }
             
             .modern-header {
                 height: 220px;
                 margin-bottom: 40px;
-                margin-top: 60px;
             }
             
             .header-content {
@@ -358,10 +347,18 @@
         }
         
         @media (max-width: 576px) {
+            body {
+                padding-top: 55px;
+            }
+            
+            .top-menu {
+                height: 45px;
+                padding: 8px 0;
+            }
+            
             .modern-header {
                 height: 200px;
                 margin-bottom: 35px;
-                margin-top: 56px;
             }
             
             .header-content {
@@ -390,10 +387,6 @@
             .post-content table td {
                 padding: 8px 10px;
                 font-size: 0.85rem;
-            }
-            
-            .menu-links {
-                gap: 10px;
             }
             
             .logo-icon {
@@ -452,21 +445,6 @@
                 const headers = table.querySelectorAll('th');
                 headers.forEach(header => {
                     header.setAttribute('scope', 'col');
-                });
-            });
-            
-            const responsiveTables = document.querySelectorAll('.auto-responsive-table');
-            responsiveTables.forEach(table => {
-                if (table.scrollWidth > table.clientWidth) {
-                    table.classList.add('has-scroll');
-                }
-                
-                table.addEventListener('scroll', function() {
-                    if (this.scrollLeft > 0) {
-                        this.classList.add('scrolling');
-                    } else {
-                        this.classList.remove('scrolling');
-                    }
                 });
             });
         });
