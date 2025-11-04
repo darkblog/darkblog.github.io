@@ -60,8 +60,9 @@
             padding: 12px 0;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid var(--border-color);
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1020;
             transition: all 0.3s ease;
         }
@@ -107,6 +108,26 @@
             transform: translateY(-2px);
         }
         
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo-icon:hover {
+            transform: translateY(-2px);
+        }
+        
         .modern-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
@@ -120,6 +141,7 @@
             justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-top: 64px; /* برای جبران ارتفاع منوی ثابت */
         }
         
         .modern-header::before {
@@ -324,6 +346,7 @@
             .modern-header {
                 height: 220px;
                 margin-bottom: 40px;
+                margin-top: 60px;
             }
             
             .header-content {
@@ -353,7 +376,7 @@
                 font-size: 0.9rem;
             }
             
-            .social-icon {
+            .social-icon, .logo-icon {
                 font-size: 1.2rem;
                 width: 35px;
                 height: 35px;
@@ -364,6 +387,7 @@
             .modern-header {
                 height: 200px;
                 margin-bottom: 35px;
+                margin-top: 56px;
             }
             
             .header-content {
@@ -398,7 +422,7 @@
                 gap: 10px;
             }
             
-            .social-icon {
+            .social-icon, .logo-icon {
                 font-size: 1.1rem;
                 width: 32px;
                 height: 32px;
@@ -412,23 +436,8 @@
     <nav class="top-menu">
         <ul class="menu-links">
             <li>
-                <a href="https://indexes.ir/" class="social-icon">
-                    <i class="fas fa-home"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.facebook.com/ehsanchehri/" class="social-icon" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/ehsanchehri/" class="social-icon" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://x.com/pbstwi" class="social-icon" target="_blank">
-                    <i class="fab fa-x-twitter"></i>
+                <a href="https://indexes.ir/" class="logo-icon">
+                    <img src="https://indexes.ir/biography.svg" alt="لوگوی سایت">
                 </a>
             </li>
         </ul>
