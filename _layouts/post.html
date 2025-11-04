@@ -62,9 +62,10 @@
             border-bottom: 1px solid var(--border-color);
             position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             z-index: 1020;
-            transition: all 0.3s ease;
         }
         
         .menu-links {
@@ -92,20 +93,6 @@
         .menu-links a:hover {
             color: var(--primary-color);
             border-bottom-color: var(--primary-color);
-        }
-        
-        .social-icon {
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
         }
         
         .logo-icon {
@@ -141,7 +128,7 @@
             justify-content: center;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin-top: 64px; /* برای جبران ارتفاع منوی ثابت */
+            margin-top: 64px;
         }
         
         .modern-header::before {
@@ -376,8 +363,7 @@
                 font-size: 0.9rem;
             }
             
-            .social-icon, .logo-icon {
-                font-size: 1.2rem;
+            .logo-icon {
                 width: 35px;
                 height: 35px;
             }
@@ -422,8 +408,7 @@
                 gap: 10px;
             }
             
-            .social-icon, .logo-icon {
-                font-size: 1.1rem;
+            .logo-icon {
                 width: 32px;
                 height: 32px;
             }
@@ -496,17 +481,6 @@
                         this.classList.remove('scrolling');
                     }
                 });
-            });
-            
-            const topMenu = document.querySelector('.top-menu');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    topMenu.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-                    topMenu.style.padding = '8px 0';
-                } else {
-                    topMenu.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-                    topMenu.style.padding = '12px 0';
-                }
             });
         });
     </script>
