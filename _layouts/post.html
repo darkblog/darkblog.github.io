@@ -3,10 +3,8 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>{{ page.title }}</title>
     <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
-    
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
@@ -24,66 +22,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ page.url | absolute_url }}"
-      },
-      "headline": "{{ page.title }}",
-      "description": "{{ page.excerpt | strip_html | truncate: 160 }}",
-      "author": {
-        "@type": "Person",
-        "name": "Ehsan Chehri",
-        "sameAs": [
-          "https://www.facebook.com/ehsanchehri/",
-          "https://www.linkedin.com/in/ehsanchehri/",
-          "https://x.com/pbstwi"
-        ]
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "زندگینامه مشاهیر",
-        "url": "https://indexes.ir/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://indexes.ir/biography.svg",
-          "width": 200,
-          "height": 200
-        }
-      },
-      
-      "articleBody": "{{ content | strip_html }}",
-      
-      "image": "https://indexes.ir/biography.svg",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "زندگینامه مشاهیر",
-            "item": "https://indexes.ir/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "بیوگرافی مشاهیر",
-            "item": "https://indexes.ir/biography"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ page.title }}",
-            "item": "{{ page.url | absolute_url }}"
-          }
-        ]
-      }
-    }
-    </script>
     
     <style>
         @font-face {
