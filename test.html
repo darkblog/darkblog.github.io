@@ -36,7 +36,7 @@
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e1e5e9;
-            --header-height: 400px;
+            --header-height: 300px;
             --link-color: #dc3545;
             --link-hover-color: #a71d2a;
             --infobox-bg: #f8f9fa;
@@ -60,10 +60,9 @@
         .hero-section {
             background: linear-gradient(135deg, 
                 var(--primary-dark) 0%, 
-                var(--primary-color) 30%, 
-                var(--primary-light) 70%, 
+                var(--primary-color) 50%, 
                 rgba(255,255,255,0) 100%);
-            min-height: 500px;
+            min-height: 350px;
             position: relative;
             margin-bottom: 60px;
         }
@@ -85,18 +84,25 @@
         }
         
         .nav-logo {
-            height: 80px;
+            height: 70px;
             width: auto;
             transition: transform 0.3s ease;
             background: white;
-            padding: 12px;
+            padding: 10px;
             border-radius: 50%;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 3px solid white;
+            border: 1px solid white;
         }
         
         .nav-logo:hover {
             transform: scale(1.05);
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
         }
         
         header {
@@ -107,8 +113,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 60px 20px;
-            min-height: 300px;
+            padding: 40px 20px;
+            min-height: 200px;
         }
         
         .header-content {
@@ -116,6 +122,7 @@
             z-index: 10;
             max-width: 900px;
             padding: 0 30px;
+            margin-top: -20px;
         }
         
         .post-title {
@@ -143,7 +150,7 @@
         main {
             flex: 1;
             max-width: 900px;
-            margin: -100px auto 80px;
+            margin: -80px auto 80px;
             padding: 0 20px;
             width: 100%;
             position: relative;
@@ -504,7 +511,7 @@
         
         @media (max-width: 768px) {
             .hero-section {
-                min-height: 400px;
+                min-height: 300px;
             }
             
             .post-title {
@@ -517,7 +524,7 @@
             }
             
             .nav-logo {
-                height: 70px;
+                height: 60px;
             }
 
             .post-content table.infobox {
@@ -531,17 +538,17 @@
             }
             
             main {
-                margin: -80px auto 60px;
+                margin: -60px auto 60px;
             }
         }
         
         @media (max-width: 576px) {
             .hero-section {
-                min-height: 350px;
+                min-height: 250px;
             }
             
             .nav-logo {
-                height: 60px;
+                height: 50px;
             }
             
             article {
@@ -568,7 +575,7 @@
             }
             
             main {
-                margin: -60px auto 40px;
+                margin: -40px auto 40px;
             }
         }
     </style>
@@ -578,7 +585,9 @@
     <section class="hero-section">
         <nav>
             <div class="nav-container">
-                <img src="https://indexes.ir/biography.svg" alt="لوگو" class="nav-logo" />
+                <a href="/" class="logo-link">
+                    <img src="https://indexes.ir/biography.svg" alt="لوگو" class="nav-logo" />
+                </a>
             </div>
         </nav>
         
@@ -613,22 +622,6 @@
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
                 }
-            });
-            
-            // افزودن انیمیشن اسکرول نرم
-            const links = document.querySelectorAll('a[href^="#"]');
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
             });
         });
     </script>
