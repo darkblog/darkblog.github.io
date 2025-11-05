@@ -36,7 +36,7 @@
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e1e5e9;
-            --header-height: 320px;
+            --header-height: 400px;
             --link-color: #dc3545;
             --link-hover-color: #a71d2a;
             --infobox-bg: #f8f9fa;
@@ -57,22 +57,31 @@
             min-height: 100vh;
         }
         
+        .hero-section {
+            background: linear-gradient(135deg, 
+                var(--primary-dark) 0%, 
+                var(--primary-color) 30%, 
+                var(--primary-light) 70%, 
+                rgba(255,255,255,0) 100%);
+            min-height: 500px;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        
         nav {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            padding: 15px 0;
+            background: transparent;
+            padding: 20px 0;
             position: relative;
             z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 110px;
         }
         
         .nav-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
         }
         
         .nav-logo {
@@ -91,40 +100,15 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            background: transparent;
             color: white;
-            height: var(--header-height);
             position: relative;
-            overflow: hidden;
-            margin-bottom: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-top: -110px;
-            padding-top: 110px;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-        }
-        
-        header::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center bottom;
+            padding: 60px 20px;
+            min-height: 300px;
         }
         
         .header-content {
@@ -144,12 +128,26 @@
             letter-spacing: -0.5px;
         }
         
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center bottom;
+        }
+        
         main {
             flex: 1;
             max-width: 900px;
-            margin: 0 auto 80px;
+            margin: -100px auto 80px;
             padding: 0 20px;
             width: 100%;
+            position: relative;
+            z-index: 100;
         }
         
         article {
@@ -505,9 +503,8 @@
         }
         
         @media (max-width: 768px) {
-            header {
-                height: 280px;
-                margin-bottom: 50px;
+            .hero-section {
+                min-height: 400px;
             }
             
             .post-title {
@@ -532,12 +529,15 @@
             .post-content {
                 font-size: 1.05rem;
             }
+            
+            main {
+                margin: -80px auto 60px;
+            }
         }
         
         @media (max-width: 576px) {
-            header {
-                height: 240px;
-                margin-bottom: 40px;
+            .hero-section {
+                min-height: 350px;
             }
             
             .nav-logo {
@@ -566,22 +566,28 @@
             .post-content {
                 font-size: 1rem;
             }
+            
+            main {
+                margin: -60px auto 40px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-container">
-            <img src="https://indexes.ir/biography.svg" alt="لوگو" class="nav-logo" />
-        </div>
-    </nav>
-    
-    <header>
-        <div class="header-content">
-            <h1 class="post-title" id="post-title">{{ page.title }}</h1>
-        </div>
-    </header>
+    <section class="hero-section">
+        <nav>
+            <div class="nav-container">
+                <img src="https://indexes.ir/biography.svg" alt="لوگو" class="nav-logo" />
+            </div>
+        </nav>
+        
+        <header>
+            <div class="header-content">
+                <h1 class="post-title" id="post-title">{{ page.title }}</h1>
+            </div>
+        </header>
+    </section>
     
     <main>
         <article>
