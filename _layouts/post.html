@@ -59,9 +59,12 @@
         
         .hero-section {
             background: var(--primary-color);
-            min-height: 450px;
+            min-height: 500px;
             position: relative;
             margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
         
         nav {
@@ -72,6 +75,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-shrink: 0;
         }
         
         .nav-container {
@@ -106,11 +110,12 @@
             color: white;
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             text-align: center;
-            padding: 30px 20px;
-            min-height: 250px;
+            padding: 50px 20px 20px;
+            min-height: 200px;
+            flex-grow: 1;
         }
         
         .header-content {
@@ -118,7 +123,7 @@
             z-index: 10;
             max-width: 900px;
             padding: 0 30px;
-            margin-top: -20px;
+            margin-top: 0;
         }
         
         .post-title {
@@ -146,7 +151,7 @@
         main {
             flex: 1;
             max-width: 900px;
-            margin: -80px auto 80px;
+            margin: -120px auto 80px;
             padding: 0 20px;
             width: 100%;
             position: relative;
@@ -506,7 +511,7 @@
         
         @media (max-width: 768px) {
             .hero-section {
-                min-height: 400px;
+                min-height: 450px;
             }
             
             .post-title {
@@ -534,17 +539,17 @@
             }
             
             main {
-                margin: -60px auto 60px;
+                margin: -100px auto 60px;
             }
             
             .header-content {
-                margin-top: -10px;
+                margin-top: 0;
             }
         }
         
         @media (max-width: 576px) {
             .hero-section {
-                min-height: 350px;
+                min-height: 400px;
             }
             
             .nav-logo {
@@ -576,7 +581,7 @@
             }
             
             main {
-                margin: -40px auto 40px;
+                margin: -80px auto 40px;
             }
             
             .header-content {
