@@ -49,8 +49,8 @@
             padding: 0;
         }
         
-        /* لوگوی سایت - جایگزین منو */
-        .site-logo {
+        /* ناوبری با تگ nav */
+        nav.site-logo {
             background-color: #ffffff;
             padding: 15px 0;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -93,7 +93,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-top: 60px; /* فاصله از لوگوی ثابت */
+            margin-top: 60px; /* فاصله از ناوبری ثابت */
         }
         
         .modern-header::before {
@@ -305,7 +305,7 @@
         
         /* رسپانسیو */
         @media (max-width: 768px) {
-            .site-logo {
+            nav.site-logo {
                 height: 50px;
                 padding: 10px 0;
             }
@@ -342,7 +342,7 @@
         }
         
         @media (max-width: 576px) {
-            .site-logo {
+            nav.site-logo {
                 height: 45px;
                 padding: 8px 0;
             }
@@ -380,12 +380,12 @@
 </head>
 
 <body>
-    <!-- لوگوی سایت - جایگزین منو -->
-    <div class="site-logo">
+    <!-- ناوبری با تگ استاندارد nav -->
+    <nav class="site-logo" aria-label="ناوبری اصلی">
         <a href="https://indexes.ir/" class="logo-icon">
             <img src="https://indexes.ir/biography.svg" alt="لوگوی سایت">
         </a>
-    </div>
+    </nav>
     
     <!-- هدر -->
     <header class="modern-header">
