@@ -182,30 +182,125 @@
             padding-right: 15px;
             border-right: 3px solid var(--primary-color);
         }
-        
-        .auto-responsive-table {
-            width: 100%;
-            overflow-x: auto;
-            margin: 30px 0;
-            border-radius: 10px;
-        }
-        
+
+        /* استایل جدول‌ها شبیه ویکی‌پدیا */
         .post-content table {
             width: 100%;
             border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        
+
+        .post-content table caption {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #202122;
+        }
+
         .post-content table th {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            font-weight: 700;
-            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 8px 12px;
+            font-weight: bold;
+            text-align: center;
+            color: #202122;
+            vertical-align: middle;
+        }
+
+        .post-content table td {
+            border: 1px solid #a2a9b1;
+            padding: 8px 12px;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        /* استایل برای سطرهای زوج و فرد */
+        .post-content table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .post-content table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        /* استایل برای هدر جدول */
+        .post-content table thead th {
+            background-color: #eaecf0;
+            border-bottom: 2px solid #a2a9b1;
+        }
+
+        /* استایل برای جدول‌های اطلاعاتی (infobox) */
+        .post-content table.infobox {
+            width: 300px;
+            float: right;
+            margin: 0 0 15px 15px;
+            font-size: 0.9rem;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+        }
+
+        .post-content table.infobox th {
+            background-color: #eaecf0;
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+
+        .post-content table.infobox td {
+            padding: 6px 10px;
+        }
+
+        /* ریسپانسیو برای جدول‌ها */
+        .auto-responsive-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .auto-responsive-table table {
+            margin: 0;
+            min-width: 500px;
+        }
+
+        /* استایل برای لینک‌ها در جدول */
+        .post-content table a {
+            color: #0645ad;
+        }
+
+        .post-content table a:hover {
+            color: #0b0080;
+            text-decoration: underline;
+        }
+
+        /* استایل برای متن‌های خاص در جدول */
+        .post-content table .nowrap {
+            white-space: nowrap;
+        }
+
+        .post-content table .center {
+            text-align: center;
+        }
+
+        .post-content table .right {
+            text-align: left;
+        }
+
+        .post-content table .left {
             text-align: right;
         }
-        
-        .post-content table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        .post-content table .bold {
+            font-weight: bold;
+        }
+
+        .post-content table .italic {
+            font-style: italic;
         }
         
         /* رسپانسیو */
@@ -234,6 +329,16 @@
                 width: 35px;
                 height: 35px;
             }
+
+            .post-content table {
+                font-size: 0.9rem;
+            }
+
+            .post-content table.infobox {
+                width: 100%;
+                float: none;
+                margin: 15px 0;
+            }
         }
         
         @media (max-width: 576px) {
@@ -260,6 +365,15 @@
             .logo-icon {
                 width: 32px;
                 height: 32px;
+            }
+
+            .post-content table {
+                font-size: 0.85rem;
+            }
+
+            .post-content table th,
+            .post-content table td {
+                padding: 6px 8px;
             }
         }
     </style>
@@ -298,7 +412,7 @@
     <!-- اسکریپت ساده -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // فقط برای جداول ریسپانسیو
+            // برای جداول ریسپانسیو
             const contentTables = document.querySelectorAll('.post-content table');
             contentTables.forEach(table => {
                 if (!table.closest('.auto-responsive-table')) {
