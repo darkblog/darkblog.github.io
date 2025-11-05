@@ -53,37 +53,6 @@
             font-size: 0.875rem;
         }
         
-        nav.site-logo {
-            background-color: #ffffff;
-            padding: 15px 0;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            z-index: 10000;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-        }
-        
-        .logo-icon img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        
         .modern-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
@@ -95,7 +64,6 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-top: 60px;
         }
         
         .modern-header::before {
@@ -125,6 +93,24 @@
             z-index: 10;
             max-width: 800px;
             padding: 0 20px;
+        }
+        
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
         }
         
         .post-title {
@@ -451,15 +437,20 @@
         }
         
         @media (max-width: 768px) {
-            nav.site-logo {
-                height: 50px;
-                padding: 10px 0;
-            }
-            
             .modern-header {
                 height: 220px;
                 margin-bottom: 40px;
-                margin-top: 50px;
+            }
+            
+            .header-logo {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 15px;
+            }
+            
+            .header-logo img {
+                width: 50px;
+                height: 50px;
             }
             
             .post-title {
@@ -469,11 +460,6 @@
             .post-container {
                 padding: 30px;
                 margin-bottom: 50px;
-            }
-            
-            .logo-icon {
-                width: 35px;
-                height: 35px;
             }
 
             .post-content table {
@@ -488,15 +474,20 @@
         }
         
         @media (max-width: 576px) {
-            nav.site-logo {
-                height: 45px;
-                padding: 8px 0;
-            }
-            
             .modern-header {
                 height: 200px;
                 margin-bottom: 35px;
-                margin-top: 45px;
+            }
+            
+            .header-logo {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 12px;
+            }
+            
+            .header-logo img {
+                width: 45px;
+                height: 45px;
             }
             
             .post-container {
@@ -506,11 +497,6 @@
             
             .post-title {
                 font-size: 2rem;
-            }
-            
-            .logo-icon {
-                width: 32px;
-                height: 32px;
             }
 
             .post-content table {
@@ -531,14 +517,11 @@
 </head>
 
 <body>
-    <nav class="site-logo">
-        <a href="https://indexes.ir/" class="logo-icon">
-            <img src="/biography.svg" alt="بیوگرافی مشاهیر">
-        </a>
-    </nav>
-    
     <header class="modern-header">
         <div class="header-content">
+            <div class="header-logo">
+                <img src="https://indexes.ir/biography.svg" alt="زندگینامه مشاهیر" />
+            </div>
             <h1 class="post-title" id="post-title">{{ page.title }}</h1>
         </div>
     </header>
