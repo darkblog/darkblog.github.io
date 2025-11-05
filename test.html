@@ -66,7 +66,7 @@
         
         nav {
             background: transparent;
-            padding: 20px 0;
+            padding: 15px 0;
             position: relative;
             z-index: 1000;
             display: flex;
@@ -109,8 +109,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 20px;
-            min-height: 200px;
+            padding: 10px 20px;
+            min-height: 180px;
         }
         
         .header-content {
@@ -118,7 +118,7 @@
             z-index: 10;
             max-width: 900px;
             padding: 0 30px;
-            margin-top: -20px;
+            margin-top: -50px;
         }
         
         .post-title {
@@ -507,7 +507,7 @@
         
         @media (max-width: 768px) {
             .hero-section {
-                min-height: 300px;
+                min-height: 350px;
             }
             
             .post-title {
@@ -536,11 +536,15 @@
             main {
                 margin: -60px auto 60px;
             }
+            
+            .header-content {
+                margin-top: -40px;
+            }
         }
         
         @media (max-width: 576px) {
             .hero-section {
-                min-height: 250px;
+                min-height: 350px;
             }
             
             .nav-logo {
@@ -572,6 +576,10 @@
             
             main {
                 margin: -40px auto 40px;
+            }
+            
+            .header-content {
+                margin-top: -30px;
             }
         }
     </style>
