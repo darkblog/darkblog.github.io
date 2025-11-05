@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
     
     <style>
-        /* ریست کامل */
         * {
             margin: 0;
             padding: 0;
@@ -49,7 +48,6 @@
             padding: 0;
         }
         
-        /* ناوبری با تگ nav */
         nav.site-logo {
             background-color: #ffffff;
             padding: 15px 0;
@@ -81,7 +79,6 @@
             object-fit: contain;
         }
         
-        /* هدر */
         .modern-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
@@ -93,7 +90,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-top: 60px; /* فاصله از ناوبری ثابت */
+            margin-top: 60px;
         }
         
         .modern-header::before {
@@ -134,7 +131,6 @@
             margin: 0;
         }
         
-        /* محتوا */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -152,11 +148,11 @@
         .post-content {
             font-size: 1.1rem;
             line-height: 1.9;
+            text-align: justify;
         }
         
         .post-content p {
             margin-bottom: 1.8rem;
-            text-align: justify;
         }
         
         .post-content img {
@@ -182,8 +178,7 @@
             padding-right: 15px;
             border-right: 3px solid var(--primary-color);
         }
-
-        /* استایل جدول‌ها شبیه ویکی‌پدیا */
+        
         .post-content table {
             width: 100%;
             border-collapse: collapse;
@@ -218,8 +213,7 @@
             vertical-align: top;
             line-height: 1.6;
         }
-
-        /* استایل برای سطرهای زوج و فرد */
+        
         .post-content table tr:nth-child(even) {
             background-color: #f8f9fa;
         }
@@ -227,14 +221,12 @@
         .post-content table tr:nth-child(odd) {
             background-color: #fff;
         }
-
-        /* استایل برای هدر جدول */
+        
         .post-content table thead th {
             background-color: #eaecf0;
             border-bottom: 2px solid #a2a9b1;
         }
-
-        /* استایل برای جدول‌های اطلاعاتی (infobox) */
+        
         .post-content table.infobox {
             width: 300px;
             float: right;
@@ -254,8 +246,7 @@
         .post-content table.infobox td {
             padding: 6px 10px;
         }
-
-        /* ریسپانسیو برای جدول‌ها */
+        
         .auto-responsive-table {
             width: 100%;
             overflow-x: auto;
@@ -267,8 +258,7 @@
             margin: 0;
             min-width: 500px;
         }
-
-        /* استایل برای لینک‌ها در جدول */
+        
         .post-content table a {
             color: #0645ad;
         }
@@ -277,8 +267,7 @@
             color: #0b0080;
             text-decoration: underline;
         }
-
-        /* استایل برای متن‌های خاص در جدول */
+        
         .post-content table .nowrap {
             white-space: nowrap;
         }
@@ -303,7 +292,6 @@
             font-style: italic;
         }
         
-        /* رسپانسیو */
         @media (max-width: 768px) {
             nav.site-logo {
                 height: 50px;
@@ -380,21 +368,18 @@
 </head>
 
 <body>
-    <!-- ناوبری با تگ استاندارد nav -->
-    <nav class="site-logo" aria-label="ناوبری اصلی">
+    <nav class="site-logo">
         <a href="https://indexes.ir/" class="logo-icon">
-            <img src="https://indexes.ir/biography.svg" alt="لوگوی سایت">
+            <img src="/biography.svg" alt="بیوگرافی مشاهیر">
         </a>
     </nav>
     
-    <!-- هدر -->
     <header class="modern-header">
         <div class="header-content">
             <h1 class="post-title" id="post-title">{{ page.title }}</h1>
         </div>
     </header>
     
-    <!-- محتوای اصلی -->
     <main class="container" id="main-content">
         <article class="post-container">
             <div class="post-content">
@@ -408,11 +393,9 @@
             </div>
         </article>
     </main>
-
-    <!-- اسکریپت ساده -->
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // برای جداول ریسپانسیو
             const contentTables = document.querySelectorAll('.post-content table');
             contentTables.forEach(table => {
                 if (!table.closest('.auto-responsive-table')) {
