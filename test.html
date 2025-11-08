@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زندگینامه مشاهیر ایران و جهان - مرجع بیوگرافی و خاطرات مشاهیر</title>
+    <title>{{ page.title }}</title>
+    <meta property="article:publisher" content="https://www.facebook.com/ehsanchehri/">
+    <meta name="article-author" content="Ehsan Chehri">
     <link rel="icon" href="/biography.svg" type="image/svg+xml">
-    <link rel="canonical" href="https://indexes.ir/">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
     <meta name="theme-color" content="#dc3545">
     
     <style>
@@ -150,51 +152,159 @@
         main {
             flex: 1;
             max-width: 900px;
-            margin: -85px auto 80px;
+            margin: -100px auto 80px;
             padding: 0 20px;
             width: 100%;
             position: relative;
             z-index: 100;
         }
         
-        .description-box {
+        article {
             background-color: var(--card-bg);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 40px;
-            margin-bottom: 50px;
+            padding: 40px 50px;
+            margin-bottom: 40px;
         }
         
-        .description-title {
-            font-weight: 700;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            text-align: center;
-        }
-        
-        .description-content {
+        .post-content {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text-color);
         }
         
-        .description-content p {
-            margin: 20px 0;
+        .post-content p {
+            margin: 24px 0;
             text-align: justify;
         }
         
-        .description-content ul {
-            margin: 20px 0;
+        .post-content img {
+            max-width: 100%;
+            border-radius: var(--radius);
+            margin: 30px auto;
+            display: block;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .post-content img:hover {
+            transform: translateY(-5px);
+        }
+        
+        .post-content figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .post-content figcaption {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        
+        .post-content blockquote {
+            border-right: 4px solid var(--primary-color);
+            padding: 25px 30px;
+            margin: 35px 0;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: var(--radius);
+            font-style: normal;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .post-content blockquote::before {
+            content: "“";
+            font-size: 4rem;
+            color: var(--primary-light);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            opacity: 0.3;
+        }
+        
+        .post-content h1,
+        .post-content h2,
+        .post-content h3,
+        .post-content h4,
+        .post-content h5,
+        .post-content h6 {
+            font-weight: 700;
+            margin: 40px 0 25px;
+            color: var(--text-color);
+            padding: 0;
+            line-height: 1.3;
+            letter-spacing: -0.3px;
+        }
+        
+        .post-content h1 {
+            font-size: 2.2rem;
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .post-content h2 {
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .post-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border-radius: 2px;
+        }
+        
+        .post-content h3 {
+            font-size: 1.5rem;
+        }
+        
+        .post-content h4 {
+            font-size: 1.3rem;
+        }
+        
+        .post-content h5 {
+            font-size: 1.2rem;
+        }
+        
+        .post-content h6 {
+            font-size: 1.1rem;
+        }
+        
+        .post-content a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .post-content a:hover {
+            color: var(--link-hover-color);
+            border-bottom: 1px solid var(--link-hover-color);
+        }
+        
+        .post-content ul, 
+        .post-content ol {
+            margin: 25px 0;
             padding-right: 30px;
         }
         
-        .description-content li {
+        .post-content li {
             margin-bottom: 12px;
             position: relative;
         }
         
-        .description-content li::before {
+        .post-content ul li::before {
             content: "•";
             color: var(--primary-color);
             font-weight: bold;
@@ -203,45 +313,201 @@
             margin-right: -1em;
         }
         
-        .posts-container {
-            display: grid;
-            gap: 40px;
+        .post-content code {
+            background-color: #f1f3f4;
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #d63384;
         }
         
-        .post-card {
-            background-color: var(--card-bg);
+        .post-content pre {
+            background: linear-gradient(135deg, #2d3748, #4a5568);
             border-radius: var(--radius);
+            padding: 25px;
+            overflow-x: auto;
+            margin: 30px 0;
+            line-height: 1.5;
             box-shadow: var(--shadow);
-            padding: 40px;
-            transition: all 0.3s ease;
         }
         
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        .post-content pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: #e2e8f0;
+            font-size: 0.95rem;
         }
         
-        .post-card-title {
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
+        .post-content aside {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+            border-right: 4px solid var(--primary-color);
         }
         
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .post-content aside.toc {
+            display: table;
+            width: auto;
+            margin: 40px auto;
         }
         
-        .post-card-title a:hover {
+        .post-content aside.toc h2 {
+            font-size: 1.3rem;
+            margin: 0 0 20px;
+            text-align: center;
             color: var(--primary-color);
         }
         
-        .post-excerpt {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
+        .post-content aside.toc ul {
+            list-style-type: none;
+            padding-right: 0;
+            margin: 0;
+        }
+        
+        .post-content aside.toc ul ul {
+            padding-right: 20px;
+            margin-top: 10px;
+        }
+        
+        .post-content aside.toc li {
+            margin-bottom: 8px;
+        }
+        
+        .post-content aside.toc a {
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .post-content aside.toc a:hover {
+            color: var(--primary-color);
+            padding-right: 5px;
+        }
+        
+        .post-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 1rem;
+            background-color: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .post-content table caption {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .post-content table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .post-content table td {
+            padding: 15px 20px;
+            vertical-align: top;
+            line-height: 1.6;
+            border-bottom: 1px solid #f1f3f4;
+        }
+        
+        .post-content table tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        .post-content table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        
+        .post-content table tr:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+        
+        .post-content table.infobox {
+            width: 320px;
+            float: right;
+            margin: 0 0 25px 25px;
+            font-size: 0.95rem;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            box-shadow: var(--shadow);
+        }
+
+        .post-content table.infobox th {
+            background: var(--primary-color);
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 15px;
+        }
+
+        .post-content table.infobox td {
+            padding: 12px 15px;
+        }
+        
+        .auto-responsive-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 30px 0;
+            -webkit-overflow-scrolling: touch;
+            border-radius: var(--radius);
+        }
+
+        .auto-responsive-table table {
+            margin: 0;
+            min-width: 600px;
+        }
+        
+        .post-content table a {
+            color: var(--link-color);
+        }
+
+        .post-content table a:hover {
+            color: var(--link-hover-color);
+        }
+        
+        .post-content .reference {
+            font-size: 0.8rem;
+            vertical-align: super;
+            line-height: 1;
+            color: var(--primary-color);
+        }
+        
+        .post-content section.references {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .post-content section.references h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .post-content section.references ol {
+            padding-right: 20px;
+        }
+        
+        .post-content section.references li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         @media (max-width: 768px) {
@@ -253,26 +519,32 @@
                 font-size: 2.4rem;
             }
             
-            .description-box,
-            .post-card {
-                padding: 30px;
+            article {
+                padding: 40px 30px;
+                margin-bottom: 50px;
             }
             
             .nav-logo {
                 height: 60px;
                 padding: 3px;
             }
+
+            .post-content table.infobox {
+                width: 100%;
+                float: none;
+                margin: 25px 0;
+            }
+            
+            .post-content {
+                font-size: 1.05rem;
+            }
             
             main {
                 margin: -80px auto 60px;
             }
             
-            .description-box {
-                margin-bottom: 40px;
-            }
-            
-            .posts-container {
-                gap: 30px;
+            .header-content {
+                margin-top: 0;
             }
         }
         
@@ -286,25 +558,35 @@
                 padding: 2px;
             }
             
-            .description-box,
-            .post-card {
-                padding: 25px;
+            article {
+                padding: 30px 20px;
+                margin-bottom: 40px;
             }
             
             .post-title {
                 font-size: 1.9rem;
+            }
+
+            .post-content table th,
+            .post-content table td {
+                padding: 12px 15px;
+            }
+            
+            .post-content ul, 
+            .post-content ol {
+                padding-right: 20px;
+            }
+            
+            .post-content {
+                font-size: 1rem;
             }
             
             main {
                 margin: -60px auto 40px;
             }
             
-            .description-box {
-                margin-bottom: 35px;
-            }
-            
-            .posts-container {
-                gap: 25px;
+            .header-content {
+                margin-top: 0;
             }
         }
     </style>
@@ -319,38 +601,36 @@
         </nav>
         
         <section class="header-content">
-            <h1 class="post-title">زندگینامه مشاهیر ایران و جهان</h1>
+            <h1 class="post-title" id="post-title">{{ page.title }}</h1>
         </section>
     </header>
     
     <main>
-        <article class="description-box">
-            <h2 class="description-title">سایت زندگینامه مشاهیر</h2>
-            <section class="description-content">
-                <p>سایت "زندگینامه مشاهیر" با هدف ارائه اطلاعات جامع و معتبر درباره زندگی‌نامه مشاهیر ایران و جهان ایجاد شده. محتوای سایت:</p>
-                <ul>
-                    <li>زندگینامه کامل مشاهیر ایرانی و جهانی</li>
-                    <li>دستاوردها و آثار ماندگار بزرگان</li>
-                    <li>خاطرات و نکات برجسته از زندگی آنان</li>
-                    <li>تأثیرات فرهنگی و اجتماعی مشاهیر بر جامعه</li>
-                    <li>تصاویر و مستندات مرتبط با زندگی مشاهیر</li>
-                </ul>
-                <p>امیدوارم بروزرسانی قالب سایت زندگینامه مشاهیر مورد توجه ویژهٔ شما قرار گرفته باشه. دیگه نه از نظر سرعت و نه از نظر تکنولوژی هیچ کم و کسری وجود نداره.</p>
+        <article>
+            <section class="post-content">
+                {{ content }}
+                
+                {% if page.quote %}
+                <blockquote>
+                    "{{ page.quote }}"
+                </blockquote>
+                {% endif %}
             </section>
         </article>
-        
-        <section class="posts-container">
-            {% for post in site.posts %}
-            <article class="post-card">
-                <h3 class="post-card-title">
-                    <a href="{{ post.url }}">{{ post.title }}</a>
-                </h3>
-                <p class="post-excerpt">
-                    {{ post.excerpt | strip_html | truncate: 200 }}
-                </p>
-            </article>
-            {% endfor %}
-        </section>
     </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentTables = document.querySelectorAll('.post-content table');
+            contentTables.forEach(table => {
+                if (!table.closest('.auto-responsive-table')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('auto-responsive-table');
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
