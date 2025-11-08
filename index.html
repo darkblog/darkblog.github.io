@@ -62,6 +62,7 @@ layout: null
             margin-bottom: 80px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: flex-start;
         }
         
@@ -74,12 +75,7 @@ layout: null
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
         }
         
         .nav-logo {
@@ -108,13 +104,14 @@ layout: null
             color: white;
             position: relative;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             text-align: center;
             padding: 25px 20px 20px;
             min-height: 180px;
             flex-grow: 1;
-            margin-top: -5px;
+            margin-top: 0;
+            width: 100%;
         }
         
         .header-content {
@@ -123,6 +120,11 @@ layout: null
             max-width: 900px;
             padding: 0 30px;
             margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
         
         .post-title {
@@ -133,6 +135,8 @@ layout: null
             line-height: 1.2;
             margin: 0;
             letter-spacing: -0.5px;
+            text-align: center;
+            width: 100%;
         }
         
         .hero-section::after {
@@ -155,10 +159,6 @@ layout: null
             width: 100%;
             position: relative;
             z-index: 100;
-        }
-        
-        .description-container {
-            margin-bottom: 50px;
         }
         
         .description-box {
@@ -271,10 +271,6 @@ layout: null
                 margin: -80px auto 60px;
             }
             
-            .description-container {
-                margin-bottom: 40px;
-            }
-            
             .description-box {
                 margin-bottom: 40px;
             }
@@ -307,10 +303,6 @@ layout: null
                 margin: -60px auto 40px;
             }
             
-            .description-container {
-                margin-bottom: 35px;
-            }
-            
             .description-box {
                 margin-bottom: 35px;
             }
@@ -323,54 +315,46 @@ layout: null
 </head>
 
 <body>
-    <section class="hero-section">
+    <header class="hero-section">
         <nav>
-            <div class="nav-container">
-                <a href="/" class="logo-link">
-                    <img src="/biography.svg" alt="زندگینامه مشاهیر" class="nav-logo">
-                </a>
-            </div>
+            <a href="/" class="logo-link">
+                <img src="/biography.svg" alt="زندگینامه مشاهیر" class="nav-logo">
+            </a>
         </nav>
         
-        <header>
-            <div class="header-content">
-                <h1 class="post-title">زندگینامه مشاهیر ایران و جهان</h1>
-            </div>
-        </header>
-    </section>
+        <section class="header-content">
+            <h1 class="post-title">زندگینامه مشاهیر ایران و جهان</h1>
+        </section>
+    </header>
     
     <main>
-        <div class="description-container">
-            <div class="description-box">
-                <h2 class="description-title">سایت زندگینامه مشاهیر</h2>
-                <div class="description-content">
-                    <p>سایت "زندگینامه مشاهیر" با هدف ارائه اطلاعات جامع و معتبر درباره زندگی‌نامه مشاهیر ایران و جهان ایجاد شده. محتوای سایت:</p>
-                    <ul>
-                        <li>زندگینامه کامل مشاهیر ایرانی و جهانی</li>
-                        <li>دستاوردها و آثار ماندگار بزرگان</li>
-                        <li>خاطرات و نکات برجسته از زندگی آنان</li>
-                        <li>تأثیرات فرهنگی و اجتماعی مشاهیر بر جامعه</li>
-                        <li>تصاویر و مستندات مرتبط با زندگی مشاهیر</li>
-                    </ul>
-                    <p>امیدوارم بروزرسانی قالب سایت زندگینامه مشاهیر مورد توجه ویژهٔ شما قرار گرفته باشه. دیگه نه از نظر سرعت و نه از نظر تکنولوژی هیچ کم و کسری وجود نداره.</p>
-                </div>
-            </div>
-        </div>
+        <article class="description-box">
+            <h2 class="description-title">سایت زندگینامه مشاهیر</h2>
+            <section class="description-content">
+                <p>سایت "زندگینامه مشاهیر" با هدف ارائه اطلاعات جامع و معتبر درباره زندگی‌نامه مشاهیر ایران و جهان ایجاد شده. محتوای سایت:</p>
+                <ul>
+                    <li>زندگینامه کامل مشاهیر ایرانی و جهانی</li>
+                    <li>دستاوردها و آثار ماندگار بزرگان</li>
+                    <li>خاطرات و نکات برجسته از زندگی آنان</li>
+                    <li>تأثیرات فرهنگی و اجتماعی مشاهیر بر جامعه</li>
+                    <li>تصاویر و مستندات مرتبط با زندگی مشاهیر</li>
+                </ul>
+                <p>امیدوارم بروزرسانی قالب سایت زندگینامه مشاهیر مورد توجه ویژهٔ شما قرار گرفته باشه. دیگه نه از نظر سرعت و نه از نظر تکنولوژی هیچ کم و کسری وجود نداره.</p>
+            </section>
+        </article>
         
-        <div class="posts-container">
+        <section class="posts-container">
             {% for post in site.posts %}
             <article class="post-card">
-                <div class="post-content">
-                    <h2 class="post-card-title" id="post-title-{{ forloop.index }}">
-                        <a href="{{ post.url }}">{{ post.title }}</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        {{ post.excerpt | strip_html | truncate: 200 }}
-                    </p>
-                </div>
+                <h3 class="post-card-title">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h3>
+                <p class="post-excerpt">
+                    {{ post.excerpt | strip_html | truncate: 200 }}
+                </p>
             </article>
             {% endfor %}
-        </div>
+        </section>
     </main>
 </body>
 </html>
