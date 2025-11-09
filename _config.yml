@@ -3,6 +3,3 @@ url: https://indexes.ir
 permalink: /:title
 
 encoding: UTF-8
-
-compress_html:
-  clipping: all
