@@ -69,8 +69,8 @@ layout: compress
     border-bottom: none;
   }
   
-  /* ایجاد لیبل برای هر سلول با استفاده از attr() */
-  .post-content table:not(.infobox) td::before {
+  /* ایجاد لیبل فقط برای سلول‌هایی که data-label دارند */
+  .post-content table:not(.infobox) td[data-label]::before {
     content: attr(data-label);
     font-weight: 700;
     color: var(--primary-color);
@@ -83,13 +83,11 @@ layout: compress
     border-radius: 4px;
   }
   
-  /* برای جدول‌هایی که data-label ندارند، از شماره ستون استفاده می‌کنیم */
-  .post-content table:not(.infobox) td:nth-child(1):not([data-label])::before { content: "ستون ۱"; }
-  .post-content table:not(.infobox) td:nth-child(2):not([data-label])::before { content: "ستون ۲"; }
-  .post-content table:not(.infobox) td:nth-child(3):not([data-label])::before { content: "ستون ۳"; }
-  .post-content table:not(.infobox) td:nth-child(4):not([data-label])::before { content: "ستون ۴"; }
-  .post-content table:not(.infobox) td:nth-child(5):not([data-label])::before { content: "ستون ۵"; }
-  .post-content table:not(.infobox) td:nth-child(6):not([data-label])::before { content: "ستون ۶"; }
+  /* فقط سلول‌هایی که data-label ندارند را بدون عنوان نمایش می‌دهیم */
+  .post-content table:not(.infobox) td:not([data-label]) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
   
   .hero-section {
     min-height: 400px;
@@ -173,7 +171,7 @@ layout: compress
     margin-bottom: 15px;
   }
   
-  .post-content table:not(.infobox) td::before {
+  .post-content table:not(.infobox) td[data-label]::before {
     font-size: 0.85rem;
   }
 }</style>
