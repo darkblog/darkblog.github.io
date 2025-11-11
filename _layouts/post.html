@@ -100,7 +100,7 @@
         }
         
         .nav-logo {
-            height: 100px; /* تغییر اندازه لوگو به 100px */
+            height: 100px;
             width: auto;
             transition: transform 0.3s;
             background: #fff;
@@ -494,6 +494,8 @@
                 display: block;
                 width: 100%;
                 min-width: unset !important;
+                background: transparent !important;
+                box-shadow: none !important;
             }
             
             .post-content table:not(.infobox) thead {
@@ -515,6 +517,7 @@
                 padding: 20px;
                 transition: transform 0.3s, box-shadow 0.3s;
                 border-right: 4px solid var(--primary-color);
+                border-collapse: collapse;
             }
             
             .post-content table:not(.infobox) tr:hover {
@@ -530,10 +533,12 @@
                 text-align: right;
                 line-height: 1.6;
                 position: relative;
+                margin: 0;
             }
             
             .post-content table:not(.infobox) td:last-child {
                 border-bottom: none;
+                padding-bottom: 0;
             }
             
             .post-content table:not(.infobox) td[data-label]::before {
@@ -552,6 +557,12 @@
             .post-content table:not(.infobox) td:not([data-label]) {
                 padding-top: 15px;
                 padding-bottom: 15px;
+            }
+            
+            .post-content table:not(.infobox) tbody,
+            .post-content table:not(.infobox) tr,
+            .post-content table:not(.infobox) td {
+                box-sizing: border-box;
             }
             
             .hero-section {
@@ -592,6 +603,23 @@
         }
         
         @media (max-width: 576px) {
+            .post-content table:not(.infobox) tr {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .post-content table:not(.infobox) td[data-label]::before {
+                font-size: 0.85rem;
+            }
+            
+            .post-content table:not(.infobox) td {
+                padding: 10px 0;
+            }
+            
+            .post-content table:not(.infobox) td:last-child {
+                padding-bottom: 0;
+            }
+            
             .hero-section {
                 min-height: 350px;
             }
@@ -628,15 +656,6 @@
             
             .header-content {
                 margin-top: 0;
-            }
-            
-            .post-content table:not(.infobox) tr {
-                padding: 15px;
-                margin-bottom: 15px;
-            }
-            
-            .post-content table:not(.infobox) td[data-label]::before {
-                font-size: 0.85rem;
             }
         }
     </style>
