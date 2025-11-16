@@ -1,7 +1,7 @@
 ---
 layout: post
 permalink: /biography/mehrad-jam
-title: زندگینامه مهراد جم - 
+title: زندگینامه مهراد جم - از آبادان تا لندن
 ---
 
 ## زندگی شخصی مهراد جم
