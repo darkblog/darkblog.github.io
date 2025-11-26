@@ -3,6 +3,3 @@ url: https://www.pasgah.org
 permalink: /:title
 
 encoding: UTF-8
-
-compress_html:
-  clippings: all
