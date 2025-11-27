@@ -7,15 +7,14 @@ layout: null
   <id>{{ site.url }}{{ site.baseurl }}/</id>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <link href="{{ '/atom.xml' | absolute_url }}" rel="self"/>
-  <link href="{{ site.url }}{{ site.baseurl }}"/>
 
   {% for post in site.posts limit:20 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <id>{{ post.url | absolute_url }}</id>
-    <updated>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</updated>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
     <author>
-      <name>پاسگاه</name>
+      <name>{{ site.title | xml_escape }}</name>
     </author>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
