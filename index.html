@@ -41,7 +41,8 @@ layout: null
             --link-color: #dc3545;
             --link-hover-color: #a71d2a;
             --infobox-bg: #f8f9fa;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
             --radius: 12px;
         }
         
@@ -99,15 +100,11 @@ layout: null
         .nav-logo {
             height: 150px;
             width: auto;
-            transition: transform 0.3s;
             background: #fff;
             padding: 6px;
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-logo:hover {
-            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
         }
         
         .logo-link {
@@ -136,19 +133,20 @@ layout: null
             width: 100%;
         }
         
-        .description-box, .post-card {
+        .post-card {
             background-color: var(--card-bg);
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-strong);
             padding: 40px;
         }
         
         .post-title {
             font-size: 3.2rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
         }
         
-        .description-title, .post-card-title a:hover {
+        .post-card-title a:hover {
             color: var(--primary-color);
         }
         
@@ -170,55 +168,15 @@ layout: null
             z-index: 100;
         }
         
-        .description-box {
-            margin-bottom: 50px;
-        }
-        
-        .description-title {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .description-content {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-color);
-        }
-        
-        .description-content p {
-            margin: 20px 0;
-            text-align: justify;
-        }
-        
-        .description-content ul {
-            margin: 20px 0;
-            padding-right: 30px;
-        }
-        
-        .description-content li {
-            margin-bottom: 12px;
-            position: relative;
-        }
-        
-        .description-content li::before {
-            content: "•";
-            color: var(--primary-color);
-            display: inline-block;
-            width: 1em;
-            margin-right: -1em;
-        }
-        
         .posts-container {
             display: grid;
             gap: 40px;
         }
         
         .post-card {
-            transition: 0.3s;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.15);
             background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
         }
         
@@ -230,14 +188,13 @@ layout: null
             width: 100%;
             height: 100%;
             border-radius: var(--radius);
-            box-shadow: inset 0 0 0 1px rgba(220, 53, 69, 0.05);
+            box-shadow: inset 0 0 0 1px rgba(220, 53, 69, 0.08);
             pointer-events: none;
         }
         
         .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-            border-color: rgba(220, 53, 69, 0.2);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border-color: rgba(220, 53, 69, 0.25);
         }
         
         .post-card-title {
@@ -257,17 +214,11 @@ layout: null
             height: 3px;
             background: var(--primary-color);
             border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-        
-        .post-card:hover .post-card-title::after {
-            width: 100px;
         }
         
         .post-card-title a {
             color: inherit;
             text-decoration: none;
-            transition: 0.3s;
             display: block;
         }
         
@@ -277,6 +228,16 @@ layout: null
             color: var(--text-secondary);
             position: relative;
             z-index: 1;
+        }
+        
+        .post-excerpt a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .post-excerpt a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
         }
         
         .post-card {
@@ -294,7 +255,7 @@ layout: null
                 font-size: 2.4rem;
             }
             
-            .description-box, .post-card {
+            .post-card {
                 padding: 30px;
             }
             
@@ -304,10 +265,6 @@ layout: null
             
             main {
                 margin: -80px auto 60px;
-            }
-            
-            .description-box {
-                margin-bottom: 40px;
             }
             
             .posts-container {
@@ -320,16 +277,12 @@ layout: null
                 min-height: 350px;
             }
             
-            .description-box, .post-card {
+            .post-card {
                 padding: 25px;
             }
             
             main {
                 margin: -60px auto 40px;
-            }
-            
-            .description-box {
-                margin-bottom: 35px;
             }
             
             .posts-container {
@@ -354,27 +307,14 @@ layout: null
     </header>
     
     <main>
-        <article class="description-box">
-            <h2 class="description-title">بیوگرافی افراد مشهور</h2>
-            <section class="description-content">
-                <ul>
-                    <li>لیست کامل بیوگرافی افراد مشهور</li>
-                    <li>دستاوردها و آثار افراد مشهور</li>
-                    <li>خاطرات و نکات برجسته زندگی مشاهیر</li>
-                    <li>تأثیرات فرهنگی و اجتماعی افراد مشهور</li>
-                    <li>تصاویر مرتبط با بیوگرافی مشاهیر</li>
-                </ul>
-            </section>
-        </article>
-        
         <section class="posts-container">
             {% for post in site.posts %}
             <article class="post-card">
-                <h3 class="post-card-title">
+                <h2 class="post-card-title">
                     <a href="{{ post.url }}">{{ post.title }}</a>
-                </h3>
+                </h2>
                 <p class="post-excerpt">
-                    {{ post.excerpt | strip_html | truncate: 200 }}
+                    <a href="{{ post.url }}">{{ post.excerpt | strip_html | truncate: 200 }}</a>
                 </p>
             </article>
             {% endfor %}
