@@ -7,3 +7,10 @@ url: https://www.pasgah.org
 permalink: /:title
 
 encoding: UTF-8
+
+author:
+  name: "احسان چهری"
+  email: "ehsanchehri@gmail.com"
+  url: "https://www.facebook.com/ehsanchehri"
+  bio: "نویسنده وبلاگ پاسگاه"
+  avatar: "/biography.svg"
