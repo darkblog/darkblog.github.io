@@ -14,7 +14,7 @@ layout: null
     <id>{{ post.url | absolute_url }}</id>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <author>
-      <name>{{ site.title | xml_escape }}</name>
+      <name>وبلاگ پاسگاه</name>
     </author>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
