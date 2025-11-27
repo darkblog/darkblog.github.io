@@ -374,7 +374,9 @@ layout: null
                     <a href="{{ post.url }}">{{ post.title }}</a>
                 </h3>
                 <p class="post-excerpt">
+                    <a href="{{ post.url }}">
                     {{ post.excerpt | strip_html | truncate: 200 }}
+                    </a>
                 </p>
             </article>
             {% endfor %}
