@@ -1,44 +1,23 @@
 ---
 layout: null
 ---
-<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fa">
-  <link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml" />
-  <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html" />
-  <id>{{ '/atom.xml' | absolute_url }}</id>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title | xml_escape }}</title>
+  <id>{{ site.url }}{{ site.baseurl }}/</id>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <link href="{{ '/atom.xml' | absolute_url }}" rel="self"/>
+  <link href="{{ site.url }}{{ site.baseurl }}"/>
 
-  {% if site.title %}
-  <title type="html">{{ site.title | smartify | xml_escape }}</title>
-  {% endif %}
-
-  {% if site.subtitle %}
-  <subtitle>{{ site.subtitle | xml_escape }}</subtitle>
-  {% endif %}
-
-  {% if site.author %}
-  <author>
-    <name>{{ site.author.name | default: site.author | xml_escape }}</name>
-    {% if site.author.email %}
-    <email>{{ site.author.email | xml_escape }}</email>
-    {% endif %}
-    {% if site.author.uri %}
-    <uri>{{ site.author.uri | xml_escape }}</uri>
-    {% endif %}
-  </author>
-  {% endif %}
-
-  {% for post in site.posts limit: 20 %}
+  {% for post in site.posts limit:20 %}
   <entry>
-    <title type="html">{{ post.title | smartify | xml_escape }}</title>
-    <link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html" title="{{ post.title | xml_escape }}" />
-    <id>{{ post.id | absolute_url }}</id>
-    <content type="html" xml:base="{{ post.url | absolute_url }}">{{ post.content | xml_escape }}</content>
+    <title>{{ post.title | xml_escape }}</title>
+    <id>{{ post.url | absolute_url }}</id>
+    <updated>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</updated>
     <author>
-      <name>{{ post.author | default: site.author | xml_escape }}</name>
+      <name>پاسگاه</name>
     </author>
-    {% for category in post.categories %}
-    <category term="{{ category | xml_escape }}" />
-    {% endfor %}
+    <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
   {% endfor %}
 </feed>
