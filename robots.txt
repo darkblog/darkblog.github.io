@@ -1,1 +1,1 @@
-Sitemap: https://www.pasgah.org/sitemap.xml
+Sitemap: https://www.pasgah.org/atom.xml
