@@ -272,6 +272,129 @@ layout: null
             padding: 0 15px;
         }
         
+        /* اسلایدر جدیدترین پست‌ها */
+        .featured-slider {
+            margin-bottom: 50px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .slider-container {
+            position: relative;
+            height: 500px;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: flex;
+            align-items: flex-end;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+            width: 100%;
+        }
+        
+        .slide-category {
+            background-color: #bb1919;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .slide-excerpt {
+            font-size: 16px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .slide-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-dot.active {
+            background-color: white;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+        
+        .slider-nav:hover {
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .slider-prev {
+            right: 20px;
+        }
+        
+        .slider-next {
+            left: 20px;
+        }
+        
+        /* بخش پست‌های دو ستونی */
         .content-header {
             margin-bottom: 30px;
             padding-bottom: 15px;
@@ -289,17 +412,17 @@ layout: null
             color: #666;
         }
         
-        .posts-grid {
+        .two-column-posts {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
         
         .post-card {
             background: white;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
@@ -309,7 +432,7 @@ layout: null
         }
         
         .post-image {
-            height: 180px;
+            height: 200px;
             background-color: #ddd;
             background-size: cover;
             background-position: center;
@@ -319,16 +442,26 @@ layout: null
             padding: 20px;
         }
         
+        .post-category {
+            color: #bb1919;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
         .post-title {
             font-size: 18px;
             margin-bottom: 10px;
             color: #2f2f2f;
+            line-height: 1.4;
         }
         
         .post-excerpt {
             font-size: 14px;
             color: #666;
             margin-bottom: 15px;
+            line-height: 1.6;
         }
         
         .post-meta {
@@ -402,6 +535,14 @@ layout: null
                 padding: 15px 12px;
                 font-size: 14px;
             }
+            
+            .slider-container {
+                height: 400px;
+            }
+            
+            .slide-title {
+                font-size: 24px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -428,8 +569,38 @@ layout: null
                 font-size: 13px;
             }
             
-            .posts-grid {
+            .slider-container {
+                height: 350px;
+            }
+            
+            .slide-title {
+                font-size: 20px;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .two-column-posts {
                 grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .slider-container {
+                height: 300px;
+            }
+            
+            .slide-title {
+                font-size: 18px;
+            }
+            
+            .slide-content {
+                padding: 15px;
+            }
+            
+            .slider-nav {
+                display: none;
             }
         }
     </style>
@@ -543,60 +714,143 @@ layout: null
     
     <!-- محتوای اصلی -->
     <main class="main-content">
-        <div class="content-header">
-            <h1 class="content-title">وبلاگ پاسگاه - بیوگرافی افراد مشهور</h1>
-            <p class="content-subtitle">از خاطرات تا دستاوردهای افراد مشهور ایران و جهان</p>
-        </div>
+        <!-- اسلایدر جدیدترین پست‌ها -->
+        <section class="featured-slider">
+            <div class="slider-container">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                    <div class="slide-content">
+                        <span class="slide-category">بیوگرافی ورزشی</span>
+                        <h2 class="slide-title">بیوگرافی کامل علی دایی؛ اسطوره فوتبال ایران</h2>
+                        <p class="slide-excerpt">از کودکی در اردبیل تا رکوردشکنی در بوندسلیگا و مربیگری در تیم ملی ایران</p>
+                        <div class="slide-meta">
+                            <span>۱۵ فروردین ۱۴۰۳</span>
+                            <span>خواندن ۱۲ دقیقه</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                    <div class="slide-content">
+                        <span class="slide-category">بیوگرافی هنری</span>
+                        <h2 class="slide-title">زندگی‌نامه محمود فرشچیان؛ استاد مسلم مینیاتور</h2>
+                        <p class="slide-excerpt">نگاهی به زندگی و آثار استاد فرشچیان، نقاش برجسته معاصر ایران</p>
+                        <div class="slide-meta">
+                            <span>۱۴ فروردین ۱۴۰۳</span>
+                            <span>خواندن ۱۰ دقیقه</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                    <div class="slide-content">
+                        <span class="slide-category">بیوگرافی علمی</span>
+                        <h2 class="slide-title">مروری بر زندگی مریم میرزاخانی؛ نابغه ریاضی جهان</h2>
+                        <p class="slide-excerpt">از المپیاد ریاضی تا کسب مدال فیلدز، داستان زندگی اولین زن برنده این جایزه</p>
+                        <div class="slide-meta">
+                            <span>۱۳ فروردین ۱۴۰۳</span>
+                            <span>خواندن ۱۵ دقیقه</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="slider-nav slider-prev">❮</button>
+                <button class="slider-nav slider-next">❯</button>
+                
+                <div class="slider-controls">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </section>
         
-        <div class="posts-grid">
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
-                <div class="post-content">
-                    <h2 class="post-title">بیوگرافی کامل علی دایی</h2>
-                    <p class="post-excerpt">از کودکی تا مربیگری، نگاهی به زندگی اسطوره فوتبال ایران</p>
-                    <div class="post-meta">
-                        <span>۱۵ فروردین ۱۴۰۳</span>
-                        <span>بیوگرافی ورزشی</span>
-                    </div>
-                </div>
-            </article>
+        <!-- پست‌های دو ستونی -->
+        <section class="posts-section">
+            <div class="content-header">
+                <h1 class="content-title">مطالب اخیر</h1>
+                <p class="content-subtitle">جدیدترین بیوگرافی‌ها و مقالات وبلاگ پاسگاه</p>
+            </div>
             
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
-                <div class="post-content">
-                    <h2 class="post-title">زندگی‌نامه محمود فرشچیان</h2>
-                    <p class="post-excerpt">نقاش برجسته معاصر و خالق آثار ماندگار مینیاتور</p>
-                    <div class="post-meta">
-                        <span>۱۲ فروردین ۱۴۰۳</span>
-                        <span>بیوگرافی هنری</span>
+            <div class="two-column-posts">
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1727&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">بیوگرافی سینمایی</span>
+                        <h2 class="post-title">داستان زندگی محمدعلی کشاورز</h2>
+                        <p class="post-excerpt">از تئاتر تا سینما، نگاهی به کارنامه هنری استاد کشاورز و نقش‌آفرینی‌های ماندگارش در سینمای ایران</p>
+                        <div class="post-meta">
+                            <span>۱۲ فروردین ۱۴۰۳</span>
+                            <span>۸ دقیقه خواندن</span>
+                        </div>
                     </div>
-                </div>
-            </article>
-            
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
-                <div class="post-content">
-                    <h2 class="post-title">مروری بر زندگی مریم میرزاخانی</h2>
-                    <p class="post-excerpt">اولین زن برنده مدال فیلدز و نابغه ریاضی ایران</p>
-                    <div class="post-meta">
-                        <span>۱۰ فروردین ۱۴۰۳</span>
-                        <span>بیوگرافی علمی</span>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">بیوگرافی سیاسی</span>
+                        <h2 class="post-title">زندگی‌نامه محمد مصدق</h2>
+                        <p class="post-excerpt">از وکالت تا نخست‌وزیری، نگاهی به زندگی پر فراز و نشیب محمد مصدق و ملی شدن صنعت نفت ایران</p>
+                        <div class="post-meta">
+                            <span>۱۱ فروردین ۱۴۰۳</span>
+                            <span>۱۲ دقیقه خواندن</span>
+                        </div>
                     </div>
-                </div>
-            </article>
-            
-            <article class="post-card">
-                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
-                <div class="post-content">
-                    <h2 class="post-title">داستان زندگی محمدعلی کشاورز</h2>
-                    <p class="post-excerpt">از تئاتر تا سینما، نگاهی به کارنامه هنری استاد کشاورز</p>
-                    <div class="post-meta">
-                        <span>۸ فروردین ۱۴۰۳</span>
-                        <span>بیوگرافی سینمایی</span>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">بیوگرافی موسیقی</span>
+                        <h2 class="post-title">حسین علیزاده؛ استاد سه‌تار و آهنگساز</h2>
+                        <p class="post-excerpt">از نوازندگی تا آهنگسازی، مروری بر زندگی و آثار حسین علیزاده، استاد مسلم موسیقی ایرانی</p>
+                        <div class="post-meta">
+                            <span>۱۰ فروردین ۱۴۰۳</span>
+                            <span>۹ دقیقه خواندن</span>
+                        </div>
                     </div>
-                </div>
-            </article>
-        </div>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">بیوگرافی ادبی</span>
+                        <h2 class="post-title">صادق هدایت؛ پدر داستان نویسی مدرن ایران</h2>
+                        <p class="post-excerpt">از بوف کور تا نویسندگی در تبعید، نگاهی به زندگی و آثار صادق هدایت، نویسنده پرآوازه ایرانی</p>
+                        <div class="post-meta">
+                            <span>۹ فروردین ۱۴۰۳</span>
+                            <span>۱۱ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">بیوگرافی ورزشی</span>
+                        <h2 class="post-title">بهمن عالیشاه؛ ستاره فوتبال ایران</h2>
+                        <p class="post-excerpt">از جوانی در باشگاه پرسپولیس تا بازی در لیگ قطر، نگاهی به زندگی حرفه‌ای بهمن عالیشاه</p>
+                        <div class="post-meta">
+                            <span>۸ فروردین ۱۴۰۳</span>
+                            <span>۷ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <span class="post-category">بیوگرافی تجاری</span>
+                        <h2 class="post-title">حسین ثابت؛ امپراتور تجارت ایران</h2>
+                        <p class="post-excerpt">از مغازه‌داری کوچک تا تاسیس امپراتوری تجاری، داستان زندگی حسین ثابت، تاجر نامدار ایرانی</p>
+                        <div class="post-meta">
+                            <span>۷ فروردین ۱۴۰۳</span>
+                            <span>۱۰ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
     
     <!-- فوتر -->
@@ -688,6 +942,48 @@ layout: null
                     }
                 });
             });
+            
+            // اسلایدر جدیدترین پست‌ها
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.slider-prev');
+            const nextBtn = document.querySelector('.slider-next');
+            let currentSlide = 0;
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = (n + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+            
+            // کنترل اسلایدر با دکمه‌ها
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextSlide);
+            }
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prevSlide);
+            }
+            
+            // کنترل اسلایدر با دات‌ها
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+            
+            // اسلایدر خودکار
+            setInterval(nextSlide, 5000);
         });
     </script>
 </body>
