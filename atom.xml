@@ -8,7 +8,6 @@ layout: null
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <link href="{{ '/atom.xml' | absolute_url }}" rel="self"/>
   <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/"/>
-
   {% for post in site.posts limit:20 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
