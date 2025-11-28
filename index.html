@@ -310,7 +310,7 @@ layout: null
         <section class="posts-container">
             {% for post in site.posts %}
             <article class="post-card">
-                <a href="{{ site.url }}{{ post.url }}" class="post-card-link">
+                <a href="{{ post.url }}" class="post-card-link">
                     <h2 class="post-card-title">{{ post.title }}</h2>
                     <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
                 </a>
