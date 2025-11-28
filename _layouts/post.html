@@ -304,12 +304,25 @@
             margin-bottom: 12px;
         }
         
+        .post-content ul {
+            list-style: none;
+            padding-right: 0;
+        }
+        
+        .post-content ul li {
+            position: relative;
+            padding-right: 1.5em;
+        }
+        
         .post-content ul li::before {
             content: "•";
             color: var(--primary-color);
-            display: inline-block;
-            width: 1em;
-            margin-right: -1em;
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.3em;
+            line-height: 1.7;
+            font-weight: bold;
         }
         
         .post-content code {
