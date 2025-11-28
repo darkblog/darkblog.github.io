@@ -2,94 +2,127 @@
 layout: null
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html dir="rtl" lang="fa">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
-    <meta name="description" content="وبلاگ پاسگاه؛ بیوگرافی افراد مشهور. از خاطرات تا دستاوردهای افراد مشهور ایران و جهان">
-    <link rel="canonical" href="https://www.pasgah.org/">
-    <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
-    <meta name="theme-color" content="#dc3545">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وبلاگ پاسگاه - بیوگرافی افراد مشهور</title>
     <style>
+        /* استایل کلی */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        @font-face {
-            font-family: Vazirmatn;
-            src: url('https://www.pasgah.org/Vazirmatn.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        :root {
-            --primary-color: #dc3545;
-            --primary-dark: #a71d2a;
-            --primary-light: #ff6b7a;
-            --text-color: #333;
-            --text-secondary: #54595d;
-            --light-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #e1e5e9;
-            --header-height: 300px;
-            --link-color: #dc3545;
-            --link-hover-color: #a71d2a;
-            --infobox-bg: #f8f9fa;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
-            --radius: 12px;
-            --nav-bg: #1a1a1a;
-            --nav-text: #ffffff;
-            --nav-hover: #dc3545;
-            --submenu-bg: #2a2a2a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.7;
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #f6f6f6;
+            color: #333;
+            line-height: 1.6;
         }
         
-        /* نوار ناوبری اصلی */
-        .main-nav {
-            background-color: var(--nav-bg);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /* نوار بالایی BBC */
+        .bbc-top-bar {
+            background-color: #bb1919;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #a51717;
         }
         
-        .nav-container {
-            max-width: 1200px;
+        .bbc-container {
+            max-width: 1280px;
             margin: 0 auto;
+            padding: 0 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
         
-        .nav-logo {
-            height: 40px;
-            width: auto;
-            padding: 5px;
+        .bbc-date {
+            font-weight: 500;
+        }
+        
+        .bbc-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            transition: opacity 0.2s;
+        }
+        
+        .bbc-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* هدر اصلی */
+        .bbc-header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+        }
+        
+        .bbc-logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #bb1919;
+            text-decoration: none;
+        }
+        
+        .bbc-search {
+            display: flex;
+            align-items: center;
+            background: #f6f6f6;
+            border-radius: 4px;
+            padding: 8px 12px;
+            width: 300px;
+        }
+        
+        .bbc-search input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .bbc-search button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .user-actions a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        
+        /* ناوبری اصلی */
+        .bbc-nav {
+            background-color: #2f2f2f;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
         }
         
         .nav-menu {
             display: flex;
             list-style: none;
-            margin: 0;
-            padding: 0;
         }
         
         .nav-item {
@@ -97,19 +130,20 @@ layout: null
         }
         
         .nav-link {
-            color: var(--nav-text);
+            color: white;
             text-decoration: none;
             padding: 15px 20px;
             display: block;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
+            font-size: 16px;
+            transition: background-color 0.2s;
         }
         
         .nav-link:hover {
-            color: var(--nav-hover);
-            background-color: rgba(255, 255, 255, 0.05);
-            border-bottom-color: var(--nav-hover);
+            background-color: #444;
+        }
+        
+        .nav-link.active {
+            background-color: #bb1919;
         }
         
         /* زیرمنوها */
@@ -117,432 +151,419 @@ layout: null
             position: absolute;
             top: 100%;
             right: 0;
-            background-color: var(--submenu-bg);
+            background-color: white;
             min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 0 0 4px 4px;
+            transition: all 0.3s;
+            z-index: 1001;
         }
         
         .nav-item:hover .submenu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
         }
         
         .submenu-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .submenu-item:last-child {
-            border-bottom: none;
+            border-bottom: 1px solid #eee;
         }
         
         .submenu-link {
-            color: var(--nav-text);
+            color: #333;
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 12px 15px;
             display: block;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
+            font-size: 14px;
+            transition: background-color 0.2s;
         }
         
         .submenu-link:hover {
-            background-color: var(--nav-hover);
-            color: white;
+            background-color: #f6f6f6;
+            color: #bb1919;
         }
         
-        /* منوی موبایل */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--nav-text);
-            font-size: 1.5rem;
-            cursor: pointer;
+        /* محتوای اصلی */
+        .main-content {
+            max-width: 1280px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
         
-        /* بخش هدر و محتوا */
-        header, nav {
-            background: transparent;
+        .content-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #bb1919;
         }
         
-        .header-content, header {
-            margin-top: 0;
-            display: flex;
+        .content-title {
+            font-size: 28px;
+            color: #2f2f2f;
+            margin-bottom: 10px;
         }
         
-        .hero-section, .logo-link, body, header, nav {
-            display: flex;
+        .content-subtitle {
+            font-size: 16px;
+            color: #666;
         }
         
-        .header-content, main {
-            max-width: 900px;
-            position: relative;
-        }
-        
-        .header-content, .hero-section, header, main, nav {
-            position: relative;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            min-height: 450px;
-            margin-bottom: 80px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        nav {
-            padding: 15px 0;
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            width: 100%;
-        }
-        
-        .nav-logo-large {
-            height: 150px;
-            width: auto;
-            background: #fff;
-            padding: 6px;
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-        }
-        
-        .logo-link {
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-        
-        header {
-            align-items: center;
-            justify-content: center;
-            padding: 25px 20px 20px;
-            min-height: 180px;
-            flex-grow: 1;
-            width: 100%;
-            color: #fff;
-            text-align: center;
-        }
-        
-        .header-content {
-            z-index: 10;
-            padding: 0 30px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        .post-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-strong);
-            padding: 40px;
-        }
-        
-        .post-title {
-            font-size: 3.2rem;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
-        }
-        
-        .post-card-title a:hover {
-            color: var(--primary-color);
-        }
-        
-        .hero-section::after {
-            content: "";
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") center bottom/cover;
-        }
-        
-        main {
-            flex: 1;
-            margin: -85px auto 80px;
-            padding: 0 20px;
-            width: 100%;
-            z-index: 100;
-        }
-        
-        .posts-container {
+        .posts-grid {
             display: grid;
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
         
         .post-card {
-            position: relative;
+            background: white;
+            border-radius: 4px;
             overflow: hidden;
-            border: 1px solid rgba(220, 53, 69, 0.15);
-            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
-        }
-        
-        .post-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: var(--radius);
-            box-shadow: inset 0 0 0 1px rgba(220, 53, 69, 0.08);
-            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .post-card:hover {
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            border-color: rgba(220, 53, 69, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
         
-        .post-card-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            position: relative;
-            padding-bottom: 15px;
+        .post-image {
+            height: 180px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
         }
         
-        .post-card-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
+        .post-content {
+            padding: 20px;
         }
         
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
+        .post-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2f2f2f;
         }
         
         .post-excerpt {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #000000;
-            position: relative;
-            z-index: 1;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
         }
         
-        .post-card-link {
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* فوتر */
+        .bbc-footer {
+            background-color: #2f2f2f;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #bb1919;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
+            color: #ccc;
             text-decoration: none;
-            color: inherit;
-            display: block;
+            font-size: 14px;
+            transition: color 0.2s;
         }
         
-        .post-card-link:hover .post-card-title {
-            color: var(--primary-color);
+        .footer-column a:hover {
+            color: white;
         }
         
-        .post-card {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
         }
         
         /* رسپانسیو */
         @media (max-width: 1024px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                left: 0;
-                background-color: var(--nav-bg);
-                flex-direction: column;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            .bbc-search {
+                width: 200px;
             }
             
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .nav-item {
-                width: 100%;
-            }
-            
-            .submenu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background-color: rgba(0, 0, 0, 0.2);
-                display: none;
-            }
-            
-            .nav-item:hover .submenu {
-                display: block;
-            }
-            
-            .mobile-toggle {
-                display: block;
+            .nav-link {
+                padding: 15px 12px;
+                font-size: 14px;
             }
         }
         
         @media (max-width: 768px) {
-            .hero-section {
-                min-height: 400px;
+            .bbc-top-bar {
+                display: none;
             }
             
-            .post-title {
-                font-size: 2.4rem;
+            .header-main {
+                flex-wrap: wrap;
             }
             
-            .post-card {
-                padding: 30px;
+            .bbc-search {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
             }
             
-            .nav-logo-large {
-                height: 120px;
+            .nav-menu {
+                flex-wrap: wrap;
             }
             
-            main {
-                margin: -80px auto 60px;
+            .nav-link {
+                padding: 12px 10px;
+                font-size: 13px;
             }
             
-            .posts-container {
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-section {
-                min-height: 350px;
-            }
-            
-            .post-card {
-                padding: 25px;
-            }
-            
-            main {
-                margin: -60px auto 40px;
-            }
-            
-            .posts-container {
-                gap: 25px;
+            .posts-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- نوار ناوبری اصلی -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="https://www.pasgah.org/" class="logo-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="nav-logo">
-                    <title>وبلاگ پاسگاه</title>
-                    <path fill="#ffffff" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                </svg>
-            </a>
-            
-            <button class="mobile-toggle">☰</button>
-            
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link">صفحه اصلی</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">بیوگرافی‌ها</a>
-                    <ul class="submenu">
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">هنرمندان</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">ورزشکاران</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">سیاستمداران</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">دانشمندان</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">مقاله‌ها</a>
-                    <ul class="submenu">
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">مقالات تحلیلی</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">مصاحبه‌ها</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#" class="submenu-link">نقد و بررسی</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">گالری تصاویر</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">درباره ما</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">تماس با ما</a>
-                </li>
-            </ul>
+    <!-- نوار بالایی مشابه بی‌بی‌سی -->
+    <div class="bbc-top-bar">
+        <div class="bbc-container">
+            <div class="bbc-date">جمعه ۱۵ فروردین ۱۴۰۳</div>
+            <div class="bbc-links">
+                <a href="#">صفحه اصلی</a>
+                <a href="#">اخبار</a>
+                <a href="#">ورزش</a>
+                <a href="#">آب و هوا</a>
+                <a href="#">برنامه‌ها</a>
+            </div>
         </div>
-    </nav>
+    </div>
     
-    <header class="hero-section">
-        <nav>
-            <a href="https://www.pasgah.org/" class="logo-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="nav-logo-large">
-                    <title>وبلاگ پاسگاه</title>
-                    <path fill="#dc3545" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                </svg>
-            </a>
+    <!-- هدر اصلی -->
+    <header class="bbc-header">
+        <div class="bbc-container">
+            <div class="header-main">
+                <a href="#" class="bbc-logo">پاسگاه</a>
+                
+                <div class="bbc-search">
+                    <input type="text" placeholder="جستجو در پاسگاه">
+                    <button>🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#">ورود</a>
+                    <a href="#">ثبت‌نام</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ناوبری اصلی -->
+        <nav class="bbc-nav">
+            <div class="bbc-container">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">صفحه اصلی</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">بیوگرافی‌ها</a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">هنرمندان</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">ورزشکاران</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">سیاستمداران</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">دانشمندان</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">مقاله‌ها</a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">مقالات تحلیلی</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">مصاحبه‌ها</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#" class="submenu-link">نقد و بررسی</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">گالری تصاویر</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">ویدئوها</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">درباره ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">تماس با ما</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
-        <section class="header-content">
-            <h1 class="post-title">وبلاگ پاسگاه</h1>
-        </section>
     </header>
     
-    <main>
-        <section class="posts-container">
-            {% for post in site.posts %}
+    <!-- محتوای اصلی -->
+    <main class="main-content">
+        <div class="content-header">
+            <h1 class="content-title">وبلاگ پاسگاه - بیوگرافی افراد مشهور</h1>
+            <p class="content-subtitle">از خاطرات تا دستاوردهای افراد مشهور ایران و جهان</p>
+        </div>
+        
+        <div class="posts-grid">
             <article class="post-card">
-                <a href="{{ post.url }}" class="post-card-link">
-                    <h2 class="post-card-title">{{ post.title }}</h2>
-                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                </a>
+                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
+                <div class="post-content">
+                    <h2 class="post-title">بیوگرافی کامل علی دایی</h2>
+                    <p class="post-excerpt">از کودکی تا مربیگری، نگاهی به زندگی اسطوره فوتبال ایران</p>
+                    <div class="post-meta">
+                        <span>۱۵ فروردین ۱۴۰۳</span>
+                        <span>بیوگرافی ورزشی</span>
+                    </div>
+                </div>
             </article>
-            {% endfor %}
-        </section>
+            
+            <article class="post-card">
+                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
+                <div class="post-content">
+                    <h2 class="post-title">زندگی‌نامه محمود فرشچیان</h2>
+                    <p class="post-excerpt">نقاش برجسته معاصر و خالق آثار ماندگار مینیاتور</p>
+                    <div class="post-meta">
+                        <span>۱۲ فروردین ۱۴۰۳</span>
+                        <span>بیوگرافی هنری</span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="post-card">
+                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
+                <div class="post-content">
+                    <h2 class="post-title">مروری بر زندگی مریم میرزاخانی</h2>
+                    <p class="post-excerpt">اولین زن برنده مدال فیلدز و نابغه ریاضی ایران</p>
+                    <div class="post-meta">
+                        <span>۱۰ فروردین ۱۴۰۳</span>
+                        <span>بیوگرافی علمی</span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="post-card">
+                <div class="post-image" style="background-image: url('https://via.placeholder.com/400x200')"></div>
+                <div class="post-content">
+                    <h2 class="post-title">داستان زندگی محمدعلی کشاورز</h2>
+                    <p class="post-excerpt">از تئاتر تا سینما، نگاهی به کارنامه هنری استاد کشاورز</p>
+                    <div class="post-meta">
+                        <span>۸ فروردین ۱۴۰۳</span>
+                        <span>بیوگرافی سینمایی</span>
+                    </div>
+                </div>
+            </article>
+        </div>
     </main>
     
+    <!-- فوتر -->
+    <footer class="bbc-footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>دسته‌بندی‌ها</h3>
+                    <ul>
+                        <li><a href="#">بیوگرافی ورزشی</a></li>
+                        <li><a href="#">بیوگرافی هنری</a></li>
+                        <li><a href="#">بیوگرافی علمی</a></li>
+                        <li><a href="#">بیوگرافی سیاسی</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul>
+                        <li><a href="#">تماس با ما</a></li>
+                        <li><a href="#">درباره ما</a></li>
+                        <li><a href="#">قوانین و مقررات</a></li>
+                        <li><a href="#">حریم خصوصی</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>شبکه‌های اجتماعی</h3>
+                    <ul>
+                        <li><a href="#">اینستاگرام</a></li>
+                        <li><a href="#">تلگرام</a></li>
+                        <li><a href="#">توییتر</a></li>
+                        <li><a href="#">یوتیوب</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© ۱۴۰۳ - کلیه حقوق برای وبلاگ پاسگاه محفوظ است</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // فعال‌سازی منوی موبایل
+        // تاریخ شمسی فعلی
+        function getCurrentPersianDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formatter = new Intl.DateTimeFormat('fa-IR', options);
+            return formatter.format(now);
+        }
+        
+        // به روز رسانی تاریخ در نوار بالایی
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const navMenu = document.querySelector('.nav-menu');
+            const dateElement = document.querySelector('.bbc-date');
+            if (dateElement) {
+                dateElement.textContent = getCurrentPersianDate();
+            }
             
-            mobileToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-            });
-            
-            // بستن منو هنگام کلیک خارج از آن
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.nav-container')) {
-                    navMenu.classList.remove('active');
-                }
+            // فعال کردن منوهای کشویی در موبایل
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        this.classList.toggle('active');
+                    }
+                });
             });
         });
     </script>
