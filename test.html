@@ -79,119 +79,6 @@ layout: null
             text-decoration: none;
         }
         
-        .bbc-search {
-            display: flex;
-            align-items: center;
-            background: #f6f6f6;
-            border-radius: 4px;
-            padding: 8px 12px;
-            width: 300px;
-        }
-        
-        .bbc-search input {
-            border: none;
-            background: transparent;
-            width: 100%;
-            outline: none;
-            font-size: 14px;
-        }
-        
-        .bbc-search button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #666;
-        }
-        
-        /* منوی همبرگر */
-        .hamburger-menu {
-            display: flex;
-            align-items: center;
-        }
-        
-        .hamburger-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            padding: 0;
-        }
-        
-        .hamburger-btn span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: #333;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-        
-        .hamburger-menu.active .hamburger-btn span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        
-        .hamburger-menu.active .hamburger-btn span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger-menu.active .hamburger-btn span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-        
-        .hamburger-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 20px;
-            display: none;
-            z-index: 1001;
-        }
-        
-        .hamburger-menu.active .hamburger-content {
-            display: block;
-        }
-        
-        .hamburger-links {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .hamburger-links li {
-            margin-bottom: 10px;
-        }
-        
-        .hamburger-links a {
-            color: #333;
-            text-decoration: none;
-            font-size: 16px;
-            display: block;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .hamburger-links a:hover {
-            color: #bb1919;
-        }
-        
-        .hamburger-user-actions {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .hamburger-user-actions a {
-            color: #bb1919;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
         /* ناوبری اصلی */
         .bbc-nav {
             background-color: #2f2f2f;
@@ -311,16 +198,6 @@ layout: null
             width: 100%;
         }
         
-        .slide-category {
-            background-color: #bb1919;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 14px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        
         .slide-title {
             font-size: 28px;
             margin-bottom: 10px;
@@ -394,24 +271,41 @@ layout: null
             left: 20px;
         }
         
+        /* نوار جداکننده زیبا */
+        .divider-section {
+            margin: 60px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .divider-icon {
+            font-size: 40px;
+            color: #bb1919;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .divider-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #bb1919, transparent);
+            position: relative;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        
+        .divider-line::before {
+            content: "✧";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f6f6f6;
+            color: #bb1919;
+            padding: 0 15px;
+            font-size: 20px;
+        }
+        
         /* بخش پست‌های دو ستونی */
-        .content-header {
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #bb1919;
-        }
-        
-        .content-title {
-            font-size: 28px;
-            color: #2f2f2f;
-            margin-bottom: 10px;
-        }
-        
-        .content-subtitle {
-            font-size: 16px;
-            color: #666;
-        }
-        
         .two-column-posts {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -440,14 +334,6 @@ layout: null
         
         .post-content {
             padding: 20px;
-        }
-        
-        .post-category {
-            color: #bb1919;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 10px;
-            display: block;
         }
         
         .post-title {
@@ -527,10 +413,6 @@ layout: null
         
         /* رسپانسیو */
         @media (max-width: 1024px) {
-            .bbc-search {
-                width: 200px;
-            }
-            
             .nav-link {
                 padding: 15px 12px;
                 font-size: 14px;
@@ -551,17 +433,12 @@ layout: null
             }
             
             .header-main {
-                flex-wrap: wrap;
-            }
-            
-            .bbc-search {
-                order: 3;
-                width: 100%;
-                margin-top: 15px;
+                justify-content: center;
             }
             
             .nav-menu {
                 flex-wrap: wrap;
+                justify-content: center;
             }
             
             .nav-link {
@@ -625,35 +502,6 @@ layout: null
         <div class="bbc-container">
             <div class="header-main">
                 <a href="#" class="bbc-logo">پاسگاه</a>
-                
-                <div class="bbc-search">
-                    <input type="text" placeholder="جستجو در پاسگاه">
-                    <button>🔍</button>
-                </div>
-                
-                <!-- منوی همبرگر جایگزین ورود/ثبت‌نام -->
-                <div class="hamburger-menu">
-                    <button class="hamburger-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    
-                    <div class="hamburger-content">
-                        <ul class="hamburger-links">
-                            <li><a href="#">صفحه اصلی</a></li>
-                            <li><a href="#">اخبار</a></li>
-                            <li><a href="#">ورزش</a></li>
-                            <li><a href="#">آب و هوا</a></li>
-                            <li><a href="#">برنامه‌ها</a></li>
-                        </ul>
-                        
-                        <div class="hamburger-user-actions">
-                            <a href="#">ورود</a>
-                            <a href="#">ثبت‌نام</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -719,7 +567,6 @@ layout: null
             <div class="slider-container">
                 <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
-                        <span class="slide-category">بیوگرافی ورزشی</span>
                         <h2 class="slide-title">بیوگرافی کامل علی دایی؛ اسطوره فوتبال ایران</h2>
                         <p class="slide-excerpt">از کودکی در اردبیل تا رکوردشکنی در بوندسلیگا و مربیگری در تیم ملی ایران</p>
                         <div class="slide-meta">
@@ -731,7 +578,6 @@ layout: null
                 
                 <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
-                        <span class="slide-category">بیوگرافی هنری</span>
                         <h2 class="slide-title">زندگی‌نامه محمود فرشچیان؛ استاد مسلم مینیاتور</h2>
                         <p class="slide-excerpt">نگاهی به زندگی و آثار استاد فرشچیان، نقاش برجسته معاصر ایران</p>
                         <div class="slide-meta">
@@ -743,7 +589,6 @@ layout: null
                 
                 <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
-                        <span class="slide-category">بیوگرافی علمی</span>
                         <h2 class="slide-title">مروری بر زندگی مریم میرزاخانی؛ نابغه ریاضی جهان</h2>
                         <p class="slide-excerpt">از المپیاد ریاضی تا کسب مدال فیلدز، داستان زندگی اولین زن برنده این جایزه</p>
                         <div class="slide-meta">
@@ -764,18 +609,18 @@ layout: null
             </div>
         </section>
         
+        <!-- نوار جداکننده زیبا -->
+        <div class="divider-section">
+            <div class="divider-icon">★</div>
+            <div class="divider-line"></div>
+        </div>
+        
         <!-- پست‌های دو ستونی -->
         <section class="posts-section">
-            <div class="content-header">
-                <h1 class="content-title">مطالب اخیر</h1>
-                <p class="content-subtitle">جدیدترین بیوگرافی‌ها و مقالات وبلاگ پاسگاه</p>
-            </div>
-            
             <div class="two-column-posts">
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1727&q=80')"></div>
                     <div class="post-content">
-                        <span class="post-category">بیوگرافی سینمایی</span>
                         <h2 class="post-title">داستان زندگی محمدعلی کشاورز</h2>
                         <p class="post-excerpt">از تئاتر تا سینما، نگاهی به کارنامه هنری استاد کشاورز و نقش‌آفرینی‌های ماندگارش در سینمای ایران</p>
                         <div class="post-meta">
@@ -788,7 +633,6 @@ layout: null
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
                     <div class="post-content">
-                        <span class="post-category">بیوگرافی سیاسی</span>
                         <h2 class="post-title">زندگی‌نامه محمد مصدق</h2>
                         <p class="post-excerpt">از وکالت تا نخست‌وزیری، نگاهی به زندگی پر فراز و نشیب محمد مصدق و ملی شدن صنعت نفت ایران</p>
                         <div class="post-meta">
@@ -801,7 +645,6 @@ layout: null
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
                     <div class="post-content">
-                        <span class="post-category">بیوگرافی موسیقی</span>
                         <h2 class="post-title">حسین علیزاده؛ استاد سه‌تار و آهنگساز</h2>
                         <p class="post-excerpt">از نوازندگی تا آهنگسازی، مروری بر زندگی و آثار حسین علیزاده، استاد مسلم موسیقی ایرانی</p>
                         <div class="post-meta">
@@ -814,7 +657,6 @@ layout: null
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')"></div>
                     <div class="post-content">
-                        <span class="post-category">بیوگرافی ادبی</span>
                         <h2 class="post-title">صادق هدایت؛ پدر داستان نویسی مدرن ایران</h2>
                         <p class="post-excerpt">از بوف کور تا نویسندگی در تبعید، نگاهی به زندگی و آثار صادق هدایت، نویسنده پرآوازه ایرانی</p>
                         <div class="post-meta">
@@ -827,7 +669,6 @@ layout: null
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
                     <div class="post-content">
-                        <span class="post-category">بیوگرافی ورزشی</span>
                         <h2 class="post-title">بهمن عالیشاه؛ ستاره فوتبال ایران</h2>
                         <p class="post-excerpt">از جوانی در باشگاه پرسپولیس تا بازی در لیگ قطر، نگاهی به زندگی حرفه‌ای بهمن عالیشاه</p>
                         <div class="post-meta">
@@ -840,7 +681,6 @@ layout: null
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
                     <div class="post-content">
-                        <span class="post-category">بیوگرافی تجاری</span>
                         <h2 class="post-title">حسین ثابت؛ امپراتور تجارت ایران</h2>
                         <p class="post-excerpt">از مغازه‌داری کوچک تا تاسیس امپراتوری تجاری، داستان زندگی حسین ثابت، تاجر نامدار ایرانی</p>
                         <div class="post-meta">
@@ -903,36 +743,13 @@ layout: null
             return formatter.format(now);
         }
         
-        // مدیریت منوی همبرگر
+        // فعال کردن منوهای کشویی در موبایل
         document.addEventListener('DOMContentLoaded', function() {
             const dateElement = document.querySelector('.bbc-date');
             if (dateElement) {
                 dateElement.textContent = getCurrentPersianDate();
             }
             
-            // فعال کردن منوی همبرگر
-            const hamburgerBtn = document.querySelector('.hamburger-btn');
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            
-            hamburgerBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                hamburgerMenu.classList.toggle('active');
-            });
-            
-            // بستن منوی همبرگر با کلیک خارج از آن
-            document.addEventListener('click', function() {
-                hamburgerMenu.classList.remove('active');
-            });
-            
-            // جلوگیری از بسته شدن منو هنگام کلیک روی محتوای آن
-            const hamburgerContent = document.querySelector('.hamburger-content');
-            if (hamburgerContent) {
-                hamburgerContent.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            }
-            
-            // فعال کردن منوهای کشویی در موبایل
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => {
                 item.addEventListener('click', function(e) {
