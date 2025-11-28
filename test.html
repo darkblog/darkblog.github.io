@@ -103,11 +103,93 @@ layout: null
             color: #666;
         }
         
-        .user-actions a {
+        /* منوی همبرگر */
+        .hamburger-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            padding: 0;
+        }
+        
+        .hamburger-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #333;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        
+        .hamburger-menu.active .hamburger-btn span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger-menu.active .hamburger-btn span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-menu.active .hamburger-btn span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .hamburger-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .hamburger-menu.active .hamburger-content {
+            display: block;
+        }
+        
+        .hamburger-links {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .hamburger-links li {
+            margin-bottom: 10px;
+        }
+        
+        .hamburger-links a {
             color: #333;
             text-decoration: none;
-            margin-right: 15px;
+            font-size: 16px;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hamburger-links a:hover {
+            color: #bb1919;
+        }
+        
+        .hamburger-user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .hamburger-user-actions a {
+            color: #bb1919;
+            text-decoration: none;
             font-size: 14px;
+            font-weight: 500;
         }
         
         /* ناوبری اصلی */
@@ -378,9 +460,28 @@ layout: null
                     <button>🔍</button>
                 </div>
                 
-                <div class="user-actions">
-                    <a href="#">ورود</a>
-                    <a href="#">ثبت‌نام</a>
+                <!-- منوی همبرگر جایگزین ورود/ثبت‌نام -->
+                <div class="hamburger-menu">
+                    <button class="hamburger-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <div class="hamburger-content">
+                        <ul class="hamburger-links">
+                            <li><a href="#">صفحه اصلی</a></li>
+                            <li><a href="#">اخبار</a></li>
+                            <li><a href="#">ورزش</a></li>
+                            <li><a href="#">آب و هوا</a></li>
+                            <li><a href="#">برنامه‌ها</a></li>
+                        </ul>
+                        
+                        <div class="hamburger-user-actions">
+                            <a href="#">ورود</a>
+                            <a href="#">ثبت‌نام</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -548,11 +649,33 @@ layout: null
             return formatter.format(now);
         }
         
-        // به روز رسانی تاریخ در نوار بالایی
+        // مدیریت منوی همبرگر
         document.addEventListener('DOMContentLoaded', function() {
             const dateElement = document.querySelector('.bbc-date');
             if (dateElement) {
                 dateElement.textContent = getCurrentPersianDate();
+            }
+            
+            // فعال کردن منوی همبرگر
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            
+            hamburgerBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                hamburgerMenu.classList.toggle('active');
+            });
+            
+            // بستن منوی همبرگر با کلیک خارج از آن
+            document.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+            });
+            
+            // جلوگیری از بسته شدن منو هنگام کلیک روی محتوای آن
+            const hamburgerContent = document.querySelector('.hamburger-content');
+            if (hamburgerContent) {
+                hamburgerContent.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
             }
             
             // فعال کردن منوهای کشویی در موبایل
