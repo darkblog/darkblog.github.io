@@ -704,17 +704,34 @@ layout: null
                 <!-- محتوای واقعی وبلاگ شما اینجا لود خواهد شد -->
                 {% for post in site.posts limit:10 %}
                 <article class="post-card">
-                    <div class="post-image" style="background-image: url('{{ post.image | default: '/assets/images/default-post.jpg' }}')"></div>
+                    <div class="post-image" style="background-image: url('
+                        {% comment %} استخراج اولین تصویر از محتوای پست {% endcomment %}
+                        {% assign first_image = post.content | split: '<img' | last | split: 'src=\"' | last | split: '\"' | first %}
+                        {% if first_image %}
+                            {{ first_image }}
+                        {% else %}
+                            /assets/images/default-post.jpg
+                        {% endif %}
+                    ')"></div>
                     <div class="post-content">
                         <h2 class="post-title">
                             <a href="{{ post.url }}">{{ post.title }}</a>
                         </h2>
                         <p class="post-excerpt">
-                            {% comment %} نمایش فقط خط اول محتوا {% endcomment %}
-                            {{ post.content | strip_html | split: '.' | first | truncate: 120 }}
+                            {% comment %} نمایش خلاصه پست {% endcomment %}
+                            {{ post.excerpt | strip_html | truncate: 200 }}
                         </p>
                         <div class="post-meta">
-                            <span>{{ post.date | jdate: "%d %B %Y" }}</span>
+                            <span>
+                                {% comment %} نمایش تاریخ شمسی {% endcomment %}
+                                {% assign persian_months = "فروردین,اردیبهشت,خرداد,تیر,مرداد,شهریور,مهر,آبان,آذر,دی,بهمن,اسفند" | split: "," %}
+                                {% assign post_date = post.date %}
+                                {% assign day = post_date | date: "%-d" %}
+                                {% assign month_index = post_date | date: "%-m" | minus: 1 %}
+                                {% assign month = persian_months[month_index] %}
+                                {% assign year = post_date | date: "%Y" | minus: 621 %}
+                                {{ day }} {{ month }} {{ year }}
+                            </span>
                             <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} دقیقه خواندن</span>
                         </div>
                     </div>
@@ -767,6 +784,27 @@ layout: null
             
             // اسلایدر خودکار
             setInterval(nextSlide, 5000);
+            
+            // نمایش تاریخ شمسی فعلی در هدر
+            function getCurrentPersianDate() {
+                const persianMonths = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
+                const persianDays = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
+                
+                const now = new Date();
+                const persianDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tehran' }));
+                
+                // تبدیل به تاریخ شمسی (این یک تبدیل ساده است)
+                // برای دقت بیشتر بهتر است از کتابخانه‌های تخصصی استفاده کنید
+                const day = persianDate.getDate();
+                const month = persianMonths[persianDate.getMonth()];
+                const year = 1400 + (persianDate.getFullYear() - 2021); // تقریب ساده
+                const dayOfWeek = persianDays[persianDate.getDay()];
+                
+                return `${dayOfWeek}، ${day} ${month} ${year}`;
+            }
+            
+            // به روزرسانی تاریخ در هدر
+            document.getElementById('currentDate').textContent = getCurrentPersianDate();
         });
     </script>
 </body>
