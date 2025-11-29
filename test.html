@@ -255,7 +255,7 @@ layout: null
         .slider-dot {
             width: 14px;
             height: 14px;
-            border-radius: 50%;
+            borderRadius: 50%;
             background-color: rgba(255,255,255,0.5);
             cursor: pointer;
             transition: all 0.3s;
@@ -451,6 +451,14 @@ layout: null
             border-color: rgba(220, 53, 69, 0.3);
         }
         
+        /* استایل جدید برای بخش زمان مطالعه و دکمه ادامه مطلب */
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
         @media (max-width: 1024px) {
             .nav-link {
                 padding: 0 16px;
@@ -528,6 +536,13 @@ layout: null
             .reading-time {
                 font-size: 0.8rem;
                 padding: 3px 8px;
+            }
+            
+            /* تنظیمات ریسپانسیو برای بخش جدید */
+            .post-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
         }
         
@@ -648,10 +663,10 @@ layout: null
                         <p class="post-excerpt">
                             {{ post.excerpt | strip_html | truncate: 200 }}
                         </p>
-                        <div class="post-meta">
+                        <div class="post-footer">
                             <span class="reading-time">{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} دقیقه خواندن</span>
+                            <a href="{{ post.url }}" class="read-more-btn">ادامه مطلب</a>
                         </div>
-                        <a href="{{ post.url }}" class="read-more-btn">ادامه مطلب</a>
                     </div>
                 </article>
                 {% endfor %}
