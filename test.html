@@ -25,19 +25,33 @@ layout: null
         }
         
         body {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: 
+                linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(233, 236, 239, 0.95) 100%),
+                url('https://www.pasgah.org/biography/pasgah.webp') center/cover fixed no-repeat;
             color: #333;
             line-height: 1.7;
             min-height: 100vh;
             position: relative;
         }
         
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        
         .main-header {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.95) 0%, rgba(200, 35, 51, 0.95) 100%);
             box-shadow: 0 4px 20px rgba(220, 53, 69, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
         
         .header-container {
@@ -76,6 +90,13 @@ layout: null
             display: block;
         }
         
+        .site-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+        
         .current-date {
             color: white;
             font-size: 1rem;
@@ -88,11 +109,12 @@ layout: null
         }
         
         .main-nav {
-            background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+            background: linear-gradient(135deg, rgba(52, 58, 64, 0.95) 0%, rgba(73, 80, 87, 0.95) 100%);
             position: relative;
             overflow: hidden;
             border-top: 1px solid rgba(255,255,255,0.1);
             height: 60px;
+            backdrop-filter: blur(10px);
         }
         
         .nav-container {
@@ -297,68 +319,6 @@ layout: null
             left: 25px;
         }
         
-        .patriotic-section {
-            text-align: center;
-            margin: 60px 0;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.05) 0%, rgba(199, 0, 23, 0.05) 100%);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(220, 53, 69, 0.1);
-        }
-        
-        .patriotic-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #dc3545, #c70017, #dc3545);
-        }
-        
-        .crown-symbol {
-            font-size: 4rem;
-            color: #dc3545;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-            display: block;
-        }
-        
-        .patriotic-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #343a40;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-        
-        .patriotic-subtitle {
-            font-size: 1.3rem;
-            color: #dc3545;
-            font-weight: 600;
-            margin-bottom: 25px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-        
-        .cyrus-quote {
-            font-size: 1.1rem;
-            color: #495057;
-            font-style: italic;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-            padding: 20px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 12px;
-            border-right: 4px solid #dc3545;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
         .two-column-posts {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -366,13 +326,14 @@ layout: null
         }
         
         .post-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0,0,0,0.03);
             position: relative;
+            backdrop-filter: blur(5px);
         }
         
         .post-card::before {
@@ -389,6 +350,7 @@ layout: null
         .post-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .post-image {
@@ -458,10 +420,6 @@ layout: null
             .slide-title {
                 font-size: 2rem;
             }
-            
-            .patriotic-title {
-                font-size: 1.9rem;
-            }
         }
         
         @media (max-width: 768px) {
@@ -492,6 +450,10 @@ layout: null
                 height: 30px;
             }
             
+            .site-title {
+                font-size: 1.3rem;
+            }
+            
             .nav-menu {
                 padding: 0;
             }
@@ -509,14 +471,6 @@ layout: null
             .slide-title {
                 font-size: 1.6rem;
                 padding: 15px 30px;
-            }
-            
-            .patriotic-title {
-                font-size: 1.6rem;
-            }
-            
-            .patriotic-subtitle {
-                font-size: 1.1rem;
             }
             
             .two-column-posts {
@@ -537,23 +491,6 @@ layout: null
             .slider-nav {
                 display: none;
             }
-            
-            .patriotic-title {
-                font-size: 1.4rem;
-            }
-            
-            .patriotic-subtitle {
-                font-size: 1rem;
-            }
-            
-            .cyrus-quote {
-                font-size: 1rem;
-                padding: 15px;
-            }
-            
-            .crown-symbol {
-                font-size: 3rem;
-            }
 
             .logo-wrapper {
                 padding: 5px 8px;
@@ -561,6 +498,10 @@ layout: null
             
             .logo-image {
                 height: 25px;
+            }
+            
+            .site-title {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -573,6 +514,7 @@ layout: null
                     <div class="logo-wrapper">
                         <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
                     </div>
+                    <h1 class="site-title">وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</h1>
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
@@ -636,16 +578,6 @@ layout: null
                     <div class="slider-dot"></div>
                     <div class="slider-dot"></div>
                 </div>
-            </div>
-        </section>
-        
-        <section class="patriotic-section">
-            <span class="crown-symbol">👑</span>
-            <h2 class="patriotic-title">کوروش بزرگ تو را می‌خواند</h2>
-            <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
-            <div class="cyrus-quote">
-                "منم کوروش، شاه جهان، شاه بزرگ، شاه دادگر، شاه بابل، شاه سومر و اکد، شاه چهار گوشه جهان هستی... 
-                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزاء بدنم ذرات خاک ایران را تشکیل دهد"
             </div>
         </section>
         
