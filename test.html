@@ -54,7 +54,7 @@ layout: null
             align-items: center;
             padding: 15px 0;
             height: 80px;
-            gap: 20px;
+            gap: 10px;
         }
         
         .logo-container {
@@ -65,12 +65,13 @@ layout: null
         
         .logo-wrapper {
             background: white;
-            padding: 12px 16px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 6px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.25);
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 44px;
         }
         
         .logo-link {
@@ -80,7 +81,7 @@ layout: null
         }
         
         .logo-image {
-            height: 45px;
+            height: 24px;
             width: auto;
             display: block;
         }
@@ -124,6 +125,10 @@ layout: null
             border: 1px solid rgba(255, 255, 255, 0.2);
             white-space: nowrap;
             flex-shrink: 0;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .nav-link:hover {
@@ -145,6 +150,7 @@ layout: null
         .posts-grid {
             display: grid;
             gap: 40px;
+            justify-items: center;
         }
         
         .post-card {
@@ -156,6 +162,8 @@ layout: null
             display: block;
             text-decoration: none;
             color: inherit;
+            width: 100%;
+            max-width: 400px;
         }
         
         .post-card:hover {
@@ -171,6 +179,7 @@ layout: null
             background-color: #f8f9fa;
             background-size: cover;
             background-position: center;
+            width: 100%;
         }
         
         .post-content {
@@ -202,17 +211,26 @@ layout: null
             .posts-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+            .post-card {
+                max-width: 100%;
+            }
         }
         
         @media (min-width: 1440px) and (max-width: 1919px) {
             .posts-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            .post-card {
+                max-width: 100%;
+            }
         }
         
         @media (min-width: 1024px) and (max-width: 1439px) {
             .posts-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .post-card {
+                max-width: 100%;
             }
         }
         
@@ -221,6 +239,9 @@ layout: null
                 grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
             }
+            .post-card {
+                max-width: 100%;
+            }
         }
         
         @media (max-width: 767px) {
@@ -228,31 +249,31 @@ layout: null
                 grid-template-columns: 1fr;
                 gap: 25px;
             }
+            .post-card {
+                max-width: 100%;
+            }
         }
         
-        /* استایل‌های خاص برای پست‌های بزرگ‌تر در صفحات عریض */
-        @media (min-width: 1440px) {
-            .post-card:first-child {
-                grid-column: span 2;
-                grid-row: span 2;
-            }
-            
-            .post-card:first-child .post-image {
-                height: 350px;
-            }
-            
-            .post-card:first-child .post-title {
-                font-size: 1.8rem;
-            }
-            
-            .post-card:first-child .post-excerpt {
-                font-size: 1.2rem;
+        /* استایل برای صفحات با تعداد فرد پست - مرکزچین کردن آخرین پست */
+        .posts-grid:has(.post-card:nth-last-child(1):nth-child(odd)) {
+            justify-content: center;
+        }
+        
+        .posts-grid:has(.post-card:nth-last-child(1):nth-child(odd)) .post-card:last-child {
+            grid-column: 1 / -1;
+            justify-self: center;
+            max-width: 400px;
+        }
+        
+        @media (min-width: 1024px) {
+            .posts-grid:has(.post-card:nth-last-child(1):nth-child(odd)) .post-card:last-child {
+                grid-column: span 1;
             }
         }
         
         @media (max-width: 1024px) {
             .nav-link {
-                padding: 8px 16px;
+                padding: 10px 16px;
                 font-size: 0.95rem;
             }
             
@@ -268,11 +289,17 @@ layout: null
             }
             
             .logo-wrapper {
-                padding: 10px 14px;
+                padding: 8px 14px;
+                height: 40px;
             }
             
             .logo-image {
+                height: 22px;
+            }
+            
+            .nav-link {
                 height: 40px;
+                padding: 8px 14px;
             }
             
             .post-image {
@@ -291,15 +318,17 @@ layout: null
             }
             
             .logo-wrapper {
-                padding: 8px 12px;
+                padding: 6px 12px;
+                height: 36px;
             }
             
             .logo-image {
-                height: 35px;
+                height: 20px;
             }
             
             .nav-link {
-                padding: 8px 14px;
+                height: 36px;
+                padding: 6px 12px;
                 font-size: 0.9rem;
             }
             
@@ -330,8 +359,18 @@ layout: null
         
         @media (max-width: 400px) {
             .nav-link {
-                padding: 7px 12px;
+                padding: 5px 10px;
                 font-size: 0.85rem;
+                height: 34px;
+            }
+            
+            .logo-wrapper {
+                padding: 5px 10px;
+                height: 34px;
+            }
+            
+            .logo-image {
+                height: 18px;
             }
         }
     </style>
