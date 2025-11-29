@@ -90,17 +90,6 @@ layout: null
             margin-right: 10px;
         }
         
-        .current-date {
-            color: white;
-            font-size: 1rem;
-            font-weight: 500;
-            background: rgba(0,0,0,0.2);
-            padding: 8px 16px;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
         .main-nav {
             background: linear-gradient(135deg, #343a40 0%, #495057 100%);
             position: relative;
@@ -358,6 +347,9 @@ layout: null
         
         .post-content {
             padding: 28px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 220px);
         }
         
         .post-title {
@@ -381,20 +373,36 @@ layout: null
         .post-excerpt {
             font-size: 1.05rem;
             color: #6c757d;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             line-height: 1.7;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            flex-grow: 1;
         }
         
-        .post-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-            color: #868e96;
-            font-weight: 500;
+        .read-more-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            align-self: flex-start;
+        }
+        
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+            background: linear-gradient(135deg, #c82333, #a71e2a);
         }
         
         @media (max-width: 1024px) {
@@ -418,22 +426,12 @@ layout: null
         
         @media (max-width: 768px) {
             .header-top {
-                flex-direction: row;
-                justify-content: space-between;
+                justify-content: flex-start;
                 height: 50px;
             }
             
             .main-nav {
                 height: 50px;
-            }
-            
-            .logo-container {
-                order: 1;
-            }
-            
-            .current-date {
-                order: 2;
-                font-size: 0.9rem;
             }
             
             .logo-wrapper {
@@ -511,10 +509,9 @@ layout: null
                         <div class="logo-wrapper">
                             <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
                         </div>
-                        <h1 class="site-title">پاسگاه</h1>
+                        <h1 class="site-title">وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</h1>
                     </a>
                 </div>
-                <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
         </div>
         
@@ -591,18 +588,7 @@ layout: null
                         <p class="post-excerpt">
                             {{ post.excerpt | strip_html | truncate: 200 }}
                         </p>
-                        <div class="post-meta">
-                            <span>
-                                {% assign persian_months = "فروردین,اردیبهشت,خرداد,تیر,مرداد,شهریور,مهر,آبان,آذر,دی,بهمن,اسفند" | split: "," %}
-                                {% assign post_date = post.date %}
-                                {% assign day = post_date | date: "%-d" %}
-                                {% assign month_index = post_date | date: "%-m" | minus: 1 %}
-                                {% assign month = persian_months[month_index] %}
-                                {% assign year = post_date | date: "%Y" | minus: 621 %}
-                                {{ day }} {{ month }} {{ year }}
-                            </span>
-                            <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} دقیقه خواندن</span>
-                        </div>
+                        <a href="{{ post.url }}" class="read-more-btn">ادامه مطلب</a>
                     </div>
                 </article>
                 {% endfor %}
@@ -649,23 +635,6 @@ layout: null
             });
             
             setInterval(nextSlide, 5000);
-            
-            function getCurrentPersianDate() {
-                const persianMonths = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
-                const persianDays = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
-                
-                const now = new Date();
-                const persianDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tehran' }));
-                
-                const day = persianDate.getDate();
-                const month = persianMonths[persianDate.getMonth()];
-                const year = 1400 + (persianDate.getFullYear() - 2021);
-                const dayOfWeek = persianDays[persianDate.getDay()];
-                
-                return `${dayOfWeek}، ${day} ${month} ${year}`;
-            }
-            
-            document.getElementById('currentDate').textContent = getCurrentPersianDate();
         });
     </script>
 </body>
