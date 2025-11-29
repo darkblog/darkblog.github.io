@@ -694,7 +694,7 @@ layout: null
             <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
             <div class="cyrus-quote">
                 "منم کوروش، شاه جهان، شاه بزرگ، شاه توانمند، شاه بابل، شاه سومر و اکد، شاه چهار گوشه جهان... 
-                فرمان دادم بدنم را بدون تابوت و mومیایی به خاک بسپارند تا اجزای بدنم خاک ایران را تشکیل دهد"
+                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزای بدنم خاک ایران را تشکیل دهد"
             </div>
         </section>
         
@@ -702,70 +702,41 @@ layout: null
         <section class="posts-section">
             <div class="two-column-posts">
                 <!-- محتوای واقعی وبلاگ شما اینجا لود خواهد شد -->
-                <!-- برای تست، از محتوای ثابت استفاده می‌کنیم -->
+                {% for post in site.posts limit:10 %}
                 <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-image" style="background-image: url('
+                        {% comment %} استخراج اولین تصویر از محتوای پست {% endcomment %}
+                        {% assign first_image = post.content | split: '<img' | last | split: 'src=\"' | last | split: '\"' | first %}
+                        {% if first_image %}
+                            {{ first_image }}
+                        {% else %}
+                            /assets/images/default-post.jpg
+                        {% endif %}
+                    ')"></div>
                     <div class="post-content">
                         <h2 class="post-title">
-                            <a href="/biography/ali-daei/">بیوگرافی کامل علی دایی؛ اسطوره فوتبال ایران</a>
+                            <a href="{{ post.url }}">{{ post.title }}</a>
                         </h2>
                         <p class="post-excerpt">
-                            علی دایی، اسطوره فوتبال ایران و رکورددار گلزنی در تیم ملی ایران است. او در ۲۱ فروردین ۱۳۴۸ در تبریز به دنیا آمد و دوران حرفه‌ای خود را با تیم‌های بزرگی مانند بایرن مونیخ و هرتابرلین گذراند.
+                            {% comment %} نمایش خلاصه پست {% endcomment %}
+                            {{ post.excerpt | strip_html | truncate: 200 }}
                         </p>
                         <div class="post-meta">
-                            <span>۸ آذر ۱۴۰۴</span>
-                            <span>۵ دقیقه خواندن</span>
+                            <span>
+                                {% comment %} نمایش تاریخ شمسی {% endcomment %}
+                                {% assign persian_months = "فروردین,اردیبهشت,خرداد,تیر,مرداد,شهریور,مهر,آبان,آذر,دی,بهمن,اسفند" | split: "," %}
+                                {% assign post_date = post.date %}
+                                {% assign day = post_date | date: "%-d" %}
+                                {% assign month_index = post_date | date: "%-m" | minus: 1 %}
+                                {% assign month = persian_months[month_index] %}
+                                {% assign year = post_date | date: "%Y" | minus: 621 %}
+                                {{ day }} {{ month }} {{ year }}
+                            </span>
+                            <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} دقیقه خواندن</span>
                         </div>
                     </div>
                 </article>
-                
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h2 class="post-title">
-                            <a href="/biography/mahmoud-farshchian/">زندگی‌نامه محمود فرشچیان؛ استاد مسلم مینیاتور</a>
-                        </h2>
-                        <p class="post-excerpt">
-                            محمود فرشچیان، نقاش و مینیاتوریست برجسته ایرانی است که آثارش در موزه‌های معتبر جهان نگهداری می‌شود. او در ۴ بهمن ۱۳۰۸ در اصفهان متولد شد و سبک منحصر به فردی در هنر مینیاتور ایجاد کرد.
-                        </p>
-                        <div class="post-meta">
-                            <span>۷ آذر ۱۴۰۴</span>
-                            <span>۴ دقیقه خواندن</span>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h2 class="post-title">
-                            <a href="/biography/maryam-mirzakhani/">مروری بر زندگی مریم میرزاخانی؛ نابغه ریاضی جهان</a>
-                        </h2>
-                        <p class="post-excerpt">
-                            مریم میرزاخانی، ریاضیدان نابغه ایرانی و اولین زنی بود که موفق به دریافت مدال فیلدز، بالاترین جایزه ریاضیات جهان شد. او در ۲۲ اردیبهشت ۱۳۵۶ در تهران به دنیا آمد و استاد دانشگاه استنفورد بود.
-                        </p>
-                        <div class="post-meta">
-                            <span>۶ آذر ۱۴۰۴</span>
-                            <span>۶ دقیقه خواندن</span>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1727&q=80')"></div>
-                    <div class="post-content">
-                        <h2 class="post-title">
-                            <a href="/biography/mohammadali-keshavarz/">داستان زندگی محمدعلی کشاورز</a>
-                        </h2>
-                        <p class="post-excerpt">
-                            محمدعلی کشاورز، بازیگر پیشکسوت سینما و تئاتر ایران است که با بازی در فیلم‌های ماندگاری چون گاو و داش آکل به شهرت رسید. او در ۱۱ مهر ۱۳۰۹ در تهران متولد شد و بیش از شش دهه در عرصه هنر فعال بوده است.
-                        </p>
-                        <div class="post-meta">
-                            <span>۵ آذر ۱۴۰۴</span>
-                            <span>۳ دقیقه خواندن</span>
-                        </div>
-                    </div>
-                </article>
+                {% endfor %}
             </div>
         </section>
     </main>
