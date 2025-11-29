@@ -12,7 +12,7 @@ layout: null
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <id>{{ post.url | absolute_url }}</id>
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <updated>{{ site.time | date_to_xmlschema }}</updated>
     <link rel="canonical" href="{{ post.url | absolute_url }}"/>
     <author>
       <name>وبلاگ پاسگاه</name>
