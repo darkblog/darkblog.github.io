@@ -11,6 +11,8 @@ layout: null
     <meta name="description" content="وبلاگ پاسگاه؛ بیوگرافی افراد مشهور. از خاطرات تا دستاوردهای افراد مشهور ایران و جهان">
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
+    <meta http-equiv="last-modified" content="{% raw %}{{ site.time | date_to_xmlschema }}{% endraw %}">
+    <meta name="robots" content="noarchive">
     <link rel="icon" type="image/webp" href="/biography/logo.webp">
     <meta name="theme-color" content="#dc3545">
     
@@ -567,7 +569,7 @@ layout: null
                         <div class="logo-wrapper">
                             <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
                         </div>
-                        <h1 class="site-title">وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</h1>
+                        <h1 class="site-title">پاسگاه</h1>
                     </a>
                 </div>
             </div>
@@ -636,7 +638,7 @@ layout: null
         
         <section class="posts-section">
             <div class="two-column-posts">
-                {% for post in site.posts limit:50 %}
+                {% for post in site.posts limit:20 %}
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('{{ post.image | default: '/assets/images/default-post.jpg' }}')"></div>
                     <div class="post-content">
