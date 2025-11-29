@@ -70,37 +70,26 @@ layout: null
             padding: 15px 0;
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo-image {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
-            overflow: hidden;
-        }
-        
-        .logo-image img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-        
         .logo-text {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            color: white;
+            background: linear-gradient(135deg, #239F40 0%, #FFFFFF 50%, #DA0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-shadow: 0 2px 8px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .current-date {
@@ -493,22 +482,14 @@ layout: null
                 justify-content: space-between;
             }
             
-            .logo-container {
+            .logo-text {
                 order: 1;
+                font-size: 1.8rem;
             }
             
             .current-date {
                 order: 2;
                 font-size: 0.9rem;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-            
-            .logo-image {
-                width: 50px;
-                height: 50px;
             }
             
             .nav-menu {
@@ -573,14 +554,8 @@ layout: null
                 font-size: 3rem;
             }
 
-            .logo-image {
-                width: 45px;
-                height: 45px;
-            }
-
-            .logo-image img {
-                width: 30px;
-                height: 30px;
+            .logo-text {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -593,13 +568,7 @@ layout: null
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
-                <div class="logo-container">
-                    <div class="logo-image">
-                        <!-- لوگوی سایت از آدرس داده شده -->
-                        <img src="https://www.pasgah.org/biography.svg" alt="پاسگاه">
-                    </div>
-                    <div class="logo-text">پاسگاه</div>
-                </div>
+                <div class="logo-text">پاسگاه</div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
         </div>
@@ -679,9 +648,10 @@ layout: null
             </div>
         </section>
         
-        <!-- پست‌های دو ستونی -->
+        <!-- پست‌های دو ستونی - 10 پست -->
         <section class="posts-section">
             <div class="two-column-posts">
+                <!-- پست 1 -->
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1727&q=80')"></div>
                     <div class="post-content">
@@ -694,6 +664,7 @@ layout: null
                     </div>
                 </article>
                 
+                <!-- پست 2 -->
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
                     <div class="post-content">
@@ -706,6 +677,7 @@ layout: null
                     </div>
                 </article>
                 
+                <!-- پست 3 -->
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
                     <div class="post-content">
@@ -718,6 +690,7 @@ layout: null
                     </div>
                 </article>
                 
+                <!-- پست 4 -->
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')"></div>
                     <div class="post-content">
@@ -726,6 +699,84 @@ layout: null
                         <div class="post-meta">
                             <span>۹ فروردین ۱۴۰۳</span>
                             <span>۱۱ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- پست 5 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">بهمن عالیشاه؛ ستاره فوتبال ایران</h2>
+                        <p class="post-excerpt">از جوانی در باشگاه پرسپولیس تا بازی در لیگ قطر، نگاهی به زندگی حرفه‌ای بهمن عالیشاه</p>
+                        <div class="post-meta">
+                            <span>۸ فروردین ۱۴۰۳</span>
+                            <span>۷ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- پست 6 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">حسین ثابت؛ امپراتور تجارت ایران</h2>
+                        <p class="post-excerpt">از مغازه‌داری کوچک تا تاسیس امپراتوری تجاری، داستان زندگی حسین ثابت، تاجر نامدار ایرانی</p>
+                        <div class="post-meta">
+                            <span>۷ فروردین ۱۴۰۳</span>
+                            <span>۱۰ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- پست 7 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1571019614244-c5d476efa14e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">پروین اعتصامی؛ شاعر بزرگ ایرانی</h2>
+                        <p class="post-excerpt">از کودکی در تبریز تا اشعار ماندگار، نگاهی به زندگی و آثار پروین اعتصامی، شاعر نامدار ایران</p>
+                        <div class="post-meta">
+                            <span>۶ فروردین ۱۴۰۳</span>
+                            <span>۹ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- پست 8 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">عبدالحسین سپنتا؛ پدر سینمای ایران</h2>
+                        <p class="post-excerpt">از اولین فیلم‌های ناطق تا پایه‌گذاری سینمای ایران، مروری بر زندگی عبدالحسین سپنتا</p>
+                        <div class="post-meta">
+                            <span>۵ فروردین ۱۴۰۳</span>
+                            <span>۱۱ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- پست 9 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">سیمین بهبهانی؛ غزل سرای بزرگ معاصر</h2>
+                        <p class="post-excerpt">از شعرهای عاشقانه تا مبارزات اجتماعی، نگاهی به زندگی و آثار سیمین بهبهانی</p>
+                        <div class="post-meta">
+                            <span>۴ فروردین ۱۴۰۳</span>
+                            <span>۱۰ دقیقه خواندن</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- پست 10 -->
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
+                    <div class="post-content">
+                        <h2 class="post-title">جمشید مشایخی؛ استاد بازیگری ایران</h2>
+                        <p class="post-excerpt">از تئاتر تا سینما و تلویزیون، نگاهی به کارنامه درخشان جمشید مشایخی در عرصه بازیگری</p>
+                        <div class="post-meta">
+                            <span>۳ فروردین ۱۴۰۳</span>
+                            <span>۸ دقیقه خواندن</span>
                         </div>
                     </div>
                 </article>
