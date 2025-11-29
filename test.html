@@ -83,6 +83,14 @@ layout: null
             filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
         }
         
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: -0.5px;
+        }
+        
         .current-date {
             color: white;
             font-size: 1rem;
@@ -594,8 +602,21 @@ layout: null
                             </linearGradient>
                         </defs>
                         <rect x="0" y="0" width="180" height="50" rx="8" fill="url(#logoGradient)" />
-                        <text x="90" y="30" text-anchor="middle" font-family="Vazirmatn" font-size="18" font-weight="bold" fill="white">پاسگاه</text>
-                        <path d="M30,15 L35,10 L40,15 L45,10 L50,15 L55,10 L60,15 L65,10 L70,15 L75,10 L80,15 L85,10 L90,15 L95,10 L100,15 L105,10 L110,15 L115,10 L120,15 L125,10 L130,15 L135,10 L140,15 L145,10 L150,15" stroke="white" stroke-width="2" fill="none" />
+                        <!-- لوگوی شما با اندازه بزرگتر -->
+                        <g transform="translate(20, 5) scale(0.7)">
+                            <!-- Main letter structure -->
+                            <!-- Vertical stem -->
+                            <rect x="14" y="10" width="8" height="38" rx="2" fill="white"/>
+                            <!-- Top horizontal bar -->
+                            <rect x="22" y="10" width="26" height="8" rx="2" fill="white"/>
+                            <!-- Gentle curve (link between stem and bar) -->
+                            <path d="M22 18 C22 24, 18 28, 14 28 L14 24 C17 24, 20 22, 22 20 Z" fill="white"/>
+                            <!-- Three dots of "پ" -->
+                            <circle cx="34" cy="40" r="3.5" fill="white"/>
+                            <circle cx="41" cy="44.5" r="3.5" fill="white"/>
+                            <circle cx="48" cy="49" r="3.5" fill="white"/>
+                        </g>
+                        <text x="100" y="32" text-anchor="middle" font-family="Vazirmatn" font-size="18" font-weight="bold" fill="white">پاسگاه</text>
                     </svg>
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
