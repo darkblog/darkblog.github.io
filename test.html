@@ -115,7 +115,9 @@ layout: null
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            margin-right: 50px; /* فاصله از دکمه همبرگری */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         /* منوی همبرگری */
@@ -126,8 +128,6 @@ layout: null
             gap: 4px;
             padding: 8px;
             flex-shrink: 0;
-            position: absolute;
-            left: 15px;
         }
         
         .hamburger-line {
@@ -348,10 +348,6 @@ layout: null
                 padding: 8px 14px;
             }
             
-            .home-link {
-                margin-right: 45px;
-            }
-            
             .post-image {
                 height: 200px;
             }
@@ -375,10 +371,6 @@ layout: null
                 height: 36px;
                 padding: 6px 12px;
                 font-size: 0.9rem;
-            }
-            
-            .home-link {
-                margin-right: 40px;
             }
             
             .main-content {
