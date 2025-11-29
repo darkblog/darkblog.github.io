@@ -9,11 +9,9 @@ layout: null
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پاسگاه - فرزند کوروش بزرگ</title>
     
-    <!-- فونت وزیر از گوگل فونت -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* استایل کلی با فونت وزیر */
         * {
             margin: 0;
             padding: 0;
@@ -48,7 +46,6 @@ layout: null
             z-index: -1;
         }
         
-        /* هدر اصلی */
         .main-header {
             background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
             box-shadow: 0 4px 20px rgba(220, 53, 69, 0.3);
@@ -104,7 +101,6 @@ layout: null
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        /* ناوبری اصلی با اسکرول افقی */
         .main-nav {
             background: linear-gradient(135deg, #343a40 0%, #495057 100%);
             position: relative;
@@ -191,14 +187,12 @@ layout: null
             font-weight: 600;
         }
         
-        /* محتوای اصلی */
         .main-content {
             max-width: 1280px;
             margin: 40px auto;
             padding: 0 15px;
         }
         
-        /* اسلایدر جدیدترین پست‌ها */
         .featured-slider {
             margin-bottom: 60px;
             position: relative;
@@ -237,7 +231,7 @@ layout: null
             width: 100%;
             text-align: center;
             position: absolute;
-            top: calc(50% + 40px); /* پایین‌تر آوردن عنوان */
+            top: calc(50% + 80px);
             transform: translateY(-50%);
         }
         
@@ -253,7 +247,6 @@ layout: null
             backdrop-filter: blur(5px);
             display: inline-block;
             max-width: 90%;
-            /* حذف پس‌زمینه رنگی و اضافه کردن سایه */
             background: rgba(0, 0, 0, 0.3);
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
@@ -318,7 +311,6 @@ layout: null
             left: 25px;
         }
         
-        /* بخش شعار میهن پرستی */
         .patriotic-section {
             text-align: center;
             margin: 60px 0;
@@ -381,7 +373,6 @@ layout: null
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
-        /* بخش پست‌های دو ستونی */
         .two-column-posts {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -468,7 +459,6 @@ layout: null
             font-weight: 500;
         }
         
-        /* نقشه ایران در پس‌زمینه */
         .iran-map-background {
             position: fixed;
             bottom: 0;
@@ -484,7 +474,6 @@ layout: null
             z-index: -1;
         }
         
-        /* رسپانسیو */
         @media (max-width: 1024px) {
             .nav-link {
                 padding: 0 16px;
@@ -606,15 +595,12 @@ layout: null
     </style>
 </head>
 <body>
-    <!-- نقشه ایران در پس‌زمینه -->
     <div class="iran-map-background"></div>
 
-    <!-- هدر اصلی -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
                 <div class="logo-container">
-                    <!-- لوگو از آدرس شما -->
                     <div class="logo-wrapper">
                         <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
                     </div>
@@ -623,7 +609,6 @@ layout: null
             </div>
         </div>
         
-        <!-- ناوبری اصلی با اسکرول افقی -->
         <nav class="main-nav">
             <div class="nav-container">
                 <ul class="nav-menu">
@@ -653,9 +638,7 @@ layout: null
         </nav>
     </header>
     
-    <!-- محتوای اصلی -->
     <main class="main-content">
-        <!-- اسلایدر جدیدترین پست‌ها -->
         <section class="featured-slider">
             <div class="slider-container">
                 <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
@@ -676,7 +659,6 @@ layout: null
                     </div>
                 </div>
                 
-                <!-- آیکون‌ها همانطور باقی می‌مانند، فقط عملکرد تغییر می‌کند -->
                 <button class="slider-nav slider-prev">❮</button>
                 <button class="slider-nav slider-next">❯</button>
                 
@@ -688,7 +670,6 @@ layout: null
             </div>
         </section>
         
-        <!-- بخش شعار میهن پرستی -->
         <section class="patriotic-section">
             <span class="crown-symbol">👑</span>
             <h2 class="patriotic-title">کوروش بزرگ تو را می‌خواند</h2>
@@ -699,11 +680,9 @@ layout: null
             </div>
         </section>
         
-        <!-- پست‌های دو ستونی - محتوای واقعی وبلاگ -->
         <section class="posts-section">
             <div class="two-column-posts">
-                <!-- محتوای واقعی وبلاگ شما اینجا لود خواهد شد -->
-                {% for post in site.posts limit:10 %}
+                {% for post in site.posts limit:50 %}
                 <article class="post-card">
                     <div class="post-image" style="background-image: url('{{ post.image | default: '/assets/images/default-post.jpg' }}')"></div>
                     <div class="post-content">
@@ -733,7 +712,6 @@ layout: null
     </main>
 
     <script>
-        // اسلایدر جدیدترین پست‌ها
         document.addEventListener('DOMContentLoaded', function() {
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.slider-dot');
@@ -759,24 +737,20 @@ layout: null
                 showSlide(currentSlide - 1);
             }
             
-            // کنترل اسلایدر با دکمه‌ها - فقط عملکرد تعویض شده
             if (nextBtn) {
-                nextBtn.addEventListener('click', prevSlide); // دکمه سمت چپ (❯) حالا به عقب می‌رود
+                nextBtn.addEventListener('click', prevSlide);
             }
             
             if (prevBtn) {
-                prevBtn.addEventListener('click', nextSlide); // دکمه سمت راست (❮) حالا به جلو می‌رود
+                prevBtn.addEventListener('click', nextSlide);
             }
             
-            // کنترل اسلایدر با دات‌ها
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => showSlide(index));
             });
             
-            // اسلایدر خودکار
             setInterval(nextSlide, 5000);
             
-            // نمایش تاریخ شمسی فعلی در هدر
             function getCurrentPersianDate() {
                 const persianMonths = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
                 const persianDays = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
@@ -784,16 +758,14 @@ layout: null
                 const now = new Date();
                 const persianDate = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tehran' }));
                 
-                // تبدیل به تاریخ شمسی (این یک تبدیل ساده است)
                 const day = persianDate.getDate();
                 const month = persianMonths[persianDate.getMonth()];
-                const year = 1400 + (persianDate.getFullYear() - 2021); // تقریب ساده
+                const year = 1400 + (persianDate.getFullYear() - 2021);
                 const dayOfWeek = persianDays[persianDate.getDay()];
                 
                 return `${dayOfWeek}، ${day} ${month} ${year}`;
             }
             
-            // به روزرسانی تاریخ در هدر
             document.getElementById('currentDate').textContent = getCurrentPersianDate();
         });
     </script>
