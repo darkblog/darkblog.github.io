@@ -77,15 +77,10 @@ layout: null
             gap: 15px;
         }
         
-        .logo-text {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            letter-spacing: -0.5px;
-            position: relative;
-            padding: 10px 20px;
-            border-radius: 12px;
+        .logo-svg {
+            width: 180px;
+            height: 50px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
         }
         
         .current-date {
@@ -232,7 +227,7 @@ layout: null
             width: 100%;
             text-align: center;
             position: absolute;
-            top: calc(50% + 20px);
+            top: calc(50% + 40px); /* پایین‌تر آوردن عنوان */
             transform: translateY(-50%);
         }
         
@@ -244,11 +239,13 @@ layout: null
             margin-bottom: 10px;
             letter-spacing: -0.5px;
             padding: 20px 40px;
-            background: rgba(0, 0, 0, 0.4);
             border-radius: 10px;
             backdrop-filter: blur(5px);
             display: inline-block;
             max-width: 90%;
+            /* حذف پس‌زمینه رنگی و اضافه کردن سایه */
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         
         .slider-controls {
@@ -504,8 +501,9 @@ layout: null
                 font-size: 0.9rem;
             }
             
-            .logo-text {
-                font-size: 1.8rem;
+            .logo-svg {
+                width: 150px;
+                height: 40px;
             }
             
             .nav-menu {
@@ -571,8 +569,9 @@ layout: null
                 font-size: 3rem;
             }
 
-            .logo-text {
-                font-size: 1.6rem;
+            .logo-svg {
+                width: 130px;
+                height: 35px;
             }
         }
     </style>
@@ -586,7 +585,18 @@ layout: null
         <div class="header-container">
             <div class="header-top">
                 <div class="logo-container">
-                    <div class="logo-text">پاسگاه</div>
+                    <!-- لوگو SVG -->
+                    <svg class="logo-svg" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#dc3545" />
+                                <stop offset="100%" stop-color="#c82333" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="0" y="0" width="180" height="50" rx="8" fill="url(#logoGradient)" />
+                        <text x="90" y="30" text-anchor="middle" font-family="Vazirmatn" font-size="18" font-weight="bold" fill="white">پاسگاه</text>
+                        <path d="M30,15 L35,10 L40,15 L45,10 L50,15 L55,10 L60,15 L65,10 L70,15 L75,10 L80,15 L85,10 L90,15 L95,10 L100,15 L105,10 L110,15 L115,10 L120,15 L125,10 L130,15 L135,10 L140,15 L145,10 L150,15" stroke="white" stroke-width="2" fill="none" />
+                    </svg>
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
