@@ -70,26 +70,68 @@ layout: null
             padding: 15px 0;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+        
+        .ak47-decoration {
+            position: relative;
+            width: 120px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ak47-left, .ak47-right {
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            background: linear-gradient(45deg, #8B4513, #A0522D, #8B4513);
+            border-radius: 3px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .ak47-left {
+            transform: rotate(-45deg);
+            left: 0;
+        }
+        
+        .ak47-right {
+            transform: rotate(45deg);
+            right: 0;
+        }
+        
+        .ak47-left::before, .ak47-right::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 8px;
+            background: #2F4F4F;
+            top: -4px;
+            border-radius: 2px;
+        }
+        
+        .ak47-left::before {
+            left: 5px;
+        }
+        
+        .ak47-right::before {
+            right: 5px;
+        }
+        
         .logo-text {
             font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #239F40 0%, #FFFFFF 50%, #DA0000 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
             text-shadow: 0 2px 8px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
+            z-index: 2;
             position: relative;
-            padding: 10px 20px;
-            border-radius: 12px;
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            padding: 0 10px;
         }
         
         .current-date {
@@ -211,8 +253,7 @@ layout: null
             opacity: 0;
             transition: opacity 0.8s ease;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
             background-size: cover;
             background-position: center;
         }
@@ -222,9 +263,8 @@ layout: null
         }
         
         .slide-content {
-            background: linear-gradient(transparent, rgba(0,0,0,0.3));
             color: white;
-            padding: 40px;
+            padding: 60px 40px 40px;
             width: 100%;
             text-align: center;
         }
@@ -233,14 +273,9 @@ layout: null
             font-size: 2.2rem;
             font-weight: 800;
             line-height: 1.3;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
             margin-bottom: 10px;
             letter-spacing: -0.5px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px 30px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-            display: inline-block;
         }
         
         .slider-controls {
@@ -325,7 +360,7 @@ layout: null
             background: linear-gradient(90deg, #dc3545, #c70017, #dc3545);
         }
         
-        .persian-symbol {
+        .cyrus-cylinder {
             font-size: 4rem;
             color: #dc3545;
             margin-bottom: 20px;
@@ -474,6 +509,10 @@ layout: null
             .patriotic-title {
                 font-size: 1.9rem;
             }
+            
+            .ak47-decoration {
+                width: 100px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -482,14 +521,21 @@ layout: null
                 justify-content: space-between;
             }
             
-            .logo-text {
+            .logo-container {
                 order: 1;
-                font-size: 1.8rem;
             }
             
             .current-date {
                 order: 2;
                 font-size: 0.9rem;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .ak47-decoration {
+                display: none;
             }
             
             .nav-menu {
@@ -507,7 +553,10 @@ layout: null
             
             .slide-title {
                 font-size: 1.6rem;
-                padding: 12px 20px;
+            }
+            
+            .slide-content {
+                padding: 50px 30px 30px;
             }
             
             .patriotic-title {
@@ -530,7 +579,10 @@ layout: null
             
             .slide-title {
                 font-size: 1.4rem;
-                padding: 10px 15px;
+            }
+            
+            .slide-content {
+                padding: 40px 20px 20px;
             }
             
             .slider-nav {
@@ -550,12 +602,12 @@ layout: null
                 padding: 15px;
             }
             
-            .persian-symbol {
+            .cyrus-cylinder {
                 font-size: 3rem;
             }
 
             .logo-text {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -568,7 +620,13 @@ layout: null
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
-                <div class="logo-text">پاسگاه</div>
+                <div class="logo-container">
+                    <div class="ak47-decoration">
+                        <div class="ak47-left"></div>
+                        <div class="ak47-right"></div>
+                    </div>
+                    <div class="logo-text">پاسگاه</div>
+                </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
         </div>
@@ -639,7 +697,7 @@ layout: null
         
         <!-- بخش شعار میهن پرستی -->
         <section class="patriotic-section">
-            <span class="persian-symbol">✧</span>
+            <span class="cyrus-cylinder">𓂀</span>
             <h2 class="patriotic-title">فرزند کوروش بزرگم، به ایران عزیزم می‌بالم</h2>
             <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
             <div class="cyrus-quote">
