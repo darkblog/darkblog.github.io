@@ -74,53 +74,6 @@ layout: null
             display: flex;
             align-items: center;
             gap: 15px;
-            position: relative;
-        }
-        
-        .ak47-decoration {
-            position: relative;
-            width: 120px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .ak47-left, .ak47-right {
-            position: absolute;
-            width: 60px;
-            height: 20px;
-            background: linear-gradient(45deg, #8B4513, #A0522D, #8B4513);
-            border-radius: 3px;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        .ak47-left {
-            transform: rotate(-45deg);
-            left: 0;
-        }
-        
-        .ak47-right {
-            transform: rotate(45deg);
-            right: 0;
-        }
-        
-        .ak47-left::before, .ak47-right::before {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 8px;
-            background: #2F4F4F;
-            top: -4px;
-            border-radius: 2px;
-        }
-        
-        .ak47-left::before {
-            left: 5px;
-        }
-        
-        .ak47-right::before {
-            right: 5px;
         }
         
         .logo-text {
@@ -129,9 +82,9 @@ layout: null
             color: white;
             text-shadow: 0 2px 8px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
-            z-index: 2;
             position: relative;
-            padding: 0 10px;
+            padding: 10px 20px;
+            border-radius: 12px;
         }
         
         .current-date {
@@ -360,7 +313,7 @@ layout: null
             background: linear-gradient(90deg, #dc3545, #c70017, #dc3545);
         }
         
-        .cyrus-cylinder {
+        .iran-symbol {
             font-size: 4rem;
             color: #dc3545;
             margin-bottom: 20px;
@@ -509,10 +462,6 @@ layout: null
             .patriotic-title {
                 font-size: 1.9rem;
             }
-            
-            .ak47-decoration {
-                width: 100px;
-            }
         }
         
         @media (max-width: 768px) {
@@ -532,10 +481,6 @@ layout: null
             
             .logo-text {
                 font-size: 1.8rem;
-            }
-            
-            .ak47-decoration {
-                display: none;
             }
             
             .nav-menu {
@@ -602,7 +547,7 @@ layout: null
                 padding: 15px;
             }
             
-            .cyrus-cylinder {
+            .iran-symbol {
                 font-size: 3rem;
             }
 
@@ -621,10 +566,6 @@ layout: null
         <div class="header-container">
             <div class="header-top">
                 <div class="logo-container">
-                    <div class="ak47-decoration">
-                        <div class="ak47-left"></div>
-                        <div class="ak47-right"></div>
-                    </div>
                     <div class="logo-text">پاسگاه</div>
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
@@ -697,7 +638,7 @@ layout: null
         
         <!-- بخش شعار میهن پرستی -->
         <section class="patriotic-section">
-            <span class="cyrus-cylinder">𓂀</span>
+            <span class="iran-symbol">🗺️</span>
             <h2 class="patriotic-title">فرزند کوروش بزرگم، به ایران عزیزم می‌بالم</h2>
             <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
             <div class="cyrus-quote">
