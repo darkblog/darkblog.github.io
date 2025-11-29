@@ -32,6 +32,7 @@ layout: null
             line-height: 1.7;
             min-height: 100vh;
             position: relative;
+            overflow-x: hidden;
         }
         
         .main-header {
@@ -314,7 +315,7 @@ layout: null
             }
         }
         
-        /* تنظیمات responsive برای منو */
+        /* تنظیمات responsive برای منو - ساده‌تر و مطمئن‌تر */
         @media (max-width: 1024px) {
             .hamburger-menu {
                 display: flex;
@@ -322,6 +323,10 @@ layout: null
             
             .home-link {
                 display: flex;
+            }
+            
+            .nav-links {
+                display: none;
             }
         }
         
@@ -496,24 +501,22 @@ layout: null
             }
         });
 
-        // تنظیمات داینامیک منو بر اساس عرض صفحه
+        // سیستم ساده‌تر برای نمایش منو - فقط بر اساس عرض صفحه
         function handleResponsiveNav() {
-            const headerWidth = document.querySelector('.header-container').offsetWidth;
-            const navWidth = mainNav.scrollWidth;
-            const availableWidth = headerWidth - 120; // فضا برای همبرگری و لینک صفحه اصلی
+            const windowWidth = window.innerWidth;
             
-            if (navWidth > availableWidth) {
-                // حالت فشرده: نمایش همبرگری و لینک صفحه اصلی
+            if (windowWidth <= 1024) {
+                // حالت موبایل و تبلت: نمایش همبرگری و لینک صفحه اصلی
                 hamburgerMenu.style.display = 'flex';
                 homeLink.style.display = 'flex';
                 mainNav.style.display = 'none';
             } else {
-                // حالت عادی: نمایش همه لینک‌ها
+                // حالت دسکتاپ: نمایش همه لینک‌ها
                 hamburgerMenu.style.display = 'none';
                 homeLink.style.display = 'none';
                 mainNav.style.display = 'flex';
                 
-                // اطمینان از بسته بودن منو در حالت عادی
+                // اطمینان از بسته بودن منو در حالت دسکتاپ
                 mobileMenu.classList.remove('active');
                 mainHeader.style.height = '';
             }
