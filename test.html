@@ -255,7 +255,7 @@ layout: null
         .slider-dot {
             width: 14px;
             height: 14px;
-            border-radius: 50%; /* اصلاح شده */
+            border-radius: 50%;
             background-color: rgba(255,255,255,0.5);
             cursor: pointer;
             transition: all 0.3s;
@@ -384,14 +384,14 @@ layout: null
             flex-grow: 1;
         }
         
-        .post-meta {
+        /* استایل جدید برای بخش زمان مطالعه و دکمه ادامه مطلب */
+        .post-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #868e96;
-            font-weight: 500;
+            margin-top: auto;
+            width: 100%;
+            gap: 15px;
         }
         
         .reading-time {
@@ -399,10 +399,13 @@ layout: null
             align-items: center;
             gap: 6px;
             background: rgba(108, 117, 125, 0.1);
-            padding: 4px 10px;
+            padding: 8px 12px;
             border-radius: 12px;
             font-size: 0.85rem;
-            white-space: nowrap; /* اضافه شده */
+            color: #868e96;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         .reading-time::before {
@@ -426,8 +429,8 @@ layout: null
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            align-self: flex-start;
-            white-space: nowrap; /* اضافه شده */
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         .read-more-btn::before {
@@ -451,15 +454,6 @@ layout: null
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
             border-color: rgba(220, 53, 69, 0.3);
-        }
-        
-        /* استایل جدید برای بخش زمان مطالعه و دکمه ادامه مطلب */
-        .post-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            width: 100%; /* اضافه شده */
         }
         
         @media (max-width: 1024px) {
@@ -532,19 +526,16 @@ layout: null
                 font-size: 0.9rem;
             }
             
-            .post-meta {
-                font-size: 0.85rem;
-            }
-            
             .reading-time {
                 font-size: 0.8rem;
-                padding: 3px 8px;
+                padding: 6px 10px;
             }
             
             /* تنظیمات ریسپانسیو برای بخش جدید */
             .post-footer {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
                 gap: 10px;
             }
         }
@@ -574,6 +565,24 @@ layout: null
             .site-title {
                 font-size: 1rem;
                 margin-right: 5px;
+            }
+            
+            .post-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .read-more-btn {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .reading-time {
+                align-self: center;
+                text-align: center;
+                justify-content: center;
             }
         }
     </style>
