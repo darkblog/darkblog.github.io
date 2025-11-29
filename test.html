@@ -115,6 +115,7 @@ layout: null
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            margin-right: 50px; /* فاصله از دکمه همبرگری */
         }
         
         /* منوی همبرگری */
@@ -125,6 +126,8 @@ layout: null
             gap: 4px;
             padding: 8px;
             flex-shrink: 0;
+            position: absolute;
+            left: 15px;
         }
         
         .hamburger-line {
@@ -315,7 +318,7 @@ layout: null
             }
         }
         
-        /* تنظیمات responsive برای منو - ساده‌تر و مطمئن‌تر */
+        /* تنظیمات responsive برای منو */
         @media (max-width: 1024px) {
             .hamburger-menu {
                 display: flex;
@@ -345,6 +348,10 @@ layout: null
                 padding: 8px 14px;
             }
             
+            .home-link {
+                margin-right: 45px;
+            }
+            
             .post-image {
                 height: 200px;
             }
@@ -368,6 +375,10 @@ layout: null
                 height: 36px;
                 padding: 6px 12px;
                 font-size: 0.9rem;
+            }
+            
+            .home-link {
+                margin-right: 40px;
             }
             
             .main-content {
@@ -464,11 +475,14 @@ layout: null
         const homeLink = document.getElementById('homeLink');
         const mainHeader = document.getElementById('mainHeader');
         
+        let isMenuOpen = false;
+        
         hamburgerMenu.addEventListener('click', function() {
-            const isActive = mobileMenu.classList.toggle('active');
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.classList.toggle('active');
             
             // وقتی منو باز است، ارتفاع هدر افزایش می‌یابد
-            if (isActive) {
+            if (isMenuOpen) {
                 // کمی تاخیر برای محاسبه صحیح ارتفاع
                 setTimeout(() => {
                     const menuHeight = mobileMenu.offsetHeight;
@@ -481,17 +495,12 @@ layout: null
             }
         });
         
-        // بستن منو با کلیک خارج از آن
-        document.addEventListener('click', function(event) {
-            if (!hamburgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-                mainHeader.style.height = ''; // بازگشت به حالت عادی
-            }
-        });
+        // منو فقط با کلیک روی دکمه همبرگری بسته می‌شود
+        // حذف event listener برای کلیک خارج از منو
 
         // تنظیم مجدد ارتفاع هنگام رسیز صفحه
         window.addEventListener('resize', function() {
-            if (mobileMenu.classList.contains('active')) {
+            if (isMenuOpen) {
                 const menuHeight = mobileMenu.offsetHeight;
                 const headerTopHeight = document.querySelector('.header-top').offsetHeight;
                 const totalHeight = headerTopHeight + menuHeight;
@@ -519,6 +528,7 @@ layout: null
                 // اطمینان از بسته بودن منو در حالت دسکتاپ
                 mobileMenu.classList.remove('active');
                 mainHeader.style.height = '';
+                isMenuOpen = false;
             }
         }
 
