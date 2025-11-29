@@ -77,18 +77,10 @@ layout: null
             gap: 15px;
         }
         
-        .logo-svg {
-            width: 180px;
-            height: 50px;
+        .logo-image {
+            height: 45px;
+            width: auto;
             filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            letter-spacing: -0.5px;
         }
         
         .current-date {
@@ -509,9 +501,8 @@ layout: null
                 font-size: 0.9rem;
             }
             
-            .logo-svg {
-                width: 150px;
-                height: 40px;
+            .logo-image {
+                height: 35px;
             }
             
             .nav-menu {
@@ -577,9 +568,8 @@ layout: null
                 font-size: 3rem;
             }
 
-            .logo-svg {
-                width: 130px;
-                height: 35px;
+            .logo-image {
+                height: 30px;
             }
         }
     </style>
@@ -593,31 +583,8 @@ layout: null
         <div class="header-container">
             <div class="header-top">
                 <div class="logo-container">
-                    <!-- لوگو SVG -->
-                    <svg class="logo-svg" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#dc3545" />
-                                <stop offset="100%" stop-color="#c82333" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="0" y="0" width="180" height="50" rx="8" fill="url(#logoGradient)" />
-                        <!-- لوگوی شما با اندازه بزرگتر -->
-                        <g transform="translate(20, 5) scale(0.7)">
-                            <!-- Main letter structure -->
-                            <!-- Vertical stem -->
-                            <rect x="14" y="10" width="8" height="38" rx="2" fill="white"/>
-                            <!-- Top horizontal bar -->
-                            <rect x="22" y="10" width="26" height="8" rx="2" fill="white"/>
-                            <!-- Gentle curve (link between stem and bar) -->
-                            <path d="M22 18 C22 24, 18 28, 14 28 L14 24 C17 24, 20 22, 22 20 Z" fill="white"/>
-                            <!-- Three dots of "پ" -->
-                            <circle cx="34" cy="40" r="3.5" fill="white"/>
-                            <circle cx="41" cy="44.5" r="3.5" fill="white"/>
-                            <circle cx="48" cy="49" r="3.5" fill="white"/>
-                        </g>
-                        <text x="100" y="32" text-anchor="middle" font-family="Vazirmatn" font-size="18" font-weight="bold" fill="white">پاسگاه</text>
-                    </svg>
+                    <!-- لوگو از آدرس شما -->
+                    <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
