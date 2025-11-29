@@ -54,12 +54,22 @@ layout: null
             align-items: center;
             padding: 15px 0;
             height: 80px;
+            position: relative;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
         }
         
         .nav-links {
             display: flex;
             gap: 5px;
             align-items: center;
+            flex-wrap: nowrap;
+            transition: all 0.3s ease;
         }
         
         .nav-link {
@@ -76,6 +86,7 @@ layout: null
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         
         .nav-link:hover {
@@ -94,6 +105,8 @@ layout: null
             cursor: pointer;
             gap: 4px;
             padding: 8px;
+            flex-shrink: 0;
+            margin-right: 10px;
         }
         
         .hamburger-line {
@@ -114,6 +127,7 @@ layout: null
             padding: 20px;
             flex-direction: column;
             gap: 10px;
+            z-index: 1001;
         }
         
         .mobile-menu.active {
@@ -278,23 +292,25 @@ layout: null
             }
         }
         
-        /* تنظیمات responsive برای منو */
-        @media (max-width: 1024px) {
+        /* تنظیمات responsive برای منو - نمایش داینامیک */
+        @media (max-width: 1200px) {
             .nav-links {
-                display: none;
+                gap: 3px;
             }
             
+            .nav-link {
+                padding: 10px 14px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 1024px) {
             .hamburger-menu {
                 display: flex;
             }
             
-            .nav-link {
-                padding: 10px 16px;
-                font-size: 0.95rem;
-            }
-            
-            .post-title {
-                font-size: 1.4rem;
+            .nav-links {
+                display: none;
             }
         }
         
@@ -360,19 +376,24 @@ layout: null
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
-                <!-- منوی اصلی برای دسکتاپ -->
-                <nav class="nav-links">
-                    <a href="#" class="nav-link active">صفحه اصلی</a>
-                    <a href="#" class="nav-link">بیوگرافی‌ها</a>
-                    <a href="#" class="nav-link">مقاله‌ها</a>
-                    <a href="#" class="nav-link">گالری تصاویر</a>
-                </nav>
-                
-                <!-- منوی همبرگری برای موبایل -->
+                <!-- منوی همبرگری -->
                 <div class="hamburger-menu" id="hamburgerMenu">
                     <div class="hamburger-line"></div>
                     <div class="hamburger-line"></div>
                     <div class="hamburger-line"></div>
+                </div>
+                
+                <!-- منوی اصلی -->
+                <div class="nav-container">
+                    <nav class="nav-links" id="mainNav">
+                        <a href="#" class="nav-link">تماس با ما</a>
+                        <a href="#" class="nav-link">درباره ما</a>
+                        <a href="#" class="nav-link">ویدئوها</a>
+                        <a href="#" class="nav-link">گالری تصاویر</a>
+                        <a href="#" class="nav-link active">صفحه اصلی</a>
+                        <a href="#" class="nav-link">مقاله‌ها</a>
+                        <a href="#" class="nav-link">بیوگرافی‌ها</a>
+                    </nav>
                 </div>
             </div>
             
@@ -412,6 +433,7 @@ layout: null
         // مدیریت منوی همبرگری
         const hamburgerMenu = document.getElementById('hamburgerMenu');
         const mobileMenu = document.getElementById('mobileMenu');
+        const mainNav = document.getElementById('mainNav');
         
         hamburgerMenu.addEventListener('click', function() {
             mobileMenu.classList.toggle('active');
@@ -423,6 +445,25 @@ layout: null
                 mobileMenu.classList.remove('active');
             }
         });
+
+        // تنظیمات داینامیک منو بر اساس عرض صفحه
+        function handleResponsiveNav() {
+            const headerWidth = document.querySelector('.header-container').offsetWidth;
+            const navWidth = mainNav.scrollWidth;
+            const availableWidth = headerWidth - 100; // فضا برای همبرگری
+            
+            if (navWidth > availableWidth) {
+                hamburgerMenu.style.display = 'flex';
+                mainNav.style.display = 'none';
+            } else {
+                hamburgerMenu.style.display = 'none';
+                mainNav.style.display = 'flex';
+            }
+        }
+
+        // اجرا هنگام لود و رسیز صفحه
+        window.addEventListener('load', handleResponsiveNav);
+        window.addEventListener('resize', handleResponsiveNav);
     </script>
 </body>
 </html>
