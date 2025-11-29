@@ -7,7 +7,7 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وبلاگ پاسگاه - بیوگرافی افراد مشهور</title>
+    <title>پاسگاه - فرزند کوروش بزرگ</title>
     
     <!-- فونت وزیر از گوگل فونت -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,10 +22,30 @@ layout: null
         }
         
         body {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: 
+                linear-gradient(rgba(248, 249, 250, 0.9), rgba(233, 236, 239, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%23dc3545" stroke-width="0.5" opacity="0.1"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M50,50 C70,30 130,30 150,50 C170,70 170,130 150,150 C130,170 70,170 50,150 C30,130 30,70 50,50 Z" fill="none" stroke="%23dc3545" stroke-width="0.3" opacity="0.05"/></svg>');
+            background-size: cover, 100px 100px, 200px 200px;
             color: #333;
             line-height: 1.7;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(220, 53, 69, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(220, 53, 69, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(220, 53, 69, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         /* هدر اصلی */
@@ -50,32 +70,35 @@ layout: null
             padding: 15px 0;
         }
         
-        .site-logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            letter-spacing: -1px;
-            position: relative;
-            padding-right: 15px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
-        .site-logo::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 40px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 2px;
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: -0.5px;
         }
         
         .current-date {
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
             background: rgba(0,0,0,0.2);
             padding: 8px 16px;
@@ -162,49 +185,6 @@ layout: null
             font-weight: 600;
         }
         
-        /* زیرمنوها */
-        .submenu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
-            min-width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1001;
-            border-radius: 0 0 10px 10px;
-            overflow: hidden;
-            border-top: 2px solid #dc3545;
-        }
-        
-        .nav-item:hover .submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(8px);
-        }
-        
-        .submenu-item {
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .submenu-link {
-            color: #e9ecef;
-            text-decoration: none;
-            padding: 14px 20px;
-            display: block;
-            font-size: 1rem;
-            font-weight: 400;
-            transition: all 0.3s;
-        }
-        
-        .submenu-link:hover {
-            background: rgba(220, 53, 69, 0.3);
-            color: #fff;
-            padding-right: 25px;
-        }
-        
         /* محتوای اصلی */
         .main-content {
             max-width: 1280px;
@@ -223,7 +203,7 @@ layout: null
         
         .slider-container {
             position: relative;
-            height: 520px;
+            height: 500px;
         }
         
         .slide {
@@ -235,7 +215,8 @@ layout: null
             opacity: 0;
             transition: opacity 0.8s ease;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
+            justify-content: center;
             background-size: cover;
             background-position: center;
         }
@@ -245,38 +226,25 @@ layout: null
         }
         
         .slide-content {
-            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            text-align: center;
             color: white;
-            padding: 35px 40px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 40px;
+            max-width: 800px;
         }
         
         .slide-title {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             line-height: 1.3;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.5);
-            flex: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+            margin-bottom: 20px;
             letter-spacing: -0.5px;
-        }
-        
-        .slide-meta {
-            display: flex;
-            gap: 30px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            opacity: 0.95;
-        }
-        
-        .slide-date, .slide-read-time {
-            background: rgba(220, 53, 69, 0.7);
-            padding: 10px 20px;
-            border-radius: 25px;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.8) 0%, rgba(199, 0, 23, 0.8) 100%);
+            padding: 20px 40px;
+            border-radius: 15px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .slider-controls {
@@ -339,46 +307,67 @@ layout: null
             left: 25px;
         }
         
-        /* نوار جداکننده زیبا */
-        .divider-section {
-            margin: 70px 0;
+        /* بخش شعار میهن پرستی */
+        .patriotic-section {
             text-align: center;
+            margin: 60px 0;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.05) 0%, rgba(199, 0, 23, 0.05) 100%);
+            border-radius: 20px;
             position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(220, 53, 69, 0.1);
         }
         
-        .divider-icon {
-            font-size: 3rem;
+        .patriotic-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #dc3545, #c70017, #dc3545);
+        }
+        
+        .persian-symbol {
+            font-size: 4rem;
             color: #dc3545;
             margin-bottom: 20px;
-            display: inline-block;
             text-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-            animation: pulse 2s infinite;
+            display: block;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .patriotic-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #343a40;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
         
-        .divider-line {
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #dc3545, transparent);
-            position: relative;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-        
-        .divider-line::before {
-            content: "✧";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #f8f9fa;
+        .patriotic-subtitle {
+            font-size: 1.3rem;
             color: #dc3545;
-            padding: 0 20px;
-            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .cyrus-quote {
+            font-size: 1.1rem;
+            color: #495057;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            padding: 20px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            border-right: 4px solid #dc3545;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
         /* بخش پست‌های دو ستونی */
@@ -395,6 +384,18 @@ layout: null
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+        }
+        
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #dc3545, #c70017);
+            z-index: 2;
         }
         
         .post-card:hover {
@@ -408,6 +409,7 @@ layout: null
             background-size: cover;
             background-position: center;
             transition: transform 0.6s ease;
+            position: relative;
         }
         
         .post-card:hover .post-image {
@@ -442,76 +444,20 @@ layout: null
             font-weight: 500;
         }
         
-        /* فوتر */
-        .main-footer {
-            background: linear-gradient(135deg, #343a40 0%, #495057 100%);
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 80px;
-        }
-        
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 45px;
-            margin-bottom: 45px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 22px;
-            color: #dc3545;
-            position: relative;
-            padding-bottom: 12px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
+        /* نقشه ایران در پس‌زمینه */
+        .iran-map-background {
+            position: fixed;
             bottom: 0;
-            right: 0;
-            width: 45px;
-            height: 3px;
-            background: #dc3545;
-            border-radius: 2px;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column li {
-            margin-bottom: 14px;
-        }
-        
-        .footer-column a {
-            color: #ced4da;
-            text-decoration: none;
-            font-size: 1.05rem;
-            transition: all 0.3s;
-            display: inline-block;
-            font-weight: 400;
-        }
-        
-        .footer-column a:hover {
-            color: #dc3545;
-            transform: translateX(8px);
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 28px;
-            text-align: center;
-            font-size: 1rem;
-            color: #adb5bd;
-            font-weight: 400;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background: 
+                linear-gradient(transparent, rgba(220, 53, 69, 0.03)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><path d="M200,150 Q250,100 300,150 T400,150 Q450,100 500,150 T600,150 Q650,100 700,150 L700,250 Q650,300 600,250 T500,250 Q450,300 400,250 T300,250 Q250,300 200,250 Z" fill="none" stroke="%23dc3545" stroke-width="2" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center bottom;
+            pointer-events: none;
+            z-index: -1;
         }
         
         /* رسپانسیو */
@@ -526,19 +472,37 @@ layout: null
             }
             
             .slide-title {
+                font-size: 2.2rem;
+            }
+            
+            .patriotic-title {
                 font-size: 1.9rem;
             }
         }
         
         @media (max-width: 768px) {
             .header-top {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 10px;
             }
             
-            .site-logo::after {
-                display: none;
+            .logo-container {
+                order: 2;
+            }
+            
+            .current-date {
+                order: 1;
+                font-size: 0.9rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-image {
+                width: 40px;
+                height: 40px;
             }
             
             .nav-menu {
@@ -555,19 +519,16 @@ layout: null
             }
             
             .slide-title {
+                font-size: 1.8rem;
+                padding: 15px 25px;
+            }
+            
+            .patriotic-title {
                 font-size: 1.6rem;
             }
             
-            .slide-content {
-                padding: 25px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
-            }
-            
-            .slide-meta {
-                width: 100%;
-                justify-content: space-between;
+            .patriotic-subtitle {
+                font-size: 1.1rem;
             }
             
             .two-column-posts {
@@ -581,42 +542,50 @@ layout: null
             }
             
             .slide-title {
-                font-size: 1.4rem;
-            }
-            
-            .slide-content {
-                padding: 20px;
+                font-size: 1.5rem;
+                padding: 12px 20px;
             }
             
             .slider-nav {
                 display: none;
             }
             
-            .slide-meta {
-                flex-direction: column;
-                gap: 12px;
+            .patriotic-title {
+                font-size: 1.4rem;
             }
             
-            .slide-date, .slide-read-time {
-                text-align: center;
-            }
-            
-            .site-logo {
-                font-size: 2rem;
-            }
-            
-            .current-date {
+            .patriotic-subtitle {
                 font-size: 1rem;
+            }
+            
+            .cyrus-quote {
+                font-size: 1rem;
+                padding: 15px;
+            }
+            
+            .persian-symbol {
+                font-size: 3rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- نقشه ایران در پس‌زمینه -->
+    <div class="iran-map-background"></div>
+
     <!-- هدر اصلی -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
-                <a href="#" class="site-logo">پاسگاه</a>
+                <div class="logo-container">
+                    <div class="logo-image">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 3L18 10L25 10L19 14L21 21L15 17L9 21L11 14L5 10L12 10L15 3Z" fill="#dc3545"/>
+                            <circle cx="15" cy="15" r="12" stroke="#dc3545" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">پاسگاه</div>
+                </div>
                 <div class="current-date" id="currentDate">در حال بارگذاری تاریخ...</div>
             </div>
         </div>
@@ -630,34 +599,9 @@ layout: null
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">بیوگرافی‌ها</a>
-                        <ul class="submenu">
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">هنرمندان</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">ورزشکاران</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">سیاستمداران</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">دانشمندان</a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">مقاله‌ها</a>
-                        <ul class="submenu">
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">مقالات تحلیلی</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">مصاحبه‌ها</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="#" class="submenu-link">نقد و بررسی</a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">گالری تصاویر</a>
@@ -670,15 +614,6 @@ layout: null
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">تماس با ما</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">آرشیو</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">نویسندگان</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">تگ‌ها</a>
                     </li>
                 </ul>
             </div>
@@ -693,30 +628,18 @@ layout: null
                 <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
                         <h2 class="slide-title">بیوگرافی کامل علی دایی؛ اسطوره فوتبال ایران</h2>
-                        <div class="slide-meta">
-                            <span class="slide-date">۱۵ فروردین ۱۴۰۳</span>
-                            <span class="slide-read-time">خواندن ۱۲ دقیقه</span>
-                        </div>
                     </div>
                 </div>
                 
                 <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
                         <h2 class="slide-title">زندگی‌نامه محمود فرشچیان؛ استاد مسلم مینیاتور</h2>
-                        <div class="slide-meta">
-                            <span class="slide-date">۱۴ فروردین ۱۴۰۳</span>
-                            <span class="slide-read-time">خواندن ۱۰ دقیقه</span>
-                        </div>
                     </div>
                 </div>
                 
                 <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
                         <h2 class="slide-title">مروری بر زندگی مریم میرزاخانی؛ نابغه ریاضی جهان</h2>
-                        <div class="slide-meta">
-                            <span class="slide-date">۱۳ فروردین ۱۴۰۳</span>
-                            <span class="slide-read-time">خواندن ۱۵ دقیقه</span>
-                        </div>
                     </div>
                 </div>
                 
@@ -731,11 +654,16 @@ layout: null
             </div>
         </section>
         
-        <!-- نوار جداکننده زیبا -->
-        <div class="divider-section">
-            <div class="divider-icon">★</div>
-            <div class="divider-line"></div>
-        </div>
+        <!-- بخش شعار میهن پرستی -->
+        <section class="patriotic-section">
+            <span class="persian-symbol">✧</span>
+            <h2 class="patriotic-title">فرزند کوروش بزرگم، به ایران عزیزم می‌بالم</h2>
+            <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
+            <div class="cyrus-quote">
+                "منم کوروش، شاه جهان، شاه بزرگ، شاه توانمند، شاه بابل، شاه سومر و اکد، شاه چهار گوشه جهان... 
+                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزای بدنم خاک ایران را تشکیل دهد"
+            </div>
+        </section>
         
         <!-- پست‌های دو ستونی -->
         <section class="posts-section">
@@ -787,74 +715,9 @@ layout: null
                         </div>
                     </div>
                 </article>
-                
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h2 class="post-title">بهمن عالیشاه؛ ستاره فوتبال ایران</h2>
-                        <p class="post-excerpt">از جوانی در باشگاه پرسپولیس تا بازی در لیگ قطر، نگاهی به زندگی حرفه‌ای بهمن عالیشاه</p>
-                        <div class="post-meta">
-                            <span>۸ فروردین ۱۴۰۳</span>
-                            <span>۷ دقیقه خواندن</span>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h2 class="post-title">حسین ثابت؛ امپراتور تجارت ایران</h2>
-                        <p class="post-excerpt">از مغازه‌داری کوچک تا تاسیس امپراتوری تجاری، داستان زندگی حسین ثابت، تاجر نامدار ایرانی</p>
-                        <div class="post-meta">
-                            <span>۷ فروردین ۱۴۰۳</span>
-                            <span>۱۰ دقیقه خواندن</span>
-                        </div>
-                    </div>
-                </article>
             </div>
         </section>
     </main>
-    
-    <!-- فوتر -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h3>دسته‌بندی‌ها</h3>
-                    <ul>
-                        <li><a href="#">بیوگرافی ورزشی</a></li>
-                        <li><a href="#">بیوگرافی هنری</a></li>
-                        <li><a href="#">بیوگرافی علمی</a></li>
-                        <li><a href="#">بیوگرافی سیاسی</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>لینک‌های مفید</h3>
-                    <ul>
-                        <li><a href="#">تماس با ما</a></li>
-                        <li><a href="#">درباره ما</a></li>
-                        <li><a href="#">قوانین و مقررات</a></li>
-                        <li><a href="#">حریم خصوصی</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>شبکه‌های اجتماعی</h3>
-                    <ul>
-                        <li><a href="#">اینستاگرام</a></li>
-                        <li><a href="#">تلگرام</a></li>
-                        <li><a href="#">توییتر</a></li>
-                        <li><a href="#">یوتیوب</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© ۱۴۰۳ - کلیه حقوق برای وبلاگ پاسگاه محفوظ است</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         // نمایش تاریخ شمسی
@@ -876,16 +739,6 @@ layout: null
             if (dateElement) {
                 dateElement.textContent = getCurrentPersianDate();
             }
-            
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        this.classList.toggle('active');
-                    }
-                });
-            });
             
             // اسلایدر جدیدترین پست‌ها
             const slides = document.querySelectorAll('.slide');
