@@ -50,30 +50,16 @@ layout: null
         
         .header-top {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 15px 0;
             height: 80px;
-        }
-        
-        .nav-links-container {
-            width: 100%;
-            overflow-x: auto;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        
-        .nav-links-container::-webkit-scrollbar {
-            display: none;
         }
         
         .nav-links {
             display: flex;
             gap: 5px;
             align-items: center;
-            min-width: max-content;
-            padding: 5px 0;
-            justify-content: center;
         }
         
         .nav-link {
@@ -86,7 +72,6 @@ layout: null
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             white-space: nowrap;
-            flex-shrink: 0;
             height: 44px;
             display: flex;
             align-items: center;
@@ -100,6 +85,54 @@ layout: null
         .nav-link.active {
             background: rgba(255, 255, 255, 0.25);
             font-weight: 600;
+        }
+        
+        /* منوی همبرگری */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 8px;
+        }
+        
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .main-content {
@@ -198,7 +231,7 @@ layout: null
             }
         }
 
-        /* استایل برای پست فرد - کاملاً هم‌اندازه با بقیه */
+        /* استایل برای پست فرد در حالت‌های مختلف */
         @media (min-width: 768px) and (max-width: 1439px) {
             .posts-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -207,8 +240,7 @@ layout: null
             .posts-grid .post-card:last-child:nth-child(odd) {
                 grid-column: 1 / -1;
                 justify-self: center;
-                width: 100%;
-                max-width: calc(50% - 20px);
+                width: calc(50% - 20px);
             }
         }
 
@@ -227,12 +259,35 @@ layout: null
                 grid-template-columns: repeat(4, 1fr);
             }
             
+            /* طراحی اختصاصی برای پست فرد در حالت ۴ ستونی */
             .posts-grid .post-card:last-child:nth-child(4n+1) {
                 grid-column: 2 / 4;
+                position: relative;
+            }
+            
+            .posts-grid .post-card:last-child:nth-child(4n+1) .post-image {
+                height: 280px;
+            }
+            
+            .posts-grid .post-card:last-child:nth-child(4n+1) .post-title {
+                font-size: 1.7rem;
+            }
+            
+            .posts-grid .post-card:last-child:nth-child(4n+1) .post-excerpt {
+                font-size: 1.2rem;
             }
         }
         
+        /* تنظیمات responsive برای منو */
         @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+            
             .nav-link {
                 padding: 10px 16px;
                 font-size: 0.95rem;
@@ -299,31 +354,37 @@ layout: null
                 font-size: 1rem;
             }
         }
-        
-        @media (max-width: 400px) {
-            .nav-link {
-                padding: 5px 10px;
-                font-size: 0.85rem;
-                height: 34px;
-            }
-        }
     </style>
 </head>
 <body>
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
-                <div class="nav-links-container">
-                    <div class="nav-links">
-                        <a href="#" class="nav-link">تماس با ما</a>
-                        <a href="#" class="nav-link">درباره ما</a>
-                        <a href="#" class="nav-link">ویدئوها</a>
-                        <a href="#" class="nav-link">گالری تصاویر</a>
-                        <a href="#" class="nav-link">مقاله‌ها</a>
-                        <a href="#" class="nav-link">بیوگرافی‌ها</a>
-                        <a href="#" class="nav-link active">صفحه اصلی</a>
-                    </div>
+                <!-- منوی اصلی برای دسکتاپ -->
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active">صفحه اصلی</a>
+                    <a href="#" class="nav-link">بیوگرافی‌ها</a>
+                    <a href="#" class="nav-link">مقاله‌ها</a>
+                    <a href="#" class="nav-link">گالری تصاویر</a>
+                </nav>
+                
+                <!-- منوی همبرگری برای موبایل -->
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
                 </div>
+            </div>
+            
+            <!-- منوی موبایل -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#" class="mobile-nav-link active">صفحه اصلی</a>
+                <a href="#" class="mobile-nav-link">بیوگرافی‌ها</a>
+                <a href="#" class="mobile-nav-link">مقاله‌ها</a>
+                <a href="#" class="mobile-nav-link">گالری تصاویر</a>
+                <a href="#" class="mobile-nav-link">ویدئوها</a>
+                <a href="#" class="mobile-nav-link">درباره ما</a>
+                <a href="#" class="mobile-nav-link">تماس با ما</a>
             </div>
         </div>
     </header>
@@ -346,5 +407,22 @@ layout: null
             </div>
         </section>
     </main>
+
+    <script>
+        // مدیریت منوی همبرگری
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        hamburgerMenu.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // بستن منو با کلیک خارج از آن
+        document.addEventListener('click', function(event) {
+            if (!hamburgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
