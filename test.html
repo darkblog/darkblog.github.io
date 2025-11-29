@@ -373,13 +373,38 @@ layout: null
         .post-excerpt {
             font-size: 1.05rem;
             color: #6c757d;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             line-height: 1.7;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             flex-grow: 1;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #868e96;
+            font-weight: 500;
+        }
+        
+        .reading-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(108, 117, 125, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .reading-time::before {
+            content: '⏱';
+            font-size: 0.8rem;
         }
         
         .read-more-btn {
@@ -492,6 +517,15 @@ layout: null
             .read-more-btn {
                 padding: 8px 16px;
                 font-size: 0.9rem;
+            }
+            
+            .post-meta {
+                font-size: 0.85rem;
+            }
+            
+            .reading-time {
+                font-size: 0.8rem;
+                padding: 3px 8px;
             }
         }
         
@@ -612,6 +646,9 @@ layout: null
                         <p class="post-excerpt">
                             {{ post.excerpt | strip_html | truncate: 200 }}
                         </p>
+                        <div class="post-meta">
+                            <span class="reading-time">{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} دقیقه خواندن</span>
+                        </div>
                         <a href="{{ post.url }}" class="read-more-btn">ادامه مطلب</a>
                     </div>
                 </article>
