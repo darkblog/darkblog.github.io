@@ -40,6 +40,7 @@ layout: null
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: height 0.3s ease;
         }
         
         .header-container {
@@ -135,7 +136,7 @@ layout: null
         .mobile-menu {
             display: none;
             position: absolute;
-            top: 100%;
+            top: 80px;
             right: 0;
             left: 0;
             background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
@@ -330,6 +331,10 @@ layout: null
                 padding: 12px 0;
             }
             
+            .mobile-menu {
+                top: 70px;
+            }
+            
             .nav-link, .home-link {
                 height: 40px;
                 padding: 8px 14px;
@@ -348,6 +353,10 @@ layout: null
             .header-top {
                 height: 60px;
                 padding: 10px 0;
+            }
+            
+            .mobile-menu {
+                top: 60px;
             }
             
             .nav-link, .home-link {
@@ -383,7 +392,7 @@ layout: null
     </style>
 </head>
 <body>
-    <header class="main-header">
+    <header class="main-header" id="mainHeader">
         <div class="header-container">
             <div class="header-top">
                 <!-- منوی همبرگری -->
@@ -448,17 +457,22 @@ layout: null
         const mobileMenu = document.getElementById('mobileMenu');
         const mainNav = document.getElementById('mainNav');
         const homeLink = document.getElementById('homeLink');
-        const mainHeader = document.querySelector('.main-header');
+        const mainHeader = document.getElementById('mainHeader');
         
         hamburgerMenu.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
+            const isActive = mobileMenu.classList.toggle('active');
             
             // وقتی منو باز است، ارتفاع هدر افزایش می‌یابد
-            if (mobileMenu.classList.contains('active')) {
-                const menuHeight = mobileMenu.scrollHeight;
-                mainHeader.style.height = `calc(80px + ${menuHeight}px)`;
+            if (isActive) {
+                // کمی تاخیر برای محاسبه صحیح ارتفاع
+                setTimeout(() => {
+                    const menuHeight = mobileMenu.offsetHeight;
+                    const headerTopHeight = document.querySelector('.header-top').offsetHeight;
+                    const totalHeight = headerTopHeight + menuHeight;
+                    mainHeader.style.height = totalHeight + 'px';
+                }, 10);
             } else {
-                mainHeader.style.height = '80px';
+                mainHeader.style.height = ''; // بازگشت به حالت عادی
             }
         });
         
@@ -466,14 +480,19 @@ layout: null
         document.addEventListener('click', function(event) {
             if (!hamburgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.remove('active');
-                mainHeader.style.height = '80px';
+                mainHeader.style.height = ''; // بازگشت به حالت عادی
             }
         });
 
         // تنظیم مجدد ارتفاع هنگام رسیز صفحه
         window.addEventListener('resize', function() {
-            if (!mobileMenu.classList.contains('active')) {
-                mainHeader.style.height = '80px';
+            if (mobileMenu.classList.contains('active')) {
+                const menuHeight = mobileMenu.offsetHeight;
+                const headerTopHeight = document.querySelector('.header-top').offsetHeight;
+                const totalHeight = headerTopHeight + menuHeight;
+                mainHeader.style.height = totalHeight + 'px';
+            } else {
+                mainHeader.style.height = '';
             }
         });
 
@@ -496,7 +515,7 @@ layout: null
                 
                 // اطمینان از بسته بودن منو در حالت عادی
                 mobileMenu.classList.remove('active');
-                mainHeader.style.height = '80px';
+                mainHeader.style.height = '';
             }
         }
 
