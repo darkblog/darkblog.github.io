@@ -134,8 +134,8 @@ layout: null
         
         .mobile-menu {
             display: none;
-            position: fixed;
-            top: 80px;
+            position: absolute;
+            top: 100%;
             right: 0;
             left: 0;
             background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
@@ -330,10 +330,6 @@ layout: null
                 padding: 12px 0;
             }
             
-            .mobile-menu {
-                top: 70px;
-            }
-            
             .nav-link, .home-link {
                 height: 40px;
                 padding: 8px 14px;
@@ -352,10 +348,6 @@ layout: null
             .header-top {
                 height: 60px;
                 padding: 10px 0;
-            }
-            
-            .mobile-menu {
-                top: 60px;
             }
             
             .nav-link, .home-link {
@@ -456,15 +448,32 @@ layout: null
         const mobileMenu = document.getElementById('mobileMenu');
         const mainNav = document.getElementById('mainNav');
         const homeLink = document.getElementById('homeLink');
+        const mainHeader = document.querySelector('.main-header');
         
         hamburgerMenu.addEventListener('click', function() {
             mobileMenu.classList.toggle('active');
+            
+            // وقتی منو باز است، ارتفاع هدر افزایش می‌یابد
+            if (mobileMenu.classList.contains('active')) {
+                const menuHeight = mobileMenu.scrollHeight;
+                mainHeader.style.height = `calc(80px + ${menuHeight}px)`;
+            } else {
+                mainHeader.style.height = '80px';
+            }
         });
         
         // بستن منو با کلیک خارج از آن
         document.addEventListener('click', function(event) {
             if (!hamburgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.remove('active');
+                mainHeader.style.height = '80px';
+            }
+        });
+
+        // تنظیم مجدد ارتفاع هنگام رسیز صفحه
+        window.addEventListener('resize', function() {
+            if (!mobileMenu.classList.contains('active')) {
+                mainHeader.style.height = '80px';
             }
         });
 
@@ -484,6 +493,10 @@ layout: null
                 hamburgerMenu.style.display = 'none';
                 homeLink.style.display = 'none';
                 mainNav.style.display = 'flex';
+                
+                // اطمینان از بسته بودن منو در حالت عادی
+                mobileMenu.classList.remove('active');
+                mainHeader.style.height = '80px';
             }
         }
 
