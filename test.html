@@ -99,7 +99,6 @@ layout: null
             font-weight: 600;
         }
         
-        /* لینک صفحه اصلی در حالت فشرده */
         .home-link {
             color: white;
             text-decoration: none;
@@ -120,7 +119,6 @@ layout: null
             transform: translateX(-50%);
         }
         
-        /* منوی همبرگری */
         .hamburger-menu {
             display: none;
             flex-direction: column;
@@ -181,7 +179,6 @@ layout: null
             padding: 0 15px;
         }
         
-        /* استایل برای تمام پست‌ها در گرید responsive */
         .posts-grid {
             display: grid;
             gap: 40px;
@@ -238,7 +235,6 @@ layout: null
             font-weight: 400;
         }
         
-        /* تنظیمات responsive برای گرید - تمام پست‌ها */
         @media (min-width: 1920px) {
             .posts-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -271,7 +267,6 @@ layout: null
             }
         }
 
-        /* استایل برای پست فرد در حالت‌های مختلف */
         @media (min-width: 768px) and (max-width: 1439px) {
             .posts-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -299,7 +294,6 @@ layout: null
                 grid-template-columns: repeat(4, 1fr);
             }
             
-            /* طراحی اختصاصی برای پست فرد در حالت ۴ ستونی */
             .posts-grid .post-card:last-child:nth-child(4n+1) {
                 grid-column: 2 / 4;
                 position: relative;
@@ -318,7 +312,6 @@ layout: null
             }
         }
         
-        /* تنظیمات responsive برای منو */
         @media (max-width: 1024px) {
             .hamburger-menu {
                 display: flex;
@@ -403,14 +396,12 @@ layout: null
     <header class="main-header" id="mainHeader">
         <div class="header-container">
             <div class="header-top">
-                <!-- منوی همبرگری -->
                 <div class="hamburger-menu" id="hamburgerMenu">
                     <div class="hamburger-line"></div>
                     <div class="hamburger-line"></div>
                     <div class="hamburger-line"></div>
                 </div>
                 
-                <!-- منوی اصلی -->
                 <div class="nav-container">
                     <nav class="nav-links" id="mainNav">
                         <a href="#" class="nav-link">تماس با ما</a>
@@ -422,12 +413,10 @@ layout: null
                         <a href="#" class="nav-link active">صفحه اصلی</a>
                     </nav>
                     
-                    <!-- لینک صفحه اصلی در حالت فشرده -->
-                    <a href="#" class="home-link" id="homeLink">صفحه اصلی</a>
+                    <a href="https://www.pasgah.org/" class="home-link" id="homeLink">پاسگاه</a>
                 </div>
             </div>
             
-            <!-- منوی موبایل -->
             <div class="mobile-menu" id="mobileMenu">
                 <a href="#" class="mobile-nav-link">بیوگرافی‌ها</a>
                 <a href="#" class="mobile-nav-link">مقاله‌ها</a>
@@ -441,12 +430,11 @@ layout: null
     </header>
     
     <main class="main-content">
-        <!-- تمام پست‌ها در یک گرید responsive -->
         <section class="posts-section">
             <div class="posts-grid">
                 {% for post in site.posts limit:21 %}
                 <a href="{{ post.url }}" class="post-card">
-                    <div class="post-image" style="background-image: url('{{ post.image | default: '/assets/images/default-post.jpg' }}')"></div>
+                    <div class="post-image" style="background-image: url('{{ post.image | default: '/biography/logo.webp' }}')"></div>
                     <div class="post-content">
                         <h2 class="post-title">{{ post.title }}</h2>
                         <p class="post-excerpt">
@@ -460,7 +448,6 @@ layout: null
     </main>
 
     <script>
-        // مدیریت منوی همبرگری
         const hamburgerMenu = document.getElementById('hamburgerMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const mainNav = document.getElementById('mainNav');
@@ -473,9 +460,7 @@ layout: null
             isMenuOpen = !isMenuOpen;
             mobileMenu.classList.toggle('active');
             
-            // وقتی منو باز است، ارتفاع هدر افزایش می‌یابد
             if (isMenuOpen) {
-                // کمی تاخیر برای محاسبه صحیح ارتفاع
                 setTimeout(() => {
                     const menuHeight = mobileMenu.offsetHeight;
                     const headerTopHeight = document.querySelector('.header-top').offsetHeight;
@@ -483,14 +468,10 @@ layout: null
                     mainHeader.style.height = totalHeight + 'px';
                 }, 10);
             } else {
-                mainHeader.style.height = ''; // بازگشت به حالت عادی
+                mainHeader.style.height = '';
             }
         });
         
-        // منو فقط با کلیک روی دکمه همبرگری بسته می‌شود
-        // حذف event listener برای کلیک خارج از منو
-
-        // تنظیم مجدد ارتفاع هنگام رسیز صفحه
         window.addEventListener('resize', function() {
             if (isMenuOpen) {
                 const menuHeight = mobileMenu.offsetHeight;
@@ -502,29 +483,24 @@ layout: null
             }
         });
 
-        // سیستم ساده‌تر برای نمایش منو - فقط بر اساس عرض صفحه
         function handleResponsiveNav() {
             const windowWidth = window.innerWidth;
             
             if (windowWidth <= 1024) {
-                // حالت موبایل و تبلت: نمایش همبرگری و لینک صفحه اصلی
                 hamburgerMenu.style.display = 'flex';
                 homeLink.style.display = 'flex';
                 mainNav.style.display = 'none';
             } else {
-                // حالت دسکتاپ: نمایش همه لینک‌ها
                 hamburgerMenu.style.display = 'none';
                 homeLink.style.display = 'none';
                 mainNav.style.display = 'flex';
                 
-                // اطمینان از بسته بودن منو در حالت دسکتاپ
                 mobileMenu.classList.remove('active');
                 mainHeader.style.height = '';
                 isMenuOpen = false;
             }
         }
 
-        // اجرا هنگام لود و رسیز صفحه
         window.addEventListener('load', handleResponsiveNav);
         window.addEventListener('resize', handleResponsiveNav);
     </script>
