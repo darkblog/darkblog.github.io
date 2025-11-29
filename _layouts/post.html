@@ -7,6 +7,9 @@
     <meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
+    <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
+    <meta name="robots" content="noarchive">
+    <link rel="icon" type="image/webp" href="/biography/logo.webp">
     <meta name="theme-color" content="#dc3545">
     
     <style>
