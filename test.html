@@ -8,7 +8,7 @@ layout: null
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
-    <meta name="description" content="ウェブログ پاسگاه؛ 有名人の伝記。イランと世界の有名人の思い出から功績まで">
+    <meta name="description" content="وبلاگ پاسگاه؛ بیوگرافی افراد مشهور. از خاطرات تا دستاوردهای افراد مشهور ایران و جهان">
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" type="image/webp" href="/biography/logo.webp">
@@ -25,9 +25,7 @@ layout: null
         }
         
         body {
-            background: 
-                linear-gradient(135deg, rgba(248, 249, 250, 0.7) 0%, rgba(233, 236, 239, 0.7) 100%),
-                url('https://www.pasgah.org/biography/pasgah.webp') center/cover fixed no-repeat;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             color: #333;
             line-height: 1.7;
             min-height: 100vh;
@@ -72,10 +70,24 @@ layout: null
             justify-content: center;
         }
         
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
         .logo-image {
             height: 35px;
             width: auto;
             display: block;
+        }
+        
+        .site-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            margin-right: 10px;
         }
         
         .current-date {
@@ -182,7 +194,7 @@ layout: null
         }
         
         .featured-slider {
-            margin-bottom: 100px;
+            margin-bottom: 60px;
             position: relative;
             border-radius: 16px;
             overflow: hidden;
@@ -299,10 +311,6 @@ layout: null
             left: 25px;
         }
         
-        .posts-section {
-            margin-top: 80px;
-        }
-        
         .two-column-posts {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -310,14 +318,13 @@ layout: null
         }
         
         .post-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: white;
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0,0,0,0.03);
             position: relative;
-            backdrop-filter: blur(5px);
         }
         
         .post-card::before {
@@ -334,7 +341,6 @@ layout: null
         .post-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            background: rgba(255, 255, 255, 0.95);
         }
         
         .post-image {
@@ -404,6 +410,10 @@ layout: null
             .slide-title {
                 font-size: 2rem;
             }
+            
+            .site-title {
+                font-size: 1.3rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -434,6 +444,11 @@ layout: null
                 height: 30px;
             }
             
+            .site-title {
+                font-size: 1.1rem;
+                margin-right: 8px;
+            }
+            
             .nav-menu {
                 padding: 0;
             }
@@ -451,14 +466,6 @@ layout: null
             .slide-title {
                 font-size: 1.6rem;
                 padding: 15px 30px;
-            }
-            
-            .featured-slider {
-                margin-bottom: 80px;
-            }
-            
-            .posts-section {
-                margin-top: 60px;
             }
             
             .two-column-posts {
@@ -488,12 +495,9 @@ layout: null
                 height: 25px;
             }
             
-            .featured-slider {
-                margin-bottom: 60px;
-            }
-            
-            .posts-section {
-                margin-top: 40px;
+            .site-title {
+                font-size: 1rem;
+                margin-right: 5px;
             }
         }
     </style>
@@ -503,9 +507,12 @@ layout: null
         <div class="header-container">
             <div class="header-top">
                 <div class="logo-container">
-                    <div class="logo-wrapper">
-                        <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
-                    </div>
+                    <a href="/" class="logo-link">
+                        <div class="logo-wrapper">
+                            <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
+                        </div>
+                        <h1 class="site-title">پاسگاه</h1>
+                    </a>
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
@@ -545,19 +552,19 @@ layout: null
             <div class="slider-container">
                 <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
-                        <h1 class="slide-title">بیوگرافی کامل علی دایی؛ اسطوره فوتبال ایران</h1>
+                        <h2 class="slide-title">بیوگرافی کامل علی دایی؛ اسطوره فوتبال ایران</h2>
                     </div>
                 </div>
                 
                 <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
-                        <h1 class="slide-title">زندگی‌نامه محمود فرشچیان؛ استاد مسلم مینیاتور</h1>
+                        <h2 class="slide-title">زندگی‌نامه محمود فرشچیان؛ استاد مسلم مینیاتور</h2>
                     </div>
                 </div>
                 
                 <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
                     <div class="slide-content">
-                        <h1 class="slide-title">مروری بر زندگی مریم میرزاخانی؛ نابغه ریاضی جهان</h1>
+                        <h2 class="slide-title">مروری بر زندگی مریم میرزاخانی؛ نابغه ریاضی جهان</h2>
                     </div>
                 </div>
                 
