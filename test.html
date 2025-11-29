@@ -691,10 +691,10 @@ layout: null
         <section class="patriotic-section">
             <span class="crown-symbol">👑</span>
             <h2 class="patriotic-title">فرزند کوروش بزرگم، به ایران عزیزم می‌بالم</h2>
-            <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
+            <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، mهد تمدن و فرهنگ است</p>
             <div class="cyrus-quote">
                 "منم کوروش، شاه جهان، شاه بزرگ، شاه توانمند، شاه بابل، شاه سومر و اکد، شاه چهار گوشه جهان... 
-                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزای بدنم خاک ایران را تشکیل دهد"
+                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزای بدنm خاک ایران را تشکیل دهد"
             </div>
         </section>
         
@@ -704,26 +704,16 @@ layout: null
                 <!-- محتوای واقعی وبلاگ شما اینجا لود خواهد شد -->
                 {% for post in site.posts limit:10 %}
                 <article class="post-card">
-                    <div class="post-image" style="background-image: url('
-                        {% comment %} استخراج اولین تصویر از محتوای پست {% endcomment %}
-                        {% assign first_image = post.content | split: '<img' | last | split: 'src=\"' | last | split: '\"' | first %}
-                        {% if first_image %}
-                            {{ first_image }}
-                        {% else %}
-                            /assets/images/default-post.jpg
-                        {% endif %}
-                    ')"></div>
+                    <div class="post-image" style="background-image: url('{{ post.image | default: '/assets/images/default-post.jpg' }}')"></div>
                     <div class="post-content">
                         <h2 class="post-title">
                             <a href="{{ post.url }}">{{ post.title }}</a>
                         </h2>
                         <p class="post-excerpt">
-                            {% comment %} نمایش خلاصه پست {% endcomment %}
                             {{ post.excerpt | strip_html | truncate: 200 }}
                         </p>
                         <div class="post-meta">
                             <span>
-                                {% comment %} نمایش تاریخ شمسی {% endcomment %}
                                 {% assign persian_months = "فروردین,اردیبهشت,خرداد,تیر,مرداد,شهریور,مهر,آبان,آذر,دی,بهمن,اسفند" | split: "," %}
                                 {% assign post_date = post.date %}
                                 {% assign day = post_date | date: "%-d" %}
