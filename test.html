@@ -676,9 +676,9 @@ layout: null
                     </div>
                 </div>
                 
-                <!-- تعویض عملکرد دکمه‌ها -->
-                <button class="slider-nav slider-prev">❯</button>
-                <button class="slider-nav slider-next">❮</button>
+                <!-- آیکون‌ها همانطور باقی می‌مانند، فقط عملکرد تغییر می‌کند -->
+                <button class="slider-nav slider-prev">❮</button>
+                <button class="slider-nav slider-next">❯</button>
                 
                 <div class="slider-controls">
                     <div class="slider-dot active"></div>
@@ -759,13 +759,13 @@ layout: null
                 showSlide(currentSlide - 1);
             }
             
-            // کنترل اسلایدر با دکمه‌ها - عملکرد تعویض شده
+            // کنترل اسلایدر با دکمه‌ها - فقط عملکرد تعویض شده
             if (nextBtn) {
-                nextBtn.addEventListener('click', prevSlide); // دکمه سمت چپ (❮) حالا به عقب می‌رود
+                nextBtn.addEventListener('click', prevSlide); // دکمه سمت چپ (❯) حالا به عقب می‌رود
             }
             
             if (prevBtn) {
-                prevBtn.addEventListener('click', nextSlide); // دکمه سمت راست (❯) حالا به جلو می‌رود
+                prevBtn.addEventListener('click', nextSlide); // دکمه سمت راست (❮) حالا به جلو می‌رود
             }
             
             // کنترل اسلایدر با دات‌ها
