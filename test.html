@@ -676,8 +676,9 @@ layout: null
                     </div>
                 </div>
                 
-                <button class="slider-nav slider-prev">❮</button>
-                <button class="slider-nav slider-next">❯</button>
+                <!-- تعویض عملکرد دکمه‌ها -->
+                <button class="slider-nav slider-prev">❯</button>
+                <button class="slider-nav slider-next">❮</button>
                 
                 <div class="slider-controls">
                     <div class="slider-dot active"></div>
@@ -691,10 +692,10 @@ layout: null
         <section class="patriotic-section">
             <span class="crown-symbol">👑</span>
             <h2 class="patriotic-title">فرزند کوروش بزرگم، به ایران عزیزم می‌بالم</h2>
-            <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، mهد تمدن و فرهنگ است</p>
+            <p class="patriotic-subtitle">از تخت جمشید تا فردوسی، از حافظ تا امروز؛ این سرزمین کهن، مهد تمدن و فرهنگ است</p>
             <div class="cyrus-quote">
                 "منم کوروش، شاه جهان، شاه بزرگ، شاه توانمند، شاه بابل، شاه سومر و اکد، شاه چهار گوشه جهان... 
-                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزای بدنm خاک ایران را تشکیل دهد"
+                فرمان دادم بدنم را بدون تابوت و مومیایی به خاک بسپارند تا اجزای بدنم خاک ایران را تشکیل دهد"
             </div>
         </section>
         
@@ -758,13 +759,13 @@ layout: null
                 showSlide(currentSlide - 1);
             }
             
-            // کنترل اسلایدر با دکمه‌ها
+            // کنترل اسلایدر با دکمه‌ها - عملکرد تعویض شده
             if (nextBtn) {
-                nextBtn.addEventListener('click', nextSlide);
+                nextBtn.addEventListener('click', prevSlide); // دکمه سمت چپ (❮) حالا به عقب می‌رود
             }
             
             if (prevBtn) {
-                prevBtn.addEventListener('click', prevSlide);
+                prevBtn.addEventListener('click', nextSlide); // دکمه سمت راست (❯) حالا به جلو می‌رود
             }
             
             // کنترل اسلایدر با دات‌ها
