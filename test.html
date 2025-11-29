@@ -8,7 +8,7 @@ layout: null
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
-    <meta name="description" content="وبلاگ پاسگاه؛ بیوگرافی افراد مشهور. از خاطرات تا دستاوردهای افراد مشهور ایران و جهان">
+    <meta name="description" content="ウェブログ پاسگاه؛ 有名人の伝記。イランと世界の有名人の思い出から功績まで">
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" type="image/webp" href="/biography/logo.webp">
@@ -26,7 +26,7 @@ layout: null
         
         body {
             background: 
-                linear-gradient(135deg, rgba(248, 249, 250, 0.92) 0%, rgba(233, 236, 239, 0.92) 100%),
+                linear-gradient(135deg, rgba(248, 249, 250, 0.7) 0%, rgba(233, 236, 239, 0.7) 100%),
                 url('https://www.pasgah.org/biography/pasgah.webp') center/cover fixed no-repeat;
             color: #333;
             line-height: 1.7;
@@ -182,7 +182,7 @@ layout: null
         }
         
         .featured-slider {
-            margin-bottom: 60px;
+            margin-bottom: 100px;
             position: relative;
             border-radius: 16px;
             overflow: hidden;
@@ -299,6 +299,10 @@ layout: null
             left: 25px;
         }
         
+        .posts-section {
+            margin-top: 80px;
+        }
+        
         .two-column-posts {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -306,13 +310,14 @@ layout: null
         }
         
         .post-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0,0,0,0.03);
             position: relative;
+            backdrop-filter: blur(5px);
         }
         
         .post-card::before {
@@ -329,6 +334,7 @@ layout: null
         .post-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .post-image {
@@ -447,6 +453,14 @@ layout: null
                 padding: 15px 30px;
             }
             
+            .featured-slider {
+                margin-bottom: 80px;
+            }
+            
+            .posts-section {
+                margin-top: 60px;
+            }
+            
             .two-column-posts {
                 grid-template-columns: 1fr;
             }
@@ -472,6 +486,14 @@ layout: null
             
             .logo-image {
                 height: 25px;
+            }
+            
+            .featured-slider {
+                margin-bottom: 60px;
+            }
+            
+            .posts-section {
+                margin-top: 40px;
             }
         }
     </style>
