@@ -50,45 +50,14 @@ layout: null
         
         .header-top {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 15px 0;
             height: 80px;
-            gap: 5px;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        
-        .logo-wrapper {
-            background: white;
-            padding: 10px 16px;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 44px;
-            margin-left: 5px;
-        }
-        
-        .logo-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .logo-image {
-            height: 24px;
-            width: auto;
-            display: block;
         }
         
         .nav-links-container {
-            flex: 1;
+            width: 100%;
             overflow-x: auto;
             scrollbar-width: thin;
             scrollbar-color: rgba(255,255,255,0.3) transparent;
@@ -113,6 +82,7 @@ layout: null
             align-items: center;
             min-width: max-content;
             padding: 5px 0;
+            justify-content: center;
         }
         
         .nav-link {
@@ -293,16 +263,6 @@ layout: null
                 padding: 12px 0;
             }
             
-            .logo-wrapper {
-                padding: 8px 14px;
-                height: 40px;
-                margin-left: 3px;
-            }
-            
-            .logo-image {
-                height: 22px;
-            }
-            
             .nav-link {
                 height: 40px;
                 padding: 8px 14px;
@@ -321,16 +281,6 @@ layout: null
             .header-top {
                 height: 60px;
                 padding: 10px 0;
-            }
-            
-            .logo-wrapper {
-                padding: 6px 12px;
-                height: 36px;
-                margin-left: 2px;
-            }
-            
-            .logo-image {
-                height: 20px;
             }
             
             .nav-link {
@@ -370,16 +320,6 @@ layout: null
                 font-size: 0.85rem;
                 height: 34px;
             }
-            
-            .logo-wrapper {
-                padding: 5px 10px;
-                height: 34px;
-                margin-left: 2px;
-            }
-            
-            .logo-image {
-                height: 18px;
-            }
         }
     </style>
 </head>
@@ -387,14 +327,6 @@ layout: null
     <header class="main-header">
         <div class="header-container">
             <div class="header-top">
-                <div class="logo-container">
-                    <a href="/" class="logo-link">
-                        <div class="logo-wrapper">
-                            <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
-                        </div>
-                    </a>
-                </div>
-                
                 <div class="nav-links-container">
                     <div class="nav-links">
                         <a href="#" class="nav-link">تماس با ما</a>
