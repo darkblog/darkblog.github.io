@@ -77,10 +77,20 @@ layout: null
             gap: 15px;
         }
         
+        .logo-wrapper {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .logo-image {
-            height: 45px;
+            height: 35px;
             width: auto;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            display: block;
         }
         
         .current-date {
@@ -501,8 +511,12 @@ layout: null
                 font-size: 0.9rem;
             }
             
+            .logo-wrapper {
+                padding: 6px 10px;
+            }
+            
             .logo-image {
-                height: 35px;
+                height: 30px;
             }
             
             .nav-menu {
@@ -568,8 +582,12 @@ layout: null
                 font-size: 3rem;
             }
 
+            .logo-wrapper {
+                padding: 5px 8px;
+            }
+            
             .logo-image {
-                height: 30px;
+                height: 25px;
             }
         }
     </style>
@@ -584,7 +602,9 @@ layout: null
             <div class="header-top">
                 <div class="logo-container">
                     <!-- لوگو از آدرس شما -->
-                    <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
+                    <div class="logo-wrapper">
+                        <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-image">
+                    </div>
                 </div>
                 <div class="current-date" id="currentDate">شنبه، ۸ آذر ۱۴۰۴</div>
             </div>
