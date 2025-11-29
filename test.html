@@ -381,46 +381,63 @@ layout: null
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
-        /* بخش پست‌های دو ستونی - استاندارد Jekyll */
-        .posts-grid {
+        /* بخش پست‌های دو ستونی */
+        .two-column-posts {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
         }
         
         .post-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .post-image {
-            height: 200px;
-            background-color: #f8f9fa;
-            background-size: cover;
-            background-position: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.03);
             position: relative;
         }
         
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #dc3545, #c70017);
+            z-index: 2;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .post-image {
+            height: 220px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+            position: relative;
+        }
+        
+        .post-card:hover .post-image {
+            transform: scale(1.08);
+        }
+        
         .post-content {
-            padding: 20px;
+            padding: 28px;
         }
         
         .post-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
             color: #343a40;
             line-height: 1.4;
+            letter-spacing: -0.3px;
         }
         
         .post-title a {
@@ -433,38 +450,17 @@ layout: null
         }
         
         .post-excerpt {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #6c757d;
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 18px;
+            line-height: 1.7;
         }
         
         .post-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #868e96;
-            border-top: 1px solid #e9ecef;
-            padding-top: 15px;
-        }
-        
-        .post-date {
-            font-weight: 500;
-        }
-        
-        .post-categories {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
-        
-        .category-tag {
-            background: #dc3545;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
             font-weight: 500;
         }
         
@@ -501,10 +497,6 @@ layout: null
             
             .patriotic-title {
                 font-size: 1.9rem;
-            }
-            
-            .posts-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
         }
         
@@ -563,9 +555,8 @@ layout: null
                 font-size: 1.1rem;
             }
             
-            .posts-grid {
+            .two-column-posts {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
         }
         
@@ -606,14 +597,6 @@ layout: null
             
             .logo-image {
                 height: 25px;
-            }
-            
-            .post-content {
-                padding: 15px;
-            }
-            
-            .post-title {
-                font-size: 1.2rem;
             }
         }
     </style>
@@ -711,118 +694,25 @@ layout: null
             </div>
         </section>
         
-        <!-- پست‌های استاندارد Jekyll -->
+        <!-- پست‌های دو ستونی - محتوای واقعی وبلاگ -->
         <section class="posts-section">
-            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem; color: #343a40;">آخرین پست‌ها</h2>
-            
-            <div class="posts-grid">
-                <!-- پست 1 -->
+            <div class="two-column-posts">
+                <!-- محتوای واقعی وبلاگ شما اینجا لود خواهد شد -->
+                {% for post in site.posts limit:10 %}
                 <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1727&q=80')"></div>
+                    <div class="post-image" style="background-image: url('{{ post.image | default: '/assets/images/default-post.jpg' }}')"></div>
                     <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="/biography/mohammadali-keshavarz/">داستان زندگی محمدعلی کشاورز</a>
-                        </h3>
-                        <p class="post-excerpt">از تئاتر تا سینما، نگاهی به کارنامه هنری استاد کشاورز و نقش‌آفرینی‌های ماندگارش در سینمای ایران</p>
+                        <h2 class="post-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h2>
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
                         <div class="post-meta">
-                            <span class="post-date">۱۲ فروردین ۱۴۰۳</span>
-                            <div class="post-categories">
-                                <span class="category-tag">سینما</span>
-                                <span class="category-tag">تئاتر</span>
-                            </div>
+                            <span>{{ post.date | jdate: "%d %B %Y" }}</span>
+                            <span>{{ post.content | reading_time }} دقیقه خواندن</span>
                         </div>
                     </div>
                 </article>
-                
-                <!-- پست 2 -->
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
-                    <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="/biography/mohammad-mosaddegh/">زندگی‌نامه محمد مصدق</a>
-                        </h3>
-                        <p class="post-excerpt">از وکالت تا نخست‌وزیری، نگاهی به زندگی پر فراز و نشیب محمد مصدق و ملی شدن صنعت نفت ایران</p>
-                        <div class="post-meta">
-                            <span class="post-date">۱۱ فروردین ۱۴۰۳</span>
-                            <div class="post-categories">
-                                <span class="category-tag">تاریخ</span>
-                                <span class="category-tag">سیاست</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- پست 3 -->
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="/biography/hossein-alizadeh/">حسین علیزاده؛ استاد سه‌تار و آهنگساز</a>
-                        </h3>
-                        <p class="post-excerpt">از نوازندگی تا آهنگسازی، مروری بر زندگی و آثار حسین علیزاده، استاد مسلم موسیقی ایرانی</p>
-                        <div class="post-meta">
-                            <span class="post-date">۱۰ فروردین ۱۴۰۳</span>
-                            <div class="post-categories">
-                                <span class="category-tag">موسیقی</span>
-                                <span class="category-tag">هنر</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- پست 4 -->
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80')"></div>
-                    <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="/biography/sadegh-hedayat/">صادق هدایت؛ پدر داستان نویسی مدرن ایران</a>
-                        </h3>
-                        <p class="post-excerpt">از بوف کور تا نویسندگی در تبعید، نگاهی به زندگی و آثار صادق هدایت، نویسنده پرآوازه ایرانی</p>
-                        <div class="post-meta">
-                            <span class="post-date">۹ فروردین ۱۴۰۳</span>
-                            <div class="post-categories">
-                                <span class="category-tag">ادبیات</span>
-                                <span class="category-tag">نویسندگی</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- پست 5 -->
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="/biography/bahman-alishah/">بهمن عالیشاه؛ ستاره فوتبال ایران</a>
-                        </h3>
-                        <p class="post-excerpt">از جوانی در باشگاه پرسپولیس تا بازی در لیگ قطر، نگاهی به زندگی حرفه‌ای بهمن عالیشاه</p>
-                        <div class="post-meta">
-                            <span class="post-date">۸ فروردین ۱۴۰۳</span>
-                            <div class="post-categories">
-                                <span class="category-tag">فوتبال</span>
-                                <span class="category-tag">ورزش</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- پست 6 -->
-                <article class="post-card">
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"></div>
-                    <div class="post-content">
-                        <h3 class="post-title">
-                            <a href="/biography/hossein-sabet/">حسین ثابت؛ امپراتور تجارت ایران</a>
-                        </h3>
-                        <p class="post-excerpt">از مغازه‌داری کوچک تا تاسیس امپراتوری تجاری، داستان زندگی حسین ثابت، تاجر نامدار ایرانی</p>
-                        <div class="post-meta">
-                            <span class="post-date">۷ فروردین ۱۴۰۳</span>
-                            <div class="post-categories">
-                                <span class="category-tag">تجارت</span>
-                                <span class="category-tag">اقتصاد</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                {% endfor %}
             </div>
         </section>
     </main>
