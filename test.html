@@ -1,7 +1,3 @@
----
-layout: null
----
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -67,6 +63,7 @@ layout: null
             align-items: center;
             padding: 0;
             height: 70px;
+            position: relative;
         }
 
         .logo-container {
@@ -527,6 +524,36 @@ layout: null
             font-size: 14px;
         }
 
+        /* Mobile Menu Overlay - Hidden by default on desktop */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        /* Mobile Navigation Menu - Hidden by default on desktop */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: -300px;
+            width: 280px;
+            height: calc(100vh - 70px);
+            background-color: var(--background-color);
+            box-shadow: var(--shadow-high);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .search-container {
@@ -571,40 +598,22 @@ layout: null
                 justify-content: center;
             }
             
-            /* Mobile Menu Overlay */
+            /* Show mobile menu elements on mobile */
             .mobile-menu-overlay {
-                position: fixed;
-                top: 70px;
+                display: block;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .mobile-nav.active {
                 right: 0;
-                left: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 999;
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
             }
             
             .mobile-menu-overlay.active {
                 opacity: 1;
                 visibility: visible;
-            }
-            
-            .mobile-nav {
-                position: fixed;
-                top: 70px;
-                right: -300px;
-                width: 280px;
-                height: calc(100vh - 70px);
-                background-color: var(--background-color);
-                box-shadow: var(--shadow-high);
-                z-index: 1000;
-                transition: right 0.3s ease;
-                overflow-y: auto;
-            }
-            
-            .mobile-nav.active {
-                right: 0;
             }
             
             .mobile-nav-item {
@@ -785,10 +794,10 @@ layout: null
             </button>
         </div>
         
-        <!-- Mobile Navigation Overlay -->
+        <!-- Mobile Menu Overlay - Only shows on mobile -->
         <div class="mobile-menu-overlay" id="mobileOverlay"></div>
         
-        <!-- Mobile Navigation Menu -->
+        <!-- Mobile Navigation Menu - Only shows on mobile -->
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
@@ -1072,6 +1081,39 @@ layout: null
                 });
             });
             
+            // Mobile menu toggle (only on mobile)
+            if (window.innerWidth <= 768) {
+                setupMobileMenu();
+            }
+            
+            // Update mobile menu setup on window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth <= 768) {
+                    setupMobileMenu();
+                } else {
+                    // Close mobile menu if open when switching to desktop
+                    mobileNav.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    closeAllMobileDropdowns();
+                }
+            });
+            
+            // Close dropdowns when clicking outside on desktop
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth > 768 && !e.target.closest('.nav-item')) {
+                    // Close all dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(-10px)';
+                    });
+                }
+            });
+        });
+
+        // Function to setup mobile menu events
+        function setupMobileMenu() {
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', () => {
                 mobileNav.classList.toggle('active');
@@ -1127,19 +1169,7 @@ layout: null
                     }
                 });
             });
-            
-            // Close dropdowns when clicking outside on desktop
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.nav-item')) {
-                    // Close all dropdowns
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.style.opacity = '0';
-                        menu.style.visibility = 'hidden';
-                        menu.style.transform = 'translateY(-10px)';
-                    });
-                }
-            });
-        });
+        }
 
         // Function to close all mobile dropdowns
         function closeAllMobileDropdowns() {
