@@ -2,261 +2,642 @@
 layout: null
 ---
 
-<!doctype html>
-<html dir="rtl" lang="fa">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
-    <meta name="description" content="وبلاگ پاسگاه؛ بیوگرافی افراد مشهور. از خاطرات تا دستاوردهای افراد مشهور ایران و جهان">
-    <link rel="canonical" href="https://www.pasgah.org/">
-    <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
-    <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
-    <meta name="robots" content="noarchive">
-    <link rel="icon" type="image/webp" href="https://www.pasgah.org/biography/logo.webp">
-    <meta name="theme-color" content="#dc3545">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دسته‌بندی مطالب | وبلاگ من</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-light: #e8f0fe;
+            --primary-dark: #0d47a1;
+            --secondary-color: #34a853;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-light: #ffffff;
+            --background-color: #ffffff;
+            --surface-color: #f8f9fa;
+            --border-color: #dadce0;
+            --shadow-light: 0 1px 2px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.1);
+            --shadow-high: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        @font-face {
-            font-family: 'Vazirmatn';
-            src: url('/Vazirmatn.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        :root {
-            --primary-color: #dc3545;
-            --primary-dark: #a71d2a;
-            --primary-light: #ff6b7a;
-            --text-color: #333;
-            --text-secondary: #54595d;
-            --light-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #e1e5e9;
-            --link-color: #dc3545;
-            --link-hover-color: #a71d2a;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
-            --radius: 12px;
-        }
-        
-        body {
             font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.7;
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* هدر جدید به سبک PageSpeed */
-        .psi-header {
-            background-color: #fff;
-            border-bottom: 1px solid #e6e8eb;
+        body {
+            background-color: var(--surface-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--background-color);
+            box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
 
-        .psi-header-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 12px 20px;
+        .header-container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            direction: rtl;
+            align-items: center;
+            padding: 16px 0;
         }
 
-        .psi-brand {
-            display: inline-flex;
+        .logo {
+            display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
+            color: var(--text-primary);
         }
 
-        .psi-logo {
-            width: 36px;
-            height: 36px;
+        .logo-icon {
+            font-size: 32px;
+            color: var(--primary-color);
         }
 
-        .psi-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1f2328;
+        .logo-text {
+            font-size: 22px;
+            font-weight: 500;
         }
 
-        .psi-nav-list {
-            list-style: none;
+        .nav-links {
             display: flex;
-            gap: 18px;
-            margin: 0;
-            padding: 0;
+            gap: 30px;
         }
 
-        .psi-nav-link {
-            font-size: 0.95rem;
-            color: #24292f;
+        .nav-link {
             text-decoration: none;
-            padding: 8px 10px;
-            border-radius: 8px;
-        }
-
-        .psi-nav-link:hover,
-        .psi-nav-link:focus {
-            background-color: #f2f4f7;
-            outline: none;
-        }
-
-        @media (max-width: 768px) {
-            .psi-title { font-size: 1rem; }
-            .psi-nav-list { gap: 12px; }
-            .psi-nav-link { font-size: 0.9rem; padding: 6px 8px; }
-        }
-
-        @media (max-width: 576px) {
-            .psi-header-inner { flex-wrap: wrap; gap: 8px; }
-            .psi-brand { width: 100%; justify-content: space-between; }
-            .psi-nav { width: 100%; }
-            .psi-nav-list { justify-content: space-between; }
-        }
-
-        main {
-            flex: 1;
-            margin: 20px auto 80px;
-            padding: 0 20px;
-            width: 100%;
-            z-index: 100;
-            max-width: 900px;
-        }
-        
-        .posts-container {
-            display: grid;
-            gap: 40px;
-        }
-        
-        .post-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-strong);
-            padding: 40px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 8px 0;
             position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(220, 53, 69, 0.15);
-            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
+            transition: var(--transition);
         }
-        
-        .post-card:hover {
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            border-color: rgba(220, 53, 69, 0.25);
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
         }
-        
-        .post-card-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .post-card-title::after {
+
+        .nav-link.active::after {
             content: '';
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
             border-radius: 2px;
         }
-        
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
         }
-        
-        .post-excerpt {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #000000;
-            position: relative;
-            z-index: 1;
+
+        /* Main Content */
+        .main-content {
+            padding-top: 40px;
         }
-        
-        .post-card-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
         }
-        
-        .post-card-link:hover .post-card-title {
+
+        .page-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            background-color: var(--surface-color);
+            border-color: var(--primary-color);
             color: var(--primary-color);
         }
-        
-        @media (max-width: 768px) {
-            .post-card { padding: 30px; }
-            .posts-container { gap: 30px; }
+
+        .filter-btn.active {
+            background-color: var(--primary-light);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
         }
-        
-        @media (max-width: 576px) {
-            .post-card { padding: 25px; }
-            .posts-container { gap: 25px; }
+
+        /* Blog Posts Grid */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .post-card {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-high);
+        }
+
+        .post-image {
+            height: 200px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-image .material-icons {
+            font-size: 64px;
+        }
+
+        .post-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+
+        .post-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .post-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .post-read-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 20px;
+            align-self: flex-start;
+            transition: var(--transition);
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--background-color);
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .category-filter {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- هدر جدید -->
-    <header class="psi-header" role="banner" aria-label="ناحیه سربرگ">
-      <div class="psi-header-inner">
-        <a href="https://www.pasgah.org/" class="psi-brand" aria-label="وبلاگ پاسگاه">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="psi-logo" aria-hidden="true" focusable="false">
-            <title>وبلاگ پاسگاه</title>
-            <path fill="#dc3545" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-          </svg>
-          <span class="psi-title">وبلاگ پاسگاه</span>
-        </a>
-
-        <nav class="psi-nav" aria-label="منوی اصلی">
-          <ul class="psi-nav-list">
-            <li><a href="/news" class="psi-nav-link">چه خبر</a></li>
-            <li><a href="/docs" class="psi-nav-link">مستندات</a></li>
-            <li><a href="/learn" class="psi-nav-link">یادگیری عملکرد وب</a></li>
-          </ul>
-        </nav>
-      </div>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span class="material-icons logo-icon">article</span>
+                <span class="logo-text">وبلاگ من</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#" class="nav-link">خانه</a>
+                <a href="#" class="nav-link active">دسته‌بندی‌ها</a>
+                <a href="#" class="nav-link">درباره من</a>
+                <a href="#" class="nav-link">تماس با من</a>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
     </header>
-    
-    <main>
-            <section class="posts-container">
-            {% for post in site.posts %}
-            <article class="post-card">
-                <a href="{{ post.url }}" class="post-card-link">
-                    <h2 class="post-card-title">{{ post.title }}</h2>
-                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                </a>
-            </article>
-            {% endfor %}
-        </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-content">
+            <h1 class="page-title">دسته‌بندی مطالب</h1>
+            <p class="page-description">تمام مطالب وبلاگ بر اساس دسته‌بندی‌ها در این صفحه سازماندهی شده‌اند. می‌توانید بر اساس موضوع مورد علاقه خود فیلتر کنید یا تمام مطالب را مرور نمایید.</p>
+            
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">همه مطالب</button>
+                <button class="filter-btn" data-category="technology">فناوری</button>
+                <button class="filter-btn" data-category="programming">برنامه‌نویسی</button>
+                <button class="filter-btn" data-category="design">طراحی</button>
+                <button class="filter-btn" data-category="tutorial">آموزشی</button>
+                <button class="filter-btn" data-category="personal">شخصی</button>
+            </div>
+            
+            <!-- Blog Posts Grid -->
+            <div class="posts-grid" id="posts-container">
+                <!-- Posts will be dynamically loaded here -->
+            </div>
+        </div>
     </main>
 
-    <!-- فوتر ساده -->
-    <footer style="background:#fff;border-top:1px solid #e6e8eb;padding:20px;text-align:center;font-size:0.9rem;color:#555;">
-        <p>© 2025 وبلاگ پاسگاه - بیوگرافی افراد مشهور ایران و جهان</p>
-        <p>
-            <a href="/about" style="color:#dc3545;text-decoration:none;">درباره</a> |
-            <a href="/contact" style="color:#dc3545;text-decoration:none;">تماس</a> |
-            <a href="/privacy" style="color:#dc3545;text-decoration:none;">حریم خصوصی</a>
-        </p>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <a href="#" class="footer-logo">
+                <span class="material-icons">article</span>
+                وبلاگ من
+            </a>
+            
+            <div class="footer-links">
+                <a href="#" class="footer-link">خانه</a>
+                <a href="#" class="footer-link">دسته‌بندی‌ها</a>
+                <a href="#" class="footer-link">درباره من</a>
+                <a href="#" class="footer-link">تماس با من</a>
+                <a href="#" class="footer-link">حریم خصوصی</a>
+            </div>
+            
+            <p class="copyright">© ۱۴۰۳ کلیه حقوق برای وبلاگ من محفوظ است.</p>
+        </div>
     </footer>
+
+    <script>
+        // Sample blog posts data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "آموزش React.js از مقدماتی تا پیشرفته",
+                excerpt: "در این مقاله به بررسی React.js و ویژگی‌های آن می‌پردازیم. این کتابخانه قدرتمند جاوااسکریپت برای ساخت رابط کاربری استفاده می‌شود.",
+                category: "programming",
+                date: "۱۴۰۳/۰۵/۱۵",
+                readTime: "۸ دقیقه",
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 2,
+                title: "معرفی Material Design 3 و ویژگی‌های جدید",
+                excerpt: "Material Design 3 آخرین نسخه از زبان طراحی گوگل است که در این مقاله به بررسی ویژگی‌های جدید آن می‌پردازیم.",
+                category: "design",
+                date: "۱۴۰۳/۰۵/۱۰",
+                readTime: "۵ دقیقه",
+                image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 3,
+                title: "تأثیر هوش مصنوعی بر توسعه نرم‌افزار",
+                excerpt: "هوش مصنوعی در حال تغییر نحوه توسعه نرم‌افزار است. در این مقاله به بررسی تأثیرات آن بر صنعت نرم‌افزار می‌پردازیم.",
+                category: "technology",
+                date: "۱۴۰۳/۰۵/۰۵",
+                readTime: "۱۲ دقیقه",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 4,
+                title: "نحوه راه‌اندازی وبلاگ روی GitHub Pages",
+                excerpt: "در این مقاله قدم به قدم نحوه راه‌اندازی یک وبلاگ رایگان روی GitHub Pages را آموزش می‌دهیم.",
+                category: "tutorial",
+                date: "۱۴۰۳/۰۴/۲۸",
+                readTime: "۱۰ دقیقه",
+                image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 5,
+                title: "چرا یادگیری جاوااسکریپت ضروری است؟",
+                excerpt: "جاوااسکریپت یکی از محبوب‌ترین زبان‌های برنامه‌نویسی است که در این مقاله دلایل ضرورت یادگیری آن را بررسی می‌کنیم.",
+                category: "programming",
+                date: "۱۴۰۳/۰۴/۲۰",
+                readTime: "۶ دقیقه",
+                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 6,
+                title: "تجربیات من از یک سال وبلاگ نویسی",
+                excerpt: "در این مقاله تجربیات شخصی من از یک سال وبلاگ‌نویسی و نکاتی که یاد گرفته‌ام را با شما به اشتراک می‌گذارم.",
+                category: "personal",
+                date: "۱۴۰۳/۰۴/۱۵",
+                readTime: "۷ دقیقه",
+                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            }
+        ];
+
+        // DOM elements
+        const postsContainer = document.getElementById('posts-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // Function to render posts based on category
+        function renderPosts(category = 'all') {
+            postsContainer.innerHTML = '';
+            
+            // Filter posts based on category
+            const filteredPosts = category === 'all' 
+                ? blogPosts 
+                : blogPosts.filter(post => post.category === category);
+            
+            // Render each post
+            filteredPosts.forEach(post => {
+                const postElement = document.createElement('article');
+                postElement.className = 'post-card';
+                
+                // Determine category label text
+                let categoryText = '';
+                switch(post.category) {
+                    case 'technology':
+                        categoryText = 'فناوری';
+                        break;
+                    case 'programming':
+                        categoryText = 'برنامه‌نویسی';
+                        break;
+                    case 'design':
+                        categoryText = 'طراحی';
+                        break;
+                    case 'tutorial':
+                        categoryText = 'آموزشی';
+                        break;
+                    case 'personal':
+                        categoryText = 'شخصی';
+                        break;
+                    default:
+                        categoryText = post.category;
+                }
+                
+                postElement.innerHTML = `
+                    <div class="post-image">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy">
+                    </div>
+                    <div class="post-content">
+                        <span class="post-category">${categoryText}</span>
+                        <h2 class="post-title">${post.title}</h2>
+                        <p class="post-excerpt">${post.excerpt}</p>
+                        <div class="post-meta">
+                            <div class="post-date">
+                                <span class="material-icons" style="font-size:16px">calendar_today</span>
+                                <span>${post.date}</span>
+                            </div>
+                            <div class="post-read-time">
+                                <span class="material-icons" style="font-size:16px">schedule</span>
+                                <span>${post.readTime}</span>
+                            </div>
+                        </div>
+                        <a href="#" class="read-more-btn">
+                            <span>خواندن مقاله</span>
+                            <span class="material-icons">arrow_back</span>
+                        </a>
+                    </div>
+                `;
+                
+                postsContainer.appendChild(postElement);
+            });
+            
+            // If no posts found
+            if (filteredPosts.length === 0) {
+                postsContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <span class="material-icons" style="font-size: 64px; color: var(--text-secondary); margin-bottom: 20px; display: block;">search_off</span>
+                        <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای در این دسته‌بندی یافت نشد</h3>
+                        <p style="color: var(--text-secondary);">به زودی مطالب جدیدی در این دسته‌بندی منتشر خواهد شد.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize with all posts
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPosts();
+            
+            // Add event listeners to filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Get category from data attribute
+                    const category = button.getAttribute('data-category');
+                    
+                    // Render posts for selected category
+                    renderPosts(category);
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Adjust mobile menu on window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    navLinks.style.display = '';
+                } else {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Function to add new post (simulating dynamic addition)
+        function addNewPost(post) {
+            blogPosts.unshift(post); // Add to beginning of array
+            renderPosts(); // Re-render all posts
+        }
+        
+        // Example of how to add a new post (can be called when you add a new post to your blog)
+        // addNewPost({
+        //     id: blogPosts.length + 1,
+        //     title: "عنوان مقاله جدید",
+        //     excerpt: "خلاصه مقاله جدید...",
+        //     category: "design",
+        //     date: "۱۴۰۳/۰۵/۲۰",
+        //     readTime: "۵ دقیقه",
+        //     image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+        // });
+    </script>
 </body>
 </html>
