@@ -221,7 +221,7 @@
             transform: translateX(0);
         }
 
-        /* Search Bar - FIXED */
+        /* Search Bar - FIXED: Text right-aligned, icon on left */
         .search-container {
             display: flex;
             align-items: center;
@@ -230,13 +230,15 @@
         }
 
         .search-input {
-            padding: 10px 40px 10px 15px;
+            padding: 10px 15px 10px 40px;
             border: 1px solid var(--border-color);
             border-radius: 20px;
             width: 200px;
             transition: var(--transition);
             font-size: 14px;
             height: 40px;
+            text-align: right;
+            direction: rtl;
         }
 
         .search-input:focus {
@@ -786,7 +788,7 @@
                     </li>
                 </ul>
                 
-                <!-- Search Bar - FIXED -->
+                <!-- Search Bar - FIXED: Text right-aligned, icon on left -->
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="جستجو در وبلاگ...">
                     <button class="search-btn">
