@@ -447,7 +447,7 @@
             color: var(--primary-color);
         }
 
-        /* Blog Posts Grid */
+        /* Blog Posts Grid - UPDATED */
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -464,11 +464,19 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
         }
 
         .post-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-high);
+        }
+
+        /* Hover effect line under title - NEW */
+        .post-card:hover .post-title::after {
+            width: 100%;
         }
 
         .post-image {
@@ -485,6 +493,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .post-card:hover .post-image img {
+            transform: scale(1.05);
         }
 
         .post-image .material-icons {
@@ -516,64 +529,25 @@
             margin-bottom: 12px;
             color: var(--text-primary);
             line-height: 1.4;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Underline effect on hover - NEW */
+        .post-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
         }
 
         .post-excerpt {
             color: var(--text-secondary);
-            margin-bottom: 20px;
             flex-grow: 1;
-        }
-
-        /* FIXED: Post meta alignment */
-        .post-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* FIXED: Better alignment for post-date and post-read-time */
-        .post-date, .post-read-time {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            vertical-align: middle;
-        }
-
-        .post-date .material-icons, .post-read-time .material-icons {
-            font-size: 16px;
-            vertical-align: middle;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .post-date span:not(.material-icons), 
-        .post-read-time span:not(.material-icons) {
-            display: inline-flex;
-            align-items: center;
-            vertical-align: middle;
-        }
-
-        .read-more-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 20px;
-            align-self: flex-start;
-            transition: var(--transition);
-        }
-
-        .read-more-btn:hover {
-            background-color: var(--primary-dark);
-            box-shadow: var(--shadow-medium);
         }
 
         /* Footer */
@@ -987,8 +961,6 @@
             <h1 class="page-title">دسته‌بندی مطالب</h1>
             <p class="page-description">تمام مطالب وبلاگ بر اساس دسته‌بندی‌ها در این صفحه سازماندهی شده‌اند. می‌توانید بر اساس موضوع مورد علاقه خود فیلتر کنید یا تمام مطالب را مرور نمایید.</p>
             
-            <!-- RSS Info Box REMOVED -->
-            
             <!-- Category Filter -->
             <div class="category-filter">
                 <button class="filter-btn active" data-category="all">همه مطالب</button>
@@ -1023,14 +995,12 @@
                 <a href="#" class="footer-link">حریم خصوصی</a>
             </div>
             
-            <!-- RSS link in footer REMOVED -->
-            
             <p class="copyright">© ۱۴۰۳ کلیه حقوق برای وبلاگ من محفوظ است.</p>
         </div>
     </footer>
 
     <script>
-        // Sample blog posts data
+        // Sample blog posts data with post URLs
         const blogPosts = [
             {
                 id: 1,
@@ -1039,7 +1009,8 @@
                 category: "programming",
                 date: "۱۴۰۳/۰۵/۱۵",
                 readTime: "۸ دقیقه",
-                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                url: "#"
             },
             {
                 id: 2,
@@ -1048,7 +1019,8 @@
                 category: "design",
                 date: "۱۴۰۳/۰۵/۱۰",
                 readTime: "۵ دقیقه",
-                image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                url: "#"
             },
             {
                 id: 3,
@@ -1057,7 +1029,8 @@
                 category: "technology",
                 date: "۱۴۰۳/۰۵/۰۵",
                 readTime: "۱۲ دقیقه",
-                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                url: "#"
             },
             {
                 id: 4,
@@ -1066,7 +1039,8 @@
                 category: "tutorial",
                 date: "۱۴۰۳/۰۴/۲۸",
                 readTime: "۱۰ دقیقه",
-                image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                url: "#"
             },
             {
                 id: 5,
@@ -1075,7 +1049,8 @@
                 category: "programming",
                 date: "۱۴۰۳/۰۴/۲۰",
                 readTime: "۶ دقیقه",
-                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                url: "#"
             },
             {
                 id: 6,
@@ -1084,7 +1059,8 @@
                 category: "personal",
                 date: "۱۴۰۳/۰۴/۱۵",
                 readTime: "۷ دقیقه",
-                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                url: "#"
             }
         ];
 
@@ -1220,8 +1196,9 @@
             
             // Render each post
             filteredPosts.forEach(post => {
-                const postElement = document.createElement('article');
+                const postElement = document.createElement('a');
                 postElement.className = 'post-card';
+                postElement.href = post.url;
                 
                 // Determine category label text
                 let categoryText = '';
@@ -1253,20 +1230,6 @@
                         <span class="post-category">${categoryText}</span>
                         <h2 class="post-title">${post.title}</h2>
                         <p class="post-excerpt">${post.excerpt}</p>
-                        <div class="post-meta">
-                            <div class="post-date">
-                                <span class="material-icons" style="font-size:16px; vertical-align:middle; display:inline-flex; align-items:center;">calendar_today</span>
-                                <span style="vertical-align:middle; display:inline-flex; align-items:center;">${post.date}</span>
-                            </div>
-                            <div class="post-read-time">
-                                <span class="material-icons" style="font-size:16px; vertical-align:middle; display:inline-flex; align-items:center;">schedule</span>
-                                <span style="vertical-align:middle; display:inline-flex; align-items:center;">${post.readTime}</span>
-                            </div>
-                        </div>
-                        <a href="#" class="read-more-btn">
-                            <span>خواندن مقاله</span>
-                            <span class="material-icons">arrow_back</span>
-                        </a>
                     </div>
                 `;
                 
