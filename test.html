@@ -322,6 +322,7 @@
             padding: 10px;
             border-radius: var(--border-radius);
             transition: var(--transition);
+            z-index: 1001;
         }
 
         .mobile-menu-btn:hover {
@@ -1026,6 +1027,10 @@
 
         // Variables to track dropdown state
         let activeDropdown = null;
+        
+        // Variables to track mobile menu state
+        let isMobileMenuOpen = false;
+        let isMobileMenuInitialized = false;
 
         // Your domain for Google search
         const siteDomain = 'pasgah.org';
@@ -1050,11 +1055,8 @@
             searchInput.value = '';
             
             // Close mobile menu if open
-            if (window.innerWidth <= 768) {
-                mobileNav.classList.remove('active');
-                mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                closeAllMobileDropdowns();
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
             }
         }
 
@@ -1159,6 +1161,34 @@
             }
         }
 
+        // Function to toggle mobile menu
+        function toggleMobileMenu() {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        // Function to open mobile menu
+        function openMobileMenu() {
+            mobileNav.classList.add('active');
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isMobileMenuOpen = true;
+        }
+
+        // Function to close mobile menu
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            isMobileMenuOpen = false;
+            
+            // Close all mobile dropdowns
+            closeAllMobileDropdowns();
+        }
+
         // Initialize with all posts
         document.addEventListener('DOMContentLoaded', () => {
             renderPosts();
@@ -1207,7 +1237,75 @@
                 }
             });
             
+            // Initialize mobile menu
+            initMobileMenu();
+            
             // Desktop dropdown event listeners
+            initDesktopDropdowns();
+            
+            // Update event listeners on window resize
+            window.addEventListener('resize', handleResize);
+        });
+
+        // Function to initialize mobile menu
+        function initMobileMenu() {
+            // Only initialize once
+            if (isMobileMenuInitialized) return;
+            
+            // Mobile menu button click event
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            
+            // Close mobile menu when clicking overlay
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+            
+            // Mobile dropdown toggles
+            mobileCategoriesBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileCategories.classList.toggle('active');
+                updateMobileDropdownIcon(mobileCategoriesBtn, mobileCategories.classList.contains('active'));
+            });
+            
+            mobileArticlesBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileArticles.classList.toggle('active');
+                updateMobileDropdownIcon(mobileArticlesBtn, mobileArticles.classList.contains('active'));
+            });
+            
+            mobilePopularBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                mobilePopular.classList.toggle('active');
+            });
+            
+            mobileContactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileContact.classList.toggle('active');
+                updateMobileDropdownIcon(mobileContactBtn, mobileContact.classList.contains('active'));
+            });
+            
+            // Close mobile menu when clicking a link (except search and dropdown toggles)
+            document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-link').forEach(link => {
+                if (link.id !== 'mobileSearchLink' && 
+                    link.id !== 'mobileCategoriesBtn' && 
+                    link.id !== 'mobileArticlesBtn' && 
+                    link.id !== 'mobilePopularBtn' && 
+                    link.id !== 'mobileContactBtn') {
+                    
+                    link.addEventListener('click', (e) => {
+                        // Close menu after a short delay
+                        setTimeout(closeMobileMenu, 300);
+                    });
+                }
+            });
+            
+            isMobileMenuInitialized = true;
+        }
+
+        // Function to initialize desktop dropdowns
+        function initDesktopDropdowns() {
             if (window.innerWidth > 768) {
                 // Categories dropdown
                 categoriesNavLink.addEventListener('click', (e) => {
@@ -1245,109 +1343,24 @@
                     });
                 });
             }
+        }
+
+        // Function to handle window resize
+        function handleResize() {
+            // Close all dropdowns when resizing
+            closeAllDropdowns();
             
-            // Mobile menu toggle (only on mobile)
-            if (window.innerWidth <= 768) {
-                setupMobileMenu();
+            // Close mobile menu if open when switching to desktop
+            if (window.innerWidth > 768 && isMobileMenuOpen) {
+                closeMobileMenu();
             }
             
-            // Update event listeners on window resize
-            window.addEventListener('resize', () => {
-                // Close all dropdowns when resizing
-                closeAllDropdowns();
-                
-                if (window.innerWidth <= 768) {
-                    setupMobileMenu();
-                } else {
-                    // Close mobile menu if open when switching to desktop
-                    mobileNav.classList.remove('active');
-                    mobileOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                    closeAllMobileDropdowns();
-                    
-                    // Re-add desktop dropdown event listeners
-                    categoriesNavLink.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        toggleDropdown(categoriesNavItem, categoriesDropdown);
-                    });
-                    
-                    articlesNavLink.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        toggleDropdown(articlesNavItem, articlesDropdown);
-                    });
-                    
-                    contactNavLink.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        toggleDropdown(contactNavItem, contactDropdown);
-                    });
-                }
-            });
-        });
-
-        // Function to setup mobile menu events
-        function setupMobileMenu() {
-            // Remove desktop event listeners to prevent conflicts
-            categoriesNavLink.removeEventListener('click', toggleDropdown);
-            articlesNavLink.removeEventListener('click', toggleDropdown);
-            contactNavLink.removeEventListener('click', toggleDropdown);
-            
-            // Mobile menu toggle
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileNav.classList.toggle('active');
-                mobileOverlay.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-            });
-            
-            // Close mobile menu when clicking overlay
-            mobileOverlay.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Close all dropdowns
-                closeAllMobileDropdowns();
-            });
-            
-            // Mobile dropdown toggles
-            mobileCategoriesBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                mobileCategories.classList.toggle('active');
-                updateMobileDropdownIcon(mobileCategoriesBtn, mobileCategories.classList.contains('active'));
-            });
-            
-            mobileArticlesBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                mobileArticles.classList.toggle('active');
-                updateMobileDropdownIcon(mobileArticlesBtn, mobileArticles.classList.contains('active'));
-            });
-            
-            mobilePopularBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                mobilePopular.classList.toggle('active');
-            });
-            
-            mobileContactBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                mobileContact.classList.toggle('active');
-                updateMobileDropdownIcon(mobileContactBtn, mobileContact.classList.contains('active'));
-            });
-            
-            // Close mobile menu when clicking a link (except search)
-            document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-link').forEach(link => {
-                if (link.id !== 'mobileSearchLink') {
-                    link.addEventListener('click', (e) => {
-                        if (!link.querySelector('.material-icons') || link.id === 'mobilePopularBtn') {
-                            // If it's not a dropdown toggle link, close the menu
-                            setTimeout(() => {
-                                mobileNav.classList.remove('active');
-                                mobileOverlay.classList.remove('active');
-                                document.body.style.overflow = '';
-                                closeAllMobileDropdowns();
-                            }, 300);
-                        }
-                    });
-                }
-            });
+            // Reinitialize event listeners based on screen size
+            if (window.innerWidth <= 768) {
+                initMobileMenu();
+            } else {
+                initDesktopDropdowns();
+            }
         }
 
         // Function to close all mobile dropdowns
