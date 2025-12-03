@@ -327,9 +327,9 @@
             color: var(--rss-color);
         }
 
-        /* Fix for text alignment in RSS button */
+        /* Fix for RSS button text alignment */
         .rss-btn span:not(.material-icons) {
-            vertical-align: middle;
+            line-height: 1;
         }
 
         /* Mobile Menu Button */
@@ -531,23 +531,26 @@
             color: var(--text-secondary);
         }
 
+        /* FIXED: Better alignment for post-date and post-read-time */
         .post-date, .post-read-time {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
+            vertical-align: middle;
         }
 
-        /* FIXED: Better alignment for text and icons */
         .post-date .material-icons, .post-read-time .material-icons {
             font-size: 16px;
-            display: flex;
+            vertical-align: middle;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .post-date span, .post-read-time span {
-            display: flex;
+        .post-date span:not(.material-icons), 
+        .post-read-time span:not(.material-icons) {
+            display: inline-flex;
             align-items: center;
+            vertical-align: middle;
         }
 
         .read-more-btn {
@@ -1315,12 +1318,12 @@
                         <p class="post-excerpt">${post.excerpt}</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <span class="material-icons">calendar_today</span>
-                                <span>${post.date}</span>
+                                <span class="material-icons" style="font-size:16px; vertical-align:middle; display:inline-flex; align-items:center;">calendar_today</span>
+                                <span style="vertical-align:middle; display:inline-flex; align-items:center;">${post.date}</span>
                             </div>
                             <div class="post-read-time">
-                                <span class="material-icons">schedule</span>
-                                <span>${post.readTime}</span>
+                                <span class="material-icons" style="font-size:16px; vertical-align:middle; display:inline-flex; align-items:center;">schedule</span>
+                                <span style="vertical-align:middle; display:inline-flex; align-items:center;">${post.readTime}</span>
                             </div>
                         </div>
                         <a href="#" class="read-more-btn">
