@@ -16,6 +16,7 @@
             --secondary-color: #34a853;
             --rss-color: #f26522;
             --rss-light: #fff0e8;
+            --rss-dark: #d35400;
             --text-primary: #202124;
             --text-secondary: #5f6368;
             --text-light: #ffffff;
@@ -295,7 +296,7 @@
             font-size: 20px;
         }
 
-        /* RSS Button Styles */
+        /* RSS Button Styles - UPDATED */
         .rss-container {
             display: flex;
             align-items: center;
@@ -306,25 +307,27 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            background: none;
+            background-color: var(--rss-color);
             border: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
-            color: var(--text-secondary);
+            color: white;
             text-decoration: none;
             font-weight: 500;
+            box-shadow: var(--shadow-light);
         }
 
         .rss-btn:hover {
-            background-color: var(--rss-light);
-            color: var(--rss-color);
+            background-color: var(--rss-dark);
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
         }
 
         .rss-btn .material-icons {
             font-size: 20px;
-            color: var(--rss-color);
+            color: white;
         }
 
         /* Fix for RSS button text alignment */
@@ -573,48 +576,6 @@
             box-shadow: var(--shadow-medium);
         }
 
-        /* RSS Info Box */
-        .rss-info {
-            background-color: var(--rss-light);
-            border: 1px solid var(--rss-color);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .rss-info h3 {
-            color: var(--rss-color);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .rss-info p {
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-        }
-
-        .rss-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background-color: var(--rss-color);
-            color: white;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .rss-link:hover {
-            background-color: #d35400;
-            box-shadow: var(--shadow-medium);
-        }
-
         /* Footer */
         footer {
             background-color: var(--background-color);
@@ -657,20 +618,6 @@
 
         .footer-link:hover {
             color: var(--primary-color);
-        }
-
-        .footer-rss-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--rss-color);
-            text-decoration: none;
-            margin: 10px 0;
-            font-weight: 500;
-        }
-
-        .footer-rss-link:hover {
-            text-decoration: underline;
         }
 
         .copyright {
@@ -947,11 +894,11 @@
                     </button>
                 </div>
                 
-                <!-- RSS Button - Replaced User Profile -->
+                <!-- RSS Button - UPDATED with new style -->
                 <div class="rss-container">
                     <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
                         <span class="material-icons">rss_feed</span>
-                        <span>اشتراک</span>
+                        <span>اشتراک RSS</span>
                     </a>
                 </div>
             </div>
@@ -961,9 +908,9 @@
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
                 </button>
-                <a href="https://www.pasgah.org/atom.xml" class="mobile-rss-btn" target="_blank" title="اشتراک RSS">
+                <button class="mobile-rss-btn" id="mobileRssBtn" title="اشتراک RSS">
                     <span class="material-icons">rss_feed</span>
-                </a>
+                </button>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <span class="material-icons">menu</span>
                 </button>
@@ -1040,18 +987,7 @@
             <h1 class="page-title">دسته‌بندی مطالب</h1>
             <p class="page-description">تمام مطالب وبلاگ بر اساس دسته‌بندی‌ها در این صفحه سازماندهی شده‌اند. می‌توانید بر اساس موضوع مورد علاقه خود فیلتر کنید یا تمام مطالب را مرور نمایید.</p>
             
-            <!-- RSS Info Box -->
-            <div class="rss-info">
-                <h3>
-                    <span class="material-icons">rss_feed</span>
-                    اشتراک در مطالب وبلاگ
-                </h3>
-                <p>برای دریافت خودکار جدیدترین مطالب وبلاگ، می‌توانید از فید RSS استفاده کنید. با اشتراک RSS، هرگاه مطلب جدیدی منتشر شود، به طور خودکار مطلع خواهید شد.</p>
-                <a href="https://www.pasgah.org/atom.xml" class="rss-link" target="_blank">
-                    <span class="material-icons">rss_feed</span>
-                    اشتراک در فید RSS
-                </a>
-            </div>
+            <!-- RSS Info Box REMOVED -->
             
             <!-- Category Filter -->
             <div class="category-filter">
@@ -1084,14 +1020,10 @@
                 <a href="#" class="footer-link">مقالات</a>
                 <a href="#" class="footer-link">درباره من</a>
                 <a href="#" class="footer-link">تماس با من</a>
-                <a href="https://www.pasgah.org/atom.xml" class="footer-link" target="_blank">اشتراک RSS</a>
                 <a href="#" class="footer-link">حریم خصوصی</a>
             </div>
             
-            <a href="https://www.pasgah.org/atom.xml" class="footer-rss-link" target="_blank">
-                <span class="material-icons">rss_feed</span>
-                اشتراک در مطالب از طریق RSS
-            </a>
+            <!-- RSS link in footer REMOVED -->
             
             <p class="copyright">© ۱۴۰۳ کلیه حقوق برای وبلاگ من محفوظ است.</p>
         </div>
@@ -1181,7 +1113,7 @@
         
         // RSS elements
         const rssBtn = document.querySelector('.rss-btn');
-        const mobileRssBtn = document.querySelector('.mobile-rss-btn');
+        const mobileRssBtn = document.getElementById('mobileRssBtn');
         
         // Desktop dropdown elements
         const categoriesNavItem = document.getElementById('categories-nav-item');
@@ -1244,6 +1176,11 @@
             if (query !== null && query.trim() !== '') {
                 performGoogleSearch(query);
             }
+        }
+
+        // Function to open RSS feed
+        function openRSSFeed() {
+            window.open('https://www.pasgah.org/atom.xml', '_blank');
         }
 
         // Function to set active navigation link
@@ -1510,7 +1447,15 @@
             // Mobile search button
             mobileSearchBtn.addEventListener('click', showMobileSearch);
             
-            // RSS button already has href attribute, no need for additional event listeners
+            // RSS button click event
+            rssBtn.addEventListener('click', (e) => {
+                // The link will open in new tab naturally
+                // Optional: add animation or confirmation
+                console.log('Opening RSS feed');
+            });
+            
+            // Mobile RSS button click event
+            mobileRssBtn.addEventListener('click', openRSSFeed);
             
             // Initialize mobile menu
             initMobileMenu();
