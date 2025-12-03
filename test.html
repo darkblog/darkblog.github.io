@@ -72,6 +72,7 @@
         .logo-container {
             display: flex;
             align-items: center;
+            flex: 1;
         }
 
         .logo {
@@ -99,11 +100,19 @@
             display: flex;
             align-items: center;
             height: 100%;
+            flex: 1;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            pointer-events: none;
         }
 
         .nav-links {
             display: flex;
             height: 100%;
+            pointer-events: auto;
         }
 
         .nav-item {
@@ -297,11 +306,13 @@
             font-size: 20px;
         }
 
-        /* RSS Button Styles - UPDATED (Icon only) */
+        /* RSS Button Styles - UPDATED (Icon only, no hover effect) */
         .rss-container {
             display: flex;
             align-items: center;
             margin-right: 20px;
+            flex: 1;
+            justify-content: flex-end;
         }
 
         .rss-btn {
@@ -311,9 +322,7 @@
             background: none;
             border: none;
             padding: 8px;
-            border-radius: 50%;
             cursor: pointer;
-            transition: var(--transition);
             color: var(--rss-color);
             text-decoration: none;
             font-weight: 500;
@@ -321,16 +330,11 @@
             height: 40px;
         }
 
-        .rss-btn:hover {
-            background-color: var(--rss-light);
-            transform: translateY(-2px);
-        }
-
         .rss-btn .material-icons {
             font-size: 24px;
         }
 
-        /* Mobile Menu Button */
+        /* Mobile Menu Button - FIXED vertical alignment */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -342,11 +346,19 @@
             border-radius: var(--border-radius);
             transition: var(--transition);
             z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
         }
 
         .mobile-menu-btn:hover {
             background-color: var(--surface-color);
             color: var(--primary-color);
+        }
+
+        .mobile-menu-btn .material-icons {
+            font-size: 28px;
         }
 
         /* Mobile Header Actions - Show search and RSS icons in mobile header */
@@ -501,11 +513,11 @@
             flex-direction: column;
         }
 
+        /* Updated: Post category without background color */
         .post-category {
             display: inline-block;
-            padding: 4px 12px;
-            background-color: var(--primary-light);
-            color: var(--primary-color);
+            padding: 4px 0;
+            color: var(--text-secondary);
             border-radius: 12px;
             font-size: 12px;
             font-weight: 500;
@@ -646,7 +658,7 @@
             }
             
             .mobile-menu-btn {
-                display: block;
+                display: flex;
             }
             
             .mobile-header-actions {
