@@ -349,6 +349,49 @@
             color: var(--primary-color);
         }
 
+        /* Mobile Header Actions - Show search and profile icons in mobile header */
+        .mobile-header-actions {
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mobile-search-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-search-btn:hover {
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+        }
+
+        .mobile-user-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-user-btn:hover {
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+        }
+
         /* Main Content */
         .main-content {
             padding-top: 40px;
@@ -634,6 +677,10 @@
                 display: block;
             }
             
+            .mobile-header-actions {
+                display: flex;
+            }
+            
             .posts-grid {
                 grid-template-columns: 1fr;
             }
@@ -731,6 +778,10 @@
             
             .logo-text {
                 font-size: 18px;
+            }
+            
+            .mobile-header-actions {
+                gap: 10px;
             }
         }
     </style>
@@ -836,10 +887,18 @@
                 </div>
             </div>
             
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span class="material-icons">menu</span>
-            </button>
+            <!-- Mobile Header Actions - Always visible in mobile -->
+            <div class="mobile-header-actions">
+                <button class="mobile-search-btn" id="mobileSearchBtn">
+                    <span class="material-icons">search</span>
+                </button>
+                <button class="mobile-user-btn" id="mobileUserBtn">
+                    <div class="user-avatar">ن</div>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
         </div>
         
         <!-- Mobile Menu Overlay - Only shows on mobile -->
@@ -895,18 +954,6 @@
                         <a href="#" class="mobile-dropdown-link">شبکه‌های اجتماعی</a>
                         <a href="#" class="mobile-dropdown-link">فرم تماس</a>
                     </div>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link" id="mobileSearchLink">
-                        <span class="material-icons" style="margin-left: 8px;">search</span>
-                        جستجو
-                    </a>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link">
-                        <span class="material-icons" style="margin-left: 8px;">account_circle</span>
-                        پروفایل کاربری
-                    </a>
                 </li>
             </ul>
         </div>
@@ -1036,7 +1083,10 @@
         // Search elements
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
-        const mobileSearchLink = document.getElementById('mobileSearchLink');
+        const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+        
+        // User elements
+        const mobileUserBtn = document.getElementById('mobileUserBtn');
         
         // Desktop dropdown elements
         const categoriesNavItem = document.getElementById('categories-nav-item');
@@ -1091,6 +1141,20 @@
             if (isMobileMenuOpen) {
                 closeMobileMenu();
             }
+        }
+
+        // Function to show mobile search
+        function showMobileSearch() {
+            const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
+            if (query !== null && query.trim() !== '') {
+                performGoogleSearch(query);
+            }
+        }
+
+        // Function to show mobile user profile
+        function showMobileUserProfile() {
+            alert('پروفایل کاربری در حالت موبایل');
+            // در سایت واقعی، اینجا می‌توانید به صفحه پروفایل هدایت کنید
         }
 
         // Function to set active navigation link
@@ -1354,18 +1418,11 @@
                 }
             });
             
-            // Mobile search link
-            mobileSearchLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Show a prompt for search query on mobile
-                if (window.innerWidth <= 768) {
-                    const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
-                    if (query !== null) {
-                        performGoogleSearch(query);
-                    }
-                }
-            });
+            // Mobile search button
+            mobileSearchBtn.addEventListener('click', showMobileSearch);
+            
+            // Mobile user button
+            mobileUserBtn.addEventListener('click', showMobileUserProfile);
             
             // Initialize mobile menu
             initMobileMenu();
@@ -1416,14 +1473,9 @@
                 updateMobileDropdownIcon(mobileContactBtn, mobileContact.classList.contains('active'));
             });
             
-            // Close mobile menu when clicking a link (except search and dropdown toggles)
+            // Close mobile menu when clicking a link
             document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-link').forEach(link => {
-                if (link.id !== 'mobileSearchLink' && 
-                    link.id !== 'mobileCategoriesBtn' && 
-                    link.id !== 'mobileArticlesBtn' && 
-                    link.id !== 'mobilePopularBtn' && 
-                    link.id !== 'mobileContactBtn') {
-                    
+                if (!link.querySelector('.material-icons') || link.id === 'mobilePopularBtn') {
                     link.addEventListener('click', (e) => {
                         // Close menu after a short delay
                         setTimeout(closeMobileMenu, 300);
