@@ -51,7 +51,6 @@
             padding: 0 20px;
         }
 
-        /* Header Styles - MODIFIED */
         header {
             background-color: var(--background-color);
             box-shadow: var(--shadow-light);
@@ -59,24 +58,22 @@
             top: 0;
             z-index: 1000;
             display: flex;
-            justify-content: center; /* مرکز کردن محتوای هدر */
+            justify-content: center;
             width: 100%;
         }
 
-        /* کانتینر هدر با عرض محدود */
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 70px;
             position: relative;
-            max-width: 1200px; /* عرض محدود مانند container اصلی */
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Logo on the right side */
         .logo-container {
             display: flex;
             align-items: center;
@@ -105,7 +102,6 @@
             font-weight: 600;
         }
 
-        /* Navigation centered in the page */
         .nav-container {
             position: absolute;
             left: 50%;
@@ -142,7 +138,6 @@
             color: var(--primary-color);
         }
 
-        /* Active link styles */
         .nav-link.active {
             color: var(--primary-color);
         }
@@ -159,7 +154,6 @@
             transition: var(--transition);
         }
 
-        /* Hover effect for non-active links */
         .nav-link:not(.active):hover::after {
             content: '';
             position: absolute;
@@ -172,7 +166,6 @@
             opacity: 0.5;
         }
 
-        /* Dropdown Menu Styles */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -224,7 +217,6 @@
             margin-left: 8px;
         }
 
-        /* Nested Dropdown */
         .dropdown-submenu {
             position: relative;
         }
@@ -257,7 +249,6 @@
             transform: translateX(0);
         }
 
-        /* Search and RSS container on the left */
         .header-left {
             display: flex;
             align-items: center;
@@ -267,7 +258,6 @@
             transform: translateY(-50%);
         }
 
-        /* Search Bar - Google Search Integration */
         .search-container {
             display: flex;
             align-items: center;
@@ -320,7 +310,6 @@
             font-size: 20px;
         }
 
-        /* RSS Button Styles - Simple icon */
         .rss-btn {
             display: flex;
             align-items: center;
@@ -338,7 +327,6 @@
             font-size: 24px;
         }
 
-        /* Mobile Menu Button - Fixed vertical alignment */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -369,7 +357,6 @@
             font-size: 28px;
         }
 
-        /* Mobile Header Actions - Show search and RSS icons in mobile header */
         .mobile-header-actions {
             display: none;
             align-items: center;
@@ -412,7 +399,6 @@
             color: var(--rss-color);
         }
 
-        /* Main Content */
         .main-content {
             padding-top: 40px;
         }
@@ -431,7 +417,6 @@
             max-width: 800px;
         }
 
-        /* Category Filter */
         .category-filter {
             margin-bottom: 40px;
             display: flex;
@@ -462,7 +447,6 @@
             color: var(--primary-color);
         }
 
-        /* Blog Posts Grid */
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -521,7 +505,6 @@
             flex-direction: column;
         }
 
-        /* Post category without background color */
         .post-category {
             display: inline-block;
             padding: 4px 0;
@@ -551,7 +534,6 @@
             flex-grow: 1;
         }
 
-        /* Footer */
         footer {
             background-color: var(--background-color);
             padding: 40px 0;
@@ -601,7 +583,6 @@
             color: var(--primary-color);
         }
 
-        /* Mobile Menu Overlay - Hidden by default on desktop */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -616,13 +597,12 @@
             transition: var(--transition);
         }
 
-        /* Mobile Navigation Menu - Hidden by default on desktop */
         .mobile-nav {
             display: none;
             position: fixed;
             top: 70px;
-            right: -100%; /* تغییر از -300px به -100% */
-            width: 100%; /* تغییر از 280px به 100% */
+            right: -100%;
+            width: 100%;
             height: calc(100vh - 70px);
             background-color: var(--background-color);
             box-shadow: var(--shadow-high);
@@ -631,7 +611,6 @@
             overflow-y: auto;
         }
 
-        /* Responsive Design */
         @media (max-width: 992px) {
             .search-input {
                 width: 180px;
@@ -653,7 +632,6 @@
         }
 
         @media (max-width: 768px) {
-            /* در موبایل هدر باید کل عرض صفحه را بگیرد */
             header {
                 justify-content: flex-start;
             }
@@ -693,7 +671,6 @@
                 justify-content: center;
             }
             
-            /* Show mobile menu elements on mobile */
             .mobile-menu-overlay {
                 display: block;
             }
@@ -787,10 +764,8 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-container">
-            <!-- Logo on the right -->
             <div class="logo-container">
                 <a href="#" class="logo" id="homeLink">
                     <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
@@ -798,7 +773,6 @@
                 </a>
             </div>
             
-            <!-- Navigation centered in the page -->
             <div class="nav-container">
                 <ul class="nav-links">
                     <li class="nav-item">
@@ -848,9 +822,7 @@
                 </ul>
             </div>
             
-            <!-- Search and RSS on the left -->
             <div class="header-left">
-                <!-- Search Bar -->
                 <div class="search-container">
                     <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
                     <button class="search-btn" id="searchBtn">
@@ -858,18 +830,15 @@
                     </button>
                 </div>
                 
-                <!-- RSS Button -->
                 <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
                     <span class="material-icons">rss_feed</span>
                 </a>
             </div>
             
-            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <span class="material-icons">menu</span>
             </button>
             
-            <!-- Mobile Header Actions -->
             <div class="mobile-header-actions">
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
@@ -880,10 +849,8 @@
             </div>
         </div>
         
-        <!-- Mobile Menu Overlay -->
         <div class="mobile-menu-overlay" id="mobileOverlay"></div>
         
-        <!-- Mobile Navigation Menu -->
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
@@ -925,13 +892,11 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container">
         <div class="main-content">
             <h1 class="page-title">دسته‌بندی مطالب</h1>
             <p class="page-description">تمام مطالب وبلاگ بر اساس دسته‌بندی‌ها در این صفحه سازماندهی شده‌اند. می‌توانید بر اساس موضوع مورد علاقه خود فیلتر کنید یا تمام مطالب را مرور نمایید.</p>
             
-            <!-- Category Filter -->
             <div class="category-filter">
                 <button class="filter-btn active" data-category="all">همه مطالب</button>
                 <button class="filter-btn" data-category="technology">فناوری</button>
@@ -941,14 +906,11 @@
                 <button class="filter-btn" data-category="personal">شخصی</button>
             </div>
             
-            <!-- Blog Posts Grid -->
             <div class="posts-grid" id="posts-container">
-                <!-- Posts will be dynamically loaded here -->
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container footer-container">
             <a href="#" class="footer-logo">
@@ -966,7 +928,6 @@
     </footer>
 
     <script>
-        // Sample blog posts data with post URLs
         const blogPosts = [
             {
                 id: 1,
@@ -1030,81 +991,64 @@
             }
         ];
 
-        // DOM elements
         const postsContainer = document.getElementById('posts-container');
         const filterButtons = document.querySelectorAll('.filter-btn');
         
-        // Navigation elements
         const homeNavLink = document.getElementById('homeNavLink');
         const categoriesNavLink = document.getElementById('categories-nav-link');
         const aboutNavLink = document.getElementById('aboutNavLink');
         const contactNavLink = document.getElementById('contact-nav-link');
         
-        // Mobile navigation elements
         const mobileHomeLink = document.getElementById('mobileHomeLink');
         const mobileCategoriesBtn = document.getElementById('mobileCategoriesBtn');
         const mobileAboutLink = document.getElementById('mobileAboutLink');
         const mobileContactBtn = document.getElementById('mobileContactBtn');
         
-        // Search elements
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         const mobileSearchBtn = document.getElementById('mobileSearchBtn');
         
-        // RSS elements
         const rssBtn = document.querySelector('.rss-btn');
         const mobileRssBtn = document.getElementById('mobileRssBtn');
         
-        // Desktop dropdown elements
         const categoriesNavItem = document.getElementById('categories-nav-item');
         const categoriesDropdown = document.getElementById('categories-dropdown');
         
         const contactNavItem = document.getElementById('contact-nav-item');
         const contactDropdown = document.getElementById('contact-dropdown');
         
-        // Mobile menu elements
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileOverlay = document.getElementById('mobileOverlay');
         const mobileNav = document.getElementById('mobileNav');
         const mobileCategories = document.getElementById('mobileCategories');
         const mobileContact = document.getElementById('mobileContact');
 
-        // Variables to track dropdown state
         let activeDropdown = null;
         
-        // Variables to track mobile menu state
         let isMobileMenuOpen = false;
         let isMobileMenuInitialized = false;
 
-        // Your domain for Google search
         const siteDomain = 'pasgah.org';
 
-        // Function to perform Google search
         function performGoogleSearch(query) {
             if (!query || query.trim() === '') {
                 alert('لطفاً عبارت جستجو را وارد کنید.');
                 return;
             }
             
-            // Encode the query for URL
             const encodedQuery = encodeURIComponent(query);
             
-            // Create Google search URL with site: operator
             const googleSearchUrl = `https://www.google.com/search?q=site:${siteDomain}+${encodedQuery}`;
             
-            // Open Google search in a new tab
             window.open(googleSearchUrl, '_blank');
             
-            // Clear search input after search
             searchInput.value = '';
             
-            // Close mobile menu if open
             if (isMobileMenuOpen) {
                 closeMobileMenu();
             }
         }
 
-        // Function to show mobile search
         function showMobileSearch() {
             const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
             if (query !== null && query.trim() !== '') {
@@ -1112,30 +1056,24 @@
             }
         }
 
-        // Function to open RSS feed
         function openRSSFeed() {
             window.open('https://www.pasgah.org/atom.xml', '_blank');
         }
 
-        // Function to set active navigation link
         function setActiveNavLink(linkId) {
-            // Remove active class from all nav links
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Remove active class from all mobile nav links
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Add active class to clicked link
             const activeLink = document.getElementById(linkId);
             if (activeLink) {
                 activeLink.classList.add('active');
             }
             
-            // Also activate corresponding mobile link
             const mobileLinkId = 'mobile' + linkId.charAt(0).toUpperCase() + linkId.slice(1);
             const mobileActiveLink = document.getElementById(mobileLinkId);
             if (mobileActiveLink) {
@@ -1143,22 +1081,18 @@
             }
         }
 
-        // Function to render posts based on category
         function renderPosts(category = 'all') {
             postsContainer.innerHTML = '';
             
-            // Filter posts based on category
             const filteredPosts = category === 'all' 
                 ? blogPosts 
                 : blogPosts.filter(post => post.category === category);
             
-            // Render each post
             filteredPosts.forEach(post => {
                 const postElement = document.createElement('a');
                 postElement.className = 'post-card';
                 postElement.href = post.url;
                 
-                // Determine category label text
                 let categoryText = '';
                 switch(post.category) {
                     case 'technology':
@@ -1194,7 +1128,6 @@
                 postsContainer.appendChild(postElement);
             });
             
-            // If no posts found
             if (filteredPosts.length === 0) {
                 postsContainer.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
@@ -1206,32 +1139,25 @@
             }
         }
 
-        // Function to close all dropdowns
         function closeAllDropdowns() {
-            // Remove active class from all nav items
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('dropdown-open');
             });
             
-            // Reset active dropdown
             activeDropdown = null;
         }
 
-        // Function to toggle dropdown
         function toggleDropdown(navItem, dropdown) {
             const isOpen = navItem.classList.contains('dropdown-open');
             
-            // Close all dropdowns first
             closeAllDropdowns();
             
-            // If it wasn't open, open it
             if (!isOpen) {
                 navItem.classList.add('dropdown-open');
                 activeDropdown = dropdown;
             }
         }
 
-        // Function to toggle mobile menu
         function toggleMobileMenu() {
             if (isMobileMenuOpen) {
                 closeMobileMenu();
@@ -1240,7 +1166,6 @@
             }
         }
 
-        // Function to open mobile menu
         function openMobileMenu() {
             mobileNav.classList.add('active');
             mobileOverlay.classList.add('active');
@@ -1248,39 +1173,30 @@
             isMobileMenuOpen = true;
         }
 
-        // Function to close mobile menu
         function closeMobileMenu() {
             mobileNav.classList.remove('active');
             mobileOverlay.classList.remove('active');
             document.body.style.overflow = '';
             isMobileMenuOpen = false;
             
-            // Close all mobile dropdowns
             closeAllMobileDropdowns();
         }
 
-        // Initialize with all posts
         document.addEventListener('DOMContentLoaded', () => {
             renderPosts();
             
-            // Add event listeners to filter buttons
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Remove active class from all buttons
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     
-                    // Add active class to clicked button
                     button.classList.add('active');
                     
-                    // Get category from data attribute
                     const category = button.getAttribute('data-category');
                     
-                    // Render posts for selected category
                     renderPosts(category);
                 });
             });
             
-            // Navigation link click events
             homeNavLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('homeNavLink');
@@ -1304,7 +1220,6 @@
                 console.log('Navigate to Contact');
             });
             
-            // Mobile navigation link click events
             mobileHomeLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('homeNavLink');
@@ -1337,7 +1252,6 @@
                 performGoogleSearch(query);
             });
             
-            // Search on Enter key press
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     const query = searchInput.value.trim();
@@ -1345,23 +1259,17 @@
                 }
             });
             
-            // Mobile search button
             mobileSearchBtn.addEventListener('click', showMobileSearch);
             
-            // Mobile RSS button click event
             mobileRssBtn.addEventListener('click', openRSSFeed);
             
-            // Initialize mobile menu
             initMobileMenu();
             
-            // Desktop dropdown event listeners
             initDesktopDropdowns();
             
-            // Update event listeners on window resize
             window.addEventListener('resize', handleResize);
         });
 
-        // Function to initialize mobile menu
         function initMobileMenu() {
             if (isMobileMenuInitialized) return;
             
@@ -1394,7 +1302,6 @@
             isMobileMenuInitialized = true;
         }
 
-        // Function to initialize desktop dropdowns
         function initDesktopDropdowns() {
             if (window.innerWidth > 768) {
                 categoriesNavLink.addEventListener('click', (e) => {
@@ -1423,7 +1330,6 @@
             }
         }
 
-        // Function to handle window resize
         function handleResize() {
             closeAllDropdowns();
             
@@ -1438,7 +1344,6 @@
             }
         }
 
-        // Function to close all mobile dropdowns
         function closeAllMobileDropdowns() {
             document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
                 dropdown.classList.remove('active');
@@ -1449,13 +1354,11 @@
             });
         }
 
-        // Function to update mobile dropdown icon
         function updateMobileDropdownIcon(button, isActive) {
             const icon = button.querySelector('.material-icons');
             icon.textContent = isActive ? 'expand_less' : 'expand_more';
         }
 
-        // Function to add new post
         function addNewPost(post) {
             blogPosts.unshift(post);
             renderPosts();
