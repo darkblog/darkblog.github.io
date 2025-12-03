@@ -14,6 +14,8 @@
             --primary-light: #e8f0fe;
             --primary-dark: #0d47a1;
             --secondary-color: #34a853;
+            --rss-color: #f26522;
+            --rss-light: #fff0e8;
             --text-primary: #202124;
             --text-secondary: #5f6368;
             --text-light: #ffffff;
@@ -293,41 +295,36 @@
             font-size: 20px;
         }
 
-        /* User Menu */
-        .user-menu {
+        /* RSS Button Styles */
+        .rss-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            margin-right: 20px;
         }
 
-        .user-btn {
+        .rss-btn {
             display: flex;
             align-items: center;
             gap: 8px;
             background: none;
             border: none;
-            padding: 8px 12px;
+            padding: 8px 16px;
             border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
             color: var(--text-secondary);
-        }
-
-        .user-btn:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-decoration: none;
             font-weight: 500;
+        }
+
+        .rss-btn:hover {
+            background-color: var(--rss-light);
+            color: var(--rss-color);
+        }
+
+        .rss-btn .material-icons {
+            font-size: 20px;
+            color: var(--rss-color);
         }
 
         /* Mobile Menu Button */
@@ -349,7 +346,7 @@
             color: var(--primary-color);
         }
 
-        /* Mobile Header Actions - Show search and profile icons in mobile header */
+        /* Mobile Header Actions - Show search and RSS icons in mobile header */
         .mobile-header-actions {
             display: none;
             align-items: center;
@@ -374,22 +371,22 @@
             color: var(--primary-color);
         }
 
-        .mobile-user-btn {
+        .mobile-rss-btn {
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--rss-color);
             cursor: pointer;
-            padding: 4px;
-            border-radius: 50%;
+            padding: 8px;
+            border-radius: var(--border-radius);
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .mobile-user-btn:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
+        .mobile-rss-btn:hover {
+            background-color: var(--rss-light);
+            color: var(--rss-color);
         }
 
         /* Main Content */
@@ -560,6 +557,48 @@
             box-shadow: var(--shadow-medium);
         }
 
+        /* RSS Info Box */
+        .rss-info {
+            background-color: var(--rss-light);
+            border: 1px solid var(--rss-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .rss-info h3 {
+            color: var(--rss-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .rss-info p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .rss-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--rss-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .rss-link:hover {
+            background-color: #d35400;
+            box-shadow: var(--shadow-medium);
+        }
+
         /* Footer */
         footer {
             background-color: var(--background-color);
@@ -602,6 +641,20 @@
 
         .footer-link:hover {
             color: var(--primary-color);
+        }
+
+        .footer-rss-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--rss-color);
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .footer-rss-link:hover {
+            text-decoration: underline;
         }
 
         .copyright {
@@ -669,7 +722,7 @@
                 padding: 0 10px;
             }
             
-            .search-container, .user-menu, .nav-links {
+            .search-container, .rss-container, .nav-links {
                 display: none;
             }
             
@@ -878,12 +931,12 @@
                     </button>
                 </div>
                 
-                <!-- User Menu -->
-                <div class="user-menu">
-                    <button class="user-btn">
-                        <div class="user-avatar">ن</div>
-                        <span>نمایش پروفایل</span>
-                    </button>
+                <!-- RSS Button - Replaced User Profile -->
+                <div class="rss-container">
+                    <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
+                        <span class="material-icons">rss_feed</span>
+                        <span>اشتراک</span>
+                    </a>
                 </div>
             </div>
             
@@ -892,9 +945,9 @@
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
                 </button>
-                <button class="mobile-user-btn" id="mobileUserBtn">
-                    <div class="user-avatar">ن</div>
-                </button>
+                <a href="https://www.pasgah.org/atom.xml" class="mobile-rss-btn" target="_blank" title="اشتراک RSS">
+                    <span class="material-icons">rss_feed</span>
+                </a>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <span class="material-icons">menu</span>
                 </button>
@@ -955,6 +1008,12 @@
                         <a href="#" class="mobile-dropdown-link">فرم تماس</a>
                     </div>
                 </li>
+                <li class="mobile-nav-item">
+                    <a href="https://www.pasgah.org/atom.xml" class="mobile-nav-link" target="_blank">
+                        <span class="material-icons" style="margin-left: 8px; color: var(--rss-color);">rss_feed</span>
+                        <span>اشتراک RSS</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </header>
@@ -964,6 +1023,19 @@
         <div class="main-content">
             <h1 class="page-title">دسته‌بندی مطالب</h1>
             <p class="page-description">تمام مطالب وبلاگ بر اساس دسته‌بندی‌ها در این صفحه سازماندهی شده‌اند. می‌توانید بر اساس موضوع مورد علاقه خود فیلتر کنید یا تمام مطالب را مرور نمایید.</p>
+            
+            <!-- RSS Info Box -->
+            <div class="rss-info">
+                <h3>
+                    <span class="material-icons">rss_feed</span>
+                    اشتراک در مطالب وبلاگ
+                </h3>
+                <p>برای دریافت خودکار جدیدترین مطالب وبلاگ، می‌توانید از فید RSS استفاده کنید. با اشتراک RSS، هرگاه مطلب جدیدی منتشر شود، به طور خودکار مطلع خواهید شد.</p>
+                <a href="https://www.pasgah.org/atom.xml" class="rss-link" target="_blank">
+                    <span class="material-icons">rss_feed</span>
+                    اشتراک در فید RSS
+                </a>
+            </div>
             
             <!-- Category Filter -->
             <div class="category-filter">
@@ -996,8 +1068,14 @@
                 <a href="#" class="footer-link">مقالات</a>
                 <a href="#" class="footer-link">درباره من</a>
                 <a href="#" class="footer-link">تماس با من</a>
+                <a href="https://www.pasgah.org/atom.xml" class="footer-link" target="_blank">اشتراک RSS</a>
                 <a href="#" class="footer-link">حریم خصوصی</a>
             </div>
+            
+            <a href="https://www.pasgah.org/atom.xml" class="footer-rss-link" target="_blank">
+                <span class="material-icons">rss_feed</span>
+                اشتراک در مطالب از طریق RSS
+            </a>
             
             <p class="copyright">© ۱۴۰۳ کلیه حقوق برای وبلاگ من محفوظ است.</p>
         </div>
@@ -1085,8 +1163,9 @@
         const searchBtn = document.getElementById('searchBtn');
         const mobileSearchBtn = document.getElementById('mobileSearchBtn');
         
-        // User elements
-        const mobileUserBtn = document.getElementById('mobileUserBtn');
+        // RSS elements
+        const rssBtn = document.querySelector('.rss-btn');
+        const mobileRssBtn = document.querySelector('.mobile-rss-btn');
         
         // Desktop dropdown elements
         const categoriesNavItem = document.getElementById('categories-nav-item');
@@ -1149,12 +1228,6 @@
             if (query !== null && query.trim() !== '') {
                 performGoogleSearch(query);
             }
-        }
-
-        // Function to show mobile user profile
-        function showMobileUserProfile() {
-            alert('پروفایل کاربری در حالت موبایل');
-            // در سایت واقعی، اینجا می‌توانید به صفحه پروفایل هدایت کنید
         }
 
         // Function to set active navigation link
@@ -1421,8 +1494,7 @@
             // Mobile search button
             mobileSearchBtn.addEventListener('click', showMobileSearch);
             
-            // Mobile user button
-            mobileUserBtn.addEventListener('click', showMobileUserProfile);
+            // RSS button already has href attribute, no need for additional event listeners
             
             // Initialize mobile menu
             initMobileMenu();
