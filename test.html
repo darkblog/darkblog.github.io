@@ -221,7 +221,7 @@
             transform: translateX(0);
         }
 
-        /* Search Bar */
+        /* Search Bar - FIXED */
         .search-container {
             display: flex;
             align-items: center;
@@ -236,6 +236,7 @@
             width: 200px;
             transition: var(--transition);
             font-size: 14px;
+            height: 40px;
         }
 
         .search-input:focus {
@@ -248,10 +249,22 @@
         .search-btn {
             position: absolute;
             left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
             background: none;
             border: none;
             color: var(--text-secondary);
             cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        .search-btn .material-icons {
+            font-size: 20px;
         }
 
         /* User Menu */
@@ -773,7 +786,7 @@
                     </li>
                 </ul>
                 
-                <!-- Search Bar -->
+                <!-- Search Bar - FIXED -->
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="جستجو در وبلاگ...">
                     <button class="search-btn">
