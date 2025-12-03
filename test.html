@@ -327,6 +327,11 @@
             color: var(--rss-color);
         }
 
+        /* Fix for text alignment in RSS button */
+        .rss-btn span:not(.material-icons) {
+            vertical-align: middle;
+        }
+
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
@@ -516,6 +521,7 @@
             flex-grow: 1;
         }
 
+        /* FIXED: Post meta alignment */
         .post-meta {
             display: flex;
             justify-content: space-between;
@@ -525,16 +531,23 @@
             color: var(--text-secondary);
         }
 
-        .post-date {
+        .post-date, .post-read-time {
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .post-read-time {
+        /* FIXED: Better alignment for text and icons */
+        .post-date .material-icons, .post-read-time .material-icons {
+            font-size: 16px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+        }
+
+        .post-date span, .post-read-time span {
+            display: flex;
+            align-items: center;
         }
 
         .read-more-btn {
@@ -1302,11 +1315,11 @@
                         <p class="post-excerpt">${post.excerpt}</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <span class="material-icons" style="font-size:16px">calendar_today</span>
+                                <span class="material-icons">calendar_today</span>
                                 <span>${post.date}</span>
                             </div>
                             <div class="post-read-time">
-                                <span class="material-icons" style="font-size:16px">schedule</span>
+                                <span class="material-icons">schedule</span>
                                 <span>${post.readTime}</span>
                             </div>
                         </div>
