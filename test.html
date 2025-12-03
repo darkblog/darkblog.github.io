@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a73e8;
-            --primary-light: #e8f0fe;
-            --primary-dark: #0d47a1;
+            --primary-color: #dc3545;
+            --primary-light: #ffe6e9;
+            --primary-dark: #b02a37;
             --secondary-color: #34a853;
             --rss-color: #f26522;
             --rss-light: #fff0e8;
@@ -22,7 +22,7 @@
             --text-light: #ffffff;
             --background-color: #ffffff;
             --surface-color: #f8f9fa;
-            --border-color: #dadce0;
+            --border-color: #e9ecef;
             --shadow-light: 0 1px 2px rgba(0, 0, 0, 0.1);
             --shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.1);
             --shadow-high: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -84,8 +84,9 @@
         }
 
         .logo-icon {
-            font-size: 32px;
-            color: var(--primary-color);
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
         }
 
         .logo-text {
@@ -474,11 +475,6 @@
             box-shadow: var(--shadow-high);
         }
 
-        /* Hover effect line under title - NEW */
-        .post-card:hover .post-title::after {
-            width: 100%;
-        }
-
         .post-image {
             height: 200px;
             background-color: var(--primary-light);
@@ -529,20 +525,11 @@
             margin-bottom: 12px;
             color: var(--text-primary);
             line-height: 1.4;
-            position: relative;
-            display: inline-block;
+            transition: var(--transition);
         }
 
-        /* Underline effect on hover - NEW */
-        .post-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
+        .post-card:hover .post-title {
+            color: var(--primary-color);
         }
 
         .post-excerpt {
@@ -574,6 +561,12 @@
             text-decoration: none;
             font-size: 20px;
             font-weight: 500;
+        }
+
+        .footer-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
         }
 
         .footer-links {
@@ -782,7 +775,7 @@
         <div class="container header-container">
             <div class="logo-container">
                 <a href="#" class="logo" id="homeLink">
-                    <span class="material-icons logo-icon">article</span>
+                    <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
                     <span class="logo-text">وبلاگ من</span>
                 </a>
             </div>
@@ -982,8 +975,8 @@
     <footer>
         <div class="container footer-container">
             <a href="#" class="footer-logo">
-                <span class="material-icons">article</span>
-                وبلاگ من
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو">
+                <span>وبلاگ من</span>
             </a>
             
             <div class="footer-links">
