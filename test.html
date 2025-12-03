@@ -51,21 +51,29 @@
             padding: 0 20px;
         }
 
-        /* Header Styles - NEW STRUCTURE */
+        /* Header Styles - MODIFIED */
         header {
             background-color: var(--background-color);
             box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: center; /* مرکز کردن محتوای هدر */
+            width: 100%;
         }
 
+        /* کانتینر هدر با عرض محدود */
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 70px;
             position: relative;
+            max-width: 1200px; /* عرض محدود مانند container اصلی */
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Logo on the right side */
@@ -613,8 +621,8 @@
             display: none;
             position: fixed;
             top: 70px;
-            right: -300px;
-            width: 280px;
+            right: -100%; /* تغییر از -300px به -100% */
+            width: 100%; /* تغییر از 280px به 100% */
             height: calc(100vh - 70px);
             background-color: var(--background-color);
             box-shadow: var(--shadow-high);
@@ -645,7 +653,14 @@
         }
 
         @media (max-width: 768px) {
+            /* در موبایل هدر باید کل عرض صفحه را بگیرد */
+            header {
+                justify-content: flex-start;
+            }
+            
             .header-container {
+                max-width: 100%;
+                width: 100%;
                 padding: 0 10px;
             }
             
@@ -655,6 +670,7 @@
             
             .mobile-menu-btn {
                 display: flex;
+                left: 10px;
             }
             
             .mobile-header-actions {
