@@ -118,6 +118,7 @@
             height: 100%;
             transition: var(--transition);
             position: relative;
+            cursor: pointer;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -151,7 +152,8 @@
             z-index: 100;
         }
 
-        .nav-item:hover .dropdown-menu {
+        .nav-item:hover .dropdown-menu,
+        .nav-item.dropdown-open .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -704,9 +706,9 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">خانه</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">دسته‌بندی‌ها</a>
-                        <div class="dropdown-menu">
+                    <li class="nav-item" id="categories-nav-item">
+                        <a href="#" class="nav-link active" id="categories-nav-link">دسته‌بندی‌ها</a>
+                        <div class="dropdown-menu" id="categories-dropdown">
                             <a href="#" class="dropdown-link">
                                 <span class="material-icons">code</span>
                                 برنامه‌نویسی
@@ -725,9 +727,9 @@
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">مقالات</a>
-                        <div class="dropdown-menu">
+                    <li class="nav-item" id="articles-nav-item">
+                        <a href="#" class="nav-link" id="articles-nav-link">مقالات</a>
+                        <div class="dropdown-menu" id="articles-dropdown">
                             <div class="dropdown-submenu">
                                 <a href="#" class="dropdown-link">
                                     <span class="material-icons">trending_up</span>
@@ -752,9 +754,9 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">درباره من</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">تماس با من</a>
-                        <div class="dropdown-menu">
+                    <li class="nav-item" id="contact-nav-item">
+                        <a href="#" class="nav-link" id="contact-nav-link">تماس با من</a>
+                        <div class="dropdown-menu" id="contact-dropdown">
                             <a href="#" class="dropdown-link">
                                 <span class="material-icons">mail</span>
                                 ایمیل
@@ -971,6 +973,19 @@
         const postsContainer = document.getElementById('posts-container');
         const filterButtons = document.querySelectorAll('.filter-btn');
         
+        // Desktop dropdown elements
+        const categoriesNavItem = document.getElementById('categories-nav-item');
+        const categoriesNavLink = document.getElementById('categories-nav-link');
+        const categoriesDropdown = document.getElementById('categories-dropdown');
+        
+        const articlesNavItem = document.getElementById('articles-nav-item');
+        const articlesNavLink = document.getElementById('articles-nav-link');
+        const articlesDropdown = document.getElementById('articles-dropdown');
+        
+        const contactNavItem = document.getElementById('contact-nav-item');
+        const contactNavLink = document.getElementById('contact-nav-link');
+        const contactDropdown = document.getElementById('contact-dropdown');
+        
         // Mobile menu elements
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileOverlay = document.getElementById('mobileOverlay');
@@ -983,6 +998,9 @@
         const mobilePopular = document.getElementById('mobilePopular');
         const mobileContactBtn = document.getElementById('mobileContactBtn');
         const mobileContact = document.getElementById('mobileContact');
+
+        // Variables to track dropdown state
+        let activeDropdown = null;
 
         // Function to render posts based on category
         function renderPosts(category = 'all') {
@@ -1060,6 +1078,31 @@
             }
         }
 
+        // Function to close all dropdowns
+        function closeAllDropdowns() {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('dropdown-open');
+            });
+            
+            // Reset active dropdown
+            activeDropdown = null;
+        }
+
+        // Function to toggle dropdown
+        function toggleDropdown(navItem, dropdown) {
+            const isOpen = navItem.classList.contains('dropdown-open');
+            
+            // Close all dropdowns first
+            closeAllDropdowns();
+            
+            // If it wasn't open, open it
+            if (!isOpen) {
+                navItem.classList.add('dropdown-open');
+                activeDropdown = dropdown;
+            }
+        }
+
         // Initialize with all posts
         document.addEventListener('DOMContentLoaded', () => {
             renderPosts();
@@ -1081,13 +1124,55 @@
                 });
             });
             
+            // Desktop dropdown event listeners
+            if (window.innerWidth > 768) {
+                // Categories dropdown
+                categoriesNavLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleDropdown(categoriesNavItem, categoriesDropdown);
+                });
+                
+                // Articles dropdown
+                articlesNavLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleDropdown(articlesNavItem, articlesDropdown);
+                });
+                
+                // Contact dropdown
+                contactNavLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleDropdown(contactNavItem, contactDropdown);
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    // If click is outside any dropdown or its parent nav item
+                    if (!e.target.closest('.nav-item') && !e.target.closest('.dropdown-menu')) {
+                        closeAllDropdowns();
+                    }
+                });
+                
+                // Close dropdown when clicking on a dropdown link
+                document.querySelectorAll('.dropdown-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Add a small delay before closing to allow navigation
+                        setTimeout(() => {
+                            closeAllDropdowns();
+                        }, 100);
+                    });
+                });
+            }
+            
             // Mobile menu toggle (only on mobile)
             if (window.innerWidth <= 768) {
                 setupMobileMenu();
             }
             
-            // Update mobile menu setup on window resize
+            // Update event listeners on window resize
             window.addEventListener('resize', () => {
+                // Close all dropdowns when resizing
+                closeAllDropdowns();
+                
                 if (window.innerWidth <= 768) {
                     setupMobileMenu();
                 } else {
@@ -1096,17 +1181,21 @@
                     mobileOverlay.classList.remove('active');
                     document.body.style.overflow = '';
                     closeAllMobileDropdowns();
-                }
-            });
-            
-            // Close dropdowns when clicking outside on desktop
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth > 768 && !e.target.closest('.nav-item')) {
-                    // Close all dropdowns
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.style.opacity = '0';
-                        menu.style.visibility = 'hidden';
-                        menu.style.transform = 'translateY(-10px)';
+                    
+                    // Re-add desktop dropdown event listeners
+                    categoriesNavLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggleDropdown(categoriesNavItem, categoriesDropdown);
+                    });
+                    
+                    articlesNavLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggleDropdown(articlesNavItem, articlesDropdown);
+                    });
+                    
+                    contactNavLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggleDropdown(contactNavItem, contactDropdown);
                     });
                 }
             });
@@ -1114,6 +1203,11 @@
 
         // Function to setup mobile menu events
         function setupMobileMenu() {
+            // Remove desktop event listeners to prevent conflicts
+            categoriesNavLink.removeEventListener('click', toggleDropdown);
+            articlesNavLink.removeEventListener('click', toggleDropdown);
+            contactNavLink.removeEventListener('click', toggleDropdown);
+            
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', () => {
                 mobileNav.classList.toggle('active');
