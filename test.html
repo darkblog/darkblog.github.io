@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دسته‌بندی مطالب | وبلاگ من</title>
+    <title>دسته‌بندی مطالب | پاسگاه</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -297,7 +297,7 @@
             font-size: 20px;
         }
 
-        /* RSS Button Styles - UPDATED */
+        /* RSS Button Styles - UPDATED (Icon only) */
         .rss-container {
             display: flex;
             align-items: center;
@@ -307,33 +307,27 @@
         .rss-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background-color: var(--rss-color);
+            justify-content: center;
+            background: none;
             border: none;
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
+            padding: 8px;
+            border-radius: 50%;
             cursor: pointer;
             transition: var(--transition);
-            color: white;
+            color: var(--rss-color);
             text-decoration: none;
             font-weight: 500;
-            box-shadow: var(--shadow-light);
+            width: 40px;
+            height: 40px;
         }
 
         .rss-btn:hover {
-            background-color: var(--rss-dark);
-            box-shadow: var(--shadow-medium);
+            background-color: var(--rss-light);
             transform: translateY(-2px);
         }
 
         .rss-btn .material-icons {
-            font-size: 20px;
-            color: white;
-        }
-
-        /* Fix for RSS button text alignment */
-        .rss-btn span:not(.material-icons) {
-            line-height: 1;
+            font-size: 24px;
         }
 
         /* Mobile Menu Button */
@@ -587,11 +581,6 @@
             color: var(--primary-color);
         }
 
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
         /* Mobile Menu Overlay - Hidden by default on desktop */
         .mobile-menu-overlay {
             display: none;
@@ -776,7 +765,7 @@
             <div class="logo-container">
                 <a href="#" class="logo" id="homeLink">
                     <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
-                    <span class="logo-text">وبلاگ من</span>
+                    <span class="logo-text">پاسگاه</span>
                 </a>
             </div>
             
@@ -807,30 +796,6 @@
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item" id="articles-nav-item">
-                        <a href="#" class="nav-link" id="articles-nav-link">مقالات</a>
-                        <div class="dropdown-menu" id="articles-dropdown">
-                            <div class="dropdown-submenu">
-                                <a href="#" class="dropdown-link">
-                                    <span class="material-icons">trending_up</span>
-                                    محبوب‌ترین‌ها
-                                </a>
-                                <div class="submenu">
-                                    <a href="#" class="dropdown-link">هفته گذشته</a>
-                                    <a href="#" class="dropdown-link">ماه گذشته</a>
-                                    <a href="#" class="dropdown-link">همه زمان‌ها</a>
-                                </div>
-                            </div>
-                            <a href="#" class="dropdown-link">
-                                <span class="material-icons">fiber_new</span>
-                                جدیدترین‌ها
-                            </a>
-                            <a href="#" class="dropdown-link">
-                                <span class="material-icons">schedule</span>
-                                پیشنهاد سردبیر
-                            </a>
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" id="aboutNavLink">درباره من</a>
                     </li>
@@ -855,17 +820,16 @@
                 
                 <!-- Search Bar - Google Search Integration -->
                 <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="جستجو در وبلاگ..." autocomplete="off">
+                    <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
                     <button class="search-btn" id="searchBtn">
                         <span class="material-icons">search</span>
                     </button>
                 </div>
                 
-                <!-- RSS Button - UPDATED with new style -->
+                <!-- RSS Button - Icon only -->
                 <div class="rss-container">
                     <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
                         <span class="material-icons">rss_feed</span>
-                        <span>اشتراک RSS</span>
                     </a>
                 </div>
             </div>
@@ -903,25 +867,6 @@
                         <a href="#" class="mobile-dropdown-link">طراحی</a>
                         <a href="#" class="mobile-dropdown-link">فناوری</a>
                         <a href="#" class="mobile-dropdown-link">آموزشی</a>
-                    </div>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link" id="mobileArticlesBtn">
-                        <span>مقالات</span>
-                        <span class="material-icons">expand_more</span>
-                    </a>
-                    <div class="mobile-dropdown" id="mobileArticles">
-                        <a href="#" class="mobile-dropdown-link mobile-submenu-link" id="mobilePopularBtn">
-                            <span>محبوب‌ترین‌ها</span>
-                            <span class="material-icons">chevron_left</span>
-                        </a>
-                        <div class="mobile-dropdown mobile-submenu" id="mobilePopular">
-                            <a href="#" class="mobile-dropdown-link">هفته گذشته</a>
-                            <a href="#" class="mobile-dropdown-link">ماه گذشته</a>
-                            <a href="#" class="mobile-dropdown-link">همه زمان‌ها</a>
-                        </div>
-                        <a href="#" class="mobile-dropdown-link">جدیدترین‌ها</a>
-                        <a href="#" class="mobile-dropdown-link">پیشنهاد سردبیر</a>
                     </div>
                 </li>
                 <li class="mobile-nav-item">
@@ -976,19 +921,17 @@
         <div class="container footer-container">
             <a href="#" class="footer-logo">
                 <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو">
-                <span>وبلاگ من</span>
+                <span>پاسگاه</span>
             </a>
             
             <div class="footer-links">
                 <a href="#" class="footer-link">خانه</a>
                 <a href="#" class="footer-link">دسته‌بندی‌ها</a>
-                <a href="#" class="footer-link">مقالات</a>
                 <a href="#" class="footer-link">درباره من</a>
                 <a href="#" class="footer-link">تماس با من</a>
-                <a href="#" class="footer-link">حریم خصوصی</a>
             </div>
             
-            <p class="copyright">© ۱۴۰۳ کلیه حقوق برای وبلاگ من محفوظ است.</p>
+            <!-- Copyright paragraph removed as requested -->
         </div>
     </footer>
 
@@ -1064,14 +1007,12 @@
         // Navigation elements
         const homeNavLink = document.getElementById('homeNavLink');
         const categoriesNavLink = document.getElementById('categories-nav-link');
-        const articlesNavLink = document.getElementById('articles-nav-link');
         const aboutNavLink = document.getElementById('aboutNavLink');
         const contactNavLink = document.getElementById('contact-nav-link');
         
         // Mobile navigation elements
         const mobileHomeLink = document.getElementById('mobileHomeLink');
         const mobileCategoriesBtn = document.getElementById('mobileCategoriesBtn');
-        const mobileArticlesBtn = document.getElementById('mobileArticlesBtn');
         const mobileAboutLink = document.getElementById('mobileAboutLink');
         const mobileContactBtn = document.getElementById('mobileContactBtn');
         
@@ -1088,9 +1029,6 @@
         const categoriesNavItem = document.getElementById('categories-nav-item');
         const categoriesDropdown = document.getElementById('categories-dropdown');
         
-        const articlesNavItem = document.getElementById('articles-nav-item');
-        const articlesDropdown = document.getElementById('articles-dropdown');
-        
         const contactNavItem = document.getElementById('contact-nav-item');
         const contactDropdown = document.getElementById('contact-dropdown');
         
@@ -1099,9 +1037,6 @@
         const mobileOverlay = document.getElementById('mobileOverlay');
         const mobileNav = document.getElementById('mobileNav');
         const mobileCategories = document.getElementById('mobileCategories');
-        const mobileArticles = document.getElementById('mobileArticles');
-        const mobilePopularBtn = document.getElementById('mobilePopularBtn');
-        const mobilePopular = document.getElementById('mobilePopular');
         const mobileContact = document.getElementById('mobileContact');
 
         // Variables to track dropdown state
@@ -1329,13 +1264,6 @@
                 // We're already on categories page
             });
             
-            articlesNavLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('articles-nav-link');
-                // In a real site, you would navigate to articles page
-                console.log('Navigate to Articles');
-            });
-            
             aboutNavLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('aboutNavLink');
@@ -1362,13 +1290,6 @@
                 // Don't prevent default for dropdown toggle
                 if (e.target.closest('.mobile-nav-link')) {
                     setActiveNavLink('categories-nav-link');
-                }
-            });
-            
-            mobileArticlesBtn.addEventListener('click', (e) => {
-                // Don't prevent default for dropdown toggle
-                if (e.target.closest('.mobile-nav-link')) {
-                    setActiveNavLink('articles-nav-link');
                 }
             });
             
@@ -1442,19 +1363,6 @@
                 updateMobileDropdownIcon(mobileCategoriesBtn, mobileCategories.classList.contains('active'));
             });
             
-            mobileArticlesBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                mobileArticles.classList.toggle('active');
-                updateMobileDropdownIcon(mobileArticlesBtn, mobileArticles.classList.contains('active'));
-            });
-            
-            mobilePopularBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                mobilePopular.classList.toggle('active');
-            });
-            
             mobileContactBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1482,12 +1390,6 @@
                 categoriesNavLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     toggleDropdown(categoriesNavItem, categoriesDropdown);
-                });
-                
-                // Articles dropdown
-                articlesNavLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    toggleDropdown(articlesNavItem, articlesDropdown);
                 });
                 
                 // Contact dropdown
