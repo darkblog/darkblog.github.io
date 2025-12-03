@@ -361,6 +361,10 @@
             display: none;
             align-items: center;
             gap: 15px;
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .mobile-search-btn {
@@ -397,6 +401,28 @@
         .mobile-rss-btn:hover {
             background-color: var(--rss-light);
             color: var(--rss-color);
+        }
+
+        .mobile-site-info {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .mobile-logo {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .mobile-site-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .main-content {
@@ -651,12 +677,12 @@
                 left: 10px;
             }
             
+            .mobile-site-info {
+                display: flex;
+            }
+            
             .mobile-header-actions {
                 display: flex;
-                position: absolute;
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
             }
             
             .posts-grid {
@@ -737,6 +763,10 @@
             .mobile-submenu-link {
                 padding-right: 60px;
             }
+            
+            .mobile-nav-item:last-child {
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -759,6 +789,16 @@
             
             .mobile-header-actions {
                 gap: 10px;
+                left: 50px;
+            }
+            
+            .mobile-site-title {
+                font-size: 16px;
+            }
+            
+            .mobile-logo {
+                width: 24px;
+                height: 24px;
             }
         }
     </style>
@@ -839,6 +879,11 @@
                 <span class="material-icons">menu</span>
             </button>
             
+            <div class="mobile-site-info">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="mobile-logo">
+                <span class="mobile-site-title">پاسگاه</span>
+            </div>
+            
             <div class="mobile-header-actions">
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
@@ -881,12 +926,6 @@
                         <a href="#" class="mobile-dropdown-link">شبکه‌های اجتماعی</a>
                         <a href="#" class="mobile-dropdown-link">فرم تماس</a>
                     </div>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="https://www.pasgah.org/atom.xml" class="mobile-nav-link" target="_blank">
-                        <span class="material-icons" style="margin-left: 8px; color: var(--rss-color);">rss_feed</span>
-                        <span>اشتراک RSS</span>
-                    </a>
                 </li>
             </ul>
         </div>
@@ -1246,7 +1285,6 @@
                 }
             });
             
-            // Search functionality
             searchBtn.addEventListener('click', () => {
                 const query = searchInput.value.trim();
                 performGoogleSearch(query);
