@@ -69,10 +69,10 @@
             position: relative;
         }
 
+        /* Logo on the right side */
         .logo-container {
             display: flex;
             align-items: center;
-            flex: 1;
         }
 
         .logo {
@@ -95,24 +95,18 @@
             font-weight: 600;
         }
 
-        /* Navigation Styles */
+        /* Navigation container */
         .nav-container {
             display: flex;
             align-items: center;
             height: 100%;
             flex: 1;
             justify-content: center;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            pointer-events: none;
         }
 
         .nav-links {
             display: flex;
             height: 100%;
-            pointer-events: auto;
         }
 
         .nav-item {
@@ -138,7 +132,7 @@
             color: var(--primary-color);
         }
 
-        /* Active link styles - FIXED */
+        /* Active link styles */
         .nav-link.active {
             color: var(--primary-color);
         }
@@ -253,11 +247,17 @@
             transform: translateX(0);
         }
 
+        /* Search and RSS container on the left */
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
         /* Search Bar - Google Search Integration */
         .search-container {
             display: flex;
             align-items: center;
-            margin-right: 30px;
+            margin-left: 20px;
             position: relative;
         }
 
@@ -306,15 +306,7 @@
             font-size: 20px;
         }
 
-        /* RSS Button Styles - UPDATED (Icon only, no hover effect) */
-        .rss-container {
-            display: flex;
-            align-items: center;
-            margin-right: 20px;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
+        /* RSS Button Styles - Simple icon */
         .rss-btn {
             display: flex;
             align-items: center;
@@ -326,15 +318,13 @@
             color: var(--rss-color);
             text-decoration: none;
             font-weight: 500;
-            width: 40px;
-            height: 40px;
         }
 
         .rss-btn .material-icons {
             font-size: 24px;
         }
 
-        /* Mobile Menu Button - FIXED vertical alignment */
+        /* Mobile Menu Button - Fixed vertical alignment */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -454,7 +444,7 @@
             color: var(--primary-color);
         }
 
-        /* Blog Posts Grid - UPDATED */
+        /* Blog Posts Grid */
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -513,7 +503,7 @@
             flex-direction: column;
         }
 
-        /* Updated: Post category without background color */
+        /* Post category without background color */
         .post-category {
             display: inline-block;
             padding: 4px 0;
@@ -625,10 +615,6 @@
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .search-container {
-                margin-right: 15px;
-            }
-            
             .search-input {
                 width: 180px;
             }
@@ -653,7 +639,7 @@
                 padding: 0 10px;
             }
             
-            .search-container, .rss-container, .nav-links {
+            .header-left, .nav-links {
                 display: none;
             }
             
@@ -774,6 +760,7 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
+            <!-- Logo on the right -->
             <div class="logo-container">
                 <a href="#" class="logo" id="homeLink">
                     <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
@@ -781,8 +768,8 @@
                 </a>
             </div>
             
+            <!-- Navigation in the center -->
             <div class="nav-container">
-                <!-- Desktop Navigation -->
                 <ul class="nav-links">
                     <li class="nav-item">
                         <a href="#" class="nav-link" id="homeNavLink">خانه</a>
@@ -829,8 +816,11 @@
                         </div>
                     </li>
                 </ul>
-                
-                <!-- Search Bar - Google Search Integration -->
+            </div>
+            
+            <!-- Search and RSS on the left -->
+            <div class="header-left">
+                <!-- Search Bar -->
                 <div class="search-container">
                     <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
                     <button class="search-btn" id="searchBtn">
@@ -838,15 +828,13 @@
                     </button>
                 </div>
                 
-                <!-- RSS Button - Icon only -->
-                <div class="rss-container">
-                    <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
-                        <span class="material-icons">rss_feed</span>
-                    </a>
-                </div>
+                <!-- RSS Button -->
+                <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
+                    <span class="material-icons">rss_feed</span>
+                </a>
             </div>
             
-            <!-- Mobile Header Actions - Always visible in mobile -->
+            <!-- Mobile Header Actions -->
             <div class="mobile-header-actions">
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
@@ -860,10 +848,10 @@
             </div>
         </div>
         
-        <!-- Mobile Menu Overlay - Only shows on mobile -->
+        <!-- Mobile Menu Overlay -->
         <div class="mobile-menu-overlay" id="mobileOverlay"></div>
         
-        <!-- Mobile Navigation Menu - Only shows on mobile -->
+        <!-- Mobile Navigation Menu -->
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
@@ -942,8 +930,6 @@
                 <a href="#" class="footer-link">درباره من</a>
                 <a href="#" class="footer-link">تماس با من</a>
             </div>
-            
-            <!-- Copyright paragraph removed as requested -->
         </div>
     </footer>
 
@@ -1266,27 +1252,23 @@
             homeNavLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('homeNavLink');
-                // In a real site, you would navigate to the home page
                 console.log('Navigate to Home');
             });
             
             categoriesNavLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('categories-nav-link');
-                // We're already on categories page
             });
             
             aboutNavLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('aboutNavLink');
-                // In a real site, you would navigate to about page
                 console.log('Navigate to About');
             });
             
             contactNavLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 setActiveNavLink('contact-nav-link');
-                // In a real site, you would navigate to contact page
                 console.log('Navigate to Contact');
             });
             
@@ -1299,7 +1281,6 @@
             });
             
             mobileCategoriesBtn.addEventListener('click', (e) => {
-                // Don't prevent default for dropdown toggle
                 if (e.target.closest('.mobile-nav-link')) {
                     setActiveNavLink('categories-nav-link');
                 }
@@ -1313,7 +1294,6 @@
             });
             
             mobileContactBtn.addEventListener('click', (e) => {
-                // Don't prevent default for dropdown toggle
                 if (e.target.closest('.mobile-nav-link')) {
                     setActiveNavLink('contact-nav-link');
                 }
@@ -1336,13 +1316,6 @@
             // Mobile search button
             mobileSearchBtn.addEventListener('click', showMobileSearch);
             
-            // RSS button click event
-            rssBtn.addEventListener('click', (e) => {
-                // The link will open in new tab naturally
-                // Optional: add animation or confirmation
-                console.log('Opening RSS feed');
-            });
-            
             // Mobile RSS button click event
             mobileRssBtn.addEventListener('click', openRSSFeed);
             
@@ -1358,16 +1331,12 @@
 
         // Function to initialize mobile menu
         function initMobileMenu() {
-            // Only initialize once
             if (isMobileMenuInitialized) return;
             
-            // Mobile menu button click event
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
             
-            // Close mobile menu when clicking overlay
             mobileOverlay.addEventListener('click', closeMobileMenu);
             
-            // Mobile dropdown toggles
             mobileCategoriesBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1382,11 +1351,9 @@
                 updateMobileDropdownIcon(mobileContactBtn, mobileContact.classList.contains('active'));
             });
             
-            // Close mobile menu when clicking a link
             document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-link').forEach(link => {
                 if (!link.querySelector('.material-icons') || link.id === 'mobilePopularBtn') {
                     link.addEventListener('click', (e) => {
-                        // Close menu after a short delay
                         setTimeout(closeMobileMenu, 300);
                     });
                 }
@@ -1398,30 +1365,24 @@
         // Function to initialize desktop dropdowns
         function initDesktopDropdowns() {
             if (window.innerWidth > 768) {
-                // Categories dropdown
                 categoriesNavLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     toggleDropdown(categoriesNavItem, categoriesDropdown);
                 });
                 
-                // Contact dropdown
                 contactNavLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     toggleDropdown(contactNavItem, contactDropdown);
                 });
                 
-                // Close dropdown when clicking outside
                 document.addEventListener('click', (e) => {
-                    // If click is outside any dropdown or its parent nav item
                     if (!e.target.closest('.nav-item') && !e.target.closest('.dropdown-menu')) {
                         closeAllDropdowns();
                     }
                 });
                 
-                // Close dropdown when clicking on a dropdown link
                 document.querySelectorAll('.dropdown-link').forEach(link => {
                     link.addEventListener('click', () => {
-                        // Add a small delay before closing to allow navigation
                         setTimeout(() => {
                             closeAllDropdowns();
                         }, 100);
@@ -1432,15 +1393,12 @@
 
         // Function to handle window resize
         function handleResize() {
-            // Close all dropdowns when resizing
             closeAllDropdowns();
             
-            // Close mobile menu if open when switching to desktop
             if (window.innerWidth > 768 && isMobileMenuOpen) {
                 closeMobileMenu();
             }
             
-            // Reinitialize event listeners based on screen size
             if (window.innerWidth <= 768) {
                 initMobileMenu();
             } else {
@@ -1454,7 +1412,6 @@
                 dropdown.classList.remove('active');
             });
             
-            // Reset dropdown icons
             document.querySelectorAll('.mobile-nav-link .material-icons').forEach(icon => {
                 icon.textContent = 'expand_more';
             });
@@ -1466,10 +1423,10 @@
             icon.textContent = isActive ? 'expand_less' : 'expand_more';
         }
 
-        // Function to add new post (simulating dynamic addition)
+        // Function to add new post
         function addNewPost(post) {
-            blogPosts.unshift(post); // Add to beginning of array
-            renderPosts(); // Re-render all posts
+            blogPosts.unshift(post);
+            renderPosts();
         }
     </script>
 </body>
