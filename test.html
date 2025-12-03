@@ -221,7 +221,7 @@
             transform: translateX(0);
         }
 
-        /* Search Bar - FIXED: Text right-aligned, icon on left */
+        /* Search Bar - Google Search Integration */
         .search-container {
             display: flex;
             align-items: center;
@@ -263,6 +263,11 @@
             justify-content: center;
             width: 20px;
             height: 20px;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            color: var(--primary-color);
         }
 
         .search-btn .material-icons {
@@ -788,10 +793,10 @@
                     </li>
                 </ul>
                 
-                <!-- Search Bar - FIXED: Text right-aligned, icon on left -->
+                <!-- Search Bar - Google Search Integration -->
                 <div class="search-container">
-                    <input type="text" class="search-input" placeholder="جستجو در وبلاگ...">
-                    <button class="search-btn">
+                    <input type="text" class="search-input" id="searchInput" placeholder="جستجو در وبلاگ..." autocomplete="off">
+                    <button class="search-btn" id="searchBtn">
                         <span class="material-icons">search</span>
                     </button>
                 </div>
@@ -866,7 +871,7 @@
                     </div>
                 </li>
                 <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link">
+                    <a href="#" class="mobile-nav-link" id="mobileSearchLink">
                         <span class="material-icons" style="margin-left: 8px;">search</span>
                         جستجو
                     </a>
@@ -988,6 +993,11 @@
         const postsContainer = document.getElementById('posts-container');
         const filterButtons = document.querySelectorAll('.filter-btn');
         
+        // Search elements
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const mobileSearchLink = document.getElementById('mobileSearchLink');
+        
         // Desktop dropdown elements
         const categoriesNavItem = document.getElementById('categories-nav-item');
         const categoriesNavLink = document.getElementById('categories-nav-link');
@@ -1016,6 +1026,37 @@
 
         // Variables to track dropdown state
         let activeDropdown = null;
+
+        // Your domain for Google search
+        const siteDomain = 'pasgah.org';
+
+        // Function to perform Google search
+        function performGoogleSearch(query) {
+            if (!query || query.trim() === '') {
+                alert('لطفاً عبارت جستجو را وارد کنید.');
+                return;
+            }
+            
+            // Encode the query for URL
+            const encodedQuery = encodeURIComponent(query);
+            
+            // Create Google search URL with site: operator
+            const googleSearchUrl = `https://www.google.com/search?q=site:${siteDomain}+${encodedQuery}`;
+            
+            // Open Google search in a new tab
+            window.open(googleSearchUrl, '_blank');
+            
+            // Clear search input after search
+            searchInput.value = '';
+            
+            // Close mobile menu if open
+            if (window.innerWidth <= 768) {
+                mobileNav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                closeAllMobileDropdowns();
+            }
+        }
 
         // Function to render posts based on category
         function renderPosts(category = 'all') {
@@ -1137,6 +1178,33 @@
                     // Render posts for selected category
                     renderPosts(category);
                 });
+            });
+            
+            // Search functionality
+            searchBtn.addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                performGoogleSearch(query);
+            });
+            
+            // Search on Enter key press
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    performGoogleSearch(query);
+                }
+            });
+            
+            // Mobile search link
+            mobileSearchLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Show a prompt for search query on mobile
+                if (window.innerWidth <= 768) {
+                    const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
+                    if (query !== null) {
+                        performGoogleSearch(query);
+                    }
+                }
             });
             
             // Desktop dropdown event listeners
@@ -1264,19 +1332,21 @@
                 updateMobileDropdownIcon(mobileContactBtn, mobileContact.classList.contains('active'));
             });
             
-            // Close mobile menu when clicking a link
+            // Close mobile menu when clicking a link (except search)
             document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    if (!link.querySelector('.material-icons') || link.id === 'mobilePopularBtn') {
-                        // If it's not a dropdown toggle link, close the menu
-                        setTimeout(() => {
-                            mobileNav.classList.remove('active');
-                            mobileOverlay.classList.remove('active');
-                            document.body.style.overflow = '';
-                            closeAllMobileDropdowns();
-                        }, 300);
-                    }
-                });
+                if (link.id !== 'mobileSearchLink') {
+                    link.addEventListener('click', (e) => {
+                        if (!link.querySelector('.material-icons') || link.id === 'mobilePopularBtn') {
+                            // If it's not a dropdown toggle link, close the menu
+                            setTimeout(() => {
+                                mobileNav.classList.remove('active');
+                                mobileOverlay.classList.remove('active');
+                                document.body.style.overflow = '';
+                                closeAllMobileDropdowns();
+                            }, 300);
+                        }
+                    });
+                }
             });
         }
 
