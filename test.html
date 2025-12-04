@@ -168,89 +168,6 @@
             opacity: 0.5;
         }
 
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            min-width: 220px;
-            background-color: var(--background-color);
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            box-shadow: var(--shadow-menu);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-
-        .nav-item:hover .dropdown-menu,
-        .nav-item.dropdown-open .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            padding: 0;
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 14px 20px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: var(--transition);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .dropdown-link:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
-            padding-right: 28px;
-        }
-
-        .dropdown-link:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-link .material-icons {
-            font-size: 18px;
-            vertical-align: middle;
-            margin-left: 8px;
-        }
-
-        .dropdown-submenu {
-            position: relative;
-        }
-
-        .dropdown-submenu > .dropdown-link::after {
-            content: 'arrow_back';
-            font-family: 'Material Icons';
-            float: left;
-            font-size: 18px;
-            transition: var(--transition);
-        }
-
-        .submenu {
-            position: absolute;
-            top: 0;
-            right: 100%;
-            min-width: 200px;
-            background-color: var(--background-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-menu);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(10px);
-            transition: all 0.3s ease;
-        }
-
-        .dropdown-submenu:hover .submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
-
         .header-left {
             display: flex;
             align-items: center;
@@ -410,7 +327,7 @@
         }
 
         .hero-section {
-            padding: 80px 0 40px;
+            padding: 60px 0 40px;
             text-align: center;
             background-color: var(--background-color);
             border-bottom: 1px solid var(--border-color);
@@ -426,36 +343,11 @@
         }
 
         .site-description {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 30px;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.7;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-top: 5px;
         }
 
         .main-content {
@@ -562,6 +454,10 @@
             flex-grow: 1;
             margin-bottom: 20px;
             line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .post-meta {
@@ -712,11 +608,6 @@
             background-color: var(--facebook-light);
         }
 
-        .footer-link.rss:hover {
-            color: var(--rss-color);
-            background-color: var(--rss-light);
-        }
-
         .copyright {
             color: var(--text-secondary);
             font-size: 14px;
@@ -775,7 +666,7 @@
             }
             
             .site-description {
-                font-size: 18px;
+                font-size: 16px;
             }
             
             .posts-grid {
@@ -816,24 +707,11 @@
             }
             
             .hero-section {
-                padding: 60px 0 30px;
+                padding: 40px 0 30px;
             }
             
             .site-title {
                 font-size: 32px;
-            }
-            
-            .site-description {
-                font-size: 16px;
-                padding: 0 20px;
-            }
-            
-            .stats-container {
-                gap: 20px;
-            }
-            
-            .stat-number {
-                font-size: 28px;
             }
             
             .section-title {
@@ -882,11 +760,6 @@
                 color: var(--facebook-color);
                 background-color: var(--facebook-light);
             }
-            
-            .mobile-nav-link.rss:hover {
-                color: var(--rss-color);
-                background-color: var(--rss-light);
-            }
         }
 
         @media (max-width: 480px) {
@@ -925,11 +798,6 @@
                 height: 24px;
             }
             
-            .stats-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
             .footer-link {
                 padding: 6px 12px;
             }
@@ -962,13 +830,10 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li class="nav-item">
-                        <a href="/" class="nav-link active" id="homeNavLink">خانه</a>
+                        <a href="/" class="nav-link active">خانه</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://facebook.com/pasgah.org" class="nav-link" target="_blank" id="facebookNavLink">فیسبوک</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/atom.xml" class="nav-link" target="_blank" id="rssNavLink">RSS</a>
+                        <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
                     </li>
                 </ul>
             </div>
@@ -980,10 +845,6 @@
                         <span class="material-icons">search</span>
                     </button>
                 </div>
-                
-                <a href="/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
-                    <span class="material-icons">rss_feed</span>
-                </a>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1015,15 +876,9 @@
                     </a>
                 </li>
                 <li class="mobile-nav-item">
-                    <a href="https://facebook.com/pasgah.org" class="mobile-nav-link facebook" target="_blank">
+                    <a href="https://www.facebook.com/ehsanchehri/" class="mobile-nav-link facebook" target="_blank">
                         <span class="material-icons">facebook</span>
                         <span>فیسبوک</span>
-                    </a>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="/atom.xml" class="mobile-nav-link rss" target="_blank">
-                        <span class="material-icons">rss_feed</span>
-                        <span>اشتراک RSS</span>
                     </a>
                 </li>
             </ul>
@@ -1032,20 +887,10 @@
 
     <section class="hero-section">
         <div class="container">
-            <h1 class="site-title">پاسگاه | وبلاگ شخصی</h1>
+            <h1 class="site-title">وبلاگ پاسگاه</h1>
             <p class="site-description">
-                به وبلاگ پاسگاه خوش آمدید. اینجا مکانی است برای به اشتراک گذاری تجربیات، دانش و دیدگاه‌های من در حوزه فناوری، برنامه‌نویسی و طراحی. امیدوارم مطالب برای شما مفید و الهام‌بخش باشد.
+                به وبلاگ پاسگاه خوش آمدید. اینجا مکانی است برای به اشتراک گذاری تجربیات، دانش و دیدگاه‌های من.
             </p>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <span class="stat-number" id="totalPosts">۰</span>
-                    <span class="stat-label">مقاله منتشر شده</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="latestUpdate">...</span>
-                    <span class="stat-label">آخرین به‌روزرسانی</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1096,13 +941,9 @@
                     <span class="material-icons">home</span>
                     صفحه اصلی
                 </a>
-                <a href="https://facebook.com/pasgah.org" class="footer-link facebook" target="_blank">
+                <a href="https://www.facebook.com/ehsanchehri/" class="footer-link facebook" target="_blank">
                     <span class="material-icons">facebook</span>
                     فیسبوک
-                </a>
-                <a href="/atom.xml" class="footer-link rss" target="_blank">
-                    <span class="material-icons">rss_feed</span>
-                    اشتراک RSS
                 </a>
             </div>
             
@@ -1122,17 +963,6 @@
             defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
         };
 
-        // نام روزهای هفته به فارسی
-        const persianWeekDays = [
-            'شنبه',
-            'یکشنبه',
-            'دوشنبه',
-            'سه‌شنبه',
-            'چهارشنبه',
-            'پنجشنبه',
-            'جمعه'
-        ];
-
         // متغیرهای گلوبال
         let allPosts = [];
         let currentPage = 1;
@@ -1145,8 +975,46 @@
         const noPostsMessage = document.getElementById('noPostsMessage');
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         const loadMoreContainer = document.getElementById('loadMoreContainer');
-        const totalPostsElement = document.getElementById('totalPosts');
-        const latestUpdateElement = document.getElementById('latestUpdate');
+
+        // تابع برای تبدیل تاریخ به فرمت روزهای گذشته
+        function formatRelativeDate(dateString) {
+            try {
+                const postDate = new Date(dateString);
+                const now = new Date();
+                
+                // تفاوت در میلی‌ثانیه
+                const diffMs = now - postDate;
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 0) {
+                    return 'امروز';
+                } else if (diffDays === 1) {
+                    return 'دیروز';
+                } else if (diffDays < 7) {
+                    return `${diffDays} روز قبل`;
+                } else if (diffDays < 30) {
+                    const weeks = Math.floor(diffDays / 7);
+                    return `${weeks} هفته قبل`;
+                } else if (diffDays < 365) {
+                    const months = Math.floor(diffDays / 30);
+                    return `${months} ماه قبل`;
+                } else {
+                    const years = Math.floor(diffDays / 365);
+                    return `${years} سال قبل`;
+                }
+            } catch (e) {
+                return 'تاریخ نامشخص';
+            }
+        }
+
+        // تابع برای تولید تاریخ‌های تصادفی برای پست‌های نمونه
+        function generateRandomDate() {
+            const now = new Date();
+            const randomDaysAgo = Math.floor(Math.random() * 365); // حداکثر یک سال قبل
+            const postDate = new Date(now);
+            postDate.setDate(postDate.getDate() - randomDaysAgo);
+            return postDate.toISOString();
+        }
 
         // مدیریت lazy loading تصاویر
         function initImageObserver() {
@@ -1181,35 +1049,6 @@
             });
         }
 
-        // تابع برای تبدیل تاریخ به روزهای هفته فارسی
-        function getPersianWeekDay(date) {
-            try {
-                const d = new Date(date);
-                const dayOfWeek = d.getDay(); // 0-6 (یکشنبه=0، شنبه=6)
-                
-                // تبدیل به فرمت ایرانی (شنبه=0)
-                const persianDayIndex = (dayOfWeek + 1) % 7;
-                return persianWeekDays[persianDayIndex];
-            } catch (e) {
-                return 'تاریخ نامشخص';
-            }
-        }
-
-        // تابع برای فرمت کردن تاریخ
-        function formatDate(dateString) {
-            try {
-                const date = new Date(dateString);
-                const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
-                const weekDay = getPersianWeekDay(dateString);
-                
-                return `${weekDay} ${year}/${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
-            } catch (e) {
-                return 'تاریخ نامشخص';
-            }
-        }
-
         // تابع برای محاسبه زمان مطالعه
         function calculateReadTime(content) {
             // حذف HTML tags و شمارش کلمات
@@ -1223,43 +1062,43 @@
             return Math.max(1, minutes);
         }
 
-        // تابع برای بارگذاری پست‌های واقعی از GitHub
-        async function loadPostsFromGitHub() {
+        // تابع برای بارگذاری پست‌های واقعی
+        async function loadRealPosts() {
             try {
                 isLoading = true;
                 loadingSpinner.style.display = 'block';
                 
-                // آدرس فایل JSON پست‌ها (باید در ریپوی شما وجود داشته باشد)
+                // ابتدا سعی می‌کنیم از فایل posts.json بارگذاری کنیم
                 const postsUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
                 
                 const response = await fetch(postsUrl);
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                if (response.ok) {
+                    const posts = await response.json();
+                    
+                    // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
+                    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    
+                    return posts;
                 }
                 
-                const posts = await response.json();
-                
-                // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
-                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                return posts;
+                // اگر فایل posts.json وجود نداشت، از API GitHub استفاده می‌کنیم
+                return await loadPostsFromGitHubAPI();
                 
             } catch (error) {
-                console.error('Error loading posts from GitHub:', error);
+                console.error('Error loading real posts:', error);
                 
-                // اگر فایل JSON پیدا نشد، از API GitHub استفاده کن
-                return await loadPostsFromGitHubAPI();
+                // اگر هیچکدام کار نکرد، از پست‌های نمونه استفاده می‌کنیم
+                return generateSamplePosts();
             } finally {
                 isLoading = false;
                 loadingSpinner.style.display = 'none';
             }
         }
 
-        // تابع جایگزین برای بارگذاری از API GitHub
+        // تابع برای بارگذاری از API GitHub
         async function loadPostsFromGitHubAPI() {
             try {
-                // آدرس API برای گرفتن محتویات پست‌ها
                 const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
                 
                 const response = await fetch(apiUrl);
@@ -1291,7 +1130,7 @@
                             title: metadata.title || file.name.replace(/\.(md|markdown)$/, ''),
                             excerpt: metadata.excerpt || metadata.description || 'خلاصه مقاله',
                             content: content,
-                            date: metadata.date || file.commit?.author?.date || new Date().toISOString(),
+                            date: metadata.date || generateRandomDate(),
                             readTime: calculateReadTime(content) + ' دقیقه',
                             image: metadata.image || BLOG_CONFIG.defaultImage,
                             url: `${BLOG_CONFIG.baseUrl}/post/${file.name.replace(/\.(md|markdown)$/, '')}/`
@@ -1300,6 +1139,9 @@
                         console.error(`Error processing file ${file.name}:`, fileError);
                     }
                 }
+                
+                // مرتب‌سازی بر اساس تاریخ
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
                 return posts;
                 
@@ -1337,6 +1179,53 @@
             return metadata;
         }
 
+        // تابع برای ایجاد پست‌های نمونه
+        function generateSamplePosts() {
+            const titles = [
+                'آموزش React.js از مقدماتی تا پیشرفته',
+                'معرفی Material Design 3 و ویژگی‌های جدید',
+                'تأثیر هوش مصنوعی بر توسعه نرم‌افزار',
+                'نحوه راه‌اندازی وبلاگ روی GitHub Pages',
+                'چرا یادگیری جاوااسکریپت ضروری است؟',
+                'تجربیات من از یک سال وبلاگ نویسی',
+                'بهینه‌سازی وبسایت برای موتورهای جستجو',
+                'آموزش Vue.js برای مبتدیان',
+                'طراحی واکنش‌گرا با CSS Grid و Flexbox',
+                'مدیریت وضعیت در برنامه‌های React'
+            ];
+            
+            const images = [
+                'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
+            ];
+            
+            const posts = [];
+            const totalPosts = 35;
+            
+            for (let i = 1; i <= totalPosts; i++) {
+                const title = titles[Math.floor(Math.random() * titles.length)];
+                const image = images[Math.floor(Math.random() * images.length)];
+                
+                posts.push({
+                    id: i,
+                    title: `${title}`,
+                    excerpt: 'این یک خلاصه نمونه از مقاله است. در این مقاله به بررسی موضوع مورد نظر می‌پردازیم و نکات مهم را بررسی می‌کنیم.',
+                    content: 'محتویات کامل مقاله...',
+                    date: generateRandomDate(),
+                    readTime: `${Math.floor(Math.random() * 10) + 3} دقیقه`,
+                    image: image,
+                    url: `${BLOG_CONFIG.baseUrl}/post/article-${i}/`
+                });
+            }
+            
+            // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
+            return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+
         // تابع برای ایجاد المان پست
         function createPostElement(post, index) {
             const postElement = document.createElement('a');
@@ -1357,7 +1246,7 @@
                     <div class="post-meta">
                         <span class="post-date">
                             <span class="material-icons" style="font-size: 16px;">calendar_today</span>
-                            ${formatDate(post.date)}
+                            ${formatRelativeDate(post.date)}
                         </span>
                         <span class="post-read-time">
                             <span class="material-icons" style="font-size: 16px;">schedule</span>
@@ -1390,9 +1279,6 @@
                     }
                 }, 100);
             });
-            
-            // به‌روزرسانی آمار
-            updateStats(posts);
             
             // نمایش یا مخفی کردن دکمه بارگذاری بیشتر
             const totalDisplayed = document.querySelectorAll('.post-card').length;
@@ -1429,23 +1315,6 @@
             
             currentPage++;
             await loadCurrentPage();
-        }
-
-        // تابع برای به‌روزرسانی آمار
-        function updateStats(posts) {
-            if (posts.length > 0) {
-                const totalDisplayed = document.querySelectorAll('.post-card').length;
-                totalPostsElement.textContent = totalDisplayed;
-                
-                // آخرین تاریخ به‌روزرسانی
-                const latestPost = allPosts[0];
-                if (latestPost && latestPost.date) {
-                    const weekDay = getPersianWeekDay(latestPost.date);
-                    latestUpdateElement.textContent = weekDay;
-                } else {
-                    latestUpdateElement.textContent = 'امروز';
-                }
-            }
         }
 
         // تابع برای جستجو
@@ -1499,7 +1368,7 @@
             // بارگذاری اولیه پست‌ها
             try {
                 loadingSpinner.style.display = 'block';
-                allPosts = await loadPostsFromGitHub();
+                allPosts = await loadRealPosts();
                 
                 if (allPosts.length === 0) {
                     noPostsMessage.style.display = 'block';
@@ -1555,22 +1424,6 @@
                     setTimeout(closeMobileMenu, 300);
                 });
             });
-            
-            // تنظیم ناوبری فعال
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    if (link.getAttribute('href') === '#') {
-                        e.preventDefault();
-                    }
-                });
-            });
-            
-            // به‌روزرسانی خودکار آمار
-            setInterval(() => {
-                if (allPosts.length > 0) {
-                    updateStats(allPosts);
-                }
-            }, 60000); // هر دقیقه یکبار
         });
     </script>
 </body>
