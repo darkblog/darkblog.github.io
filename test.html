@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دسته‌بندی مطالب | پاسگاه</title>
+    <title>پاسگاه | وبلاگ شخصی</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -370,7 +370,7 @@
         .mobile-search-btn {
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--rss-color);
             cursor: pointer;
             padding: 8px;
             border-radius: var(--border-radius);
@@ -381,14 +381,15 @@
         }
 
         .mobile-search-btn:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
+            background-color: var(--rss-light);
+            color: var(--rss-color);
         }
 
         .mobile-rss-btn {
+            display: none;
             background: none;
             border: none;
-            color: var(--rss-color);
+            color: var(--text-secondary);
             cursor: pointer;
             padding: 8px;
             border-radius: var(--border-radius);
@@ -399,8 +400,8 @@
         }
 
         .mobile-rss-btn:hover {
-            background-color: var(--rss-light);
-            color: var(--rss-color);
+            background-color: var(--surface-color);
+            color: var(--primary-color);
         }
 
         .mobile-site-info {
@@ -425,59 +426,93 @@
             color: var(--text-primary);
         }
 
-        .main-content {
-            padding-top: 40px;
+        .hero-section {
+            padding: 80px 0 40px;
+            text-align: center;
+            background-color: var(--background-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
         }
 
-        .page-title {
-            font-size: 32px;
+        .site-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .site-description {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 16px;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .main-content {
+            padding-top: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
             color: var(--text-primary);
         }
 
-        .page-description {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 800px;
-        }
-
-        .category-filter {
-            margin-bottom: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .filter-btn {
-            padding: 10px 20px;
-            background-color: var(--background-color);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            color: var(--text-secondary);
+        .view-all-link {
+            color: var(--primary-color);
+            text-decoration: none;
             font-weight: 500;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             transition: var(--transition);
         }
 
-        .filter-btn:hover {
-            background-color: var(--surface-color);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .filter-btn.active {
-            background-color: var(--primary-light);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+        .view-all-link:hover {
+            gap: 10px;
         }
 
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .post-card {
@@ -507,6 +542,7 @@
             justify-content: center;
             color: var(--primary-color);
             overflow: hidden;
+            position: relative;
         }
 
         .post-image img {
@@ -520,8 +556,17 @@
             transform: scale(1.05);
         }
 
-        .post-image .material-icons {
-            font-size: 64px;
+        .post-category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(220, 53, 69, 0.9);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 1;
         }
 
         .post-content {
@@ -529,17 +574,6 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-        }
-
-        .post-category {
-            display: inline-block;
-            padding: 4px 0;
-            color: var(--text-secondary);
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            align-self: flex-start;
         }
 
         .post-title {
@@ -558,6 +592,110 @@
         .post-excerpt {
             color: var(--text-secondary);
             flex-grow: 1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-read-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .featured-posts {
+            margin-bottom: 60px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .featured-card {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-high);
+        }
+
+        .featured-content {
+            padding: 25px;
+        }
+
+        .featured-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .featured-card:hover .featured-title {
+            color: var(--primary-color);
+        }
+
+        .featured-excerpt {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .no-posts-icon {
+            font-size: 64px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            display: block;
         }
 
         footer {
@@ -609,6 +747,12 @@
             color: var(--primary-color);
         }
 
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -655,6 +799,14 @@
                 right: 15px;
                 left: 15px;
             }
+            
+            .site-title {
+                font-size: 36px;
+            }
+            
+            .site-description {
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -689,12 +841,29 @@
                 grid-template-columns: 1fr;
             }
             
-            .page-title {
+            .hero-section {
+                padding: 60px 0 30px;
+            }
+            
+            .site-title {
+                font-size: 32px;
+            }
+            
+            .site-description {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+            
+            .stats-container {
+                gap: 20px;
+            }
+            
+            .stat-number {
                 font-size: 28px;
             }
             
-            .category-filter {
-                justify-content: center;
+            .section-title {
+                font-size: 24px;
             }
             
             .mobile-menu-overlay {
@@ -763,10 +932,6 @@
             .mobile-submenu-link {
                 padding-right: 60px;
             }
-            
-            .mobile-nav-item:last-child {
-                display: none;
-            }
         }
 
         @media (max-width: 480px) {
@@ -774,8 +939,12 @@
                 padding: 0 16px;
             }
             
-            .page-title {
-                font-size: 24px;
+            .site-title {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 20px;
             }
             
             .footer-links {
@@ -800,6 +969,11 @@
                 width: 24px;
                 height: 24px;
             }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -807,7 +981,7 @@
     <header>
         <div class="header-container">
             <div class="logo-container">
-                <a href="#" class="logo" id="homeLink">
+                <a href="/" class="logo" id="homeLink">
                     <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
                     <span class="logo-text">پاسگاه</span>
                 </a>
@@ -816,44 +990,44 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" id="homeNavLink">خانه</a>
+                        <a href="/" class="nav-link active" id="homeNavLink">خانه</a>
                     </li>
                     <li class="nav-item" id="categories-nav-item">
-                        <a href="#" class="nav-link active" id="categories-nav-link">دسته‌بندی‌ها</a>
+                        <a href="/categories/" class="nav-link" id="categories-nav-link">دسته‌بندی‌ها</a>
                         <div class="dropdown-menu" id="categories-dropdown">
-                            <a href="#" class="dropdown-link">
+                            <a href="/category/programming/" class="dropdown-link">
                                 <span class="material-icons">code</span>
                                 برنامه‌نویسی
                             </a>
-                            <a href="#" class="dropdown-link">
+                            <a href="/category/design/" class="dropdown-link">
                                 <span class="material-icons">design_services</span>
                                 طراحی
                             </a>
-                            <a href="#" class="dropdown-link">
+                            <a href="/category/technology/" class="dropdown-link">
                                 <span class="material-icons">terminal</span>
                                 فناوری
                             </a>
-                            <a href="#" class="dropdown-link">
+                            <a href="/category/tutorial/" class="dropdown-link">
                                 <span class="material-icons">school</span>
                                 آموزشی
                             </a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" id="aboutNavLink">درباره من</a>
+                        <a href="/about/" class="nav-link" id="aboutNavLink">درباره من</a>
                     </li>
                     <li class="nav-item" id="contact-nav-item">
-                        <a href="#" class="nav-link" id="contact-nav-link">تماس با من</a>
+                        <a href="/contact/" class="nav-link" id="contact-nav-link">تماس با من</a>
                         <div class="dropdown-menu" id="contact-dropdown">
-                            <a href="#" class="dropdown-link">
+                            <a href="mailto:contact@pasgah.org" class="dropdown-link">
                                 <span class="material-icons">mail</span>
                                 ایمیل
                             </a>
-                            <a href="#" class="dropdown-link">
+                            <a href="https://twitter.com/pasgah" class="dropdown-link" target="_blank">
                                 <span class="material-icons">chat</span>
                                 شبکه‌های اجتماعی
                             </a>
-                            <a href="#" class="dropdown-link">
+                            <a href="/contact-form/" class="dropdown-link">
                                 <span class="material-icons">forum</span>
                                 فرم تماس
                             </a>
@@ -870,7 +1044,7 @@
                     </button>
                 </div>
                 
-                <a href="https://www.pasgah.org/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
+                <a href="/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
                     <span class="material-icons">rss_feed</span>
                 </a>
             </div>
@@ -886,9 +1060,6 @@
             
             <div class="mobile-header-actions">
                 <button class="mobile-search-btn" id="mobileSearchBtn">
-                    <span class="material-icons">search</span>
-                </button>
-                <button class="mobile-rss-btn" id="mobileRssBtn" title="اشتراک RSS">
                     <span class="material-icons">rss_feed</span>
                 </button>
             </div>
@@ -899,140 +1070,154 @@
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link" id="mobileHomeLink">خانه</a>
+                    <a href="/" class="mobile-nav-link active" id="mobileHomeLink">خانه</a>
                 </li>
                 <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link active" id="mobileCategoriesBtn">
+                    <a href="/categories/" class="mobile-nav-link" id="mobileCategoriesBtn">
                         <span>دسته‌بندی‌ها</span>
                         <span class="material-icons">expand_more</span>
                     </a>
                     <div class="mobile-dropdown" id="mobileCategories">
-                        <a href="#" class="mobile-dropdown-link">برنامه‌نویسی</a>
-                        <a href="#" class="mobile-dropdown-link">طراحی</a>
-                        <a href="#" class="mobile-dropdown-link">فناوری</a>
-                        <a href="#" class="mobile-dropdown-link">آموزشی</a>
+                        <a href="/category/programming/" class="mobile-dropdown-link">برنامه‌نویسی</a>
+                        <a href="/category/design/" class="mobile-dropdown-link">طراحی</a>
+                        <a href="/category/technology/" class="mobile-dropdown-link">فناوری</a>
+                        <a href="/category/tutorial/" class="mobile-dropdown-link">آموزشی</a>
                     </div>
                 </li>
                 <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link" id="mobileAboutLink">درباره من</a>
+                    <a href="/about/" class="mobile-nav-link" id="mobileAboutLink">درباره من</a>
                 </li>
                 <li class="mobile-nav-item">
-                    <a href="#" class="mobile-nav-link" id="mobileContactBtn">
+                    <a href="/contact/" class="mobile-nav-link" id="mobileContactBtn">
                         <span>تماس با من</span>
                         <span class="material-icons">expand_more</span>
                     </a>
                     <div class="mobile-dropdown" id="mobileContact">
-                        <a href="#" class="mobile-dropdown-link">ایمیل</a>
-                        <a href="#" class="mobile-dropdown-link">شبکه‌های اجتماعی</a>
-                        <a href="#" class="mobile-dropdown-link">فرم تماس</a>
+                        <a href="mailto:contact@pasgah.org" class="mobile-dropdown-link">ایمیل</a>
+                        <a href="https://twitter.com/pasgah" class="mobile-dropdown-link" target="_blank">شبکه‌های اجتماعی</a>
+                        <a href="/contact-form/" class="mobile-dropdown-link">فرم تماس</a>
                     </div>
+                </li>
+                <!-- ردیف آخر منوی موبایل برای دکمه RSS -->
+                <li class="mobile-nav-item">
+                    <a href="/atom.xml" class="mobile-nav-link" target="_blank" id="mobileRssLink">
+                        <span>اشتراک RSS</span>
+                        <span class="material-icons">rss_feed</span>
+                    </a>
                 </li>
             </ul>
         </div>
     </header>
 
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="site-title">پاسگاه | وبلاگ شخصی</h1>
+            <p class="site-description">
+                به وبلاگ پاسگاه خوش آمدید. اینجا مکانی است برای به اشتراک گذاری تجربیات، دانش و دیدگاه‌های من در حوزه فناوری، برنامه‌نویسی و طراحی. امیدوارم مطالب برای شما مفید و الهام‌بخش باشد.
+            </p>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalPosts">۰</span>
+                    <span class="stat-label">مقاله منتشر شده</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalCategories">۰</span>
+                    <span class="stat-label">دسته‌بندی</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="latestUpdate">۱۴۰۳</span>
+                    <span class="stat-label">آخرین به‌روزرسانی</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="container">
         <div class="main-content">
-            <h1 class="page-title">دسته‌بندی مطالب</h1>
-            <p class="page-description">تمام مطالب وبلاگ بر اساس دسته‌بندی‌ها در این صفحه سازماندهی شده‌اند. می‌توانید بر اساس موضوع مورد علاقه خود فیلتر کنید یا تمام مطالب را مرور نمایید.</p>
-            
-            <div class="category-filter">
-                <button class="filter-btn active" data-category="all">همه مطالب</button>
-                <button class="filter-btn" data-category="technology">فناوری</button>
-                <button class="filter-btn" data-category="programming">برنامه‌نویسی</button>
-                <button class="filter-btn" data-category="design">طراحی</button>
-                <button class="filter-btn" data-category="tutorial">آموزشی</button>
-                <button class="filter-btn" data-category="personal">شخصی</button>
+            <!-- بخش پست‌های اخیر -->
+            <div class="section-header">
+                <h2 class="section-title">آخرین مقالات</h2>
+                <a href="/archive/" class="view-all-link">
+                    مشاهده همه
+                    <span class="material-icons">arrow_back</span>
+                </a>
             </div>
             
             <div class="posts-grid" id="posts-container">
+                <!-- پست‌ها توسط JavaScript بارگذاری می‌شوند -->
+            </div>
+            
+            <!-- بخش پست‌های ویژه -->
+            <div class="featured-posts">
+                <div class="section-header">
+                    <h2 class="section-title">مقالات منتخب</h2>
+                    <a href="/featured/" class="view-all-link">
+                        مشاهده همه
+                        <span class="material-icons">arrow_back</span>
+                    </a>
+                </div>
+                <div class="featured-grid" id="featured-container">
+                    <!-- پست‌های ویژه توسط JavaScript بارگذاری می‌شوند -->
+                </div>
+            </div>
+            
+            <!-- اسپینر بارگذاری -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>در حال بارگذاری مقالات...</p>
+            </div>
+            
+            <!-- پیام عدم وجود پست -->
+            <div class="no-posts" id="noPostsMessage" style="display: none;">
+                <span class="material-icons no-posts-icon">search_off</span>
+                <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای یافت نشد</h3>
+                <p style="color: var(--text-secondary);">به زودی مطالب جدیدی منتشر خواهد شد.</p>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container footer-container">
-            <a href="#" class="footer-logo">
+            <a href="/" class="footer-logo">
                 <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو">
                 <span>پاسگاه</span>
             </a>
             
             <div class="footer-links">
-                <a href="#" class="footer-link">خانه</a>
-                <a href="#" class="footer-link">دسته‌بندی‌ها</a>
-                <a href="#" class="footer-link">درباره من</a>
-                <a href="#" class="footer-link">تماس با من</a>
+                <a href="/" class="footer-link">خانه</a>
+                <a href="/categories/" class="footer-link">دسته‌بندی‌ها</a>
+                <a href="/archive/" class="footer-link">آرشیو</a>
+                <a href="/about/" class="footer-link">درباره من</a>
+                <a href="/contact/" class="footer-link">تماس با من</a>
             </div>
+            
+            <p class="copyright">
+                © ۱۴۰۳ پاسگاه. تمامی حقوق محفوظ است.
+            </p>
         </div>
     </footer>
 
     <script>
-        const blogPosts = [
-            {
-                id: 1,
-                title: "آموزش React.js از مقدماتی تا پیشرفته",
-                excerpt: "در این مقاله به بررسی React.js و ویژگی‌های آن می‌پردازیم. این کتابخانه قدرتمند جاوااسکریپت برای ساخت رابط کاربری استفاده می‌شود.",
-                category: "programming",
-                date: "۱۴۰۳/۰۵/۱۵",
-                readTime: "۸ دقیقه",
-                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                url: "#"
-            },
-            {
-                id: 2,
-                title: "معرفی Material Design 3 و ویژگی‌های جدید",
-                excerpt: "Material Design 3 آخرین نسخه از زبان طراحی گوگل است که در این مقاله به بررسی ویژگی‌های جدید آن می‌پردازیم.",
-                category: "design",
-                date: "۱۴۰۳/۰۵/۱۰",
-                readTime: "۵ دقیقه",
-                image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                url: "#"
-            },
-            {
-                id: 3,
-                title: "تأثیر هوش مصنوعی بر توسعه نرم‌افزار",
-                excerpt: "هوش مصنوعی در حال تغییر نحوه توسعه نرم‌افزار است. در این مقاله به بررسی تأثیرات آن بر صنعت نرم‌افزار می‌پردازیم.",
-                category: "technology",
-                date: "۱۴۰۳/۰۵/۰۵",
-                readTime: "۱۲ دقیقه",
-                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                url: "#"
-            },
-            {
-                id: 4,
-                title: "نحوه راه‌اندازی وبلاگ روی GitHub Pages",
-                excerpt: "در این مقاله قدم به قدم نحوه راه‌اندازی یک وبلاگ رایگان روی GitHub Pages را آموزش می‌دهیم.",
-                category: "tutorial",
-                date: "۱۴۰۳/۰۴/۲۸",
-                readTime: "۱۰ دقیقه",
-                image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                url: "#"
-            },
-            {
-                id: 5,
-                title: "چرا یادگیری جاوااسکریپت ضروری است؟",
-                excerpt: "جاوااسکریپت یکی از محبوب‌ترین زبان‌های برنامه‌نویسی است که در این مقاله دلایل ضرورت یادگیری آن را بررسی می‌کنیم.",
-                category: "programming",
-                date: "۱۴۰۳/۰۴/۲۰",
-                readTime: "۶ دقیقه",
-                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                url: "#"
-            },
-            {
-                id: 6,
-                title: "تجربیات من از یک سال وبلاگ نویسی",
-                excerpt: "در این مقاله تجربیات شخصی من از یک سال وبلاگ‌نویسی و نکاتی که یاد گرفته‌ام را با شما به اشتراک می‌گذارم.",
-                category: "personal",
-                date: "۱۴۰۳/۰۴/۱۵",
-                readTime: "۷ دقیقه",
-                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                url: "#"
-            }
-        ];
+        // تنظیمات وبلاگ
+        const BLOG_CONFIG = {
+            githubUsername: '', // نام کاربری GitHub خود را اینجا وارد کنید
+            repoName: '', // نام مخزن GitHub Pages
+            baseUrl: '', // آدرس اصلی وبلاگ
+            postsPerPage: 6,
+            featuredPostsCount: 3,
+            defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
+        };
 
+        // متغیرهای گلوبال
         const postsContainer = document.getElementById('posts-container');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        
+        const featuredContainer = document.getElementById('featured-container');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const noPostsMessage = document.getElementById('noPostsMessage');
+        const totalPostsElement = document.getElementById('totalPosts');
+        const totalCategoriesElement = document.getElementById('totalCategories');
+        const latestUpdateElement = document.getElementById('latestUpdate');
+
+        // عناصر ناوبری
         const homeNavLink = document.getElementById('homeNavLink');
         const categoriesNavLink = document.getElementById('categories-nav-link');
         const aboutNavLink = document.getElementById('aboutNavLink');
@@ -1042,13 +1227,11 @@
         const mobileCategoriesBtn = document.getElementById('mobileCategoriesBtn');
         const mobileAboutLink = document.getElementById('mobileAboutLink');
         const mobileContactBtn = document.getElementById('mobileContactBtn');
+        const mobileRssLink = document.getElementById('mobileRssLink');
         
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-        
-        const rssBtn = document.querySelector('.rss-btn');
-        const mobileRssBtn = document.getElementById('mobileRssBtn');
         
         const categoriesNavItem = document.getElementById('categories-nav-item');
         const categoriesDropdown = document.getElementById('categories-dropdown');
@@ -1062,13 +1245,308 @@
         const mobileCategories = document.getElementById('mobileCategories');
         const mobileContact = document.getElementById('mobileContact');
 
-        let activeDropdown = null;
-        
-        let isMobileMenuOpen = false;
-        let isMobileMenuInitialized = false;
+        // داده‌های نمونه برای نمایش اولیه
+        const samplePosts = [
+            {
+                id: 1,
+                title: "آموزش React.js از مقدماتی تا پیشرفته",
+                excerpt: "در این مقاله به بررسی React.js و ویژگی‌های آن می‌پردازیم. این کتابخانه قدرتمند جاوااسکریپت برای ساخت رابط کاربری استفاده می‌شود.",
+                category: "برنامه‌نویسی",
+                date: "۱۴۰۳/۰۵/۱۵",
+                readTime: "۸ دقیقه",
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                url: "/post/react-tutorial/",
+                featured: true
+            },
+            {
+                id: 2,
+                title: "معرفی Material Design 3 و ویژگی‌های جدید",
+                excerpt: "Material Design 3 آخرین نسخه از زبان طراحی گوگل است که در این مقاله به بررسی ویژگی‌های جدید آن می‌پردازیم.",
+                category: "طراحی",
+                date: "۱۴۰۳/۰۵/۱۰",
+                readTime: "۵ دقیقه",
+                image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                url: "/post/material-design-3/",
+                featured: true
+            },
+            {
+                id: 3,
+                title: "تأثیر هوش مصنوعی بر توسعه نرم‌افزار",
+                excerpt: "هوش مصنوعی در حال تغییر نحوه توسعه نرم‌افزار است. در این مقاله به بررسی تأثیرات آن بر صنعت نرم‌افزار می‌پردازیم.",
+                category: "فناوری",
+                date: "۱۴۰۳/۰۵/۰۵",
+                readTime: "۱۲ دقیقه",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                url: "/post/ai-software-development/",
+                featured: true
+            },
+            {
+                id: 4,
+                title: "نحوه راه‌اندازی وبلاگ روی GitHub Pages",
+                excerpt: "در این مقاله قدم به قدم نحوه راه‌اندازی یک وبلاگ رایگان روی GitHub Pages را آموزش می‌دهیم.",
+                category: "آموزشی",
+                date: "۱۴۰۳/۰۴/۲۸",
+                readTime: "۱۰ دقیقه",
+                image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                url: "/post/github-pages-blog/",
+                featured: false
+            },
+            {
+                id: 5,
+                title: "چرا یادگیری جاوااسکریپت ضروری است؟",
+                excerpt: "جاوااسکریپت یکی از محبوب‌ترین زبان‌های برنامه‌نویسی است که در این مقاله دلایل ضرورت یادگیری آن را بررسی می‌کنیم.",
+                category: "برنامه‌نویسی",
+                date: "۱۴۰۳/۰۴/۲۰",
+                readTime: "۶ دقیقه",
+                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                url: "/post/why-javascript/",
+                featured: false
+            },
+            {
+                id: 6,
+                title: "تجربیات من از یک سال وبلاگ نویسی",
+                excerpt: "در این مقاله تجربیات شخصی من از یک سال وبلاگ‌نویسی و نکاتی که یاد گرفته‌ام را با شما به اشتراک می‌گذارم.",
+                category: "شخصی",
+                date: "۱۴۰۳/۰۴/۱۵",
+                readTime: "۷ دقیقه",
+                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+                url: "/post/blogging-experience/",
+                featured: false
+            }
+        ];
 
-        const siteDomain = 'pasgah.org';
+        // تابع برای تبدیل تاریخ میلادی به شمسی ساده
+        function formatJalaliDate(dateString) {
+            const date = new Date(dateString);
+            const jalaliYear = date.getFullYear() - 621;
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            
+            const persianMonths = [
+                'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+                'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+            ];
+            
+            return `${jalaliYear}/${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
+        }
 
+        // تابع برای ایجاد المان پست
+        function createPostElement(post) {
+            const postElement = document.createElement('a');
+            postElement.className = 'post-card';
+            postElement.href = post.url;
+            
+            postElement.innerHTML = `
+                <div class="post-image">
+                    <img src="${post.image || BLOG_CONFIG.defaultImage}" alt="${post.title}" loading="lazy">
+                    <span class="post-category-badge">${post.category}</span>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">${post.title}</h2>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <span class="material-icons" style="font-size: 16px;">calendar_today</span>
+                            ${post.date}
+                        </span>
+                        <span class="post-read-time">
+                            <span class="material-icons" style="font-size: 16px;">schedule</span>
+                            ${post.readTime}
+                        </span>
+                    </div>
+                </div>
+            `;
+            
+            return postElement;
+        }
+
+        // تابع برای ایجاد المان پست ویژه
+        function createFeaturedElement(post) {
+            const featuredElement = document.createElement('a');
+            featuredElement.className = 'featured-card';
+            featuredElement.href = post.url;
+            
+            featuredElement.innerHTML = `
+                <div class="featured-content">
+                    <h3 class="featured-title">${post.title}</h3>
+                    <p class="featured-excerpt">${post.excerpt}</p>
+                </div>
+            `;
+            
+            return featuredElement;
+        }
+
+        // تابع برای بارگذاری پست‌ها
+        async function loadPosts() {
+            try {
+                loadingSpinner.style.display = 'block';
+                noPostsMessage.style.display = 'none';
+                
+                // اگر تنظیمات GitHub پر شده باشد، از API استفاده می‌کنیم
+                if (BLOG_CONFIG.githubUsername && BLOG_CONFIG.repoName) {
+                    await loadPostsFromGitHub();
+                } else {
+                    // در غیر این صورت از داده‌های نمونه استفاده می‌کنیم
+                    setTimeout(() => {
+                        renderPosts(samplePosts);
+                        loadingSpinner.style.display = 'none';
+                        updateStats(samplePosts);
+                    }, 1000);
+                }
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                loadingSpinner.style.display = 'none';
+                noPostsMessage.style.display = 'block';
+                // در صورت خطا از داده‌های نمونه استفاده می‌کنیم
+                renderPosts(samplePosts);
+                updateStats(samplePosts);
+            }
+        }
+
+        // تابع برای بارگذاری پست‌ها از GitHub
+        async function loadPostsFromGitHub() {
+            const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
+            
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch posts from GitHub');
+                }
+                
+                const files = await response.json();
+                
+                // فقط فایل‌های markdown را بگیریم
+                const markdownFiles = files.filter(file => 
+                    file.name.endsWith('.md') || file.name.endsWith('.markdown')
+                );
+                
+                // آخرین پست‌ها را بگیریم
+                const latestPosts = markdownFiles.slice(0, BLOG_CONFIG.postsPerPage);
+                
+                // پست‌های ویژه را مشخص کنیم (مثلاً ۳ پست اول)
+                const featuredPosts = markdownFiles.slice(0, BLOG_CONFIG.featuredPostsCount);
+                
+                // پست‌ها را پردازش کنیم
+                const processedPosts = await Promise.all(
+                    latestPosts.map(async (file, index) => {
+                        const contentResponse = await fetch(file.download_url);
+                        const content = await contentResponse.text();
+                        
+                        // استخراج metadata از front matter
+                        const metadata = extractFrontMatter(content);
+                        
+                        return {
+                            id: index + 1,
+                            title: metadata.title || file.name.replace(/\.(md|markdown)$/, ''),
+                            excerpt: metadata.excerpt || metadata.description || 'خلاصه مقاله',
+                            category: metadata.category || metadata.tags || 'دسته‌بندی نشده',
+                            date: metadata.date ? formatJalaliDate(metadata.date) : 'تاریخ نامشخص',
+                            readTime: calculateReadTime(content) + ' دقیقه',
+                            image: metadata.image || BLOG_CONFIG.defaultImage,
+                            url: `${BLOG_CONFIG.baseUrl || ''}/post/${file.name.replace(/\.(md|markdown)$/, '')}/`,
+                            featured: index < BLOG_CONFIG.featuredPostsCount
+                        };
+                    })
+                );
+                
+                renderPosts(processedPosts);
+                loadingSpinner.style.display = 'none';
+                updateStats(processedPosts);
+                
+            } catch (error) {
+                console.error('Error loading from GitHub:', error);
+                throw error;
+            }
+        }
+
+        // تابع برای استخراج front matter از محتوای markdown
+        function extractFrontMatter(content) {
+            const metadata = {};
+            
+            // pattern for front matter
+            const frontMatterPattern = /^---\s*\n([\s\S]*?)\n---/;
+            const match = content.match(frontMatterPattern);
+            
+            if (match) {
+                const frontMatter = match[1];
+                const lines = frontMatter.split('\n');
+                
+                lines.forEach(line => {
+                    const colonIndex = line.indexOf(':');
+                    if (colonIndex > -1) {
+                        const key = line.substring(0, colonIndex).trim();
+                        const value = line.substring(colonIndex + 1).trim();
+                        
+                        // Remove quotes if present
+                        metadata[key] = value.replace(/^['"](.*)['"]$/, '$1');
+                    }
+                });
+            }
+            
+            return metadata;
+        }
+
+        // تابع برای محاسبه زمان مطالعه
+        function calculateReadTime(content) {
+            // حذف front matter
+            const withoutFrontMatter = content.replace(/^---\s*\n[\s\S]*?\n---/, '');
+            
+            // شمارش کلمات
+            const words = withoutFrontMatter.split(/\s+/).length;
+            
+            // فرض: هر ۲۰۰ کلمه = ۱ دقیقه خواندن
+            const minutes = Math.ceil(words / 200);
+            
+            // حداقل ۱ دقیقه
+            return Math.max(1, minutes);
+        }
+
+        // تابع برای نمایش پست‌ها
+        function renderPosts(posts) {
+            postsContainer.innerHTML = '';
+            featuredContainer.innerHTML = '';
+            
+            if (posts.length === 0) {
+                noPostsMessage.style.display = 'block';
+                return;
+            }
+            
+            // نمایش پست‌های عادی
+            posts.forEach(post => {
+                const postElement = createPostElement(post);
+                postsContainer.appendChild(postElement);
+            });
+            
+            // نمایش پست‌های ویژه
+            const featuredPosts = posts.filter(post => post.featured);
+            featuredPosts.forEach(post => {
+                const featuredElement = createFeaturedElement(post);
+                featuredContainer.appendChild(featuredElement);
+            });
+        }
+
+        // تابع برای به‌روزرسانی آمار
+        function updateStats(posts) {
+            totalPostsElement.textContent = posts.length;
+            
+            // محاسبه تعداد دسته‌بندی‌های منحصر به فرد
+            const uniqueCategories = [...new Set(posts.map(post => post.category))];
+            totalCategoriesElement.textContent = uniqueCategories.length;
+            
+            // پیدا کردن آخرین تاریخ انتشار
+            const latestDate = posts.reduce((latest, post) => {
+                const postDate = new Date(post.date.split('/').reverse().join('-'));
+                return postDate > latest ? postDate : latest;
+            }, new Date(0));
+            
+            // نمایش سال آخرین پست
+            if (latestDate.getTime() > 0) {
+                const persianYear = latestDate.getFullYear() - 621;
+                latestUpdateElement.textContent = persianYear;
+            }
+        }
+
+        // توابع برای جستجو
         function performGoogleSearch(query) {
             if (!query || query.trim() === '') {
                 alert('لطفاً عبارت جستجو را وارد کنید.');
@@ -1076,11 +1554,9 @@
             }
             
             const encodedQuery = encodeURIComponent(query);
-            
-            const googleSearchUrl = `https://www.google.com/search?q=site:${siteDomain}+${encodedQuery}`;
+            const googleSearchUrl = `https://www.google.com/search?q=site:${BLOG_CONFIG.baseUrl || 'pasgah.org'}+${encodedQuery}`;
             
             window.open(googleSearchUrl, '_blank');
-            
             searchInput.value = '';
             
             if (isMobileMenuOpen) {
@@ -1095,10 +1571,7 @@
             }
         }
 
-        function openRSSFeed() {
-            window.open('https://www.pasgah.org/atom.xml', '_blank');
-        }
-
+        // مدیریت ناوبری
         function setActiveNavLink(linkId) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -1120,64 +1593,9 @@
             }
         }
 
-        function renderPosts(category = 'all') {
-            postsContainer.innerHTML = '';
-            
-            const filteredPosts = category === 'all' 
-                ? blogPosts 
-                : blogPosts.filter(post => post.category === category);
-            
-            filteredPosts.forEach(post => {
-                const postElement = document.createElement('a');
-                postElement.className = 'post-card';
-                postElement.href = post.url;
-                
-                let categoryText = '';
-                switch(post.category) {
-                    case 'technology':
-                        categoryText = 'فناوری';
-                        break;
-                    case 'programming':
-                        categoryText = 'برنامه‌نویسی';
-                        break;
-                    case 'design':
-                        categoryText = 'طراحی';
-                        break;
-                    case 'tutorial':
-                        categoryText = 'آموزشی';
-                        break;
-                    case 'personal':
-                        categoryText = 'شخصی';
-                        break;
-                    default:
-                        categoryText = post.category;
-                }
-                
-                postElement.innerHTML = `
-                    <div class="post-image">
-                        <img src="${post.image}" alt="${post.title}" loading="lazy">
-                    </div>
-                    <div class="post-content">
-                        <span class="post-category">${categoryText}</span>
-                        <h2 class="post-title">${post.title}</h2>
-                        <p class="post-excerpt">${post.excerpt}</p>
-                    </div>
-                `;
-                
-                postsContainer.appendChild(postElement);
-            });
-            
-            if (filteredPosts.length === 0) {
-                postsContainer.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-                        <span class="material-icons" style="font-size: 64px; color: var(--text-secondary); margin-bottom: 20px; display: block;">search_off</span>
-                        <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای در این دسته‌بندی یافت نشد</h3>
-                        <p style="color: var(--text-secondary);">به زودی مطالب جدیدی در این دسته‌بندی منتشر خواهد شد.</p>
-                    </div>
-                `;
-            }
-        }
-
+        // مدیریت dropdown در دسکتاپ
+        let activeDropdown = null;
+        
         function closeAllDropdowns() {
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('dropdown-open');
@@ -1196,6 +1614,10 @@
                 activeDropdown = dropdown;
             }
         }
+
+        // مدیریت منوی موبایل
+        let isMobileMenuOpen = false;
+        let isMobileMenuInitialized = false;
 
         function toggleMobileMenu() {
             if (isMobileMenuOpen) {
@@ -1221,98 +1643,25 @@
             closeAllMobileDropdowns();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderPosts();
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    button.classList.add('active');
-                    
-                    const category = button.getAttribute('data-category');
-                    
-                    renderPosts(category);
-                });
+        function closeAllMobileDropdowns() {
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
             });
             
-            homeNavLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('homeNavLink');
-                console.log('Navigate to Home');
+            document.querySelectorAll('.mobile-nav-link .material-icons').forEach(icon => {
+                icon.textContent = 'expand_more';
             });
-            
-            categoriesNavLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('categories-nav-link');
-            });
-            
-            aboutNavLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('aboutNavLink');
-                console.log('Navigate to About');
-            });
-            
-            contactNavLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('contact-nav-link');
-                console.log('Navigate to Contact');
-            });
-            
-            mobileHomeLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('homeNavLink');
-                closeMobileMenu();
-                console.log('Navigate to Home');
-            });
-            
-            mobileCategoriesBtn.addEventListener('click', (e) => {
-                if (e.target.closest('.mobile-nav-link')) {
-                    setActiveNavLink('categories-nav-link');
-                }
-            });
-            
-            mobileAboutLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                setActiveNavLink('aboutNavLink');
-                closeMobileMenu();
-                console.log('Navigate to About');
-            });
-            
-            mobileContactBtn.addEventListener('click', (e) => {
-                if (e.target.closest('.mobile-nav-link')) {
-                    setActiveNavLink('contact-nav-link');
-                }
-            });
-            
-            searchBtn.addEventListener('click', () => {
-                const query = searchInput.value.trim();
-                performGoogleSearch(query);
-            });
-            
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const query = searchInput.value.trim();
-                    performGoogleSearch(query);
-                }
-            });
-            
-            mobileSearchBtn.addEventListener('click', showMobileSearch);
-            
-            mobileRssBtn.addEventListener('click', openRSSFeed);
-            
-            initMobileMenu();
-            
-            initDesktopDropdowns();
-            
-            window.addEventListener('resize', handleResize);
-        });
+        }
+
+        function updateMobileDropdownIcon(button, isActive) {
+            const icon = button.querySelector('.material-icons');
+            icon.textContent = isActive ? 'expand_less' : 'expand_more';
+        }
 
         function initMobileMenu() {
             if (isMobileMenuInitialized) return;
             
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-            
             mobileOverlay.addEventListener('click', closeMobileMenu);
             
             mobileCategoriesBtn.addEventListener('click', (e) => {
@@ -1327,14 +1676,6 @@
                 e.stopPropagation();
                 mobileContact.classList.toggle('active');
                 updateMobileDropdownIcon(mobileContactBtn, mobileContact.classList.contains('active'));
-            });
-            
-            document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-link').forEach(link => {
-                if (!link.querySelector('.material-icons') || link.id === 'mobilePopularBtn') {
-                    link.addEventListener('click', (e) => {
-                        setTimeout(closeMobileMenu, 300);
-                    });
-                }
             });
             
             isMobileMenuInitialized = true;
@@ -1357,14 +1698,6 @@
                         closeAllDropdowns();
                     }
                 });
-                
-                document.querySelectorAll('.dropdown-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        setTimeout(() => {
-                            closeAllDropdowns();
-                        }, 100);
-                    });
-                });
             }
         }
 
@@ -1382,25 +1715,46 @@
             }
         }
 
-        function closeAllMobileDropdowns() {
-            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
+        // مقداردهی اولیه
+        document.addEventListener('DOMContentLoaded', () => {
+            // بارگذاری پست‌ها
+            loadPosts();
+            
+            // رویدادهای جستجو
+            searchBtn.addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                performGoogleSearch(query);
             });
             
-            document.querySelectorAll('.mobile-nav-link .material-icons').forEach(icon => {
-                icon.textContent = 'expand_more';
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    performGoogleSearch(query);
+                }
             });
-        }
-
-        function updateMobileDropdownIcon(button, isActive) {
-            const icon = button.querySelector('.material-icons');
-            icon.textContent = isActive ? 'expand_less' : 'expand_more';
-        }
-
-        function addNewPost(post) {
-            blogPosts.unshift(post);
-            renderPosts();
-        }
+            
+            mobileSearchBtn.addEventListener('click', showMobileSearch);
+            
+            // تنظیم ناوبری فعال
+            setActiveNavLink('homeNavLink');
+            
+            // مقداردهی اولیه منو
+            initMobileMenu();
+            initDesktopDropdowns();
+            
+            // رویداد تغییر سایز پنجره
+            window.addEventListener('resize', handleResize);
+            
+            // رویداد کلیک برای لینک‌های ناوبری
+            document.querySelectorAll('.nav-link, .mobile-nav-link, .footer-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // اگر لینک هشدار (#) داشته باشد، از پیش‌فرض جلوگیری می‌کنیم
+                    if (link.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
