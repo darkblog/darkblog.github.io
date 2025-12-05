@@ -1,6 +1,5 @@
 ---
 layout: null
-permalink: /posts.json
 ---
 
 {% assign posts = site.posts %}
