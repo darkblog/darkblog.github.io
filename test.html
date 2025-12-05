@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پاسگاه | وبلاگ شخصی</title>
+    <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -813,7 +813,6 @@
             }
         }
 
-        /* استایل برای لود تصاویر */
         .lazy-load {
             background-color: var(--surface-color);
             background-image: linear-gradient(90deg, var(--surface-color) 0%, var(--border-color) 50%, var(--surface-color) 100%);
@@ -832,7 +831,7 @@
         <div class="header-container">
             <div class="logo-container">
                 <a href="/" class="logo" id="homeLink">
-                    <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
+                    <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-icon">
                     <span class="logo-text">پاسگاه</span>
                 </a>
             </div>
@@ -840,7 +839,7 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li class="nav-item">
-                        <a href="/" class="nav-link active">خانه</a>
+                        <a href="https://www.pasgah.org/" class="nav-link active">صفحه اصلی</a>
                     </li>
                     <li class="nav-item">
                         <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
@@ -856,7 +855,6 @@
                     </button>
                 </div>
                 
-                <!-- RSS در گوشه سمت چپ هدر -->
                 <a href="/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
                     <span class="material-icons">rss_feed</span>
                 </a>
@@ -867,11 +865,10 @@
             </button>
             
             <div class="mobile-site-info">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="mobile-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="mobile-logo">
                 <span class="mobile-site-title">پاسگاه</span>
             </div>
             
-            <!-- هدر موبایل: فقط آیکون جستجو -->
             <div class="mobile-header-actions">
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
@@ -881,11 +878,10 @@
         
         <div class="mobile-menu-overlay" id="mobileOverlay"></div>
         
-        <!-- منوی موبایل -->
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
-                    <a href="/" class="mobile-nav-link active">
+                    <a href="https://www.pasgah.org/" class="mobile-nav-link active">
                         <span class="material-icons">home</span>
                         <span>صفحه اصلی</span>
                     </a>
@@ -917,16 +913,13 @@
 
     <main class="container">
         <div class="main-content">
-            <!-- بخش پست‌های اخیر -->
             <div class="section-header">
                 <h2 class="section-title">آخرین مقالات</h2>
             </div>
             
             <div class="posts-grid" id="posts-container">
-                <!-- پست‌ها توسط JavaScript بارگذاری می‌شوند -->
             </div>
             
-            <!-- دکمه بارگذاری بیشتر -->
             <div class="load-more-container" id="loadMoreContainer">
                 <button class="load-more-btn" id="loadMoreBtn">
                     <span class="material-icons">expand_more</span>
@@ -934,13 +927,11 @@
                 </button>
             </div>
             
-            <!-- اسپینر بارگذاری -->
             <div class="loading-spinner" id="loadingSpinner">
                 <div class="spinner"></div>
                 <p>در حال بارگذاری مقالات...</p>
             </div>
             
-            <!-- پیام عدم وجود پست -->
             <div class="no-posts" id="noPostsMessage" style="display: none;">
                 <span class="material-icons no-posts-icon">search_off</span>
                 <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای یافت نشد</h3>
@@ -951,14 +942,13 @@
 
     <footer>
         <div class="container footer-container">
-            <a href="/" class="footer-logo">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو">
+            <a href="https://www.pasgah.org/" class="footer-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه">
                 <span>پاسگاه</span>
             </a>
             
-            <!-- فوتر با سه لینک -->
             <div class="footer-links">
-                <a href="/" class="footer-link">
+                <a href="https://www.pasgah.org/" class="footer-link">
                     <span class="material-icons">home</span>
                     صفحه اصلی
                 </a>
@@ -979,7 +969,6 @@
     </footer>
 
     <script>
-        // تنظیمات وبلاگ
         const BLOG_CONFIG = {
             githubUsername: 'darkblog',
             repoName: 'darkblog.github.io',
@@ -988,26 +977,22 @@
             defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
         };
 
-        // متغیرهای گلوبال
         let allPosts = [];
         let currentPage = 1;
         let isLoading = false;
         let observer = null;
 
-        // المنت‌های DOM
         const postsContainer = document.getElementById('posts-container');
         const loadingSpinner = document.getElementById('loadingSpinner');
         const noPostsMessage = document.getElementById('noPostsMessage');
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         const loadMoreContainer = document.getElementById('loadMoreContainer');
 
-        // تابع برای تبدیل تاریخ به فرمت روزهای گذشته
         function formatRelativeDate(dateString) {
             try {
                 const postDate = new Date(dateString);
                 const now = new Date();
                 
-                // تفاوت در میلی‌ثانیه
                 const diffMs = now - postDate;
                 const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
                 
@@ -1032,7 +1017,6 @@
             }
         }
 
-        // مدیریت lazy loading تصاویر
         function initImageObserver() {
             observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1047,7 +1031,6 @@
                                 img.classList.add('loaded');
                                 img.removeAttribute('data-src');
                                 
-                                // حذف placeholder
                                 const placeholder = img.previousElementSibling;
                                 if (placeholder && placeholder.classList.contains('lazy-load')) {
                                     placeholder.style.display = 'none';
@@ -1065,24 +1048,19 @@
             });
         }
 
-        // تابع برای محاسبه زمان مطالعه
         function calculateReadTime(content) {
             // حذف HTML tags و شمارش کلمات
             const text = content.replace(/<[^>]*>/g, ' ');
             const words = text.split(/\s+/).length;
             
-            // فرض: هر ۲۰۰ کلمه = ۱ دقیقه خواندن
             const minutes = Math.ceil(words / 200);
             
-            // حداقل ۱ دقیقه
             return Math.max(1, minutes);
         }
 
-        // تابع برای استخراج front matter از فایل markdown
         function extractFrontMatter(content) {
             const metadata = {};
             
-            // pattern for front matter
             const frontMatterPattern = /^---\s*\n([\s\S]*?)\n---/;
             const match = content.match(frontMatterPattern);
             
@@ -1096,7 +1074,6 @@
                         const key = line.substring(0, colonIndex).trim();
                         let value = line.substring(colonIndex + 1).trim();
                         
-                        // Remove quotes if present
                         value = value.replace(/^['"](.*)['"]$/, '$1');
                         metadata[key] = value;
                     }
@@ -1106,19 +1083,14 @@
             return metadata;
         }
 
-        // تابع برای پردازش محتوای پست
         function processPostContent(content) {
-            // استخراج metadata
             const metadata = extractFrontMatter(content);
             
-            // حذف front matter از محتوا
             const contentWithoutFrontMatter = content.replace(/^---\s*\n[\s\S]*?\n---/, '').trim();
             
-            // استخراج اولین پاراگراف به عنوان خلاصه
             const firstParagraphMatch = contentWithoutFrontMatter.match(/^(.+?)(\n\n|$)/);
             const excerpt = firstParagraphMatch ? firstParagraphMatch[1].substring(0, 150) + '...' : 'خلاصه مقاله';
             
-            // استخراج اولین تصویر
             const imageMatch = contentWithoutFrontMatter.match(/!\[.*?\]\((.*?)\)/);
             const image = imageMatch ? imageMatch[1] : BLOG_CONFIG.defaultImage;
             
@@ -1130,7 +1102,6 @@
             };
         }
 
-        // تابع اصلی برای بارگذاری پست‌های واقعی
         async function loadRealPosts() {
             try {
                 isLoading = true;
@@ -1138,7 +1109,6 @@
                 
                 console.log('در حال بارگذاری پست‌های واقعی...');
                 
-                // روش ۱: استفاده از JSON API
                 const jsonUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
                 console.log('آدرس JSON:', jsonUrl);
                 
@@ -1150,7 +1120,6 @@
                         console.log(`تعداد پست‌های بارگذاری شده از JSON: ${posts.length}`);
                         
                         if (posts.length > 0) {
-                            // پردازش پست‌ها
                             const processedPosts = posts.map(post => {
                                 const processed = processPostContent(post.content || '');
                                 return {
@@ -1165,7 +1134,6 @@
                                 };
                             });
                             
-                            // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
                             processedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
                             
                             return processedPosts;
@@ -1175,7 +1143,6 @@
                     console.warn('خطا در بارگذاری JSON:', jsonError);
                 }
                 
-                // روش ۲: استفاده از GitHub API
                 console.log('تلاش برای استفاده از GitHub API...');
                 const githubPosts = await loadPostsFromGitHubAPI();
                 
@@ -1184,7 +1151,6 @@
                     return githubPosts;
                 }
                 
-                // روش ۳: تلاش برای بارگذاری از مسیرهای مختلف
                 console.log('تلاش برای بارگذاری از مسیرهای مختلف...');
                 const alternativePosts = await tryAlternativeSources();
                 
@@ -1205,7 +1171,6 @@
             }
         }
 
-        // تابع برای بارگذاری از GitHub API
         async function loadPostsFromGitHubAPI() {
             try {
                 const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
@@ -1219,14 +1184,12 @@
                 
                 const files = await response.json();
                 
-                // فقط فایل‌های markdown را بگیریم
                 const markdownFiles = files.filter(file => 
                     file.name.endsWith('.md') || file.name.endsWith('.markdown')
                 );
                 
                 console.log(`تعداد فایل‌های markdown یافت شده: ${markdownFiles.length}`);
                 
-                // پردازش پست‌ها
                 const posts = [];
                 
                 for (const file of markdownFiles.slice(0, 50)) { // حداکثر ۵۰ پست
@@ -1237,7 +1200,6 @@
                         
                         const processed = processPostContent(content);
                         
-                        // استخراج slug از نام فایل
                         const slug = file.name.replace(/\.(md|markdown)$/, '');
                         
                         posts.push({
@@ -1255,7 +1217,6 @@
                     }
                 }
                 
-                // مرتب‌سازی بر اساس تاریخ
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
                 return posts;
@@ -1266,7 +1227,6 @@
             }
         }
 
-        // تابع برای تلاش از منابع جایگزین
         async function tryAlternativeSources() {
             const alternativeSources = [
                 `${BLOG_CONFIG.baseUrl}/api/posts`,
@@ -1309,7 +1269,6 @@
             return [];
         }
 
-        // تابع برای ایجاد المان پست
         function createPostElement(post, index) {
             const postElement = document.createElement('a');
             postElement.className = 'post-card';
@@ -1342,7 +1301,6 @@
             return postElement;
         }
 
-        // تابع برای نمایش پست‌ها
         function renderPosts(posts) {
             if (posts.length === 0) {
                 noPostsMessage.style.display = 'block';
@@ -1354,7 +1312,6 @@
                 const postElement = createPostElement(post, index);
                 postsContainer.appendChild(postElement);
                 
-                // تنظیم observer برای تصویر
                 setTimeout(() => {
                     const img = postElement.querySelector('img');
                     if (img && observer) {
@@ -1363,7 +1320,6 @@
                 }, 100);
             });
             
-            // نمایش یا مخفی کردن دکمه بارگذاری بیشتر
             const totalDisplayed = document.querySelectorAll('.post-card').length;
             if (totalDisplayed >= allPosts.length) {
                 loadMoreBtn.disabled = true;
@@ -1371,7 +1327,6 @@
             }
         }
 
-        // تابع برای بارگذاری پست‌های صفحه جاری
         async function loadCurrentPage() {
             if (isLoading) return;
             
@@ -1392,7 +1347,6 @@
             }
         }
 
-        // تابع برای بارگذاری صفحه بعدی
         async function loadNextPage() {
             if (isLoading || loadMoreBtn.disabled) return;
             
@@ -1400,10 +1354,9 @@
             await loadCurrentPage();
         }
 
-        // تابع برای جستجو
         function performGoogleSearch(query) {
             if (!query || query.trim() === '') {
-                alert('لطفاً عبارت جستجو را وارد کنید.');
+                alert('به دنبال چه میگردی؟ اون رفته از این شهر');
                 return;
             }
             
@@ -1418,7 +1371,6 @@
             }
         }
 
-        // مدیریت منوی موبایل
         let isMobileMenuOpen = false;
 
         function toggleMobileMenu() {
@@ -1443,12 +1395,9 @@
             isMobileMenuOpen = false;
         }
 
-        // مقداردهی اولیه
         document.addEventListener('DOMContentLoaded', async () => {
-            // مقداردهی اولیه observer تصاویر
             initImageObserver();
             
-            // بارگذاری اولیه پست‌ها
             try {
                 loadingSpinner.style.display = 'block';
                 allPosts = await loadRealPosts();
@@ -1469,10 +1418,8 @@
                 loadingSpinner.style.display = 'none';
             }
             
-            // رویداد دکمه بارگذاری بیشتر
             loadMoreBtn.addEventListener('click', loadNextPage);
             
-            // رویدادهای جستجو
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const mobileSearchBtn = document.getElementById('mobileSearchBtn');
@@ -1496,14 +1443,12 @@
                 }
             });
             
-            // مدیریت منوی موبایل
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileOverlay = document.getElementById('mobileOverlay');
             
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
             mobileOverlay.addEventListener('click', closeMobileMenu);
             
-            // بستن منو با کلیک روی لینک‌ها
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     setTimeout(closeMobileMenu, 300);
