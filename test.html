@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
+    <title>وبلاگ پاسگاه</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -970,8 +970,6 @@
 
     <script>
         const BLOG_CONFIG = {
-            githubUsername: 'darkblog',
-            repoName: 'darkblog.github.io',
             baseUrl: 'https://www.pasgah.org',
             postsPerPage: 10,
             defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
@@ -1049,7 +1047,6 @@
         }
 
         function calculateReadTime(content) {
-            // حذف HTML tags و شمارش کلمات
             const text = content.replace(/<[^>]*>/g, ' ');
             const words = text.split(/\s+/).length;
             
@@ -1102,171 +1099,48 @@
             };
         }
 
-        async function loadRealPosts() {
+        async function loadPostsFromJSON() {
             try {
-                isLoading = true;
-                loadingSpinner.style.display = 'block';
-                
-                console.log('در حال بارگذاری پست‌های واقعی...');
+                console.log('در حال بارگذاری پست‌ها از فایل JSON...');
                 
                 const jsonUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
                 console.log('آدرس JSON:', jsonUrl);
                 
-                try {
-                    const response = await fetch(jsonUrl);
-                    
-                    if (response.ok) {
-                        const posts = await response.json();
-                        console.log(`تعداد پست‌های بارگذاری شده از JSON: ${posts.length}`);
-                        
-                        if (posts.length > 0) {
-                            const processedPosts = posts.map(post => {
-                                const processed = processPostContent(post.content || '');
-                                return {
-                                    id: post.id || post.slug || Date.now(),
-                                    title: post.title || processed.metadata.title || 'عنوان مقاله',
-                                    excerpt: post.excerpt || processed.excerpt,
-                                    content: post.content || processed.content,
-                                    date: post.date || processed.metadata.date || new Date().toISOString(),
-                                    readTime: calculateReadTime(post.content || processed.content) + ' دقیقه',
-                                    image: post.image || processed.image,
-                                    url: post.url || `${BLOG_CONFIG.baseUrl}/post/${post.slug || 'article'}/`
-                                };
-                            });
-                            
-                            processedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                            
-                            return processedPosts;
-                        }
-                    }
-                } catch (jsonError) {
-                    console.warn('خطا در بارگذاری JSON:', jsonError);
-                }
-                
-                console.log('تلاش برای استفاده از GitHub API...');
-                const githubPosts = await loadPostsFromGitHubAPI();
-                
-                if (githubPosts.length > 0) {
-                    console.log(`تعداد پست‌های بارگذاری شده از GitHub: ${githubPosts.length}`);
-                    return githubPosts;
-                }
-                
-                console.log('تلاش برای بارگذاری از مسیرهای مختلف...');
-                const alternativePosts = await tryAlternativeSources();
-                
-                if (alternativePosts.length > 0) {
-                    console.log(`تعداد پست‌های بارگذاری شده از مسیرهای جایگزین: ${alternativePosts.length}`);
-                    return alternativePosts;
-                }
-                
-                console.warn('هیچ پستی یافت نشد.');
-                return [];
-                
-            } catch (error) {
-                console.error('خطا در بارگذاری پست‌ها:', error);
-                return [];
-            } finally {
-                isLoading = false;
-                loadingSpinner.style.display = 'none';
-            }
-        }
-
-        async function loadPostsFromGitHubAPI() {
-            try {
-                const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
-                console.log('آدرس GitHub API:', apiUrl);
-                
-                const response = await fetch(apiUrl);
+                const response = await fetch(jsonUrl);
                 
                 if (!response.ok) {
-                    throw new Error(`خطای GitHub API: ${response.status}`);
+                    throw new Error(`خطا در دریافت فایل JSON: ${response.status}`);
                 }
                 
-                const files = await response.json();
+                const posts = await response.json();
+                console.log(`تعداد پست‌های بارگذاری شده از JSON: ${posts.length}`);
                 
-                const markdownFiles = files.filter(file => 
-                    file.name.endsWith('.md') || file.name.endsWith('.markdown')
-                );
-                
-                console.log(`تعداد فایل‌های markdown یافت شده: ${markdownFiles.length}`);
-                
-                const posts = [];
-                
-                for (const file of markdownFiles.slice(0, 50)) { // حداکثر ۵۰ پست
-                    try {
-                        console.log(`در حال پردازش فایل: ${file.name}`);
-                        const contentResponse = await fetch(file.download_url);
-                        const content = await contentResponse.text();
-                        
-                        const processed = processPostContent(content);
-                        
-                        const slug = file.name.replace(/\.(md|markdown)$/, '');
-                        
-                        posts.push({
-                            id: file.sha,
-                            title: processed.metadata.title || slug.replace(/-/g, ' '),
-                            excerpt: processed.excerpt,
-                            content: processed.content,
-                            date: processed.metadata.date || file.commit?.author?.date || new Date().toISOString(),
-                            readTime: calculateReadTime(processed.content) + ' دقیقه',
-                            image: processed.image,
-                            url: `${BLOG_CONFIG.baseUrl}/post/${slug}/`
-                        });
-                    } catch (fileError) {
-                        console.error(`خطا در پردازش فایل ${file.name}:`, fileError);
-                    }
+                if (posts.length === 0) {
+                    return [];
                 }
                 
-                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                const processedPosts = posts.map(post => {
+                    const processed = processPostContent(post.content || '');
+                    return {
+                        id: post.id || post.slug || Date.now(),
+                        title: post.title || processed.metadata.title || 'عنوان مقاله',
+                        excerpt: post.excerpt || processed.excerpt,
+                        content: post.content || processed.content,
+                        date: post.date || processed.metadata.date || new Date().toISOString(),
+                        readTime: calculateReadTime(post.content || processed.content) + ' دقیقه',
+                        image: post.image || processed.image,
+                        url: post.url || `${BLOG_CONFIG.baseUrl}/post/${post.slug || 'article'}/`
+                    };
+                });
                 
-                return posts;
+                processedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                return processedPosts;
                 
             } catch (error) {
-                console.error('خطا در بارگذاری از GitHub API:', error);
+                console.error('خطا در بارگذاری از فایل JSON:', error);
                 return [];
             }
-        }
-
-        async function tryAlternativeSources() {
-            const alternativeSources = [
-                `${BLOG_CONFIG.baseUrl}/api/posts`,
-                `${BLOG_CONFIG.baseUrl}/api/articles`,
-                `${BLOG_CONFIG.baseUrl}/data/posts.json`,
-                `${BLOG_CONFIG.baseUrl}/data/articles.json`,
-                `${BLOG_CONFIG.baseUrl}/content/posts.json`,
-                `${BLOG_CONFIG.baseUrl}/blog/posts.json`
-            ];
-            
-            for (const source of alternativeSources) {
-                try {
-                    console.log(`تلاش برای بارگذاری از: ${source}`);
-                    const response = await fetch(source);
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        
-                        if (Array.isArray(data) && data.length > 0) {
-                            const posts = data.map(post => ({
-                                id: post.id || post.slug || Date.now(),
-                                title: post.title || 'عنوان مقاله',
-                                excerpt: post.excerpt || post.description || 'خلاصه مقاله',
-                                content: post.content || '',
-                                date: post.date || post.published_at || new Date().toISOString(),
-                                readTime: calculateReadTime(post.content || '') + ' دقیقه',
-                                image: post.image || post.cover_image || BLOG_CONFIG.defaultImage,
-                                url: post.url || `${BLOG_CONFIG.baseUrl}/post/${post.slug || 'article'}/`
-                            }));
-                            
-                            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                            return posts;
-                        }
-                    }
-                } catch (error) {
-                    console.log(`منبع ${source} در دسترس نیست`);
-                }
-            }
-            
-            return [];
         }
 
         function createPostElement(post, index) {
@@ -1400,12 +1274,12 @@
             
             try {
                 loadingSpinner.style.display = 'block';
-                allPosts = await loadRealPosts();
+                allPosts = await loadPostsFromJSON();
                 
                 if (allPosts.length === 0) {
                     noPostsMessage.style.display = 'block';
                     loadMoreContainer.style.display = 'none';
-                    console.log('هیچ پستی برای نمایش یافت نشد.');
+                    console.log('هیچ پستی در فایل JSON یافت نشد.');
                 } else {
                     console.log(`تعداد کل پست‌های بارگذاری شده: ${allPosts.length}`);
                     await loadCurrentPage();
