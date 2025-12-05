@@ -824,9 +824,26 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+
+        /* استایل برای نمایش خطاها */
+        .debug-error {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            color: #d32f2f;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            text-align: right;
+            direction: rtl;
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <div id="debugError" class="debug-error"></div>
+    
     <header>
         <div class="header-container">
             <div class="logo-container">
@@ -918,6 +935,7 @@
             </div>
             
             <div class="posts-grid" id="posts-container">
+                <!-- پست‌ها اینجا نمایش داده می‌شوند -->
             </div>
             
             <div class="load-more-container" id="loadMoreContainer">
@@ -969,27 +987,78 @@
     </footer>
 
     <script>
+        // تنظیمات وبلاگ
         const BLOG_CONFIG = {
             baseUrl: 'https://www.pasgah.org',
             postsPerPage: 10,
             defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
         };
 
+        // متغیرهای عمومی
         let allPosts = [];
         let currentPage = 1;
         let isLoading = false;
         let observer = null;
 
+        // عناصر DOM
         const postsContainer = document.getElementById('posts-container');
         const loadingSpinner = document.getElementById('loadingSpinner');
         const noPostsMessage = document.getElementById('noPostsMessage');
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         const loadMoreContainer = document.getElementById('loadMoreContainer');
+        const debugError = document.getElementById('debugError');
 
+        // ========== توابع کمکی ==========
+        
+        /**
+         * نمایش خطا در صفحه برای دیباگ
+         */
+        function showError(message, error = null) {
+            console.error(message);
+            if (error) {
+                console.error('جزئیات خطا:', error);
+                console.error('Stack trace:', error.stack);
+            }
+            
+            const errorText = `${message}\n${error ? error.toString() : ''}`;
+            debugError.textContent = errorText;
+            debugError.style.display = 'block';
+            
+            // اضافه کردن دکمه بستن خطا
+            if (!debugError.querySelector('.close-error-btn')) {
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'close-error-btn';
+                closeBtn.textContent = '✕';
+                closeBtn.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    background: none;
+                    border: none;
+                    font-size: 20px;
+                    cursor: pointer;
+                    color: #d32f2f;
+                `;
+                closeBtn.onclick = () => {
+                    debugError.style.display = 'none';
+                };
+                debugError.style.position = 'relative';
+                debugError.appendChild(closeBtn);
+            }
+        }
+
+        /**
+         * فرمت تاریخ نسبی
+         */
         function formatRelativeDate(dateString) {
             try {
                 const postDate = new Date(dateString);
                 const now = new Date();
+                
+                // اگر تاریخ نامعتبر باشد
+                if (isNaN(postDate.getTime())) {
+                    return 'تاریخ نامشخص';
+                }
                 
                 const diffMs = now - postDate;
                 const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -1015,6 +1084,421 @@
             }
         }
 
+        /**
+         * محاسبه زمان مطالعه
+         */
+        function calculateReadTime(content) {
+            if (!content || typeof content !== 'string') return 1;
+            
+            try {
+                const text = content.replace(/<[^>]*>/g, ' ');
+                const words = text.split(/\s+/).filter(word => word.length > 0).length;
+                const minutes = Math.ceil(words / 200);
+                return Math.max(1, minutes);
+            } catch (e) {
+                return 1;
+            }
+        }
+
+        /**
+         * پردازش داده‌های پست
+         */
+        function processPostData(postData) {
+            try {
+                console.log('پردازش پست:', postData);
+                
+                // اگر پست از قبل ساختار مناسب دارد
+                if (postData.title && postData.excerpt) {
+                    return {
+                        id: postData.id || postData.slug || Date.now() + Math.random(),
+                        title: postData.title,
+                        excerpt: postData.excerpt || 'خلاصه مقاله',
+                        content: postData.content || '',
+                        date: postData.date || postData.published_at || new Date().toISOString(),
+                        readTime: calculateReadTime(postData.content) + ' دقیقه',
+                        image: postData.image || postData.cover_image || BLOG_CONFIG.defaultImage,
+                        url: postData.url || postData.link || `${BLOG_CONFIG.baseUrl}/post/${postData.slug || 'article'}/`
+                    };
+                }
+
+                // اگر پست محتوای markdown دارد
+                if (postData.content && typeof postData.content === 'string') {
+                    const content = postData.content;
+                    
+                    // استخراج عنوان از محتوا
+                    let title = 'عنوان مقاله';
+                    const titleMatch = content.match(/#\s+(.+?)(\n|$)/);
+                    if (titleMatch) {
+                        title = titleMatch[1];
+                    }
+                    
+                    // استخراج تصویر از محتوا
+                    let image = BLOG_CONFIG.defaultImage;
+                    const imageMatch = content.match(/!\[.*?\]\((.*?)\)/);
+                    if (imageMatch && imageMatch[1]) {
+                        image = imageMatch[1];
+                    }
+                    
+                    // استخراج خلاصه
+                    const contentWithoutTitle = content.replace(/#\s+.+?(\n|$)/, '');
+                    const firstParagraph = contentWithoutTitle.split('\n\n')[0] || '';
+                    const excerpt = firstParagraph.length > 150 
+                        ? firstParagraph.substring(0, 150) + '...' 
+                        : firstParagraph || 'خلاصه مقاله';
+                    
+                    return {
+                        id: postData.id || postData.slug || Date.now() + Math.random(),
+                        title: title,
+                        excerpt: excerpt,
+                        content: content,
+                        date: postData.date || new Date().toISOString(),
+                        readTime: calculateReadTime(content) + ' دقیقه',
+                        image: image,
+                        url: postData.url || `${BLOG_CONFIG.baseUrl}/post/${postData.slug || 'article'}/`
+                    };
+                }
+                
+                // اگر پست یک آبجکت ساده است
+                if (typeof postData === 'object') {
+                    return {
+                        id: postData.id || Date.now() + Math.random(),
+                        title: postData.name || postData.title || 'مقاله بدون عنوان',
+                        excerpt: postData.description || postData.excerpt || 'خلاصه مقاله',
+                        content: postData.content || '',
+                        date: postData.date || postData.created_at || new Date().toISOString(),
+                        readTime: calculateReadTime(postData.content) + ' دقیقه',
+                        image: postData.image || postData.thumbnail || BLOG_CONFIG.defaultImage,
+                        url: postData.url || postData.link || '#'
+                    };
+                }
+                
+                // حالت پیش‌فرض
+                return {
+                    id: Date.now() + Math.random(),
+                    title: 'مقاله',
+                    excerpt: 'خلاصه مقاله',
+                    content: '',
+                    date: new Date().toISOString(),
+                    readTime: '1 دقیقه',
+                    image: BLOG_CONFIG.defaultImage,
+                    url: '#'
+                };
+                
+            } catch (error) {
+                console.error('خطا در پردازش پست:', error, postData);
+                return {
+                    id: Date.now() + Math.random(),
+                    title: 'مقاله',
+                    excerpt: 'خلاصه مقاله',
+                    content: '',
+                    date: new Date().toISOString(),
+                    readTime: '1 دقیقه',
+                    image: BLOG_CONFIG.defaultImage,
+                    url: '#'
+                };
+            }
+        }
+
+        /**
+         * بارگذاری پست‌ها از فایل JSON
+         */
+        async function loadPostsFromJSON() {
+            try {
+                console.log('شروع بارگذاری پست‌ها از فایل JSON...');
+                
+                const jsonUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
+                console.log('آدرس JSON:', jsonUrl);
+                
+                // ایجاد یک timeout برای جلوگیری از گیر کردن
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Timeout: بارگذاری JSON بیش از 10 ثانیه طول کشید')), 10000);
+                });
+                
+                const fetchPromise = fetch(jsonUrl, {
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const response = await Promise.race([fetchPromise, timeoutPromise]);
+                
+                console.log('وضعیت پاسخ:', response.status, response.statusText);
+                
+                if (!response.ok) {
+                    throw new Error(`خطای HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const contentType = response.headers.get('content-type');
+                console.log('نوع محتوا:', contentType);
+                
+                const text = await response.text();
+                console.log('طول داده دریافتی:', text.length, 'کاراکتر');
+                
+                if (text.length === 0) {
+                    throw new Error('فایل JSON خالی است');
+                }
+                
+                // بررسی اولیه محتوا
+                const first500 = text.substring(0, 500);
+                console.log('نمونه داده (اولین 500 کاراکتر):', first500);
+                
+                let data;
+                try {
+                    data = JSON.parse(text);
+                    console.log('JSON با موفقیت پارس شد');
+                } catch (parseError) {
+                    console.error('متن JSON مشکل دارد:', text.substring(0, 1000));
+                    throw new Error(`خطا در پارس JSON: ${parseError.message}`);
+                }
+                
+                console.log('نوع داده دریافت شده:', typeof data);
+                
+                // تبدیل داده به آرایه
+                let postsArray = [];
+                
+                if (Array.isArray(data)) {
+                    console.log('داده یک آرایه است، تعداد:', data.length);
+                    postsArray = data;
+                } else if (data && typeof data === 'object') {
+                    console.log('داده یک آبجکت است، کلیدها:', Object.keys(data));
+                    
+                    // بررسی کلیدهای رایج
+                    if (data.posts && Array.isArray(data.posts)) {
+                        console.log('پست‌ها در کلید "posts" یافت شد');
+                        postsArray = data.posts;
+                    } else if (data.articles && Array.isArray(data.articles)) {
+                        console.log('مقالات در کلید "articles" یافت شد');
+                        postsArray = data.articles;
+                    } else if (data.items && Array.isArray(data.items)) {
+                        console.log('آیتم‌ها در کلید "items" یافت شد');
+                        postsArray = data.items;
+                    } else {
+                        // تبدیل تمام مقادیر آبجکت به آرایه
+                        postsArray = Object.values(data);
+                        console.log('تمام مقادیر آبجکت به آرایه تبدیل شد');
+                    }
+                } else {
+                    throw new Error('فرمت داده نامعتبر است');
+                }
+                
+                console.log(`تعداد پست‌های پردازش شده: ${postsArray.length}`);
+                
+                if (postsArray.length === 0) {
+                    console.warn('آرایه پست‌ها خالی است');
+                    return [];
+                }
+                
+                // پردازش هر پست
+                const processedPosts = postsArray.map((post, index) => {
+                    console.log(`پردازش پست ${index + 1}:`, typeof post, post);
+                    return processPostData(post);
+                });
+                
+                // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
+                processedPosts.sort((a, b) => {
+                    try {
+                        const dateA = new Date(a.date);
+                        const dateB = new Date(b.date);
+                        return dateB - dateA;
+                    } catch (e) {
+                        return 0;
+                    }
+                });
+                
+                console.log('پست‌های نهایی پردازش شده:', processedPosts.length);
+                return processedPosts;
+                
+            } catch (error) {
+                showError('خطا در بارگذاری از فایل JSON', error);
+                return [];
+            }
+        }
+
+        /**
+         * ایجاد عنصر پست
+         */
+        function createPostElement(post, index) {
+            const postElement = document.createElement('a');
+            postElement.className = 'post-card';
+            postElement.href = post.url;
+            postElement.target = '_blank';
+            postElement.style.animationDelay = `${index * 0.1}s`;
+            
+            // استفاده از تصویر پیش‌فرض اگر آدرس تصویر معتبر نیست
+            let imageUrl = BLOG_CONFIG.defaultImage;
+            if (post.image && typeof post.image === 'string') {
+                if (post.image.startsWith('http')) {
+                    imageUrl = post.image;
+                } else if (post.image.startsWith('/')) {
+                    imageUrl = BLOG_CONFIG.baseUrl + post.image;
+                }
+            }
+            
+            postElement.innerHTML = `
+                <div class="post-image">
+                    <div class="lazy-load" style="width: 100%; height: 100%;"></div>
+                    <img data-src="${imageUrl}" 
+                         alt="${post.title || 'مقاله'}" 
+                         style="display: none;"
+                         onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">${post.title || 'مقاله بدون عنوان'}</h2>
+                    <p class="post-excerpt">${post.excerpt || 'خلاصه مقاله'}</p>
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <span class="material-icons" style="font-size: 16px;">calendar_today</span>
+                            ${formatRelativeDate(post.date)}
+                        </span>
+                        <span class="post-read-time">
+                            <span class="material-icons" style="font-size: 16px;">schedule</span>
+                            ${post.readTime || '1 دقیقه'}
+                        </span>
+                    </div>
+                </div>
+            `;
+            
+            return postElement;
+        }
+
+        /**
+         * نمایش پست‌ها در صفحه
+         */
+        function renderPosts(posts) {
+            console.log('رندر کردن پست‌ها:', posts.length);
+            
+            if (!posts || posts.length === 0) {
+                noPostsMessage.style.display = 'block';
+                loadMoreContainer.style.display = 'none';
+                console.log('هیچ پستی برای نمایش وجود ندارد');
+                return;
+            }
+            
+            // پاک کردن پیام "مقاله‌ای یافت نشد" اگر پستی وجود دارد
+            noPostsMessage.style.display = 'none';
+            
+            posts.forEach((post, index) => {
+                const postElement = createPostElement(post, index);
+                postsContainer.appendChild(postElement);
+                
+                // افزودن تصاویر به observer برای lazy loading
+                setTimeout(() => {
+                    const img = postElement.querySelector('img');
+                    if (img && observer) {
+                        observer.observe(img);
+                    }
+                }, 100);
+            });
+            
+            // بررسی آیا پست بیشتری برای نمایش وجود دارد
+            const totalDisplayed = document.querySelectorAll('.post-card').length;
+            console.log(`تعداد پست‌های نمایش داده شده: ${totalDisplayed} از ${allPosts.length}`);
+            
+            if (totalDisplayed >= allPosts.length) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
+            }
+        }
+
+        /**
+         * بارگذاری صفحه جاری
+         */
+        async function loadCurrentPage() {
+            if (isLoading) return;
+            
+            try {
+                const startIndex = (currentPage - 1) * BLOG_CONFIG.postsPerPage;
+                const endIndex = startIndex + BLOG_CONFIG.postsPerPage;
+                const pagePosts = allPosts.slice(startIndex, endIndex);
+                
+                console.log(`بارگذاری صفحه ${currentPage}: از ${startIndex} تا ${endIndex}`);
+                renderPosts(pagePosts);
+                
+                // اگر پست کمتری از postsPerPage داریم یا به انتها رسیده‌ایم
+                if (pagePosts.length < BLOG_CONFIG.postsPerPage || endIndex >= allPosts.length) {
+                    loadMoreBtn.disabled = true;
+                    console.log('بارگذاری بیشتر غیرفعال شد');
+                }
+                
+            } catch (error) {
+                showError('خطا در بارگذاری صفحه', error);
+                noPostsMessage.style.display = 'block';
+            }
+        }
+
+        /**
+         * بارگذاری صفحه بعدی
+         */
+        async function loadNextPage() {
+            if (isLoading || loadMoreBtn.disabled) return;
+            
+            currentPage++;
+            await loadCurrentPage();
+        }
+
+        /**
+         * جستجوی گوگل
+         */
+        function performGoogleSearch(query) {
+            if (!query || query.trim() === '') {
+                alert('لطفاً عبارت جستجو را وارد کنید');
+                return;
+            }
+            
+            const encodedQuery = encodeURIComponent(query);
+            const googleSearchUrl = `https://www.google.com/search?q=site:${BLOG_CONFIG.baseUrl}+${encodedQuery}`;
+            
+            window.open(googleSearchUrl, '_blank');
+            
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+            
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        }
+
+        /**
+         * مدیریت منوی موبایل
+         */
+        let isMobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            if (mobileNav) mobileNav.classList.add('active');
+            if (mobileOverlay) mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isMobileMenuOpen = true;
+        }
+
+        function closeMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            if (mobileNav) mobileNav.classList.remove('active');
+            if (mobileOverlay) mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            isMobileMenuOpen = false;
+        }
+
+        /**
+         * راه�اندازی Observer برای تصاویر
+         */
         function initImageObserver() {
             observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1034,6 +1518,16 @@
                                     placeholder.style.display = 'none';
                                 }
                             };
+                            
+                            tempImg.onerror = () => {
+                                console.error('خطا در بارگذاری تصویر:', src);
+                                img.style.display = 'none';
+                                const placeholder = img.previousElementSibling;
+                                if (placeholder && placeholder.classList.contains('lazy-load')) {
+                                    placeholder.style.display = 'block';
+                                }
+                            };
+                            
                             tempImg.src = src;
                         }
                         
@@ -1046,289 +1540,133 @@
             });
         }
 
-        function calculateReadTime(content) {
-            const text = content.replace(/<[^>]*>/g, ' ');
-            const words = text.split(/\s+/).length;
-            
-            const minutes = Math.ceil(words / 200);
-            
-            return Math.max(1, minutes);
-        }
-
-        function extractFrontMatter(content) {
-            const metadata = {};
-            
-            const frontMatterPattern = /^---\s*\n([\s\S]*?)\n---/;
-            const match = content.match(frontMatterPattern);
-            
-            if (match) {
-                const frontMatter = match[1];
-                const lines = frontMatter.split('\n');
-                
-                lines.forEach(line => {
-                    const colonIndex = line.indexOf(':');
-                    if (colonIndex > -1) {
-                        const key = line.substring(0, colonIndex).trim();
-                        let value = line.substring(colonIndex + 1).trim();
-                        
-                        value = value.replace(/^['"](.*)['"]$/, '$1');
-                        metadata[key] = value;
-                    }
-                });
-            }
-            
-            return metadata;
-        }
-
-        function processPostContent(content) {
-            const metadata = extractFrontMatter(content);
-            
-            const contentWithoutFrontMatter = content.replace(/^---\s*\n[\s\S]*?\n---/, '').trim();
-            
-            const firstParagraphMatch = contentWithoutFrontMatter.match(/^(.+?)(\n\n|$)/);
-            const excerpt = firstParagraphMatch ? firstParagraphMatch[1].substring(0, 150) + '...' : 'خلاصه مقاله';
-            
-            const imageMatch = contentWithoutFrontMatter.match(/!\[.*?\]\((.*?)\)/);
-            const image = imageMatch ? imageMatch[1] : BLOG_CONFIG.defaultImage;
-            
-            return {
-                metadata,
-                excerpt,
-                image,
-                content: contentWithoutFrontMatter
-            };
-        }
-
-        async function loadPostsFromJSON() {
-            try {
-                console.log('در حال بارگذاری پست‌ها از فایل JSON...');
-                
-                const jsonUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
-                console.log('آدرس JSON:', jsonUrl);
-                
-                const response = await fetch(jsonUrl);
-                
-                if (!response.ok) {
-                    throw new Error(`خطا در دریافت فایل JSON: ${response.status}`);
-                }
-                
-                const posts = await response.json();
-                console.log(`تعداد پست‌های بارگذاری شده از JSON: ${posts.length}`);
-                
-                if (posts.length === 0) {
-                    return [];
-                }
-                
-                const processedPosts = posts.map(post => {
-                    const processed = processPostContent(post.content || '');
-                    return {
-                        id: post.id || post.slug || Date.now(),
-                        title: post.title || processed.metadata.title || 'عنوان مقاله',
-                        excerpt: post.excerpt || processed.excerpt,
-                        content: post.content || processed.content,
-                        date: post.date || processed.metadata.date || new Date().toISOString(),
-                        readTime: calculateReadTime(post.content || processed.content) + ' دقیقه',
-                        image: post.image || processed.image,
-                        url: post.url || `${BLOG_CONFIG.baseUrl}/post/${post.slug || 'article'}/`
-                    };
-                });
-                
-                processedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                return processedPosts;
-                
-            } catch (error) {
-                console.error('خطا در بارگذاری از فایل JSON:', error);
-                return [];
-            }
-        }
-
-        function createPostElement(post, index) {
-            const postElement = document.createElement('a');
-            postElement.className = 'post-card';
-            postElement.href = post.url;
-            postElement.style.animationDelay = `${index * 0.1}s`;
-            
-            postElement.innerHTML = `
-                <div class="post-image">
-                    <div class="lazy-load" style="width: 100%; height: 100%;"></div>
-                    <img data-src="${post.image}" 
-                         alt="${post.title}" 
-                         style="display: none;">
-                </div>
-                <div class="post-content">
-                    <h2 class="post-title">${post.title}</h2>
-                    <p class="post-excerpt">${post.excerpt}</p>
-                    <div class="post-meta">
-                        <span class="post-date">
-                            <span class="material-icons" style="font-size: 16px;">calendar_today</span>
-                            ${formatRelativeDate(post.date)}
-                        </span>
-                        <span class="post-read-time">
-                            <span class="material-icons" style="font-size: 16px;">schedule</span>
-                            ${post.readTime}
-                        </span>
-                    </div>
-                </div>
-            `;
-            
-            return postElement;
-        }
-
-        function renderPosts(posts) {
-            if (posts.length === 0) {
-                noPostsMessage.style.display = 'block';
-                loadMoreContainer.style.display = 'none';
-                return;
-            }
-            
-            posts.forEach((post, index) => {
-                const postElement = createPostElement(post, index);
-                postsContainer.appendChild(postElement);
-                
-                setTimeout(() => {
-                    const img = postElement.querySelector('img');
-                    if (img && observer) {
-                        observer.observe(img);
-                    }
-                }, 100);
-            });
-            
-            const totalDisplayed = document.querySelectorAll('.post-card').length;
-            if (totalDisplayed >= allPosts.length) {
-                loadMoreBtn.disabled = true;
-                loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
-            }
-        }
-
-        async function loadCurrentPage() {
-            if (isLoading) return;
-            
-            try {
-                const startIndex = (currentPage - 1) * BLOG_CONFIG.postsPerPage;
-                const endIndex = startIndex + BLOG_CONFIG.postsPerPage;
-                const pagePosts = allPosts.slice(startIndex, endIndex);
-                
-                renderPosts(pagePosts);
-                
-                if (pagePosts.length < BLOG_CONFIG.postsPerPage || endIndex >= allPosts.length) {
-                    loadMoreBtn.disabled = true;
-                }
-                
-            } catch (error) {
-                console.error('خطا در بارگذاری صفحه:', error);
-                noPostsMessage.style.display = 'block';
-            }
-        }
-
-        async function loadNextPage() {
-            if (isLoading || loadMoreBtn.disabled) return;
-            
-            currentPage++;
-            await loadCurrentPage();
-        }
-
-        function performGoogleSearch(query) {
-            if (!query || query.trim() === '') {
-                alert('به دنبال چه میگردی؟ اون رفته از این شهر');
-                return;
-            }
-            
-            const encodedQuery = encodeURIComponent(query);
-            const googleSearchUrl = `https://www.google.com/search?q=site:${BLOG_CONFIG.baseUrl}+${encodedQuery}`;
-            
-            window.open(googleSearchUrl, '_blank');
-            searchInput.value = '';
-            
-            if (isMobileMenuOpen) {
-                closeMobileMenu();
-            }
-        }
-
-        let isMobileMenuOpen = false;
-
-        function toggleMobileMenu() {
-            if (isMobileMenuOpen) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        }
-
-        function openMobileMenu() {
-            mobileNav.classList.add('active');
-            mobileOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            isMobileMenuOpen = true;
-        }
-
-        function closeMobileMenu() {
-            mobileNav.classList.remove('active');
-            mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-            isMobileMenuOpen = false;
-        }
-
+        /**
+         * راه�اندازی اولیه
+         */
         document.addEventListener('DOMContentLoaded', async () => {
+            console.log('صفحه بارگذاری شد، شروع عملیات...');
+            
+            // راه�اندازی lazy loading برای تصاویر
             initImageObserver();
             
             try {
+                // نمایش اسپینر
                 loadingSpinner.style.display = 'block';
+                loadMoreBtn.disabled = true;
+                
+                console.log('بارگذاری پست‌ها شروع شد...');
+                
+                // بارگذاری پست‌ها از JSON
                 allPosts = await loadPostsFromJSON();
                 
+                console.log('بارگذاری پست‌ها کامل شد. تعداد:', allPosts.length);
+                
                 if (allPosts.length === 0) {
+                    console.log('هیچ پستی بارگذاری نشد');
                     noPostsMessage.style.display = 'block';
                     loadMoreContainer.style.display = 'none';
-                    console.log('هیچ پستی در فایل JSON یافت نشد.');
                 } else {
-                    console.log(`تعداد کل پست‌های بارگذاری شده: ${allPosts.length}`);
+                    console.log(`بارگذاری ${allPosts.length} پست`);
+                    
+                    // مخفی کردن اسپینر
+                    loadingSpinner.style.display = 'none';
+                    
+                    // فعال کردن دکمه بارگذاری بیشتر
+                    if (allPosts.length > BLOG_CONFIG.postsPerPage) {
+                        loadMoreBtn.disabled = false;
+                    }
+                    
+                    // نمایش پست‌های صفحه اول
                     await loadCurrentPage();
                 }
+                
             } catch (error) {
-                console.error('خطا در بارگذاری اولیه پست‌ها:', error);
+                showError('خطا در بارگذاری اولیه پست‌ها', error);
+                loadingSpinner.style.display = 'none';
                 noPostsMessage.style.display = 'block';
                 loadMoreContainer.style.display = 'none';
             } finally {
-                loadingSpinner.style.display = 'none';
+                console.log('عملیات بارگذاری اولیه کامل شد');
             }
             
+            // تنظیم event listeners
+            
+            // دکمه بارگذاری بیشتر
             loadMoreBtn.addEventListener('click', loadNextPage);
             
+            // جستجو
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const mobileSearchBtn = document.getElementById('mobileSearchBtn');
             
-            searchBtn.addEventListener('click', () => {
-                const query = searchInput.value.trim();
-                performGoogleSearch(query);
-            });
-            
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
+            if (searchBtn && searchInput) {
+                searchBtn.addEventListener('click', () => {
                     const query = searchInput.value.trim();
                     performGoogleSearch(query);
-                }
-            });
+                });
+                
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const query = searchInput.value.trim();
+                        performGoogleSearch(query);
+                    }
+                });
+            }
             
-            mobileSearchBtn.addEventListener('click', () => {
-                const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
-                if (query !== null && query.trim() !== '') {
-                    performGoogleSearch(query);
-                }
-            });
+            if (mobileSearchBtn) {
+                mobileSearchBtn.addEventListener('click', () => {
+                    const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
+                    if (query !== null && query.trim() !== '') {
+                        performGoogleSearch(query);
+                    }
+                });
+            }
             
+            // منوی موبایل
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileOverlay = document.getElementById('mobileOverlay');
             
-            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-            mobileOverlay.addEventListener('click', closeMobileMenu);
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
             
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // لینک‌های منوی موبایل
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     setTimeout(closeMobileMenu, 300);
                 });
             });
+            
+            console.log('راه‌اندازی کامل شد');
         });
+        
+        // تابع برای تست دستی بارگذاری
+        window.reloadPosts = async function() {
+            console.log('بارگذاری مجدد پست‌ها...');
+            postsContainer.innerHTML = '';
+            loadingSpinner.style.display = 'block';
+            noPostsMessage.style.display = 'none';
+            loadMoreBtn.disabled = true;
+            currentPage = 1;
+            
+            allPosts = await loadPostsFromJSON();
+            loadingSpinner.style.display = 'none';
+            
+            if (allPosts.length > 0) {
+                loadMoreBtn.disabled = false;
+                await loadCurrentPage();
+            } else {
+                noPostsMessage.style.display = 'block';
+            }
+        };
+        
+        // نمایش اطلاعات دیباگ در کنسول
+        console.log('اسکریپت وبلاگ پاسگاه بارگذاری شد');
+        console.log('برای بارگذاری مجدد پست‌ها از دستور window.reloadPosts() استفاده کنید');
     </script>
 </body>
 </html>
