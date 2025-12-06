@@ -4,6 +4,6 @@ description: وبلاگ پاسگاه با ارائه بیوگرافی افراد
 
 url: https://www.pasgah.org
 
-permalink: /:title
+permalink: /biography/:title
 
 encoding: UTF-8
