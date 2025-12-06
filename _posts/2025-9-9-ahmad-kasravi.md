@@ -1,6 +1,5 @@
 ---
 layout: post
-permalink: /biography/ahmad-kasravi
 title: زندگینامه احمد کسروی - روشنفکری در میانه سنت و تجدد
 ---
 
