@@ -1,6 +1,5 @@
 ---
 layout: post
-permalink: /biography/nelson-mandela
 title: زندگینامه نلسون ماندلا - نماد آپارتاید
 ---
 
