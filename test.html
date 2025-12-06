@@ -987,9 +987,10 @@
     </footer>
 
     <script>
-        // تنظیمات وبلاگ
+        // تنظیمات وبلاگ با آدرس جدید JSON
         const BLOG_CONFIG = {
             baseUrl: 'https://www.pasgah.org',
+            jsonUrl: 'https://www.pasgah.org/biography.json', // آدرس جدید JSON
             postsPerPage: 10,
             defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
         };
@@ -1107,81 +1108,27 @@
             try {
                 console.log('پردازش پست:', postData);
                 
-                // اگر پست از قبل ساختار مناسب دارد
-                if (postData.title && postData.excerpt) {
-                    return {
-                        id: postData.id || postData.slug || Date.now() + Math.random(),
-                        title: postData.title,
-                        excerpt: postData.excerpt || 'خلاصه مقاله',
-                        content: postData.content || '',
-                        date: postData.date || postData.published_at || new Date().toISOString(),
-                        readTime: calculateReadTime(postData.content) + ' دقیقه',
-                        image: postData.image || postData.cover_image || BLOG_CONFIG.defaultImage,
-                        url: postData.url || postData.link || `${BLOG_CONFIG.baseUrl}/post/${postData.slug || 'article'}/`
-                    };
-                }
-
-                // اگر پست محتوای markdown دارد
-                if (postData.content && typeof postData.content === 'string') {
-                    const content = postData.content;
-                    
-                    // استخراج عنوان از محتوا
-                    let title = 'عنوان مقاله';
-                    const titleMatch = content.match(/#\s+(.+?)(\n|$)/);
-                    if (titleMatch) {
-                        title = titleMatch[1];
+                // محاسبه زمان مطالعه بر اساس excerpt
+                const readTime = calculateReadTime(postData.excerpt || '') + ' دقیقه';
+                
+                // استفاده از تصویر پیش‌فرض اگر آدرس تصویر معتبر نیست
+                let imageUrl = BLOG_CONFIG.defaultImage;
+                if (postData.image && typeof postData.image === 'string') {
+                    if (postData.image.startsWith('http')) {
+                        imageUrl = postData.image;
+                    } else if (postData.image.startsWith('/')) {
+                        imageUrl = BLOG_CONFIG.baseUrl + postData.image;
                     }
-                    
-                    // استخراج تصویر از محتوا
-                    let image = BLOG_CONFIG.defaultImage;
-                    const imageMatch = content.match(/!\[.*?\]\((.*?)\)/);
-                    if (imageMatch && imageMatch[1]) {
-                        image = imageMatch[1];
-                    }
-                    
-                    // استخراج خلاصه
-                    const contentWithoutTitle = content.replace(/#\s+.+?(\n|$)/, '');
-                    const firstParagraph = contentWithoutTitle.split('\n\n')[0] || '';
-                    const excerpt = firstParagraph.length > 150 
-                        ? firstParagraph.substring(0, 150) + '...' 
-                        : firstParagraph || 'خلاصه مقاله';
-                    
-                    return {
-                        id: postData.id || postData.slug || Date.now() + Math.random(),
-                        title: title,
-                        excerpt: excerpt,
-                        content: content,
-                        date: postData.date || new Date().toISOString(),
-                        readTime: calculateReadTime(content) + ' دقیقه',
-                        image: image,
-                        url: postData.url || `${BLOG_CONFIG.baseUrl}/post/${postData.slug || 'article'}/`
-                    };
                 }
                 
-                // اگر پست یک آبجکت ساده است
-                if (typeof postData === 'object') {
-                    return {
-                        id: postData.id || Date.now() + Math.random(),
-                        title: postData.name || postData.title || 'مقاله بدون عنوان',
-                        excerpt: postData.description || postData.excerpt || 'خلاصه مقاله',
-                        content: postData.content || '',
-                        date: postData.date || postData.created_at || new Date().toISOString(),
-                        readTime: calculateReadTime(postData.content) + ' دقیقه',
-                        image: postData.image || postData.thumbnail || BLOG_CONFIG.defaultImage,
-                        url: postData.url || postData.link || '#'
-                    };
-                }
-                
-                // حالت پیش‌فرض
                 return {
-                    id: Date.now() + Math.random(),
-                    title: 'مقاله',
-                    excerpt: 'خلاصه مقاله',
-                    content: '',
-                    date: new Date().toISOString(),
-                    readTime: '1 دقیقه',
-                    image: BLOG_CONFIG.defaultImage,
-                    url: '#'
+                    id: postData.id || postData.slug || Date.now() + Math.random(),
+                    title: postData.title || 'مقاله بدون عنوان',
+                    excerpt: postData.excerpt || 'خلاصه مقاله',
+                    date: postData.date || new Date().toISOString(),
+                    readTime: readTime,
+                    image: imageUrl,
+                    url: postData.url || `${BLOG_CONFIG.baseUrl}/post/${postData.slug || 'article'}/`
                 };
                 
             } catch (error) {
@@ -1190,7 +1137,6 @@
                     id: Date.now() + Math.random(),
                     title: 'مقاله',
                     excerpt: 'خلاصه مقاله',
-                    content: '',
                     date: new Date().toISOString(),
                     readTime: '1 دقیقه',
                     image: BLOG_CONFIG.defaultImage,
@@ -1200,21 +1146,19 @@
         }
 
         /**
-         * بارگذاری پست‌ها از فایل JSON
+         * بارگذاری پست‌ها از فایل JSON جدید
          */
         async function loadPostsFromJSON() {
             try {
                 console.log('شروع بارگذاری پست‌ها از فایل JSON...');
-                
-                const jsonUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
-                console.log('آدرس JSON:', jsonUrl);
+                console.log('آدرس JSON:', BLOG_CONFIG.jsonUrl);
                 
                 // ایجاد یک timeout برای جلوگیری از گیر کردن
                 const timeoutPromise = new Promise((_, reject) => {
-                    setTimeout(() => reject(new Error('Timeout: بارگذاری JSON بیش از 10 ثانیه طول کشید')), 10000);
+                    setTimeout(() => reject(new Error('Timeout: بارگذاری JSON بیش از 15 ثانیه طول کشید')), 15000);
                 });
                 
-                const fetchPromise = fetch(jsonUrl, {
+                const fetchPromise = fetch(BLOG_CONFIG.jsonUrl, {
                     mode: 'cors',
                     cache: 'no-cache',
                     headers: {
@@ -1242,58 +1186,62 @@
                 }
                 
                 // بررسی اولیه محتوا
-                const first500 = text.substring(0, 500);
-                console.log('نمونه داده (اولین 500 کاراکتر):', first500);
+                console.log('نمونه داده (اولین 500 کاراکتر):', text.substring(0, 500));
+                console.log('نمونه داده (آخرین 500 کاراکتر):', text.substring(Math.max(0, text.length - 500)));
                 
                 let data;
                 try {
                     data = JSON.parse(text);
                     console.log('JSON با موفقیت پارس شد');
                 } catch (parseError) {
-                    console.error('متن JSON مشکل دارد:', text.substring(0, 1000));
+                    console.error('مشکل در پارس JSON:', parseError);
+                    console.error('متن کامل JSON:', text);
                     throw new Error(`خطا در پارس JSON: ${parseError.message}`);
                 }
                 
+                console.log('داده دریافت شده:', data);
                 console.log('نوع داده دریافت شده:', typeof data);
                 
-                // تبدیل داده به آرایه
+                // تبدیل داده به آرایه پست‌ها
                 let postsArray = [];
                 
-                if (Array.isArray(data)) {
-                    console.log('داده یک آرایه است، تعداد:', data.length);
-                    postsArray = data;
-                } else if (data && typeof data === 'object') {
-                    console.log('داده یک آبجکت است، کلیدها:', Object.keys(data));
-                    
-                    // بررسی کلیدهای رایج
+                if (data && typeof data === 'object') {
+                    // اگر داده دارای فیلد posts باشد
                     if (data.posts && Array.isArray(data.posts)) {
-                        console.log('پست‌ها در کلید "posts" یافت شد');
+                        console.log('پست‌ها در کلید "posts" یافت شد، تعداد:', data.posts.length);
                         postsArray = data.posts;
-                    } else if (data.articles && Array.isArray(data.articles)) {
-                        console.log('مقالات در کلید "articles" یافت شد');
-                        postsArray = data.articles;
-                    } else if (data.items && Array.isArray(data.items)) {
-                        console.log('آیتم‌ها در کلید "items" یافت شد');
-                        postsArray = data.items;
-                    } else {
-                        // تبدیل تمام مقادیر آبجکت به آرایه
-                        postsArray = Object.values(data);
-                        console.log('تمام مقادیر آبجکت به آرایه تبدیل شد');
                     }
-                } else {
-                    throw new Error('فرمت داده نامعتبر است');
+                    // اگر داده مستقیم آرایه است
+                    else if (Array.isArray(data)) {
+                        console.log('داده مستقیم آرایه است، تعداد:', data.length);
+                        postsArray = data;
+                    }
+                    // اگر داده دارای count است
+                    else if (data.count !== undefined) {
+                        console.log('تعداد پست‌ها:', data.count);
+                        // بررسی سایر کلیدهای ممکن
+                        const possibleKeys = ['items', 'articles', 'entries', 'blog_posts'];
+                        for (const key of possibleKeys) {
+                            if (data[key] && Array.isArray(data[key])) {
+                                console.log(`پست‌ها در کلید "${key}" یافت شد`);
+                                postsArray = data[key];
+                                break;
+                            }
+                        }
+                    }
                 }
                 
                 console.log(`تعداد پست‌های پردازش شده: ${postsArray.length}`);
                 
                 if (postsArray.length === 0) {
                     console.warn('آرایه پست‌ها خالی است');
+                    console.log('ساختار کامل داده:', JSON.stringify(data, null, 2));
                     return [];
                 }
                 
                 // پردازش هر پست
                 const processedPosts = postsArray.map((post, index) => {
-                    console.log(`پردازش پست ${index + 1}:`, typeof post, post);
+                    console.log(`پردازش پست ${index + 1}:`, post);
                     return processPostData(post);
                 });
                 
@@ -1327,20 +1275,10 @@
             postElement.target = '_blank';
             postElement.style.animationDelay = `${index * 0.1}s`;
             
-            // استفاده از تصویر پیش‌فرض اگر آدرس تصویر معتبر نیست
-            let imageUrl = BLOG_CONFIG.defaultImage;
-            if (post.image && typeof post.image === 'string') {
-                if (post.image.startsWith('http')) {
-                    imageUrl = post.image;
-                } else if (post.image.startsWith('/')) {
-                    imageUrl = BLOG_CONFIG.baseUrl + post.image;
-                }
-            }
-            
             postElement.innerHTML = `
                 <div class="post-image">
                     <div class="lazy-load" style="width: 100%; height: 100%;"></div>
-                    <img data-src="${imageUrl}" 
+                    <img data-src="${post.image}" 
                          alt="${post.title || 'مقاله'}" 
                          style="display: none;"
                          onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
@@ -1497,7 +1435,7 @@
         }
 
         /**
-         * راه�اندازی Observer برای تصاویر
+         * راه‌اندازی Observer برای تصاویر
          */
         function initImageObserver() {
             observer = new IntersectionObserver((entries) => {
@@ -1541,12 +1479,12 @@
         }
 
         /**
-         * راه�اندازی اولیه
+         * راه‌اندازی اولیه
          */
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('صفحه بارگذاری شد، شروع عملیات...');
             
-            // راه�اندازی lazy loading برای تصاویر
+            // راه‌اندازی lazy loading برای تصاویر
             initImageObserver();
             
             try {
@@ -1554,9 +1492,19 @@
                 loadingSpinner.style.display = 'block';
                 loadMoreBtn.disabled = true;
                 
-                console.log('بارگذاری پست‌ها شروع شد...');
+                console.log('بارگذاری پست‌ها از آدرس جدید شروع شد...');
+                console.log('آدرس JSON:', BLOG_CONFIG.jsonUrl);
                 
-                // بارگذاری پست‌ها از JSON
+                // تست مستقیم آدرس JSON
+                console.log('تست دسترسی به JSON...');
+                try {
+                    const testResponse = await fetch(BLOG_CONFIG.jsonUrl);
+                    console.log('تست دسترسی موفق. وضعیت:', testResponse.status);
+                } catch (testError) {
+                    console.error('خطا در تست دسترسی:', testError);
+                }
+                
+                // بارگذاری پست‌ها از JSON جدید
                 allPosts = await loadPostsFromJSON();
                 
                 console.log('بارگذاری پست‌ها کامل شد. تعداد:', allPosts.length);
