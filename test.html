@@ -1,31 +1,18 @@
----
-layout: null
----
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description" content="{{ site.description }}">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_image | absolute_url }}{% endif %}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:description" content="{{ site.description }}">
+    <meta property="og:image" content="{{ '/biography/logo.webp' | absolute_url }}">
+    <meta property="og:url" content="{{ '/' | absolute_url }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ site.title }}">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_image | absolute_url }}{% endif %}">
-    
-    <!-- Icons -->
-    <link rel="icon" href="{{ '/biography/logo.webp' | relative_url }}" type="image/webp">
     
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -542,27 +529,6 @@ layout: null
             box-shadow: none;
         }
 
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--border-color);
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .no-posts {
             text-align: center;
             padding: 60px 20px;
@@ -574,44 +540,6 @@ layout: null
             color: var(--text-secondary);
             margin-bottom: 20px;
             display: block;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 40px 0;
-        }
-
-        .pagination-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            background-color: var(--background-color);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-
-        .pagination-link:hover:not(.disabled) {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .pagination-link.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .pagination-current {
-            font-weight: 600;
-            color: var(--primary-color);
         }
 
         footer {
@@ -711,6 +639,10 @@ layout: null
             z-index: 1000;
             transition: right 0.3s ease;
             overflow-y: auto;
+        }
+
+        .hidden-post {
+            display: none !important;
         }
 
         @media (max-width: 992px) {
@@ -905,7 +837,7 @@ layout: null
             <div class="nav-container">
                 <ul class="nav-links">
                     <li class="nav-item">
-                        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">صفحه اصلی</a>
+                        <a href="{{ '/' | relative_url }}" class="nav-link active">صفحه اصلی</a>
                     </li>
                     <li class="nav-item">
                         <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
@@ -947,7 +879,7 @@ layout: null
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
-                    <a href="{{ '/' | relative_url }}" class="mobile-nav-link {% if page.url == '/' %}active{% endif %}">
+                    <a href="{{ '/' | relative_url }}" class="mobile-nav-link active">
                         <span class="material-icons">home</span>
                         <span>صفحه اصلی</span>
                     </a>
@@ -981,23 +913,28 @@ layout: null
         <div class="main-content">
             <div class="section-header">
                 <h2 class="section-title">آخرین مقالات</h2>
+                <span class="post-count">{{ site.posts.size }} مقاله</span>
             </div>
             
-            <!-- نمایش پست‌ها با استفاده از Liquid -->
+            <!-- نمایش تمام پست‌ها به صورت یکجا -->
             <div class="posts-grid" id="posts-container">
-                {% assign posts = site.posts %}
+                {% assign all_posts = site.posts %}
                 
-                {% if posts.size > 0 %}
-                    {% for post in posts limit: 10 %}
+                {% if all_posts.size > 0 %}
+                    {% for post in all_posts %}
+                        {% if forloop.index <= 6 %}
                         <a href="{{ post.url | relative_url }}" class="post-card" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+                        {% else %}
+                        <a href="{{ post.url | relative_url }}" class="post-card hidden-post" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+                        {% endif %}
                             <div class="post-image">
                                 <div class="lazy-load" style="width: 100%; height: 100%;"></div>
+                                {% assign post_image = post.image | default: post.cover_image | default: site.default_image | default: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80' %}
                                 <img 
-                                    data-src="{% if post.image %}{{ post.image }}{% elsif post.cover_image %}{{ post.cover_image }}{% else %}{{ site.default_image }}{% endif %}" 
+                                    data-src="{{ post_image }}" 
                                     alt="{{ post.title }}" 
                                     style="display: none;"
                                     loading="lazy"
-                                    onerror="this.style.display='none'; this.previousElementSibling.style.display='block';"
                                 >
                             </div>
                             <div class="post-content">
@@ -1012,18 +949,44 @@ layout: null
                                 <div class="post-meta">
                                     <span class="post-date">
                                         <span class="material-icons" style="font-size: 16px;">calendar_today</span>
-                                        {% include relative-date.html date=post.date %}
+                                        {% assign post_date = post.date %}
+                                        {% assign now = site.time %}
+                                        {% assign diff_seconds = now | date: '%s' | minus: post_date | date: '%s' %}
+                                        {% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
+                                        
+                                        {% if diff_days == 0 %}
+                                            امروز
+                                        {% elsif diff_days == 1 %}
+                                            دیروز
+                                        {% elsif diff_days < 7 %}
+                                            {{ diff_days }} روز قبل
+                                        {% elsif diff_days < 30 %}
+                                            {% assign weeks = diff_days | divided_by: 7 %}
+                                            {{ weeks }} هفته قبل
+                                        {% elsif diff_days < 365 %}
+                                            {% assign months = diff_days | divided_by: 30 %}
+                                            {{ months }} ماه قبل
+                                        {% else %}
+                                            {% assign years = diff_days | divided_by: 365 %}
+                                            {{ years }} سال قبل
+                                        {% endif %}
                                     </span>
                                     <span class="post-read-time">
                                         <span class="material-icons" style="font-size: 16px;">schedule</span>
-                                        {% include read-time.html content=post.content %}
+                                        {% assign content = post.content %}
+                                        {% assign words = content | strip_html | number_of_words %}
+                                        {% if words < 360 %}
+                                            ۱ دقیقه
+                                        {% else %}
+                                            {{ words | divided_by: 180 }} دقیقه
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                         </a>
                     {% endfor %}
                 {% else %}
-                    <div class="no-posts" id="noPostsMessage">
+                    <div class="no-posts">
                         <span class="material-icons no-posts-icon">search_off</span>
                         <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای یافت نشد</h3>
                         <p style="color: var(--text-secondary);">به زودی مطالب جدیدی منتشر خواهد شد.</p>
@@ -1031,21 +994,15 @@ layout: null
                 {% endif %}
             </div>
             
-            <!-- اگر پست‌های بیشتری وجود دارد، دکمه نمایش بیشتر -->
-            {% if site.posts.size > 10 %}
+            <!-- دکمه نمایش مقالات بیشتر -->
+            {% if all_posts.size > 6 %}
                 <div class="load-more-container" id="loadMoreContainer">
-                    <button class="load-more-btn" id="loadMoreBtn" onclick="loadMorePosts()">
+                    <button class="load-more-btn" id="loadMoreBtn">
                         <span class="material-icons">expand_more</span>
-                        بارگذاری مقالات بیشتر
+                        نمایش مقالات بیشتر ({{ all_posts.size | minus: 6 }} مقاله دیگر)
                     </button>
                 </div>
             {% endif %}
-            
-            <!-- اسپینر بارگذاری -->
-            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
-                <div class="spinner"></div>
-                <p>در حال بارگذاری مقالات...</p>
-            </div>
         </div>
     </main>
 
@@ -1077,9 +1034,40 @@ layout: null
         </div>
     </footer>
 
-    <!-- اسکریپت‌های جاوااسکریپت -->
     <script>
-        // مدیریت لودینگ تصاویر
+        // مدیریت نمایش مقالات بیشتر
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const hiddenPosts = document.querySelectorAll('.hidden-post');
+            
+            if (loadMoreBtn && hiddenPosts.length > 0) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // نمایش تمام پست‌های مخفی
+                    hiddenPosts.forEach(post => {
+                        post.classList.remove('hidden-post');
+                        post.style.animationDelay = '0s';
+                        post.style.animation = 'fadeInUp 0.6s ease forwards';
+                    });
+                    
+                    // غیرفعال کردن دکمه
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
+                    
+                    // راه‌اندازی lazy loading برای تصاویر جدید
+                    initImageObserver();
+                });
+            }
+            
+            // راه‌اندازی lazy loading برای تصاویر
+            initImageObserver();
+            
+            // مدیریت جستجو
+            setupSearch();
+            
+            // مدیریت منوی موبایل
+            setupMobileMenu();
+        });
+        
         function initImageObserver() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1125,102 +1113,32 @@ layout: null
                 observer.observe(img);
             });
         }
-
-        // تابع برای بارگذاری پست‌های بیشتر
-        let currentPostsCount = 10;
         
-        function loadMorePosts() {
-            const postsContainer = document.getElementById('posts-container');
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            const totalPosts = {{ site.posts.size }};
-            
-            if (currentPostsCount >= totalPosts) {
-                loadMoreBtn.disabled = true;
-                loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
-                return;
-            }
-            
-            // نمایش اسپینر
-            loadMoreBtn.style.display = 'none';
-            loadingSpinner.style.display = 'block';
-            
-            // شبیه‌سازی بارگذاری
-            setTimeout(() => {
-                // اینجا می‌توانید از AJAX برای بارگذاری پست‌های بیشتر استفاده کنید
-                // یا اگر از پاگینیشن استفاده می‌کنید، کاربر را به صفحه بعد هدایت کنید
-                
-                // به عنوان جایگزین ساده، می‌توانیم پست‌های بیشتری را از Liquid نمایش دهیم
-                // یا از پاگینیشن استفاده کنیم
-                
-                // برای سادگی، کاربر را به صفحه آرشیو هدایت می‌کنیم
-                window.location.href = '{{ "/archive" | relative_url }}';
-                
-            }, 1000);
-        }
-
-        // جستجوی گوگل
-        function performGoogleSearch(query) {
-            if (!query || query.trim() === '') {
-                alert('لطفاً عبارت جستجو را وارد کنید');
-                return;
-            }
-            
-            const encodedQuery = encodeURIComponent(query);
-            const googleSearchUrl = `https://www.google.com/search?q=site:{{ site.url | remove: "https://" | remove: "http://" }}+${encodedQuery}`;
-            
-            window.open(googleSearchUrl, '_blank');
-            
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.value = '';
-            }
-            
-            if (isMobileMenuOpen) {
-                closeMobileMenu();
-            }
-        }
-
-        // مدیریت منوی موبایل
-        let isMobileMenuOpen = false;
-
-        function toggleMobileMenu() {
-            if (isMobileMenuOpen) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        }
-
-        function openMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            
-            if (mobileNav) mobileNav.classList.add('active');
-            if (mobileOverlay) mobileOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            isMobileMenuOpen = true;
-        }
-
-        function closeMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            
-            if (mobileNav) mobileNav.classList.remove('active');
-            if (mobileOverlay) mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-            isMobileMenuOpen = false;
-        }
-
-        // راه‌اندازی اولیه
-        document.addEventListener('DOMContentLoaded', () => {
-            // راه‌اندازی lazy loading برای تصاویر
-            initImageObserver();
-            
-            // تنظیم event listeners برای جستجو
+        function setupSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+            
+            function performGoogleSearch(query) {
+                if (!query || query.trim() === '') {
+                    alert('لطفاً عبارت جستجو را وارد کنید');
+                    return;
+                }
+                
+                const siteUrl = '{{ site.url }}'.replace(/^https?:\/\//, '');
+                const encodedQuery = encodeURIComponent(query);
+                const googleSearchUrl = `https://www.google.com/search?q=site:${siteUrl}+${encodedQuery}`;
+                
+                window.open(googleSearchUrl, '_blank');
+                
+                if (searchInput) {
+                    searchInput.value = '';
+                }
+                
+                if (isMobileMenuOpen) {
+                    closeMobileMenu();
+                }
+            }
             
             if (searchBtn && searchInput) {
                 searchBtn.addEventListener('click', () => {
@@ -1244,10 +1162,42 @@ layout: null
                     }
                 });
             }
-            
-            // تنظیم event listeners برای منوی موبایل
+        }
+        
+        // مدیریت منوی موبایل
+        let isMobileMenuOpen = false;
+        
+        function setupMobileMenu() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            function toggleMobileMenu() {
+                if (isMobileMenuOpen) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            
+            function openMobileMenu() {
+                const mobileNav = document.getElementById('mobileNav');
+                const mobileOverlay = document.getElementById('mobileOverlay');
+                
+                if (mobileNav) mobileNav.classList.add('active');
+                if (mobileOverlay) mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                isMobileMenuOpen = true;
+            }
+            
+            function closeMobileMenu() {
+                const mobileNav = document.getElementById('mobileNav');
+                const mobileOverlay = document.getElementById('mobileOverlay');
+                
+                if (mobileNav) mobileNav.classList.remove('active');
+                if (mobileOverlay) mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                isMobileMenuOpen = false;
+            }
             
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
@@ -1263,7 +1213,7 @@ layout: null
                     setTimeout(closeMobileMenu, 300);
                 });
             });
-        });
+        }
     </script>
 </body>
 </html>
