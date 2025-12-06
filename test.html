@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پاسگاه | وبلاگ شخصی</title>
+    <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -608,6 +608,11 @@
             background-color: var(--facebook-light);
         }
 
+        .footer-link.rss:hover {
+            color: var(--rss-color);
+            background-color: var(--rss-light);
+        }
+
         .copyright {
             color: var(--text-secondary);
             font-size: 14px;
@@ -760,6 +765,11 @@
                 color: var(--facebook-color);
                 background-color: var(--facebook-light);
             }
+            
+            .mobile-nav-link.rss:hover {
+                color: var(--rss-color);
+                background-color: var(--rss-light);
+            }
         }
 
         @media (max-width: 480px) {
@@ -803,7 +813,6 @@
             }
         }
 
-        /* استایل برای لود تصاویر */
         .lazy-load {
             background-color: var(--surface-color);
             background-image: linear-gradient(90deg, var(--surface-color) 0%, var(--border-color) 50%, var(--surface-color) 100%);
@@ -822,7 +831,7 @@
         <div class="header-container">
             <div class="logo-container">
                 <a href="/" class="logo" id="homeLink">
-                    <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
+                    <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="logo-icon">
                     <span class="logo-text">پاسگاه</span>
                 </a>
             </div>
@@ -830,7 +839,7 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li class="nav-item">
-                        <a href="/" class="nav-link active">خانه</a>
+                        <a href="https://www.pasgah.org/" class="nav-link active">صفحه اصلی</a>
                     </li>
                     <li class="nav-item">
                         <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
@@ -845,6 +854,10 @@
                         <span class="material-icons">search</span>
                     </button>
                 </div>
+                
+                <a href="/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
+                    <span class="material-icons">rss_feed</span>
+                </a>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -852,11 +865,10 @@
             </button>
             
             <div class="mobile-site-info">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="mobile-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="mobile-logo">
                 <span class="mobile-site-title">پاسگاه</span>
             </div>
             
-            <!-- هدر موبایل: فقط آیکون جستجو -->
             <div class="mobile-header-actions">
                 <button class="mobile-search-btn" id="mobileSearchBtn">
                     <span class="material-icons">search</span>
@@ -866,11 +878,10 @@
         
         <div class="mobile-menu-overlay" id="mobileOverlay"></div>
         
-        <!-- منوی موبایل ساده شده -->
         <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li class="mobile-nav-item">
-                    <a href="/" class="mobile-nav-link active">
+                    <a href="https://www.pasgah.org/" class="mobile-nav-link active">
                         <span class="material-icons">home</span>
                         <span>صفحه اصلی</span>
                     </a>
@@ -879,6 +890,12 @@
                     <a href="https://www.facebook.com/ehsanchehri/" class="mobile-nav-link facebook" target="_blank">
                         <span class="material-icons">facebook</span>
                         <span>فیسبوک</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="/atom.xml" class="mobile-nav-link rss" target="_blank">
+                        <span class="material-icons">rss_feed</span>
+                        <span>اشتراک RSS</span>
                     </a>
                 </li>
             </ul>
@@ -896,16 +913,13 @@
 
     <main class="container">
         <div class="main-content">
-            <!-- بخش پست‌های اخیر -->
             <div class="section-header">
                 <h2 class="section-title">آخرین مقالات</h2>
             </div>
             
             <div class="posts-grid" id="posts-container">
-                <!-- پست‌ها توسط JavaScript بارگذاری می‌شوند -->
             </div>
             
-            <!-- دکمه بارگذاری بیشتر -->
             <div class="load-more-container" id="loadMoreContainer">
                 <button class="load-more-btn" id="loadMoreBtn">
                     <span class="material-icons">expand_more</span>
@@ -913,13 +927,11 @@
                 </button>
             </div>
             
-            <!-- اسپینر بارگذاری -->
             <div class="loading-spinner" id="loadingSpinner">
                 <div class="spinner"></div>
                 <p>در حال بارگذاری مقالات...</p>
             </div>
             
-            <!-- پیام عدم وجود پست -->
             <div class="no-posts" id="noPostsMessage" style="display: none;">
                 <span class="material-icons no-posts-icon">search_off</span>
                 <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای یافت نشد</h3>
@@ -930,20 +942,23 @@
 
     <footer>
         <div class="container footer-container">
-            <a href="/" class="footer-logo">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو">
+            <a href="https://www.pasgah.org/" class="footer-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه">
                 <span>پاسگاه</span>
             </a>
             
-            <!-- فوتر ساده شده -->
             <div class="footer-links">
-                <a href="/" class="footer-link">
+                <a href="https://www.pasgah.org/" class="footer-link">
                     <span class="material-icons">home</span>
                     صفحه اصلی
                 </a>
                 <a href="https://www.facebook.com/ehsanchehri/" class="footer-link facebook" target="_blank">
                     <span class="material-icons">facebook</span>
                     فیسبوک
+                </a>
+                <a href="/atom.xml" class="footer-link rss" target="_blank">
+                    <span class="material-icons">rss_feed</span>
+                    اشتراک RSS
                 </a>
             </div>
             
@@ -954,7 +969,6 @@
     </footer>
 
     <script>
-        // تنظیمات وبلاگ
         const BLOG_CONFIG = {
             githubUsername: 'darkblog',
             repoName: 'darkblog.github.io',
@@ -963,26 +977,22 @@
             defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
         };
 
-        // متغیرهای گلوبال
         let allPosts = [];
         let currentPage = 1;
         let isLoading = false;
         let observer = null;
 
-        // المنت‌های DOM
         const postsContainer = document.getElementById('posts-container');
         const loadingSpinner = document.getElementById('loadingSpinner');
         const noPostsMessage = document.getElementById('noPostsMessage');
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         const loadMoreContainer = document.getElementById('loadMoreContainer');
 
-        // تابع برای تبدیل تاریخ به فرمت روزهای گذشته
         function formatRelativeDate(dateString) {
             try {
                 const postDate = new Date(dateString);
                 const now = new Date();
                 
-                // تفاوت در میلی‌ثانیه
                 const diffMs = now - postDate;
                 const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
                 
@@ -1007,16 +1017,6 @@
             }
         }
 
-        // تابع برای تولید تاریخ‌های تصادفی برای پست‌های نمونه
-        function generateRandomDate() {
-            const now = new Date();
-            const randomDaysAgo = Math.floor(Math.random() * 365); // حداکثر یک سال قبل
-            const postDate = new Date(now);
-            postDate.setDate(postDate.getDate() - randomDaysAgo);
-            return postDate.toISOString();
-        }
-
-        // مدیریت lazy loading تصاویر
         function initImageObserver() {
             observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1031,7 +1031,6 @@
                                 img.classList.add('loaded');
                                 img.removeAttribute('data-src');
                                 
-                                // حذف placeholder
                                 const placeholder = img.previousElementSibling;
                                 if (placeholder && placeholder.classList.contains('lazy-load')) {
                                     placeholder.style.display = 'none';
@@ -1049,113 +1048,19 @@
             });
         }
 
-        // تابع برای محاسبه زمان مطالعه
         function calculateReadTime(content) {
             // حذف HTML tags و شمارش کلمات
             const text = content.replace(/<[^>]*>/g, ' ');
             const words = text.split(/\s+/).length;
             
-            // فرض: هر ۲۰۰ کلمه = ۱ دقیقه خواندن
             const minutes = Math.ceil(words / 200);
             
-            // حداقل ۱ دقیقه
             return Math.max(1, minutes);
         }
 
-        // تابع برای بارگذاری پست‌های واقعی
-        async function loadRealPosts() {
-            try {
-                isLoading = true;
-                loadingSpinner.style.display = 'block';
-                
-                // ابتدا سعی می‌کنیم از فایل posts.json بارگذاری کنیم
-                const postsUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
-                
-                const response = await fetch(postsUrl);
-                
-                if (response.ok) {
-                    const posts = await response.json();
-                    
-                    // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
-                    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                    
-                    return posts;
-                }
-                
-                // اگر فایل posts.json وجود نداشت، از API GitHub استفاده می‌کنیم
-                return await loadPostsFromGitHubAPI();
-                
-            } catch (error) {
-                console.error('Error loading real posts:', error);
-                
-                // اگر هیچکدام کار نکرد، از پست‌های نمونه استفاده می‌کنیم
-                return generateSamplePosts();
-            } finally {
-                isLoading = false;
-                loadingSpinner.style.display = 'none';
-            }
-        }
-
-        // تابع برای بارگذاری از API GitHub
-        async function loadPostsFromGitHubAPI() {
-            try {
-                const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
-                
-                const response = await fetch(apiUrl);
-                
-                if (!response.ok) {
-                    throw new Error(`GitHub API error! status: ${response.status}`);
-                }
-                
-                const files = await response.json();
-                
-                // فقط فایل‌های markdown را بگیریم
-                const markdownFiles = files.filter(file => 
-                    file.name.endsWith('.md') || file.name.endsWith('.markdown')
-                );
-                
-                // پردازش پست‌ها
-                const posts = [];
-                
-                for (const file of markdownFiles.slice(0, 50)) { // حداکثر ۵۰ پست
-                    try {
-                        const contentResponse = await fetch(file.download_url);
-                        const content = await contentResponse.text();
-                        
-                        // استخراج metadata از front matter
-                        const metadata = extractFrontMatter(content);
-                        
-                        posts.push({
-                            id: file.sha,
-                            title: metadata.title || file.name.replace(/\.(md|markdown)$/, ''),
-                            excerpt: metadata.excerpt || metadata.description || 'خلاصه مقاله',
-                            content: content,
-                            date: metadata.date || generateRandomDate(),
-                            readTime: calculateReadTime(content) + ' دقیقه',
-                            image: metadata.image || BLOG_CONFIG.defaultImage,
-                            url: `${BLOG_CONFIG.baseUrl}/post/${file.name.replace(/\.(md|markdown)$/, '')}/`
-                        });
-                    } catch (fileError) {
-                        console.error(`Error processing file ${file.name}:`, fileError);
-                    }
-                }
-                
-                // مرتب‌سازی بر اساس تاریخ
-                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                return posts;
-                
-            } catch (error) {
-                console.error('Error loading from GitHub API:', error);
-                return [];
-            }
-        }
-
-        // تابع برای استخراج front matter
         function extractFrontMatter(content) {
             const metadata = {};
             
-            // pattern for front matter
             const frontMatterPattern = /^---\s*\n([\s\S]*?)\n---/;
             const match = content.match(frontMatterPattern);
             
@@ -1169,7 +1074,6 @@
                         const key = line.substring(0, colonIndex).trim();
                         let value = line.substring(colonIndex + 1).trim();
                         
-                        // Remove quotes if present
                         value = value.replace(/^['"](.*)['"]$/, '$1');
                         metadata[key] = value;
                     }
@@ -1179,54 +1083,192 @@
             return metadata;
         }
 
-        // تابع برای ایجاد پست‌های نمونه
-        function generateSamplePosts() {
-            const titles = [
-                'آموزش React.js از مقدماتی تا پیشرفته',
-                'معرفی Material Design 3 و ویژگی‌های جدید',
-                'تأثیر هوش مصنوعی بر توسعه نرم‌افزار',
-                'نحوه راه‌اندازی وبلاگ روی GitHub Pages',
-                'چرا یادگیری جاوااسکریپت ضروری است؟',
-                'تجربیات من از یک سال وبلاگ نویسی',
-                'بهینه‌سازی وبسایت برای موتورهای جستجو',
-                'آموزش Vue.js برای مبتدیان',
-                'طراحی واکنش‌گرا با CSS Grid و Flexbox',
-                'مدیریت وضعیت در برنامه‌های React'
-            ];
+        function processPostContent(content) {
+            const metadata = extractFrontMatter(content);
             
-            const images = [
-                'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
-                'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
-                'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
-                'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
-                'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
-                'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
-            ];
+            const contentWithoutFrontMatter = content.replace(/^---\s*\n[\s\S]*?\n---/, '').trim();
             
-            const posts = [];
-            const totalPosts = 35;
+            const firstParagraphMatch = contentWithoutFrontMatter.match(/^(.+?)(\n\n|$)/);
+            const excerpt = firstParagraphMatch ? firstParagraphMatch[1].substring(0, 150) + '...' : 'خلاصه مقاله';
             
-            for (let i = 1; i <= totalPosts; i++) {
-                const title = titles[Math.floor(Math.random() * titles.length)];
-                const image = images[Math.floor(Math.random() * images.length)];
-                
-                posts.push({
-                    id: i,
-                    title: `${title}`,
-                    excerpt: 'این یک خلاصه نمونه از مقاله است. در این مقاله به بررسی موضوع مورد نظر می‌پردازیم و نکات مهم را بررسی می‌کنیم.',
-                    content: 'محتویات کامل مقاله...',
-                    date: generateRandomDate(),
-                    readTime: `${Math.floor(Math.random() * 10) + 3} دقیقه`,
-                    image: image,
-                    url: `${BLOG_CONFIG.baseUrl}/post/article-${i}/`
-                });
-            }
+            const imageMatch = contentWithoutFrontMatter.match(/!\[.*?\]\((.*?)\)/);
+            const image = imageMatch ? imageMatch[1] : BLOG_CONFIG.defaultImage;
             
-            // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
-            return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            return {
+                metadata,
+                excerpt,
+                image,
+                content: contentWithoutFrontMatter
+            };
         }
 
-        // تابع برای ایجاد المان پست
+        async function loadRealPosts() {
+            try {
+                isLoading = true;
+                loadingSpinner.style.display = 'block';
+                
+                console.log('در حال بارگذاری پست‌های واقعی...');
+                
+                const jsonUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
+                console.log('آدرس JSON:', jsonUrl);
+                
+                try {
+                    const response = await fetch(jsonUrl);
+                    
+                    if (response.ok) {
+                        const posts = await response.json();
+                        console.log(`تعداد پست‌های بارگذاری شده از JSON: ${posts.length}`);
+                        
+                        if (posts.length > 0) {
+                            const processedPosts = posts.map(post => {
+                                const processed = processPostContent(post.content || '');
+                                return {
+                                    id: post.id || post.slug || Date.now(),
+                                    title: post.title || processed.metadata.title || 'عنوان مقاله',
+                                    excerpt: post.excerpt || processed.excerpt,
+                                    content: post.content || processed.content,
+                                    date: post.date || processed.metadata.date || new Date().toISOString(),
+                                    readTime: calculateReadTime(post.content || processed.content) + ' دقیقه',
+                                    image: post.image || processed.image,
+                                    url: post.url || `${BLOG_CONFIG.baseUrl}/post/${post.slug || 'article'}/`
+                                };
+                            });
+                            
+                            processedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                            
+                            return processedPosts;
+                        }
+                    }
+                } catch (jsonError) {
+                    console.warn('خطا در بارگذاری JSON:', jsonError);
+                }
+                
+                console.log('تلاش برای استفاده از GitHub API...');
+                const githubPosts = await loadPostsFromGitHubAPI();
+                
+                if (githubPosts.length > 0) {
+                    console.log(`تعداد پست‌های بارگذاری شده از GitHub: ${githubPosts.length}`);
+                    return githubPosts;
+                }
+                
+                console.log('تلاش برای بارگذاری از مسیرهای مختلف...');
+                const alternativePosts = await tryAlternativeSources();
+                
+                if (alternativePosts.length > 0) {
+                    console.log(`تعداد پست‌های بارگذاری شده از مسیرهای جایگزین: ${alternativePosts.length}`);
+                    return alternativePosts;
+                }
+                
+                console.warn('هیچ پستی یافت نشد.');
+                return [];
+                
+            } catch (error) {
+                console.error('خطا در بارگذاری پست‌ها:', error);
+                return [];
+            } finally {
+                isLoading = false;
+                loadingSpinner.style.display = 'none';
+            }
+        }
+
+        async function loadPostsFromGitHubAPI() {
+            try {
+                const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
+                console.log('آدرس GitHub API:', apiUrl);
+                
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`خطای GitHub API: ${response.status}`);
+                }
+                
+                const files = await response.json();
+                
+                const markdownFiles = files.filter(file => 
+                    file.name.endsWith('.md') || file.name.endsWith('.markdown')
+                );
+                
+                console.log(`تعداد فایل‌های markdown یافت شده: ${markdownFiles.length}`);
+                
+                const posts = [];
+                
+                for (const file of markdownFiles.slice(0, 50)) { // حداکثر ۵۰ پست
+                    try {
+                        console.log(`در حال پردازش فایل: ${file.name}`);
+                        const contentResponse = await fetch(file.download_url);
+                        const content = await contentResponse.text();
+                        
+                        const processed = processPostContent(content);
+                        
+                        const slug = file.name.replace(/\.(md|markdown)$/, '');
+                        
+                        posts.push({
+                            id: file.sha,
+                            title: processed.metadata.title || slug.replace(/-/g, ' '),
+                            excerpt: processed.excerpt,
+                            content: processed.content,
+                            date: processed.metadata.date || file.commit?.author?.date || new Date().toISOString(),
+                            readTime: calculateReadTime(processed.content) + ' دقیقه',
+                            image: processed.image,
+                            url: `${BLOG_CONFIG.baseUrl}/post/${slug}/`
+                        });
+                    } catch (fileError) {
+                        console.error(`خطا در پردازش فایل ${file.name}:`, fileError);
+                    }
+                }
+                
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                return posts;
+                
+            } catch (error) {
+                console.error('خطا در بارگذاری از GitHub API:', error);
+                return [];
+            }
+        }
+
+        async function tryAlternativeSources() {
+            const alternativeSources = [
+                `${BLOG_CONFIG.baseUrl}/api/posts`,
+                `${BLOG_CONFIG.baseUrl}/api/articles`,
+                `${BLOG_CONFIG.baseUrl}/data/posts.json`,
+                `${BLOG_CONFIG.baseUrl}/data/articles.json`,
+                `${BLOG_CONFIG.baseUrl}/content/posts.json`,
+                `${BLOG_CONFIG.baseUrl}/blog/posts.json`
+            ];
+            
+            for (const source of alternativeSources) {
+                try {
+                    console.log(`تلاش برای بارگذاری از: ${source}`);
+                    const response = await fetch(source);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        if (Array.isArray(data) && data.length > 0) {
+                            const posts = data.map(post => ({
+                                id: post.id || post.slug || Date.now(),
+                                title: post.title || 'عنوان مقاله',
+                                excerpt: post.excerpt || post.description || 'خلاصه مقاله',
+                                content: post.content || '',
+                                date: post.date || post.published_at || new Date().toISOString(),
+                                readTime: calculateReadTime(post.content || '') + ' دقیقه',
+                                image: post.image || post.cover_image || BLOG_CONFIG.defaultImage,
+                                url: post.url || `${BLOG_CONFIG.baseUrl}/post/${post.slug || 'article'}/`
+                            }));
+                            
+                            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                            return posts;
+                        }
+                    }
+                } catch (error) {
+                    console.log(`منبع ${source} در دسترس نیست`);
+                }
+            }
+            
+            return [];
+        }
+
         function createPostElement(post, index) {
             const postElement = document.createElement('a');
             postElement.className = 'post-card';
@@ -1259,7 +1301,6 @@
             return postElement;
         }
 
-        // تابع برای نمایش پست‌ها
         function renderPosts(posts) {
             if (posts.length === 0) {
                 noPostsMessage.style.display = 'block';
@@ -1271,7 +1312,6 @@
                 const postElement = createPostElement(post, index);
                 postsContainer.appendChild(postElement);
                 
-                // تنظیم observer برای تصویر
                 setTimeout(() => {
                     const img = postElement.querySelector('img');
                     if (img && observer) {
@@ -1280,7 +1320,6 @@
                 }, 100);
             });
             
-            // نمایش یا مخفی کردن دکمه بارگذاری بیشتر
             const totalDisplayed = document.querySelectorAll('.post-card').length;
             if (totalDisplayed >= allPosts.length) {
                 loadMoreBtn.disabled = true;
@@ -1288,7 +1327,6 @@
             }
         }
 
-        // تابع برای بارگذاری پست‌های صفحه جاری
         async function loadCurrentPage() {
             if (isLoading) return;
             
@@ -1304,12 +1342,11 @@
                 }
                 
             } catch (error) {
-                console.error('Error loading page:', error);
+                console.error('خطا در بارگذاری صفحه:', error);
                 noPostsMessage.style.display = 'block';
             }
         }
 
-        // تابع برای بارگذاری صفحه بعدی
         async function loadNextPage() {
             if (isLoading || loadMoreBtn.disabled) return;
             
@@ -1317,10 +1354,9 @@
             await loadCurrentPage();
         }
 
-        // تابع برای جستجو
         function performGoogleSearch(query) {
             if (!query || query.trim() === '') {
-                alert('لطفاً عبارت جستجو را وارد کنید.');
+                alert('به دنبال چه میگردی؟ اون رفته از این شهر');
                 return;
             }
             
@@ -1335,7 +1371,6 @@
             }
         }
 
-        // مدیریت منوی موبایل
         let isMobileMenuOpen = false;
 
         function toggleMobileMenu() {
@@ -1360,12 +1395,9 @@
             isMobileMenuOpen = false;
         }
 
-        // مقداردهی اولیه
         document.addEventListener('DOMContentLoaded', async () => {
-            // مقداردهی اولیه observer تصاویر
             initImageObserver();
             
-            // بارگذاری اولیه پست‌ها
             try {
                 loadingSpinner.style.display = 'block';
                 allPosts = await loadRealPosts();
@@ -1373,21 +1405,21 @@
                 if (allPosts.length === 0) {
                     noPostsMessage.style.display = 'block';
                     loadMoreContainer.style.display = 'none';
+                    console.log('هیچ پستی برای نمایش یافت نشد.');
                 } else {
+                    console.log(`تعداد کل پست‌های بارگذاری شده: ${allPosts.length}`);
                     await loadCurrentPage();
                 }
             } catch (error) {
-                console.error('Failed to load initial posts:', error);
+                console.error('خطا در بارگذاری اولیه پست‌ها:', error);
                 noPostsMessage.style.display = 'block';
                 loadMoreContainer.style.display = 'none';
             } finally {
                 loadingSpinner.style.display = 'none';
             }
             
-            // رویداد دکمه بارگذاری بیشتر
             loadMoreBtn.addEventListener('click', loadNextPage);
             
-            // رویدادهای جستجو
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
             const mobileSearchBtn = document.getElementById('mobileSearchBtn');
@@ -1411,14 +1443,12 @@
                 }
             });
             
-            // مدیریت منوی موبایل
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileOverlay = document.getElementById('mobileOverlay');
             
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
             mobileOverlay.addEventListener('click', closeMobileMenu);
             
-            // بستن منو با کلیک روی لینک‌ها
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     setTimeout(closeMobileMenu, 300);
