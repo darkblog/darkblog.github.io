@@ -1,578 +1,370 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<!doctype html>
+<html dir="rtl" lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{{ site.description }}">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ site.title }}">
-    <meta property="og:description" content="{{ site.description }}">
-    <meta property="og:image" content="{{ '/biography/logo.webp' | absolute_url }}">
-    <meta property="og:url" content="{{ '/' | absolute_url }}">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{ site.title }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.title | default: "وبلاگ پاسگاه" }}</title>
+    <meta name="description" content="{{ site.description | default: "وبلاگ پاسگاه با ارائه بیوگرافی افراد مشهور در دسته‌بندی‌های تاریخ، ادبیات، هنر و دانش بروزرسانی می‌شه" }}">
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
+    <link href="{{ '/atom.xml' | relative_url }}" rel="alternate" type="application/atom+xml">
+    <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
+    <meta name="robots" content="noarchive">
+    <link rel="icon" type="image/webp" href="{{ '/biography/logo.webp' | relative_url }}">
+    <meta name="theme-color" content="#dc3545">
     
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- RSS Feed -->
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=BBC+Reith+Qalam&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --primary-color: #dc3545;
-            --primary-light: #ffe6e9;
-            --primary-dark: #b02a37;
-            --secondary-color: #34a853;
-            --facebook-color: #1877f2;
-            --facebook-light: #e7f3ff;
-            --rss-color: #f26522;
-            --rss-light: #fff0e8;
-            --rss-dark: #d35400;
-            --text-primary: #202124;
-            --text-secondary: #5f6368;
-            --text-light: #ffffff;
-            --background-color: #ffffff;
-            --surface-color: #f8f9fa;
-            --border-color: #e9ecef;
-            --shadow-light: 0 1px 2px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.1);
-            --shadow-high: 0 4px 12px rgba(0, 0, 0, 0.15);
-            --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.2);
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
         }
-
+        
+        @font-face {
+            font-family: 'BBC Reith Qalam';
+            src: url('{{ "/biography/font.woff2" | relative_url }}') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        :root {
+            --primary-color: #dc3545;
+            --primary-dark: #a71d2a;
+            --primary-light: #ff6b7a;
+            --text-color: #333;
+            --text-secondary: #54595d;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e1e5e9;
+            --header-height: 300px;
+            --link-color: #dc3545;
+            --link-hover-color: #a71d2a;
+            --infobox-bg: #f8f9fa;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
+            --radius: 12px;
+        }
+        
         body {
-            background-color: var(--surface-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: var(--background-color);
-            box-shadow: var(--shadow-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            position: relative;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 600;
-        }
-
-        .nav-container {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            padding: 0 20px;
-            height: 70px;
-            transition: var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-link.active {
-            color: var(--primary-color);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 20px;
-            left: 20px;
-            height: 3px;
-            background-color: var(--primary-color);
-            border-radius: 3px 3px 0 0;
-            transition: var(--transition);
-        }
-
-        .nav-link:not(.active):hover::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 20px;
-            left: 20px;
-            height: 2px;
-            background-color: var(--primary-color);
-            border-radius: 2px 2px 0 0;
-            opacity: 0.5;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-            position: relative;
-        }
-
-        .search-input {
-            padding: 10px 15px 10px 40px;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            width: 200px;
-            transition: var(--transition);
-            font-size: 14px;
-            height: 40px;
-            text-align: right;
-            direction: rtl;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            width: 250px;
-            box-shadow: var(--shadow-light);
-        }
-
-        .search-btn {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            transition: var(--transition);
-        }
-
-        .search-btn:hover {
-            color: var(--primary-color);
-        }
-
-        .search-btn .material-icons {
-            font-size: 20px;
-        }
-
-        .rss-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: none;
-            padding: 8px;
-            cursor: pointer;
-            color: var(--rss-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .rss-btn .material-icons {
-            font-size: 24px;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 10px;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            z-index: 1001;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .mobile-menu-btn:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
-        }
-
-        .mobile-menu-btn .material-icons {
-            font-size: 28px;
-        }
-
-        .mobile-header-actions {
-            display: none;
-            align-items: center;
-            gap: 15px;
-            position: absolute;
-            left: 60px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .mobile-search-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-search-btn:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
-        }
-
-        .mobile-site-info {
-            display: none;
-            align-items: center;
-            gap: 8px;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .mobile-logo {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-        }
-
-        .mobile-site-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .hero-section {
-            padding: 60px 0 40px;
-            text-align: center;
-            background-color: var(--background-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
-        }
-
-        .site-title {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            line-height: 1.2;
-        }
-
-        .site-description {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+            font-family: 'BBC Reith Qalam', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
             line-height: 1.7;
-        }
-
-        .main-content {
-            padding-top: 20px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .post-card {
-            background-color: var(--background-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            height: 100%;
+            font-size: 1rem;
             display: flex;
             flex-direction: column;
-            text-decoration: none;
-            color: inherit;
+            min-height: 100vh;
+        }
+        
+        header, nav {
+            background: transparent;
+        }
+        
+        .header-content, header {
+            margin-top: 0;
+            display: flex;
+        }
+        
+        .hero-section, .logo-link, body, header, nav {
+            display: flex;
+        }
+        
+        .header-content, main {
+            max-width: 900px;
             position: relative;
+        }
+        
+        .header-content, .hero-section, header, main, nav {
+            position: relative;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            min-height: 450px;
+            margin-bottom: 80px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        nav {
+            padding: 15px 0;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            width: 100%;
+        }
+        
+        .nav-logo {
+            height: 150px;
+            width: auto;
+            background: #fff;
+            padding: 6px;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        }
+        
+        .logo-link {
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        header {
+            align-items: center;
+            justify-content: center;
+            padding: 25px 20px 20px;
+            min-height: 180px;
+            flex-grow: 1;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .header-content {
+            z-index: 10;
+            padding: 0 30px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .post-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-strong);
+            padding: 40px;
+        }
+        
+        .post-title {
+            font-size: 3.2rem;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+            margin-bottom: 10px;
+        }
+        
+        .site-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .post-card-title a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") center bottom/cover;
+        }
+        
+        main {
+            flex: 1;
+            margin: -85px auto 80px;
+            padding: 0 20px;
+            width: 100%;
+            z-index: 100;
+            max-width: 900px;
+        }
+        
+        .posts-container {
+            display: grid;
+            gap: 40px;
+        }
+        
+        .post-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(220, 53, 69, 0.15);
+            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease forwards;
         }
-
+        
+        .post-card.hidden-post {
+            display: none;
+        }
+        
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        .post-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-high);
-        }
-
-        .post-image {
-            height: 200px;
-            background-color: var(--primary-light);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .post-image img {
+        
+        .post-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            border-radius: var(--radius);
+            box-shadow: inset 0 0 0 1px rgba(220, 53, 69, 0.08);
+            pointer-events: none;
         }
-
-        .post-image img.loaded {
-            opacity: 1;
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border-color: rgba(220, 53, 69, 0.25);
         }
-
-        .post-card:hover .post-image img {
-            transform: scale(1.05);
+        
+        .post-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 15px;
         }
-
-        .post-content {
-            padding: 24px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        
+        .post-card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
         }
-
-        .post-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-            line-height: 1.4;
-            transition: var(--transition);
+        
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
         }
-
-        .post-card:hover .post-title {
+        
+        .post-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #000000;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .post-card-link:hover .post-card-title {
             color: var(--primary-color);
         }
-
-        .post-excerpt {
-            color: var(--text-secondary);
-            flex-grow: 1;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        
+        .post-card {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
         }
-
+        
         .post-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
             color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: auto;
+            font-size: 0.9rem;
         }
-
-        .post-date {
+        
+        .post-date, .post-read-time {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-
-        .post-read-time {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
+        
         .load-more-container {
             text-align: center;
-            margin: 40px 0;
+            margin: 50px 0 30px;
         }
-
+        
         .load-more-btn {
             padding: 12px 30px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: var(--border-radius);
-            font-size: 16px;
+            border-radius: var(--radius);
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            font-family: 'BBC Reith Qalam', sans-serif;
         }
-
+        
         .load-more-btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
         }
-
+        
         .load-more-btn:disabled {
             background-color: var(--text-secondary);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-
+        
         .no-posts {
             text-align: center;
             padding: 60px 20px;
-            grid-column: 1 / -1;
-        }
-
-        .no-posts-icon {
-            font-size: 64px;
             color: var(--text-secondary);
+        }
+        
+        .no-posts-icon {
+            font-size: 3rem;
             margin-bottom: 20px;
-            display: block;
+            color: var(--text-secondary);
         }
-
+        
         footer {
-            background-color: var(--background-color);
-            padding: 40px 0;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: white;
+            padding: 40px 20px;
+            margin-top: auto;
         }
-
+        
         .footer-container {
+            max-width: 900px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
         }
-
+        
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 20px;
-            color: var(--text-primary);
+            color: white;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: 500;
+            font-size: 1.2rem;
         }
-
-        .footer-logo img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-
+        
         .footer-links {
             display: flex;
             gap: 30px;
@@ -580,437 +372,188 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-
+        
         .footer-link {
-            color: var(--text-secondary);
+            color: white;
             text-decoration: none;
-            transition: var(--transition);
+            transition: opacity 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            border-radius: var(--border-radius);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.1);
         }
-
+        
         .footer-link:hover {
-            color: var(--primary-color);
-            background-color: var(--surface-color);
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0.9;
         }
-
-        .footer-link.facebook:hover {
-            color: var(--facebook-color);
-            background-color: var(--facebook-light);
-        }
-
-        .footer-link.rss:hover {
-            color: var(--rss-color);
-            background-color: var(--rss-light);
-        }
-
+        
         .copyright {
-            color: var(--text-secondary);
-            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
             margin-top: 10px;
         }
-
-        .mobile-menu-overlay {
-            display: none;
-            position: fixed;
-            top: 70px;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 70px;
-            right: -100%;
-            width: 100%;
-            height: calc(100vh - 70px);
-            background-color: var(--background-color);
-            box-shadow: var(--shadow-high);
-            z-index: 1000;
-            transition: right 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .hidden-post {
-            display: none !important;
-        }
-
-        @media (max-width: 992px) {
-            .search-input {
-                width: 180px;
-            }
-            
-            .search-input:focus {
-                width: 200px;
-            }
-            
-            .nav-link {
-                padding: 0 15px;
-            }
-            
-            .nav-link.active::after,
-            .nav-link:not(.active):hover::after {
-                right: 15px;
-                left: 15px;
-            }
-            
-            .site-title {
-                font-size: 36px;
-            }
-            
-            .site-description {
-                font-size: 16px;
-            }
-            
-            .posts-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            header {
-                justify-content: flex-start;
-            }
-            
-            .header-container {
-                max-width: 100%;
-                width: 100%;
-                padding: 0 10px;
-            }
-            
-            .header-left, .nav-container, .logo-container {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: flex;
-                left: 10px;
-            }
-            
-            .mobile-site-info {
-                display: flex;
-            }
-            
-            .mobile-header-actions {
-                display: flex;
-            }
-            
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .hero-section {
-                padding: 40px 0 30px;
+                min-height: 400px;
             }
             
-            .site-title {
-                font-size: 32px;
+            .post-title {
+                font-size: 2.4rem;
             }
             
-            .section-title {
-                font-size: 24px;
+            .post-card {
+                padding: 30px;
             }
             
-            .mobile-menu-overlay {
-                display: block;
+            .nav-logo {
+                height: 120px;
             }
             
-            .mobile-nav {
-                display: block;
+            main {
+                margin: -80px auto 60px;
             }
             
-            .mobile-nav.active {
-                right: 0;
+            .posts-container {
+                gap: 30px;
             }
             
-            .mobile-menu-overlay.active {
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .mobile-nav-item {
-                list-style: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-            
-            .mobile-nav-link {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                padding: 16px 20px;
-                text-decoration: none;
-                color: var(--text-primary);
-                font-weight: 500;
-                gap: 12px;
-            }
-            
-            .mobile-nav-link:hover, .mobile-nav-link.active {
-                color: var(--primary-color);
-                background-color: var(--surface-color);
-            }
-            
-            .mobile-nav-link.facebook:hover {
-                color: var(--facebook-color);
-                background-color: var(--facebook-light);
-            }
-            
-            .mobile-nav-link.rss:hover {
-                color: var(--rss-color);
-                background-color: var(--rss-light);
+            .post-meta {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
             }
         }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 16px;
+        
+        @media (max-width: 576px) {
+            .hero-section {
+                min-height: 350px;
             }
             
-            .site-title {
-                font-size: 28px;
+            .post-card {
+                padding: 25px;
             }
             
-            .section-title {
-                font-size: 20px;
+            main {
+                margin: -60px auto 40px;
+            }
+            
+            .posts-container {
+                gap: 25px;
             }
             
             .footer-links {
                 flex-direction: column;
                 gap: 10px;
             }
-            
-            .logo-text {
-                font-size: 18px;
-            }
-            
-            .mobile-header-actions {
-                gap: 10px;
-                left: 50px;
-            }
-            
-            .mobile-site-title {
-                font-size: 16px;
-            }
-            
-            .mobile-logo {
-                width: 24px;
-                height: 24px;
-            }
-            
-            .footer-link {
-                padding: 6px 12px;
-            }
-        }
-
-        .lazy-load {
-            background-color: var(--surface-color);
-            background-image: linear-gradient(90deg, var(--surface-color) 0%, var(--border-color) 50%, var(--surface-color) 100%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo-container">
-                <a href="{{ '/' | relative_url }}" class="logo" id="homeLink">
-                    <img src="{{ '/biography/logo.webp' | relative_url }}" alt="{{ site.title }}" class="logo-icon">
-                    <span class="logo-text">{{ site.title }}</span>
-                </a>
-            </div>
-            
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li class="nav-item">
-                        <a href="{{ '/' | relative_url }}" class="nav-link active">صفحه اصلی</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="header-left">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
-                    <button class="search-btn" id="searchBtn">
-                        <span class="material-icons">search</span>
-                    </button>
-                </div>
-                
-                <a href="{{ '/feed.xml' | relative_url }}" class="rss-btn" target="_blank" title="اشتراک RSS">
-                    <span class="material-icons">rss_feed</span>
-                </a>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span class="material-icons">menu</span>
-            </button>
-            
-            <div class="mobile-site-info">
-                <img src="{{ '/biography/logo.webp' | relative_url }}" alt="{{ site.title }}" class="mobile-logo">
-                <span class="mobile-site-title">{{ site.title }}</span>
-            </div>
-            
-            <div class="mobile-header-actions">
-                <button class="mobile-search-btn" id="mobileSearchBtn">
-                    <span class="material-icons">search</span>
-                </button>
-            </div>
-        </div>
-        
-        <div class="mobile-menu-overlay" id="mobileOverlay"></div>
-        
-        <div class="mobile-nav" id="mobileNav">
-            <ul>
-                <li class="mobile-nav-item">
-                    <a href="{{ '/' | relative_url }}" class="mobile-nav-link active">
-                        <span class="material-icons">home</span>
-                        <span>صفحه اصلی</span>
-                    </a>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="https://www.facebook.com/ehsanchehri/" class="mobile-nav-link facebook" target="_blank">
-                        <span class="material-icons">facebook</span>
-                        <span>فیسبوک</span>
-                    </a>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="{{ '/feed.xml' | relative_url }}" class="mobile-nav-link rss" target="_blank">
-                        <span class="material-icons">rss_feed</span>
-                        <span>اشتراک RSS</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <header class="hero-section">
+        <nav>
+            <a href="{{ '/' | relative_url }}" class="logo-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="nav-logo">
+                    <title>{{ site.title | default: "وبلاگ پاسگاه" }}</title>
+                    <path fill="#dc3545" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
+                </svg>
+            </a>
+        </nav>
+        <section class="header-content">
+            <h1 class="post-title">{{ site.title | default: "وبلاگ پاسگاه" }}</h1>
+            <p class="site-description">{{ site.description | default: "وبلاگ پاسگاه با ارائه بیوگرافی افراد مشهور در دسته‌بندی‌های تاریخ، ادبیات، هنر و دانش بروزرسانی می‌شه" }}</p>
+        </section>
     </header>
-
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="site-title">{{ site.title }}</h1>
-            <p class="site-description">
-                {{ site.description }}
-            </p>
-        </div>
-    </section>
-
-    <main class="container">
-        <div class="main-content">
-            <div class="section-header">
-                <h2 class="section-title">آخرین مقالات</h2>
-                <span class="post-count">{{ site.posts.size }} مقاله</span>
-            </div>
+    
+    <main>
+        <section class="posts-container" id="posts-container">
+            {% assign all_posts = site.posts %}
+            {% assign total_posts = all_posts.size %}
             
-            <!-- نمایش تمام پست‌ها به صورت یکجا -->
-            <div class="posts-grid" id="posts-container">
-                {% assign all_posts = site.posts %}
-                
-                {% if all_posts.size > 0 %}
-                    {% for post in all_posts %}
-                        {% if forloop.index <= 6 %}
-                        <a href="{{ post.url | relative_url }}" class="post-card" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
-                        {% else %}
-                        <a href="{{ post.url | relative_url }}" class="post-card hidden-post" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
-                        {% endif %}
-                            <div class="post-image">
-                                <div class="lazy-load" style="width: 100%; height: 100%;"></div>
-                                {% assign post_image = post.image | default: post.cover_image | default: site.default_image | default: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80' %}
-                                <img 
-                                    data-src="{{ post_image }}" 
-                                    alt="{{ post.title }}" 
-                                    style="display: none;"
-                                    loading="lazy"
-                                >
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title">{{ post.title }}</h2>
-                                <p class="post-excerpt">
-                                    {% if post.excerpt %}
-                                        {{ post.excerpt | strip_html | truncate: 150 }}
+            {% if total_posts > 0 %}
+                {% for post in all_posts %}
+                    {% if forloop.index <= 6 %}
+                    <article class="post-card" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+                    {% else %}
+                    <article class="post-card hidden-post" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+                    {% endif %}
+                        <a href="{{ post.url | relative_url }}" class="post-card-link">
+                            <h2 class="post-card-title">{{ post.title }}</h2>
+                            <p class="post-excerpt">
+                                {% if post.excerpt %}
+                                    {{ post.excerpt | strip_html | truncate: 200 }}
+                                {% else %}
+                                    {{ post.content | strip_html | truncate: 200 }}
+                                {% endif %}
+                            </p>
+                            <div class="post-meta">
+                                <span class="post-date">
+                                    <span class="material-icons" style="font-size: 16px;">calendar_today</span>
+                                    {% assign post_date = post.date %}
+                                    {% assign now = site.time %}
+                                    {% assign diff_seconds = now | date: '%s' | minus: post_date | date: '%s' %}
+                                    {% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
+                                    
+                                    {% if diff_days == 0 %}
+                                        امروز
+                                    {% elsif diff_days == 1 %}
+                                        دیروز
+                                    {% elsif diff_days < 7 %}
+                                        {{ diff_days }} روز قبل
+                                    {% elsif diff_days < 30 %}
+                                        {% assign weeks = diff_days | divided_by: 7 %}
+                                        {{ weeks }} هفته قبل
+                                    {% elsif diff_days < 365 %}
+                                        {% assign months = diff_days | divided_by: 30 %}
+                                        {{ months }} ماه قبل
                                     {% else %}
-                                        {{ post.content | strip_html | truncate: 150 }}
+                                        {% assign years = diff_days | divided_by: 365 %}
+                                        {{ years }} سال قبل
                                     {% endif %}
-                                </p>
-                                <div class="post-meta">
-                                    <span class="post-date">
-                                        <span class="material-icons" style="font-size: 16px;">calendar_today</span>
-                                        {% assign post_date = post.date %}
-                                        {% assign now = site.time %}
-                                        {% assign diff_seconds = now | date: '%s' | minus: post_date | date: '%s' %}
-                                        {% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
-                                        
-                                        {% if diff_days == 0 %}
-                                            امروز
-                                        {% elsif diff_days == 1 %}
-                                            دیروز
-                                        {% elsif diff_days < 7 %}
-                                            {{ diff_days }} روز قبل
-                                        {% elsif diff_days < 30 %}
-                                            {% assign weeks = diff_days | divided_by: 7 %}
-                                            {{ weeks }} هفته قبل
-                                        {% elsif diff_days < 365 %}
-                                            {% assign months = diff_days | divided_by: 30 %}
-                                            {{ months }} ماه قبل
-                                        {% else %}
-                                            {% assign years = diff_days | divided_by: 365 %}
-                                            {{ years }} سال قبل
-                                        {% endif %}
-                                    </span>
-                                    <span class="post-read-time">
-                                        <span class="material-icons" style="font-size: 16px;">schedule</span>
-                                        {% assign content = post.content %}
-                                        {% assign words = content | strip_html | number_of_words %}
-                                        {% if words < 360 %}
-                                            ۱ دقیقه
-                                        {% else %}
-                                            {{ words | divided_by: 180 }} دقیقه
-                                        {% endif %}
-                                    </span>
-                                </div>
+                                </span>
+                                <span class="post-read-time">
+                                    <span class="material-icons" style="font-size: 16px;">schedule</span>
+                                    {% assign content = post.content %}
+                                    {% assign words = content | strip_html | number_of_words %}
+                                    {% if words < 360 %}
+                                        ۱ دقیقه
+                                    {% else %}
+                                        {{ words | divided_by: 180 }} دقیقه
+                                    {% endif %}
+                                </span>
                             </div>
                         </a>
-                    {% endfor %}
-                {% else %}
-                    <div class="no-posts">
-                        <span class="material-icons no-posts-icon">search_off</span>
-                        <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای یافت نشد</h3>
-                        <p style="color: var(--text-secondary);">به زودی مطالب جدیدی منتشر خواهد شد.</p>
-                    </div>
-                {% endif %}
-            </div>
-            
-            <!-- دکمه نمایش مقالات بیشتر -->
-            {% if all_posts.size > 6 %}
-                <div class="load-more-container" id="loadMoreContainer">
-                    <button class="load-more-btn" id="loadMoreBtn">
-                        <span class="material-icons">expand_more</span>
-                        نمایش مقالات بیشتر ({{ all_posts.size | minus: 6 }} مقاله دیگر)
-                    </button>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <div class="no-posts">
+                    <span class="material-icons no-posts-icon">search_off</span>
+                    <h3>مقاله‌ای یافت نشد</h3>
+                    <p>به زودی مطالب جدیدی منتشر خواهد شد.</p>
                 </div>
             {% endif %}
-        </div>
+        </section>
+        
+        {% if total_posts > 6 %}
+            <div class="load-more-container" id="loadMoreContainer">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <span class="material-icons">expand_more</span>
+                    نمایش مقالات بیشتر ({{ total_posts | minus: 6 }} مقاله دیگر)
+                </button>
+            </div>
+        {% endif %}
     </main>
-
+    
     <footer>
-        <div class="container footer-container">
+        <div class="footer-container">
             <a href="{{ '/' | relative_url }}" class="footer-logo">
-                <img src="{{ '/biography/logo.webp' | relative_url }}" alt="{{ site.title }}">
-                <span>{{ site.title }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="width: 24px; height: 24px;">
+                    <path fill="white" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
+                </svg>
+                <span>{{ site.title | default: "پاسگاه" }}</span>
             </a>
             
             <div class="footer-links">
@@ -1018,22 +561,22 @@
                     <span class="material-icons">home</span>
                     صفحه اصلی
                 </a>
-                <a href="https://www.facebook.com/ehsanchehri/" class="footer-link facebook" target="_blank">
+                <a href="https://www.facebook.com/ehsanchehri/" class="footer-link" target="_blank">
                     <span class="material-icons">facebook</span>
                     فیسبوک
                 </a>
-                <a href="{{ '/feed.xml' | relative_url }}" class="footer-link rss" target="_blank">
+                <a href="{{ '/atom.xml' | relative_url }}" class="footer-link" target="_blank">
                     <span class="material-icons">rss_feed</span>
                     اشتراک RSS
                 </a>
             </div>
             
             <p class="copyright">
-                © {{ site.time | date: '%Y' }} {{ site.title }}. تمامی حقوق محفوظ است.
+                © {{ site.time | date: '%Y' }} {{ site.title | default: "پاسگاه" }}. تمامی حقوق محفوظ است.
             </p>
         </div>
     </footer>
-
+    
     <script>
         // مدیریت نمایش مقالات بیشتر
         document.addEventListener('DOMContentLoaded', function() {
@@ -1042,178 +585,34 @@
             
             if (loadMoreBtn && hiddenPosts.length > 0) {
                 loadMoreBtn.addEventListener('click', function() {
-                    // نمایش تمام پست‌های مخفی
-                    hiddenPosts.forEach(post => {
-                        post.classList.remove('hidden-post');
-                        post.style.animationDelay = '0s';
-                        post.style.animation = 'fadeInUp 0.6s ease forwards';
+                    // نمایش تمام پست‌های مخفی با انیمیشن
+                    hiddenPosts.forEach((post, index) => {
+                        setTimeout(() => {
+                            post.classList.remove('hidden-post');
+                            post.style.animationDelay = (index * 0.1) + 's';
+                            post.style.animation = 'fadeInUp 0.6s ease forwards';
+                        }, index * 100);
                     });
                     
                     // غیرفعال کردن دکمه
-                    loadMoreBtn.disabled = true;
-                    loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
-                    
-                    // راه‌اندازی lazy loading برای تصاویر جدید
-                    initImageObserver();
+                    setTimeout(() => {
+                        loadMoreBtn.disabled = true;
+                        loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
+                    }, hiddenPosts.length * 100);
                 });
             }
             
-            // راه‌اندازی lazy loading برای تصاویر
-            initImageObserver();
-            
-            // مدیریت جستجو
-            setupSearch();
-            
-            // مدیریت منوی موبایل
-            setupMobileMenu();
+            // انیمیشن hover برای کارت‌های پست
+            document.querySelectorAll('.post-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
         });
-        
-        function initImageObserver() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const src = img.getAttribute('data-src');
-                        
-                        if (src) {
-                            const tempImg = new Image();
-                            tempImg.onload = () => {
-                                img.src = src;
-                                img.classList.add('loaded');
-                                img.removeAttribute('data-src');
-                                
-                                const placeholder = img.previousElementSibling;
-                                if (placeholder && placeholder.classList.contains('lazy-load')) {
-                                    placeholder.style.display = 'none';
-                                }
-                            };
-                            
-                            tempImg.onerror = () => {
-                                console.error('خطا در بارگذاری تصویر:', src);
-                                img.style.display = 'none';
-                                const placeholder = img.previousElementSibling;
-                                if (placeholder && placeholder.classList.contains('lazy-load')) {
-                                    placeholder.style.display = 'block';
-                                }
-                            };
-                            
-                            tempImg.src = src;
-                        }
-                        
-                        observer.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '100px',
-                threshold: 0.1
-            });
-
-            // مشاهده تمام تصاویر
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                observer.observe(img);
-            });
-        }
-        
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const mobileSearchBtn = document.getElementById('mobileSearchBtn');
-            
-            function performGoogleSearch(query) {
-                if (!query || query.trim() === '') {
-                    alert('لطفاً عبارت جستجو را وارد کنید');
-                    return;
-                }
-                
-                const siteUrl = '{{ site.url }}'.replace(/^https?:\/\//, '');
-                const encodedQuery = encodeURIComponent(query);
-                const googleSearchUrl = `https://www.google.com/search?q=site:${siteUrl}+${encodedQuery}`;
-                
-                window.open(googleSearchUrl, '_blank');
-                
-                if (searchInput) {
-                    searchInput.value = '';
-                }
-                
-                if (isMobileMenuOpen) {
-                    closeMobileMenu();
-                }
-            }
-            
-            if (searchBtn && searchInput) {
-                searchBtn.addEventListener('click', () => {
-                    const query = searchInput.value.trim();
-                    performGoogleSearch(query);
-                });
-                
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        const query = searchInput.value.trim();
-                        performGoogleSearch(query);
-                    }
-                });
-            }
-            
-            if (mobileSearchBtn) {
-                mobileSearchBtn.addEventListener('click', () => {
-                    const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
-                    if (query !== null && query.trim() !== '') {
-                        performGoogleSearch(query);
-                    }
-                });
-            }
-        }
-        
-        // مدیریت منوی موبایل
-        let isMobileMenuOpen = false;
-        
-        function setupMobileMenu() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            
-            function toggleMobileMenu() {
-                if (isMobileMenuOpen) {
-                    closeMobileMenu();
-                } else {
-                    openMobileMenu();
-                }
-            }
-            
-            function openMobileMenu() {
-                const mobileNav = document.getElementById('mobileNav');
-                const mobileOverlay = document.getElementById('mobileOverlay');
-                
-                if (mobileNav) mobileNav.classList.add('active');
-                if (mobileOverlay) mobileOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                isMobileMenuOpen = true;
-            }
-            
-            function closeMobileMenu() {
-                const mobileNav = document.getElementById('mobileNav');
-                const mobileOverlay = document.getElementById('mobileOverlay');
-                
-                if (mobileNav) mobileNav.classList.remove('active');
-                if (mobileOverlay) mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                isMobileMenuOpen = false;
-            }
-            
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-            }
-            
-            if (mobileOverlay) {
-                mobileOverlay.addEventListener('click', closeMobileMenu);
-            }
-            
-            // لینک‌های منوی موبایل
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    setTimeout(closeMobileMenu, 300);
-                });
-            });
-        }
     </script>
 </body>
 </html>
