@@ -1,370 +1,584 @@
-<!doctype html>
-<html dir="rtl" lang="fa">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title | default: "وبلاگ پاسگاه" }}</title>
-    <meta name="description" content="{{ site.description | default: "وبلاگ پاسگاه با ارائه بیوگرافی افراد مشهور در دسته‌بندی‌های تاریخ، ادبیات، هنر و دانش بروزرسانی می‌شه" }}">
-    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
-    <link href="{{ '/atom.xml' | relative_url }}" rel="alternate" type="application/atom+xml">
-    <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
-    <meta name="robots" content="noarchive">
-    <link rel="icon" type="image/webp" href="{{ '/biography/logo.webp' | relative_url }}">
-    <meta name="theme-color" content="#dc3545">
-    
-    <!-- Fonts & Icons -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پاسگاه | وبلاگ شخصی</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BBC+Reith+Qalam&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #dc3545;
+            --primary-light: #ffe6e9;
+            --primary-dark: #b02a37;
+            --secondary-color: #34a853;
+            --facebook-color: #1877f2;
+            --facebook-light: #e7f3ff;
+            --rss-color: #f26522;
+            --rss-light: #fff0e8;
+            --rss-dark: #d35400;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-light: #ffffff;
+            --background-color: #ffffff;
+            --surface-color: #f8f9fa;
+            --border-color: #e9ecef;
+            --shadow-light: 0 1px 2px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.1);
+            --shadow-high: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
         }
-        
-        @font-face {
-            font-family: 'BBC Reith Qalam';
-            src: url('{{ "/biography/font.woff2" | relative_url }}') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        :root {
-            --primary-color: #dc3545;
-            --primary-dark: #a71d2a;
-            --primary-light: #ff6b7a;
-            --text-color: #333;
-            --text-secondary: #54595d;
-            --light-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #e1e5e9;
-            --header-height: 300px;
-            --link-color: #dc3545;
-            --link-hover-color: #a71d2a;
-            --infobox-bg: #f8f9fa;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
-            --radius: 12px;
-        }
-        
+
         body {
-            font-family: 'BBC Reith Qalam', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.7;
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: var(--surface-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
         }
-        
-        header, nav {
-            background: transparent;
-        }
-        
-        .header-content, header {
-            margin-top: 0;
-            display: flex;
-        }
-        
-        .hero-section, .logo-link, body, header, nav {
-            display: flex;
-        }
-        
-        .header-content, main {
-            max-width: 900px;
-            position: relative;
-        }
-        
-        .header-content, .hero-section, header, main, nav {
-            position: relative;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            min-height: 450px;
-            margin-bottom: 80px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        nav {
-            padding: 15px 0;
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            width: 100%;
-        }
-        
-        .nav-logo {
-            height: 150px;
-            width: auto;
-            background: #fff;
-            padding: 6px;
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-        }
-        
-        .logo-link {
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-        
-        header {
-            align-items: center;
-            justify-content: center;
-            padding: 25px 20px 20px;
-            min-height: 180px;
-            flex-grow: 1;
-            width: 100%;
-            color: #fff;
-            text-align: center;
-        }
-        
-        .header-content {
-            z-index: 10;
-            padding: 0 30px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        .post-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-strong);
-            padding: 40px;
-        }
-        
-        .post-title {
-            font-size: 3.2rem;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
-            margin-bottom: 10px;
-        }
-        
-        .site-description {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .post-card-title a:hover {
+
+        header {
+            background-color: var(--background-color);
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            position: relative;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .nav-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0 20px;
+            height: 70px;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
             color: var(--primary-color);
         }
-        
-        .hero-section::after {
-            content: "";
+
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active::after {
+            content: '';
             position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") center bottom/cover;
+            bottom: 0;
+            right: 20px;
+            left: 20px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px 3px 0 0;
+            transition: var(--transition);
         }
-        
-        main {
-            flex: 1;
-            margin: -85px auto 80px;
-            padding: 0 20px;
-            width: 100%;
-            z-index: 100;
-            max-width: 900px;
+
+        .nav-link:not(.active):hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+            left: 20px;
+            height: 2px;
+            background-color: var(--primary-color);
+            border-radius: 2px 2px 0 0;
+            opacity: 0.5;
         }
-        
-        .posts-container {
-            display: grid;
-            gap: 40px;
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
         }
-        
-        .post-card {
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
             position: relative;
+        }
+
+        .search-input {
+            padding: 10px 15px 10px 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 200px;
+            transition: var(--transition);
+            font-size: 14px;
+            height: 40px;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            width: 250px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .search-btn .material-icons {
+            font-size: 20px;
+        }
+
+        .rss-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--rss-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .rss-btn .material-icons {
+            font-size: 24px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn .material-icons {
+            font-size: 28px;
+        }
+
+        .mobile-header-actions {
+            display: none;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .mobile-search-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-search-btn:hover {
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+        }
+
+        .mobile-site-info {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .mobile-logo {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .mobile-site-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .hero-section {
+            padding: 60px 0 40px;
+            text-align: center;
+            background-color: var(--background-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .site-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .site-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .main-content {
+            padding-top: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .post-card {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            border: 1px solid rgba(220, 53, 69, 0.15);
-            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease forwards;
         }
-        
-        .post-card.hidden-post {
-            display: none;
-        }
-        
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
-        .post-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-high);
+        }
+
+        .post-image {
+            height: 200px;
+            background-color: var(--primary-light);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .post-image img {
             width: 100%;
             height: 100%;
-            border-radius: var(--radius);
-            box-shadow: inset 0 0 0 1px rgba(220, 53, 69, 0.08);
-            pointer-events: none;
+            object-fit: cover;
+            transition: var(--transition);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            border-color: rgba(220, 53, 69, 0.25);
+
+        .post-image img.loaded {
+            opacity: 1;
         }
-        
-        .post-card-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            position: relative;
-            padding-bottom: 15px;
+
+        .post-card:hover .post-image img {
+            transform: scale(1.05);
         }
-        
-        .post-card-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
+
+        .post-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
+
+        .post-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            transition: var(--transition);
         }
-        
-        .post-excerpt {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #000000;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .post-card-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        
-        .post-card-link:hover .post-card-title {
+
+        .post-card:hover .post-title {
             color: var(--primary-color);
         }
-        
-        .post-card {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
+
+        .post-excerpt {
+            color: var(--text-secondary);
+            flex-grow: 1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        
+
         .post-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 14px;
+            margin-top: auto;
         }
-        
-        .post-date, .post-read-time {
+
+        .post-date {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        
+
+        .post-read-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .load-more-container {
             text-align: center;
-            margin: 50px 0 30px;
+            margin: 40px 0;
         }
-        
+
         .load-more-btn {
             padding: 12px 30px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: var(--radius);
-            font-size: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            font-family: 'BBC Reith Qalam', sans-serif;
         }
-        
+
         .load-more-btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+            box-shadow: var(--shadow-medium);
         }
-        
+
         .load-more-btn:disabled {
             background-color: var(--text-secondary);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-        
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .no-posts {
             text-align: center;
             padding: 60px 20px;
-            color: var(--text-secondary);
+            grid-column: 1 / -1;
         }
-        
+
         .no-posts-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 64px;
             color: var(--text-secondary);
+            margin-bottom: 20px;
+            display: block;
         }
-        
+
         footer {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            color: white;
-            padding: 40px 20px;
-            margin-top: auto;
+            background-color: var(--background-color);
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
         }
-        
+
         .footer-container {
-            max-width: 900px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
         }
-        
+
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 20px;
-            color: white;
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 20px;
+            font-weight: 500;
         }
-        
+
+        .footer-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
         .footer-links {
             display: flex;
             gap: 30px;
@@ -372,244 +586,842 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .footer-link {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: opacity 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
         }
-        
+
         .footer-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            opacity: 0.9;
+            color: var(--primary-color);
+            background-color: var(--surface-color);
         }
-        
+
+        .footer-link.facebook:hover {
+            color: var(--facebook-color);
+            background-color: var(--facebook-light);
+        }
+
         .copyright {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-size: 14px;
             margin-top: 10px;
         }
-        
-        @media (max-width: 768px) {
-            .hero-section {
-                min-height: 400px;
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background-color: var(--background-color);
+            box-shadow: var(--shadow-high);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 992px) {
+            .search-input {
+                width: 180px;
             }
             
-            .post-title {
-                font-size: 2.4rem;
+            .search-input:focus {
+                width: 200px;
             }
             
-            .post-card {
-                padding: 30px;
+            .nav-link {
+                padding: 0 15px;
             }
             
-            .nav-logo {
-                height: 120px;
+            .nav-link.active::after,
+            .nav-link:not(.active):hover::after {
+                right: 15px;
+                left: 15px;
             }
             
-            main {
-                margin: -80px auto 60px;
+            .site-title {
+                font-size: 36px;
             }
             
-            .posts-container {
-                gap: 30px;
+            .site-description {
+                font-size: 16px;
             }
             
-            .post-meta {
-                flex-direction: column;
-                gap: 10px;
-                align-items: flex-start;
+            .posts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
-        
-        @media (max-width: 576px) {
+
+        @media (max-width: 768px) {
+            header {
+                justify-content: flex-start;
+            }
+            
+            .header-container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 10px;
+            }
+            
+            .header-left, .nav-container, .logo-container {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                left: 10px;
+            }
+            
+            .mobile-site-info {
+                display: flex;
+            }
+            
+            .mobile-header-actions {
+                display: flex;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .hero-section {
-                min-height: 350px;
+                padding: 40px 0 30px;
             }
             
-            .post-card {
-                padding: 25px;
+            .site-title {
+                font-size: 32px;
             }
             
-            main {
-                margin: -60px auto 40px;
+            .section-title {
+                font-size: 24px;
             }
             
-            .posts-container {
-                gap: 25px;
+            .mobile-menu-overlay {
+                display: block;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .mobile-nav.active {
+                right: 0;
+            }
+            
+            .mobile-menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .mobile-nav-item {
+                list-style: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .mobile-nav-link {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 16px 20px;
+                text-decoration: none;
+                color: var(--text-primary);
+                font-weight: 500;
+                gap: 12px;
+            }
+            
+            .mobile-nav-link:hover, .mobile-nav-link.active {
+                color: var(--primary-color);
+                background-color: var(--surface-color);
+            }
+            
+            .mobile-nav-link.facebook:hover {
+                color: var(--facebook-color);
+                background-color: var(--facebook-light);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .site-title {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 20px;
             }
             
             .footer-links {
                 flex-direction: column;
                 gap: 10px;
             }
+            
+            .logo-text {
+                font-size: 18px;
+            }
+            
+            .mobile-header-actions {
+                gap: 10px;
+                left: 50px;
+            }
+            
+            .mobile-site-title {
+                font-size: 16px;
+            }
+            
+            .mobile-logo {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .footer-link {
+                padding: 6px 12px;
+            }
+        }
+
+        /* استایل برای لود تصاویر */
+        .lazy-load {
+            background-color: var(--surface-color);
+            background-image: linear-gradient(90deg, var(--surface-color) 0%, var(--border-color) 50%, var(--surface-color) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
 <body>
-    <header class="hero-section">
-        <nav>
-            <a href="{{ '/' | relative_url }}" class="logo-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="nav-logo">
-                    <title>{{ site.title | default: "وبلاگ پاسگاه" }}</title>
-                    <path fill="#dc3545" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                </svg>
-            </a>
-        </nav>
-        <section class="header-content">
-            <h1 class="post-title">{{ site.title | default: "وبلاگ پاسگاه" }}</h1>
-            <p class="site-description">{{ site.description | default: "وبلاگ پاسگاه با ارائه بیوگرافی افراد مشهور در دسته‌بندی‌های تاریخ، ادبیات، هنر و دانش بروزرسانی می‌شه" }}</p>
-        </section>
-    </header>
-    
-    <main>
-        <section class="posts-container" id="posts-container">
-            {% assign all_posts = site.posts %}
-            {% assign total_posts = all_posts.size %}
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="/" class="logo" id="homeLink">
+                    <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="logo-icon">
+                    <span class="logo-text">پاسگاه</span>
+                </a>
+            </div>
             
-            {% if total_posts > 0 %}
-                {% for post in all_posts %}
-                    {% if forloop.index <= 6 %}
-                    <article class="post-card" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
-                    {% else %}
-                    <article class="post-card hidden-post" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
-                    {% endif %}
-                        <a href="{{ post.url | relative_url }}" class="post-card-link">
-                            <h2 class="post-card-title">{{ post.title }}</h2>
-                            <p class="post-excerpt">
-                                {% if post.excerpt %}
-                                    {{ post.excerpt | strip_html | truncate: 200 }}
-                                {% else %}
-                                    {{ post.content | strip_html | truncate: 200 }}
-                                {% endif %}
-                            </p>
-                            <div class="post-meta">
-                                <span class="post-date">
-                                    <span class="material-icons" style="font-size: 16px;">calendar_today</span>
-                                    {% assign post_date = post.date %}
-                                    {% assign now = site.time %}
-                                    {% assign diff_seconds = now | date: '%s' | minus: post_date | date: '%s' %}
-                                    {% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
-                                    
-                                    {% if diff_days == 0 %}
-                                        امروز
-                                    {% elsif diff_days == 1 %}
-                                        دیروز
-                                    {% elsif diff_days < 7 %}
-                                        {{ diff_days }} روز قبل
-                                    {% elsif diff_days < 30 %}
-                                        {% assign weeks = diff_days | divided_by: 7 %}
-                                        {{ weeks }} هفته قبل
-                                    {% elsif diff_days < 365 %}
-                                        {% assign months = diff_days | divided_by: 30 %}
-                                        {{ months }} ماه قبل
-                                    {% else %}
-                                        {% assign years = diff_days | divided_by: 365 %}
-                                        {{ years }} سال قبل
-                                    {% endif %}
-                                </span>
-                                <span class="post-read-time">
-                                    <span class="material-icons" style="font-size: 16px;">schedule</span>
-                                    {% assign content = post.content %}
-                                    {% assign words = content | strip_html | number_of_words %}
-                                    {% if words < 360 %}
-                                        ۱ دقیقه
-                                    {% else %}
-                                        {{ words | divided_by: 180 }} دقیقه
-                                    {% endif %}
-                                </span>
-                            </div>
-                        </a>
-                    </article>
-                {% endfor %}
-            {% else %}
-                <div class="no-posts">
-                    <span class="material-icons no-posts-icon">search_off</span>
-                    <h3>مقاله‌ای یافت نشد</h3>
-                    <p>به زودی مطالب جدیدی منتشر خواهد شد.</p>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link active">خانه</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="header-left">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
+                    <button class="search-btn" id="searchBtn">
+                        <span class="material-icons">search</span>
+                    </button>
                 </div>
-            {% endif %}
-        </section>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span class="material-icons">menu</span>
+            </button>
+            
+            <div class="mobile-site-info">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو" class="mobile-logo">
+                <span class="mobile-site-title">پاسگاه</span>
+            </div>
+            
+            <!-- هدر موبایل: فقط آیکون جستجو -->
+            <div class="mobile-header-actions">
+                <button class="mobile-search-btn" id="mobileSearchBtn">
+                    <span class="material-icons">search</span>
+                </button>
+            </div>
+        </div>
         
-        {% if total_posts > 6 %}
+        <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+        
+        <!-- منوی موبایل ساده شده -->
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li class="mobile-nav-item">
+                    <a href="/" class="mobile-nav-link active">
+                        <span class="material-icons">home</span>
+                        <span>صفحه اصلی</span>
+                    </a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="https://www.facebook.com/ehsanchehri/" class="mobile-nav-link facebook" target="_blank">
+                        <span class="material-icons">facebook</span>
+                        <span>فیسبوک</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="site-title">وبلاگ پاسگاه</h1>
+            <p class="site-description">
+                به وبلاگ پاسگاه خوش آمدید. اینجا مکانی است برای به اشتراک گذاری تجربیات، دانش و دیدگاه‌های من.
+            </p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="main-content">
+            <!-- بخش پست‌های اخیر -->
+            <div class="section-header">
+                <h2 class="section-title">آخرین مقالات</h2>
+            </div>
+            
+            <div class="posts-grid" id="posts-container">
+                <!-- پست‌ها توسط JavaScript بارگذاری می‌شوند -->
+            </div>
+            
+            <!-- دکمه بارگذاری بیشتر -->
             <div class="load-more-container" id="loadMoreContainer">
                 <button class="load-more-btn" id="loadMoreBtn">
                     <span class="material-icons">expand_more</span>
-                    نمایش مقالات بیشتر ({{ total_posts | minus: 6 }} مقاله دیگر)
+                    بارگذاری مقالات بیشتر
                 </button>
             </div>
-        {% endif %}
+            
+            <!-- اسپینر بارگذاری -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>در حال بارگذاری مقالات...</p>
+            </div>
+            
+            <!-- پیام عدم وجود پست -->
+            <div class="no-posts" id="noPostsMessage" style="display: none;">
+                <span class="material-icons no-posts-icon">search_off</span>
+                <h3 style="color: var(--text-secondary); margin-bottom: 10px;">مقاله‌ای یافت نشد</h3>
+                <p style="color: var(--text-secondary);">به زودی مطالب جدیدی منتشر خواهد شد.</p>
+            </div>
+        </div>
     </main>
-    
+
     <footer>
-        <div class="footer-container">
-            <a href="{{ '/' | relative_url }}" class="footer-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="width: 24px; height: 24px;">
-                    <path fill="white" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                </svg>
-                <span>{{ site.title | default: "پاسگاه" }}</span>
+        <div class="container footer-container">
+            <a href="/" class="footer-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگو">
+                <span>پاسگاه</span>
             </a>
             
+            <!-- فوتر ساده شده -->
             <div class="footer-links">
-                <a href="{{ '/' | relative_url }}" class="footer-link">
+                <a href="/" class="footer-link">
                     <span class="material-icons">home</span>
                     صفحه اصلی
                 </a>
-                <a href="https://www.facebook.com/ehsanchehri/" class="footer-link" target="_blank">
+                <a href="https://www.facebook.com/ehsanchehri/" class="footer-link facebook" target="_blank">
                     <span class="material-icons">facebook</span>
                     فیسبوک
-                </a>
-                <a href="{{ '/atom.xml' | relative_url }}" class="footer-link" target="_blank">
-                    <span class="material-icons">rss_feed</span>
-                    اشتراک RSS
                 </a>
             </div>
             
             <p class="copyright">
-                © {{ site.time | date: '%Y' }} {{ site.title | default: "پاسگاه" }}. تمامی حقوق محفوظ است.
+                © ۱۴۰۳ پاسگاه. تمامی حقوق محفوظ است.
             </p>
         </div>
     </footer>
-    
+
     <script>
-        // مدیریت نمایش مقالات بیشتر
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            const hiddenPosts = document.querySelectorAll('.hidden-post');
+        // تنظیمات وبلاگ
+        const BLOG_CONFIG = {
+            githubUsername: 'darkblog',
+            repoName: 'darkblog.github.io',
+            baseUrl: 'https://www.pasgah.org',
+            postsPerPage: 10,
+            defaultImage: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
+        };
+
+        // متغیرهای گلوبال
+        let allPosts = [];
+        let currentPage = 1;
+        let isLoading = false;
+        let observer = null;
+
+        // المنت‌های DOM
+        const postsContainer = document.getElementById('posts-container');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const noPostsMessage = document.getElementById('noPostsMessage');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const loadMoreContainer = document.getElementById('loadMoreContainer');
+
+        // تابع برای تبدیل تاریخ به فرمت روزهای گذشته
+        function formatRelativeDate(dateString) {
+            try {
+                const postDate = new Date(dateString);
+                const now = new Date();
+                
+                // تفاوت در میلی‌ثانیه
+                const diffMs = now - postDate;
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 0) {
+                    return 'امروز';
+                } else if (diffDays === 1) {
+                    return 'دیروز';
+                } else if (diffDays < 7) {
+                    return `${diffDays} روز قبل`;
+                } else if (diffDays < 30) {
+                    const weeks = Math.floor(diffDays / 7);
+                    return `${weeks} هفته قبل`;
+                } else if (diffDays < 365) {
+                    const months = Math.floor(diffDays / 30);
+                    return `${months} ماه قبل`;
+                } else {
+                    const years = Math.floor(diffDays / 365);
+                    return `${years} سال قبل`;
+                }
+            } catch (e) {
+                return 'تاریخ نامشخص';
+            }
+        }
+
+        // تابع برای تولید تاریخ‌های تصادفی برای پست‌های نمونه
+        function generateRandomDate() {
+            const now = new Date();
+            const randomDaysAgo = Math.floor(Math.random() * 365); // حداکثر یک سال قبل
+            const postDate = new Date(now);
+            postDate.setDate(postDate.getDate() - randomDaysAgo);
+            return postDate.toISOString();
+        }
+
+        // مدیریت lazy loading تصاویر
+        function initImageObserver() {
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute('data-src');
+                        
+                        if (src) {
+                            const tempImg = new Image();
+                            tempImg.onload = () => {
+                                img.src = src;
+                                img.classList.add('loaded');
+                                img.removeAttribute('data-src');
+                                
+                                // حذف placeholder
+                                const placeholder = img.previousElementSibling;
+                                if (placeholder && placeholder.classList.contains('lazy-load')) {
+                                    placeholder.style.display = 'none';
+                                }
+                            };
+                            tempImg.src = src;
+                        }
+                        
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '100px',
+                threshold: 0.1
+            });
+        }
+
+        // تابع برای محاسبه زمان مطالعه
+        function calculateReadTime(content) {
+            // حذف HTML tags و شمارش کلمات
+            const text = content.replace(/<[^>]*>/g, ' ');
+            const words = text.split(/\s+/).length;
             
-            if (loadMoreBtn && hiddenPosts.length > 0) {
-                loadMoreBtn.addEventListener('click', function() {
-                    // نمایش تمام پست‌های مخفی با انیمیشن
-                    hiddenPosts.forEach((post, index) => {
-                        setTimeout(() => {
-                            post.classList.remove('hidden-post');
-                            post.style.animationDelay = (index * 0.1) + 's';
-                            post.style.animation = 'fadeInUp 0.6s ease forwards';
-                        }, index * 100);
-                    });
+            // فرض: هر ۲۰۰ کلمه = ۱ دقیقه خواندن
+            const minutes = Math.ceil(words / 200);
+            
+            // حداقل ۱ دقیقه
+            return Math.max(1, minutes);
+        }
+
+        // تابع برای بارگذاری پست‌های واقعی
+        async function loadRealPosts() {
+            try {
+                isLoading = true;
+                loadingSpinner.style.display = 'block';
+                
+                // ابتدا سعی می‌کنیم از فایل posts.json بارگذاری کنیم
+                const postsUrl = `${BLOG_CONFIG.baseUrl}/posts.json`;
+                
+                const response = await fetch(postsUrl);
+                
+                if (response.ok) {
+                    const posts = await response.json();
                     
-                    // غیرفعال کردن دکمه
-                    setTimeout(() => {
-                        loadMoreBtn.disabled = true;
-                        loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
-                    }, hiddenPosts.length * 100);
+                    // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
+                    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    
+                    return posts;
+                }
+                
+                // اگر فایل posts.json وجود نداشت، از API GitHub استفاده می‌کنیم
+                return await loadPostsFromGitHubAPI();
+                
+            } catch (error) {
+                console.error('Error loading real posts:', error);
+                
+                // اگر هیچکدام کار نکرد، از پست‌های نمونه استفاده می‌کنیم
+                return generateSamplePosts();
+            } finally {
+                isLoading = false;
+                loadingSpinner.style.display = 'none';
+            }
+        }
+
+        // تابع برای بارگذاری از API GitHub
+        async function loadPostsFromGitHubAPI() {
+            try {
+                const apiUrl = `https://api.github.com/repos/${BLOG_CONFIG.githubUsername}/${BLOG_CONFIG.repoName}/contents/_posts`;
+                
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API error! status: ${response.status}`);
+                }
+                
+                const files = await response.json();
+                
+                // فقط فایل‌های markdown را بگیریم
+                const markdownFiles = files.filter(file => 
+                    file.name.endsWith('.md') || file.name.endsWith('.markdown')
+                );
+                
+                // پردازش پست‌ها
+                const posts = [];
+                
+                for (const file of markdownFiles.slice(0, 50)) { // حداکثر ۵۰ پست
+                    try {
+                        const contentResponse = await fetch(file.download_url);
+                        const content = await contentResponse.text();
+                        
+                        // استخراج metadata از front matter
+                        const metadata = extractFrontMatter(content);
+                        
+                        posts.push({
+                            id: file.sha,
+                            title: metadata.title || file.name.replace(/\.(md|markdown)$/, ''),
+                            excerpt: metadata.excerpt || metadata.description || 'خلاصه مقاله',
+                            content: content,
+                            date: metadata.date || generateRandomDate(),
+                            readTime: calculateReadTime(content) + ' دقیقه',
+                            image: metadata.image || BLOG_CONFIG.defaultImage,
+                            url: `${BLOG_CONFIG.baseUrl}/post/${file.name.replace(/\.(md|markdown)$/, '')}/`
+                        });
+                    } catch (fileError) {
+                        console.error(`Error processing file ${file.name}:`, fileError);
+                    }
+                }
+                
+                // مرتب‌سازی بر اساس تاریخ
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                return posts;
+                
+            } catch (error) {
+                console.error('Error loading from GitHub API:', error);
+                return [];
+            }
+        }
+
+        // تابع برای استخراج front matter
+        function extractFrontMatter(content) {
+            const metadata = {};
+            
+            // pattern for front matter
+            const frontMatterPattern = /^---\s*\n([\s\S]*?)\n---/;
+            const match = content.match(frontMatterPattern);
+            
+            if (match) {
+                const frontMatter = match[1];
+                const lines = frontMatter.split('\n');
+                
+                lines.forEach(line => {
+                    const colonIndex = line.indexOf(':');
+                    if (colonIndex > -1) {
+                        const key = line.substring(0, colonIndex).trim();
+                        let value = line.substring(colonIndex + 1).trim();
+                        
+                        // Remove quotes if present
+                        value = value.replace(/^['"](.*)['"]$/, '$1');
+                        metadata[key] = value;
+                    }
                 });
             }
             
-            // انیمیشن hover برای کارت‌های پست
-            document.querySelectorAll('.post-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
+            return metadata;
+        }
+
+        // تابع برای ایجاد پست‌های نمونه
+        function generateSamplePosts() {
+            const titles = [
+                'آموزش React.js از مقدماتی تا پیشرفته',
+                'معرفی Material Design 3 و ویژگی‌های جدید',
+                'تأثیر هوش مصنوعی بر توسعه نرم‌افزار',
+                'نحوه راه‌اندازی وبلاگ روی GitHub Pages',
+                'چرا یادگیری جاوااسکریپت ضروری است؟',
+                'تجربیات من از یک سال وبلاگ نویسی',
+                'بهینه‌سازی وبسایت برای موتورهای جستجو',
+                'آموزش Vue.js برای مبتدیان',
+                'طراحی واکنش‌گرا با CSS Grid و Flexbox',
+                'مدیریت وضعیت در برنامه‌های React'
+            ];
+            
+            const images = [
+                'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80',
+                'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80'
+            ];
+            
+            const posts = [];
+            const totalPosts = 35;
+            
+            for (let i = 1; i <= totalPosts; i++) {
+                const title = titles[Math.floor(Math.random() * titles.length)];
+                const image = images[Math.floor(Math.random() * images.length)];
                 
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
+                posts.push({
+                    id: i,
+                    title: `${title}`,
+                    excerpt: 'این یک خلاصه نمونه از مقاله است. در این مقاله به بررسی موضوع مورد نظر می‌پردازیم و نکات مهم را بررسی می‌کنیم.',
+                    content: 'محتویات کامل مقاله...',
+                    date: generateRandomDate(),
+                    readTime: `${Math.floor(Math.random() * 10) + 3} دقیقه`,
+                    image: image,
+                    url: `${BLOG_CONFIG.baseUrl}/post/article-${i}/`
+                });
+            }
+            
+            // مرتب‌سازی بر اساس تاریخ (جدیدترین اول)
+            return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+
+        // تابع برای ایجاد المان پست
+        function createPostElement(post, index) {
+            const postElement = document.createElement('a');
+            postElement.className = 'post-card';
+            postElement.href = post.url;
+            postElement.style.animationDelay = `${index * 0.1}s`;
+            
+            postElement.innerHTML = `
+                <div class="post-image">
+                    <div class="lazy-load" style="width: 100%; height: 100%;"></div>
+                    <img data-src="${post.image}" 
+                         alt="${post.title}" 
+                         style="display: none;">
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">${post.title}</h2>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <span class="material-icons" style="font-size: 16px;">calendar_today</span>
+                            ${formatRelativeDate(post.date)}
+                        </span>
+                        <span class="post-read-time">
+                            <span class="material-icons" style="font-size: 16px;">schedule</span>
+                            ${post.readTime}
+                        </span>
+                    </div>
+                </div>
+            `;
+            
+            return postElement;
+        }
+
+        // تابع برای نمایش پست‌ها
+        function renderPosts(posts) {
+            if (posts.length === 0) {
+                noPostsMessage.style.display = 'block';
+                loadMoreContainer.style.display = 'none';
+                return;
+            }
+            
+            posts.forEach((post, index) => {
+                const postElement = createPostElement(post, index);
+                postsContainer.appendChild(postElement);
+                
+                // تنظیم observer برای تصویر
+                setTimeout(() => {
+                    const img = postElement.querySelector('img');
+                    if (img && observer) {
+                        observer.observe(img);
+                    }
+                }, 100);
+            });
+            
+            // نمایش یا مخفی کردن دکمه بارگذاری بیشتر
+            const totalDisplayed = document.querySelectorAll('.post-card').length;
+            if (totalDisplayed >= allPosts.length) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
+            }
+        }
+
+        // تابع برای بارگذاری پست‌های صفحه جاری
+        async function loadCurrentPage() {
+            if (isLoading) return;
+            
+            try {
+                const startIndex = (currentPage - 1) * BLOG_CONFIG.postsPerPage;
+                const endIndex = startIndex + BLOG_CONFIG.postsPerPage;
+                const pagePosts = allPosts.slice(startIndex, endIndex);
+                
+                renderPosts(pagePosts);
+                
+                if (pagePosts.length < BLOG_CONFIG.postsPerPage || endIndex >= allPosts.length) {
+                    loadMoreBtn.disabled = true;
+                }
+                
+            } catch (error) {
+                console.error('Error loading page:', error);
+                noPostsMessage.style.display = 'block';
+            }
+        }
+
+        // تابع برای بارگذاری صفحه بعدی
+        async function loadNextPage() {
+            if (isLoading || loadMoreBtn.disabled) return;
+            
+            currentPage++;
+            await loadCurrentPage();
+        }
+
+        // تابع برای جستجو
+        function performGoogleSearch(query) {
+            if (!query || query.trim() === '') {
+                alert('لطفاً عبارت جستجو را وارد کنید.');
+                return;
+            }
+            
+            const encodedQuery = encodeURIComponent(query);
+            const googleSearchUrl = `https://www.google.com/search?q=site:${BLOG_CONFIG.baseUrl}+${encodedQuery}`;
+            
+            window.open(googleSearchUrl, '_blank');
+            searchInput.value = '';
+            
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        }
+
+        // مدیریت منوی موبایل
+        let isMobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            mobileNav.classList.add('active');
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isMobileMenuOpen = true;
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            isMobileMenuOpen = false;
+        }
+
+        // مقداردهی اولیه
+        document.addEventListener('DOMContentLoaded', async () => {
+            // مقداردهی اولیه observer تصاویر
+            initImageObserver();
+            
+            // بارگذاری اولیه پست‌ها
+            try {
+                loadingSpinner.style.display = 'block';
+                allPosts = await loadRealPosts();
+                
+                if (allPosts.length === 0) {
+                    noPostsMessage.style.display = 'block';
+                    loadMoreContainer.style.display = 'none';
+                } else {
+                    await loadCurrentPage();
+                }
+            } catch (error) {
+                console.error('Failed to load initial posts:', error);
+                noPostsMessage.style.display = 'block';
+                loadMoreContainer.style.display = 'none';
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+            
+            // رویداد دکمه بارگذاری بیشتر
+            loadMoreBtn.addEventListener('click', loadNextPage);
+            
+            // رویدادهای جستجو
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+            
+            searchBtn.addEventListener('click', () => {
+                const query = searchInput.value.trim();
+                performGoogleSearch(query);
+            });
+            
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    performGoogleSearch(query);
+                }
+            });
+            
+            mobileSearchBtn.addEventListener('click', () => {
+                const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
+                if (query !== null && query.trim() !== '') {
+                    performGoogleSearch(query);
+                }
+            });
+            
+            // مدیریت منوی موبایل
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+            
+            // بستن منو با کلیک روی لینک‌ها
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    setTimeout(closeMobileMenu, 300);
                 });
             });
         });
