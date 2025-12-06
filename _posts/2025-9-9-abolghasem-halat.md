@@ -1,6 +1,5 @@
 ---
 layout: post
-permalink: /biography/abolghasem-halat
 title: زندگینامه ابوالقاسم حالت - شاعر و مترجم طنزپرداز
 ---
 
