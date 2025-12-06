@@ -16,9 +16,6 @@
             --secondary-color: #34a853;
             --facebook-color: #1877f2;
             --facebook-light: #e7f3ff;
-            --rss-color: #f26522;
-            --rss-light: #fff0e8;
-            --rss-dark: #d35400;
             --text-primary: #202124;
             --text-secondary: #5f6368;
             --text-light: #ffffff;
@@ -110,77 +107,12 @@
             top: 50%;
             transform: translate(-50%, -50%);
             width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            padding: 0 20px;
-            height: 70px;
-            transition: var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-link.active {
-            color: var(--primary-color);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 20px;
-            left: 20px;
-            height: 3px;
-            background-color: var(--primary-color);
-            border-radius: 3px 3px 0 0;
-            transition: var(--transition);
-        }
-
-        .nav-link:not(.active):hover::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 20px;
-            left: 20px;
-            height: 2px;
-            background-color: var(--primary-color);
-            border-radius: 2px 2px 0 0;
-            opacity: 0.5;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            display: none; /* پنهان کردن ناوبری اصلی */
         }
 
         .search-container {
             display: flex;
             align-items: center;
-            margin-left: 20px;
             position: relative;
         }
 
@@ -229,23 +161,6 @@
             font-size: 20px;
         }
 
-        .rss-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: none;
-            padding: 8px;
-            cursor: pointer;
-            color: var(--rss-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .rss-btn .material-icons {
-            font-size: 24px;
-        }
-
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -274,34 +189,6 @@
 
         .mobile-menu-btn .material-icons {
             font-size: 28px;
-        }
-
-        .mobile-header-actions {
-            display: none;
-            align-items: center;
-            gap: 15px;
-            position: absolute;
-            left: 60px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .mobile-search-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-search-btn:hover {
-            background-color: var(--surface-color);
-            color: var(--primary-color);
         }
 
         .mobile-site-info {
@@ -354,19 +241,9 @@
             padding-top: 20px;
         }
 
+        /* حذف section-header */
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
+            display: none;
         }
 
         .posts-grid {
@@ -495,13 +372,7 @@
             border-top: 4px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        .initial-loading-text {
-            color: var(--text-secondary);
-            font-size: 16px;
-            font-weight: 500;
+            margin: 0 auto;
         }
 
         @keyframes spin {
@@ -523,14 +394,8 @@
             border-top: 3px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
+            margin: 0 auto;
             display: inline-block;
-        }
-
-        .more-loading-text {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 5px;
         }
 
         .load-more-container {
@@ -560,7 +425,8 @@
         }
 
         .load-more-btn:disabled {
-            background-color: var(--text-secondary);
+            background-color: var(--border-color);
+            color: var(--text-secondary);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
@@ -593,21 +459,9 @@
             text-align: center;
         }
 
+        /* حذف لوگو از فوتر */
         .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-logo img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
+            display: none;
         }
 
         .footer-links {
@@ -639,15 +493,9 @@
             background-color: var(--facebook-light);
         }
 
-        .footer-link.rss:hover {
-            color: var(--rss-color);
-            background-color: var(--rss-light);
-        }
-
+        /* حذف کپی رایت از فوتر */
         .copyright {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 10px;
+            display: none;
         }
 
         .mobile-menu-overlay {
@@ -687,16 +535,6 @@
                 width: 200px;
             }
             
-            .nav-link {
-                padding: 0 15px;
-            }
-            
-            .nav-link.active::after,
-            .nav-link:not(.active):hover::after {
-                right: 15px;
-                left: 15px;
-            }
-            
             .site-title {
                 font-size: 36px;
             }
@@ -721,7 +559,7 @@
                 padding: 0 10px;
             }
             
-            .header-left, .nav-container, .logo-container {
+            .logo-container {
                 display: none;
             }
             
@@ -731,10 +569,6 @@
             }
             
             .mobile-site-info {
-                display: flex;
-            }
-            
-            .mobile-header-actions {
                 display: flex;
             }
             
@@ -748,10 +582,6 @@
             
             .site-title {
                 font-size: 32px;
-            }
-            
-            .section-title {
-                font-size: 24px;
             }
             
             .mobile-menu-overlay {
@@ -787,7 +617,7 @@
                 gap: 12px;
             }
             
-            .mobile-nav-link:hover, .mobile-nav-link.active {
+            .mobile-nav-link:hover {
                 color: var(--primary-color);
                 background-color: var(--surface-color);
             }
@@ -795,11 +625,6 @@
             .mobile-nav-link.facebook:hover {
                 color: var(--facebook-color);
                 background-color: var(--facebook-light);
-            }
-            
-            .mobile-nav-link.rss:hover {
-                color: var(--rss-color);
-                background-color: var(--rss-light);
             }
             
             .initial-spinner {
@@ -811,6 +636,10 @@
                 width: 30px;
                 height: 30px;
             }
+            
+            .footer-links {
+                gap: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -820,24 +649,6 @@
             
             .site-title {
                 font-size: 28px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .logo-text {
-                font-size: 18px;
-            }
-            
-            .mobile-header-actions {
-                gap: 10px;
-                left: 50px;
             }
             
             .mobile-site-title {
@@ -851,14 +662,7 @@
             
             .footer-link {
                 padding: 6px 12px;
-            }
-            
-            .initial-loading-text {
                 font-size: 14px;
-            }
-            
-            .more-loading-text {
-                font-size: 13px;
             }
         }
 
@@ -885,28 +689,16 @@
                 </a>
             </div>
             
+            <!-- حذف ناوبری اصلی -->
             <div class="nav-container">
-                <ul class="nav-links">
-                    <li class="nav-item">
-                        <a href="https://www.pasgah.org/" class="nav-link active">صفحه اصلی</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/ehsanchehri/" class="nav-link" target="_blank">فیسبوک</a>
-                    </li>
-                </ul>
+                <!-- حذف لینک صفحه اصلی و فیسبوک -->
             </div>
             
-            <div class="header-left">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
-                    <button class="search-btn" id="searchBtn">
-                        <span class="material-icons">search</span>
-                    </button>
-                </div>
-                
-                <a href="/atom.xml" class="rss-btn" target="_blank" title="اشتراک RSS">
-                    <span class="material-icons">rss_feed</span>
-                </a>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="جستجو..." autocomplete="off">
+                <button class="search-btn" id="searchBtn">
+                    <span class="material-icons">search</span>
+                </button>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -917,35 +709,19 @@
                 <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" class="mobile-logo">
                 <span class="mobile-site-title">پاسگاه</span>
             </div>
-            
-            <div class="mobile-header-actions">
-                <button class="mobile-search-btn" id="mobileSearchBtn">
-                    <span class="material-icons">search</span>
-                </button>
-            </div>
         </div>
         
         <div class="mobile-menu-overlay" id="mobileOverlay"></div>
         
+        <!-- منوی موبایل (بدون RSS) -->
         <div class="mobile-nav" id="mobileNav">
             <ul>
+                <!-- فقط جستجو باقی می‌ماند -->
                 <li class="mobile-nav-item">
-                    <a href="https://www.pasgah.org/" class="mobile-nav-link active">
-                        <span class="material-icons">home</span>
-                        <span>صفحه اصلی</span>
-                    </a>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="https://www.facebook.com/ehsanchehri/" class="mobile-nav-link facebook" target="_blank">
-                        <span class="material-icons">facebook</span>
-                        <span>فیسبوک</span>
-                    </a>
-                </li>
-                <li class="mobile-nav-item">
-                    <a href="/atom.xml" class="mobile-nav-link rss" target="_blank">
-                        <span class="material-icons">rss_feed</span>
-                        <span>اشتراک RSS</span>
-                    </a>
+                    <button class="mobile-nav-link" id="mobileSearchBtnMenu" style="background: none; border: none; width: 100%; text-align: right;">
+                        <span class="material-icons">search</span>
+                        <span>جستجو</span>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -962,28 +738,24 @@
 
     <main class="container">
         <div class="main-content">
-            <div class="section-header">
-                <h2 class="section-title">آخرین مقالات</h2>
-            </div>
+            <!-- حذف عنوان "آخرین مقالات" -->
             
             <div class="posts-grid" id="posts-container">
             </div>
             
-            <!-- اسپینر بارگذاری اولیه - در بالای دکمه -->
+            <!-- اسپینر بارگذاری اولیه - بدون متن -->
             <div class="initial-loading-container" id="initialLoadingContainer">
                 <div class="initial-spinner"></div>
-                <div class="initial-loading-text">در حال بارگذاری مقالات...</div>
             </div>
             
             <!-- اسپینر بارگذاری مقالات بیشتر -->
             <div class="more-loading-container" id="moreLoadingContainer">
                 <div class="more-spinner"></div>
-                <div class="more-loading-text">در حال بارگذاری مقالات بیشتر...</div>
             </div>
             
             <!-- کانتینر اصلی برای دکمه نمایش مقالات بیشتر -->
             <div class="load-more-container" id="loadMoreContainer">
-                <button class="load-more-btn" id="loadMoreBtn">
+                <button class="load-more-btn" id="loadMoreBtn" disabled>
                     <span class="material-icons">expand_more</span>
                     بارگذاری مقالات بیشتر
                 </button>
@@ -1000,29 +772,17 @@
 
     <footer>
         <div class="container footer-container">
-            <a href="https://www.pasgah.org/" class="footer-logo">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه">
-                <span>پاسگاه</span>
-            </a>
+            <!-- حذف لوگو و اسم سایت از فوتر -->
             
             <div class="footer-links">
-                <a href="https://www.pasgah.org/" class="footer-link">
-                    <span class="material-icons">home</span>
-                    صفحه اصلی
-                </a>
+                <!-- فقط لینک فیسبوک در فوتر -->
                 <a href="https://www.facebook.com/ehsanchehri/" class="footer-link facebook" target="_blank">
                     <span class="material-icons">facebook</span>
                     فیسبوک
                 </a>
-                <a href="/atom.xml" class="footer-link rss" target="_blank">
-                    <span class="material-icons">rss_feed</span>
-                    اشتراک RSS
-                </a>
             </div>
             
-            <p class="copyright">
-                © ۱۴۰۳ پاسگاه. تمامی حقوق محفوظ است.
-            </p>
+            <!-- حذف کپی رایت -->
         </div>
     </footer>
 
@@ -1394,8 +1154,12 @@
                 
                 renderPosts(pagePosts);
                 
-                if (pagePosts.length < BLOG_CONFIG.postsPerPage || endIndex >= allPosts.length) {
+                // فعال کردن دکمه اگر مقالات بیشتری برای نمایش وجود دارد
+                if (endIndex < allPosts.length) {
+                    loadMoreBtn.disabled = false;
+                } else {
                     loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<span class="material-icons">check</span> تمام مقالات نمایش داده شد';
                 }
                 
             } catch (error) {
@@ -1469,8 +1233,9 @@
         document.addEventListener('DOMContentLoaded', async () => {
             initImageObserver();
             
-            // نمایش اسپینر بارگذاری اولیه
+            // نمایش اسپینر بارگذاری اولیه و غیرفعال بودن دکمه
             initialLoadingContainer.style.display = 'block';
+            loadMoreBtn.disabled = true;
             
             try {
                 allPosts = await loadRealPosts();
@@ -1496,7 +1261,7 @@
             
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
-            const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+            const mobileSearchBtnMenu = document.getElementById('mobileSearchBtnMenu');
             
             searchBtn.addEventListener('click', () => {
                 const query = searchInput.value.trim();
@@ -1510,11 +1275,14 @@
                 }
             });
             
-            mobileSearchBtn.addEventListener('click', () => {
-                const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
-                if (query !== null && query.trim() !== '') {
-                    performGoogleSearch(query);
-                }
+            mobileSearchBtnMenu.addEventListener('click', () => {
+                closeMobileMenu();
+                setTimeout(() => {
+                    const query = prompt('لطفاً عبارت جستجو را وارد کنید:');
+                    if (query !== null && query.trim() !== '') {
+                        performGoogleSearch(query);
+                    }
+                }, 300);
             });
             
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
