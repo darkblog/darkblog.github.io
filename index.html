@@ -8,13 +8,13 @@ layout: null
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
-    <meta name="description" content="مرجعی معتبر برای مطالعه زندگی‌نامه شخصیت‌های تأثیرگذار تاریخ، ادبیات، هنر و دانش. ما با دوری از محتوای زرد و تکیه بر منابع معتبر، داستان زندگی این افراد را روایت می‌کنیم.">
+    <meta name="description" content="وبلاگ پاسگاه با ارائه بیوگرافی افراد مشهور در دسته‌بندی‌های تاریخ، ادبیات، هنر و دانش بروزرسانی می‌شه و از ارائه محتوای زرد و موج رسانه‌ای دوری می‌کنه">
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
     <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
     <meta name="robots" content="noarchive">
     <link rel="icon" type="image/webp" href="https://www.pasgah.org/biography/logo.webp">
-    <meta name="theme-color" content="#dc3545">
+    <meta name="theme-color" content="#ffffff">
     
     <style>
         * {
@@ -36,7 +36,7 @@ layout: null
             --primary-dark: #a71d2a;
             --primary-light: #ff6b7a;
             --text-color: #333;
-            --text-secondary: #54595d;
+            --text-secondary: #666;
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e1e5e9;
@@ -44,14 +44,16 @@ layout: null
             --link-color: #dc3545;
             --link-hover-color: #a71d2a;
             --infobox-bg: #f8f9fa;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.12);
             --radius: 12px;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
         }
         
         body {
             font-family: 'BBC Reith Qalam', sans-serif;
-            background-color: var(--light-bg);
+            background-color: var(--white);
             color: var(--text-color);
             line-height: 1.7;
             font-size: 1rem;
@@ -60,114 +62,103 @@ layout: null
             min-height: 100vh;
         }
         
-        header, nav {
-            background: transparent;
-        }
-        
-        .header-content, header {
-            margin-top: 0;
-            display: flex;
-        }
-        
-        .hero-section, .logo-link, body, header, nav {
-            display: flex;
-        }
-        
-        .header-content, main {
-            max-width: 900px;
-            position: relative;
-        }
-        
-        .header-content, .hero-section, header, main, nav {
-            position: relative;
-        }
-        
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            min-height: 450px;
-            margin-bottom: 80px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        nav {
-            padding: 15px 0;
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            width: 100%;
-        }
-        
-        .nav-logo {
-            height: 150px;
-            width: auto;
-            background: #fff;
-            padding: 6px;
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-        }
-        
-        .logo-link {
+            background: var(--white);
+            min-height: 500px;
+            margin-bottom: 60px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-        }
-        
-        header {
-            align-items: center;
-            justify-content: center;
-            padding: 25px 20px 20px;
-            min-height: 180px;
-            flex-grow: 1;
-            width: 100%;
-            color: #fff;
             text-align: center;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .header-content {
-            z-index: 10;
-            padding: 0 30px;
-            flex-direction: column;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(220, 53, 69, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(220, 53, 69, 0.03) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .site-logo {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--white);
+            overflow: hidden;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
+            background: var(--white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto 40px auto;
         }
         
-        .post-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-strong);
-            padding: 40px;
+        .site-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .post-title {
-            font-size: 3.2rem;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+        .site-logo img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            border-radius: 50%;
         }
         
-        .post-card-title a:hover {
-            color: var(--primary-color);
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: bold;
         }
         
-        .hero-section::after {
-            content: "";
+        .page-title::after {
+            content: '';
             position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") center bottom/cover;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .page-description {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+            line-height: 1.8;
         }
         
         main {
             flex: 1;
-            margin: -85px auto 80px;
+            margin: 0 auto 40px;
             padding: 0 20px;
             width: 100%;
+            max-width: 900px;
             z-index: 100;
         }
         
@@ -179,8 +170,18 @@ layout: null
         .post-card {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(220, 53, 69, 0.15);
-            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
+            border: 1px solid var(--border-color);
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card:hover {
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-5px);
+            border-color: rgba(220, 53, 69, 0.3);
         }
         
         .post-card::after {
@@ -191,13 +192,7 @@ layout: null
             width: 100%;
             height: 100%;
             border-radius: var(--radius);
-            box-shadow: inset 0 0 0 1px rgba(220, 53, 69, 0.08);
             pointer-events: none;
-        }
-        
-        .post-card:hover {
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-            border-color: rgba(220, 53, 69, 0.25);
         }
         
         .post-card-title {
@@ -228,7 +223,7 @@ layout: null
         .post-excerpt {
             font-size: 1.1rem;
             line-height: 1.7;
-            color: #000000;
+            color: var(--text-secondary);
             position: relative;
             z-index: 1;
         }
@@ -249,35 +244,157 @@ layout: null
                 radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
         }
         
-        @media (max-width: 768px) {
-            .hero-section {
-                min-height: 400px;
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .load-more-btn {
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'BBC Reith Qalam', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .load-more-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+        }
+        
+        .load-more-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .load-more-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .load-more-btn:hover::after {
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 2.5rem;
             }
             
-            .post-title {
-                font-size: 2.4rem;
+            .page-description {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 450px;
+                margin-bottom: 40px;
+            }
+            
+            .site-logo {
+                height: 90px;
+                width: 90px;
+                margin-bottom: 30px;
+            }
+            
+            .site-logo img {
+                width: 75px;
+                height: 75px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+                padding-bottom: 15px;
+            }
+            
+            .page-title::after {
+                width: 90px;
+                height: 3px;
+            }
+            
+            .page-description {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
             }
             
             .post-card {
                 padding: 30px;
             }
             
-            .nav-logo {
-                height: 120px;
-            }
-            
             main {
-                margin: -80px auto 60px;
+                margin-bottom: 30px;
             }
             
             .posts-container {
                 gap: 30px;
             }
+            
+            .load-more-container {
+                margin-top: 40px;
+                padding-top: 25px;
+            }
+            
+            .load-more-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
         }
         
         @media (max-width: 576px) {
             .hero-section {
-                min-height: 350px;
+                min-height: 400px;
+                margin-bottom: 30px;
+            }
+            
+            .site-logo {
+                height: 80px;
+                width: 80px;
+                margin-bottom: 25px;
+            }
+            
+            .site-logo img {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .page-title {
+                font-size: 1.9rem;
+                padding-bottom: 12px;
+            }
+            
+            .page-title::after {
+                width: 70px;
+            }
+            
+            .page-description {
+                font-size: 1rem;
+                margin-bottom: 25px;
             }
             
             .post-card {
@@ -285,32 +402,42 @@ layout: null
             }
             
             main {
-                margin: -60px auto 40px;
+                margin-bottom: 20px;
             }
             
             .posts-container {
                 gap: 25px;
             }
+            
+            .load-more-container {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+            
+            .load-more-btn {
+                padding: 13px 30px;
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="hero-section">
-        <nav>
-            <a href="https://www.pasgah.org/" class="logo-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="nav-logo">
-                    <title>وبلاگ پاسگاه</title>
-                    <path fill="#dc3545" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                </svg>
+    <section class="hero-section">
+        <div class="hero-content">
+            <a href="https://www.pasgah.org/" class="site-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
             </a>
-        </nav>
-        <section class="header-content">
-            <h1 class="post-title">وبلاگ پاسگاه</h1>
-        </section>
-    </header>
+            
+            <h1 class="page-title">بیوگرافی افراد مشهور</h1>
+            <p class="page-description">
+                مرجعی معتبر برای مطالعه زندگی‌نامه شخصیت‌های تأثیرگذار تاریخ، ادبیات، هنر و دانش. 
+                ما با دوری از محتوای زرد و تکیه بر منابع معتبر، داستان زندگی این افراد را روایت می‌کنیم.
+            </p>
+        </div>
+    </section>
     
     <main>
-        <section class="posts-container">
+        <section class="posts-container" id="postsContainer">
             {% for post in site.posts %}
             <article class="post-card">
                 <a href="{{ post.url }}" class="post-card-link">
@@ -320,6 +447,92 @@ layout: null
             </article>
             {% endfor %}
         </section>
+        
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button class="load-more-btn" id="loadMoreBtn">نمایش پست‌های بیشتر</button>
+        </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postsContainer = document.getElementById('postsContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
+            const postsPerPage = 10;
+            let currentVisibleCount = postsPerPage;
+            
+            function hideExtraPosts() {
+                allPosts.forEach((post, index) => {
+                    if (index >= currentVisibleCount) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'block';
+                    }
+                });
+            }
+            
+            function showMorePosts() {
+                currentVisibleCount += postsPerPage;
+                
+                allPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        post.style.display = 'block';
+                    }
+                });
+                
+                if (currentVisibleCount >= allPosts.length) {
+                    loadMoreContainer.style.display = 'none';
+                }
+                
+                const lastVisiblePost = allPosts[Math.min(currentVisibleCount, allPosts.length) - 1];
+                lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            if (allPosts.length > postsPerPage) {
+                loadMoreContainer.style.display = 'block';
+                hideExtraPosts();
+            }
+            
+            loadMoreBtn.addEventListener('click', showMorePosts);
+            
+            function updateButtonText() {
+                const remainingPosts = allPosts.length - currentVisibleCount;
+                if (remainingPosts > 0) {
+                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر (${remainingPosts} پست باقی‌مانده)`;
+                } else {
+                    loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
+                }
+            }
+            
+            updateButtonText();
+            
+            loadMoreBtn.addEventListener('click', function() {
+                setTimeout(updateButtonText, 100);
+            });
+            
+            function saveState() {
+                localStorage.setItem('postsVisibleCount', currentVisibleCount.toString());
+            }
+            
+            function loadState() {
+                const savedCount = localStorage.getItem('postsVisibleCount');
+                if (savedCount) {
+                    const parsedCount = parseInt(savedCount);
+                    if (parsedCount > postsPerPage && parsedCount <= allPosts.length) {
+                        currentVisibleCount = parsedCount;
+                        hideExtraPosts();
+                        updateButtonText();
+                    }
+                }
+            }
+            
+            loadState();
+            
+            loadMoreBtn.addEventListener('click', saveState);
+            
+            window.addEventListener('beforeunload', saveState);
+        });
+    </script>
 </body>
 </html>
