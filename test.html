@@ -1,3 +1,7 @@
+---
+layout: null
+---
+
 <!doctype html>
 <html dir="rtl" lang="fa">
 <head>
@@ -58,7 +62,7 @@
             min-height: 100vh;
         }
         
-        /* ========== بنر اصلی با لوگو و عنوان در مرکز ========== */
+        /* ========== بنر اصلی ========== */
         .hero-section {
             background: var(--white);
             min-height: 500px;
@@ -92,18 +96,10 @@
             z-index: 2;
         }
         
-        /* لوگو و عنوان سایت */
-        .site-branding {
-            margin-bottom: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
-        
+        /* لوگو */
         .site-logo {
-            height: 120px;
-            width: 120px;
+            height: 100px;
+            width: 100px;
             border-radius: 50%;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             border: 3px solid var(--white);
@@ -113,6 +109,7 @@
             justify-content: center;
             background: var(--white);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto 40px auto;
         }
         
         .site-logo:hover {
@@ -121,57 +118,37 @@
         }
         
         .site-logo img {
-            width: 100px;
-            height: 100px;
+            width: 85px;
+            height: 85px;
             object-fit: contain;
             border-radius: 50%;
         }
         
-        .site-title {
-            color: var(--text-color);
+        /* عنوان اصلی صفحه */
+        .page-title {
             font-size: 3rem;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1.3;
+            margin-bottom: 20px;
+            color: var(--text-color);
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-weight: bold;
         }
         
-        .site-title::after {
+        .page-title::after {
             content: '';
             position: absolute;
             bottom: 0;
             right: 50%;
             transform: translateX(50%);
-            width: 100px;
+            width: 120px;
             height: 4px;
             background: var(--primary-color);
             border-radius: 2px;
         }
         
-        /* عنوان و توضیحات بنر */
-        .hero-title {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 60px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        .hero-description {
-            font-size: 1.3rem;
+        /* توضیحات صفحه */
+        .page-description {
+            font-size: 1.4rem;
             margin-bottom: 40px;
             color: var(--text-secondary);
             max-width: 700px;
@@ -274,15 +251,11 @@
         
         /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
-            .site-title {
+            .page-title {
                 font-size: 2.5rem;
             }
             
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .hero-description {
+            .page-description {
                 font-size: 1.2rem;
             }
         }
@@ -294,24 +267,27 @@
             }
             
             .site-logo {
-                height: 100px;
-                width: 100px;
+                height: 90px;
+                width: 90px;
+                margin-bottom: 30px;
             }
             
             .site-logo img {
-                width: 85px;
-                height: 85px;
+                width: 75px;
+                height: 75px;
             }
             
-            .site-title {
+            .page-title {
                 font-size: 2.2rem;
+                padding-bottom: 15px;
             }
             
-            .hero-title {
-                font-size: 1.8rem;
+            .page-title::after {
+                width: 90px;
+                height: 3px;
             }
             
-            .hero-description {
+            .page-description {
                 font-size: 1.1rem;
                 margin-bottom: 30px;
             }
@@ -327,11 +303,6 @@
             .posts-container {
                 gap: 30px;
             }
-            
-            .site-branding {
-                margin-bottom: 40px;
-                gap: 20px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -341,24 +312,26 @@
             }
             
             .site-logo {
-                height: 90px;
-                width: 90px;
+                height: 80px;
+                width: 80px;
+                margin-bottom: 25px;
             }
             
             .site-logo img {
-                width: 75px;
-                height: 75px;
+                width: 65px;
+                height: 65px;
             }
             
-            .site-title {
+            .page-title {
                 font-size: 1.9rem;
+                padding-bottom: 12px;
             }
             
-            .hero-title {
-                font-size: 1.6rem;
+            .page-title::after {
+                width: 70px;
             }
             
-            .hero-description {
+            .page-description {
                 font-size: 1rem;
                 margin-bottom: 25px;
             }
@@ -374,29 +347,21 @@
             .posts-container {
                 gap: 25px;
             }
-            
-            .site-branding {
-                margin-bottom: 30px;
-                gap: 15px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- بنر اصلی با لوگو و عنوان در مرکز -->
+    <!-- بنر اصلی -->
     <section class="hero-section">
         <div class="hero-content">
-            <!-- لوگو و عنوان سایت -->
-            <div class="site-branding">
-                <a href="https://www.pasgah.org/" class="site-logo">
-                    <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
-                </a>
-                <h1 class="site-title">وبلاگ پاسگاه</h1>
-            </div>
+            <!-- لوگو -->
+            <a href="https://www.pasgah.org/" class="site-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
+            </a>
             
-            <!-- عنوان و توضیحات بنر -->
-            <h2 class="hero-title">بیوگرافی افراد مشهور</h2>
-            <p class="hero-description">
+            <!-- عنوان و توضیحات صفحه -->
+            <h1 class="page-title">بیوگرافی افراد مشهور</h1>
+            <p class="page-description">
                 مرجعی معتبر برای مطالعه زندگی‌نامه شخصیت‌های تأثیرگذار تاریخ، ادبیات، هنر و دانش. 
                 ما با دوری از محتوای زرد و تکیه بر منابع معتبر، داستان زندگی این افراد را روایت می‌کنیم.
             </p>
