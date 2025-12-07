@@ -127,8 +127,6 @@
             border-radius: 2px;
         }
         
-        /* ========== منوی اصلی حذف شده ========== */
-        
         /* ========== بنر اصلی سفید ========== */
         .hero-section {
             background: var(--white);
@@ -235,7 +233,7 @@
         /* ========== محتوای اصلی ========== */
         main {
             flex: 1;
-            margin: 0 auto 80px;
+            margin: 0 auto 40px;
             padding: 0 20px;
             width: 100%;
             max-width: 900px;
@@ -370,49 +368,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* ========== فوتر ساده ========== */
-        .main-footer {
-            background: var(--light-gray);
-            border-top: 1px solid var(--border-color);
-            padding: 40px 20px;
-            margin-top: 80px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            list-style: none;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary-color);
-            background: rgba(220, 53, 69, 0.05);
-        }
-        
-        .footer-bottom {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-        
         /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
             .hero-title {
@@ -421,10 +376,6 @@
             
             .hero-description {
                 font-size: 1.2rem;
-            }
-            
-            .footer-links {
-                gap: 20px;
             }
         }
         
@@ -473,7 +424,7 @@
             }
             
             main {
-                margin-bottom: 60px;
+                margin-bottom: 30px;
             }
             
             .posts-container {
@@ -489,11 +440,6 @@
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
             }
         }
         
@@ -538,7 +484,7 @@
             }
             
             main {
-                margin-bottom: 40px;
+                margin-bottom: 20px;
             }
             
             .posts-container {
@@ -618,22 +564,5 @@
             {% endfor %}
         </section>
     </main>
-    
-    <!-- فوتر ساده -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <ul class="footer-links">
-                <li><a href="/category/all">همه بیوگرافی‌ها</a></li>
-                <li><a href="/about">درباره ما</a></li>
-                <li><a href="/contact">تماس با ما</a></li>
-                <li><a href="/privacy">حریم خصوصی</a></li>
-            </ul>
-            
-            <div class="footer-bottom">
-                <p>© ۲۰۲۳ وبلاگ پاسگاه. تمامی حقوق محفوظ است.</p>
-                <p>ارائه محتوای معتبر و به دور از شایعات و اخبار زرد.</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
