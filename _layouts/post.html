@@ -58,6 +58,7 @@
             min-height: 100vh;
         }
         
+        /* ========== بنر اصلی ========== */
         .hero-section {
             background: var(--white);
             min-height: 350px;
@@ -91,6 +92,7 @@
             z-index: 2;
         }
         
+        /* لوگو */
         .site-logo {
             height: 80px;
             width: 80px;
@@ -118,6 +120,7 @@
             border-radius: 50%;
         }
         
+        /* عنوان پست */
         .post-title-main {
             font-size: 2.8rem;
             margin-bottom: 40px;
@@ -139,6 +142,7 @@
             border-radius: 2px;
         }
         
+        /* تصویر اصلی پست با Lazy Loading */
         .post-main-image-container {
             width: 100%;
             max-width: 800px;
@@ -166,6 +170,7 @@
             opacity: 1;
         }
         
+        /* ========== محتوای پست ========== */
         main {
             flex: 1;
             margin: 0 auto 60px;
@@ -202,6 +207,7 @@
             display: block;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            cursor: pointer;
         }
         
         .post-content figure {
@@ -303,6 +309,7 @@
             color: #d63384;
         }
         
+        /* ========== بخش مطالب سایت ========== */
         .related-posts {
             margin-top: 40px;
             padding-top: 40px;
@@ -415,6 +422,7 @@
                 radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
         }
         
+        /* ========== دکمه بارگذاری بیشتر ========== */
         .load-more-container {
             text-align: center;
             margin-top: 50px;
@@ -472,6 +480,7 @@
             }
         }
         
+        /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
             .post-title-main {
                 font-size: 2.4rem;
@@ -651,14 +660,18 @@
     </style>
 </head>
 <body>
+    <!-- بنر اصلی -->
     <section class="hero-section">
         <div class="hero-content">
+            <!-- لوگو -->
             <a href="https://www.pasgah.org/" class="site-logo">
                 <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
             </a>
             
+            <!-- عنوان پست -->
             <h1 class="post-title-main">{{ page.title }}</h1>
             
+            <!-- تصویر اصلی پست با Lazy Loading -->
             {% if page.image %}
             <div class="post-main-image-container">
                 <img 
@@ -674,17 +687,21 @@
         </div>
     </section>
     
+    <!-- محتوای اصلی -->
     <main>
+        <!-- محتوای پست -->
         <div class="post-content-container">
             <article class="post-content">
                 {{ content }}
             </article>
         </div>
         
+        <!-- مطالب سایت -->
         <section class="related-posts">
             <h2 class="related-posts-title">مطالب دیگر سایت</h2>
             
             <div class="posts-container" id="relatedPostsContainer">
+                <!-- فیلتر کردن پست فعلی و نمایش سایر پست‌ها -->
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                 
@@ -692,6 +709,7 @@
                 <article class="post-card">
                     <a href="{{ post.url }}" class="post-card-link">
                         <h3 class="post-card-title">{{ post.title }}</h3>
+                        <!-- اضافه کردن توضیحات پست -->
                         {% if post.description %}
                         <div class="post-card-description">{{ post.description }}</div>
                         {% elsif post.excerpt %}
@@ -702,6 +720,7 @@
                 {% endfor %}
             </div>
             
+            <!-- دکمه بارگذاری بیشتر -->
             <div class="load-more-container" id="loadMoreContainer" style="display: none;">
                 <button class="load-more-btn" id="loadMoreBtn">نمایش مطالب بیشتر</button>
             </div>
@@ -710,51 +729,135 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // قابلیت کلیک برای باز کردن تصویر در سایز اصلی - نمایش کامل تصویر
+            function createImageZoom(imageSrc, imageAlt) {
+                const fullScreenImage = document.createElement('div');
+                fullScreenImage.style.position = 'fixed';
+                fullScreenImage.style.top = '0';
+                fullScreenImage.style.right = '0';
+                fullScreenImage.style.bottom = '0';
+                fullScreenImage.style.left = '0';
+                fullScreenImage.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+                fullScreenImage.style.zIndex = '9999';
+                fullScreenImage.style.display = 'flex';
+                fullScreenImage.style.alignItems = 'center';
+                fullScreenImage.style.justifyContent = 'center';
+                fullScreenImage.style.cursor = 'zoom-out';
+                fullScreenImage.style.overflow = 'auto';
+                
+                const imgContainer = document.createElement('div');
+                imgContainer.style.position = 'relative';
+                imgContainer.style.maxWidth = '90vw';
+                imgContainer.style.maxHeight = '90vh';
+                imgContainer.style.margin = 'auto';
+                
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = imageAlt;
+                img.style.display = 'block';
+                img.style.margin = 'auto';
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '100%';
+                img.style.width = 'auto';
+                img.style.height = 'auto';
+                img.style.objectFit = 'contain';
+                img.style.borderRadius = '8px';
+                img.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.5)';
+                
+                // دکمه بستن
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '&times;';
+                closeBtn.style.position = 'fixed';
+                closeBtn.style.top = '20px';
+                closeBtn.style.left = '20px';
+                closeBtn.style.width = '50px';
+                closeBtn.style.height = '50px';
+                closeBtn.style.background = 'rgba(220, 53, 69, 0.9)';
+                closeBtn.style.color = 'white';
+                closeBtn.style.border = 'none';
+                closeBtn.style.borderRadius = '50%';
+                closeBtn.style.fontSize = '28px';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.zIndex = '10000';
+                closeBtn.style.display = 'flex';
+                closeBtn.style.alignItems = 'center';
+                closeBtn.style.justifyContent = 'center';
+                closeBtn.style.transition = 'all 0.3s ease';
+                
+                closeBtn.addEventListener('mouseover', function() {
+                    this.style.background = 'rgba(167, 29, 42, 0.9)';
+                    this.style.transform = 'scale(1.1)';
+                });
+                
+                closeBtn.addEventListener('mouseout', function() {
+                    this.style.background = 'rgba(220, 53, 69, 0.9)';
+                    this.style.transform = 'scale(1)';
+                });
+                
+                closeBtn.addEventListener('click', function() {
+                    document.body.removeChild(fullScreenImage);
+                });
+                
+                imgContainer.appendChild(img);
+                fullScreenImage.appendChild(imgContainer);
+                fullScreenImage.appendChild(closeBtn);
+                document.body.appendChild(fullScreenImage);
+                
+                // بستن با کلیک روی پس‌زمینه
+                fullScreenImage.addEventListener('click', function(e) {
+                    if (e.target === fullScreenImage) {
+                        document.body.removeChild(fullScreenImage);
+                    }
+                });
+                
+                // بستن با دکمه Escape
+                document.addEventListener('keydown', function closeOnEscape(e) {
+                    if (e.key === 'Escape') {
+                        if (document.body.contains(fullScreenImage)) {
+                            document.body.removeChild(fullScreenImage);
+                        }
+                        document.removeEventListener('keydown', closeOnEscape);
+                    }
+                });
+                
+                // لود تصویر و نمایش نرم
+                img.onload = function() {
+                    img.style.opacity = '0';
+                    setTimeout(() => {
+                        img.style.transition = 'opacity 0.3s ease';
+                        img.style.opacity = '1';
+                    }, 10);
+                };
+            }
+            
+            // فعال‌سازی زوم برای تصویر اصلی پست
             const postMainImage = document.querySelector('.post-main-image');
             
             if (postMainImage && postMainImage.classList.contains('loaded')) {
                 postMainImage.addEventListener('click', function() {
-                    const fullScreenImage = document.createElement('div');
-                    fullScreenImage.style.position = 'fixed';
-                    fullScreenImage.style.top = '0';
-                    fullScreenImage.style.right = '0';
-                    fullScreenImage.style.bottom = '0';
-                    fullScreenImage.style.left = '0';
-                    fullScreenImage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                    fullScreenImage.style.zIndex = '9999';
-                    fullScreenImage.style.display = 'flex';
-                    fullScreenImage.style.alignItems = 'center';
-                    fullScreenImage.style.justifyContent = 'center';
-                    fullScreenImage.style.cursor = 'zoom-out';
-                    
-                    const img = document.createElement('img');
-                    img.src = this.src;
-                    img.style.maxWidth = '90%';
-                    img.style.maxHeight = '90%';
-                    img.style.borderRadius = '8px';
-                    img.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.5)';
-                    
-                    fullScreenImage.appendChild(img);
-                    document.body.appendChild(fullScreenImage);
-                    
-                    fullScreenImage.addEventListener('click', function() {
-                        document.body.removeChild(fullScreenImage);
-                    });
-                    
-                    document.addEventListener('keydown', function closeOnEscape(e) {
-                        if (e.key === 'Escape') {
-                            if (document.body.contains(fullScreenImage)) {
-                                document.body.removeChild(fullScreenImage);
-                            }
-                            document.removeEventListener('keydown', closeOnEscape);
-                        }
-                    });
+                    createImageZoom(this.src, this.alt);
                 });
                 
+                // اضافه کردن استایل cursor: pointer برای نشان دادن قابلیت کلیک
                 postMainImage.style.cursor = 'pointer';
-                postMainImage.title = 'برای مشاهده در سایز اصلی کلیک کنید';
+                postMainImage.title = 'برای مشاهده در سایز کامل کلیک کنید';
             }
             
+            // فعال‌سازی زوم برای تصاویر داخل محتوای پست
+            const contentImages = document.querySelectorAll('.post-content img');
+            contentImages.forEach(img => {
+                // اگر تصویر از قبل در تصویر اصلی پست نیست
+                if (img !== postMainImage) {
+                    img.style.cursor = 'pointer';
+                    img.title = 'برای مشاهده در سایز کامل کلیک کنید';
+                    
+                    img.addEventListener('click', function() {
+                        createImageZoom(this.src, this.alt);
+                    });
+                }
+            });
+            
+            // سیستم نمایش پست‌های انتهای صفحه
             const relatedPostsContainer = document.getElementById('relatedPostsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -762,6 +865,7 @@
             const postsPerPage = 3;
             let currentVisibleCount = postsPerPage;
             
+            // مخفی کردن پست‌های بیش از 3 تای اول
             function hideExtraPosts() {
                 allRelatedPosts.forEach((post, index) => {
                     if (index >= currentVisibleCount) {
@@ -772,27 +876,33 @@
                 });
             }
             
+            // نمایش پست‌های بیشتر
             function showMorePosts() {
                 currentVisibleCount += postsPerPage;
                 
+                // نمایش پست‌های جدید
                 allRelatedPosts.forEach((post, index) => {
                     if (index < currentVisibleCount) {
                         post.style.display = 'block';
                     }
                 });
                 
+                // اگر همه پست‌ها نمایش داده شدند، دکمه را مخفی کن
                 if (currentVisibleCount >= allRelatedPosts.length) {
                     loadMoreContainer.style.display = 'none';
                 }
                 
+                // اسکرول نرم به آخرین پست نمایش داده شده
                 const lastVisiblePost = allRelatedPosts[Math.min(currentVisibleCount, allRelatedPosts.length) - 1];
                 if (lastVisiblePost) {
                     lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
                 
+                // به‌روزرسانی متن دکمه
                 updateButtonText();
             }
             
+            // به‌روزرسانی متن دکمه بر اساس تعداد پست‌های باقی‌مانده
             function updateButtonText() {
                 const remainingPosts = allRelatedPosts.length - currentVisibleCount;
                 if (remainingPosts > 0) {
@@ -805,6 +915,7 @@
                 }
             }
             
+            // مقداردهی اولیه
             if (allRelatedPosts.length > postsPerPage) {
                 loadMoreContainer.style.display = 'block';
                 hideExtraPosts();
@@ -816,8 +927,10 @@
                 document.querySelector('.related-posts').style.display = 'none';
             }
             
+            // رویداد کلیک برای دکمه
             loadMoreBtn.addEventListener('click', showMorePosts);
             
+            // بهبود تجربه کاربری: ذخیره وضعیت فعلی در localStorage
             function saveState() {
                 localStorage.setItem('relatedPostsVisibleCount', currentVisibleCount.toString());
             }
@@ -834,14 +947,19 @@
                 }
             }
             
+            // بارگذاری وضعیت ذخیره شده
             loadState();
             
+            // ذخیره وضعیت هنگام کلیک
             loadMoreBtn.addEventListener('click', saveState);
             
+            // ذخیره وضعیت هنگام بسته شدن صفحه
             window.addEventListener('beforeunload', saveState);
             
+            // ذخیره URL پست فعلی برای تشخیص در آینده
             localStorage.setItem('currentPostUrl', window.location.pathname);
             
+            // اگر URL پست تغییر کرده، وضعیت ذخیره شده را پاک کن
             const savedPostUrl = localStorage.getItem('savedPostUrl');
             if (savedPostUrl && savedPostUrl !== window.location.pathname) {
                 localStorage.removeItem('relatedPostsVisibleCount');
