@@ -1,7 +1,3 @@
----
-layout: null
----
-
 <!doctype html>
 <html dir="rtl" lang="fa">
 <head>
@@ -62,7 +58,7 @@ layout: null
             min-height: 100vh;
         }
         
-        /* ========== هدر سفید با منوی آبشاری ========== */
+        /* ========== هدر ساده با لوگو و عنوان ========== */
         .main-header {
             background: var(--white);
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
@@ -77,41 +73,46 @@ layout: null
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 15px 0;
+            padding: 20px 0;
+            gap: 20px;
         }
         
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            text-decoration: none;
+            color: inherit;
         }
         
         .site-logo {
-            height: 60px;
-            width: 60px;
-            background: var(--white);
-            padding: 8px;
+            height: 80px;
+            width: 80px;
             border-radius: 50%;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border-color);
+            background: var(--white);
         }
         
-        .site-logo svg {
-            width: 40px;
-            height: 40px;
+        .site-logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
         }
         
         .site-title {
             color: var(--text-color);
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             position: relative;
             padding-right: 15px;
+            text-align: center;
         }
         
         .site-title::after {
@@ -121,158 +122,12 @@ layout: null
             top: 50%;
             transform: translateY(-50%);
             width: 4px;
-            height: 30px;
+            height: 40px;
             background: var(--primary-color);
             border-radius: 2px;
         }
         
-        /* ========== منوی اصلی ========== */
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 5px;
-        }
-        
-        .nav-item {
-            position: relative;
-        }
-        
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 12px 20px;
-            display: block;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid transparent;
-        }
-        
-        .nav-link:hover {
-            background: var(--light-gray);
-            color: var(--primary-color);
-            border-color: rgba(220, 53, 69, 0.2);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            width: 0;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 80%;
-            right: 10%;
-        }
-        
-        .nav-link.active {
-            background: rgba(220, 53, 69, 0.05);
-            color: var(--primary-color);
-            border-color: rgba(220, 53, 69, 0.3);
-        }
-        
-        .nav-link i {
-            margin-left: 8px;
-            color: var(--text-secondary);
-        }
-        
-        .nav-link:hover i {
-            color: var(--primary-color);
-        }
-        
-        /* ========== منوی آبشاری ========== */
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--white);
-            min-width: 220px;
-            box-shadow: var(--shadow-strong);
-            border-radius: var(--radius);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            list-style: none;
-            padding: 10px 0;
-            border: 1px solid var(--border-color);
-            z-index: 1000;
-        }
-        
-        .dropdown-menu::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            right: 25px;
-            width: 16px;
-            height: 16px;
-            background: var(--white);
-            transform: rotate(45deg);
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-menu li {
-            padding: 0;
-        }
-        
-        .dropdown-menu .dropdown-link {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 12px 20px;
-            display: block;
-            transition: all 0.2s ease;
-            border-right: 3px solid transparent;
-            font-size: 1rem;
-        }
-        
-        .dropdown-menu .dropdown-link:hover {
-            background: var(--light-gray);
-            color: var(--primary-color);
-            border-right-color: var(--primary-color);
-            padding-right: 25px;
-        }
-        
-        .dropdown-menu .dropdown-link i {
-            margin-left: 8px;
-            color: var(--text-secondary);
-        }
-        
-        .dropdown-menu .dropdown-link:hover i {
-            color: var(--primary-color);
-        }
-        
-        /* ========== منوی موبایل ========== */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .mobile-menu-btn:hover {
-            background: var(--light-gray);
-            color: var(--primary-color);
-        }
+        /* ========== منوی اصلی حذف شده ========== */
         
         /* ========== بنر اصلی سفید ========== */
         .hero-section {
@@ -487,6 +342,7 @@ layout: null
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            font-family: 'BBC Reith Qalam', sans-serif;
         }
         
         .btn-primary {
@@ -514,54 +370,44 @@ layout: null
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* ========== فوتر ========== */
+        /* ========== فوتر ساده ========== */
         .main-footer {
             background: var(--light-gray);
             border-top: 1px solid var(--border-color);
             padding: 40px 20px;
             margin-top: 80px;
+            text-align: center;
         }
         
-        .footer-container {
-            max-width: 1200px;
+        .footer-content {
+            max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .footer-section h3 {
-            color: var(--text-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-color);
-            font-size: 1.3rem;
         }
         
         .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.2s ease;
-            display: block;
-            padding: 5px 0;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
         .footer-links a:hover {
             color: var(--primary-color);
-            padding-right: 10px;
+            background: rgba(220, 53, 69, 0.05);
         }
         
         .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
+            margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
@@ -569,55 +415,16 @@ layout: null
         
         /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
-            .nav-menu {
-                display: none;
-                position: fixed;
-                top: 90px;
-                right: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                border-top: 1px solid var(--border-color);
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                background: var(--light-gray);
-                box-shadow: none;
-                border-radius: 8px;
-                margin-top: 10px;
-                margin-right: 20px;
-                display: none;
-                border: 1px solid var(--border-color);
-            }
-            
-            .dropdown-menu.active {
-                display: block;
-            }
-            
-            .dropdown-menu::before {
-                display: none;
-            }
-            
             .hero-title {
                 font-size: 2.8rem;
             }
             
             .hero-description {
                 font-size: 1.2rem;
+            }
+            
+            .footer-links {
+                gap: 20px;
             }
         }
         
@@ -652,17 +459,17 @@ layout: null
             }
             
             .site-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .site-logo {
-                height: 50px;
-                width: 50px;
+                height: 60px;
+                width: 60px;
             }
             
-            .site-logo svg {
-                width: 30px;
-                height: 30px;
+            .site-logo img {
+                width: 50px;
+                height: 50px;
             }
             
             main {
@@ -682,6 +489,11 @@ layout: null
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
             }
         }
         
@@ -711,6 +523,20 @@ layout: null
                 padding: 25px;
             }
             
+            .site-title {
+                font-size: 1.5rem;
+            }
+            
+            .site-logo {
+                height: 50px;
+                width: 50px;
+            }
+            
+            .site-logo img {
+                width: 40px;
+                height: 40px;
+            }
+            
             main {
                 margin-bottom: 40px;
             }
@@ -719,96 +545,23 @@ layout: null
                 gap: 25px;
             }
             
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .header-container {
+                padding: 15px 0;
+                gap: 15px;
             }
         }
     </style>
-    
-    <!-- آیکون‌های فونت‌آوسام -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- هدر سفید با منوی آبشاری -->
+    <!-- هدر ساده با لوگو و عنوان -->
     <header class="main-header">
         <div class="header-container">
-            <div class="logo-container">
-                <a href="https://www.pasgah.org/" class="site-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                        <title>وبلاگ پاسگاه</title>
-                        <path fill="#dc3545" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                    </svg>
-                </a>
+            <a href="https://www.pasgah.org/" class="logo-container">
+                <div class="site-logo">
+                    <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
+                </div>
                 <h1 class="site-title">وبلاگ پاسگاه</h1>
-            </div>
-            
-            <!-- دکمه منوی موبایل -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <!-- منوی اصلی -->
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="https://www.pasgah.org/" class="nav-link active">
-                        <i class="fas fa-home"></i> خانه
-                    </a>
-                </li>
-                
-                <!-- منوی آبشاری دسته‌بندی‌ها -->
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-th-large"></i> دسته‌بندی‌ها
-                        <i class="fas fa-chevron-down" style="margin-right: 5px; font-size: 0.9rem;"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/category/tarikh" class="dropdown-link"><i class="fas fa-landmark"></i> تاریخ</a></li>
-                        <li><a href="/category/adabiat" class="dropdown-link"><i class="fas fa-book"></i> ادبیات</a></li>
-                        <li><a href="/category/honar" class="dropdown-link"><i class="fas fa-palette"></i> هنر</a></li>
-                        <li><a href="/category/danesh" class="dropdown-link"><i class="fas fa-flask"></i> دانش</a></li>
-                        <li><a href="/category/siasi" class="dropdown-link"><i class="fas fa-university"></i> شخصیت‌های سیاسی</a></li>
-                        <li><a href="/category/varzesh" class="dropdown-link"><i class="fas fa-futbol"></i> ورزش</a></li>
-                    </ul>
-                </li>
-                
-                <!-- منوی آبشاری جدیدترین‌ها -->
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-newspaper"></i> جدیدترین‌ها
-                        <i class="fas fa-chevron-down" style="margin-right: 5px; font-size: 0.9rem;"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/latest/week" class="dropdown-link"><i class="fas fa-calendar-week"></i> این هفته</a></li>
-                        <li><a href="/latest/month" class="dropdown-link"><i class="fas fa-calendar-alt"></i> این ماه</a></li>
-                        <li><a href="/latest/year" class="dropdown-link"><i class="fas fa-calendar"></i> امسال</a></li>
-                    </ul>
-                </li>
-                
-                <!-- منوی آبشاری محبوب‌ترین‌ها -->
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-fire"></i> محبوب‌ترین‌ها
-                        <i class="fas fa-chevron-down" style="margin-right: 5px; font-size: 0.9rem;"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/popular/all" class="dropdown-link"><i class="fas fa-chart-line"></i> همه زمان‌ها</a></li>
-                        <li><a href="/popular/month" class="dropdown-link"><i class="fas fa-chart-bar"></i> ماه جاری</a></li>
-                    </ul>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="/about" class="nav-link">
-                        <i class="fas fa-info-circle"></i> درباره ما
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="/contact" class="nav-link">
-                        <i class="fas fa-envelope"></i> تماس با ما
-                    </a>
-                </li>
-            </ul>
+            </a>
         </div>
     </header>
     
@@ -824,10 +577,10 @@ layout: null
             <!-- دکمه‌های اکشن -->
             <div class="action-buttons">
                 <a href="/category/all" class="btn btn-primary">
-                    <i class="fas fa-book-open"></i> مشاهده همه بیوگرافی‌ها
+                    مشاهده همه بیوگرافی‌ها
                 </a>
                 <a href="/about" class="btn btn-outline">
-                    <i class="fas fa-question-circle"></i> درباره وبلاگ
+                    درباره وبلاگ
                 </a>
             </div>
             
@@ -866,102 +619,21 @@ layout: null
         </section>
     </main>
     
-    <!-- فوتر -->
+    <!-- فوتر ساده -->
     <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>وبلاگ پاسگاه</h3>
-                <p>مرجع بیوگرافی افراد مشهور و تأثیرگذار در حوزه‌های مختلف. ارائه محتوای معتبر و به دور از شایعات و اخبار زرد.</p>
-            </div>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="/category/all">همه بیوگرافی‌ها</a></li>
+                <li><a href="/about">درباره ما</a></li>
+                <li><a href="/contact">تماس با ما</a></li>
+                <li><a href="/privacy">حریم خصوصی</a></li>
+            </ul>
             
-            <div class="footer-section">
-                <h3>دسته‌بندی‌ها</h3>
-                <ul class="footer-links">
-                    <li><a href="/category/tarikh"><i class="fas fa-landmark"></i> تاریخ</a></li>
-                    <li><a href="/category/adabiat"><i class="fas fa-book"></i> ادبیات</a></li>
-                    <li><a href="/category/honar"><i class="fas fa-palette"></i> هنر</a></li>
-                    <li><a href="/category/danesh"><i class="fas fa-flask"></i> دانش</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>© ۲۰۲۳ وبلاگ پاسگاه. تمامی حقوق محفوظ است.</p>
+                <p>ارائه محتوای معتبر و به دور از شایعات و اخبار زرد.</p>
             </div>
-            
-            <div class="footer-section">
-                <h3>لینک‌های مفید</h3>
-                <ul class="footer-links">
-                    <li><a href="/about"><i class="fas fa-info-circle"></i> درباره ما</a></li>
-                    <li><a href="/contact"><i class="fas fa-envelope"></i> تماس با ما</a></li>
-                    <li><a href="/privacy"><i class="fas fa-shield-alt"></i> حریم خصوصی</a></li>
-                    <li><a href="/terms"><i class="fas fa-file-contract"></i> شرایط استفاده</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>© ۲۰۲۳ وبلاگ پاسگاه. تمامی حقوق محفوظ است.</p>
         </div>
     </footer>
-    
-    <!-- اسکریپت برای منوی موبایل -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navMenu = document.getElementById('navMenu');
-            const dropdowns = document.querySelectorAll('.dropdown');
-            
-            // مدیریت باز و بسته شدن منوی موبایل
-            mobileMenuBtn.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-            
-            // مدیریت منوهای آبشاری در موبایل
-            dropdowns.forEach(dropdown => {
-                const link = dropdown.querySelector('.nav-link');
-                
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 992) {
-                        e.preventDefault();
-                        const menu = dropdown.querySelector('.dropdown-menu');
-                        menu.classList.toggle('active');
-                        
-                        // بستن سایر منوهای باز
-                        dropdowns.forEach(otherDropdown => {
-                            if (otherDropdown !== dropdown) {
-                                otherDropdown.querySelector('.dropdown-menu').classList.remove('active');
-                            }
-                        });
-                    }
-                });
-            });
-            
-            // بستن منو با کلیک بیرون
-            document.addEventListener('click', function(e) {
-                if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    navMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    // بستن منوهای آبشاری در موبایل
-                    if (window.innerWidth <= 992) {
-                        dropdowns.forEach(dropdown => {
-                            dropdown.querySelector('.dropdown-menu').classList.remove('active');
-                        });
-                    }
-                }
-            });
-            
-            // بستن منو با اسکرول (فقط در موبایل)
-            window.addEventListener('scroll', function() {
-                if (window.innerWidth <= 992) {
-                    navMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    dropdowns.forEach(dropdown => {
-                        dropdown.querySelector('.dropdown-menu').classList.remove('active');
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
