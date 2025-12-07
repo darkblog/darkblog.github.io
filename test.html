@@ -62,7 +62,6 @@ layout: null
             min-height: 100vh;
         }
         
-        /* ========== بنر اصلی ========== */
         .hero-section {
             background: var(--white);
             min-height: 500px;
@@ -96,7 +95,6 @@ layout: null
             z-index: 2;
         }
         
-        /* لوگو */
         .site-logo {
             height: 100px;
             width: 100px;
@@ -124,7 +122,6 @@ layout: null
             border-radius: 50%;
         }
         
-        /* عنوان اصلی صفحه */
         .page-title {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -146,7 +143,6 @@ layout: null
             border-radius: 2px;
         }
         
-        /* توضیحات صفحه */
         .page-description {
             font-size: 1.4rem;
             margin-bottom: 40px;
@@ -157,7 +153,6 @@ layout: null
             line-height: 1.8;
         }
         
-        /* ========== محتوای اصلی ========== */
         main {
             flex: 1;
             margin: 0 auto 40px;
@@ -249,7 +244,6 @@ layout: null
                 radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
         }
         
-        /* ========== دکمه بارگذاری بیشتر ========== */
         .load-more-container {
             text-align: center;
             margin-top: 50px;
@@ -307,7 +301,6 @@ layout: null
             }
         }
         
-        /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
             .page-title {
                 font-size: 2.5rem;
@@ -429,15 +422,12 @@ layout: null
     </style>
 </head>
 <body>
-    <!-- بنر اصلی -->
     <section class="hero-section">
         <div class="hero-content">
-            <!-- لوگو -->
             <a href="https://www.pasgah.org/" class="site-logo">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
             </a>
             
-            <!-- عنوان و توضیحات صفحه -->
             <h1 class="page-title">بیوگرافی افراد مشهور</h1>
             <p class="page-description">
                 مرجعی معتبر برای مطالعه زندگی‌نامه شخصیت‌های تأثیرگذار تاریخ، ادبیات، هنر و دانش. 
@@ -446,7 +436,6 @@ layout: null
         </div>
     </section>
     
-    <!-- محتوای اصلی -->
     <main>
         <section class="posts-container" id="postsContainer">
             {% for post in site.posts %}
@@ -459,7 +448,6 @@ layout: null
             {% endfor %}
         </section>
         
-        <!-- دکمه بارگذاری بیشتر -->
         <div class="load-more-container" id="loadMoreContainer" style="display: none;">
             <button class="load-more-btn" id="loadMoreBtn">نمایش پست‌های بیشتر</button>
         </div>
@@ -474,7 +462,6 @@ layout: null
             const postsPerPage = 10;
             let currentVisibleCount = postsPerPage;
             
-            // مخفی کردن پست‌های بیش از 10 تای اول
             function hideExtraPosts() {
                 allPosts.forEach((post, index) => {
                     if (index >= currentVisibleCount) {
@@ -485,37 +472,30 @@ layout: null
                 });
             }
             
-            // نمایش پست‌های بیشتر
             function showMorePosts() {
                 currentVisibleCount += postsPerPage;
                 
-                // نمایش پست‌های جدید
                 allPosts.forEach((post, index) => {
                     if (index < currentVisibleCount) {
                         post.style.display = 'block';
                     }
                 });
                 
-                // اگر همه پست‌ها نمایش داده شدند، دکمه را مخفی کن
                 if (currentVisibleCount >= allPosts.length) {
                     loadMoreContainer.style.display = 'none';
                 }
                 
-                // اسکرول نرم به آخرین پست نمایش داده شده
                 const lastVisiblePost = allPosts[Math.min(currentVisibleCount, allPosts.length) - 1];
                 lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
             
-            // مقداردهی اولیه
             if (allPosts.length > postsPerPage) {
                 loadMoreContainer.style.display = 'block';
                 hideExtraPosts();
             }
             
-            // رویداد کلیک برای دکمه
             loadMoreBtn.addEventListener('click', showMorePosts);
             
-            // به‌روزرسانی متن دکمه بر اساس تعداد پست‌های باقی‌مانده
             function updateButtonText() {
                 const remainingPosts = allPosts.length - currentVisibleCount;
                 if (remainingPosts > 0) {
@@ -525,15 +505,12 @@ layout: null
                 }
             }
             
-            // فراخوانی اولیه برای به‌روزرسانی متن دکمه
             updateButtonText();
             
-            // به‌روزرسانی متن دکمه بعد از هر کلیک
             loadMoreBtn.addEventListener('click', function() {
                 setTimeout(updateButtonText, 100);
             });
             
-            // بهبود تجربه کاربری: ذخیره وضعیت فعلی در localStorage
             function saveState() {
                 localStorage.setItem('postsVisibleCount', currentVisibleCount.toString());
             }
@@ -550,13 +527,10 @@ layout: null
                 }
             }
             
-            // بارگذاری وضعیت ذخیره شده
             loadState();
             
-            // ذخیره وضعیت هنگام کلیک
             loadMoreBtn.addEventListener('click', saveState);
             
-            // ذخیره وضعیت هنگام بسته شدن صفحه
             window.addEventListener('beforeunload', saveState);
         });
     </script>
