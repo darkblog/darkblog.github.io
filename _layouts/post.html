@@ -86,7 +86,7 @@
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             padding: 40px 20px;
             position: relative;
             z-index: 2;
@@ -123,7 +123,7 @@
         /* عنوان پست */
         .post-title-main {
             font-size: 2.8rem;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             color: var(--text-color);
             position: relative;
             padding-bottom: 20px;
@@ -140,6 +140,79 @@
             height: 4px;
             background: var(--primary-color);
             border-radius: 2px;
+        }
+        
+        /* تصویر اصلی پست با لود تاخیری */
+        .post-main-image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            background: var(--light-gray);
+            min-height: 400px;
+            box-shadow: var(--shadow);
+        }
+        
+        .post-main-image-placeholder {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-gray), #e9ecef);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .post-main-image-placeholder .loading-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .post-main-image-placeholder .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation: dotPulse 1.5s infinite ease-in-out;
+        }
+        
+        .post-main-image-placeholder .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .post-main-image-placeholder .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+        
+        .post-main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: none;
+        }
+        
+        .post-main-image.loaded {
+            opacity: 1;
+            display: block;
         }
         
         /* ========== محتوای پست ========== */
@@ -280,192 +353,20 @@
             color: #d63384;
         }
         
-        /* ========== بخش مطالب سایت ========== */
-        .related-posts {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .related-posts-title {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--text-color);
-            text-align: center;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .related-posts-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        .posts-container {
-            display: grid;
-            gap: 40px;
-        }
-        
-        .post-card {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            padding: 0;
-        }
-        
-        .post-card:hover {
-            box-shadow: var(--shadow-strong);
-            transform: translateY(-5px);
-            border-color: rgba(220, 53, 69, 0.3);
-        }
-        
-        .post-card-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        
-        .post-image-container {
-            position: relative;
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            background: var(--light-gray);
-            border-radius: var(--radius) var(--radius) 0 0;
-        }
-        
-        .post-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .post-image.loaded {
-            opacity: 1;
-        }
-        
-        .post-card:hover .post-image {
-            transform: scale(1.05);
-        }
-        
-        .post-image-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--light-gray), #e9ecef);
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-        
-        .post-content-info {
-            padding: 30px;
-        }
-        
-        .post-card-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .post-card-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        .post-card-link:hover .post-card-title {
-            color: var(--primary-color);
-        }
-        
-        /* ========== دکمه بارگذاری بیشتر ========== */
-        .load-more-container {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .load-more-btn {
-            padding: 15px 40px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-family: 'BBC Reith Qalam', sans-serif;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .load-more-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
-        }
-        
-        .load-more-btn:active {
-            transform: translateY(-1px);
-        }
-        
-        .load-more-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: translateX(-100%);
-        }
-        
-        .load-more-btn:hover::after {
-            animation: shimmer 1.5s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-        
         /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
             .post-title-main {
                 font-size: 2.4rem;
             }
             
-            .related-posts-title {
-                font-size: 1.8rem;
+            .post-main-image-container {
+                max-width: 700px;
+                min-height: 350px;
+            }
+            
+            .post-main-image-placeholder,
+            .post-main-image {
+                height: 350px;
             }
         }
         
@@ -489,11 +390,23 @@
             .post-title-main {
                 font-size: 2.2rem;
                 padding-bottom: 15px;
+                margin-bottom: 30px;
             }
             
             .post-title-main::after {
                 width: 80px;
                 height: 3px;
+            }
+            
+            .post-main-image-container {
+                max-width: 100%;
+                min-height: 300px;
+                margin-bottom: 40px;
+            }
+            
+            .post-main-image-placeholder,
+            .post-main-image {
+                height: 300px;
             }
             
             .post-content-container {
@@ -503,38 +416,6 @@
             
             .post-content {
                 font-size: 1.1rem;
-            }
-            
-            .related-posts {
-                margin-top: 30px;
-                padding-top: 30px;
-            }
-            
-            .related-posts-title {
-                font-size: 1.7rem;
-                margin-bottom: 25px;
-            }
-            
-            .post-image-container {
-                height: 220px;
-            }
-            
-            .post-content-info {
-                padding: 25px;
-            }
-            
-            .posts-container {
-                gap: 30px;
-            }
-            
-            .load-more-container {
-                margin-top: 40px;
-                padding-top: 25px;
-            }
-            
-            .load-more-btn {
-                padding: 14px 35px;
-                font-size: 1rem;
             }
         }
         
@@ -558,10 +439,21 @@
             .post-title-main {
                 font-size: 1.9rem;
                 padding-bottom: 12px;
+                margin-bottom: 25px;
             }
             
             .post-title-main::after {
                 width: 60px;
+            }
+            
+            .post-main-image-container {
+                min-height: 250px;
+                margin-bottom: 30px;
+            }
+            
+            .post-main-image-placeholder,
+            .post-main-image {
+                height: 250px;
             }
             
             .post-content-container {
@@ -571,38 +463,6 @@
             
             .post-content {
                 font-size: 1rem;
-            }
-            
-            .related-posts {
-                margin-top: 25px;
-                padding-top: 25px;
-            }
-            
-            .related-posts-title {
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-            }
-            
-            .post-image-container {
-                height: 200px;
-            }
-            
-            .post-content-info {
-                padding: 20px;
-            }
-            
-            .posts-container {
-                gap: 25px;
-            }
-            
-            .load-more-container {
-                margin-top: 30px;
-                padding-top: 20px;
-            }
-            
-            .load-more-btn {
-                padding: 13px 30px;
-                font-size: 0.95rem;
             }
         }
     </style>
@@ -618,6 +478,32 @@
             
             <!-- عنوان پست -->
             <h1 class="post-title-main">{{ page.title }}</h1>
+            
+            <!-- تصویر اصلی پست با لود تاخیری -->
+            <div class="post-main-image-container">
+                <div class="post-main-image-placeholder">
+                    <span>در حال بارگذاری تصویر پست...</span>
+                    <div class="loading-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+                {% if page.image %}
+                <img 
+                    data-src="{{ page.image }}" 
+                    alt="{{ page.title }}" 
+                    class="post-main-image"
+                >
+                {% else %}
+                <!-- تصویر پیش‌فرض یا لوگو سایت -->
+                <img 
+                    data-src="https://www.pasgah.org/biography/logo.webp" 
+                    alt="{{ page.title }}" 
+                    class="post-main-image"
+                >
+                {% endif %}
+            </div>
         </div>
     </section>
     
@@ -629,262 +515,128 @@
                 {{ content }}
             </article>
         </div>
-        
-        <!-- مطالب سایت -->
-        <section class="related-posts">
-            <h2 class="related-posts-title">مطالب دیگر سایت</h2>
-            
-            <div class="posts-container" id="relatedPostsContainer">
-                <!-- فیلتر کردن پست فعلی و نمایش سایر پست‌ها -->
-                {% assign current_post_url = page.url %}
-                {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                
-                {% for post in all_posts %}
-                <article class="post-card" data-post-index="{{ forloop.index }}">
-                    <a href="{{ post.url }}" class="post-card-link">
-                        <!-- تصویر پست -->
-                        <div class="post-image-container">
-                            <div class="post-image-placeholder">
-                                در حال بارگذاری تصویر...
-                            </div>
-                            <!-- تصویر اصلی با لود تاخیری -->
-                            <img 
-                                data-src="{% if post.image %}{{ post.image }}{% else %}https://www.pasgah.org/biography/logo.webp{% endif %}" 
-                                alt="{{ post.title }}" 
-                                class="post-image"
-                                loading="lazy"
-                            >
-                        </div>
-                        
-                        <!-- اطلاعات پست -->
-                        <div class="post-content-info">
-                            <h3 class="post-card-title">{{ post.title }}</h3>
-                        </div>
-                    </a>
-                </article>
-                {% endfor %}
-            </div>
-            
-            <!-- دکمه بارگذاری بیشتر -->
-            <div class="load-more-container" id="loadMoreContainer" style="display: none;">
-                <button class="load-more-btn" id="loadMoreBtn">نمایش مطالب بیشتر</button>
-            </div>
-        </section>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const relatedPostsContainer = document.getElementById('relatedPostsContainer');
-            const loadMoreContainer = document.getElementById('loadMoreContainer');
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            const allRelatedPosts = relatedPostsContainer.querySelectorAll('.post-card');
-            const postsPerPage = 3;
-            let currentVisibleCount = postsPerPage;
+            // سیستم لود تاخیری تصویر اصلی پست
+            const postMainImageContainer = document.querySelector('.post-main-image-container');
+            const postMainImage = document.querySelector('.post-main-image');
+            const postMainImagePlaceholder = document.querySelector('.post-main-image-placeholder');
             
-            // سیستم لود تاخیری تصاویر
-            const lazyLoadImages = () => {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            const src = img.getAttribute('data-src');
-                            
-                            if (src) {
-                                // تاخیر تصادفی بین 500 تا 2000 میلی‌ثانیه برای شبیه‌سازی لود واقعی
-                                const delay = Math.floor(Math.random() * 1500) + 500;
-                                
-                                setTimeout(() => {
-                                    img.src = src;
-                                    img.classList.add('loaded');
-                                    
-                                    // حذف placeholder بعد از لود تصویر
-                                    const placeholder = img.previousElementSibling;
-                                    if (placeholder && placeholder.classList.contains('post-image-placeholder')) {
-                                        placeholder.style.opacity = '0';
-                                        setTimeout(() => {
-                                            placeholder.style.display = 'none';
-                                        }, 300);
-                                    }
-                                }, delay);
+            if (postMainImage) {
+                // تأخیر تصادفی بین 1000 تا 3000 میلی‌ثانیه برای شبیه‌سازی لود واقعی
+                const delay = Math.floor(Math.random() * 2000) + 1000;
+                
+                // نمایش انیمیشن لودینگ
+                let startTime = Date.now();
+                const loadingInterval = setInterval(() => {
+                    const elapsed = Date.now() - startTime;
+                    if (elapsed < delay) {
+                        // به‌روزرسانی متن placeholder بر اساس زمان باقی‌مانده
+                        const remaining = Math.ceil((delay - elapsed) / 1000);
+                        if (postMainImagePlaceholder) {
+                            const span = postMainImagePlaceholder.querySelector('span');
+                            if (span) {
+                                span.textContent = `در حال بارگذاری تصویر پست... (${remaining} ثانیه باقی مانده)`;
                             }
-                            
-                            observer.unobserve(img);
                         }
-                    });
-                }, {
-                    rootMargin: '100px', // شروع لود قبل از رسیدن به viewport
-                    threshold: 0.1
-                });
+                    }
+                }, 500);
                 
-                // مشاهده تمام تصاویر لود نشده
-                const images = relatedPostsContainer.querySelectorAll('img[data-src]:not(.loaded)');
-                images.forEach(img => {
-                    imageObserver.observe(img);
-                });
-            };
-            
-            // لود تصاویر قابل مشاهده
-            const loadVisibleImages = () => {
-                const visiblePosts = Array.from(allRelatedPosts).slice(0, currentVisibleCount);
-                visiblePosts.forEach(post => {
-                    const img = post.querySelector('img[data-src]:not(.loaded)');
-                    if (img) {
-                        const src = img.getAttribute('data-src');
-                        const delay = Math.floor(Math.random() * 1000) + 300;
-                        
-                        setTimeout(() => {
-                            img.src = src;
-                            img.classList.add('loaded');
+                // لود تصویر بعد از تأخیر
+                setTimeout(() => {
+                    clearInterval(loadingInterval);
+                    
+                    const src = postMainImage.getAttribute('data-src');
+                    if (src) {
+                        // ایجاد یک تصویر جدید برای پیش‌لود
+                        const tempImage = new Image();
+                        tempImage.onload = function() {
+                            // وقتی تصویر لود شد، آن را به تگ اصلی منتقل کنیم
+                            postMainImage.src = src;
+                            postMainImage.classList.add('loaded');
                             
-                            const placeholder = img.previousElementSibling;
-                            if (placeholder && placeholder.classList.contains('post-image-placeholder')) {
-                                placeholder.style.opacity = '0';
-                                setTimeout(() => {
-                                    placeholder.style.display = 'none';
-                                }, 300);
-                            }
-                        }, delay);
-                    }
-                });
-            };
-            
-            // مخفی کردن پست‌های بیش از 3 تای اول
-            const hideExtraPosts = () => {
-                allRelatedPosts.forEach((post, index) => {
-                    if (index >= currentVisibleCount) {
-                        post.style.display = 'none';
-                    } else {
-                        post.style.display = 'block';
-                    }
-                });
-            };
-            
-            // نمایش پست‌های بیشتر
-            const showMorePosts = () => {
-                const previousVisibleCount = currentVisibleCount;
-                currentVisibleCount += postsPerPage;
-                
-                // نمایش پست‌های جدید
-                allRelatedPosts.forEach((post, index) => {
-                    if (index < currentVisibleCount && index >= previousVisibleCount) {
-                        post.style.display = 'block';
-                        
-                        // لود تاخیری تصویر پست‌های جدید
-                        setTimeout(() => {
-                            const img = post.querySelector('img[data-src]:not(.loaded)');
-                            if (img) {
-                                const src = img.getAttribute('data-src');
-                                const delay = Math.floor(Math.random() * 1500) + 500;
+                            // مخفی کردن placeholder با انیمیشن fade out
+                            if (postMainImagePlaceholder) {
+                                postMainImagePlaceholder.style.opacity = '0';
+                                postMainImagePlaceholder.style.transition = 'opacity 0.5s ease';
                                 
                                 setTimeout(() => {
-                                    img.src = src;
-                                    img.classList.add('loaded');
-                                    
-                                    const placeholder = img.previousElementSibling;
-                                    if (placeholder && placeholder.classList.contains('post-image-placeholder')) {
-                                        placeholder.style.opacity = '0';
-                                        setTimeout(() => {
-                                            placeholder.style.display = 'none';
-                                        }, 300);
-                                    }
-                                }, delay);
+                                    postMainImagePlaceholder.style.display = 'none';
+                                }, 500);
                             }
-                        }, 100);
+                        };
+                        
+                        tempImage.onerror = function() {
+                            // اگر تصویر لود نشد، از تصویر fallback استفاده کن
+                            console.warn('تصویر اصلی لود نشد، از تصویر fallback استفاده می‌شود.');
+                            postMainImage.src = 'https://www.pasgah.org/biography/logo.webp';
+                            postMainImage.classList.add('loaded');
+                            
+                            if (postMainImagePlaceholder) {
+                                postMainImagePlaceholder.style.opacity = '0';
+                                postMainImagePlaceholder.style.transition = 'opacity 0.5s ease';
+                                
+                                setTimeout(() => {
+                                    postMainImagePlaceholder.style.display = 'none';
+                                }, 500);
+                            }
+                        };
+                        
+                        tempImage.src = src;
+                    }
+                }, delay);
+                
+                // اضافه کردن قابلیت کلیک برای باز کردن تصویر در سایز اصلی
+                postMainImage.addEventListener('click', function() {
+                    if (this.classList.contains('loaded')) {
+                        const fullScreenImage = document.createElement('div');
+                        fullScreenImage.style.position = 'fixed';
+                        fullScreenImage.style.top = '0';
+                        fullScreenImage.style.right = '0';
+                        fullScreenImage.style.bottom = '0';
+                        fullScreenImage.style.left = '0';
+                        fullScreenImage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                        fullScreenImage.style.zIndex = '9999';
+                        fullScreenImage.style.display = 'flex';
+                        fullScreenImage.style.alignItems = 'center';
+                        fullScreenImage.style.justifyContent = 'center';
+                        fullScreenImage.style.cursor = 'zoom-out';
+                        
+                        const img = document.createElement('img');
+                        img.src = this.src;
+                        img.style.maxWidth = '90%';
+                        img.style.maxHeight = '90%';
+                        img.style.borderRadius = '8px';
+                        img.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.5)';
+                        
+                        fullScreenImage.appendChild(img);
+                        document.body.appendChild(fullScreenImage);
+                        
+                        // بستن با کلیک
+                        fullScreenImage.addEventListener('click', function() {
+                            document.body.removeChild(fullScreenImage);
+                        });
+                        
+                        // بستن با دکمه Escape
+                        document.addEventListener('keydown', function closeOnEscape(e) {
+                            if (e.key === 'Escape') {
+                                if (document.body.contains(fullScreenImage)) {
+                                    document.body.removeChild(fullScreenImage);
+                                }
+                                document.removeEventListener('keydown', closeOnEscape);
+                            }
+                        });
                     }
                 });
-                
-                // اگر همه پست‌ها نمایش داده شدند، دکمه را مخفی کن
-                if (currentVisibleCount >= allRelatedPosts.length) {
-                    loadMoreContainer.style.display = 'none';
-                }
-                
-                // اسکرول نرم به اولین پست جدید
-                const firstNewPost = allRelatedPosts[previousVisibleCount];
-                if (firstNewPost) {
-                    setTimeout(() => {
-                        firstNewPost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 300);
-                }
-                
-                // به‌روزرسانی متن دکمه
-                updateButtonText();
-            };
-            
-            // به‌روزرسانی متن دکمه بر اساس تعداد پست‌های باقی‌مانده
-            const updateButtonText = () => {
-                const remainingPosts = allRelatedPosts.length - currentVisibleCount;
-                if (remainingPosts > 0) {
-                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} مطلب دیگر (${remainingPosts} مطلب باقی‌مانده)`;
-                } else {
-                    loadMoreBtn.textContent = 'همه مطالب نمایش داده شدند';
-                    setTimeout(() => {
-                        loadMoreContainer.style.display = 'none';
-                    }, 2000);
-                }
-            };
-            
-            // مقداردهی اولیه
-            if (allRelatedPosts.length > postsPerPage) {
-                loadMoreContainer.style.display = 'block';
-                hideExtraPosts();
-                updateButtonText();
-            } else if (allRelatedPosts.length > 0) {
-                hideExtraPosts();
-                loadMoreContainer.style.display = 'none';
-            } else {
-                document.querySelector('.related-posts').style.display = 'none';
             }
             
-            // لود تصاویر اولیه
-            loadVisibleImages();
-            
-            // شروع سیستم لود تاخیری برای تصاویر بعدی
-            setTimeout(lazyLoadImages, 1000);
-            
-            // رویداد کلیک برای دکمه
-            loadMoreBtn.addEventListener('click', showMorePosts);
-            
-            // بهبود تجربه کاربری: ذخیره وضعیت فعلی در localStorage
-            const saveState = () => {
-                localStorage.setItem('relatedPostsVisibleCount', currentVisibleCount.toString());
-            };
-            
-            const loadState = () => {
-                const savedCount = localStorage.getItem('relatedPostsVisibleCount');
-                if (savedCount) {
-                    const parsedCount = parseInt(savedCount);
-                    if (parsedCount > postsPerPage && parsedCount <= allRelatedPosts.length) {
-                        currentVisibleCount = parsedCount;
-                        hideExtraPosts();
-                        updateButtonText();
-                        loadVisibleImages();
-                    }
-                }
-            };
-            
-            // بارگذاری وضعیت ذخیره شده
-            loadState();
-            
-            // ذخیره وضعیت هنگام کلیک
-            loadMoreBtn.addEventListener('click', saveState);
-            
-            // ذخیره وضعیت هنگام بسته شدن صفحه
-            window.addEventListener('beforeunload', saveState);
-            
-            // ذخیره URL پست فعلی برای تشخیص در آینده
-            localStorage.setItem('currentPostUrl', window.location.pathname);
-            
-            // اگر URL پست تغییر کرده، وضعیت ذخیره شده را پاک کن
-            const savedPostUrl = localStorage.getItem('savedPostUrl');
-            if (savedPostUrl && savedPostUrl !== window.location.pathname) {
-                localStorage.removeItem('relatedPostsVisibleCount');
+            // اضافه کردن استایل cursor: pointer برای نشان دادن قابلیت کلیک
+            if (postMainImageContainer) {
+                postMainImageContainer.style.cursor = 'pointer';
+                postMainImageContainer.title = 'برای مشاهده در سایز اصلی کلیک کنید';
             }
-            localStorage.setItem('savedPostUrl', window.location.pathname);
-            
-            // لود تاخیری تصاویر هنگام اسکرول
-            window.addEventListener('scroll', () => {
-                lazyLoadImages();
-            }, { passive: true });
         });
     </script>
 </body>
