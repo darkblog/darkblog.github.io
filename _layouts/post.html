@@ -58,7 +58,6 @@
             min-height: 100vh;
         }
         
-        /* ========== بنر اصلی ========== */
         .hero-section {
             background: var(--white);
             min-height: 350px;
@@ -92,7 +91,6 @@
             z-index: 2;
         }
         
-        /* لوگو */
         .site-logo {
             height: 80px;
             width: 80px;
@@ -120,7 +118,6 @@
             border-radius: 50%;
         }
         
-        /* عنوان پست */
         .post-title-main {
             font-size: 2.8rem;
             margin-bottom: 40px;
@@ -142,7 +139,6 @@
             border-radius: 2px;
         }
         
-        /* تصویر اصلی پست با Lazy Loading */
         .post-main-image-container {
             width: 100%;
             max-width: 800px;
@@ -170,7 +166,6 @@
             opacity: 1;
         }
         
-        /* ========== محتوای پست ========== */
         main {
             flex: 1;
             margin: 0 auto 60px;
@@ -308,7 +303,6 @@
             color: #d63384;
         }
         
-        /* ========== بخش مطالب سایت ========== */
         .related-posts {
             margin-top: 40px;
             padding-top: 40px;
@@ -421,7 +415,6 @@
                 radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
         }
         
-        /* ========== دکمه بارگذاری بیشتر ========== */
         .load-more-container {
             text-align: center;
             margin-top: 50px;
@@ -479,7 +472,6 @@
             }
         }
         
-        /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
             .post-title-main {
                 font-size: 2.4rem;
@@ -659,18 +651,14 @@
     </style>
 </head>
 <body>
-    <!-- بنر اصلی -->
     <section class="hero-section">
         <div class="hero-content">
-            <!-- لوگو -->
             <a href="https://www.pasgah.org/" class="site-logo">
                 <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
             </a>
             
-            <!-- عنوان پست -->
             <h1 class="post-title-main">{{ page.title }}</h1>
             
-            <!-- تصویر اصلی پست با Lazy Loading -->
             {% if page.image %}
             <div class="post-main-image-container">
                 <img 
@@ -686,21 +674,17 @@
         </div>
     </section>
     
-    <!-- محتوای اصلی -->
     <main>
-        <!-- محتوای پست -->
         <div class="post-content-container">
             <article class="post-content">
                 {{ content }}
             </article>
         </div>
         
-        <!-- مطالب سایت -->
         <section class="related-posts">
             <h2 class="related-posts-title">مطالب دیگر سایت</h2>
             
             <div class="posts-container" id="relatedPostsContainer">
-                <!-- فیلتر کردن پست فعلی و نمایش سایر پست‌ها -->
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                 
@@ -708,7 +692,6 @@
                 <article class="post-card">
                     <a href="{{ post.url }}" class="post-card-link">
                         <h3 class="post-card-title">{{ post.title }}</h3>
-                        <!-- اضافه کردن توضیحات پست -->
                         {% if post.description %}
                         <div class="post-card-description">{{ post.description }}</div>
                         {% elsif post.excerpt %}
@@ -719,7 +702,6 @@
                 {% endfor %}
             </div>
             
-            <!-- دکمه بارگذاری بیشتر -->
             <div class="load-more-container" id="loadMoreContainer" style="display: none;">
                 <button class="load-more-btn" id="loadMoreBtn">نمایش مطالب بیشتر</button>
             </div>
@@ -728,7 +710,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // قابلیت کلیک برای باز کردن تصویر در سایز اصلی
             const postMainImage = document.querySelector('.post-main-image');
             
             if (postMainImage && postMainImage.classList.contains('loaded')) {
@@ -756,12 +737,10 @@
                     fullScreenImage.appendChild(img);
                     document.body.appendChild(fullScreenImage);
                     
-                    // بستن با کلیک
                     fullScreenImage.addEventListener('click', function() {
                         document.body.removeChild(fullScreenImage);
                     });
                     
-                    // بستن با دکمه Escape
                     document.addEventListener('keydown', function closeOnEscape(e) {
                         if (e.key === 'Escape') {
                             if (document.body.contains(fullScreenImage)) {
@@ -772,12 +751,10 @@
                     });
                 });
                 
-                // اضافه کردن استایل cursor: pointer برای نشان دادن قابلیت کلیک
                 postMainImage.style.cursor = 'pointer';
                 postMainImage.title = 'برای مشاهده در سایز اصلی کلیک کنید';
             }
             
-            // سیستم نمایش پست‌های انتهای صفحه
             const relatedPostsContainer = document.getElementById('relatedPostsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -785,7 +762,6 @@
             const postsPerPage = 3;
             let currentVisibleCount = postsPerPage;
             
-            // مخفی کردن پست‌های بیش از 3 تای اول
             function hideExtraPosts() {
                 allRelatedPosts.forEach((post, index) => {
                     if (index >= currentVisibleCount) {
@@ -796,33 +772,27 @@
                 });
             }
             
-            // نمایش پست‌های بیشتر
             function showMorePosts() {
                 currentVisibleCount += postsPerPage;
                 
-                // نمایش پست‌های جدید
                 allRelatedPosts.forEach((post, index) => {
                     if (index < currentVisibleCount) {
                         post.style.display = 'block';
                     }
                 });
                 
-                // اگر همه پست‌ها نمایش داده شدند، دکمه را مخفی کن
                 if (currentVisibleCount >= allRelatedPosts.length) {
                     loadMoreContainer.style.display = 'none';
                 }
                 
-                // اسکرول نرم به آخرین پست نمایش داده شده
                 const lastVisiblePost = allRelatedPosts[Math.min(currentVisibleCount, allRelatedPosts.length) - 1];
                 if (lastVisiblePost) {
                     lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
                 
-                // به‌روزرسانی متن دکمه
                 updateButtonText();
             }
             
-            // به‌روزرسانی متن دکمه بر اساس تعداد پست‌های باقی‌مانده
             function updateButtonText() {
                 const remainingPosts = allRelatedPosts.length - currentVisibleCount;
                 if (remainingPosts > 0) {
@@ -835,7 +805,6 @@
                 }
             }
             
-            // مقداردهی اولیه
             if (allRelatedPosts.length > postsPerPage) {
                 loadMoreContainer.style.display = 'block';
                 hideExtraPosts();
@@ -847,10 +816,8 @@
                 document.querySelector('.related-posts').style.display = 'none';
             }
             
-            // رویداد کلیک برای دکمه
             loadMoreBtn.addEventListener('click', showMorePosts);
             
-            // بهبود تجربه کاربری: ذخیره وضعیت فعلی در localStorage
             function saveState() {
                 localStorage.setItem('relatedPostsVisibleCount', currentVisibleCount.toString());
             }
@@ -867,19 +834,14 @@
                 }
             }
             
-            // بارگذاری وضعیت ذخیره شده
             loadState();
             
-            // ذخیره وضعیت هنگام کلیک
             loadMoreBtn.addEventListener('click', saveState);
             
-            // ذخیره وضعیت هنگام بسته شدن صفحه
             window.addEventListener('beforeunload', saveState);
             
-            // ذخیره URL پست فعلی برای تشخیص در آینده
             localStorage.setItem('currentPostUrl', window.location.pathname);
             
-            // اگر URL پست تغییر کرده، وضعیت ذخیره شده را پاک کن
             const savedPostUrl = localStorage.getItem('savedPostUrl');
             if (savedPostUrl && savedPostUrl !== window.location.pathname) {
                 localStorage.removeItem('relatedPostsVisibleCount');
