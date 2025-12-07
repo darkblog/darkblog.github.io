@@ -416,7 +416,7 @@
         
         .post-card-title {
             font-size: 1.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             color: var(--text-color);
             position: relative;
             padding-bottom: 15px;
@@ -437,14 +437,6 @@
             color: inherit;
             text-decoration: none;
             display: block;
-        }
-        
-        .post-excerpt {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            position: relative;
-            z-index: 1;
         }
         
         .post-card-link {
@@ -701,13 +693,14 @@
         <div class="hero-content">
             <!-- لوگو -->
             <a href="https://www.pasgah.org/" class="site-logo">
-                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4 IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
             </a>
             
             <!-- عنوان پست -->
             <h1 class="post-title-main">{{ page.title }}</h1>
             
             <!-- تصویر اصلی پست با لود تاخیری -->
+            {% if page.image %}
             <div class="post-main-image-container">
                 <div class="post-main-image-placeholder">
                     <span>در حال بارگذاری تصویر پست...</span>
@@ -717,21 +710,13 @@
                         <div class="dot"></div>
                     </div>
                 </div>
-                {% if page.image %}
                 <img 
                     data-src="{{ page.image }}" 
                     alt="{{ page.title }}" 
                     class="post-main-image"
                 >
-                {% else %}
-                <!-- تصویر پیش‌فرض یا لوگو سایت -->
-                <img 
-                    data-src="https://www.pasgah.org/biography/logo.webp" 
-                    alt="{{ page.title }}" 
-                    class="post-main-image"
-                >
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     </section>
     
@@ -757,7 +742,6 @@
                 <article class="post-card">
                     <a href="{{ post.url }}" class="post-card-link">
                         <h3 class="post-card-title">{{ post.title }}</h3>
-                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
                     </a>
                 </article>
                 {% endfor %}
@@ -772,126 +756,119 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // سیستم لود تاخیری تصویر اصلی پست
+            // سیستم لود تاخیری تصویر اصلی پست (فقط اگر تصویر وجود داشته باشد)
             const postMainImageContainer = document.querySelector('.post-main-image-container');
-            const postMainImage = document.querySelector('.post-main-image');
-            const postMainImagePlaceholder = document.querySelector('.post-main-image-placeholder');
             
-            if (postMainImage) {
-                // تأخیر تصادفی بین 1000 تا 3000 میلی‌ثانیه برای شبیه‌سازی لود واقعی
-                const delay = Math.floor(Math.random() * 2000) + 1000;
+            if (postMainImageContainer) {
+                const postMainImage = document.querySelector('.post-main-image');
+                const postMainImagePlaceholder = document.querySelector('.post-main-image-placeholder');
                 
-                // نمایش انیمیشن لودینگ
-                let startTime = Date.now();
-                const loadingInterval = setInterval(() => {
-                    const elapsed = Date.now() - startTime;
-                    if (elapsed < delay) {
-                        // به‌روزرسانی متن placeholder بر اساس زمان باقی‌مانده
-                        const remaining = Math.ceil((delay - elapsed) / 1000);
-                        if (postMainImagePlaceholder) {
-                            const span = postMainImagePlaceholder.querySelector('span');
-                            if (span) {
-                                span.textContent = `در حال بارگذاری تصویر پست... (${remaining} ثانیه باقی مانده)`;
+                if (postMainImage) {
+                    // تأخیر تصادفی بین 1000 تا 3000 میلی‌ثانیه برای شبیه‌سازی لود واقعی
+                    const delay = Math.floor(Math.random() * 2000) + 1000;
+                    
+                    // نمایش انیمیشن لودینگ
+                    let startTime = Date.now();
+                    const loadingInterval = setInterval(() => {
+                        const elapsed = Date.now() - startTime;
+                        if (elapsed < delay) {
+                            // به‌روزرسانی متن placeholder بر اساس زمان باقی‌مانده
+                            const remaining = Math.ceil((delay - elapsed) / 1000);
+                            if (postMainImagePlaceholder) {
+                                const span = postMainImagePlaceholder.querySelector('span');
+                                if (span) {
+                                    span.textContent = `در حال بارگذاری تصویر پست... (${remaining} ثانیه باقی مانده)`;
+                                }
                             }
                         }
-                    }
-                }, 500);
-                
-                // لود تصویر بعد از تأخیر
-                setTimeout(() => {
-                    clearInterval(loadingInterval);
+                    }, 500);
                     
-                    const src = postMainImage.getAttribute('data-src');
-                    if (src) {
-                        // ایجاد یک تصویر جدید برای پیش‌لود
-                        const tempImage = new Image();
-                        tempImage.onload = function() {
-                            // وقتی تصویر لود شد، آن را به تگ اصلی منتقل کنیم
-                            postMainImage.src = src;
-                            postMainImage.classList.add('loaded');
-                            
-                            // مخفی کردن placeholder با انیمیشن fade out
-                            if (postMainImagePlaceholder) {
-                                postMainImagePlaceholder.style.opacity = '0';
-                                postMainImagePlaceholder.style.transition = 'opacity 0.5s ease';
+                    // لود تصویر بعد از تأخیر
+                    setTimeout(() => {
+                        clearInterval(loadingInterval);
+                        
+                        const src = postMainImage.getAttribute('data-src');
+                        if (src) {
+                            // ایجاد یک تصویر جدید برای پیش‌لود
+                            const tempImage = new Image();
+                            tempImage.onload = function() {
+                                // وقتی تصویر لود شد، آن را به تگ اصلی منتقل کنیم
+                                postMainImage.src = src;
+                                postMainImage.classList.add('loaded');
                                 
-                                setTimeout(() => {
-                                    postMainImagePlaceholder.style.display = 'none';
-                                }, 500);
-                            }
-                        };
-                        
-                        tempImage.onerror = function() {
-                            // اگر تصویر لود نشد، از تصویر fallback استفاده کن
-                            console.warn('تصویر اصلی لود نشد، از تصویر fallback استفاده می‌شود.');
-                            postMainImage.src = 'https://www.pasgah.org/biography/logo.webp';
-                            postMainImage.classList.add('loaded');
-                            
-                            if (postMainImagePlaceholder) {
-                                postMainImagePlaceholder.style.opacity = '0';
-                                postMainImagePlaceholder.style.transition = 'opacity 0.5s ease';
-                                
-                                setTimeout(() => {
-                                    postMainImagePlaceholder.style.display = 'none';
-                                }, 500);
-                            }
-                        };
-                        
-                        tempImage.src = src;
-                    }
-                }, delay);
-                
-                // اضافه کردن قابلیت کلیک برای باز کردن تصویر در سایز اصلی
-                postMainImage.addEventListener('click', function() {
-                    if (this.classList.contains('loaded')) {
-                        const fullScreenImage = document.createElement('div');
-                        fullScreenImage.style.position = 'fixed';
-                        fullScreenImage.style.top = '0';
-                        fullScreenImage.style.right = '0';
-                        fullScreenImage.style.bottom = '0';
-                        fullScreenImage.style.left = '0';
-                        fullScreenImage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                        fullScreenImage.style.zIndex = '9999';
-                        fullScreenImage.style.display = 'flex';
-                        fullScreenImage.style.alignItems = 'center';
-                        fullScreenImage.style.justifyContent = 'center';
-                        fullScreenImage.style.cursor = 'zoom-out';
-                        
-                        const img = document.createElement('img');
-                        img.src = this.src;
-                        img.style.maxWidth = '90%';
-                        img.style.maxHeight = '90%';
-                        img.style.borderRadius = '8px';
-                        img.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.5)';
-                        
-                        fullScreenImage.appendChild(img);
-                        document.body.appendChild(fullScreenImage);
-                        
-                        // بستن با کلیک
-                        fullScreenImage.addEventListener('click', function() {
-                            document.body.removeChild(fullScreenImage);
-                        });
-                        
-                        // بستن با دکمه Escape
-                        document.addEventListener('keydown', function closeOnEscape(e) {
-                            if (e.key === 'Escape') {
-                                if (document.body.contains(fullScreenImage)) {
-                                    document.body.removeChild(fullScreenImage);
+                                // مخفی کردن placeholder با انیمیشن fade out
+                                if (postMainImagePlaceholder) {
+                                    postMainImagePlaceholder.style.opacity = '0';
+                                    postMainImagePlaceholder.style.transition = 'opacity 0.5s ease';
+                                    
+                                    setTimeout(() => {
+                                        postMainImagePlaceholder.style.display = 'none';
+                                    }, 500);
                                 }
-                                document.removeEventListener('keydown', closeOnEscape);
-                            }
-                        });
-                    }
-                });
-            }
-            
-            // اضافه کردن استایل cursor: pointer برای نشان دادن قابلیت کلیک
-            if (postMainImageContainer) {
+                            };
+                            
+                            // بدون fallback - اگر تصویر لود نشد، فقط placeholder را مخفی کن
+                            tempImage.onerror = function() {
+                                console.warn('تصویر اصلی لود نشد.');
+                                if (postMainImagePlaceholder) {
+                                    postMainImagePlaceholder.style.display = 'none';
+                                }
+                            };
+                            
+                            tempImage.src = src;
+                        }
+                    }, delay);
+                    
+                    // اضافه کردن قابلیت کلیک برای باز کردن تصویر در سایز اصلی
+                    postMainImage.addEventListener('click', function() {
+                        if (this.classList.contains('loaded')) {
+                            const fullScreenImage = document.createElement('div');
+                            fullScreenImage.style.position = 'fixed';
+                            fullScreenImage.style.top = '0';
+                            fullScreenImage.style.right = '0';
+                            fullScreenImage.style.bottom = '0';
+                            fullScreenImage.style.left = '0';
+                            fullScreenImage.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                            fullScreenImage.style.zIndex = '9999';
+                            fullScreenImage.style.display = 'flex';
+                            fullScreenImage.style.alignItems = 'center';
+                            fullScreenImage.style.justifyContent = 'center';
+                            fullScreenImage.style.cursor = 'zoom-out';
+                            
+                            const img = document.createElement('img');
+                            img.src = this.src;
+                            img.style.maxWidth = '90%';
+                            img.style.maxHeight = '90%';
+                            img.style.borderRadius = '8px';
+                            img.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.5)';
+                            
+                            fullScreenImage.appendChild(img);
+                            document.body.appendChild(fullScreenImage);
+                            
+                            // بستن با کلیک
+                            fullScreenImage.addEventListener('click', function() {
+                                document.body.removeChild(fullScreenImage);
+                            });
+                            
+                            // بستن با دکمه Escape
+                            document.addEventListener('keydown', function closeOnEscape(e) {
+                                if (e.key === 'Escape') {
+                                    if (document.body.contains(fullScreenImage)) {
+                                        document.body.removeChild(fullScreenImage);
+                                    }
+                                    document.removeEventListener('keydown', closeOnEscape);
+                                }
+                            });
+                        }
+                    });
+                }
+                
+                // اضافه کردن استایل cursor: pointer برای نشان دادن قابلیت کلیک
                 postMainImageContainer.style.cursor = 'pointer';
                 postMainImageContainer.title = 'برای مشاهده در سایز اصلی کلیک کنید';
             }
             
-            // سیستم نمایش پست‌های انتهای صفحه (بدون تصاویر)
+            // سیستم نمایش پست‌های انتهای صفحه
             const relatedPostsContainer = document.getElementById('relatedPostsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -955,11 +932,9 @@
                 hideExtraPosts();
                 updateButtonText();
             } else if (allRelatedPosts.length > 0) {
-                // اگر تعداد پست‌ها کمتر یا مساوی postsPerPage است
-                hideExtraPosts(); // همه را نمایش بده
+                hideExtraPosts();
                 loadMoreContainer.style.display = 'none';
             } else {
-                // اگر پستی برای نمایش نیست
                 document.querySelector('.related-posts').style.display = 'none';
             }
             
