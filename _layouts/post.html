@@ -371,7 +371,7 @@
         
         .post-card-title {
             font-size: 1.5rem;
-            margin-bottom: 0;
+            margin-bottom: 20px;
             color: var(--text-color);
             position: relative;
             padding-bottom: 15px;
@@ -394,6 +394,13 @@
             display: block;
         }
         
+        .post-card-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        
         .post-card-link {
             text-decoration: none;
             color: inherit;
@@ -402,6 +409,10 @@
         
         .post-card-link:hover .post-card-title {
             color: var(--primary-color);
+        }
+        
+        .post-card-link:hover .post-card-description {
+            color: var(--text-color);
         }
         
         .post-card {
@@ -549,6 +560,10 @@
                 padding: 30px;
             }
             
+            .post-card-description {
+                font-size: 0.9rem;
+            }
+            
             .posts-container {
                 gap: 30px;
             }
@@ -623,6 +638,10 @@
                 padding: 25px;
             }
             
+            .post-card-description {
+                font-size: 0.85rem;
+            }
+            
             .posts-container {
                 gap: 25px;
             }
@@ -689,6 +708,12 @@
                 <article class="post-card">
                     <a href="{{ post.url }}" class="post-card-link">
                         <h3 class="post-card-title">{{ post.title }}</h3>
+                        <!-- اضافه کردن توضیحات پست -->
+                        {% if post.description %}
+                        <div class="post-card-description">{{ post.description }}</div>
+                        {% elsif post.excerpt %}
+                        <div class="post-card-description">{{ post.excerpt | strip_html | truncate: 200 }}</div>
+                        {% endif %}
                     </a>
                 </article>
                 {% endfor %}
