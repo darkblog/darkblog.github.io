@@ -10,7 +10,7 @@
     <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
     <meta name="robots" content="noarchive">
     <link rel="icon" type="image/webp" href="https://www.pasgah.org/biography/logo.webp">
-    <meta name="theme-color" content="#dc3545">
+    <meta name="theme-color" content="#ffffff">
     
     <style>
         * {
@@ -32,7 +32,7 @@
             --primary-dark: #a71d2a;
             --primary-light: #ff6b7a;
             --text-color: #333;
-            --text-secondary: #54595d;
+            --text-secondary: #666;
             --light-bg: #f8f9fa;
             --card-bg: #ffffff;
             --border-color: #e1e5e9;
@@ -40,13 +40,16 @@
             --link-color: #dc3545;
             --link-hover-color: #a71d2a;
             --infobox-bg: #f8f9fa;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.12);
             --radius: 12px;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
         }
         
         body {
             font-family: 'BBC Reith Qalam', sans-serif;
-            background-color: var(--light-bg);
+            background-color: var(--white);
             color: var(--text-color);
             line-height: 1.7;
             font-size: 1rem;
@@ -55,134 +58,128 @@
             min-height: 100vh;
         }
         
-        header, nav {
-            background: transparent;
-        }
-        
-        .header-content, header {
-            margin-top: 0;
-            display: flex;
-        }
-        
-        .hero-section, .logo-link, body, header, nav {
-            display: flex;
-        }
-        
-        .header-content {
-            max-width: 1300px;
-        }
-        
-        main {
-            max-width: 900px;
-        }
-        
-        .post-content blockquote, .post-content img, article {
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .header-content, .hero-section, .post-content h2, .post-content li, header, main, nav {
-            position: relative;
-        }
-        
-        .post-title, header {
-            color: #fff;
-            text-align: center;
-        }
-        
+        /* ========== بنر اصلی ========== */
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            min-height: 450px;
-            margin-bottom: 80px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        nav {
-            padding: 15px 0;
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            width: 100%;
-        }
-        
-        .nav-logo {
-            height: 150px;
-            width: auto;
-            background: #fff;
-            padding: 6px;
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-        }
-        
-        .logo-link {
+            background: var(--white);
+            min-height: 400px;
+            margin-bottom: 60px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-        }
-        
-        header {
-            align-items: center;
-            justify-content: center;
-            padding: 25px 20px 20px;
-            min-height: 180px;
-            flex-grow: 1;
-            width: 100%;
+            text-align: center;
+            color: var(--text-color);
             position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .header-content {
-            z-index: 10;
-            padding: 0 30px;
-            flex-direction: column;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(220, 53, 69, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(220, 53, 69, 0.03) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* لوگو */
+        .site-logo {
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--white);
+            overflow: hidden;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            margin-top: 0;
+            background: var(--white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto 30px auto;
         }
         
-        .post-title {
-            font-size: 3.2rem;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+        .site-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .hero-section::after {
-            content: "";
+        .site-logo img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        /* عنوان پست */
+        .post-title-main {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .post-title-main::after {
+            content: '';
             position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f8f9fa' d='M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") center bottom/cover;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
         }
         
+        /* توضیحات پست */
+        .post-description {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+            line-height: 1.8;
+        }
+        
+        /* ========== محتوای پست ========== */
         main {
             flex: 1;
-            margin: -85px auto 80px;
+            margin: 0 auto 60px;
             padding: 0 20px;
             width: 100%;
+            max-width: 900px;
             z-index: 100;
         }
         
-        article {
-            background-color: var(--card-bg);
-            padding: 40px 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+        .post-content-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 50px;
+            margin-bottom: 60px;
+            border: 1px solid var(--border-color);
         }
         
         .post-content {
             font-size: 1.2rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--text-color);
         }
         
         .post-content p {
-            margin: 24px 0;
+            margin: 25px 0;
             text-align: justify;
         }
         
@@ -193,12 +190,6 @@
             display: block;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-        }
-        
-        .post-content img {
-            width: auto;
-            max-width: 100%;
-            max-height: 500px;
         }
         
         .post-content figure {
@@ -223,6 +214,7 @@
             color: var(--text-color);
             font-size: 1.2rem;
             position: relative;
+            border-radius: var(--radius);
         }
         
         .post-content blockquote::before {
@@ -235,23 +227,23 @@
             opacity: 0.3;
         }
         
-        .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
+        .post-content h1, .post-content h2, .post-content h3 {
             margin: 40px 0 25px;
             color: var(--text-color);
             padding: 0;
             line-height: 1.3;
-            letter-spacing: -0.3px;
         }
         
         .post-content h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-top: 0;
             color: var(--primary-color);
         }
         
         .post-content h2 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             padding-bottom: 10px;
+            position: relative;
         }
         
         .post-content h2::after {
@@ -261,24 +253,12 @@
             right: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            background: var(--primary-color);
             border-radius: 2px;
         }
         
         .post-content h3 {
-            font-size: 1.5rem;
-        }
-        
-        .post-content h4 {
-            font-size: 1.3rem;
-        }
-        
-        .post-content h5 {
-            font-size: 1.2rem;
-        }
-        
-        .post-content h6 {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
         }
         
         .post-content a {
@@ -302,27 +282,6 @@
             margin-bottom: 12px;
         }
         
-        .post-content ul {
-            list-style: none;
-            padding-right: 0;
-        }
-        
-        .post-content ul li {
-            position: relative;
-            padding-right: 1.5em;
-        }
-        
-        .post-content ul li::before {
-            content: "•";
-            color: var(--primary-color);
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 1.3em;
-            line-height: 1.7;
-            font-weight: bold;
-        }
-        
         .post-content code {
             background-color: #f1f3f4;
             border-radius: 6px;
@@ -332,366 +291,478 @@
             color: #d63384;
         }
         
-        .post-content pre {
-            background: linear-gradient(135deg, #2d3748, #4a5568);
-            border-radius: var(--radius);
-            padding: 25px;
-            overflow-x: auto;
-            margin: 30px 0;
-            line-height: 1.5;
-            box-shadow: var(--shadow);
+        /* ========== بخش مطالب سایت ========== */
+        .related-posts {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
         }
         
-        .post-content pre code {
-            background: transparent;
-            border: none;
-            padding: 0;
-            color: #e2e8f0;
-            font-size: 0.95rem;
-        }
-        
-        .post-content aside, .post-content section.references, .post-content table.infobox {
-            background: linear-gradient(135deg, #f8f9fa, #fff);
-            box-shadow: var(--shadow);
-        }
-        
-        .post-content aside, .post-content table, .post-content table:not(.infobox) {
-            margin: 30px 0;
-            border-radius: var(--radius);
-        }
-        
-        .post-content aside {
-            padding: 25px;
-            border-right: 4px solid var(--primary-color);
-        }
-        
-        .post-content aside.toc {
-            display: table;
-            width: auto;
-            margin: 40px auto;
-        }
-        
-        .post-content aside.toc h2 {
-            font-size: 1.3rem;
-            margin: 0 0 20px;
-            text-align: center;
-            color: var(--primary-color);
-        }
-        
-        .post-content aside.toc ul {
-            list-style-type: none;
-            padding-right: 0;
-            margin: 0;
-        }
-        
-        .post-content aside.toc ul ul {
-            padding-right: 20px;
-            margin-top: 10px;
-        }
-        
-        .post-content aside.toc li {
-            margin-bottom: 8px;
-        }
-        
-        .post-content aside.toc a {
+        .related-posts-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
             color: var(--text-color);
-            transition: 0.3s;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
         }
         
-        .post-content aside.toc a:hover {
-            color: var(--primary-color);
-            padding-right: 5px;
+        .related-posts-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
         }
         
-        .post-content table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
+        .posts-container {
+            display: grid;
+            gap: 40px;
+        }
+        
+        .post-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--white);
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card:hover {
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-5px);
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+        
+        .post-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .post-card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .post-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .post-card-link:hover .post-card-title {
+            color: var(--primary-color);
+        }
+        
+        /* ========== دکمه بارگذاری بیشتر ========== */
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .load-more-btn {
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'BBC Reith Qalam', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            position: relative;
             overflow: hidden;
         }
         
-        .post-content table caption {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            text-align: center;
-            color: var(--text-color);
+        .load-more-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
         }
         
-        .post-content table th {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 15px 20px;
-            text-align: center;
-            vertical-align: middle;
-        }
-        
-        .post-content table td {
-            padding: 15px 20px;
-            vertical-align: top;
-            line-height: 1.6;
-            border-bottom: 1px solid #f1f3f4;
-        }
-        
-        .post-content table tr:nth-child(2n) {
-            background-color: #fafbfc;
-        }
-        
-        .post-content table tr:nth-child(odd) {
-            background-color: #fff;
-        }
-        
-        .post-content table tr:hover {
-            background-color: #f8f9fa;
+        .load-more-btn:active {
             transform: translateY(-1px);
-            transition: 0.2s;
         }
         
-        .post-content table.infobox {
-            width: 320px;
-            float: right;
-            margin: 0 0 25px 25px;
-            font-size: 0.95rem;
+        .load-more-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
         }
         
-        .post-content table.infobox th {
-            background: var(--primary-color);
-            text-align: center;
-            font-size: 1.1rem;
-            padding: 15px;
+        .load-more-btn:hover::after {
+            animation: shimmer 1.5s infinite;
         }
         
-        .post-content table.infobox td {
-            padding: 12px 15px;
-        }
-        
-        .post-content table a {
-            color: var(--link-color);
-        }
-        
-        .post-content table a:hover {
-            color: var(--link-hover-color);
-        }
-        
-        .post-content .reference {
-            font-size: 0.8rem;
-            vertical-align: super;
-            line-height: 1;
-            color: var(--primary-color);
-        }
-        
-        .post-content section.references {
-            border-radius: var(--radius);
-            padding: 30px;
-            margin: 40px 0;
-        }
-        
-        .post-content section.references h2 {
-            font-size: 1.5rem;
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-        
-        .post-content section.references ol {
-            padding-right: 20px;
-        }
-        
-        .post-content section.references li {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                max-width: 100%;
-                padding: 0 20px;
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
             }
-            
-            .post-title {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        /* ========== رسپانسیو ========== */
+        @media (max-width: 992px) {
+            .post-title-main {
                 font-size: 2.4rem;
             }
             
-            .post-content table:not(.infobox) {
-                overflow-x: visible;
-                display: block;
-                width: 100%;
-                min-width: unset !important;
-                background: transparent !important;
-                box-shadow: none !important;
+            .post-description {
+                font-size: 1.2rem;
             }
             
-            .post-content table:not(.infobox) thead {
-                display: none;
+            .related-posts-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 350px;
+                margin-bottom: 40px;
             }
             
-            .post-content table:not(.infobox) tbody {
-                display: block;
-                width: 100%;
+            .site-logo {
+                height: 70px;
+                width: 70px;
+                margin-bottom: 25px;
             }
             
-            .post-content table:not(.infobox) tr {
-                display: block;
-                width: 100%;
-                margin-bottom: 20px;
-                background: var(--card-bg);
-                border-radius: var(--radius);
-                padding: 20px;
-                transition: transform 0.3s;
-                border-right: 4px solid var(--primary-color);
-                border-collapse: collapse;
-                box-shadow: none;
-                border: 1px solid var(--border-color);
+            .site-logo img {
+                width: 55px;
+                height: 55px;
             }
             
-            .post-content table:not(.infobox) tr:hover {
-                transform: translateY(-3px);
-                box-shadow: none;
-            }
-            
-            .post-content table:not(.infobox) td {
-                display: block;
-                width: 100%;
-                padding: 12px 0;
-                border-bottom: 1px solid var(--border-color);
-                text-align: right;
-                line-height: 1.6;
-                position: relative;
-                margin: 0;
-            }
-            
-            .post-content table:not(.infobox) td:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-            
-            .post-content table:not(.infobox) td[data-label]::before {
-                content: attr(data-label);
-                color: var(--primary-color);
-                display: block;
-                margin-bottom: 8px;
-                text-align: right;
-                font-size: 1rem;
-                background: var(--light-bg);
-                padding: 4px 8px;
-                border-radius: 4px;
-            }
-            
-            .post-content table:not(.infobox) td:not([data-label]) {
-                padding-top: 15px;
+            .post-title-main {
+                font-size: 2.2rem;
                 padding-bottom: 15px;
             }
             
-            .post-content table:not(.infobox) tbody,
-            .post-content table:not(.infobox) tr,
-            .post-content table:not(.infobox) td {
-                box-sizing: border-box;
+            .post-title-main::after {
+                width: 80px;
+                height: 3px;
             }
             
-            .hero-section {
-                min-height: 400px;
+            .post-description {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
             }
             
-            article {
-                padding: 40px 30px;
-                margin-bottom: 50px;
-            }
-            
-            .nav-logo {
-                height: 120px;
-            }
-            
-            .post-content table.infobox {
-                width: 100%;
-                float: none;
-                margin: 25px 0;
+            .post-content-container {
+                padding: 35px;
+                margin-bottom: 40px;
             }
             
             .post-content {
-                font-size: 1.05rem;
+                font-size: 1.1rem;
             }
             
-            main {
-                margin: -80px auto 60px;
+            .related-posts {
+                margin-top: 30px;
+                padding-top: 30px;
+            }
+            
+            .related-posts-title {
+                font-size: 1.7rem;
+                margin-bottom: 25px;
+            }
+            
+            .post-card {
+                padding: 30px;
+            }
+            
+            .posts-container {
+                gap: 30px;
+            }
+            
+            .load-more-container {
+                margin-top: 40px;
+                padding-top: 25px;
+            }
+            
+            .load-more-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
             }
         }
         
         @media (max-width: 576px) {
-            .header-content {
-                padding: 0 15px;
-            }
-            
-            .post-title {
-                font-size: 2rem;
-            }
-            
-            .post-content table:not(.infobox) tr {
-                padding: 15px;
-                margin-bottom: 15px;
-                box-shadow: none;
-                border: 1px solid var(--border-color);
-            }
-            
-            .post-content table:not(.infobox) td {
-                padding: 10px 0;
-            }
-            
-            .post-content table:not(.infobox) td:last-child {
-                padding-bottom: 0;
-            }
-            
             .hero-section {
-                min-height: 350px;
+                min-height: 300px;
+                margin-bottom: 30px;
             }
             
-            article {
-                padding: 30px 20px;
-                margin-bottom: 40px;
+            .site-logo {
+                height: 60px;
+                width: 60px;
+                margin-bottom: 20px;
             }
             
-            .post-content table td, .post-content table th {
-                padding: 12px 15px;
+            .site-logo img {
+                width: 45px;
+                height: 45px;
             }
             
-            .post-content ol, .post-content ul {
-                padding-right: 20px;
+            .post-title-main {
+                font-size: 1.9rem;
+                padding-bottom: 12px;
             }
             
-            main {
-                margin: -60px auto 40px;
+            .post-title-main::after {
+                width: 60px;
+            }
+            
+            .post-description {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .post-content-container {
+                padding: 25px;
+                margin-bottom: 30px;
+            }
+            
+            .post-content {
+                font-size: 1rem;
+            }
+            
+            .related-posts {
+                margin-top: 25px;
+                padding-top: 25px;
+            }
+            
+            .related-posts-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .post-card {
+                padding: 25px;
+            }
+            
+            .posts-container {
+                gap: 25px;
+            }
+            
+            .load-more-container {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+            
+            .load-more-btn {
+                padding: 13px 30px;
+                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 <body>
-    <header class="hero-section">
-        <nav>
-            <a href="https://www.pasgah.org/" class="logo-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="nav-logo">
-                    <title>وبلاگ پاسگاه</title>
-                    <path fill="#dc3545" fill-rule="evenodd" stroke="none" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.25 3.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 8H9.419l1.786 5H9.08L8 9.973 6.919 13H4.795l1.786-5H4V6h8z"/>
-                </svg>
+    <!-- بنر اصلی -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <!-- لوگو -->
+            <a href="https://www.pasgah.org/" class="site-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="لوگوی وبلاگ پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
             </a>
-        </nav>
-        <section class="header-content">
-            <h1 class="post-title" id="post-title">{{ page.title }}</h1>
-        </section>
-    </header>
+            
+            <!-- عنوان و توضیحات پست -->
+            <h1 class="post-title-main">{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="post-description">{{ page.description }}</p>
+            {% elsif page.excerpt %}
+            <p class="post-description">{{ page.excerpt | strip_html | truncate: 200 }}</p>
+            {% endif %}
+        </div>
+    </section>
     
+    <!-- محتوای اصلی -->
     <main>
-        <article>
-            <section class="post-content">
+        <!-- محتوای پست -->
+        <div class="post-content-container">
+            <article class="post-content">
                 {{ content }}
+            </article>
+        </div>
+        
+        <!-- مطالب سایت -->
+        <section class="related-posts">
+            <h2 class="related-posts-title">مطالب دیگر سایت</h2>
+            
+            <div class="posts-container" id="relatedPostsContainer">
+                <!-- فیلتر کردن پست فعلی و نمایش سایر پست‌ها -->
+                {% assign current_post_url = page.url %}
+                {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                 
-                {% if page.quote %}
-                <blockquote>
-                    "{{ page.quote }}"
-                </blockquote>
-                {% endif %}
-            </section>
-        </article>
+                {% for post in all_posts %}
+                <article class="post-card">
+                    <a href="{{ post.url }}" class="post-card-link">
+                        <h3 class="post-card-title">{{ post.title }}</h3>
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                    </a>
+                </article>
+                {% endfor %}
+            </div>
+            
+            <!-- دکمه بارگذاری بیشتر -->
+            <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+                <button class="load-more-btn" id="loadMoreBtn">نمایش مطالب بیشتر</button>
+            </div>
+        </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const relatedPostsContainer = document.getElementById('relatedPostsContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const allRelatedPosts = relatedPostsContainer.querySelectorAll('.post-card');
+            const postsPerPage = 3;
+            let currentVisibleCount = postsPerPage;
+            
+            // مخفی کردن پست‌های بیش از 3 تای اول
+            function hideExtraPosts() {
+                allRelatedPosts.forEach((post, index) => {
+                    if (index >= currentVisibleCount) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'block';
+                    }
+                });
+            }
+            
+            // نمایش پست‌های بیشتر
+            function showMorePosts() {
+                currentVisibleCount += postsPerPage;
+                
+                // نمایش پست‌های جدید
+                allRelatedPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        post.style.display = 'block';
+                    }
+                });
+                
+                // اگر همه پست‌ها نمایش داده شدند، دکمه را مخفی کن
+                if (currentVisibleCount >= allRelatedPosts.length) {
+                    loadMoreContainer.style.display = 'none';
+                }
+                
+                // اسکرول نرم به آخرین پست نمایش داده شده
+                const lastVisiblePost = allRelatedPosts[Math.min(currentVisibleCount, allRelatedPosts.length) - 1];
+                if (lastVisiblePost) {
+                    lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+                
+                // به‌روزرسانی متن دکمه
+                updateButtonText();
+            }
+            
+            // به‌روزرسانی متن دکمه بر اساس تعداد پست‌های باقی‌مانده
+            function updateButtonText() {
+                const remainingPosts = allRelatedPosts.length - currentVisibleCount;
+                if (remainingPosts > 0) {
+                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} مطلب دیگر (${remainingPosts} مطلب باقی‌مانده)`;
+                } else {
+                    loadMoreBtn.textContent = 'همه مطالب نمایش داده شدند';
+                    setTimeout(() => {
+                        loadMoreContainer.style.display = 'none';
+                    }, 2000);
+                }
+            }
+            
+            // مقداردهی اولیه
+            if (allRelatedPosts.length > postsPerPage) {
+                loadMoreContainer.style.display = 'block';
+                hideExtraPosts();
+                updateButtonText();
+            } else if (allRelatedPosts.length > 0) {
+                // اگر تعداد پست‌ها کمتر یا مساوی postsPerPage است
+                hideExtraPosts(); // همه را نمایش بده
+                loadMoreContainer.style.display = 'none';
+            } else {
+                // اگر پستی برای نمایش نیست
+                document.querySelector('.related-posts').style.display = 'none';
+            }
+            
+            // رویداد کلیک برای دکمه
+            loadMoreBtn.addEventListener('click', showMorePosts);
+            
+            // بهبود تجربه کاربری: ذخیره وضعیت فعلی در localStorage
+            function saveState() {
+                localStorage.setItem('relatedPostsVisibleCount', currentVisibleCount.toString());
+            }
+            
+            function loadState() {
+                const savedCount = localStorage.getItem('relatedPostsVisibleCount');
+                if (savedCount) {
+                    const parsedCount = parseInt(savedCount);
+                    if (parsedCount > postsPerPage && parsedCount <= allRelatedPosts.length) {
+                        currentVisibleCount = parsedCount;
+                        hideExtraPosts();
+                        updateButtonText();
+                    }
+                }
+            }
+            
+            // بارگذاری وضعیت ذخیره شده
+            loadState();
+            
+            // ذخیره وضعیت هنگام کلیک
+            loadMoreBtn.addEventListener('click', saveState);
+            
+            // ذخیره وضعیت هنگام بسته شدن صفحه
+            window.addEventListener('beforeunload', saveState);
+            
+            // ذخیره URL پست فعلی برای تشخیص در آینده
+            localStorage.setItem('currentPostUrl', window.location.pathname);
+            
+            // اگر URL پست تغییر کرده، وضعیت ذخیره شده را پاک کن
+            const savedPostUrl = localStorage.getItem('savedPostUrl');
+            if (savedPostUrl && savedPostUrl !== window.location.pathname) {
+                localStorage.removeItem('relatedPostsVisibleCount');
+            }
+            localStorage.setItem('savedPostUrl', window.location.pathname);
+        });
+    </script>
 </body>
 </html>
