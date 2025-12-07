@@ -249,6 +249,64 @@ layout: null
                 radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
         }
         
+        /* ========== دکمه بارگذاری بیشتر ========== */
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .load-more-btn {
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'BBC Reith Qalam', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .load-more-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+        }
+        
+        .load-more-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .load-more-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .load-more-btn:hover::after {
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
         /* ========== رسپانسیو ========== */
         @media (max-width: 992px) {
             .page-title {
@@ -303,6 +361,16 @@ layout: null
             .posts-container {
                 gap: 30px;
             }
+            
+            .load-more-container {
+                margin-top: 40px;
+                padding-top: 25px;
+            }
+            
+            .load-more-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -347,6 +415,16 @@ layout: null
             .posts-container {
                 gap: 25px;
             }
+            
+            .load-more-container {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+            
+            .load-more-btn {
+                padding: 13px 30px;
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
@@ -370,7 +448,7 @@ layout: null
     
     <!-- محتوای اصلی -->
     <main>
-        <section class="posts-container">
+        <section class="posts-container" id="postsContainer">
             {% for post in site.posts %}
             <article class="post-card">
                 <a href="{{ post.url }}" class="post-card-link">
@@ -380,6 +458,107 @@ layout: null
             </article>
             {% endfor %}
         </section>
+        
+        <!-- دکمه بارگذاری بیشتر -->
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button class="load-more-btn" id="loadMoreBtn">نمایش پست‌های بیشتر</button>
+        </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postsContainer = document.getElementById('postsContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
+            const postsPerPage = 10;
+            let currentVisibleCount = postsPerPage;
+            
+            // مخفی کردن پست‌های بیش از 10 تای اول
+            function hideExtraPosts() {
+                allPosts.forEach((post, index) => {
+                    if (index >= currentVisibleCount) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'block';
+                    }
+                });
+            }
+            
+            // نمایش پست‌های بیشتر
+            function showMorePosts() {
+                currentVisibleCount += postsPerPage;
+                
+                // نمایش پست‌های جدید
+                allPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        post.style.display = 'block';
+                    }
+                });
+                
+                // اگر همه پست‌ها نمایش داده شدند، دکمه را مخفی کن
+                if (currentVisibleCount >= allPosts.length) {
+                    loadMoreContainer.style.display = 'none';
+                }
+                
+                // اسکرول نرم به آخرین پست نمایش داده شده
+                const lastVisiblePost = allPosts[Math.min(currentVisibleCount, allPosts.length) - 1];
+                lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            // مقداردهی اولیه
+            if (allPosts.length > postsPerPage) {
+                loadMoreContainer.style.display = 'block';
+                hideExtraPosts();
+            }
+            
+            // رویداد کلیک برای دکمه
+            loadMoreBtn.addEventListener('click', showMorePosts);
+            
+            // به‌روزرسانی متن دکمه بر اساس تعداد پست‌های باقی‌مانده
+            function updateButtonText() {
+                const remainingPosts = allPosts.length - currentVisibleCount;
+                if (remainingPosts > 0) {
+                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر (${remainingPosts} پست باقی‌مانده)`;
+                } else {
+                    loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
+                }
+            }
+            
+            // فراخوانی اولیه برای به‌روزرسانی متن دکمه
+            updateButtonText();
+            
+            // به‌روزرسانی متن دکمه بعد از هر کلیک
+            loadMoreBtn.addEventListener('click', function() {
+                setTimeout(updateButtonText, 100);
+            });
+            
+            // بهبود تجربه کاربری: ذخیره وضعیت فعلی در localStorage
+            function saveState() {
+                localStorage.setItem('postsVisibleCount', currentVisibleCount.toString());
+            }
+            
+            function loadState() {
+                const savedCount = localStorage.getItem('postsVisibleCount');
+                if (savedCount) {
+                    const parsedCount = parseInt(savedCount);
+                    if (parsedCount > postsPerPage && parsedCount <= allPosts.length) {
+                        currentVisibleCount = parsedCount;
+                        hideExtraPosts();
+                        updateButtonText();
+                    }
+                }
+            }
+            
+            // بارگذاری وضعیت ذخیره شده
+            loadState();
+            
+            // ذخیره وضعیت هنگام کلیک
+            loadMoreBtn.addEventListener('click', saveState);
+            
+            // ذخیره وضعیت هنگام بسته شدن صفحه
+            window.addEventListener('beforeunload', saveState);
+        });
+    </script>
 </body>
 </html>
