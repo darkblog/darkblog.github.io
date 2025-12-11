@@ -6,7 +6,7 @@ layout: null
   <title>وبلاگ پاسگاه</title>
   <id>{{ site.url }}{{ site.baseurl }}/</id>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <link href="{{ '/atom.xml' | absolute_url }}" rel="self"/>
+  <link href="{{ '/blog.xml' | absolute_url }}" rel="self"/>
   <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/"/>
   {% for post in site.posts limit:20 %}
   <entry>
