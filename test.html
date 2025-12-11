@@ -1,0 +1,538 @@
+---
+layout: null
+---
+
+<!doctype html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>وبلاگ پاسگاه؛ بیوگرافی افراد مشهور</title>
+    <meta name="description" content="مرجعی معتبر برای مطالعه بیوگرافی افراد مشهور تاریخ، ادبیات، هنر و دانش. ما با دوری از محتوای زرد و تکیه بر منابع معتبر، بیوگرافی افراد مشهور را روایت می‌کنیم">
+    <link rel="canonical" href="https://www.pasgah.org/">
+    <link href="https://www.pasgah.org/atom.xml" rel="alternate" type="application/atom+xml">
+    <meta http-equiv="last-modified" content="{{ site.time | date_to_xmlschema }}">
+    <meta name="robots" content="noarchive">
+    <link rel="icon" type="image/webp" href="https://www.pasgah.org/biography/logo.webp">
+    <meta name="theme-color" content="#dc3545">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @font-face {
+            font-family: 'BBC Reith Qalam';
+            src: url('/biography/font.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        :root {
+            --primary-color: #dc3545;
+            --primary-dark: #a71d2a;
+            --primary-light: #ff6b7a;
+            --text-color: #333;
+            --text-secondary: #666;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e1e5e9;
+            --header-height: 300px;
+            --link-color: #dc3545;
+            --link-hover-color: #a71d2a;
+            --infobox-bg: #f8f9fa;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'BBC Reith Qalam', sans-serif;
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .hero-section {
+            background: var(--white);
+            min-height: 500px;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(220, 53, 69, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(220, 53, 69, 0.03) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .site-logo {
+            height: 100px;
+            width: 100px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px auto;
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .site-logo:hover {
+            transform: none;
+        }
+        
+        .site-logo img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            border-radius: 0;
+            opacity: 0.9;
+            mix-blend-mode: multiply;
+            filter: brightness(1.05) contrast(1.05);
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .page-description {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+            line-height: 1.8;
+        }
+        
+        main {
+            flex: 1;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 900px;
+            z-index: 100;
+        }
+        
+        .posts-container {
+            display: grid;
+            gap: 40px;
+        }
+        
+        .post-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card:hover {
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-5px);
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+        
+        .post-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius);
+            pointer-events: none;
+        }
+        
+        .post-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .post-card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .post-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .post-card-link:hover .post-card-title {
+            color: var(--primary-color);
+        }
+        
+        .post-card {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 20%);
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .load-more-btn {
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'BBC Reith Qalam', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .load-more-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+        }
+        
+        .load-more-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .load-more-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .load-more-btn:hover::after {
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .page-description {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 450px;
+                margin-bottom: 40px;
+            }
+            
+            .site-logo {
+                height: 90px;
+                width: 90px;
+                margin-bottom: 30px;
+            }
+            
+            .site-logo img {
+                width: 75px;
+                height: 75px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+                padding-bottom: 15px;
+            }
+            
+            .page-title::after {
+                width: 90px;
+                height: 3px;
+            }
+            
+            .page-description {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+            
+            .post-card {
+                padding: 30px;
+            }
+            
+            main {
+                margin-bottom: 30px;
+            }
+            
+            .posts-container {
+                gap: 30px;
+            }
+            
+            .load-more-container {
+                margin-top: 40px;
+                padding-top: 25px;
+            }
+            
+            .load-more-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-section {
+                min-height: 400px;
+                margin-bottom: 30px;
+            }
+            
+            .site-logo {
+                height: 80px;
+                width: 80px;
+                margin-bottom: 25px;
+            }
+            
+            .site-logo img {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .page-title {
+                font-size: 1.9rem;
+                padding-bottom: 12px;
+            }
+            
+            .page-title::after {
+                width: 70px;
+            }
+            
+            .page-description {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .post-card {
+                padding: 25px;
+            }
+            
+            main {
+                margin-bottom: 20px;
+            }
+            
+            .posts-container {
+                gap: 25px;
+            }
+            
+            .load-more-container {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+            
+            .load-more-btn {
+                padding: 13px 30px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="hero-content">
+            <a href="https://www.pasgah.org/" class="site-logo">
+                <img src="https://www.pasgah.org/biography/logo.webp" alt="پاسگاه" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI2RjMzU0NSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiIGQ9Ik0xNiA4QTggOCAwIDEgMSAwIDhhOCA4IDAgMCAxIDE2IDBNOS4yNSAzLjc1YTEuMjUgMS4yNSAwIDEgMS0yLjUgMCAxLjI1IDEuMjUgMCAwIDEgMi41IDBNMTIgOEg5LjQxOWwxLjc4NiA1SDkuMDhMOCA5Ljk3MyA2LjkxOSAxM0g0Ljc5NWwxLjc4Ni01SDRWNmg4eiIvPjwvc3ZnPg=='">
+            </a>
+            
+            <h1 class="page-title">بیوگرافی افراد مشهور</h1>
+            <p class="page-description">
+                مرجعی معتبر برای مطالعه بیوگرافی افراد مشهور تاریخ، ادبیات، هنر و دانش. ما با دوری از محتوای زرد و تکیه بر منابع معتبر، بیوگرافی افراد مشهور را روایت می‌کنیم
+            </p>
+        </div>
+    </section>
+    
+    <main>
+        <section class="posts-container" id="postsContainer">
+            {% for post in site.posts %}
+            <article class="post-card">
+                <a href="{{ post.url }}" class="post-card-link">
+                    <h2 class="post-card-title">{{ post.title }}</h2>
+                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                </a>
+            </article>
+            {% endfor %}
+        </section>
+        
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button class="load-more-btn" id="loadMoreBtn">نمایش پست‌های بیشتر</button>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postsContainer = document.getElementById('postsContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
+            const postsPerPage = 10;
+            let currentVisibleCount = postsPerPage;
+            
+            function hideExtraPosts() {
+                allPosts.forEach((post, index) => {
+                    if (index >= currentVisibleCount) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'block';
+                    }
+                });
+            }
+            
+            function showMorePosts() {
+                currentVisibleCount += postsPerPage;
+                
+                allPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        post.style.display = 'block';
+                    }
+                });
+                
+                if (currentVisibleCount >= allPosts.length) {
+                    loadMoreContainer.style.display = 'none';
+                }
+                
+                const lastVisiblePost = allPosts[Math.min(currentVisibleCount, allPosts.length) - 1];
+                lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            if (allPosts.length > postsPerPage) {
+                loadMoreContainer.style.display = 'block';
+                hideExtraPosts();
+            }
+            
+            loadMoreBtn.addEventListener('click', showMorePosts);
+            
+            function updateButtonText() {
+                const remainingPosts = allPosts.length - currentVisibleCount;
+                if (remainingPosts > 0) {
+                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر (${remainingPosts} پست باقی‌مانده)`;
+                } else {
+                    loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
+                }
+            }
+            
+            updateButtonText();
+            
+            loadMoreBtn.addEventListener('click', function() {
+                setTimeout(updateButtonText, 100);
+            });
+            
+            function saveState() {
+                localStorage.setItem('postsVisibleCount', currentVisibleCount.toString());
+            }
+            
+            function loadState() {
+                const savedCount = localStorage.getItem('postsVisibleCount');
+                if (savedCount) {
+                    const parsedCount = parseInt(savedCount);
+                    if (parsedCount > postsPerPage && parsedCount <= allPosts.length) {
+                        currentVisibleCount = parsedCount;
+                        hideExtraPosts();
+                        updateButtonText();
+                    }
+                }
+            }
+            
+            loadState();
+            
+            loadMoreBtn.addEventListener('click', saveState);
+            
+            window.addEventListener('beforeunload', saveState);
+        });
+    </script>
+</body>
+</html>
