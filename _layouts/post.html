@@ -135,17 +135,21 @@
             border-radius: var(--radius);
             overflow: hidden;
             position: relative;
-            background: var(--white);
-            min-height: 400px;
-            box-shadow: var(--shadow);
+            background: transparent;
+            min-height: auto;
+            box-shadow: none;
+            border: none;
         }
         
         .post-main-image {
             width: 100%;
-            height: 400px;
+            height: auto;
+            max-height: 500px;
             object-fit: contain;
             transition: opacity 0.3s ease;
-            background-color: var(--white);
+            background-color: transparent;
+            border-radius: var(--radius);
+            display: block;
         }
         
         .post-main-image.loading {
@@ -578,11 +582,10 @@
             
             .post-main-image-container {
                 max-width: 700px;
-                min-height: 350px;
             }
             
             .post-main-image {
-                height: 350px;
+                max-height: 450px;
             }
             
             .related-posts-title {
@@ -620,12 +623,11 @@
             
             .post-main-image-container {
                 max-width: 100%;
-                min-height: 300px;
                 margin-bottom: 40px;
             }
             
             .post-main-image {
-                height: 300px;
+                max-height: 400px;
             }
             
             .post-content-container {
@@ -722,12 +724,11 @@
             }
             
             .post-main-image-container {
-                min-height: 250px;
                 margin-bottom: 30px;
             }
             
             .post-main-image {
-                height: 250px;
+                max-height: 350px;
             }
             
             .post-content-container {
