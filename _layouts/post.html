@@ -412,27 +412,6 @@
             border-top: 1px solid var(--border-color);
         }
         
-        .related-posts-title {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--text-color);
-            text-align: center;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .related-posts-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
         .posts-container {
             display: grid;
             gap: 40px;
@@ -587,10 +566,6 @@
             .post-main-image {
                 max-height: 450px;
             }
-            
-            .related-posts-title {
-                font-size: 1.8rem;
-            }
         }
         
         @media (max-width: 768px) {
@@ -642,11 +617,6 @@
             .related-posts {
                 margin-top: 30px;
                 padding-top: 30px;
-            }
-            
-            .related-posts-title {
-                font-size: 1.7rem;
-                margin-bottom: 25px;
             }
             
             .post-card {
@@ -745,11 +715,6 @@
                 padding-top: 25px;
             }
             
-            .related-posts-title {
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-            }
-            
             .post-card {
                 padding: 25px;
             }
@@ -825,8 +790,6 @@
         </div>
         
         <section class="related-posts">
-            <h2 class="related-posts-title">مطالب دیگر سایت</h2>
-            
             <div class="posts-container" id="relatedPostsContainer">
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
