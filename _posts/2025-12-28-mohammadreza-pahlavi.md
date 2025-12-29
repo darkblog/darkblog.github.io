@@ -1,6 +1,7 @@
 ---
 layout: post
 title: زندگینامه محمدرضا پهلوی - پادشاه ایران
+permalink: /blog/mohammadreza-pahlavi
 image: /blog/mohammadreza-pahlavi.jpg
 ---
 
