@@ -545,81 +545,13 @@
             animation: shimmer 1.5s infinite;
         }
         
-        /* استایل‌های جدید برای قابلیت جمع‌شدن ویکی‌پدیا */
-        .collapsible-section {
-            margin: 25px 0;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--white);
-            box-shadow: var(--shadow);
-        }
-        
-        .section-header {
-            padding: 20px 25px;
-            background: var(--light-bg);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid transparent;
-        }
-        
-        .section-header:hover {
-            background: #f1f3f4;
-        }
-        
-        .section-header h2, 
-        .section-header h3, 
-        .section-header h4,
-        .section-header h1 {
-            margin: 0 !important;
-            padding: 0 !important;
-            flex-grow: 1;
-        }
-        
-        .section-header h2::after,
-        .section-header h3::after,
-        .section-header h4::after,
-        .section-header h1::after {
-            display: none !important;
-        }
-        
-        .toggle-icon {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .toggle-icon::after {
-            content: '▼';
-            font-size: 14px;
-        }
-        
-        .section-header.collapsed .toggle-icon::after {
-            content: '◄';
-        }
-        
-        .section-content {
-            padding: 25px;
-            border-top: 1px solid var(--border-color);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .section-header.collapsed + .section-content {
-            display: none;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
         }
         
         @media (max-width: 992px) {
@@ -680,14 +612,6 @@
             
             .post-content {
                 font-size: 1.1rem;
-            }
-            
-            .section-header {
-                padding: 18px 20px;
-            }
-            
-            .section-content {
-                padding: 20px;
             }
             
             .related-posts {
@@ -786,14 +710,6 @@
                 font-size: 1rem;
             }
             
-            .section-header {
-                padding: 15px 18px;
-            }
-            
-            .section-content {
-                padding: 18px;
-            }
-            
             .related-posts {
                 margin-top: 25px;
                 padding-top: 25px;
@@ -868,7 +784,7 @@
     
     <main>
         <div class="post-content-container">
-            <article class="post-content" id="wikiContent">
+            <article class="post-content">
                 {{ content | anchor_headings }}
             </article>
         </div>
@@ -992,150 +908,6 @@
                 localStorage.removeItem('relatedPostsVisibleCount');
             }
             localStorage.setItem('savedPostUrl', window.location.pathname);
-            
-            // قابلیت جمع‌شدن ویکی‌پدیا
-            function createWikiCollapsible() {
-                const postContent = document.querySelector('.post-content');
-                if (!postContent) return;
-                
-                // پیدا کردن تمام تیترهای اصلی
-                const headers = postContent.querySelectorAll('h2, h3, h4');
-                
-                headers.forEach((header, index) => {
-                    // ایجاد بخش جمع‌شدنی
-                    const section = document.createElement('div');
-                    section.className = 'collapsible-section';
-                    
-                    // ایجاد هدر بخش
-                    const sectionHeader = document.createElement('div');
-                    sectionHeader.className = 'section-header collapsed';
-                    sectionHeader.setAttribute('role', 'button');
-                    sectionHeader.setAttribute('tabindex', '0');
-                    sectionHeader.setAttribute('aria-expanded', 'false');
-                    sectionHeader.setAttribute('aria-controls', `section-content-${index}`);
-                    
-                    // ایجاد آیکون
-                    const toggleIcon = document.createElement('span');
-                    toggleIcon.className = 'toggle-icon';
-                    toggleIcon.setAttribute('aria-hidden', 'true');
-                    
-                    // قرار دادن تیتر در هدر
-                    const headerClone = header.cloneNode(true);
-                    sectionHeader.appendChild(headerClone);
-                    sectionHeader.appendChild(toggleIcon);
-                    
-                    // پیدا کردن محتوای بعد از تیتر تا تیتر بعدی
-                    let content = [];
-                    let nextElement = header.nextElementSibling;
-                    
-                    while (nextElement && !['H2', 'H3', 'H4'].includes(nextElement.tagName)) {
-                        content.push(nextElement);
-                        nextElement = nextElement.nextElementSibling;
-                    }
-                    
-                    // ایجاد محتوای بخش
-                    const sectionContent = document.createElement('div');
-                    sectionContent.className = 'section-content';
-                    sectionContent.id = `section-content-${index}`;
-                    
-                    // انتقال محتوا به بخش جدید
-                    content.forEach(element => {
-                        sectionContent.appendChild(element.cloneNode(true));
-                    });
-                    
-                    // حذف محتوای اصلی
-                    content.forEach(element => {
-                        element.remove();
-                    });
-                    
-                    // حذف تیتر اصلی
-                    header.remove();
-                    
-                    // اضافه کردن هدر و محتوا به بخش
-                    section.appendChild(sectionHeader);
-                    section.appendChild(sectionContent);
-                    
-                    // قرار دادن بخش در جای تیتر اصلی
-                    if (header.parentNode) {
-                        header.parentNode.insertBefore(section, header.nextSibling);
-                    }
-                    
-                    // اضافه کردن رویداد کلیک
-                    sectionHeader.addEventListener('click', function() {
-                        const isCollapsed = this.classList.contains('collapsed');
-                        this.classList.toggle('collapsed');
-                        this.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
-                        
-                        if (isCollapsed) {
-                            sectionContent.style.display = 'block';
-                            setTimeout(() => {
-                                sectionContent.style.opacity = '1';
-                            }, 10);
-                        } else {
-                            sectionContent.style.display = 'none';
-                        }
-                    });
-                    
-                    // فعال‌سازی با کلید Enter
-                    sectionHeader.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            this.click();
-                        }
-                    });
-                });
-                
-                // اگر هیچ تیتری پیدا نشد، محتوا را تغییر نده
-                if (headers.length === 0) return;
-                
-                // ایجاد دکمه برای باز کردن/بستن همه
-                const toggleAllButton = document.createElement('button');
-                toggleAllButton.className = 'load-more-btn';
-                toggleAllButton.textContent = 'باز کردن همه بخش‌ها';
-                toggleAllButton.style.margin = '20px 0';
-                toggleAllButton.style.display = 'block';
-                toggleAllButton.style.marginRight = 'auto';
-                toggleAllButton.style.marginLeft = 'auto';
-                
-                postContent.parentNode.insertBefore(toggleAllButton, postContent.nextSibling);
-                
-                let allExpanded = false;
-                
-                toggleAllButton.addEventListener('click', function() {
-                    const allHeaders = document.querySelectorAll('.section-header');
-                    const allContents = document.querySelectorAll('.section-content');
-                    
-                    if (allExpanded) {
-                        // بستن همه
-                        allHeaders.forEach(header => {
-                            header.classList.add('collapsed');
-                            header.setAttribute('aria-expanded', 'false');
-                        });
-                        allContents.forEach(content => {
-                            content.style.display = 'none';
-                        });
-                        toggleAllButton.textContent = 'باز کردن همه بخش‌ها';
-                    } else {
-                        // باز کردن همه
-                        allHeaders.forEach(header => {
-                            header.classList.remove('collapsed');
-                            header.setAttribute('aria-expanded', 'true');
-                        });
-                        allContents.forEach(content => {
-                            content.style.display = 'block';
-                            setTimeout(() => {
-                                content.style.opacity = '1';
-                            }, 10);
-                        });
-                        toggleAllButton.textContent = 'بستن همه بخش‌ها';
-                    }
-                    
-                    allExpanded = !allExpanded;
-                });
-            }
-            
-            // اجرای تابع بعد از لود کامل صفحه
-            setTimeout(createWikiCollapsible, 100);
         });
     </script>
 </body>
