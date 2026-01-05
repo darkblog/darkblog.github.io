@@ -7,6 +7,3 @@ url: https://www.pasgah.org
 permalink: /biography/:title
 
 encoding: UTF-8
-
-plugins:
-  - jekyll-anchor-headings
