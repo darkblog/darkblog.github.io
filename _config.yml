@@ -10,4 +10,3 @@ encoding: UTF-8
 
 plugins:
   - jekyll-anchor-headings
-  
