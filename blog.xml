@@ -10,11 +10,12 @@ layout: null
   {% for post in site.posts limit:1000 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
+    <link href="{{ post.url | absolute_url }}"/>
     <id>{{ post.url | absolute_url }}</id>
     <author>
       <name>وبلاگ پاسگاه</name>
     </author>
-    <content type="html">{{ post.excerpt | strip_html | truncate: 200 }}</content>
+    <summary>{{ post.excerpt | strip_html | truncate: 160 }}</summary>
   </entry>
   {% endfor %}
 </feed>
