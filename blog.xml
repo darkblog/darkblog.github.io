@@ -5,13 +5,11 @@ layout: null
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>وبلاگ پاسگاه</title>
   <id>{{ site.url }}{{ site.baseurl }}/</id>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
   <link href="{{ '/blog.xml' | absolute_url }}" rel="self"/>
   {% for post in site.posts limit:1000 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <id>{{ post.url | absolute_url }}</id>
-    <updated>{{ site.time | date_to_xmlschema }}</updated>
     <author>
       <name>وبلاگ پاسگاه</name>
     </author>
