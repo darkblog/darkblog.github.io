@@ -5,6 +5,7 @@ layout: null
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>وبلاگ پاسگاه</title>
   <id>{{ site.url }}{{ site.baseurl }}/</id>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
   <link href="{{ '/blog.xml' | absolute_url }}" rel="self"/>
   {% for post in site.posts limit:1000 %}
   <entry>
@@ -13,7 +14,7 @@ layout: null
     <author>
       <name>وبلاگ پاسگاه</name>
     </author>
-    <summary>{{ post.excerpt | strip_html | truncate: 200 }}</summary>
+    <content type="html">{{ post.excerpt | strip_html | truncate: 200 }}</content>
   </entry>
   {% endfor %}
 </feed>
