@@ -8,7 +8,6 @@ layout: null
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <link href="{{ '/blog.xml' | absolute_url }}" rel="self"/>
   <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/"/>
-  {% for post in site.posts limit:20 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <id>{{ post.url | absolute_url }}</id>
@@ -17,7 +16,6 @@ layout: null
     <author>
       <name>وبلاگ پاسگاه</name>
     </author>
-    <content type="html">{{ post.content | xml_escape }}</content>
+    <summary>{{ post.excerpt | strip_html | truncate: 200 }}</summary>
   </entry>
-  {% endfor %}
 </feed>
