@@ -13,6 +13,10 @@
     <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}">
     <meta name="theme-color" content="black">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -20,20 +24,12 @@
             box-sizing: border-box;
         }
         
-        @font-face {
-            font-family: 'BBC Reith Qalam';
-            src: url('/blog.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        
         :root {
             --radius: 12px;
         }
         
         body {
-            font-family: 'BBC Reith Qalam', sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
             background-color: white;
             color: black;
             line-height: 1.7;
@@ -54,7 +50,6 @@
             color: black;
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid black;
         }
         
         .hero-section::before {
@@ -98,7 +93,7 @@
             color: black;
             position: relative;
             padding-bottom: 20px;
-            font-weight: bold;
+            font-weight: 700;
         }
         
         .post-main-image-container {
@@ -217,16 +212,19 @@
             font-size: 2rem;
             margin-top: 0;
             color: black;
+            font-weight: 700;
         }
         
         .post-content h2 {
             font-size: 1.7rem;
             padding-bottom: 10px;
             position: relative;
+            font-weight: 600;
         }
         
         .post-content h3 {
             font-size: 1.4rem;
+            font-weight: 600;
         }
         
         .post-content a {
@@ -301,7 +299,7 @@
             position: absolute;
             right: 0;
             color: black;
-            font-weight: bold;
+            font-weight: 600;
         }
         
         .post-content table {
@@ -323,7 +321,7 @@
         .post-content table th {
             padding: 18px 15px;
             text-align: right;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.1rem;
             border-bottom: 3px solid black;
         }
@@ -370,7 +368,6 @@
         .related-posts {
             margin-top: 40px;
             padding-top: 40px;
-            border-top: 1px solid black;
         }
         
         .posts-container {
@@ -409,6 +406,7 @@
             color: black;
             position: relative;
             padding-bottom: 15px;
+            font-weight: 600;
         }
         
         .post-card-title a {
@@ -423,6 +421,7 @@
             font-size: 0.95rem;
             margin-bottom: 0;
             opacity: 0.8;
+            font-weight: 400;
         }
         
         .post-card-link {
@@ -449,7 +448,6 @@
             text-align: center;
             margin-top: 50px;
             padding-top: 30px;
-            border-top: 1px solid black;
         }
         
         .load-more-btn {
@@ -458,9 +456,9 @@
             color: white;
             border: none;
             border-radius: 8px;
-            font-family: 'BBC Reith Qalam', sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
