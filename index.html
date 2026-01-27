@@ -136,11 +136,6 @@ layout: null
             background: white;
             border-radius: var(--radius);
             padding: 40px;
-            transition: all 0.3s ease;
-        }
-        
-        .post-card:hover {
-            border-color: black;
         }
         
         .post-card::after {
@@ -159,7 +154,6 @@ layout: null
             margin-bottom: 20px;
             color: black;
             position: relative;
-            padding-bottom: 15px;
             font-weight: 700;
             line-height: 1.4;
         }
@@ -184,10 +178,7 @@ layout: null
             text-decoration: none;
             color: inherit;
             display: block;
-        }
-        
-        .post-card-link:hover .post-card-title {
-            color: black;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .post-card {
@@ -212,17 +203,6 @@ layout: null
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .load-more-btn:hover {
-            background: black;
-        }
-        
-        .load-more-btn:active {
-            transform: translateY(0);
         }
         
         @media (max-width: 992px) {
