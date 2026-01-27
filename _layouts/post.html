@@ -99,7 +99,7 @@
         }
         
         .post-main-image-container {
-            width: 100%;
+            width: fit-content;
             max-width: 800px;
             margin: 0 auto 50px auto;
             position: relative;
@@ -107,7 +107,7 @@
             min-height: auto;
             border: 2px solid black;
             padding: 0;
-            display: inline-block;
+            display: block;
             border-radius: var(--radius);
         }
         
@@ -732,5 +732,98 @@
                 <button class="load-more-btn" id="loadMoreBtn">نمایش مطالب بیشتر</button>
             </div>
         </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const relatedPostsContainer = document.getElementById('relatedPostsContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const allRelatedPosts = relatedPostsContainer.querySelectorAll('.post-card');
+            const postsPerPage = 3;
+            let currentVisibleCount = postsPerPage;
+            
+            function hideExtraPosts() {
+                allRelatedPosts.forEach((post, index) => {
+                    if (index >= currentVisibleCount) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'block';
+                    }
+                });
+            }
+            
+            function showMorePosts() {
+                currentVisibleCount += postsPerPage;
+                
+                allRelatedPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        post.style.display = 'block';
+                    }
+                });
+                
+                if (currentVisibleCount >= allRelatedPosts.length) {
+                    loadMoreContainer.style.display = 'none';
+                }
+                
+                updateButtonText();
+            }
+            
+            function updateButtonText() {
+                const remainingPosts = allRelatedPosts.length - currentVisibleCount;
+                if (remainingPosts > 0) {
+                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} مطلب دیگر (${remainingPosts} مطلب باقی‌مانده)`;
+                } else {
+                    loadMoreBtn.textContent = 'همه مطالب نمایش داده شدند';
+                    setTimeout(() => {
+                        loadMoreContainer.style.display = 'none';
+                    }, 2000);
+                }
+            }
+            
+            if (allRelatedPosts.length > postsPerPage) {
+                loadMoreContainer.style.display = 'block';
+                hideExtraPosts();
+                updateButtonText();
+            } else if (allRelatedPosts.length > 0) {
+                hideExtraPosts();
+                loadMoreContainer.style.display = 'none';
+            } else {
+                document.querySelector('.related-posts').style.display = 'none';
+            }
+            
+            loadMoreBtn.addEventListener('click', showMorePosts);
+            
+            function saveState() {
+                localStorage.setItem('relatedPostsVisibleCount', currentVisibleCount.toString());
+            }
+            
+            function loadState() {
+                const savedCount = localStorage.getItem('relatedPostsVisibleCount');
+                if (savedCount) {
+                    const parsedCount = parseInt(savedCount);
+                    if (parsedCount > postsPerPage && parsedCount <= allRelatedPosts.length) {
+                        currentVisibleCount = parsedCount;
+                        hideExtraPosts();
+                        updateButtonText();
+                    }
+                }
+            }
+            
+            loadState();
+            
+            loadMoreBtn.addEventListener('click', saveState);
+            
+            window.addEventListener('beforeunload', saveState);
+            
+            localStorage.setItem('currentPostUrl', window.location.pathname);
+            
+            const savedPostUrl = localStorage.getItem('savedPostUrl');
+            if (savedPostUrl && savedPostUrl !== window.location.pathname) {
+                localStorage.removeItem('relatedPostsVisibleCount');
+            }
+            localStorage.setItem('savedPostUrl', window.location.pathname);
+        });
+    </script>
 </body>
 </html>
