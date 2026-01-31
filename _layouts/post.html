@@ -270,7 +270,7 @@
             font-size: clamp(0.9rem, 2.2vw, 1rem);
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid black;
+            border: 2px solid black;
             background: white;
         }
         
@@ -285,8 +285,19 @@
             text-align: right;
             font-weight: 600;
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            border: 1px solid black;
-            border-bottom-width: 0.1875rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 3px solid black;
+            position: relative;
+        }
+        
+        .post-content table th:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
         }
         
         .post-content table td {
@@ -303,6 +314,10 @@
         
         .post-content table tbody tr:nth-child(even) {
             background-color: white;
+        }
+        
+        .post-content table tbody tr:last-child td {
+            border-bottom: 1px solid black;
         }
         
         .post-content ul ul,
@@ -392,12 +407,17 @@
                 display: block;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
+                border: 2px solid black;
             }
             
             .post-content table th,
             .post-content table td {
                 white-space: nowrap;
                 min-width: 120px;
+            }
+            
+            .post-content table th:not(:last-child)::after {
+                display: none;
             }
         }
     </style>
