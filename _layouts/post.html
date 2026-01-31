@@ -272,7 +272,6 @@
             overflow: hidden;
             border: 1px solid black;
             background: white;
-            table-layout: fixed;
         }
         
         .post-content table thead {
@@ -286,12 +285,8 @@
             text-align: right;
             font-weight: 600;
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-bottom: 0.1875rem solid black;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: normal;
-            word-wrap: break-word;
+            border: 1px solid black;
+            border-bottom-width: 0.1875rem;
         }
         
         .post-content table td {
@@ -300,10 +295,6 @@
             border: 1px solid black;
             vertical-align: top;
             font-weight: 400;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: normal;
-            word-wrap: break-word;
         }
         
         .post-content table tbody tr {
@@ -401,65 +392,12 @@
                 display: block;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
-                table-layout: auto;
-                width: 100%;
-            }
-            
-            .post-content table thead,
-            .post-content table tbody,
-            .post-content table th,
-            .post-content table td,
-            .post-content table tr {
-                display: block;
-            }
-            
-            .post-content table thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            
-            .post-content table tr {
-                border: 1px solid black;
-                margin-bottom: 0.75rem;
-                border-radius: calc(var(--radius) - 0.25rem);
-            }
-            
-            .post-content table td {
-                border: none;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                position: relative;
-                padding-right: 50%;
-                text-align: left;
-                white-space: normal;
-            }
-            
-            .post-content table td:before {
-                content: attr(data-label);
-                position: absolute;
-                right: 0.75rem;
-                width: 45%;
-                padding-left: 0.75rem;
-                font-weight: bold;
-                text-align: right;
-                color: black;
-            }
-            
-            .post-content table td:last-child {
-                border-bottom: 0;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .post-content table {
-                max-width: 100%;
-                overflow-x: visible;
             }
             
             .post-content table th,
             .post-content table td {
-                max-width: 200px;
-                min-width: 100px;
+                white-space: nowrap;
+                min-width: 120px;
             }
         }
     </style>
