@@ -104,7 +104,7 @@
             background: white;
             border-radius: var(--radius);
             padding: clamp(1.5rem, 4vw, 2.5rem);
-            margin-bottom: clamp(2rem, 5vh, 3.125rem);
+            margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
             border: 1px solid black;
         }
         
@@ -273,6 +273,9 @@
             overflow: hidden;
             border: 1px solid black;
             background: white;
+            display: table;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .post-content table thead {
@@ -288,6 +291,8 @@
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             border: 1px solid black;
             border-bottom-width: 0.1875rem;
+            white-space: nowrap;
+            min-width: min-content;
         }
         
         .post-content table td {
@@ -296,6 +301,8 @@
             border: 1px solid black;
             vertical-align: top;
             font-weight: 400;
+            white-space: nowrap;
+            min-width: min-content;
         }
         
         .post-content table tbody tr {
@@ -349,8 +356,8 @@
         }
         
         .related-posts {
-            margin-top: clamp(1.5rem, 4vh, 2.5rem);
-            padding-top: clamp(1.5rem, 4vh, 2.5rem);
+            margin-top: 0;
+            padding-top: 0;
         }
         
         .posts-container {
@@ -399,7 +406,7 @@
         
         .load-more-container {
             text-align: center;
-            margin-top: clamp(1.5rem, 4vh, 3.125rem);
+            margin-top: clamp(1.5rem, 4vh, 2.5rem);
         }
         
         .load-more-btn {
@@ -412,6 +419,19 @@
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             font-weight: 600;
             cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .post-content table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .post-content table th,
+            .post-content table td {
+                white-space: normal;
+                min-width: 120px;
+            }
         }
     </style>
 </head>
