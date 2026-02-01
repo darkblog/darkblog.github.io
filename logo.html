@@ -266,6 +266,59 @@ layout: null
             text-align: right;
         }
         
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: auto;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            background-color: rgba(220, 38, 38, 0.05);
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .read-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .read-more-btn::after {
+            content: '←';
+            transition: var(--transition);
+        }
+        
+        .read-more-btn:hover {
+            color: white;
+            gap: 0.75rem;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-red);
+        }
+        
+        .read-more-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .read-more-btn:hover::after {
+            transform: translateX(-5px);
+        }
+        
         .empty-state {
             text-align: center;
             padding: 3rem 1rem;
@@ -342,6 +395,11 @@ layout: null
             
             .post-card-title {
                 font-size: 1.1rem;
+            }
+            
+            .read-more-btn {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.85rem;
             }
         }
         
@@ -424,6 +482,7 @@ layout: null
                 </div>
                 <div class="post-content">
                     <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                    <a href="{{ post.url }}" class="read-more-btn">ادامه مطلب</a>
                 </div>
             </article>
             {% endfor %}
@@ -449,6 +508,7 @@ layout: null
             const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
             const siteHeader = document.getElementById('siteHeader');
             const allPosts = postsContainer.querySelectorAll('.post-card');
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
             
             const postsPerPage = 10;
             let currentVisibleCount = postsPerPage;
@@ -485,6 +545,7 @@ layout: null
                 hideExtraPosts();
                 
                 setupPostCardsClick();
+                setupReadMoreButtons();
                 window.addEventListener('scroll', handleHeaderVisibility);
                 window.addEventListener('scroll', handleInfiniteScroll);
             }
@@ -508,10 +569,20 @@ layout: null
             function setupPostCardsClick() {
                 allPosts.forEach(post => {
                     post.addEventListener('click', function(e) {
-                        const url = this.getAttribute('data-url');
-                        if (url) {
-                            window.location.href = url;
+                        if (!e.target.closest('.read-more-btn')) {
+                            const url = this.getAttribute('data-url');
+                            if (url) {
+                                window.location.href = url;
+                            }
                         }
+                    });
+                });
+            }
+            
+            function setupReadMoreButtons() {
+                readMoreButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation();
                     });
                 });
             }
