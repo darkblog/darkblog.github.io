@@ -149,13 +149,6 @@
             }
         }
         
-        .hero-description {
-            font-size: 1.125rem;
-            opacity: 0.9;
-            max-width: 36rem;
-            margin: 0 auto 2rem;
-        }
-        
         main {
             flex: 1;
             margin: 0 auto 3rem;
@@ -327,6 +320,11 @@
             border-collapse: collapse;
             margin: 2rem 0;
             font-size: 0.95rem;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
         }
         
         .post-content table thead {
@@ -339,6 +337,8 @@
             text-align: right;
             font-weight: 600;
             border: 1px solid var(--accent-dark);
+            white-space: nowrap;
+            min-width: 120px;
         }
         
         .post-content table td {
@@ -346,10 +346,25 @@
             text-align: right;
             border: 1px solid var(--border-color);
             vertical-align: top;
+            white-space: nowrap;
+            min-width: 120px;
         }
         
         .post-content table tbody tr:nth-child(even) {
             background-color: rgba(220, 38, 38, 0.02);
+        }
+        
+        @media (min-width: 768px) {
+            .post-content table {
+                display: table;
+                overflow-x: visible;
+            }
+            
+            .post-content table th,
+            .post-content table td {
+                white-space: normal;
+                min-width: auto;
+            }
         }
         
         .related-posts-title {
@@ -595,6 +610,10 @@
                 padding: 0.65rem 1.25rem;
                 font-size: 0.85rem;
             }
+            
+            .related-posts-title {
+                font-size: 1.5rem;
+            }
         }
         
         .fade-in {
@@ -642,7 +661,7 @@
             background-color: rgba(220, 38, 38, 0.03);
         }
         
-        .back-to-home {
+        .all-posts-link {
             display: inline-block;
             margin-top: 2rem;
             color: white;
@@ -655,7 +674,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .back-to-home:hover {
+        .all-posts-link:hover {
             background-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
@@ -679,7 +698,6 @@
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="post-title-main">{{ page.title }}</h1>
-            <a href="/" class="back-to-home">← بازگشت به صفحه اصلی</a>
         </div>
     </section>
     
@@ -692,11 +710,11 @@
         
         <section class="related-posts">
             <h2 class="related-posts-title">مقالات مرتبط</h2>
-            <div class="posts-container" id="relatedPostsContainer">
+            <div class="posts-container" id="postsContainer">
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                 
-                {% for post in all_posts limit: 9 %}
+                {% for post in all_posts %}
                 <article class="post-card fade-in" data-url="{{ post.url }}">
                     <div class="post-title-section">
                         <h3 class="post-card-title">
@@ -711,23 +729,21 @@
                 {% endfor %}
             </div>
             
-            {% if all_posts.size > 9 %}
             <div class="load-more-container" id="loadMoreContainer">
                 <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
             </div>
-            {% endif %}
         </section>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const siteHeader = document.getElementById('siteHeader');
-            const relatedPostsContainer = document.getElementById('relatedPostsContainer');
+            const postsContainer = document.getElementById('postsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
-            const allPosts = relatedPostsContainer.querySelectorAll('.post-card');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
             
-            const postsPerPage = 9;
+            const postsPerPage = 10;
             let currentVisibleCount = postsPerPage;
             let isLoading = false;
             let lastScrollTop = 0;
