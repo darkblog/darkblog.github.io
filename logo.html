@@ -1,0 +1,283 @@
+---
+layout: null
+---
+
+<!doctype html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان</title>
+    <meta name="description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.">
+    <link rel="canonical" href="https://www.pasgah.org/">
+    <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
+    <link rel="icon" href="https://www.pasgah.org/blog.svg" type="image/svg+xml">
+    <meta property="og:updated_time" content="{{ site.time | date_to_xmlschema }}">
+    <meta property="article:published_time" content="{{ site.time | date_to_xmlschema }}">
+    <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}">
+    <meta name="theme-color" content="black">
+    
+    <style>
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://www.pasgah.org/blog.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --radius: 0.75rem;
+            --max-width: 56.25rem;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: white;
+            color: black;
+            line-height: 1.7;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-weight: 400;
+        }
+        
+        .hero-section {
+            background: white;
+            min-height: clamp(25rem, 50vh, 31.25rem);
+            margin-bottom: clamp(2rem, 5vh, 3.75rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: black;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: min(90vw, var(--max-width));
+            padding: clamp(2.5rem, 6vh, 3.75rem) clamp(1rem, 3vw, 1.25rem);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .site-logo {
+            height: clamp(4rem, 10vw, 5rem);
+            width: clamp(4rem, 10vw, 5rem);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto clamp(1.5rem, 4vh, 2.5rem) auto;
+                  font-family: 'Vazirmatn', sans-serif;
+        font-weight: 700;
+        font-size: 80px;
+        fill: #000000;
+        direction: rtl;
+        unicode-bidi: bidi-override;
+        }
+        
+        .site-logo img {
+            width: clamp(3.25rem, 8.5vw, 4.25rem);
+            height: clamp(3.25rem, 8.5vw, 4.25rem);
+            object-fit: contain;
+        }
+        
+        .page-title {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: clamp(1rem, 3vh, 1.25rem);
+            color: black;
+            position: relative;
+            padding-bottom: clamp(0.75rem, 2vh, 1.25rem);
+            font-weight: 900;
+            line-height: 1.3;
+        }
+        
+        main {
+            flex: 1;
+            margin: 0 auto clamp(1.5rem, 4vh, 2.5rem);
+            padding: 0 clamp(1rem, 3vw, 1.25rem);
+            width: 100%;
+            max-width: var(--max-width);
+            z-index: 100;
+        }
+        
+        .posts-container {
+            display: grid;
+            gap: clamp(1.5rem, 4vh, 2.5rem);
+        }
+        
+        .post-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid black;
+            background: white;
+            border-radius: var(--radius);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        .post-card-title {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-bottom: clamp(1rem, 2.5vh, 1.25rem);
+            color: black;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .post-excerpt {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            line-height: 1.7;
+            color: black;
+            position: relative;
+            z-index: 1;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        
+        .post-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .load-more-container {
+            text-align: center;
+            margin-top: clamp(1.5rem, 4vh, 2.5rem);
+        }
+        
+        .load-more-btn {
+            padding: clamp(0.75rem, 2.5vh, 0.9375rem) clamp(1.5rem, 4vw, 2.5rem);
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="hero-content">
+            <a href="https://www.pasgah.org/" class="site-logo">
+                <img src="https://www.pasgah.org/pasgah.svg" loading="lazy" alt="وبلاگ پاسگاه">
+            </a>
+            
+            <h1 class="page-title">وبلاگ پاسگاه</h1>
+        </div>
+    </section>
+    
+    <main>
+        <section class="posts-container" id="postsContainer">
+            {% for post in site.posts %}
+            <article class="post-card">
+                <a href="{{ post.url }}" class="post-card-link">
+                    <h2 class="post-card-title">{{ post.title }}</h2>
+                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                </a>
+            </article>
+            {% endfor %}
+        </section>
+        
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button class="load-more-btn" id="loadMoreBtn">نمایش پست‌های بیشتر</button>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postsContainer = document.getElementById('postsContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const allPosts = postsContainer.querySelectorAll('.post-card');
+            const postsPerPage = 10;
+            let currentVisibleCount = postsPerPage;
+            
+            function hideExtraPosts() {
+                allPosts.forEach((post, index) => {
+                    if (index >= currentVisibleCount) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'block';
+                    }
+                });
+            }
+            
+            function showMorePosts() {
+                currentVisibleCount += postsPerPage;
+                
+                allPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        post.style.display = 'block';
+                    }
+                });
+                
+                if (currentVisibleCount >= allPosts.length) {
+                    loadMoreContainer.style.display = 'none';
+                }
+            }
+            
+            if (allPosts.length > postsPerPage) {
+                loadMoreContainer.style.display = 'block';
+                hideExtraPosts();
+            }
+            
+            loadMoreBtn.addEventListener('click', showMorePosts);
+            
+            function updateButtonText() {
+                const remainingPosts = allPosts.length - currentVisibleCount;
+                if (remainingPosts > 0) {
+                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر (${remainingPosts} پست باقی‌مانده)`;
+                } else {
+                    loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
+                }
+            }
+            
+            updateButtonText();
+            
+            loadMoreBtn.addEventListener('click', function() {
+                setTimeout(updateButtonText, 100);
+            });
+            
+            function saveState() {
+                localStorage.setItem('postsVisibleCount', currentVisibleCount.toString());
+            }
+            
+            function loadState() {
+                const savedCount = localStorage.getItem('postsVisibleCount');
+                if (savedCount) {
+                    const parsedCount = parseInt(savedCount);
+                    if (parsedCount > postsPerPage && parsedCount <= allPosts.length) {
+                        currentVisibleCount = parsedCount;
+                        hideExtraPosts();
+                        updateButtonText();
+                    }
+                }
+            }
+            
+            loadState();
+            
+            loadMoreBtn.addEventListener('click', saveState);
+            
+            window.addEventListener('beforeunload', saveState);
+        });
+    </script>
+</body>
+</html>
