@@ -296,7 +296,7 @@ layout: null
             text-align: center;
             margin: 3rem auto;
             position: relative;
-            min-height: 120px;
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -369,12 +369,21 @@ layout: null
             border-radius: 50%;
             border-top-color: var(--accent-color);
             animation: spin 1s linear infinite;
-            margin: 2rem auto;
+            margin: 0 auto;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: none;
+            z-index: 100;
+            background-color: white;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
         }
         
         .empty-state {
@@ -516,9 +525,7 @@ layout: null
             <button class="load-more-btn" id="loadMoreBtn" style="display: none;"><span>نمایش پست‌های بیشتر</span></button>
         </div>
         
-        <div class="infinite-scroll-container" id="infiniteScrollContainer">
-            <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
-        </div>
+        <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
     </main>
 
     <script>
@@ -527,7 +534,6 @@ layout: null
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const siteHeader = document.getElementById('siteHeader');
-            const infiniteScrollContainer = document.getElementById('infiniteScrollContainer');
             const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
             const allPosts = postsContainer.querySelectorAll('.post-card');
             
@@ -538,6 +544,7 @@ layout: null
             let isHeaderVisible = true;
             let hasMorePosts = true;
             let scrollTimeout = null;
+            let spinnerShown = false;
             
             function handleHeaderVisibility() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -587,8 +594,11 @@ layout: null
                 
                 isLoading = true;
                 
-                infiniteScrollContainer.style.display = 'block';
-                infiniteScrollSpinner.style.display = 'block';
+                if (!spinnerShown) {
+                    infiniteScrollSpinner.style.display = 'block';
+                    spinnerShown = true;
+                }
+                
                 loadMoreBtn.style.display = 'none';
                 
                 setTimeout(() => {
@@ -605,8 +615,8 @@ layout: null
                     
                     updateButtonState();
                     
-                    infiniteScrollContainer.style.display = 'none';
                     infiniteScrollSpinner.style.display = 'none';
+                    spinnerShown = false;
                     
                     if (hasMorePosts) {
                         loadMoreBtn.style.display = 'block';
@@ -643,7 +653,7 @@ layout: null
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
                 
-                return (scrollTop + windowHeight) >= (documentHeight - 50);
+                return (scrollTop + windowHeight) >= (documentHeight - 100);
             }
             
             function handleInfiniteScroll() {
@@ -664,7 +674,8 @@ layout: null
                 hasMorePosts = currentVisibleCount < allPosts.length;
                 
                 if (!hasMorePosts) {
-                    infiniteScrollContainer.style.display = 'none';
+                    infiniteScrollSpinner.style.display = 'none';
+                    spinnerShown = false;
                     loadMoreBtn.style.display = 'none';
                 }
             }
@@ -682,11 +693,6 @@ layout: null
             
             loadMoreBtn.addEventListener('click', function() {
                 showMorePosts();
-                setTimeout(() => {
-                    if (isAtBottom() && hasMorePosts) {
-                        showMorePosts();
-                    }
-                }, 100);
             });
             
             const observerOptions = {
@@ -712,6 +718,12 @@ layout: null
                         showMorePosts();
                     }
                 }, 100);
+            });
+            
+            window.addEventListener('scroll', function() {
+                if (isLoading) {
+                    infiniteScrollSpinner.style.bottom = '20px';
+                }
             });
         });
     </script>
