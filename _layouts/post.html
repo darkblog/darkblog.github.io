@@ -698,7 +698,6 @@
         </div>
         
         <section class="related-posts">
-            <h2 class="related-posts-title">مقالات مرتبط</h2>
             <div class="posts-container" id="postsContainer">
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
@@ -785,6 +784,8 @@
                 
                 if (!hasMorePosts) {
                     loadMoreContainer.style.display = 'none';
+                } else {
+                    loadMoreContainer.style.display = 'flex';
                 }
             }
             
