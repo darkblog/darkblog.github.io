@@ -11,11 +11,11 @@ layout: null
     <meta name="description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.">
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%222563EB%22>📚</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22DC2626%22>📚</text></svg>">
     <meta property="og:updated_time" content="{{ site.time | date_to_xmlschema }}">
     <meta property="article:published_time" content="{{ site.time | date_to_xmlschema }}">
     <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}">
-    <meta name="theme-color" content="#2563EB">
+    <meta name="theme-color" content="#DC2626">
     
     <style>
         @font-face {
@@ -29,15 +29,18 @@ layout: null
         :root {
             --primary-color: #111827;
             --secondary-color: #374151;
-            --accent-color: #2563EB;
-            --accent-light: #3B82F6;
-            --accent-dark: #1D4ED8;
-            --light-color: #F9FAFB;
-            --border-color: #E5E7EB;
-            --hover-color: #1E40AF;
+            --accent-color: #DC2626;
+            --accent-light: #EF4444;
+            --accent-dark: #B91C1C;
+            --accent-hover: #991B1B;
+            --light-color: #FEF2F2;
+            --border-color: #FECACA;
+            --hover-color: #7F1D1D;
             --radius: 12px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-red: 0 4px 6px -1px rgba(220, 38, 38, 0.1), 0 2px 4px -1px rgba(220, 38, 38, 0.06);
+            --shadow-red-lg: 0 10px 15px -3px rgba(220, 38, 38, 0.1), 0 4px 6px -2px rgba(220, 38, 38, 0.05);
             --transition: all 0.3s ease;
             --max-width: 72rem;
         }
@@ -70,6 +73,7 @@ layout: null
             display: flex;
             align-items: center;
             transition: transform 0.3s ease;
+            border-bottom: 2px solid var(--accent-color);
         }
         
         .site-header.hidden {
@@ -98,13 +102,13 @@ layout: null
         }
         
         .logo-link:hover {
-            background-color: rgba(37, 99, 235, 0.1);
+            background-color: rgba(220, 38, 38, 0.1);
         }
         
         .logo-svg {
             width: 2.5rem;
             height: 2.5rem;
-            color: #2563EB;
+            color: #DC2626;
         }
         
         .hero-section {
@@ -124,7 +128,7 @@ layout: null
             right: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232563EB' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23DC2626' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
         }
         
@@ -140,6 +144,7 @@ layout: null
             margin-bottom: 1rem;
             font-weight: 900;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         @media (min-width: 768px) {
@@ -189,16 +194,18 @@ layout: null
             height: 100%;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-color);
         }
         
         .post-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-red-lg);
+            border-color: var(--accent-light);
         }
         
         .post-title-section {
             height: 12rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2D3748 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -206,6 +213,7 @@ layout: null
             position: relative;
             overflow: hidden;
             padding: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
         }
         
         .post-title-section::after {
@@ -215,7 +223,7 @@ layout: null
             right: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.2));
         }
         
         .post-card-title {
@@ -262,15 +270,22 @@ layout: null
             gap: 0.5rem;
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
             margin-top: auto;
             font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            background-color: rgba(220, 38, 38, 0.05);
+            border: 1px solid var(--border-color);
         }
         
         .read-more:hover {
             color: var(--accent-dark);
             gap: 0.75rem;
+            background-color: rgba(220, 38, 38, 0.1);
+            border-color: var(--accent-light);
+            box-shadow: var(--shadow-red);
         }
         
         .read-more::after {
@@ -289,7 +304,7 @@ layout: null
         
         .load-more-btn {
             padding: 0.875rem 2rem;
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
             color: white;
             border: none;
             border-radius: var(--radius);
@@ -298,13 +313,35 @@ layout: null
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-red);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .load-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .load-more-btn:hover {
-            background-color: var(--accent-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-red-lg);
+        }
+        
+        .load-more-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .load-more-btn span {
+            position: relative;
+            z-index: 1;
         }
         
         .load-more-btn:active {
@@ -314,7 +351,7 @@ layout: null
         .loading-spinner {
             width: 3rem;
             height: 3rem;
-            border: 3px solid rgba(37, 99, 235, 0.2);
+            border: 3px solid rgba(220, 38, 38, 0.2);
             border-radius: 50%;
             border-top-color: var(--accent-color);
             animation: spin 1s linear infinite;
@@ -322,10 +359,22 @@ layout: null
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            display: none;
+        }
+        
+        .infinite-scroll-spinner {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 3px solid rgba(220, 38, 38, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+            display: none;
         }
         
         @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
         
         .empty-state {
@@ -333,12 +382,16 @@ layout: null
             padding: 3rem 1rem;
             color: var(--secondary-color);
             grid-column: 1 / -1;
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
         }
         
         .empty-state-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--border-color);
+            color: var(--accent-light);
         }
         
         @media (max-width: 768px) {
@@ -390,6 +443,26 @@ layout: null
         html {
             scroll-behavior: smooth;
         }
+        
+        .infinite-scroll-container {
+            display: none;
+        }
+        
+        ::selection {
+            background-color: rgba(220, 38, 38, 0.2);
+            color: var(--primary-color);
+        }
+        
+        .post-title-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(220, 38, 38, 0.05) 100%);
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -397,7 +470,7 @@ layout: null
         <div class="header-container">
             <a href="/" class="logo-link">
                 <svg class="logo-svg" viewBox="0 0 1024 1024">
-                    <g transform="translate(0,1024) scale(0.1,-0.1)" fill="#2563EB">
+                    <g transform="translate(0,1024) scale(0.1,-0.1)" fill="#DC2626">
                         <path d="M3110 5120 l0 -2910 73 0 c143 0 349 21 445 46 256 64 459 217 558 419 84 172 78 84 82 1217 l3 1007 997 4 c1087 3 1045 1 1256 62 377 109 647 379 735 736 38 153 43 273 38 849 -3 448 -7 559 -20 626 -88 442 -393 738 -851 826 -110 21 -128 22 -1713 25 l-1603 4 0 -2911z m2822 1871 c37 -10 83 -30 102 -45 47 -36 87 -106 103 -180 16 -77 17 -503 2 -578 -22 -106 -91 -187 -195 -229 l-59 -24 -807 -3 -808 -3 0 541 0 540 798 0 c746 0 802 -1 864 -19z"/>
                         <path d="M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z"/>
                         <path d="M5907 3069 c-125 -127 -227 -235 -225 -240 5 -13 449 -459 458 -459 11 0 71 58 286 278 l188 193 -229 229 c-127 127 -234 230 -240 230 -5 0 -113 -104 -238 -231z"/>
@@ -440,8 +513,11 @@ layout: null
         {% endif %}
         
         <div class="load-more-container" id="loadMoreContainer">
-            <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
-            <button class="load-more-btn" id="loadMoreBtn" style="display: none;">نمایش پست‌های بیشتر</button>
+            <button class="load-more-btn" id="loadMoreBtn" style="display: none;"><span>نمایش پست‌های بیشتر</span></button>
+        </div>
+        
+        <div class="infinite-scroll-container" id="infiniteScrollContainer">
+            <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
         </div>
     </main>
 
@@ -450,8 +526,9 @@ layout: null
             const postsContainer = document.getElementById('postsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
-            const loadingSpinner = document.getElementById('loadingSpinner');
             const siteHeader = document.getElementById('siteHeader');
+            const infiniteScrollContainer = document.getElementById('infiniteScrollContainer');
+            const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
             const allPosts = postsContainer.querySelectorAll('.post-card');
             
             const postsPerPage = 10;
@@ -459,6 +536,7 @@ layout: null
             let isLoading = false;
             let lastScrollTop = 0;
             let isHeaderVisible = true;
+            let hasMorePosts = true;
             
             function handleHeaderVisibility() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -488,6 +566,7 @@ layout: null
                 hideExtraPosts();
                 
                 window.addEventListener('scroll', handleHeaderVisibility);
+                window.addEventListener('scroll', handleInfiniteScroll);
             }
             
             function hideExtraPosts() {
@@ -498,35 +577,43 @@ layout: null
                         post.style.display = 'flex';
                     }
                 });
+                
+                hasMorePosts = currentVisibleCount < allPosts.length;
             }
             
             function showMorePosts() {
-                if (isLoading) return;
+                if (isLoading || !hasMorePosts) return;
                 
                 isLoading = true;
                 
-                loadingSpinner.style.display = 'block';
+                infiniteScrollContainer.style.display = 'block';
+                infiniteScrollSpinner.style.display = 'block';
                 loadMoreBtn.style.display = 'none';
                 
                 setTimeout(() => {
-                    currentVisibleCount += postsPerPage;
+                    const nextBatch = currentVisibleCount + postsPerPage;
                     
                     allPosts.forEach((post, index) => {
-                        if (index < currentVisibleCount) {
+                        if (index < nextBatch && index >= currentVisibleCount) {
                             post.style.display = 'flex';
                             post.classList.add('fade-in');
                         }
                     });
                     
+                    currentVisibleCount = nextBatch;
+                    
                     updateButtonState();
                     
-                    loadingSpinner.style.display = 'none';
+                    infiniteScrollContainer.style.display = 'none';
+                    infiniteScrollSpinner.style.display = 'none';
                     
-                    if (currentVisibleCount < allPosts.length) {
+                    if (hasMorePosts) {
                         loadMoreBtn.style.display = 'block';
                     }
                     
                     isLoading = false;
+                    
+                    checkIfAllPostsLoaded();
                 }, 600);
             }
             
@@ -534,44 +621,40 @@ layout: null
                 const remainingPosts = allPosts.length - currentVisibleCount;
                 
                 if (remainingPosts > 0) {
-                    loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر`;
+                    loadMoreBtn.querySelector('span').textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر`;
                     loadMoreBtn.disabled = false;
                     loadMoreBtn.style.opacity = '1';
                 } else {
-                    loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
+                    loadMoreBtn.querySelector('span').textContent = 'همه پست‌ها نمایش داده شدند';
                     loadMoreBtn.disabled = true;
                     loadMoreBtn.style.opacity = '0.7';
                 }
             }
             
-            function setupAutoLoad() {
-                let autoLoadTriggered = false;
+            function handleInfiniteScroll() {
+                if (isLoading || !hasMorePosts) return;
                 
-                window.addEventListener('scroll', function() {
-                    if (isLoading || currentVisibleCount >= allPosts.length) return;
-                    
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const windowHeight = window.innerHeight;
-                    const documentHeight = document.documentElement.scrollHeight;
-                    
-                    if (scrollTop > lastScrollTop) {
-                        const scrollRemaining = documentHeight - (scrollTop + windowHeight);
-                        
-                        if (scrollRemaining < 300 && !autoLoadTriggered) {
-                            autoLoadTriggered = true;
-                            showMorePosts();
-                            
-                            setTimeout(() => {
-                                autoLoadTriggered = false;
-                            }, 1000);
-                        }
-                    }
-                });
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                if (scrollTop + windowHeight >= documentHeight - 1) {
+                    showMorePosts();
+                }
+            }
+            
+            function checkIfAllPostsLoaded() {
+                hasMorePosts = currentVisibleCount < allPosts.length;
+                
+                if (!hasMorePosts) {
+                    infiniteScrollContainer.style.display = 'none';
+                    loadMoreBtn.style.display = 'none';
+                }
             }
             
             if (allPosts.length > 0) {
                 initializePage();
-                setupAutoLoad();
+                checkIfAllPostsLoaded();
             }
             
             loadMoreBtn.addEventListener('click', showMorePosts);
