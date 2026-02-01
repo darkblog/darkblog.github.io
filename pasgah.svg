@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150">
     <defs>
         <style>
             .persian-text {
@@ -12,6 +12,6 @@
         </style>
     </defs>
     
-    <rect width="200" height="200" fill="white"/>
+    <rect width="150" height="150" fill="white"/>
     <text x="100" y="120" text-anchor="middle" dominant-baseline="middle" class="persian-text">P</text>
 </svg>
