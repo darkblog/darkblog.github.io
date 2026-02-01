@@ -39,8 +39,8 @@ layout: null
             --radius: 12px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-red: 0 4px 6px -1px rgba(220, 38, 38, 0.1), 0 2px 4px -1px rgba(220, 38, 38, 0.06);
-            --shadow-red-lg: 0 10px 15px -3px rgba(220, 38, 38, 0.1), 0 4px 6px -2px rgba(220, 38, 38, 0.05);
+            --shadow-red: 0 4px 6px -1px rgba(220, 38, 38, 0.1), 0 2px 4px rgba(220, 38, 38, 0.06);
+            --shadow-red-lg: 0 10px 15px -3px rgba(220, 38, 38, 0.1), 0 4px 6px rgba(220, 38, 38, 0.05);
             --transition: all 0.3s ease;
             --max-width: 72rem;
         }
@@ -537,6 +537,7 @@ layout: null
             let lastScrollTop = 0;
             let isHeaderVisible = true;
             let hasMorePosts = true;
+            let scrollTimeout = null;
             
             function handleHeaderVisibility() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -614,6 +615,12 @@ layout: null
                     isLoading = false;
                     
                     checkIfAllPostsLoaded();
+                    
+                    setTimeout(() => {
+                        if (isAtBottom()) {
+                            showMorePosts();
+                        }
+                    }, 100);
                 }, 600);
             }
             
@@ -631,16 +638,26 @@ layout: null
                 }
             }
             
-            function handleInfiniteScroll() {
-                if (isLoading || !hasMorePosts) return;
-                
+            function isAtBottom() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
                 
-                if (scrollTop + windowHeight >= documentHeight - 1) {
-                    showMorePosts();
+                return (scrollTop + windowHeight) >= (documentHeight - 50);
+            }
+            
+            function handleInfiniteScroll() {
+                if (isLoading || !hasMorePosts) return;
+                
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
                 }
+                
+                scrollTimeout = setTimeout(() => {
+                    if (isAtBottom()) {
+                        showMorePosts();
+                    }
+                }, 150);
             }
             
             function checkIfAllPostsLoaded() {
@@ -655,9 +672,22 @@ layout: null
             if (allPosts.length > 0) {
                 initializePage();
                 checkIfAllPostsLoaded();
+                
+                setTimeout(() => {
+                    if (isAtBottom() && hasMorePosts) {
+                        showMorePosts();
+                    }
+                }, 500);
             }
             
-            loadMoreBtn.addEventListener('click', showMorePosts);
+            loadMoreBtn.addEventListener('click', function() {
+                showMorePosts();
+                setTimeout(() => {
+                    if (isAtBottom() && hasMorePosts) {
+                        showMorePosts();
+                    }
+                }, 100);
+            });
             
             const observerOptions = {
                 threshold: 0.1,
@@ -674,6 +704,14 @@ layout: null
             
             allPosts.forEach(post => {
                 observer.observe(post);
+            });
+            
+            window.addEventListener('resize', function() {
+                setTimeout(() => {
+                    if (isAtBottom() && hasMorePosts && !isLoading) {
+                        showMorePosts();
+                    }
+                }, 100);
             });
         });
     </script>
