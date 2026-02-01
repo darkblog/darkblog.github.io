@@ -11,11 +11,11 @@ layout: null
     <meta name="description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.">
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
-    <link rel="icon" href="https://www.pasgah.org/blog.svg" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%222563EB%22>📚</text></svg>">
     <meta property="og:updated_time" content="{{ site.time | date_to_xmlschema }}">
     <meta property="article:published_time" content="{{ site.time | date_to_xmlschema }}">
     <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}">
-    <meta name="theme-color" content="#111827">
+    <meta name="theme-color" content="#2563EB">
     
     <style>
         @font-face {
@@ -60,7 +60,6 @@ layout: null
             font-weight: 400;
         }
         
-        /* هدر و ناوبری */
         .site-header {
             background-color: white;
             box-shadow: var(--shadow);
@@ -102,12 +101,12 @@ layout: null
             background-color: rgba(37, 99, 235, 0.1);
         }
         
-        .logo-img {
+        .logo-svg {
             width: 2.5rem;
             height: 2.5rem;
+            color: #2563EB;
         }
         
-        /* بخش هیرو */
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color) 0%, #1E293B 100%);
             color: white;
@@ -156,50 +155,6 @@ layout: null
             margin: 0 auto 2rem;
         }
         
-        .search-container {
-            max-width: 28rem;
-            margin: 2rem auto 0;
-        }
-        
-        .search-box {
-            display: flex;
-            background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 0.875rem 1rem;
-            border: none;
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .search-input:focus {
-            outline: 2px solid var(--accent-color);
-            outline-offset: -2px;
-        }
-        
-        .search-btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Vazirmatn', sans-serif;
-            font-weight: 500;
-        }
-        
-        .search-btn:hover {
-            background-color: var(--accent-dark);
-        }
-        
-        /* محتوای اصلی */
         main {
             flex: 1;
             margin: 0 auto 3rem;
@@ -234,7 +189,6 @@ layout: null
             height: 100%;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
         
         .post-card:hover {
@@ -269,7 +223,7 @@ layout: null
             font-weight: 700;
             line-height: 1.4;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            text-align: center;
+            text-align: right;
             z-index: 2;
             position: relative;
             color: white;
@@ -299,6 +253,7 @@ layout: null
             color: var(--secondary-color);
             margin-bottom: 1.5rem;
             flex: 1;
+            text-align: right;
         }
         
         .read-more {
@@ -322,7 +277,6 @@ layout: null
             content: '←';
         }
         
-        /* دکمه بارگذاری بیشتر */
         .load-more-container {
             text-align: center;
             margin: 3rem auto;
@@ -357,7 +311,6 @@ layout: null
             transform: translateY(0);
         }
         
-        /* اسپینر مرکزی */
         .loading-spinner {
             width: 3rem;
             height: 3rem;
@@ -375,7 +328,6 @@ layout: null
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
-        /* وضعیت خالی */
         .empty-state {
             text-align: center;
             padding: 3rem 1rem;
@@ -389,7 +341,6 @@ layout: null
             color: var(--border-color);
         }
         
-        /* رسپانسیو */
         @media (max-width: 768px) {
             .site-header {
                 height: 56px;
@@ -399,7 +350,7 @@ layout: null
                 padding: 0 1rem;
             }
             
-            .logo-img {
+            .logo-svg {
                 width: 2rem;
                 height: 2rem;
             }
@@ -427,7 +378,6 @@ layout: null
             }
         }
         
-        /* انیمیشن‌ها */
         .fade-in {
             animation: fadeIn 0.5s ease-out;
         }
@@ -437,45 +387,33 @@ layout: null
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* اسکرول نرم */
         html {
             scroll-behavior: smooth;
-        }
-        
-        /* فرم جستجو */
-        .search-form {
-            width: 100%;
         }
     </style>
 </head>
 <body>
-    <!-- هدر سایت -->
     <header class="site-header" id="siteHeader">
         <div class="header-container">
-            <a href="https://www.pasgah.org/" class="logo-link">
-                <img src="https://www.pasgah.org/blog.svg" class="logo-img" alt="وبلاگ پاسگاه">
+            <a href="/" class="logo-link">
+                <svg class="logo-svg" viewBox="0 0 1024 1024">
+                    <g transform="translate(0,1024) scale(0.1,-0.1)" fill="#2563EB">
+                        <path d="M3110 5120 l0 -2910 73 0 c143 0 349 21 445 46 256 64 459 217 558 419 84 172 78 84 82 1217 l3 1007 997 4 c1087 3 1045 1 1256 62 377 109 647 379 735 736 38 153 43 273 38 849 -3 448 -7 559 -20 626 -88 442 -393 738 -851 826 -110 21 -128 22 -1713 25 l-1603 4 0 -2911z m2822 1871 c37 -10 83 -30 102 -45 47 -36 87 -106 103 -180 16 -77 17 -503 2 -578 -22 -106 -91 -187 -195 -229 l-59 -24 -807 -3 -808 -3 0 541 0 540 798 0 c746 0 802 -1 864 -19z"/>
+                        <path d="M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z"/>
+                        <path d="M5907 3069 c-125 -127 -227 -235 -225 -240 5 -13 449 -459 458 -459 11 0 71 58 286 278 l188 193 -229 229 c-127 127 -234 230 -240 230 -5 0 -113 -104 -238 -231z"/>
+                    </g>
+                </svg>
             </a>
         </div>
     </header>
     
-    <!-- بخش هیرو -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-title">کاوش در تاریخ و تمدن ایران و جهان</h1>
             <p class="hero-description">همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.</p>
-            
-            <div class="search-container">
-                <form class="search-form" id="googleSearchForm" target="_blank">
-                    <div class="search-box">
-                        <input type="text" class="search-input" name="q" placeholder="جستجو در مقالات..." required>
-                        <button type="submit" class="search-btn">جستجو</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </section>
     
-    <!-- محتوای اصلی -->
     <main>
         <section class="posts-container" id="postsContainer">
             {% for post in site.posts %}
@@ -493,7 +431,6 @@ layout: null
             {% endfor %}
         </section>
         
-        <!-- حالت خالی (اگر پستی وجود نداشته باشد) -->
         {% if site.posts.size == 0 %}
         <div class="empty-state">
             <div class="empty-state-icon">📝</div>
@@ -502,7 +439,6 @@ layout: null
         </div>
         {% endif %}
         
-        <!-- بارگذاری بیشتر -->
         <div class="load-more-container" id="loadMoreContainer">
             <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
             <button class="load-more-btn" id="loadMoreBtn" style="display: none;">نمایش پست‌های بیشتر</button>
@@ -517,26 +453,22 @@ layout: null
             const loadingSpinner = document.getElementById('loadingSpinner');
             const siteHeader = document.getElementById('siteHeader');
             const allPosts = postsContainer.querySelectorAll('.post-card');
-            const googleSearchForm = document.getElementById('googleSearchForm');
             
-            const postsPerPage = 9;
+            const postsPerPage = 10;
             let currentVisibleCount = postsPerPage;
             let isLoading = false;
             let lastScrollTop = 0;
             let isHeaderVisible = true;
             
-            // مدیریت نمایش/مخفی شدن هدر هنگام اسکرول
             function handleHeaderVisibility() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
-                // اگر اسکرول به پایین
                 if (scrollTop > lastScrollTop && scrollTop > 100) {
                     if (isHeaderVisible) {
                         siteHeader.classList.add('hidden');
                         isHeaderVisible = false;
                     }
                 } 
-                // اگر اسکرول به بالا
                 else if (scrollTop < lastScrollTop) {
                     if (!isHeaderVisible) {
                         siteHeader.classList.remove('hidden');
@@ -547,26 +479,6 @@ layout: null
                 lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             }
             
-            // تنظیم فرم جستجوی گوگل
-            if (googleSearchForm) {
-                googleSearchForm.action = 'https://www.google.com/search';
-                googleSearchForm.addEventListener('submit', function(e) {
-                    const searchInput = this.querySelector('input[name="q"]');
-                    const siteQuery = 'site:pasgah.org';
-                    const searchTerm = searchInput.value.trim();
-                    
-                    if (searchTerm) {
-                        // اضافه کردن سایت به جستجو
-                        searchInput.value = `${siteQuery} ${searchTerm}`;
-                        // فرم در همان صفحه ارسال می‌شود (target="_blank")
-                    } else {
-                        e.preventDefault();
-                        alert('لطفاً عبارت جستجو را وارد کنید.');
-                    }
-                });
-            }
-            
-            // تنظیم وضعیت اولیه
             function initializePage() {
                 if (allPosts.length > postsPerPage) {
                     loadMoreBtn.style.display = 'block';
@@ -575,14 +487,9 @@ layout: null
                 
                 hideExtraPosts();
                 
-                // تنظیم event listener برای اسکرول
                 window.addEventListener('scroll', handleHeaderVisibility);
-                
-                // تنظیم ارتفاع اولیه هدر
-                siteHeader.style.height = '64px';
             }
             
-            // مخفی کردن پست‌های اضافی
             function hideExtraPosts() {
                 allPosts.forEach((post, index) => {
                     if (index >= currentVisibleCount) {
@@ -593,17 +500,14 @@ layout: null
                 });
             }
             
-            // نمایش پست‌های بیشتر
             function showMorePosts() {
                 if (isLoading) return;
                 
                 isLoading = true;
                 
-                // نمایش اسپینر بارگذاری در مرکز صفحه
                 loadingSpinner.style.display = 'block';
                 loadMoreBtn.style.display = 'none';
                 
-                // شبیه‌سازی تأخیر بارگذاری
                 setTimeout(() => {
                     currentVisibleCount += postsPerPage;
                     
@@ -614,13 +518,10 @@ layout: null
                         }
                     });
                     
-                    // به‌روزرسانی وضعیت دکمه
                     updateButtonState();
                     
-                    // مخفی کردن اسپینر
                     loadingSpinner.style.display = 'none';
                     
-                    // اگر هنوز پست بیشتری وجود دارد، دکمه را نمایش بده
                     if (currentVisibleCount < allPosts.length) {
                         loadMoreBtn.style.display = 'block';
                     }
@@ -629,7 +530,6 @@ layout: null
                 }, 600);
             }
             
-            // به‌روزرسانی وضعیت دکمه
             function updateButtonState() {
                 const remainingPosts = allPosts.length - currentVisibleCount;
                 
@@ -644,7 +544,6 @@ layout: null
                 }
             }
             
-            // بارگذاری خودکار هنگام اسکرول
             function setupAutoLoad() {
                 let autoLoadTriggered = false;
                 
@@ -655,16 +554,13 @@ layout: null
                     const windowHeight = window.innerHeight;
                     const documentHeight = document.documentElement.scrollHeight;
                     
-                    // اگر کاربر به پایین اسکرول کرده و نزدیک انتهای صفحه است
                     if (scrollTop > lastScrollTop) {
                         const scrollRemaining = documentHeight - (scrollTop + windowHeight);
                         
-                        // اگر 300px به انتهای صفحه مانده، پست‌های بیشتر را بارگذاری کن
                         if (scrollRemaining < 300 && !autoLoadTriggered) {
                             autoLoadTriggered = true;
                             showMorePosts();
                             
-                            // ریست تریگر پس از بارگذاری
                             setTimeout(() => {
                                 autoLoadTriggered = false;
                             }, 1000);
@@ -673,37 +569,13 @@ layout: null
                 });
             }
             
-            // ذخیره وضعیت در localStorage
-            function saveState() {
-                localStorage.setItem('postsVisibleCount', currentVisibleCount.toString());
-            }
-            
-            // بارگذاری وضعیت از localStorage
-            function loadState() {
-                const savedCount = localStorage.getItem('postsVisibleCount');
-                if (savedCount) {
-                    const parsedCount = parseInt(savedCount);
-                    if (parsedCount > postsPerPage && parsedCount <= allPosts.length) {
-                        currentVisibleCount = parsedCount;
-                        hideExtraPosts();
-                        updateButtonState();
-                    }
-                }
-            }
-            
-            // تنظیم رویدادها
             if (allPosts.length > 0) {
                 initializePage();
-                loadState();
                 setupAutoLoad();
             }
             
             loadMoreBtn.addEventListener('click', showMorePosts);
             
-            // ذخیره وضعیت هنگام خروج
-            window.addEventListener('beforeunload', saveState);
-            
-            // انیمیشن برای پست‌ها
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -720,19 +592,6 @@ layout: null
             allPosts.forEach(post => {
                 observer.observe(post);
             });
-            
-            // بهبود دسترسی
-            document.addEventListener('keydown', function(event) {
-                // Esc برای پاک کردن جستجو
-                const searchInput = document.querySelector('.search-input');
-                if (event.key === 'Escape' && document.activeElement === searchInput) {
-                    searchInput.value = '';
-                }
-            });
-            
-            // نمایش پیام خوش‌آمدگویی در کنسول
-            console.log('%c📚 وبلاگ پاسگاه 📚', 'color: #2563EB; font-size: 18px; font-weight: bold;');
-            console.log('%cکاوش در تاریخ و تمدن ایران و جهان', 'color: #374151; font-size: 14px;');
         });
     </script>
 </body>
