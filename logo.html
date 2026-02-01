@@ -69,36 +69,26 @@ layout: null
             z-index: 2;
         }
         
-        .site-logo {
-            height: clamp(4rem, 10vw, 5rem);
-            width: clamp(4rem, 10vw, 5rem);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .site-title-svg {
             margin: 0 auto clamp(1.5rem, 4vh, 2.5rem) auto;
-                  font-family: 'Vazirmatn', sans-serif;
-        font-weight: 700;
-        font-size: 80px;
-        fill: #000000;
-        direction: rtl;
-        unicode-bidi: bidi-override;
-        }
-        
-        .site-logo img {
-            width: clamp(3.25rem, 8.5vw, 4.25rem);
-            height: clamp(3.25rem, 8.5vw, 4.25rem);
-            object-fit: contain;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3rem, 8vw, 4rem);
+            text-align: center;
+            color: black;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
         
         .page-title {
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: clamp(1rem, 3vh, 1.25rem);
             color: black;
             position: relative;
             padding-bottom: clamp(0.75rem, 2vh, 1.25rem);
-            font-weight: 900;
+            font-weight: 600;
             line-height: 1.3;
+            opacity: 0.8;
         }
         
         main {
@@ -176,11 +166,11 @@ layout: null
 <body>
     <section class="hero-section">
         <div class="hero-content">
-            <a href="https://www.pasgah.org/" class="site-logo">
-                <img src="https://www.pasgah.org/pasgah.svg" loading="lazy" alt="وبلاگ پاسگاه">
-            </a>
+            <div class="site-title-svg">
+                پاسگاه
+            </div>
             
-            <h1 class="page-title">وبلاگ پاسگاه</h1>
+            <h1 class="page-title">کاوش در تاریخ و تمدن ایران و جهان</h1>
         </div>
     </section>
     
