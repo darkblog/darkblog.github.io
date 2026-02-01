@@ -29,10 +29,12 @@ layout: null
         :root {
             --primary-color: #111827;
             --secondary-color: #374151;
-            --accent-color: #7C3AED;
+            --accent-color: #2563EB;
+            --accent-light: #3B82F6;
+            --accent-dark: #1D4ED8;
             --light-color: #F9FAFB;
             --border-color: #E5E7EB;
-            --hover-color: #4F46E5;
+            --hover-color: #1E40AF;
             --radius: 12px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -73,7 +75,7 @@ layout: null
             margin: 0 auto;
             padding: 0 1.5rem;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
         }
         
@@ -85,10 +87,12 @@ layout: null
             transition: var(--transition);
             padding: 0.5rem;
             border-radius: var(--radius);
+            margin-left: 1rem;
         }
         
         .logo-nav-link:hover {
-            background-color: rgba(124, 58, 237, 0.1);
+            background-color: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
         }
         
         .logo-img {
@@ -133,7 +137,7 @@ layout: null
         
         /* بخش هیرو */
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2D3748 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1E293B 100%);
             color: white;
             padding: 4rem 1.5rem;
             margin-bottom: 3rem;
@@ -149,7 +153,7 @@ layout: null
             right: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%237C3AED' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232563EB' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
             opacity: 0.3;
         }
         
@@ -203,7 +207,8 @@ layout: null
         }
         
         .search-input:focus {
-            outline: none;
+            outline: 2px solid var(--accent-color);
+            outline-offset: -2px;
         }
         
         .search-btn {
@@ -218,7 +223,7 @@ layout: null
         }
         
         .search-btn:hover {
-            background-color: var(--hover-color);
+            background-color: var(--accent-dark);
         }
         
         /* محتوای اصلی */
@@ -333,6 +338,8 @@ layout: null
             background-color: var(--light-color);
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
+            color: var(--accent-color);
+            font-weight: 500;
         }
         
         .post-excerpt {
@@ -356,7 +363,7 @@ layout: null
         }
         
         .read-more:hover {
-            color: var(--hover-color);
+            color: var(--accent-dark);
             gap: 0.75rem;
         }
         
@@ -390,7 +397,7 @@ layout: null
         }
         
         .load-more-btn:hover {
-            background-color: var(--hover-color);
+            background-color: var(--accent-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
@@ -403,7 +410,7 @@ layout: null
         .loading-spinner {
             width: 3rem;
             height: 3rem;
-            border: 3px solid rgba(124, 58, 237, 0.2);
+            border: 3px solid rgba(37, 99, 235, 0.2);
             border-radius: 50%;
             border-top-color: var(--accent-color);
             animation: spin 1s linear infinite;
@@ -422,6 +429,7 @@ layout: null
             text-align: center;
             padding: 3rem 1rem;
             color: var(--secondary-color);
+            grid-column: 1 / -1;
         }
         
         .empty-state-icon {
@@ -485,12 +493,9 @@ layout: null
             scroll-behavior: smooth;
         }
         
-        /* صفحه‌بندی */
-        .pagination-info {
-            text-align: center;
-            color: var(--secondary-color);
-            margin-top: 1rem;
-            font-size: 0.9rem;
+        /* فرم جستجو */
+        .search-form {
+            width: 100%;
         }
     </style>
 </head>
@@ -499,12 +504,12 @@ layout: null
     <header class="site-header">
         <div class="header-container">
             <nav class="nav-menu">
+                <a href="#" class="logo-nav-link">
+                    <img src="https://www.pasgah.org/blog.svg" class="logo-img" alt="وبلاگ پاسگاه">
+                </a>
                 <a href="#" class="nav-link">درباره ما</a>
                 <a href="#" class="nav-link">تماس با ما</a>
                 <a href="#" class="nav-link">آرشیو</a>
-                <a href="#" class="logo-nav-link">
-                    <img src="https://www.pasgah.org/blog.svg" class="logo-img" alt="مقالات">
-                </a>
             </nav>
         </div>
     </header>
@@ -516,10 +521,12 @@ layout: null
             <p class="hero-description">همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.</p>
             
             <div class="search-container">
-                <div class="search-box">
-                    <input type="text" class="search-input" placeholder="جستجو در مقالات...">
-                    <button class="search-btn">جستجو</button>
-                </div>
+                <form class="search-form" id="googleSearchForm" target="_blank">
+                    <div class="search-box">
+                        <input type="text" class="search-input" name="q" placeholder="جستجو در مقالات..." required>
+                        <button type="submit" class="search-btn">جستجو</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -561,9 +568,6 @@ layout: null
             <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
             <button class="load-more-btn" id="loadMoreBtn" style="display: none;">نمایش پست‌های بیشتر</button>
         </div>
-        
-        <!-- اطلاعات صفحه‌بندی -->
-        <div class="pagination-info" id="paginationInfo"></div>
     </main>
 
     <script>
@@ -572,14 +576,31 @@ layout: null
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const loadingSpinner = document.getElementById('loadingSpinner');
-            const paginationInfo = document.getElementById('paginationInfo');
             const allPosts = postsContainer.querySelectorAll('.post-card');
-            const searchInput = document.querySelector('.search-input');
-            const searchBtn = document.querySelector('.search-btn');
+            const googleSearchForm = document.getElementById('googleSearchForm');
             
             const postsPerPage = 9;
             let currentVisibleCount = postsPerPage;
-            let filteredPosts = Array.from(allPosts);
+            let isLoading = false;
+            
+            // تنظیم فرم جستجوی گوگل
+            if (googleSearchForm) {
+                googleSearchForm.action = 'https://www.google.com/search';
+                googleSearchForm.addEventListener('submit', function(e) {
+                    const searchInput = this.querySelector('input[name="q"]');
+                    const siteQuery = 'site:pasgah.org';
+                    const searchTerm = searchInput.value.trim();
+                    
+                    if (searchTerm) {
+                        // اضافه کردن سایت به جستجو
+                        searchInput.value = `${siteQuery} ${searchTerm}`;
+                        // فرم در همان صفحه ارسال می‌شود (target="_blank")
+                    } else {
+                        e.preventDefault();
+                        alert('لطفاً عبارت جستجو را وارد کنید.');
+                    }
+                });
+            }
             
             // تنظیم وضعیت اولیه
             function initializePage() {
@@ -589,7 +610,6 @@ layout: null
                 }
                 
                 hideExtraPosts();
-                updatePaginationInfo();
             }
             
             // مخفی کردن پست‌های اضافی
@@ -605,6 +625,10 @@ layout: null
             
             // نمایش پست‌های بیشتر
             function showMorePosts() {
+                if (isLoading) return;
+                
+                isLoading = true;
+                
                 // نمایش اسپینر بارگذاری در مرکز صفحه
                 loadingSpinner.style.display = 'block';
                 loadMoreBtn.style.display = 'none';
@@ -613,41 +637,36 @@ layout: null
                 setTimeout(() => {
                     currentVisibleCount += postsPerPage;
                     
-                    filteredPosts.forEach((post, index) => {
+                    allPosts.forEach((post, index) => {
                         if (index < currentVisibleCount) {
                             post.style.display = 'flex';
                             post.classList.add('fade-in');
                         }
                     });
                     
-                    // به‌روزرسانی وضعیت دکمه و اطلاعات
+                    // به‌روزرسانی وضعیت دکمه
                     updateButtonState();
-                    updatePaginationInfo();
                     
                     // مخفی کردن اسپینر
                     loadingSpinner.style.display = 'none';
                     
                     // اگر هنوز پست بیشتری وجود دارد، دکمه را نمایش بده
-                    if (currentVisibleCount < filteredPosts.length) {
+                    if (currentVisibleCount < allPosts.length) {
                         loadMoreBtn.style.display = 'block';
                     }
                     
-                    // اسکرول به موقعیت مناسب
-                    setTimeout(() => {
-                        const lastVisiblePost = filteredPosts[Math.min(currentVisibleCount, filteredPosts.length) - 1];
-                        if (lastVisiblePost) {
-                            lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                    }, 100);
+                    isLoading = false;
                 }, 600);
             }
             
             // به‌روزرسانی وضعیت دکمه
             function updateButtonState() {
-                const remainingPosts = filteredPosts.length - currentVisibleCount;
+                const remainingPosts = allPosts.length - currentVisibleCount;
                 
                 if (remainingPosts > 0) {
                     loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر`;
+                    loadMoreBtn.disabled = false;
+                    loadMoreBtn.style.opacity = '1';
                 } else {
                     loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
                     loadMoreBtn.disabled = true;
@@ -655,89 +674,36 @@ layout: null
                 }
             }
             
-            // به‌روزرسانی اطلاعات صفحه‌بندی
-            function updatePaginationInfo() {
-                const showing = Math.min(currentVisibleCount, filteredPosts.length);
-                const total = filteredPosts.length;
+            // بارگذاری خودکار هنگام اسکرول
+            function setupAutoLoad() {
+                let lastScrollTop = 0;
+                let autoLoadTriggered = false;
                 
-                if (total > 0) {
-                    paginationInfo.textContent = `نمایش ${showing} از ${total} پست`;
-                    paginationInfo.style.display = 'block';
-                } else {
-                    paginationInfo.style.display = 'none';
-                }
-            }
-            
-            // جستجوی پست‌ها
-            function searchPosts() {
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                
-                if (searchTerm === '') {
-                    // نمایش همه پست‌ها
-                    filteredPosts = Array.from(allPosts);
-                    currentVisibleCount = postsPerPage;
+                window.addEventListener('scroll', function() {
+                    if (isLoading || currentVisibleCount >= allPosts.length) return;
                     
-                    allPosts.forEach(post => {
-                        post.style.display = 'flex';
-                    });
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight;
                     
-                    loadMoreBtn.style.display = allPosts.length > postsPerPage ? 'block' : 'none';
-                } else {
-                    // فیلتر کردن پست‌ها بر اساس عنوان
-                    filteredPosts = Array.from(allPosts).filter(post => {
-                        const title = post.querySelector('.post-card-title a').textContent.toLowerCase();
-                        return title.includes(searchTerm);
-                    });
-                    
-                    currentVisibleCount = postsPerPage;
-                    
-                    // نمایش یا مخفی کردن پست‌ها
-                    allPosts.forEach(post => {
-                        const title = post.querySelector('.post-card-title a').textContent.toLowerCase();
-                        if (title.includes(searchTerm)) {
-                            post.style.display = 'flex';
-                        } else {
-                            post.style.display = 'none';
+                    // اگر کاربر به پایین اسکرول کرده و نزدیک انتهای صفحه است
+                    if (scrollTop > lastScrollTop) {
+                        const scrollRemaining = documentHeight - (scrollTop + windowHeight);
+                        
+                        // اگر 300px به انتهای صفحه مانده، پست‌های بیشتر را بارگذاری کن
+                        if (scrollRemaining < 300 && !autoLoadTriggered) {
+                            autoLoadTriggered = true;
+                            showMorePosts();
+                            
+                            // ریست تریگر پس از بارگذاری
+                            setTimeout(() => {
+                                autoLoadTriggered = false;
+                            }, 1000);
                         }
-                    });
-                    
-                    // نمایش دکمه بارگذاری بیشتر اگر نیاز باشد
-                    loadMoreBtn.style.display = filteredPosts.length > postsPerPage ? 'block' : 'none';
-                }
-                
-                // نمایش پیام اگر نتیجه‌ای یافت نشد
-                if (filteredPosts.length === 0 && searchTerm !== '') {
-                    const emptyState = document.createElement('div');
-                    emptyState.className = 'empty-state';
-                    emptyState.innerHTML = `
-                        <div class="empty-state-icon">🔍</div>
-                        <h3>نتیجه‌ای یافت نشد</h3>
-                        <p>هیچ مقاله‌ای با عبارت "${searchTerm}" پیدا نشد.</p>
-                    `;
-                    
-                    // حذف حالت خالی قبلی اگر وجود داشته باشد
-                    const existingEmptyState = postsContainer.querySelector('.empty-state');
-                    if (existingEmptyState) {
-                        existingEmptyState.remove();
                     }
                     
-                    postsContainer.appendChild(emptyState);
-                    loadMoreBtn.style.display = 'none';
-                    paginationInfo.style.display = 'none';
-                } else {
-                    // حذف حالت خالی اگر وجود داشته باشد
-                    const existingEmptyState = postsContainer.querySelector('.empty-state');
-                    if (existingEmptyState) {
-                        existingEmptyState.remove();
-                    }
-                    
-                    paginationInfo.style.display = 'block';
-                }
-                
-                // به‌روزرسانی وضعیت دکمه و اطلاعات
-                updateButtonState();
-                updatePaginationInfo();
-                hideExtraPosts();
+                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                });
             }
             
             // ذخیره وضعیت در localStorage
@@ -754,7 +720,6 @@ layout: null
                         currentVisibleCount = parsedCount;
                         hideExtraPosts();
                         updateButtonState();
-                        updatePaginationInfo();
                     }
                 }
             }
@@ -763,15 +728,10 @@ layout: null
             if (allPosts.length > 0) {
                 initializePage();
                 loadState();
+                setupAutoLoad();
             }
             
             loadMoreBtn.addEventListener('click', showMorePosts);
-            searchBtn.addEventListener('click', searchPosts);
-            searchInput.addEventListener('keyup', function(event) {
-                if (event.key === 'Enter') {
-                    searchPosts();
-                }
-            });
             
             // ذخیره وضعیت هنگام خروج
             window.addEventListener('beforeunload', saveState);
@@ -797,35 +757,15 @@ layout: null
             // بهبود دسترسی
             document.addEventListener('keydown', function(event) {
                 // Esc برای پاک کردن جستجو
+                const searchInput = document.querySelector('.search-input');
                 if (event.key === 'Escape' && document.activeElement === searchInput) {
                     searchInput.value = '';
-                    searchPosts();
                 }
             });
             
-            // بارگذاری خودکار هنگام اسکرول (اختیاری)
-            let isLoading = false;
-            
-            window.addEventListener('scroll', function() {
-                if (isLoading) return;
-                
-                const scrollPosition = window.innerHeight + window.scrollY;
-                const pageHeight = document.documentElement.scrollHeight;
-                const threshold = 100;
-                
-                if (scrollPosition >= pageHeight - threshold && 
-                    currentVisibleCount < filteredPosts.length && 
-                    loadMoreBtn.style.display === 'block') {
-                    
-                    isLoading = true;
-                    showMorePosts();
-                    
-                    // جلوگیری از بارگذاری مکرر
-                    setTimeout(() => {
-                        isLoading = false;
-                    }, 1000);
-                }
-            });
+            // نمایش پیام خوش‌آمدگویی در کنسول
+            console.log('%c📚 وبلاگ پاسگاه 📚', 'color: #2563EB; font-size: 18px; font-weight: bold;');
+            console.log('%cکاوش در تاریخ و تمدن ایران و جهان', 'color: #374151; font-size: 14px;');
         });
     </script>
 </body>
