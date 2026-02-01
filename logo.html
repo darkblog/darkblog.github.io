@@ -73,16 +73,22 @@ layout: null
             margin: 0 auto;
             padding: 0 1.5rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
         }
         
-        .logo-container {
+        .logo-nav-link {
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--primary-color);
+            justify-content: center;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: var(--radius);
+        }
+        
+        .logo-nav-link:hover {
+            background-color: rgba(124, 58, 237, 0.1);
         }
         
         .logo-img {
@@ -90,15 +96,10 @@ layout: null
             height: 2.5rem;
         }
         
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--accent-color);
-        }
-        
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
+            align-items: center;
         }
         
         .nav-link {
@@ -108,6 +109,7 @@ layout: null
             transition: var(--transition);
             padding: 0.5rem 0;
             position: relative;
+            font-size: 0.95rem;
         }
         
         .nav-link:hover {
@@ -228,26 +230,6 @@ layout: null
             max-width: var(--max-width);
         }
         
-        .section-title {
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-weight: 800;
-            position: relative;
-            padding-bottom: 0.75rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 3rem;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-        
         .posts-container {
             display: grid;
             gap: 2rem;
@@ -274,6 +256,7 @@ layout: null
             height: 100%;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         .post-card:hover {
@@ -283,13 +266,51 @@ layout: null
         
         .post-image {
             height: 12rem;
-            background-color: var(--primary-color);
-            background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .post-title-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            padding: 1.5rem;
+            color: white;
+            z-index: 2;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        }
+        
+        .post-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .post-card-title a:hover {
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .post-content {
@@ -303,7 +324,7 @@ layout: null
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             font-size: 0.875rem;
             color: var(--secondary-color);
         }
@@ -312,30 +333,6 @@ layout: null
             background-color: var(--light-color);
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
-        }
-        
-        .post-category {
-            color: var(--accent-color);
-            font-weight: 500;
-        }
-        
-        .post-card-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            line-height: 1.4;
-            flex: 1;
-        }
-        
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .post-card-title a:hover {
-            color: var(--accent-color);
         }
         
         .post-excerpt {
@@ -355,6 +352,7 @@ layout: null
             font-weight: 500;
             transition: var(--transition);
             margin-top: auto;
+            font-size: 0.9rem;
         }
         
         .read-more:hover {
@@ -369,7 +367,12 @@ layout: null
         /* دکمه بارگذاری بیشتر */
         .load-more-container {
             text-align: center;
-            margin-top: 3rem;
+            margin: 3rem auto;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .load-more-btn {
@@ -396,123 +399,22 @@ layout: null
             transform: translateY(0);
         }
         
-        /* فوتر */
-        .site-footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 0 2rem;
-            margin-top: auto;
-        }
-        
-        .footer-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            text-decoration: none;
-        }
-        
-        .footer-logo-text {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: white;
-        }
-        
-        .footer-description {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-        
-        .footer-title {
-            font-size: 1.125rem;
-            margin-bottom: 1.25rem;
-            font-weight: 700;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            padding-right: 0.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-link {
-            width: 2.5rem;
-            height: 2.5rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.875rem;
-            opacity: 0.7;
-        }
-        
-        /* وضعیت بارگذاری */
+        /* اسپینر مرکزی */
         .loading-spinner {
-            display: none;
-            width: 2rem;
-            height: 2rem;
+            width: 3rem;
+            height: 3rem;
             border: 3px solid rgba(124, 58, 237, 0.2);
             border-radius: 50%;
             border-top-color: var(--accent-color);
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
         /* وضعیت خالی */
@@ -531,12 +433,15 @@ layout: null
         /* رسپانسیو */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                gap: 1rem;
+                padding: 0 1rem;
             }
             
             .nav-menu {
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
             }
             
             .hero-section {
@@ -545,6 +450,23 @@ layout: null
             
             .hero-title {
                 font-size: 2rem;
+            }
+            
+            .posts-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .post-image {
+                height: 10rem;
+            }
+            
+            .post-title-overlay {
+                padding: 1rem;
+            }
+            
+            .post-card-title {
+                font-size: 1.1rem;
             }
         }
         
@@ -562,22 +484,27 @@ layout: null
         html {
             scroll-behavior: smooth;
         }
+        
+        /* صفحه‌بندی */
+        .pagination-info {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
     <!-- هدر سایت -->
     <header class="site-header">
         <div class="header-container">
-            <a href="https://www.pasgah.org/" class="logo-container">
-                <img src="https://www.pasgah.org/blog.svg" class="logo-img" alt="وبلاگ پاسگاه">
-                <span class="logo-text">پاسگاه</span>
-            </a>
-            
             <nav class="nav-menu">
-                <a href="#" class="nav-link">مقالات</a>
                 <a href="#" class="nav-link">درباره ما</a>
                 <a href="#" class="nav-link">تماس با ما</a>
                 <a href="#" class="nav-link">آرشیو</a>
+                <a href="#" class="logo-nav-link">
+                    <img src="https://www.pasgah.org/blog.svg" class="logo-img" alt="مقالات">
+                </a>
             </nav>
         </div>
     </header>
@@ -599,22 +526,20 @@ layout: null
     
     <!-- محتوای اصلی -->
     <main>
-        <h2 class="section-title">آخرین مقالات</h2>
-        
         <section class="posts-container" id="postsContainer">
             {% for post in site.posts %}
             <article class="post-card fade-in">
-                <div class="post-image">
-                    {{ post.title | slice: 0 }}
-                </div>
+                <a href="{{ post.url }}" class="post-card-link">
+                    <div class="post-image">
+                        <div class="post-title-overlay">
+                            <h3 class="post-card-title">{{ post.title }}</h3>
+                        </div>
+                    </div>
+                </a>
                 <div class="post-content">
                     <div class="post-meta">
                         <span class="post-date">{{ post.date | date: "%Y/%m/%d" }}</span>
-                        <span class="post-category">تاریخ</span>
                     </div>
-                    <h3 class="post-card-title">
-                        <a href="{{ post.url }}">{{ post.title }}</a>
-                    </h3>
                     <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
                     <a href="{{ post.url }}" class="read-more">ادامه مطلب</a>
                 </div>
@@ -632,56 +557,14 @@ layout: null
         {% endif %}
         
         <!-- بارگذاری بیشتر -->
-        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
-            <div class="loading-spinner" id="loadingSpinner"></div>
-            <button class="load-more-btn" id="loadMoreBtn">نمایش پست‌های بیشتر</button>
+        <div class="load-more-container" id="loadMoreContainer">
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
+            <button class="load-more-btn" id="loadMoreBtn" style="display: none;">نمایش پست‌های بیشتر</button>
         </div>
+        
+        <!-- اطلاعات صفحه‌بندی -->
+        <div class="pagination-info" id="paginationInfo"></div>
     </main>
-    
-    <!-- فوتر سایت -->
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <a href="https://www.pasgah.org/" class="footer-logo">
-                        <img src="https://www.pasgah.org/blog.svg" width="32" alt="وبلاگ پاسگاه">
-                        <span class="footer-logo-text">پاسگاه</span>
-                    </a>
-                    <p class="footer-description">
-                        وبلاگ پاسگاه مرجعی برای علاقه‌مندان به تاریخ و تمدن ایران و جهان. 
-                        ما در اینجا داستان تمدن‌های کهن، رویدادهای تاریخی و اسرار گذشته را بررسی می‌کنیم.
-                    </p>
-                </div>
-                
-                <div class="footer-links-section">
-                    <h4 class="footer-title">لینک‌های مفید</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">صفحه اصلی</a></li>
-                        <li><a href="#">تمامی مقالات</a></li>
-                        <li><a href="#">درباره ما</a></li>
-                        <li><a href="#">تماس با ما</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4 class="footer-title">ارتباط با ما</h4>
-                    <p class="footer-description">
-                        برای پیشنهادات، انتقادات و همکاری می‌توانید با ما در ارتباط باشید.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="تلگرام">📱</a>
-                        <a href="#" class="social-link" aria-label="اینستاگرام">📸</a>
-                        <a href="#" class="social-link" aria-label="توییتر">🐦</a>
-                        <a href="#" class="social-link" aria-label="ایمیل">✉️</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© ۱۴۰۳ وبلاگ پاسگاه. تمامی حقوق محفوظ است.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -689,6 +572,7 @@ layout: null
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const loadingSpinner = document.getElementById('loadingSpinner');
+            const paginationInfo = document.getElementById('paginationInfo');
             const allPosts = postsContainer.querySelectorAll('.post-card');
             const searchInput = document.querySelector('.search-input');
             const searchBtn = document.querySelector('.search-btn');
@@ -696,6 +580,17 @@ layout: null
             const postsPerPage = 9;
             let currentVisibleCount = postsPerPage;
             let filteredPosts = Array.from(allPosts);
+            
+            // تنظیم وضعیت اولیه
+            function initializePage() {
+                if (allPosts.length > postsPerPage) {
+                    loadMoreBtn.style.display = 'block';
+                    updateButtonState();
+                }
+                
+                hideExtraPosts();
+                updatePaginationInfo();
+            }
             
             // مخفی کردن پست‌های اضافی
             function hideExtraPosts() {
@@ -710,7 +605,7 @@ layout: null
             
             // نمایش پست‌های بیشتر
             function showMorePosts() {
-                // نمایش اسپینر بارگذاری
+                // نمایش اسپینر بارگذاری در مرکز صفحه
                 loadingSpinner.style.display = 'block';
                 loadMoreBtn.style.display = 'none';
                 
@@ -725,37 +620,51 @@ layout: null
                         }
                     });
                     
-                    // به‌روزرسانی وضعیت دکمه
+                    // به‌روزرسانی وضعیت دکمه و اطلاعات
                     updateButtonState();
+                    updatePaginationInfo();
                     
                     // مخفی کردن اسپینر
                     loadingSpinner.style.display = 'none';
-                    loadMoreBtn.style.display = 'block';
+                    
+                    // اگر هنوز پست بیشتری وجود دارد، دکمه را نمایش بده
+                    if (currentVisibleCount < filteredPosts.length) {
+                        loadMoreBtn.style.display = 'block';
+                    }
                     
                     // اسکرول به موقعیت مناسب
-                    const lastVisiblePost = filteredPosts[Math.min(currentVisibleCount, filteredPosts.length) - 1];
-                    if (lastVisiblePost) {
-                        lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
-                }, 500);
+                    setTimeout(() => {
+                        const lastVisiblePost = filteredPosts[Math.min(currentVisibleCount, filteredPosts.length) - 1];
+                        if (lastVisiblePost) {
+                            lastVisiblePost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }, 100);
+                }, 600);
             }
             
             // به‌روزرسانی وضعیت دکمه
             function updateButtonState() {
                 const remainingPosts = filteredPosts.length - currentVisibleCount;
                 
-                if (filteredPosts.length <= postsPerPage) {
-                    loadMoreContainer.style.display = 'none';
-                    return;
-                }
-                
                 if (remainingPosts > 0) {
                     loadMoreBtn.textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر`;
-                    loadMoreContainer.style.display = 'block';
                 } else {
                     loadMoreBtn.textContent = 'همه پست‌ها نمایش داده شدند';
                     loadMoreBtn.disabled = true;
                     loadMoreBtn.style.opacity = '0.7';
+                }
+            }
+            
+            // به‌روزرسانی اطلاعات صفحه‌بندی
+            function updatePaginationInfo() {
+                const showing = Math.min(currentVisibleCount, filteredPosts.length);
+                const total = filteredPosts.length;
+                
+                if (total > 0) {
+                    paginationInfo.textContent = `نمایش ${showing} از ${total} پست`;
+                    paginationInfo.style.display = 'block';
+                } else {
+                    paginationInfo.style.display = 'none';
                 }
             }
             
@@ -771,6 +680,8 @@ layout: null
                     allPosts.forEach(post => {
                         post.style.display = 'flex';
                     });
+                    
+                    loadMoreBtn.style.display = allPosts.length > postsPerPage ? 'block' : 'none';
                 } else {
                     // فیلتر کردن پست‌ها بر اساس عنوان
                     filteredPosts = Array.from(allPosts).filter(post => {
@@ -789,6 +700,9 @@ layout: null
                             post.style.display = 'none';
                         }
                     });
+                    
+                    // نمایش دکمه بارگذاری بیشتر اگر نیاز باشد
+                    loadMoreBtn.style.display = filteredPosts.length > postsPerPage ? 'block' : 'none';
                 }
                 
                 // نمایش پیام اگر نتیجه‌ای یافت نشد
@@ -808,16 +722,21 @@ layout: null
                     }
                     
                     postsContainer.appendChild(emptyState);
+                    loadMoreBtn.style.display = 'none';
+                    paginationInfo.style.display = 'none';
                 } else {
                     // حذف حالت خالی اگر وجود داشته باشد
                     const existingEmptyState = postsContainer.querySelector('.empty-state');
                     if (existingEmptyState) {
                         existingEmptyState.remove();
                     }
+                    
+                    paginationInfo.style.display = 'block';
                 }
                 
-                // به‌روزرسانی وضعیت دکمه
+                // به‌روزرسانی وضعیت دکمه و اطلاعات
                 updateButtonState();
+                updatePaginationInfo();
                 hideExtraPosts();
             }
             
@@ -835,14 +754,14 @@ layout: null
                         currentVisibleCount = parsedCount;
                         hideExtraPosts();
                         updateButtonState();
+                        updatePaginationInfo();
                     }
                 }
             }
             
             // تنظیم رویدادها
             if (allPosts.length > 0) {
-                hideExtraPosts();
-                updateButtonState();
+                initializePage();
                 loadState();
             }
             
@@ -881,6 +800,30 @@ layout: null
                 if (event.key === 'Escape' && document.activeElement === searchInput) {
                     searchInput.value = '';
                     searchPosts();
+                }
+            });
+            
+            // بارگذاری خودکار هنگام اسکرول (اختیاری)
+            let isLoading = false;
+            
+            window.addEventListener('scroll', function() {
+                if (isLoading) return;
+                
+                const scrollPosition = window.innerHeight + window.scrollY;
+                const pageHeight = document.documentElement.scrollHeight;
+                const threshold = 100;
+                
+                if (scrollPosition >= pageHeight - threshold && 
+                    currentVisibleCount < filteredPosts.length && 
+                    loadMoreBtn.style.display === 'block') {
+                    
+                    isLoading = true;
+                    showMorePosts();
+                    
+                    // جلوگیری از بارگذاری مکرر
+                    setTimeout(() => {
+                        isLoading = false;
+                    }, 1000);
                 }
             });
         });
