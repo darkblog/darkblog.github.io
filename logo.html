@@ -302,88 +302,19 @@ layout: null
             justify-content: center;
         }
         
-        .load-more-btn {
-            padding: 0.875rem 2rem;
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-red);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .load-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .load-more-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-red-lg);
-        }
-        
-        .load-more-btn:hover::before {
-            opacity: 1;
-        }
-        
-        .load-more-btn span {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .load-more-btn:active {
-            transform: translateY(0);
-        }
-        
-        .loading-spinner {
+        .infinite-scroll-spinner {
             width: 3rem;
             height: 3rem;
             border: 3px solid rgba(220, 38, 38, 0.2);
             border-radius: 50%;
             border-top-color: var(--accent-color);
             animation: spin 1s linear infinite;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-        
-        .infinite-scroll-spinner {
-            width: 2.5rem;
-            height: 2.5rem;
-            border: 3px solid rgba(220, 38, 38, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--accent-color);
-            animation: spin 1s linear infinite;
             margin: 0 auto;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             display: none;
-            z-index: 100;
-            background-color: white;
-            padding: 8px;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         @keyframes spin {
-            to { transform: translateX(-50%) rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
         
         .empty-state {
@@ -453,10 +384,6 @@ layout: null
             scroll-behavior: smooth;
         }
         
-        .infinite-scroll-container {
-            display: none;
-        }
-        
         ::selection {
             background-color: rgba(220, 38, 38, 0.2);
             color: var(--primary-color);
@@ -522,19 +449,16 @@ layout: null
         {% endif %}
         
         <div class="load-more-container" id="loadMoreContainer">
-            <button class="load-more-btn" id="loadMoreBtn" style="display: none;"><span>نمایش پست‌های بیشتر</span></button>
+            <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
         </div>
-        
-        <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const postsContainer = document.getElementById('postsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            const siteHeader = document.getElementById('siteHeader');
             const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
+            const siteHeader = document.getElementById('siteHeader');
             const allPosts = postsContainer.querySelectorAll('.post-card');
             
             const postsPerPage = 10;
@@ -544,7 +468,6 @@ layout: null
             let isHeaderVisible = true;
             let hasMorePosts = true;
             let scrollTimeout = null;
-            let spinnerShown = false;
             
             function handleHeaderVisibility() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -567,8 +490,7 @@ layout: null
             
             function initializePage() {
                 if (allPosts.length > postsPerPage) {
-                    loadMoreBtn.style.display = 'block';
-                    updateButtonState();
+                    loadMoreContainer.style.display = 'flex';
                 }
                 
                 hideExtraPosts();
@@ -587,19 +509,17 @@ layout: null
                 });
                 
                 hasMorePosts = currentVisibleCount < allPosts.length;
+                
+                if (!hasMorePosts) {
+                    loadMoreContainer.style.display = 'none';
+                }
             }
             
             function showMorePosts() {
                 if (isLoading || !hasMorePosts) return;
                 
                 isLoading = true;
-                
-                if (!spinnerShown) {
-                    infiniteScrollSpinner.style.display = 'block';
-                    spinnerShown = true;
-                }
-                
-                loadMoreBtn.style.display = 'none';
+                infiniteScrollSpinner.style.display = 'block';
                 
                 setTimeout(() => {
                     const nextBatch = currentVisibleCount + postsPerPage;
@@ -613,39 +533,18 @@ layout: null
                     
                     currentVisibleCount = nextBatch;
                     
-                    updateButtonState();
-                    
                     infiniteScrollSpinner.style.display = 'none';
-                    spinnerShown = false;
-                    
-                    if (hasMorePosts) {
-                        loadMoreBtn.style.display = 'block';
-                    }
                     
                     isLoading = false;
                     
                     checkIfAllPostsLoaded();
                     
                     setTimeout(() => {
-                        if (isAtBottom()) {
+                        if (isAtBottom() && hasMorePosts) {
                             showMorePosts();
                         }
                     }, 100);
                 }, 600);
-            }
-            
-            function updateButtonState() {
-                const remainingPosts = allPosts.length - currentVisibleCount;
-                
-                if (remainingPosts > 0) {
-                    loadMoreBtn.querySelector('span').textContent = `نمایش ${Math.min(remainingPosts, postsPerPage)} پست دیگر`;
-                    loadMoreBtn.disabled = false;
-                    loadMoreBtn.style.opacity = '1';
-                } else {
-                    loadMoreBtn.querySelector('span').textContent = 'همه پست‌ها نمایش داده شدند';
-                    loadMoreBtn.disabled = true;
-                    loadMoreBtn.style.opacity = '0.7';
-                }
             }
             
             function isAtBottom() {
@@ -674,9 +573,9 @@ layout: null
                 hasMorePosts = currentVisibleCount < allPosts.length;
                 
                 if (!hasMorePosts) {
-                    infiniteScrollSpinner.style.display = 'none';
-                    spinnerShown = false;
-                    loadMoreBtn.style.display = 'none';
+                    loadMoreContainer.style.display = 'none';
+                } else {
+                    loadMoreContainer.style.display = 'flex';
                 }
             }
             
@@ -685,15 +584,11 @@ layout: null
                 checkIfAllPostsLoaded();
                 
                 setTimeout(() => {
-                    if (isAtBottom() && hasMorePosts) {
+                    if (isAtBottom() && hasMorePosts && !isLoading) {
                         showMorePosts();
                     }
                 }, 500);
             }
-            
-            loadMoreBtn.addEventListener('click', function() {
-                showMorePosts();
-            });
             
             const observerOptions = {
                 threshold: 0.1,
@@ -718,12 +613,6 @@ layout: null
                         showMorePosts();
                     }
                 }, 100);
-            });
-            
-            window.addEventListener('scroll', function() {
-                if (isLoading) {
-                    infiniteScrollSpinner.style.bottom = '20px';
-                }
             });
         });
     </script>
