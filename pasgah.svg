@@ -13,5 +13,5 @@
     </defs>
     
     <rect width="200" height="200" fill="white"/>
-    <text x="100" y="80" text-anchor="middle" dominant-baseline="middle" class="persian-text">P</text>
+    <text x="100" y="100" text-anchor="middle" dominant-baseline="middle" class="persian-text">P</text>
 </svg>
