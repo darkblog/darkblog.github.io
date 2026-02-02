@@ -17,8 +17,6 @@ layout: null
     <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}">
     <meta name="theme-color" content="#DC2626">
     
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
-    
     <style>
         @font-face {
             font-family: 'Vazirmatn';
@@ -38,13 +36,17 @@ layout: null
             --light-color: #FEF2F2;
             --border-color: #FECACA;
             --hover-color: #7F1D1D;
-            --radius: 12px;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
-            --shadow-red: 0 4px 20px rgba(220, 38, 38, 0.12);
-            --shadow-red-lg: 0 10px 40px rgba(220, 38, 38, 0.15);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.08), 0 2px 8px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.08);
+            --shadow-red: 0 4px 20px -1px rgba(220, 38, 38, 0.15), 0 2px 8px rgba(220, 38, 38, 0.08);
+            --shadow-red-lg: 0 20px 40px -8px rgba(220, 38, 38, 0.15), 0 8px 16px rgba(220, 38, 38, 0.08);
             --transition: all 0.3s ease;
+            --transition-slow: all 0.5s ease;
             --max-width: 72rem;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
         
         * {
@@ -64,23 +66,22 @@ layout: null
             min-height: 100vh;
             font-weight: 400;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.03) 0%, transparent 20%);
         }
         
+        /* هدر ساده بدون sticky */
         .site-header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: relative; /* تغییر از sticky به relative */
+            z-index: 100;
             height: 64px;
             display: flex;
             align-items: center;
-            transition: transform 0.3s ease;
-            border-bottom: 2px solid var(--accent-color);
-        }
-        
-        .site-header.hidden {
-            transform: translateY(-100%);
+            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
         }
         
         .header-container {
@@ -100,17 +101,20 @@ layout: null
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            padding: 0.5rem;
-            border-radius: var(--radius);
+            padding: 0.25rem;
+            border-radius: 12px;
+            width: 60px;
+            height: 60px;
         }
         
         .logo-link:hover {
             background-color: rgba(220, 38, 38, 0.1);
+            transform: scale(1.05);
         }
         
         .logo-svg {
-            width: 3.5rem;
-            height: 3.5rem;
+            width: 100%;
+            height: 100%;
             color: #DC2626;
         }
         
@@ -122,6 +126,7 @@ layout: null
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid rgba(220, 38, 38, 0.2);
         }
         
         .hero-section::before {
@@ -188,71 +193,84 @@ layout: null
             }
         }
         
-        /* طراحی ساده و تمیز کارت پست‌ها */
         .post-card {
             background: white;
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: var(--transition-slow);
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
+            border: 1px solid rgba(220, 38, 38, 0.1);
+            position: relative;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent-light);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-red-lg);
+            border-color: rgba(220, 38, 38, 0.3);
         }
         
-        .post-card:hover .post-title {
-            color: var(--accent-color);
-        }
-        
-        .post-header {
-            background: var(--primary-color);
-            padding: 1.5rem;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .post-header::before {
+        .post-card::before {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.2));
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
-        .post-title {
-            font-size: 1.25rem;
+        .post-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .post-title-section {
+            padding: 1.75rem 1.75rem 0;
+            position: relative;
+        }
+        
+        .post-title-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 1.75rem;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            border-radius: 2px;
+        }
+        
+        .post-card-title {
+            font-size: 1.35rem;
             font-weight: 700;
             line-height: 1.4;
-            color: white;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 2;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: right;
             transition: color 0.3s ease;
+            position: relative;
         }
         
-        .post-title a {
+        .post-card-title a {
             color: inherit;
             text-decoration: none;
             display: block;
+            padding: 0.25rem 0;
+        }
+        
+        .post-card:hover .post-card-title {
+            color: var(--accent-dark);
         }
         
         .post-content {
-            padding: 1.5rem;
+            padding: 0 1.75rem 1.75rem;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -260,35 +278,76 @@ layout: null
         
         .post-excerpt {
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.8;
             color: var(--secondary-color);
             margin-bottom: 1.5rem;
             text-align: right;
             flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .read-more-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 0.5rem;
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
             font-size: 0.9rem;
             padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            background-color: rgba(220, 38, 38, 0.1);
-            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background-color: rgba(220, 38, 38, 0.08);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            position: relative;
+            overflow: hidden;
             align-self: flex-start;
             margin-top: auto;
         }
         
+        .read-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+            z-index: 1;
+        }
+        
         .read-more-btn:hover {
             color: white;
-            background-color: var(--accent-color);
+            gap: 0.75rem;
             border-color: var(--accent-color);
-            transform: translateX(-5px);
+            box-shadow: var(--shadow-red);
+        }
+        
+        .read-more-btn:hover::before {
+            width: 100%;
+        }
+        
+        .read-more-btn span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .read-more-btn::after {
+            content: '←';
+            position: relative;
+            z-index: 2;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more-btn:hover::after {
+            transform: translateX(-4px);
         }
         
         .empty-state {
@@ -308,29 +367,21 @@ layout: null
             color: var(--accent-light);
         }
         
-        .load-more-container {
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1.5rem;
+            margin-top: auto;
             text-align: center;
-            margin: 3rem auto;
-            position: relative;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
-        .infinite-scroll-spinner {
-            width: 3rem;
-            height: 3rem;
-            border: 3px solid rgba(220, 38, 38, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--accent-color);
-            animation: spin 1s linear infinite;
+        .footer-content {
+            max-width: var(--max-width);
             margin: 0 auto;
-            display: none;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .footer-content p {
+            margin-bottom: 0.5rem;
         }
         
         @media (max-width: 768px) {
@@ -342,9 +393,10 @@ layout: null
                 padding: 0 1rem;
             }
             
-            .logo-svg {
-                width: 3rem;
-                height: 3rem;
+            .logo-link {
+                width: 50px;
+                height: 50px;
+                padding: 0.2rem;
             }
             
             .hero-section {
@@ -360,17 +412,16 @@ layout: null
                 gap: 1.5rem;
             }
             
-            .post-header {
-                padding: 1rem;
-                min-height: 100px;
+            .post-title-section {
+                padding: 1.5rem 1.5rem 0;
             }
             
-            .post-title {
-                font-size: 1.1rem;
+            .post-card-title {
+                font-size: 1.2rem;
             }
             
             .post-content {
-                padding: 1.25rem;
+                padding: 0 1.5rem 1.5rem;
             }
             
             .read-more-btn {
@@ -379,27 +430,138 @@ layout: null
             }
         }
         
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
+        /* انیمیشن‌های ساده */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        html {
-            scroll-behavior: smooth;
+        .posts-container {
+            animation: fadeIn 0.5s ease-out;
         }
         
         ::selection {
             background-color: rgba(220, 38, 38, 0.2);
             color: var(--primary-color);
         }
+        
+        .post-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(220, 38, 38, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .post-card:hover::after {
+            opacity: 1;
+        }
+        
+        .post-card .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* صفحه‌بندی ساده */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .page-link {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--accent-color);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            transition: var(--transition);
+        }
+        
+        .page-link:hover {
+            background-color: rgba(220, 38, 38, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .page-link.current {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        /* دکمه بازگشت به بالا */
+        .back-to-top {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            background-color: rgba(220, 38, 38, 0.1);
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            transition: var(--transition);
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        /* استایل برای نمایش بهتر در موبایل */
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 3rem 1rem 2rem;
+            }
+            
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            footer {
+                padding: 2rem 1rem;
+            }
+        }
+        
+        /* بهبود نمایش در حالت چاپ */
+        @media print {
+            .site-header {
+                box-shadow: none;
+                border-bottom: 2px solid var(--accent-color);
+            }
+            
+            .post-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                break-inside: avoid;
+            }
+            
+            .read-more-btn {
+                display: none;
+            }
+            
+            footer {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <header class="site-header" id="siteHeader">
+    <!-- هدر ساده -->
+    <header class="site-header">
         <div class="header-container">
             <a href="/" class="logo-link" aria-label="بازگشت به صفحه اصلی">
                 <svg class="logo-svg" viewBox="0 0 1024 1024" aria-hidden="true">
@@ -413,6 +575,7 @@ layout: null
         </div>
     </header>
     
+    <!-- بخش اصلی سایت -->
     <section class="hero-section" aria-label="معرفی وبلاگ">
         <div class="hero-content">
             <h1 class="hero-title">کاوش در تاریخ و تمدن ایران و جهان</h1>
@@ -420,18 +583,23 @@ layout: null
         </div>
     </section>
     
+    <!-- محتوای اصلی -->
     <main>
-        <section class="posts-container" id="postsContainer" aria-label="مقالات وبلاگ">
-            {% for post in site.posts %}
-            <article class="post-card fade-in" data-url="{{ post.url }}" role="article" aria-label="{{ post.title }}">
-                <div class="post-header">
-                    <h3 class="post-title">
-                        <a href="{{ post.url }}" aria-label="{{ post.title }}">{{ post.title }}</a>
-                    </h3>
-                </div>
-                <div class="post-content">
-                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                    <a href="{{ post.url }}" class="read-more-btn" aria-label="خواندن ادامه مقاله {{ post.title }}">ادامه مطلب</a>
+        <section class="posts-container" aria-label="مقالات وبلاگ">
+            {% for post in site.posts limit: 12 %}
+            <article class="post-card">
+                <div class="content-wrapper">
+                    <div class="post-title-section">
+                        <h3 class="post-card-title">
+                            <a href="{{ post.url }}" aria-label="{{ post.title }}">{{ post.title }}</a>
+                        </h3>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                        <a href="{{ post.url }}" class="read-more-btn" aria-label="خواندن ادامه مقاله {{ post.title }}">
+                            <span>ادامه مطلب</span>
+                        </a>
+                    </div>
                 </div>
             </article>
             {% endfor %}
@@ -445,293 +613,32 @@ layout: null
         </div>
         {% endif %}
         
-        <div class="load-more-container" id="loadMoreContainer" aria-live="polite" aria-atomic="true">
-            <div class="infinite-scroll-spinner" id="infiniteScrollSpinner" role="status" aria-label="در حال بارگذاری مطالب بیشتر"></div>
+        <!-- صفحه‌بندی ساده -->
+        {% if site.posts.size > 12 %}
+        <nav class="pagination" aria-label="صفحه‌بندی مقالات">
+            <a href="/" class="page-link">صفحه اول</a>
+            <a href="/page2/" class="page-link">صفحه ۲</a>
+            <a href="/page3/" class="page-link">صفحه ۳</a>
+        </nav>
+        {% endif %}
+        
+        <!-- دکمه بازگشت به بالا -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#" class="back-to-top">بازگشت به بالا ↑</a>
         </div>
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const postsContainer = document.getElementById('postsContainer');
-            const loadMoreContainer = document.getElementById('loadMoreContainer');
-            const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
-            const siteHeader = document.getElementById('siteHeader');
-            
-            if (!postsContainer || !siteHeader) {
-                return;
-            }
-            
-            const allPosts = postsContainer.querySelectorAll('.post-card');
-            
-            const postsPerPage = 10;
-            let currentVisibleCount = postsPerPage;
-            let isLoading = false;
-            let lastScrollTop = 0;
-            let isHeaderVisible = true;
-            let hasMorePosts = true;
-            let scrollTimeout = null;
-            let observer = null;
-            
-            function handleHeaderVisibility() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const safeScrollTop = Math.max(0, scrollTop);
-                
-                if (safeScrollTop > lastScrollTop && safeScrollTop > 100) {
-                    if (isHeaderVisible) {
-                        siteHeader.classList.add('hidden');
-                        isHeaderVisible = false;
-                    }
-                } 
-                else if (safeScrollTop < lastScrollTop) {
-                    if (!isHeaderVisible) {
-                        siteHeader.classList.remove('hidden');
-                        isHeaderVisible = true;
-                    }
-                }
-                
-                lastScrollTop = safeScrollTop;
-            }
-            
-            function initializePage() {
-                if (allPosts.length > postsPerPage) {
-                    if (loadMoreContainer) {
-                        loadMoreContainer.style.display = 'flex';
-                    }
-                }
-                
-                hideExtraPosts();
-                setupPostCardsClick();
-                setupReadMoreButtons();
-                
-                window.addEventListener('scroll', handleHeaderVisibility, { passive: true });
-                window.addEventListener('scroll', handleInfiniteScroll, { passive: true });
-                window.addEventListener('beforeunload', cleanup);
-            }
-            
-            function hideExtraPosts() {
-                let visibleCount = 0;
-                
-                allPosts.forEach((post, index) => {
-                    if (index < currentVisibleCount) {
-                        post.style.display = 'flex';
-                        post.classList.add('fade-in');
-                        visibleCount++;
-                    } else {
-                        post.style.display = 'none';
-                    }
-                });
-                
-                hasMorePosts = currentVisibleCount < allPosts.length;
-                updateLoadMoreContainer();
-                
-                if (loadMoreContainer) {
-                    const message = hasMorePosts 
-                        ? `${visibleCount} مقاله از ${allPosts.length} مقاله نمایش داده می‌شود` 
-                        : 'همه مقالات نمایش داده شده‌اند';
-                    loadMoreContainer.setAttribute('aria-label', message);
-                }
-            }
-            
-            function updateLoadMoreContainer() {
-                if (!loadMoreContainer) return;
-                
-                if (!hasMorePosts) {
-                    loadMoreContainer.style.display = 'none';
-                    if (infiniteScrollSpinner) {
-                        infiniteScrollSpinner.style.display = 'none';
-                    }
-                } else {
-                    loadMoreContainer.style.display = 'flex';
-                }
-            }
-            
-            function setupPostCardsClick() {
-                allPosts.forEach(post => {
-                    const url = post.getAttribute('data-url');
-                    if (!url) return;
-                    
-                    post.addEventListener('click', function(e) {
-                        if (e.target.closest('.read-more-btn') || e.target.closest('a')) {
-                            return;
-                        }
-                        
-                        if (isValidUrl(url)) {
-                            window.location.href = url;
-                        }
-                    });
-                });
-            }
-            
-            function setupReadMoreButtons() {
-                const readMoreButtons = document.querySelectorAll('.read-more-btn');
-                readMoreButtons.forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        
-                        const href = this.getAttribute('href');
-                        if (href && isValidUrl(href)) {
-                            return true;
-                        }
-                        
-                        e.preventDefault();
-                        return false;
-                    });
-                });
-            }
-            
-            function showMorePosts() {
-                if (isLoading || !hasMorePosts) return;
-                
-                isLoading = true;
-                
-                if (infiniteScrollSpinner) {
-                    infiniteScrollSpinner.style.display = 'block';
-                    infiniteScrollSpinner.setAttribute('aria-busy', 'true');
-                }
-                
-                setTimeout(() => {
-                    const nextBatch = Math.min(currentVisibleCount + postsPerPage, allPosts.length);
-                    
-                    allPosts.forEach((post, index) => {
-                        if (index < nextBatch && index >= currentVisibleCount) {
-                            post.style.display = 'flex';
-                            post.classList.add('fade-in');
-                            
-                            if (observer) {
-                                observer.observe(post);
-                            }
-                        }
-                    });
-                    
-                    currentVisibleCount = nextBatch;
-                    
-                    if (infiniteScrollSpinner) {
-                        infiniteScrollSpinner.style.display = 'none';
-                        infiniteScrollSpinner.setAttribute('aria-busy', 'false');
-                    }
-                    
-                    isLoading = false;
-                    hasMorePosts = currentVisibleCount < allPosts.length;
-                    updateLoadMoreContainer();
-                    
-                    if (loadMoreContainer) {
-                        loadMoreContainer.setAttribute('aria-label', 
-                            `اکنون ${currentVisibleCount} مقاله از ${allPosts.length} مقاله نمایش داده می‌شود`);
-                    }
-                    
-                    setTimeout(() => {
-                        if (isAtBottom() && hasMorePosts && !isLoading) {
-                            showMorePosts();
-                        }
-                    }, 100);
-                }, 600);
-            }
-            
-            function isAtBottom() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                
-                return (scrollTop + windowHeight) >= (documentHeight - 200);
-            }
-            
-            function handleInfiniteScroll() {
-                if (isLoading || !hasMorePosts) return;
-                
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                scrollTimeout = setTimeout(() => {
-                    if (isAtBottom()) {
-                        showMorePosts();
-                    }
-                }, 150);
-            }
-            
-            function setupIntersectionObserver() {
-                const observerOptions = {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                };
-                
-                observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('fade-in');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, observerOptions);
-                
-                allPosts.forEach((post, index) => {
-                    if (index < currentVisibleCount) {
-                        observer.observe(post);
-                    }
-                });
-            }
-            
-            function cleanup() {
-                if (observer) {
-                    observer.disconnect();
-                }
-                
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                window.removeEventListener('scroll', handleHeaderVisibility);
-                window.removeEventListener('scroll', handleInfiniteScroll);
-                window.removeEventListener('beforeunload', cleanup);
-            }
-            
-            function isValidUrl(url) {
-                if (!url || typeof url !== 'string') return false;
-                
-                try {
-                    if (url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://')) {
-                        return true;
-                    }
-                    return false;
-                } catch (e) {
-                    return false;
-                }
-            }
-            
-            if (allPosts.length > 0) {
-                try {
-                    initializePage();
-                    setupIntersectionObserver();
-                    
-                    setTimeout(() => {
-                        if (isAtBottom() && hasMorePosts && !isLoading) {
-                            showMorePosts();
-                        }
-                    }, 500);
-                } catch (error) {
-                    allPosts.forEach(post => {
-                        post.style.display = 'flex';
-                    });
-                    if (loadMoreContainer) {
-                        loadMoreContainer.style.display = 'none';
-                    }
-                }
-            } else {
-                if (loadMoreContainer) {
-                    loadMoreContainer.style.display = 'none';
-                }
-            }
-            
-            let resizeTimeout;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    if (isAtBottom() && hasMorePosts && !isLoading) {
-                        showMorePosts();
-                    }
-                }, 100);
-            });
-        });
-    </script>
+    
+    <!-- فوتر -->
+    <footer>
+        <div class="footer-content">
+            <p>© ۲۰۲۴ وبلاگ پاسگاه. تمامی حقوق محفوظ است.</p>
+            <p>کاوش در تاریخ و تمدن ایران و جهان</p>
+            <p>
+                <a href="/" style="color: white; text-decoration: none;">صفحه اصلی</a> | 
+                <a href="/about/" style="color: white; text-decoration: none;">درباره ما</a> | 
+                <a href="/contact/" style="color: white; text-decoration: none;">تماس با ما</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
