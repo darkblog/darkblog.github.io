@@ -38,18 +38,13 @@ layout: null
             --light-color: #FEF2F2;
             --border-color: #FECACA;
             --hover-color: #7F1D1D;
-            --radius: 20px;
-            --radius-sm: 10px;
-            --radius-lg: 30px;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            --shadow-red: 0 8px 30px rgba(220, 38, 38, 0.12);
-            --shadow-red-lg: 0 25px 50px -12px rgba(220, 38, 38, 0.2);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+            --shadow-red: 0 4px 20px rgba(220, 38, 38, 0.12);
+            --shadow-red-lg: 0 10px 40px rgba(220, 38, 38, 0.15);
+            --transition: all 0.3s ease;
             --max-width: 72rem;
-            --glass-bg: rgba(255, 255, 255, 0.95);
-            --glass-border: rgba(255, 255, 255, 0.2);
         }
         
         * {
@@ -69,14 +64,10 @@ layout: null
             min-height: 100vh;
             font-weight: 400;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.03) 0%, transparent 20%);
         }
         
         .site-header {
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            background-color: white;
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
@@ -85,7 +76,7 @@ layout: null
             display: flex;
             align-items: center;
             transition: transform 0.3s ease;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+            border-bottom: 2px solid var(--accent-color);
         }
         
         .site-header.hidden {
@@ -109,121 +100,67 @@ layout: null
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            padding: 0.25rem;
-            border-radius: 12px;
-            width: 60px;
-            height: 60px;
+            padding: 0.5rem;
+            border-radius: var(--radius);
         }
         
         .logo-link:hover {
             background-color: rgba(220, 38, 38, 0.1);
-            transform: scale(1.05);
         }
         
         .logo-svg {
-            width: 100%;
-            height: 100%;
+            width: 3.5rem;
+            height: 3.5rem;
             color: #DC2626;
         }
         
-        .intro-section {
-            padding: 5rem 1.5rem 4rem;
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1E293B 100%);
+            color: white;
+            padding: 6rem 1.5rem 5rem;
             margin-bottom: 3rem;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         
-        .intro-bg {
+        .hero-section::before {
+            content: '';
             position: absolute;
             top: 0;
             right: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(17, 24, 39, 0.98) 0%, 
-                rgba(30, 41, 59, 0.95) 50%, 
-                rgba(44, 57, 75, 0.92) 100%);
-            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23DC2626' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
         }
         
-        .intro-pattern {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-                linear-gradient(45deg, transparent 60%, rgba(220, 38, 38, 0.05) 100%);
-            z-index: 2;
-            opacity: 0.5;
-        }
-        
-        .intro-content {
+        .hero-content {
             max-width: 48rem;
             margin: 0 auto;
             position: relative;
-            z-index: 3;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 2;
         }
         
-        .intro-title-wrapper {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .intro-title {
-            font-size: 2.75rem;
+        .hero-title {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             font-weight: 900;
             line-height: 1.2;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(135deg, #fff 0%, #FECACA 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .intro-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            max-width: 36rem;
-            margin: 0 auto;
-            font-weight: 400;
-        }
-        
-        .intro-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            max-width: 40rem;
-            margin: 0 auto;
-            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         @media (min-width: 768px) {
-            .intro-title {
+            .hero-title {
                 font-size: 3.5rem;
             }
-            
-            .intro-subtitle {
-                font-size: 1.5rem;
-            }
-            
-            .intro-section {
-                padding: 6rem 1.5rem 5rem;
-            }
+        }
+        
+        .hero-description {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 36rem;
+            margin: 0 auto 2rem;
         }
         
         main {
@@ -251,270 +188,129 @@ layout: null
             }
         }
         
-        /* طراحی باکلاس‌تر و زیباتر کارت پست‌ها */
+        /* طراحی ساده و تمیز کارت پست‌ها */
         .post-card {
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            border-radius: var(--radius-lg);
+            background: white;
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: var(--transition-slow);
+            transition: var(--transition);
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(220, 38, 38, 0.08);
+            border: 1px solid var(--border-color);
             cursor: pointer;
-            position: relative;
-            isolation: isolate;
-        }
-        
-        .post-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius-lg);
-            padding: 2px;
-            background: linear-gradient(135deg, 
-                rgba(220, 38, 38, 0.2) 0%, 
-                rgba(239, 68, 68, 0.1) 50%, 
-                transparent 100%);
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            z-index: 1;
         }
         
         .post-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-red-lg);
-            border-color: rgba(220, 38, 38, 0.2);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-light);
         }
         
-        .post-card:hover::before {
-            opacity: 1;
+        .post-card:hover .post-title {
+            color: var(--accent-color);
         }
         
-        .post-title-section {
-            padding: 2rem 2rem 1rem;
-            position: relative;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1E293B 100%);
-            min-height: 160px;
+        .post-header {
+            background: var(--primary-color);
+            padding: 1.5rem;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .post-title-section::after {
+        .post-header::before {
             content: '';
             position: absolute;
-            bottom: -1px;
+            top: 0;
             right: 0;
             width: 100%;
-            height: 20px;
-            background: var(--light-color);
-            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.2));
         }
         
-        .post-title-badge {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
-            z-index: 2;
-            transform: translateY(-10px);
-            opacity: 0;
-            transition: all 0.4s ease 0.1s;
-        }
-        
-        .post-card:hover .post-title-badge {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .post-card-title {
-            font-size: 1.4rem;
-            font-weight: 800;
+        .post-title {
+            font-size: 1.25rem;
+            font-weight: 700;
             line-height: 1.4;
             color: white;
             text-align: center;
-            position: relative;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
             z-index: 2;
-            padding: 0 0.5rem;
+            transition: color 0.3s ease;
         }
         
-        .post-card-title a {
+        .post-title a {
             color: inherit;
             text-decoration: none;
             display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .post-card:hover .post-card-title a {
-            transform: scale(1.02);
         }
         
         .post-content {
-            padding: 2rem;
+            padding: 1.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
-            position: relative;
-            z-index: 2;
-            background: var(--light-color);
         }
         
         .post-excerpt {
-            font-size: 1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 1.6;
             color: var(--secondary-color);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: right;
             flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            position: relative;
-        }
-        
-        .post-excerpt::before {
-            content: '"';
-            font-size: 3rem;
-            color: rgba(220, 38, 38, 0.1);
-            position: absolute;
-            top: -0.5rem;
-            right: -0.5rem;
-            font-family: Georgia, serif;
         }
         
         .read-more-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             transition: var(--transition);
-            font-size: 0.95rem;
-            padding: 1rem 2rem;
-            border-radius: var(--radius-sm);
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.05));
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            position: relative;
-            overflow: hidden;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            background-color: rgba(220, 38, 38, 0.1);
+            border: 1px solid var(--border-color);
             align-self: flex-start;
             margin-top: auto;
-            backdrop-filter: blur(5px);
-        }
-        
-        .read-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
         }
         
         .read-more-btn:hover {
             color: white;
-            gap: 0.75rem;
+            background-color: var(--accent-color);
             border-color: var(--accent-color);
-            box-shadow: var(--shadow-red);
-            padding: 1rem 2.25rem;
-        }
-        
-        .read-more-btn:hover::before {
-            width: 100%;
-        }
-        
-        .read-more-btn span {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .read-more-btn::after {
-            content: '↰';
-            position: relative;
-            z-index: 2;
-            font-size: 1.1rem;
-            font-weight: 700;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .read-more-btn:hover::after {
-            transform: translateX(-6px) rotate(-45deg);
-        }
-        
-        .post-footer {
-            padding: 1.5rem 2rem;
-            background: rgba(248, 249, 250, 0.8);
-            border-top: 1px solid rgba(220, 38, 38, 0.1);
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .post-category {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            background: rgba(220, 38, 38, 0.1);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .post-card:hover .post-category {
-            background: var(--accent-color);
-            color: white;
+            transform: translateX(-5px);
         }
         
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 3rem 1rem;
             color: var(--secondary-color);
             grid-column: 1 / -1;
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            border-radius: var(--radius-lg);
-            border: 2px dashed rgba(220, 38, 38, 0.2);
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
             box-shadow: var(--shadow);
         }
         
         .empty-state-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
-            background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
         }
         
         .load-more-container {
             text-align: center;
-            margin: 4rem auto;
+            margin: 3rem auto;
             position: relative;
             min-height: 60px;
             display: flex;
@@ -525,10 +321,10 @@ layout: null
         .infinite-scroll-spinner {
             width: 3rem;
             height: 3rem;
-            border: 3px solid rgba(220, 38, 38, 0.1);
+            border: 3px solid rgba(220, 38, 38, 0.2);
             border-radius: 50%;
             border-top-color: var(--accent-color);
-            animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation: spin 1s linear infinite;
             margin: 0 auto;
             display: none;
         }
@@ -546,26 +342,17 @@ layout: null
                 padding: 0 1rem;
             }
             
-            .logo-link {
-                width: 50px;
-                height: 50px;
-                padding: 0.2rem;
+            .logo-svg {
+                width: 3rem;
+                height: 3rem;
             }
             
-            .intro-section {
+            .hero-section {
                 padding: 4rem 1rem 3rem;
             }
             
-            .intro-title {
+            .hero-title {
                 font-size: 2rem;
-            }
-            
-            .intro-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .intro-description {
-                font-size: 1rem;
             }
             
             .posts-container {
@@ -573,46 +360,32 @@ layout: null
                 gap: 1.5rem;
             }
             
-            .post-card {
-                border-radius: var(--radius);
+            .post-header {
+                padding: 1rem;
+                min-height: 100px;
             }
             
-            .post-title-section {
-                padding: 1.5rem 1.5rem 1rem;
-                min-height: 140px;
-            }
-            
-            .post-card-title {
-                font-size: 1.2rem;
+            .post-title {
+                font-size: 1.1rem;
             }
             
             .post-content {
-                padding: 1.5rem;
+                padding: 1.25rem;
             }
             
             .read-more-btn {
-                padding: 0.85rem 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .post-footer {
-                padding: 1.25rem 1.5rem;
+                padding: 0.65rem 1.25rem;
+                font-size: 0.85rem;
             }
         }
         
         .fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: fadeIn 0.5s ease-out;
         }
         
         @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         html {
@@ -622,46 +395,6 @@ layout: null
         ::selection {
             background-color: rgba(220, 38, 38, 0.2);
             color: var(--primary-color);
-        }
-        
-        /* افکت موجی در بالای کارت */
-        .post-card::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
-            border-radius: 50%;
-            opacity: 0;
-            filter: blur(15px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 0;
-        }
-        
-        .post-card:hover::after {
-            opacity: 0.2;
-            transform: scale(2);
-        }
-        
-        /* افکت هاله نور */
-        .post-card .glow-effect {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
-            border-radius: var(--radius-lg);
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .post-card:hover .glow-effect {
-            opacity: 1;
         }
     </style>
 </head>
@@ -680,20 +413,10 @@ layout: null
         </div>
     </header>
     
-    <section class="intro-section" aria-label="معرفی وبلاگ">
-        <div class="intro-bg"></div>
-        <div class="intro-pattern"></div>
-        <div class="intro-content fade-in">
-            <div class="intro-title-wrapper">
-                <h1 class="intro-title">کاوش در تاریخ و تمدن ایران و جهان</h1>
-                <p class="intro-subtitle">سفری به اعماق تاریخ و کشف اسرار تمدن‌های کهن</p>
-            </div>
-            
-            <p class="intro-description">
-                به وبلاگ پاسگاه خوش آمدید. در اینجا همراه ما باشید تا در سفرهایی جذاب و عمیق به دل تاریخ ایران و جهان برویم، 
-                از تمدن‌های باستانی رم و یونان تا امپراتوری‌های شرقی و فرهنگ‌های کهن، همه را کاوش کنیم و درس‌های ارزشمند 
-                تاریخ را بیاموزیم.
-            </p>
+    <section class="hero-section" aria-label="معرفی وبلاگ">
+        <div class="hero-content">
+            <h1 class="hero-title">کاوش در تاریخ و تمدن ایران و جهان</h1>
+            <p class="hero-description">همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.</p>
         </div>
     </section>
     
@@ -701,29 +424,14 @@ layout: null
         <section class="posts-container" id="postsContainer" aria-label="مقالات وبلاگ">
             {% for post in site.posts %}
             <article class="post-card fade-in" data-url="{{ post.url }}" role="article" aria-label="{{ post.title }}">
-                <div class="glow-effect"></div>
-                <div class="content-wrapper">
-                    <div class="post-title-section">
-                        <div class="post-title-badge">مقاله</div>
-                        <h3 class="post-card-title">
-                            <a href="{{ post.url }}" aria-label="{{ post.title }}">{{ post.title }}</a>
-                        </h3>
-                    </div>
-                    <div class="post-content">
-                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                        <a href="{{ post.url }}" class="read-more-btn" aria-label="خواندن ادامه مقاله {{ post.title }}">
-                            <span>ادامه مطلب</span>
-                        </a>
-                    </div>
-                    <div class="post-footer">
-                        <div class="post-category">تاریخ و تمدن</div>
-                        <div class="post-action">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </div>
-                    </div>
+                <div class="post-header">
+                    <h3 class="post-title">
+                        <a href="{{ post.url }}" aria-label="{{ post.title }}">{{ post.title }}</a>
+                    </h3>
+                </div>
+                <div class="post-content">
+                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                    <a href="{{ post.url }}" class="read-more-btn" aria-label="خواندن ادامه مقاله {{ post.title }}">ادامه مطلب</a>
                 </div>
             </article>
             {% endfor %}
@@ -731,7 +439,7 @@ layout: null
         
         {% if site.posts.size == 0 %}
         <div class="empty-state" role="status" aria-live="polite">
-            <div class="empty-state-icon">📜</div>
+            <div class="empty-state-icon">📝</div>
             <h3>هنوز مقاله‌ای منتشر نشده است</h3>
             <p>به زودی مقالات جذابی درباره تاریخ و تمدن منتشر خواهیم کرد.</p>
         </div>
