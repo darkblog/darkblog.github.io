@@ -36,17 +36,17 @@ layout: null
             --light-color: #FEF2F2;
             --border-color: #FECACA;
             --hover-color: #7F1D1D;
-            --radius: 16px;
-            --radius-sm: 8px;
-            --shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.08), 0 2px 8px -1px rgba(0, 0, 0, 0.04);
-            --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.08);
-            --shadow-red: 0 4px 20px -1px rgba(220, 38, 38, 0.15), 0 2px 8px rgba(220, 38, 38, 0.08);
-            --shadow-red-lg: 0 20px 40px -8px rgba(220, 38, 38, 0.15), 0 8px 16px rgba(220, 38, 38, 0.08);
-            --transition: all 0.3s ease;
-            --transition-slow: all 0.5s ease;
-            --max-width: 72rem;
-            --glass-bg: rgba(255, 255, 255, 0.95);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --shadow: 0 6px 30px -8px rgba(0, 0, 0, 0.12), 0 4px 16px -6px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.16), 0 12px 24px -8px rgba(0, 0, 0, 0.10);
+            --shadow-red: 0 6px 30px -8px rgba(220, 38, 38, 0.20), 0 4px 16px rgba(220, 38, 38, 0.12);
+            --shadow-red-lg: 0 25px 50px -12px rgba(220, 38, 38, 0.20), 0 12px 24px rgba(220, 38, 38, 0.12);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 80rem;
+            --glass-bg: rgba(255, 255, 255, 0.97);
+            --glass-border: rgba(255, 255, 255, 0.25);
         }
         
         * {
@@ -56,39 +56,40 @@ layout: null
         }
         
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
             background-color: var(--light-color);
             color: var(--primary-color);
-            line-height: 1.7;
-            font-size: 1rem;
+            line-height: 1.8;
+            font-size: 1.125rem;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             font-weight: 400;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.03) 0%, transparent 20%);
+                radial-gradient(circle at 15% 25%, rgba(220, 38, 38, 0.04) 0%, transparent 30%),
+                radial-gradient(circle at 85% 75%, rgba(220, 38, 38, 0.04) 0%, transparent 30%),
+                linear-gradient(135deg, #FEF2F2 0%, #FCE7E7 100%);
         }
         
-        /* هدر ساده بدون sticky */
+        /* هدر ساده */
         .site-header {
             background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: relative; /* تغییر از sticky به relative */
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
             z-index: 100;
-            height: 64px;
+            height: 80px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+            border-bottom: 1px solid rgba(220, 38, 38, 0.12);
         }
         
         .header-container {
             width: 100%;
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,15 +102,15 @@ layout: null
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            padding: 0.25rem;
-            border-radius: 12px;
-            width: 60px;
-            height: 60px;
+            padding: 0.5rem;
+            border-radius: 16px;
+            width: 70px;
+            height: 70px;
         }
         
         .logo-link:hover {
-            background-color: rgba(220, 38, 38, 0.1);
-            transform: scale(1.05);
+            background-color: rgba(220, 38, 38, 0.12);
+            transform: rotate(5deg) scale(1.1);
         }
         
         .logo-svg {
@@ -118,15 +119,17 @@ layout: null
             color: #DC2626;
         }
         
+        /* بخش درباره وبلاگ - تایپوگرافی جذاب */
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1E293B 100%);
+            background: linear-gradient(145deg, var(--primary-color) 0%, #1E293B 100%);
             color: white;
-            padding: 6rem 1.5rem 5rem;
-            margin-bottom: 3rem;
+            padding: 8rem 2rem 7rem;
+            margin-bottom: 4rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.2);
+            border-bottom: 1px solid rgba(220, 38, 38, 0.25);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
         
         .hero-section::before {
@@ -136,243 +139,201 @@ layout: null
             right: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23DC2626' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M45 20a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm0 105a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm105 0a25 25 0 1 1 0 50 25 25 0 0 1 0-50zM45 62.5a12.5 12.5 0 1 1 0 25 12.5 12.5 0 0 1 0-25zm105-42.5a25 25 0 1 1 0 50 25 25 0 0 1 0-50zm0 42.5a12.5 12.5 0 1 1 0 25 12.5 12.5 0 0 1 0-25z' fill='%23DC2626' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"),
+                linear-gradient(45deg, transparent 30%, rgba(220, 38, 38, 0.05) 100%);
+            opacity: 0.4;
         }
         
         .hero-content {
-            max-width: 48rem;
+            max-width: 56rem;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
         
         .hero-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
             font-weight: 900;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FECACA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShine 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textShine {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
         }
         
         @media (min-width: 768px) {
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 4.5rem;
             }
         }
         
         .hero-description {
-            font-size: 1.125rem;
-            opacity: 0.9;
-            max-width: 36rem;
-            margin: 0 auto 2rem;
+            font-size: 1.375rem;
+            opacity: 0.92;
+            max-width: 42rem;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 0 1rem;
         }
         
+        .hero-description::first-letter {
+            initial-letter: 2;
+            font-weight: 700;
+            color: #FECACA;
+            margin-left: 0.5rem;
+        }
+        
+        /* محتوای اصلی */
         main {
             flex: 1;
-            margin: 0 auto 3rem;
-            padding: 0 1.5rem;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
             width: 100%;
             max-width: var(--max-width);
         }
         
+        /* کانتینر پست‌ها */
         .posts-container {
             display: grid;
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         @media (min-width: 768px) {
             .posts-container {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
             }
         }
         
         @media (min-width: 1024px) {
             .posts-container {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 3.5rem;
             }
         }
         
+        /* کارت پست - استایل اصلی شبیه هاور شده */
         .post-card {
-            background: white;
+            background: var(--glass-bg);
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-red-lg);
             transition: var(--transition-slow);
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.15);
             position: relative;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            transform: translateY(0);
+            border-top: 4px solid var(--accent-color);
         }
         
         .post-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: var(--shadow-red-lg);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-red-lg), 0 40px 80px -20px rgba(220, 38, 38, 0.25);
             border-color: rgba(220, 38, 38, 0.3);
         }
         
-        .post-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .post-card:hover::before {
-            transform: scaleX(1);
-        }
-        
         .post-title-section {
-            padding: 1.75rem 1.75rem 0;
+            padding: 2.5rem 2.5rem 0;
             position: relative;
-        }
-        
-        .post-title-section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 1.75rem;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), transparent);
-            border-radius: 2px;
         }
         
         .post-card-title {
-            font-size: 1.35rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             line-height: 1.4;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            color: var(--accent-dark);
+            margin-bottom: 1.5rem;
             text-align: right;
             transition: color 0.3s ease;
             position: relative;
+            letter-spacing: -0.3px;
         }
         
         .post-card-title a {
             color: inherit;
             text-decoration: none;
             display: block;
-            padding: 0.25rem 0;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card-title a:hover {
+            color: var(--accent-color);
         }
         
         .post-card:hover .post-card-title {
-            color: var(--accent-dark);
+            color: var(--accent-color);
         }
         
         .post-content {
-            padding: 0 1.75rem 1.75rem;
+            padding: 0 2.5rem 2.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         
         .post-excerpt {
-            font-size: 0.95rem;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            line-height: 1.9;
             color: var(--secondary-color);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-align: right;
             flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+            -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-weight: 350;
         }
         
-        .read-more-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius-sm);
-            background-color: rgba(220, 38, 38, 0.08);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            position: relative;
-            overflow: hidden;
-            align-self: flex-start;
-            margin-top: auto;
-        }
-        
-        .read-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 100%;
-            background-color: var(--accent-color);
-            transition: width 0.3s ease;
-            z-index: 1;
-        }
-        
-        .read-more-btn:hover {
-            color: white;
-            gap: 0.75rem;
-            border-color: var(--accent-color);
-            box-shadow: var(--shadow-red);
-        }
-        
-        .read-more-btn:hover::before {
-            width: 100%;
-        }
-        
-        .read-more-btn span {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .read-more-btn::after {
-            content: '←';
-            position: relative;
-            z-index: 2;
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .read-more-btn:hover::after {
-            transform: translateX(-4px);
-        }
+        /* حذف دکمه ادامه مطلب */
         
         .empty-state {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 5rem 2rem;
             color: var(--secondary-color);
             grid-column: 1 / -1;
-            background: white;
+            background: var(--glass-bg);
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow);
         }
         
         .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 2rem;
             color: var(--accent-light);
+            opacity: 0.7;
         }
         
+        /* فوتر ساده */
         footer {
             background-color: var(--primary-color);
             color: white;
-            padding: 3rem 1.5rem;
+            padding: 3rem 2rem;
             margin-top: auto;
             text-align: center;
+            border-top: 1px solid rgba(220, 38, 38, 0.2);
         }
         
         .footer-content {
@@ -380,160 +341,157 @@ layout: null
             margin: 0 auto;
         }
         
-        .footer-content p {
-            margin-bottom: 0.5rem;
+        .footer-content .site-name {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FECACA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding: 0.5rem 0;
         }
         
+        /* استایل‌های رسپانسیو */
         @media (max-width: 768px) {
             .site-header {
-                height: 56px;
+                height: 70px;
             }
             
             .header-container {
-                padding: 0 1rem;
+                padding: 0 1.5rem;
             }
             
             .logo-link {
-                width: 50px;
-                height: 50px;
-                padding: 0.2rem;
+                width: 60px;
+                height: 60px;
+                padding: 0.4rem;
             }
             
             .hero-section {
-                padding: 4rem 1rem 3rem;
+                padding: 6rem 1.5rem 5rem;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
             }
             
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.75rem;
+            }
+            
+            .hero-description {
+                font-size: 1.25rem;
             }
             
             .posts-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
             }
             
             .post-title-section {
-                padding: 1.5rem 1.5rem 0;
+                padding: 2rem 2rem 0;
             }
             
             .post-card-title {
-                font-size: 1.2rem;
+                font-size: 1.35rem;
             }
             
             .post-content {
-                padding: 0 1.5rem 1.5rem;
+                padding: 0 2rem 2rem;
             }
             
-            .read-more-btn {
-                padding: 0.65rem 1.25rem;
-                font-size: 0.85rem;
+            footer {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .footer-content .site-name {
+                font-size: 2rem;
             }
         }
         
-        /* انیمیشن‌های ساده */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 5rem 1rem 4rem;
+            }
+            
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-description {
+                font-size: 1.125rem;
+            }
+            
+            .header-container,
+            main {
+                padding: 0 1rem;
+            }
+            
+            .post-title-section {
+                padding: 1.75rem 1.75rem 0;
+            }
+            
+            .post-card-title {
+                font-size: 1.25rem;
+            }
+            
+            .post-content {
+                padding: 0 1.75rem 1.75rem;
+            }
+            
+            .footer-content .site-name {
+                font-size: 1.75rem;
+            }
         }
         
+        /* انیمیشن‌های ظریف */
         .posts-container {
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeInUp 0.8s ease-out;
         }
         
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* انتخاب متن */
         ::selection {
-            background-color: rgba(220, 38, 38, 0.2);
+            background-color: rgba(220, 38, 38, 0.25);
             color: var(--primary-color);
         }
         
-        .post-card::after {
+        /* افکت شیشه‌ای برای کارت‌ها */
+        .post-card::before {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(220, 38, 38, 0.02) 100%);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 100%);
             opacity: 0;
             transition: opacity 0.5s ease;
             pointer-events: none;
             z-index: 1;
+            border-radius: var(--radius);
         }
         
-        .post-card:hover::after {
+        .post-card:hover::before {
             opacity: 1;
         }
         
         .post-card .content-wrapper {
             position: relative;
             z-index: 2;
-        }
-        
-        /* صفحه‌بندی ساده */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .page-link {
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            color: var(--accent-color);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            transition: var(--transition);
-        }
-        
-        .page-link:hover {
-            background-color: rgba(220, 38, 38, 0.1);
-            border-color: var(--accent-color);
-        }
-        
-        .page-link.current {
-            background-color: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-        
-        /* دکمه بازگشت به بالا */
-        .back-to-top {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.5rem 1rem;
-            background-color: rgba(220, 38, 38, 0.1);
-            color: var(--accent-color);
-            text-decoration: none;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            transition: var(--transition);
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-        
-        /* استایل برای نمایش بهتر در موبایل */
-        @media (max-width: 480px) {
-            .hero-section {
-                padding: 3rem 1rem 2rem;
-            }
-            
-            .hero-title {
-                font-size: 1.75rem;
-            }
-            
-            .hero-description {
-                font-size: 1rem;
-            }
-            
-            footer {
-                padding: 2rem 1rem;
-            }
         }
         
         /* بهبود نمایش در حالت چاپ */
@@ -547,15 +505,59 @@ layout: null
                 box-shadow: none;
                 border: 1px solid #ddd;
                 break-inside: avoid;
-            }
-            
-            .read-more-btn {
-                display: none;
+                border-top: 4px solid var(--accent-color);
             }
             
             footer {
-                display: none;
+                background: white;
+                color: black;
+                border-top: 2px solid #333;
             }
+            
+            .footer-content .site-name {
+                background: none;
+                -webkit-text-fill-color: black;
+                color: black;
+                text-shadow: none;
+            }
+        }
+        
+        /* تایپوگرافی بهبود یافته */
+        h1, h2, h3, h4, h5, h6 {
+            font-feature-settings: "ss01", "ss02", "kern";
+            letter-spacing: -0.02em;
+        }
+        
+        .post-excerpt {
+            font-feature-settings: "kern", "liga", "clig", "calt";
+            text-rendering: optimizeLegibility;
+            hyphens: auto;
+        }
+        
+        /* افکت نور برای کارت‌ها */
+        .post-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, 
+                rgba(220, 38, 38, 0.1) 0%, 
+                transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .post-card:hover::after {
+            opacity: 1;
         }
     </style>
 </head>
@@ -575,7 +577,7 @@ layout: null
         </div>
     </header>
     
-    <!-- بخش اصلی سایت -->
+    <!-- بخش درباره وبلاگ با تایپوگرافی جذاب -->
     <section class="hero-section" aria-label="معرفی وبلاگ">
         <div class="hero-content">
             <h1 class="hero-title">کاوش در تاریخ و تمدن ایران و جهان</h1>
@@ -586,7 +588,7 @@ layout: null
     <!-- محتوای اصلی -->
     <main>
         <section class="posts-container" aria-label="مقالات وبلاگ">
-            {% for post in site.posts limit: 12 %}
+            {% for post in site.posts limit: 100 %}
             <article class="post-card">
                 <div class="content-wrapper">
                     <div class="post-title-section">
@@ -595,10 +597,7 @@ layout: null
                         </h3>
                     </div>
                     <div class="post-content">
-                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                        <a href="{{ post.url }}" class="read-more-btn" aria-label="خواندن ادامه مقاله {{ post.title }}">
-                            <span>ادامه مطلب</span>
-                        </a>
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
                     </div>
                 </div>
             </article>
@@ -612,32 +611,12 @@ layout: null
             <p>به زودی مقالات جذابی درباره تاریخ و تمدن منتشر خواهیم کرد.</p>
         </div>
         {% endif %}
-        
-        <!-- صفحه‌بندی ساده -->
-        {% if site.posts.size > 12 %}
-        <nav class="pagination" aria-label="صفحه‌بندی مقالات">
-            <a href="/" class="page-link">صفحه اول</a>
-            <a href="/page2/" class="page-link">صفحه ۲</a>
-            <a href="/page3/" class="page-link">صفحه ۳</a>
-        </nav>
-        {% endif %}
-        
-        <!-- دکمه بازگشت به بالا -->
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="#" class="back-to-top">بازگشت به بالا ↑</a>
-        </div>
     </main>
     
-    <!-- فوتر -->
+    <!-- فوتر ساده -->
     <footer>
         <div class="footer-content">
-            <p>© ۲۰۲۴ وبلاگ پاسگاه. تمامی حقوق محفوظ است.</p>
-            <p>کاوش در تاریخ و تمدن ایران و جهان</p>
-            <p>
-                <a href="/" style="color: white; text-decoration: none;">صفحه اصلی</a> | 
-                <a href="/about/" style="color: white; text-decoration: none;">درباره ما</a> | 
-                <a href="/contact/" style="color: white; text-decoration: none;">تماس با ما</a>
-            </p>
+            <div class="site-name">وبلاگ پاسگاه</div>
         </div>
     </footer>
 </body>
