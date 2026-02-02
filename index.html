@@ -77,18 +77,25 @@ layout: null
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             height: 64px;
             display: flex;
             align-items: center;
             transition: transform 0.3s ease;
             border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+            will-change: transform;
         }
         
         .site-header.hidden {
             transform: translateY(-100%);
+        }
+        
+        .site-header.visible {
+            transform: translateY(0);
         }
         
         .header-container {
@@ -134,6 +141,7 @@ layout: null
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(220, 38, 38, 0.2);
+            margin-top: 64px;
         }
         
         .hero-section::before {
@@ -214,6 +222,13 @@ layout: null
             position: relative;
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.95);
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: calc(var(--post-index, 0) * 0.1s);
+        }
+        
+        .post-card.visible {
+            opacity: 1;
         }
         
         .post-card:hover {
@@ -400,9 +415,25 @@ layout: null
             to { transform: rotate(360deg); }
         }
         
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
         @media (max-width: 768px) {
             .site-header {
                 height: 56px;
+            }
+            
+            .hero-section {
+                margin-top: 56px;
+                padding: 4rem 1rem 3rem;
             }
             
             .header-container {
@@ -446,15 +477,6 @@ layout: null
             }
         }
         
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
         html {
             scroll-behavior: smooth;
         }
@@ -486,10 +508,43 @@ layout: null
             position: relative;
             z-index: 2;
         }
+        
+        .page-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        .page-loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            width: 4rem;
+            height: 4rem;
+            border: 4px solid rgba(220, 38, 38, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s linear infinite;
+        }
     </style>
 </head>
 <body>
-    <header class="site-header" id="siteHeader">
+    <div class="page-loading" id="pageLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <header class="site-header visible" id="siteHeader">
         <div class="header-container">
             <a href="/" class="logo-link" aria-label="بازگشت به صفحه اصلی">
                 <svg class="logo-svg" viewBox="0 0 1024 1024" aria-hidden="true">
@@ -513,7 +568,7 @@ layout: null
     <main>
         <section class="posts-container" id="postsContainer" aria-label="مقالات وبلاگ">
             {% for post in site.posts %}
-            <article class="post-card fade-in" data-url="{{ post.url }}" role="article" aria-label="{{ post.title }}">
+            <article class="post-card" data-url="{{ post.url }}" role="article" aria-label="{{ post.title }}" style="--post-index: {{ forloop.index0 }}">
                 <div class="content-wrapper">
                     <div class="post-title-section">
                         <h3 class="post-card-title">
@@ -545,100 +600,153 @@ layout: null
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const postsContainer = document.getElementById('postsContainer');
-            const loadMoreContainer = document.getElementById('loadMoreContainer');
-            const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
-            const siteHeader = document.getElementById('siteHeader');
+        (function() {
+            'use strict';
             
-            if (!postsContainer || !siteHeader) {
+            // وضعیت صفحه را ذخیره و مدیریت می‌کند
+            const pageState = {
+                initialized: false,
+                scrollPosition: 0,
+                headerVisible: true,
+                currentVisibleCount: 10,
+                isLoading: false,
+                postsPerPage: 10,
+                hasMorePosts: true,
+                scrollTimeout: null,
+                observer: null,
+                isNavigatingBack: false
+            };
+            
+            // المنت‌های مهم DOM
+            const domElements = {
+                postsContainer: document.getElementById('postsContainer'),
+                loadMoreContainer: document.getElementById('loadMoreContainer'),
+                infiniteScrollSpinner: document.getElementById('infiniteScrollSpinner'),
+                siteHeader: document.getElementById('siteHeader'),
+                pageLoading: document.getElementById('pageLoading')
+            };
+            
+            // بررسی وجود المنت‌های مورد نیاز
+            if (!domElements.postsContainer || !domElements.siteHeader) {
+                console.error('المنت‌های اصلی صفحه یافت نشدند.');
                 return;
             }
             
-            const allPosts = postsContainer.querySelectorAll('.post-card');
+            // تمام پست‌ها
+            const allPosts = domElements.postsContainer.querySelectorAll('.post-card');
             
-            const postsPerPage = 10;
-            let currentVisibleCount = postsPerPage;
-            let isLoading = false;
-            let lastScrollTop = 0;
-            let isHeaderVisible = true;
-            let hasMorePosts = true;
-            let scrollTimeout = null;
-            let observer = null;
-            
-            function handleHeaderVisibility() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const safeScrollTop = Math.max(0, scrollTop);
+            // مقداردهی اولیه صفحه
+            function initializePage() {
+                // ریست وضعیت هنگام بارگذاری مجدد
+                resetPageState();
                 
-                if (safeScrollTop > lastScrollTop && safeScrollTop > 100) {
-                    if (isHeaderVisible) {
-                        siteHeader.classList.add('hidden');
-                        isHeaderVisible = false;
+                // تنظیم تاخیر برای انیمیشن‌ها
+                setTimeout(() => {
+                    setupPage();
+                    
+                    // مخفی کردن لودر صفحه
+                    if (domElements.pageLoading) {
+                        domElements.pageLoading.classList.add('hidden');
+                        setTimeout(() => {
+                            domElements.pageLoading.style.display = 'none';
+                        }, 500);
                     }
-                } 
-                else if (safeScrollTop < lastScrollTop) {
-                    if (!isHeaderVisible) {
-                        siteHeader.classList.remove('hidden');
-                        isHeaderVisible = true;
-                    }
-                }
+                }, 300);
                 
-                lastScrollTop = safeScrollTop;
+                // ردیابی بازگشت به صفحه
+                setupNavigationTracking();
             }
             
-            function initializePage() {
-                if (allPosts.length > postsPerPage) {
-                    if (loadMoreContainer) {
-                        loadMoreContainer.style.display = 'flex';
-                    }
+            // تنظیم وضعیت اولیه صفحه
+            function resetPageState() {
+                // همیشه هدر را نشان بده
+                domElements.siteHeader.classList.remove('hidden');
+                domElements.siteHeader.classList.add('visible');
+                pageState.headerVisible = true;
+                
+                // پوزیشن اسکرول را به بالا ببر
+                window.scrollTo(0, 0);
+                
+                // تنظیم وضعیت نمایش پست‌ها
+                pageState.currentVisibleCount = pageState.postsPerPage;
+                pageState.isLoading = false;
+                pageState.hasMorePosts = allPosts.length > pageState.postsPerPage;
+                pageState.isNavigatingBack = false;
+                
+                // پنهان کردن لودر بی‌نهایت
+                if (domElements.infiniteScrollSpinner) {
+                    domElements.infiniteScrollSpinner.style.display = 'none';
                 }
                 
+                // مخفی کردن لودر بیشتر
+                if (domElements.loadMoreContainer) {
+                    domElements.loadMoreContainer.style.display = 'none';
+                }
+            }
+            
+            // تنظیم اصلی صفحه
+            function setupPage() {
+                // نمایش پست‌ها
                 hideExtraPosts();
+                
+                // تنظیم کلیک روی کارت‌ها
                 setupPostCardsClick();
+                
+                // تنظیم دکمه‌های ادامه مطلب
                 setupReadMoreButtons();
                 
-                window.addEventListener('scroll', handleHeaderVisibility, { passive: true });
-                window.addEventListener('scroll', handleInfiniteScroll, { passive: true });
-                window.addEventListener('beforeunload', cleanup);
+                // تنظیم Intersection Observer برای انیمیشن‌ها
+                setupIntersectionObserver();
+                
+                // تنظیم اسکرول هدر
+                setupHeaderScroll();
+                
+                // تنظیم اسکرول بی‌نهایت
+                setupInfiniteScroll();
+                
+                // تنظیم رزایز
+                setupResizeHandler();
+                
+                pageState.initialized = true;
             }
             
+            // مخفی کردن پست‌های اضافی
             function hideExtraPosts() {
                 let visibleCount = 0;
                 
                 allPosts.forEach((post, index) => {
-                    if (index < currentVisibleCount) {
+                    // تنظیم تاخیر انیمیشن بر اساس ایندکس
+                    post.style.setProperty('--post-index', Math.min(index, 15));
+                    
+                    if (index < pageState.currentVisibleCount) {
                         post.style.display = 'flex';
-                        post.classList.add('fade-in');
+                        post.classList.add('visible');
                         visibleCount++;
                     } else {
                         post.style.display = 'none';
+                        post.classList.remove('visible');
                     }
                 });
                 
-                hasMorePosts = currentVisibleCount < allPosts.length;
-                updateLoadMoreContainer();
-                
-                if (loadMoreContainer) {
-                    const message = hasMorePosts 
-                        ? `${visibleCount} مقاله از ${allPosts.length} مقاله نمایش داده می‌شود` 
-                        : 'همه مقالات نمایش داده شده‌اند';
-                    loadMoreContainer.setAttribute('aria-label', message);
-                }
+                pageState.hasMorePosts = pageState.currentVisibleCount < allPosts.length;
+                updateLoadMoreContainer(visibleCount);
             }
             
-            function updateLoadMoreContainer() {
-                if (!loadMoreContainer) return;
+            // آپدیت وضعیت لودر بیشتر
+            function updateLoadMoreContainer(visibleCount) {
+                if (!domElements.loadMoreContainer) return;
                 
-                if (!hasMorePosts) {
-                    loadMoreContainer.style.display = 'none';
-                    if (infiniteScrollSpinner) {
-                        infiniteScrollSpinner.style.display = 'none';
+                if (!pageState.hasMorePosts) {
+                    domElements.loadMoreContainer.style.display = 'none';
+                    if (domElements.infiniteScrollSpinner) {
+                        domElements.infiniteScrollSpinner.style.display = 'none';
                     }
                 } else {
-                    loadMoreContainer.style.display = 'flex';
+                    domElements.loadMoreContainer.style.display = 'flex';
                 }
             }
             
+            // تنظیم کلیک روی کارت‌ها
             function setupPostCardsClick() {
                 allPosts.forEach(post => {
                     const url = post.getAttribute('data-url');
@@ -650,12 +758,86 @@ layout: null
                         }
                         
                         if (isValidUrl(url)) {
+                            // ذخیره وضعیت صفحه قبل از ناوبری
+                            savePageState();
                             window.location.href = url;
                         }
                     });
                 });
             }
             
+            // ذخیره وضعیت صفحه
+            function savePageState() {
+                try {
+                    sessionStorage.setItem('pasgah-scroll', window.scrollY.toString());
+                    sessionStorage.setItem('pasgah-header-visible', pageState.headerVisible.toString());
+                    sessionStorage.setItem('pasgah-visible-count', pageState.currentVisibleCount.toString());
+                } catch (e) {
+                    console.warn('خطا در ذخیره وضعیت صفحه:', e);
+                }
+            }
+            
+            // بازیابی وضعیت صفحه
+            function restorePageState() {
+                try {
+                    const savedScroll = sessionStorage.getItem('pasgah-scroll');
+                    const savedHeaderVisible = sessionStorage.getItem('pasgah-header-visible');
+                    const savedVisibleCount = sessionStorage.getItem('pasgah-visible-count');
+                    
+                    if (savedScroll) {
+                        setTimeout(() => {
+                            window.scrollTo(0, parseInt(savedScroll));
+                        }, 100);
+                    }
+                    
+                    if (savedHeaderVisible === 'false') {
+                        domElements.siteHeader.classList.add('hidden');
+                        pageState.headerVisible = false;
+                    }
+                    
+                    if (savedVisibleCount) {
+                        pageState.currentVisibleCount = parseInt(savedVisibleCount);
+                    }
+                    
+                    // پاک کردن وضعیت ذخیره شده
+                    sessionStorage.removeItem('pasgah-scroll');
+                    sessionStorage.removeItem('pasgah-header-visible');
+                    sessionStorage.removeItem('pasgah-visible-count');
+                } catch (e) {
+                    console.warn('خطا در بازیابی وضعیت صفحه:', e);
+                }
+            }
+            
+            // ردیابی ناوبری
+            function setupNavigationTracking() {
+                // بررسی بازگشت به صفحه
+                if (performance && performance.getEntriesByType) {
+                    const navEntries = performance.getEntriesByType('navigation');
+                    if (navEntries.length > 0 && navEntries[0].type === 'back_forward') {
+                        pageState.isNavigatingBack = true;
+                        restorePageState();
+                    }
+                }
+                
+                // ردیابی کلیک روی لینک‌ها
+                document.addEventListener('click', function(e) {
+                    const link = e.target.closest('a');
+                    if (link && link.href && !link.href.includes('#') && 
+                        link.href !== window.location.href) {
+                        savePageState();
+                    }
+                });
+                
+                // ردیابی قبل از بازگشت
+                window.addEventListener('pageshow', function(event) {
+                    if (event.persisted) {
+                        pageState.isNavigatingBack = true;
+                        restorePageState();
+                    }
+                });
+            }
+            
+            // تنظیم دکمه‌های ادامه مطلب
             function setupReadMoreButtons() {
                 const readMoreButtons = document.querySelectorAll('.read-more-btn');
                 readMoreButtons.forEach(button => {
@@ -664,6 +846,7 @@ layout: null
                         
                         const href = this.getAttribute('href');
                         if (href && isValidUrl(href)) {
+                            savePageState();
                             return true;
                         }
                         
@@ -673,54 +856,57 @@ layout: null
                 });
             }
             
+            // نمایش پست‌های بیشتر
             function showMorePosts() {
-                if (isLoading || !hasMorePosts) return;
+                if (pageState.isLoading || !pageState.hasMorePosts) return;
                 
-                isLoading = true;
+                pageState.isLoading = true;
                 
-                if (infiniteScrollSpinner) {
-                    infiniteScrollSpinner.style.display = 'block';
-                    infiniteScrollSpinner.setAttribute('aria-busy', 'true');
+                if (domElements.infiniteScrollSpinner) {
+                    domElements.infiniteScrollSpinner.style.display = 'block';
+                    domElements.infiniteScrollSpinner.setAttribute('aria-busy', 'true');
                 }
                 
                 setTimeout(() => {
-                    const nextBatch = Math.min(currentVisibleCount + postsPerPage, allPosts.length);
+                    const nextBatch = Math.min(
+                        pageState.currentVisibleCount + pageState.postsPerPage, 
+                        allPosts.length
+                    );
                     
                     allPosts.forEach((post, index) => {
-                        if (index < nextBatch && index >= currentVisibleCount) {
+                        if (index < nextBatch && index >= pageState.currentVisibleCount) {
                             post.style.display = 'flex';
-                            post.classList.add('fade-in');
+                            post.classList.add('visible');
                             
-                            if (observer) {
-                                observer.observe(post);
+                            // اضافه شدن به observer
+                            if (pageState.observer) {
+                                pageState.observer.observe(post);
                             }
                         }
                     });
                     
-                    currentVisibleCount = nextBatch;
+                    pageState.currentVisibleCount = nextBatch;
                     
-                    if (infiniteScrollSpinner) {
-                        infiniteScrollSpinner.style.display = 'none';
-                        infiniteScrollSpinner.setAttribute('aria-busy', 'false');
+                    // مخفی کردن اسپینر
+                    if (domElements.infiniteScrollSpinner) {
+                        domElements.infiniteScrollSpinner.style.display = 'none';
+                        domElements.infiniteScrollSpinner.setAttribute('aria-busy', 'false');
                     }
                     
-                    isLoading = false;
-                    hasMorePosts = currentVisibleCount < allPosts.length;
-                    updateLoadMoreContainer();
+                    pageState.isLoading = false;
+                    pageState.hasMorePosts = pageState.currentVisibleCount < allPosts.length;
+                    updateLoadMoreContainer(pageState.currentVisibleCount);
                     
-                    if (loadMoreContainer) {
-                        loadMoreContainer.setAttribute('aria-label', 
-                            `اکنون ${currentVisibleCount} مقاله از ${allPosts.length} مقاله نمایش داده می‌شود`);
-                    }
-                    
+                    // بررسی برای بارگذاری بیشتر
                     setTimeout(() => {
-                        if (isAtBottom() && hasMorePosts && !isLoading) {
+                        if (isAtBottom() && pageState.hasMorePosts && !pageState.isLoading) {
                             showMorePosts();
                         }
                     }, 100);
                 }, 600);
             }
             
+            // بررسی رسیدن به انتهای صفحه
             function isAtBottom() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const windowHeight = window.innerHeight;
@@ -729,56 +915,100 @@ layout: null
                 return (scrollTop + windowHeight) >= (documentHeight - 200);
             }
             
+            // مدیریت اسکرول بی‌نهایت
+            function setupInfiniteScroll() {
+                window.addEventListener('scroll', handleInfiniteScroll, { passive: true });
+            }
+            
+            // هندلر اسکرول بی‌نهایت
             function handleInfiniteScroll() {
-                if (isLoading || !hasMorePosts) return;
+                if (pageState.isLoading || !pageState.hasMorePosts) return;
                 
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
+                if (pageState.scrollTimeout) {
+                    clearTimeout(pageState.scrollTimeout);
                 }
                 
-                scrollTimeout = setTimeout(() => {
+                pageState.scrollTimeout = setTimeout(() => {
                     if (isAtBottom()) {
                         showMorePosts();
                     }
                 }, 150);
             }
             
+            // تنظیم Intersection Observer
             function setupIntersectionObserver() {
                 const observerOptions = {
-                    threshold: 0.1,
+                    threshold: 0.05,
                     rootMargin: '0px 0px -50px 0px'
                 };
                 
-                observer = new IntersectionObserver((entries) => {
+                pageState.observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('fade-in');
-                            observer.unobserve(entry.target);
+                            entry.target.classList.add('visible');
+                            pageState.observer.unobserve(entry.target);
                         }
                     });
                 }, observerOptions);
                 
+                // مشاهده پست‌های نمایش داده شده
                 allPosts.forEach((post, index) => {
-                    if (index < currentVisibleCount) {
-                        observer.observe(post);
+                    if (index < pageState.currentVisibleCount) {
+                        pageState.observer.observe(post);
                     }
                 });
             }
             
-            function cleanup() {
-                if (observer) {
-                    observer.disconnect();
-                }
+            // تنظیم اسکرول هدر
+            function setupHeaderScroll() {
+                let lastScrollTop = 0;
                 
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                window.removeEventListener('scroll', handleHeaderVisibility);
-                window.removeEventListener('scroll', handleInfiniteScroll);
-                window.removeEventListener('beforeunload', cleanup);
+                window.addEventListener('scroll', function() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    // اگر در حال بارگذاری هستیم یا کاربر اسکرول نکرده، کاری نکن
+                    if (pageState.isLoading || scrollTop < 50) {
+                        domElements.siteHeader.classList.remove('hidden');
+                        domElements.siteHeader.classList.add('visible');
+                        pageState.headerVisible = true;
+                        lastScrollTop = scrollTop;
+                        return;
+                    }
+                    
+                    // اگر کاربر در حال اسکرول به پایین است
+                    if (scrollTop > lastScrollTop) {
+                        if (pageState.headerVisible) {
+                            domElements.siteHeader.classList.add('hidden');
+                            pageState.headerVisible = false;
+                        }
+                    } 
+                    // اگر کاربر در حال اسکرول به بالا است
+                    else {
+                        if (!pageState.headerVisible) {
+                            domElements.siteHeader.classList.remove('hidden');
+                            domElements.siteHeader.classList.add('visible');
+                            pageState.headerVisible = true;
+                        }
+                    }
+                    
+                    lastScrollTop = scrollTop;
+                }, { passive: true });
             }
             
+            // تنظیم هندلر رزایز
+            function setupResizeHandler() {
+                let resizeTimeout;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        if (isAtBottom() && pageState.hasMorePosts && !pageState.isLoading) {
+                            showMorePosts();
+                        }
+                    }, 100);
+                });
+            }
+            
+            // اعتبارسنجی URL
             function isValidUrl(url) {
                 if (!url || typeof url !== 'string') return false;
                 
@@ -792,40 +1022,42 @@ layout: null
                 }
             }
             
-            if (allPosts.length > 0) {
-                try {
-                    initializePage();
-                    setupIntersectionObserver();
-                    
-                    setTimeout(() => {
-                        if (isAtBottom() && hasMorePosts && !isLoading) {
-                            showMorePosts();
-                        }
-                    }, 500);
-                } catch (error) {
-                    allPosts.forEach(post => {
-                        post.style.display = 'flex';
-                    });
-                    if (loadMoreContainer) {
-                        loadMoreContainer.style.display = 'none';
-                    }
+            // پاکسازی منابع
+            function cleanup() {
+                if (pageState.observer) {
+                    pageState.observer.disconnect();
                 }
+                
+                if (pageState.scrollTimeout) {
+                    clearTimeout(pageState.scrollTimeout);
+                }
+                
+                window.removeEventListener('scroll', handleInfiniteScroll);
+            }
+            
+            // شروع برنامه
+            if (allPosts.length > 0) {
+                window.addEventListener('DOMContentLoaded', initializePage);
+                window.addEventListener('beforeunload', cleanup);
             } else {
-                if (loadMoreContainer) {
-                    loadMoreContainer.style.display = 'none';
+                if (domElements.loadMoreContainer) {
+                    domElements.loadMoreContainer.style.display = 'none';
                 }
             }
             
-            let resizeTimeout;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    if (isAtBottom() && hasMorePosts && !isLoading) {
-                        showMorePosts();
-                    }
-                }, 100);
+            // اضافه کردن کلاس fade-in بعد از بارگذاری کامل
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+                
+                // مخفی کردن لودر صفحه
+                if (domElements.pageLoading) {
+                    domElements.pageLoading.classList.add('hidden');
+                    setTimeout(() => {
+                        domElements.pageLoading.style.display = 'none';
+                    }, 500);
+                }
             });
-        });
+        })();
     </script>
 </body>
 </html>
