@@ -13,6 +13,8 @@
     <meta property="article:modified_time" content="{{ site.time | date_to_xmlschema }}">
     <meta name="theme-color" content="#DC2626">
     
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
+    
     <style>
         @font-face {
             font-family: 'Vazirmatn';
@@ -57,6 +59,7 @@
             flex-direction: column;
             min-height: 100vh;
             font-weight: 400;
+            overflow-x: hidden;
         }
         
         .site-header {
@@ -672,8 +675,8 @@
 <body>
     <header class="site-header" id="siteHeader">
         <div class="header-container">
-            <a href="/" class="logo-link">
-                <svg class="logo-svg" viewBox="0 0 1024 1024">
+            <a href="/" class="logo-link" aria-label="بازگشت به صفحه اصلی">
+                <svg class="logo-svg" viewBox="0 0 1024 1024" aria-hidden="true">
                     <g transform="translate(0,1024) scale(0.1,-0.1)" fill="#DC2626">
                         <path d="M3110 5120 l0 -2910 73 0 c143 0 349 21 445 46 256 64 459 217 558 419 84 172 78 84 82 1217 l3 1007 997 4 c1087 3 1045 1 1256 62 377 109 647 379 735 736 38 153 43 273 38 849 -3 448 -7 559 -20 626 -88 442 -393 738 -851 826 -110 21 -128 22 -1713 25 l-1603 4 0 -2911z m2822 1871 c37 -10 83 -30 102 -45 47 -36 87 -106 103 -180 16 -77 17 -503 2 -578 -22 -106 -91 -187 -195 -229 l-59 -24 -807 -3 -808 -3 0 541 0 540 798 0 c746 0 802 -1 864 -19z"/>
                         <path d="M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z"/>
@@ -697,13 +700,13 @@
             </article>
         </div>
         
-        <section class="related-posts">
+        <section class="related-posts" aria-label="مقالات مرتبط">
             <div class="posts-container" id="postsContainer">
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                 
                 {% for post in all_posts %}
-                <article class="post-card fade-in" data-url="{{ post.url }}">
+                <article class="post-card fade-in" data-url="{{ post.url }}" role="article" aria-label="{{ post.title }}">
                     <div class="post-title-section">
                         <h3 class="post-card-title">
                             {{ post.title }}
@@ -711,24 +714,31 @@
                     </div>
                     <div class="post-content-section">
                         <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                        <a href="{{ post.url }}" class="read-more-btn">ادامه مطلب</a>
+                        <a href="{{ post.url }}" class="read-more-btn" aria-label="خواندن ادامه مقاله {{ post.title }}">ادامه مطلب</a>
                     </div>
                 </article>
                 {% endfor %}
             </div>
             
-            <div class="load-more-container" id="loadMoreContainer">
-                <div class="infinite-scroll-spinner" id="infiniteScrollSpinner"></div>
+            <div class="load-more-container" id="loadMoreContainer" aria-live="polite" aria-atomic="true">
+                <div class="infinite-scroll-spinner" id="infiniteScrollSpinner" role="status" aria-label="در حال بارگذاری مطالب بیشتر"></div>
             </div>
         </section>
     </main>
 
     <script>
+        'use strict';
+        
         document.addEventListener('DOMContentLoaded', function() {
             const siteHeader = document.getElementById('siteHeader');
             const postsContainer = document.getElementById('postsContainer');
             const loadMoreContainer = document.getElementById('loadMoreContainer');
             const infiniteScrollSpinner = document.getElementById('infiniteScrollSpinner');
+            
+            if (!siteHeader || !postsContainer) {
+                return;
+            }
+            
             const allPosts = postsContainer.querySelectorAll('.post-card');
             
             const postsPerPage = 10;
@@ -738,52 +748,76 @@
             let isHeaderVisible = true;
             let hasMorePosts = true;
             let scrollTimeout = null;
+            let observer = null;
             
             function handleHeaderVisibility() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const safeScrollTop = Math.max(0, scrollTop);
                 
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                if (safeScrollTop > lastScrollTop && safeScrollTop > 100) {
                     if (isHeaderVisible) {
                         siteHeader.classList.add('hidden');
                         isHeaderVisible = false;
                     }
                 } 
-                else if (scrollTop < lastScrollTop) {
+                else if (safeScrollTop < lastScrollTop) {
                     if (!isHeaderVisible) {
                         siteHeader.classList.remove('hidden');
                         isHeaderVisible = true;
                     }
                 }
                 
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                lastScrollTop = safeScrollTop;
             }
             
             function initializePage() {
                 if (allPosts.length > postsPerPage) {
-                    loadMoreContainer.style.display = 'flex';
+                    if (loadMoreContainer) {
+                        loadMoreContainer.style.display = 'flex';
+                    }
                 }
                 
                 hideExtraPosts();
-                
                 setupPostCardsClick();
                 setupReadMoreButtons();
-                window.addEventListener('scroll', handleHeaderVisibility);
-                window.addEventListener('scroll', handleInfiniteScroll);
+                
+                window.addEventListener('scroll', handleHeaderVisibility, { passive: true });
+                window.addEventListener('scroll', handleInfiniteScroll, { passive: true });
+                window.addEventListener('beforeunload', cleanup);
             }
             
             function hideExtraPosts() {
+                let visibleCount = 0;
+                
                 allPosts.forEach((post, index) => {
-                    if (index >= currentVisibleCount) {
-                        post.style.display = 'none';
-                    } else {
+                    if (index < currentVisibleCount) {
                         post.style.display = 'flex';
+                        post.classList.add('fade-in');
+                        visibleCount++;
+                    } else {
+                        post.style.display = 'none';
                     }
                 });
                 
                 hasMorePosts = currentVisibleCount < allPosts.length;
+                updateLoadMoreContainer();
+                
+                if (loadMoreContainer) {
+                    const message = hasMorePosts 
+                        ? `${visibleCount} مقاله از ${allPosts.length} مقاله نمایش داده می‌شود` 
+                        : 'همه مقالات نمایش داده شده‌اند';
+                    loadMoreContainer.setAttribute('aria-label', message);
+                }
+            }
+            
+            function updateLoadMoreContainer() {
+                if (!loadMoreContainer) return;
                 
                 if (!hasMorePosts) {
                     loadMoreContainer.style.display = 'none';
+                    if (infiniteScrollSpinner) {
+                        infiniteScrollSpinner.style.display = 'none';
+                    }
                 } else {
                     loadMoreContainer.style.display = 'flex';
                 }
@@ -791,12 +825,16 @@
             
             function setupPostCardsClick() {
                 allPosts.forEach(post => {
+                    const url = post.getAttribute('data-url');
+                    if (!url) return;
+                    
                     post.addEventListener('click', function(e) {
-                        if (!e.target.closest('.read-more-btn')) {
-                            const url = this.getAttribute('data-url');
-                            if (url) {
-                                window.location.href = url;
-                            }
+                        if (e.target.closest('.read-more-btn')) {
+                            return;
+                        }
+                        
+                        if (isValidUrl(url)) {
+                            window.location.href = url;
                         }
                     });
                 });
@@ -807,6 +845,14 @@
                 readMoreButtons.forEach(button => {
                     button.addEventListener('click', function(e) {
                         e.stopPropagation();
+                        
+                        const href = this.getAttribute('href');
+                        if (href && isValidUrl(href)) {
+                            return true;
+                        }
+                        
+                        e.preventDefault();
+                        return false;
                     });
                 });
             }
@@ -815,28 +861,44 @@
                 if (isLoading || !hasMorePosts) return;
                 
                 isLoading = true;
-                infiniteScrollSpinner.style.display = 'block';
+                
+                if (infiniteScrollSpinner) {
+                    infiniteScrollSpinner.style.display = 'block';
+                    infiniteScrollSpinner.setAttribute('aria-busy', 'true');
+                }
                 
                 setTimeout(() => {
-                    const nextBatch = currentVisibleCount + postsPerPage;
+                    const nextBatch = Math.min(currentVisibleCount + postsPerPage, allPosts.length);
                     
                     allPosts.forEach((post, index) => {
                         if (index < nextBatch && index >= currentVisibleCount) {
                             post.style.display = 'flex';
                             post.classList.add('fade-in');
+                            
+                            if (observer) {
+                                observer.observe(post);
+                            }
                         }
                     });
                     
                     currentVisibleCount = nextBatch;
                     
-                    infiniteScrollSpinner.style.display = 'none';
+                    if (infiniteScrollSpinner) {
+                        infiniteScrollSpinner.style.display = 'none';
+                        infiniteScrollSpinner.setAttribute('aria-busy', 'false');
+                    }
                     
                     isLoading = false;
+                    hasMorePosts = currentVisibleCount < allPosts.length;
+                    updateLoadMoreContainer();
                     
-                    checkIfAllPostsLoaded();
+                    if (loadMoreContainer) {
+                        loadMoreContainer.setAttribute('aria-label', 
+                            `اکنون ${currentVisibleCount} مقاله از ${allPosts.length} مقاله نمایش داده می‌شود`);
+                    }
                     
                     setTimeout(() => {
-                        if (isAtBottom() && hasMorePosts) {
+                        if (isAtBottom() && hasMorePosts && !isLoading) {
                             showMorePosts();
                         }
                     }, 100);
@@ -848,7 +910,7 @@
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
                 
-                return (scrollTop + windowHeight) >= (documentHeight - 100);
+                return (scrollTop + windowHeight) >= (documentHeight - 200);
             }
             
             function handleInfiniteScroll() {
@@ -865,53 +927,84 @@
                 }, 150);
             }
             
-            function checkIfAllPostsLoaded() {
-                hasMorePosts = currentVisibleCount < allPosts.length;
+            function setupIntersectionObserver() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
                 
-                if (!hasMorePosts) {
-                    loadMoreContainer.style.display = 'none';
-                } else {
-                    loadMoreContainer.style.display = 'flex';
+                observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('fade-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+                
+                allPosts.forEach((post, index) => {
+                    if (index < currentVisibleCount) {
+                        observer.observe(post);
+                    }
+                });
+            }
+            
+            function cleanup() {
+                if (observer) {
+                    observer.disconnect();
+                }
+                
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                
+                window.removeEventListener('scroll', handleHeaderVisibility);
+                window.removeEventListener('scroll', handleInfiniteScroll);
+                window.removeEventListener('beforeunload', cleanup);
+            }
+            
+            function isValidUrl(url) {
+                if (!url || typeof url !== 'string') return false;
+                
+                try {
+                    if (url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://')) {
+                        return true;
+                    }
+                    return false;
+                } catch (e) {
+                    return false;
                 }
             }
             
             if (allPosts.length > 0) {
-                initializePage();
-                checkIfAllPostsLoaded();
-                
-                setTimeout(() => {
-                    if (isAtBottom() && hasMorePosts && !isLoading) {
-                        showMorePosts();
+                try {
+                    initializePage();
+                    setupIntersectionObserver();
+                    
+                    setTimeout(() => {
+                        if (isAtBottom() && hasMorePosts && !isLoading) {
+                            showMorePosts();
+                        }
+                    }, 500);
+                } catch (error) {
+                    allPosts.forEach(post => {
+                        post.style.display = 'flex';
+                    });
+                    if (loadMoreContainer) {
+                        loadMoreContainer.style.display = 'none';
                     }
-                }, 500);
+                }
             }
             
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, observerOptions);
-            
-            allPosts.forEach(post => {
-                observer.observe(post);
-            });
-            
+            let resizeTimeout;
             window.addEventListener('resize', function() {
-                setTimeout(() => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
                     if (isAtBottom() && hasMorePosts && !isLoading) {
                         showMorePosts();
                     }
                 }, 100);
             });
-            
-            // بخش مربوط به اسکرول خودکار به تیترهای داخل متن حذف شده است
         });
     </script>
 </body>
