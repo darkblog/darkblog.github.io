@@ -207,119 +207,8 @@ layout: null
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
             max-width: 40rem;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto;
             text-align: center;
-        }
-        
-        .intro-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .intro-feature {
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius);
-            border: 1px solid rgba(220, 38, 38, 0.1);
-            transition: var(--transition-slow);
-        }
-        
-        .intro-feature:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(220, 38, 38, 0.3);
-            box-shadow: var(--shadow-red-lg);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-light);
-            display: block;
-        }
-        
-        .feature-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 0.75rem;
-        }
-        
-        .feature-desc {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.5;
-        }
-        
-        .intro-cta {
-            margin-top: 2.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .cta-button {
-            padding: 1rem 2.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-primary {
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
-            color: white;
-            box-shadow: var(--shadow-red);
-        }
-        
-        .cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-red-lg);
-            gap: 1rem;
-        }
-        
-        .cta-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-color: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-        
-        .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .cta-button:hover::after {
-            opacity: 1;
         }
         
         @media (min-width: 768px) {
@@ -592,27 +481,6 @@ layout: null
                 font-size: 1rem;
             }
             
-            .intro-features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .intro-feature {
-                max-width: 100%;
-                min-width: 100%;
-            }
-            
-            .intro-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
             .posts-container {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -707,41 +575,6 @@ layout: null
                 از تمدن‌های باستانی رم و یونان تا امپراتوری‌های شرقی و فرهنگ‌های کهن، همه را کاوش کنیم و درس‌های ارزشمند 
                 تاریخ را بیاموزیم.
             </p>
-            
-            <div class="intro-features">
-                <div class="intro-feature fade-in">
-                    <span class="feature-icon">📜</span>
-                    <h3 class="feature-title">تحقیقات تاریخی</h3>
-                    <p class="feature-desc">بررسی مستند و علمی رویدادهای تاریخی با منابع معتبر</p>
-                </div>
-                
-                <div class="intro-feature fade-in">
-                    <span class="feature-icon">🏛️</span>
-                    <h3 class="feature-title">تمدن‌شناسی</h3>
-                    <p class="feature-desc">کاوش در تمدن‌های باستانی و تأثیر آنها بر جهان امروز</p>
-                </div>
-                
-                <div class="intro-feature fade-in">
-                    <span class="feature-icon">🔍</span>
-                    <h3 class="feature-title">کشف اسرار</h3>
-                    <p class="feature-desc">شناسایی رویدادهای پنهان و ناگفته‌های تاریخ</p>
-                </div>
-                
-                <div class="intro-feature fade-in">
-                    <span class="feature-icon">🌍</span>
-                    <h3 class="feature-title">گستره جهانی</h3>
-                    <p class="feature-desc">پوشش تاریخ ایران و جهان با نگاهی تطبیقی</p>
-                </div>
-            </div>
-            
-            <div class="intro-cta">
-                <a href="#postsContainer" class="cta-button cta-primary">
-                    <span>مشاهده مقالات</span>
-                </a>
-                <a href="#postsContainer" class="cta-button cta-secondary">
-                    <span>شروع کاوش</span>
-                </a>
-            </div>
         </div>
     </section>
     
