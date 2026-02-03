@@ -50,7 +50,7 @@ layout: null
         }
         
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--light-color);
             color: var(--primary-color);
             line-height: 1.8;
@@ -64,10 +64,6 @@ layout: null
                 radial-gradient(circle at 15% 25%, rgba(220, 38, 38, 0.04) 0%, transparent 30%),
                 radial-gradient(circle at 85% 75%, rgba(220, 38, 38, 0.04) 0%, transparent 30%),
                 linear-gradient(135deg, #FEF2F2 0%, #FCE7E7 100%);
-        }
-        
-        .fonts-loaded body {
-            font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
         
         .site-header {
@@ -492,26 +488,5 @@ layout: null
             <div class="site-name">وبلاگ پاسگاه</div>
         </div>
     </footer>
-    
-    <script>
-        (function() {
-            if ('fonts' in document) {
-                document.fonts.load('1em Vazirmatn').then(function() {
-                    document.documentElement.classList.add('fonts-loaded');
-                });
-            }
-            
-            const backToTop = document.querySelector('.back-to-top');
-            if (backToTop) {
-                backToTop.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-        })();
-    </script>
 </body>
 </html>
