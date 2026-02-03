@@ -197,6 +197,18 @@ layout: null
             margin-left: 0.5rem;
         }
         
+        .posts-section-title {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
         main {
             flex: 1;
             margin: 0 auto 4rem;
@@ -618,6 +630,8 @@ layout: null
     </section>
     
     <main>
+        <h2 class="posts-section-title">آخرین مقالات وبلاگ پاسگاه</h2>
+        
         <section class="posts-container" aria-label="مقالات وبلاگ">
             {% for post in site.posts limit: 1000 %}
             <article class="post-card">
