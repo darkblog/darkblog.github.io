@@ -157,6 +157,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            padding-top: 0.5em;
+            overflow: visible;
+            text-overflow: unset;
+            white-space: normal;
+            height: auto;
+            min-height: 1.5em;
         }
         
         @media (min-width: 768px) {
@@ -365,7 +371,7 @@
             display: block;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            border-radius: var(--radius);
+            border-radius: 0;
             border: 1px solid rgba(220, 38, 38, 0.2);
             box-shadow: var(--shadow);
         }
@@ -534,6 +540,12 @@
             transition: color 0.3s ease;
             position: relative;
             letter-spacing: -0.3px;
+            overflow: visible;
+            text-overflow: unset;
+            white-space: normal;
+            height: auto;
+            min-height: 3.5em;
+            padding-top: 0.5em;
         }
         
         .post-card-title a {
