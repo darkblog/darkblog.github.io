@@ -101,6 +101,7 @@
             border-radius: 16px;
             width: 70px;
             height: 70px;
+            will-change: transform;
         }
         
         .logo-link:hover {
@@ -473,11 +474,15 @@
             backdrop-filter: blur(20px);
             transform: translateY(0);
             border-top: 4px solid var(--accent-color);
+            will-change: transform;
+            transform: translateZ(0);
         }
         
         .post-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: var(--shadow-red-lg), 0 40px 80px -20px rgba(220, 38, 38, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 
+                        0 12px 24px rgba(0, 0, 0, 0.1),
+                        0 0 0 1px rgba(220, 38, 38, 0.3);
             border-color: rgba(220, 38, 38, 0.3);
         }
         
@@ -602,6 +607,8 @@
             overflow: hidden;
             margin: 4rem auto 0;
             width: fit-content;
+            will-change: transform;
+            transform: translateZ(0);
         }
         
         .back-to-top::before {
@@ -609,10 +616,12 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 0;
+            width: 100%;
             height: 100%;
             background-color: var(--accent-color);
-            transition: width 0.4s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
             z-index: 1;
         }
         
@@ -621,11 +630,11 @@
             gap: 1rem;
             border-color: var(--accent-color);
             box-shadow: var(--shadow-red);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
         
         .back-to-top:hover::before {
-            width: 100%;
+            transform: scaleX(1);
         }
         
         .back-to-top span {
@@ -642,7 +651,7 @@
         }
         
         .back-to-top:hover::after {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
         }
         
         footer {
