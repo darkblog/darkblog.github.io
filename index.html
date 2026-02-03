@@ -10,6 +10,9 @@ layout: null
     <title>وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان</title>
     <meta name="description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم.">
     <link rel="canonical" href="https://www.pasgah.org/">
+    <link rel="preconnect" href="https://www.pasgah.org">
+    <link rel="dns-prefetch" href="https://www.pasgah.org">
+    <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cg transform='translate(0,1024) scale(0.1,-0.1)' fill='%23DC2626'%3E%3Cpath d='M3110 5120 l0 -2910 73 0 c143 0 349 21 445 46 256 64 459 217 558 419 84 172 78 84 82 1217 l3 1007 997 4 c1087 3 1045 1 1256 62 377 109 647 379 735 736 38 153 43 273 38 849 -3 448 -7 559 -20 626 -88 442 -393 738 -851 826 -110 21 -128 22 -1713 25 l-1603 4 0 -2911z m2822 1871 c37 -10 83 -30 102 -45 47 -36 87 -106 103 -180 16 -77 17 -503 2 -578 -22 -106 -91 -187 -195 -229 l-59 -24 -807 -3 -808 -3 0 541 0 540 798 0 c746 0 802 -1 864 -19z'/%3E%3Cpath d='M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z'/%3E%3Cpath d='M5907 3069 c-125 -127 -227 -235 -225 -240 5 -13 449 -459 458 -459 11 0 71 58 286 278 l188 193 -229 229 c-127 127 -234 230 -240 230 -5 0 -113 -104 -238 -231z'/%3E%3C/g%3E%3C/svg%3E">
     <meta property="og:updated_time" content="{{ site.time | date_to_xmlschema }}">
@@ -23,7 +26,7 @@ layout: null
             src: url('https://www.pasgah.org/blog.woff2') format('woff2-variations');
             font-weight: 100 900;
             font-style: normal;
-            font-display: swap;
+            font-display: optional;
         }
         
         :root {
@@ -56,7 +59,7 @@ layout: null
         }
         
         body {
-            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--light-color);
             color: var(--primary-color);
             line-height: 1.8;
@@ -70,6 +73,10 @@ layout: null
                 radial-gradient(circle at 15% 25%, rgba(220, 38, 38, 0.04) 0%, transparent 30%),
                 radial-gradient(circle at 85% 75%, rgba(220, 38, 38, 0.04) 0%, transparent 30%),
                 linear-gradient(135deg, #FEF2F2 0%, #FCE7E7 100%);
+        }
+        
+        .fonts-loaded body {
+            font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
         
         .site-header {
@@ -605,6 +612,20 @@ layout: null
             hyphens: auto;
         }
     </style>
+    
+    <script>
+        (function() {
+            if ('fonts' in document) {
+                document.fonts.load('1em Vazirmatn').then(function() {
+                    document.documentElement.classList.add('fonts-loaded');
+                });
+            } else {
+                setTimeout(function() {
+                    document.documentElement.classList.add('fonts-loaded');
+                }, 100);
+            }
+        })();
+    </script>
 </head>
 <body>
     <header class="site-header">
