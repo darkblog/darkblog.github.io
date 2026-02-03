@@ -115,10 +115,10 @@
         .hero-section {
             background: var(--primary-color);
             color: white;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem 4rem;
             margin-bottom: 2rem;
             text-align: center;
-            min-height: 300px;
+            min-height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,18 +132,20 @@
         
         .post-title-main {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.2;
             background: linear-gradient(135deg, #FFFFFF 0%, #FECACA 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            padding: 0 1rem;
         }
         
         @media (min-width: 768px) {
             .post-title-main {
                 font-size: 3rem;
+                margin-bottom: 2.5rem;
             }
         }
         
@@ -460,12 +462,13 @@
             }
             
             .hero-section {
-                padding: 3rem 1rem;
-                min-height: 250px;
+                padding: 4rem 1rem 3rem;
+                min-height: 240px;
             }
             
             .post-title-main {
                 font-size: 2rem;
+                margin-bottom: 1.5rem;
             }
             
             .post-content-container {
@@ -525,12 +528,13 @@
         
         @media (max-width: 480px) {
             .hero-section {
-                padding: 2.5rem 1rem;
+                padding: 3rem 1rem 2.5rem;
                 min-height: 200px;
             }
             
             .post-title-main {
                 font-size: 1.75rem;
+                margin-bottom: 1.25rem;
             }
             
             main {
@@ -631,41 +635,5 @@
             <div class="site-name">وبلاگ پاسگاه</div>
         </div>
     </footer>
-    
-    <script>
-        (function() {
-            setTimeout(function() {
-                if ('fonts' in document) {
-                    document.fonts.load('1em Vazirmatn').then(function() {
-                        document.documentElement.classList.add('fonts-loaded');
-                    });
-                } else {
-                    document.documentElement.classList.add('fonts-loaded');
-                }
-            }, 0);
-            
-            const backToTop = document.querySelector('.back-to-top');
-            if (backToTop) {
-                backToTop.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-            
-            const images = document.querySelectorAll('.post-content img');
-            images.forEach(img => {
-                if (!img.hasAttribute('width') || !img.hasAttribute('height')) {
-                    const width = img.naturalWidth || 800;
-                    const height = img.naturalHeight || 600;
-                    img.setAttribute('width', width);
-                    img.setAttribute('height', height);
-                    img.style.aspectRatio = `${width} / ${height}`;
-                }
-            });
-        })();
-    </script>
 </body>
 </html>
