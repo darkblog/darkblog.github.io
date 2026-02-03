@@ -474,15 +474,13 @@ layout: null
         <section class="posts-container" aria-label="مقالات وبلاگ">
             {% for post in site.posts limit: 1000 %}
             <article class="post-card">
-                <div class="content-wrapper">
-                    <div class="post-title-section">
-                        <h3 class="post-card-title">
-                            <a href="{{ post.url }}" aria-label="{{ post.title }}">{{ post.title }}</a>
-                        </h3>
-                    </div>
-                    <div class="post-content">
-                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                    </div>
+                <div class="post-title-section">
+                    <h3 class="post-card-title">
+                        <a href="{{ post.url }}" aria-label="{{ post.title }}">{{ post.title }}</a>
+                    </h3>
+                </div>
+                <div class="post-content">
+                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
                 </div>
             </article>
             {% endfor %}
@@ -503,22 +501,11 @@ layout: null
     
     <script>
         (function() {
-            setTimeout(function() {
-                if ('fonts' in document) {
-                    document.fonts.load('1em Vazirmatn').then(function() {
-                        document.documentElement.classList.add('fonts-loaded');
-                    });
-                } else {
+            if ('fonts' in document) {
+                document.fonts.load('1em Vazirmatn').then(function() {
                     document.documentElement.classList.add('fonts-loaded');
-                }
-            }, 0);
-            
-            document.addEventListener('DOMContentLoaded', function() {
-                const cards = document.querySelectorAll('.post-card');
-                cards.forEach(card => {
-                    card.style.minHeight = card.offsetHeight + 'px';
                 });
-            });
+            }
             
             const backToTop = document.querySelector('.back-to-top');
             if (backToTop) {
