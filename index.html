@@ -534,7 +534,7 @@ layout: null
                         }
                     },
                     "datePublished": "{{ post.date | date_to_xmlschema }}",
-                    "dateModified": "{% if post.last_modified_at %}{{ post.last_modified_at | date_to_xmlschema }}{% else %}{{ post.date | date_to_xmlschema }}{% endif %}",
+                    "dateModified": "{{ site.time | date_to_xmlschema }}",
                     "inLanguage": "fa-IR",
                     "articleSection": "تاریخ"
                 }
