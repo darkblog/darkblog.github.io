@@ -14,7 +14,7 @@ layout: null
 <link href="{{ post.url | absolute_url }}"/>
 <id>{{ post.url | absolute_url }}</id>
 <published>{{ post.date | date_to_xmlschema }}</published>
-<updated>{% if post.last_modified_at %}{{ post.last_modified_at | date_to_xmlschema }}{% else %}{{ post.date | date_to_xmlschema }}{% endif %}</updated>
+<updated>{{ site.time | date_to_xmlschema }}</updated>
 <author>
 <name>وبلاگ پاسگاه</name>
 </author>
