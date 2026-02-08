@@ -540,15 +540,18 @@
             margin: 0 auto;
         }
         
-        .footer-content .site-name {
+        .site-name-link {
             font-size: 2rem;
             font-weight: 900;
             color: #FFFFFF;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FECACA 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-decoration: none;
+            display: inline-block;
             padding: 0.5rem 0;
+            transition: opacity 0.2s;
+        }
+        
+        .site-name-link:hover {
+            opacity: 0.9;
         }
         
         @media (max-width: 768px) {
@@ -620,7 +623,7 @@
                 padding: 1.5rem;
             }
             
-            .footer-content .site-name {
+            .site-name-link {
                 font-size: 1.75rem;
             }
         }
@@ -656,7 +659,7 @@
                 font-size: 1.5rem;
             }
             
-            .footer-content .site-name {
+            .site-name-link {
                 font-size: 1.5rem;
             }
         }
@@ -719,7 +722,7 @@
     
     <footer>
         <div class="footer-content">
-            <div class="site-name" itemprop="name">وبلاگ پاسگاه</div>
+            <a href="https://www.pasgah.org/" class="site-name-link" aria-label="وبلاگ پاسگاه" itemprop="name">وبلاگ پاسگاه</a>
         </div>
     </footer>
 </body>
