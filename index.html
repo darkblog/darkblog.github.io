@@ -190,7 +190,7 @@ layout: null
         }
         
         .hero-section {
-            background: var(--primary-color);
+            background: #000000;
             color: white;
             padding: 6rem 2rem 5rem;
             margin-bottom: 4rem;
@@ -216,13 +216,11 @@ layout: null
             font-size: 3.5rem;
             margin-bottom: 2rem;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.4;
+            color: #FFFFFF;
+            text-align: center;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FECACA 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
         @media (min-width: 768px) {
@@ -240,6 +238,7 @@ layout: null
             font-weight: 300;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             padding: 0 1rem;
+            color: #FFFFFF;
         }
         
         .posts-section-title {
@@ -340,7 +339,7 @@ layout: null
         }
         
         footer {
-            background-color: var(--primary-color);
+            background-color: #000000;
             color: white;
             padding: 3rem 2rem;
             margin-top: auto;
@@ -353,17 +352,20 @@ layout: null
             margin: 0 auto;
         }
         
-        .footer-content .site-name {
+        .site-name-link {
             font-size: 2.5rem;
             font-weight: 900;
             color: #FFFFFF;
+            text-decoration: none;
+            display: inline-block;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #FECACA 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             padding: 0.5rem 0;
+            transition: opacity 0.2s;
+        }
+        
+        .site-name-link:hover {
+            opacity: 0.9;
         }
         
         @media (max-width: 768px) {
@@ -415,7 +417,7 @@ layout: null
                 padding: 2.5rem 1.5rem;
             }
             
-            .footer-content .site-name {
+            .site-name-link {
                 font-size: 2rem;
             }
         }
@@ -451,7 +453,7 @@ layout: null
                 padding: 0 1.75rem 1.75rem;
             }
             
-            .footer-content .site-name {
+            .site-name-link {
                 font-size: 1.75rem;
             }
         }
@@ -488,9 +490,8 @@ layout: null
                 border-top: 2px solid #333;
             }
             
-            .footer-content .site-name {
+            .site-name-link {
                 background: none;
-                -webkit-text-fill-color: black;
                 color: black;
                 text-shadow: none;
             }
@@ -566,7 +567,7 @@ layout: null
     
     <footer>
         <div class="footer-content">
-            <div class="site-name" itemprop="name">وبلاگ پاسگاه</div>
+            <a href="https://www.pasgah.org/" class="site-name-link" aria-label="وبلاگ پاسگاه" itemprop="name">وبلاگ پاسگاه</a>
         </div>
     </footer>
 </body>
