@@ -704,7 +704,7 @@
                 {% assign current_post_url = page.url %}
                 {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                 
-                {% for post in all_posts limit: 1000 %}
+                {% for post in all_posts limit: 100 %}
                 <article class="post-card" itemscope itemtype="https://schema.org/Article">
                     <div class="post-title-section">
                         <h3 class="post-card-title" itemprop="headline">
