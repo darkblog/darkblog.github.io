@@ -518,7 +518,7 @@ layout: null
         <h2 class="posts-section-title">آخرین پست‌های وبلاگ پاسگاه</h2>
         
         <section class="posts-container" aria-label="Blog articles">
-            {% for post in site.posts limit: 1000 %}
+            {% for post in site.posts limit: 100 %}
             <article class="post-card" itemscope itemtype="https://schema.org/Article">
                 <div class="post-title-section">
                     <h3 class="post-card-title" itemprop="headline">
