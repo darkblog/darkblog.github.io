@@ -1,5 +1,5 @@
 url: https://www.pasgah.org
 
-permalink: /biography/:title
+permalink: /blog/:title
 
 encoding: UTF-8
