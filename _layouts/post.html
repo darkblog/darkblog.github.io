@@ -293,7 +293,6 @@
             padding: var(--spacing-lg);
             border: 1px solid var(--color-border);
             position: relative;
-            overflow: hidden;
         }
         
         .article-title {
@@ -420,6 +419,7 @@
             padding: var(--spacing-md);
             margin: var(--spacing-md) 0;
             overflow-x: auto;
+            display: block;
         }
         
         .article-content pre code {
@@ -433,20 +433,26 @@
             height: auto;
             border-radius: var(--radius-md);
             margin: var(--spacing-lg) 0;
+            display: block;
         }
         
-        .table-wrapper {
+        .table-scroll {
             margin: var(--spacing-lg) 0;
             border: 1px solid var(--color-border);
             border-radius: var(--radius-sm);
-            overflow: auto;
+            overflow-x: scroll;
+            overflow-y: visible;
             -webkit-overflow-scrolling: touch;
+            display: block;
+            width: 100%;
+            max-width: 100%;
         }
         
         .article-content table {
             width: 100%;
             border-collapse: collapse;
             min-width: 600px;
+            display: table;
         }
         
         .article-content table thead {
@@ -580,7 +586,7 @@
                 font-size: var(--font-size-lg);
             }
             
-            .table-wrapper {
+            .table-scroll {
                 border-radius: var(--radius-sm);
             }
             
@@ -627,7 +633,7 @@
                 font-size: var(--font-size-xl);
             }
             
-            .table-wrapper {
+            .table-scroll {
                 border: 1px solid var(--color-border);
                 border-radius: var(--radius-sm);
             }
@@ -700,7 +706,7 @@
                 border: 1px solid var(--color-border);
             }
             
-            .table-wrapper {
+            .table-scroll {
                 border: 1px solid #000000;
             }
             
@@ -752,7 +758,7 @@
                 <article class="article-container">
                     <h1 class="article-title" itemprop="headline">{{ page.title }}</h1>
                     <div class="article-content" itemprop="articleBody">
-                        {{ content | replace: '<table>', '<div class="table-wrapper"><table>' | replace: '</table>', '</table></div>' }}
+                        {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
                 </article>
                 
