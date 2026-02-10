@@ -100,10 +100,10 @@ layout: null
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" href="https://www.pasgah.org/blog.svg">
-    <meta name="theme-color" content="#DC2626">
+    <meta name="theme-color" content="#1A365D">
     
     <style>
-        /* فونت و متغیرهای طراحی با استفاده از Custom Properties برای مدیریت بهتر */
+        /* فونت و متغیرهای طراحی */
         @font-face {
             font-family: 'Vazirmatn';
             src: url('https://www.pasgah.org/blog.woff2') format('woff2');
@@ -113,46 +113,35 @@ layout: null
         }
         
         :root {
-            /* سیستم طراحی مبتنی بر نسبت طلایی */
-            --ratio: 1.618;
-            --base-size: 1rem;
-            --size-300: calc(var(--base-size) / var(--ratio));
-            --size-400: var(--base-size);
-            --size-500: calc(var(--base-size) * var(--ratio));
-            --size-600: calc(var(--base-size) * var(--ratio) * var(--ratio));
-            --size-700: calc(var(--base-size) * var(--ratio) * var(--ratio) * var(--ratio));
-            --size-800: calc(var(--base-size) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio));
-            --size-900: calc(var(--base-size) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio));
+            /* پالت رنگی متعادل برای روز و شب - کنتراست مناسب */
+            --color-bg: #FAFAFA;
+            --color-surface: #FFFFFF;
+            --color-primary: #1A365D;
+            --color-secondary: #4A5568;
+            --color-accent: #2B6CB0;
+            --color-accent-light: #4299E1;
+            --color-accent-dark: #1A365D;
+            --color-border: #E2E8F0;
+            --color-text: #2D3748;
+            --color-text-light: #718096;
+            --color-shadow: rgba(0, 0, 0, 0.05);
+            --color-overlay: rgba(0, 0, 0, 0.02);
             
-            /* رنگ‌ها */
-            --primary-color: #111827;
-            --secondary-color: #374151;
-            --accent-color: #DC2626;
-            --accent-light: #EF4444;
-            --accent-dark: #B91C1C;
-            --accent-hover: #991B1B;
-            --light-color: #FEF2F2;
-            --border-color: #FECACA;
-            --hover-color: #7F1D1D;
+            /* واحدهای ریسپانسیو */
+            --fluid-min: 320px;
+            --fluid-max: 1400px;
+            --fluid-scale: calc((100vw - var(--fluid-min)) / (var(--fluid-max) - var(--fluid-min)));
+            --container-padding: clamp(1rem, 5vw, 3rem);
             
-            /* واحدهای ریسپانسیو مبتنی بر viewport */
-            --fluid-min-width: 320;
-            --fluid-max-width: 1440;
-            --fluid-min-size: 16;
-            --fluid-max-size: 20;
-            --fluid-screen: 100vw;
-            --fluid-bp: calc((var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) / (var(--fluid-max-width) - var(--fluid-min-width)));
-        }
-        
-        /* تابع محاسبه اندازه ریسپانسیو */
-        .fluid-size {
-            --fluid-min-size: 16;
-            --fluid-max-size: 20;
-            font-size: clamp(
-                calc(var(--fluid-min-size) / 16 * 1rem),
-                calc((var(--fluid-min-size) / 16 * 1rem) + (var(--fluid-max-size) - var(--fluid-min-size)) * var(--fluid-bp)),
-                calc(var(--fluid-max-size) / 16 * 1rem)
-            );
+            /* زاویه‌های گرد */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            
+            /* انیمیشن‌ها */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
         }
         
         * {
@@ -165,44 +154,45 @@ layout: null
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            /* واحدهای ریسپانسیو */
-            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+            font-size: clamp(16px, 16px + 0.25vw, 18px);
         }
         
         body {
-            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
-            background-color: #ffffff;
-            color: var(--primary-color);
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
             line-height: 1.7;
             font-weight: 400;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--color-overlay) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, var(--color-overlay) 0%, transparent 20%);
         }
         
-        /* Container Queries برای مدیریت layout */
+        /* Container Queries مدرن */
         .container {
-            width: 100%;
+            width: min(100% - var(--container-padding) * 2, 1200px);
             margin-inline: auto;
-            padding-inline: clamp(1rem, 5vw, 3rem);
             container-type: inline-size;
-            container-name: main-container;
+            container-name: main;
         }
         
-        /* هدر با طراحی fluid */
+        /* هدر مینیمال */
         .site-header {
-            --header-height: clamp(4rem, 3rem + 2vw, 5rem);
-            height: var(--header-height);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
+            box-shadow: 0 1px 3px var(--color-shadow);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
         
         .header-container {
-            height: 100%;
+            height: clamp(4rem, 3.5rem + 1vw, 5rem);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -210,9 +200,12 @@ layout: null
         
         .logo-link {
             display: flex;
-            padding: clamp(0.5rem, 0.3rem + 0.5vw, 0.75rem);
-            border-radius: 0.5rem;
-            transition: transform 0.2s ease;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            transition: transform var(--transition-fast);
         }
         
         .logo-link:hover {
@@ -220,23 +213,38 @@ layout: null
         }
         
         .logo-svg {
-            width: clamp(3rem, 2.5rem + 1vw, 4rem);
-            height: clamp(3rem, 2.5rem + 1vw, 4rem);
-            color: var(--accent-color);
+            width: clamp(2.5rem, 2rem + 1vw, 3.5rem);
+            height: clamp(2.5rem, 2rem + 1vw, 3.5rem);
+            color: var(--color-accent);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
         
-        /* محتوای اصلی */
+        /* بخش اصلی */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         
-        /* بخش معرفی با تکنولوژی جدید */
+        /* بخش معرفی - یکپارچه بدون کادر */
         .hero-section {
-            padding-block: clamp(3rem, 2rem + 3vw, 6rem);
+            padding-block: clamp(3rem, 2rem + 3vw, 5rem);
             text-align: center;
-            background: linear-gradient(135deg, #FEF2F2 0%, #FCE7E7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(66, 153, 225, 0.03) 0%, 
+                rgba(42, 67, 101, 0.03) 100%);
+            z-index: -1;
         }
         
         .hero-container {
@@ -246,161 +254,203 @@ layout: null
         }
         
         .hero-title {
-            font-size: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+            font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
             font-weight: 900;
             line-height: 1.2;
-            color: var(--primary-color);
-            max-width: 50ch;
+            color: var(--color-primary);
+            max-width: 25ch;
             margin-inline: auto;
+            letter-spacing: -0.02em;
         }
         
         .hero-description {
-            font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
-            color: var(--secondary-color);
-            max-width: 70ch;
+            font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+            color: var(--color-secondary);
+            max-width: 50ch;
             margin-inline: auto;
-            line-height: 1.7;
-            opacity: 0.95;
+            line-height: 1.8;
+            opacity: 0.9;
         }
         
-        /* پست‌ها با استفاده از Grid + Container Queries */
+        /* بخش پست‌ها - بدون تاریخ */
         .posts-section {
-            padding-block: clamp(2rem, 1.5rem + 2vw, 4rem);
+            padding-block: clamp(2rem, 1.5rem + 1.5vw, 3.5rem);
         }
         
         .posts-container {
-            --min-column-width: min(100%, 350px);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
-            gap: clamp(1.5rem, 1rem + 1.5vw, 3rem);
-            align-items: start;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: clamp(1.5rem, 1rem + 1vw, 2.5rem);
         }
         
-        @container main-container (width < 700px) {
+        @container main (width < 700px) {
             .posts-container {
-                --min-column-width: min(100%, 100%);
+                grid-template-columns: 1fr;
             }
         }
         
-        @container main-container (width > 1100px) {
+        @container main (width > 1000px) {
             .posts-container {
-                --min-column-width: min(100%, 400px);
+                grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
             }
         }
         
-        /* کارت پست با CSS Subgrid */
+        /* کارت پست */
         .post-card {
-            display: grid;
-            grid-template-rows: subgrid;
-            grid-row: span 3;
-            gap: 0.75rem;
-            padding-bottom: clamp(1.5rem, 1rem + 1vw, 2.5rem);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.5rem, 1.25rem + 0.5vw, 2rem);
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
-        .post-card:last-child {
-            border-bottom: none;
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                var(--color-accent-light), 
+                var(--color-accent));
+            opacity: 0;
+            transition: opacity var(--transition-normal);
         }
         
         .post-card:hover {
             transform: translateY(-0.25rem);
+            box-shadow: 0 10px 25px -5px var(--color-shadow),
+                        0 8px 10px -6px var(--color-shadow);
+            border-color: var(--color-accent-light);
+        }
+        
+        .post-card:hover::before {
+            opacity: 1;
         }
         
         .post-card-title {
-            font-size: clamp(1.25rem, 1.125rem + 0.5vw, 1.75rem);
+            font-size: clamp(1.25rem, 1.125rem + 0.5vw, 1.5rem);
             font-weight: 800;
             line-height: 1.4;
-            color: var(--accent-dark);
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1rem;
         }
         
         .post-card-title a {
             color: inherit;
             text-decoration: none;
-            position: relative;
-            display: inline-block;
+            display: block;
+            transition: color var(--transition-fast);
         }
         
-        .post-card-title a::after {
-            content: '';
-            position: absolute;
-            bottom: -0.25rem;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-        
-        .post-card-title a:hover::after {
-            width: 100%;
+        .post-card-title a:hover {
+            color: var(--color-accent);
         }
         
         .post-excerpt {
-            font-size: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
-            color: var(--secondary-color);
-            line-height: 1.7;
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+            flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            text-overflow: ellipsis;
         }
         
-        .post-meta {
-            display: flex;
+        .post-read-more {
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: #6B7280;
-            font-size: clamp(0.875rem, 0.85rem + 0.1vw, 0.95rem);
+            margin-top: 1.25rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: gap var(--transition-fast);
         }
         
-        /* فوتر با طراحی fluid */
+        .post-read-more:hover {
+            gap: 0.75rem;
+        }
+        
+        .post-read-more::after {
+            content: '←';
+            font-size: 1.1em;
+            transition: transform var(--transition-fast);
+        }
+        
+        .post-read-more:hover::after {
+            transform: translateX(-0.25rem);
+        }
+        
+        /* فوتر با لوگو */
         footer {
-            background: #111827;
-            color: #ffffff;
-            padding-block: clamp(2.5rem, 2rem + 1.5vw, 4rem);
+            background: var(--color-primary);
+            color: #E2E8F0;
+            padding-block: clamp(3rem, 2.5rem + 1vw, 4rem);
             margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: clamp(1rem, 0.5rem + 1vw, 2rem);
+            gap: 2rem;
         }
         
-        .site-name-link {
-            font-size: clamp(1.5rem, 1.25rem + 1vw, 2.5rem);
-            font-weight: 900;
-            color: #ffffff;
-            text-decoration: none;
-            transition: opacity 0.2s ease;
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
         }
         
-        .site-name-link:hover {
+        .footer-logo-svg {
+            width: clamp(4rem, 3rem + 2vw, 6rem);
+            height: clamp(4rem, 3rem + 2vw, 6rem);
+            color: #FFFFFF;
             opacity: 0.9;
+            transition: opacity var(--transition-fast), transform var(--transition-normal);
         }
         
-        .footer-description {
+        .footer-logo:hover .footer-logo-svg {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .footer-tagline {
             text-align: center;
-            max-width: 60ch;
-            color: #D1D5DB;
             font-size: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
+            color: #CBD5E0;
+            max-width: 35ch;
             line-height: 1.7;
+            opacity: 0.85;
         }
         
-        /* بهبود‌های ظاهری */
+        /* بهبود‌های دسترسی و تعامل */
         ::selection {
-            background-color: rgba(220, 38, 38, 0.2);
+            background-color: rgba(66, 153, 225, 0.2);
+            color: var(--color-text);
         }
         
         :focus-visible {
-            outline: 2px solid var(--accent-color);
+            outline: 2px solid var(--color-accent);
             outline-offset: 2px;
-            border-radius: 0.25rem;
+            border-radius: var(--radius-sm);
         }
         
-        /* انیمیشن‌های ظریف */
+        /* انیمیشن‌های ورود */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -412,9 +462,12 @@ layout: null
             }
         }
         
+        .hero-container {
+            animation: fadeInUp 0.6s var(--transition-normal) both;
+        }
+        
         .post-card {
-            animation: fadeInUp 0.5s ease-out;
-            animation-fill-mode: both;
+            animation: fadeInUp 0.5s ease-out both;
         }
         
         .post-card:nth-child(2) { animation-delay: 0.1s; }
@@ -423,34 +476,29 @@ layout: null
         .post-card:nth-child(5) { animation-delay: 0.4s; }
         .post-card:nth-child(6) { animation-delay: 0.5s; }
         
-        /* Aspect Ratio برای تصاویر (اگر بعداً اضافه شوند) */
-        .image-container {
-            aspect-ratio: 16/9;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 0.5rem;
+        /* اسکرول بار زیبا */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
         
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
         }
         
-        .image-container:hover img {
-            transform: scale(1.05);
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 5px;
+            border: 2px solid var(--color-bg);
         }
         
-        /* پشتیبانی از نمایش‌دهنده‌های لمسی */
-        @media (hover: none) {
-            .post-card:hover {
-                transform: none;
-            }
-            
-            .post-card-title a::after {
-                display: none;
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-light);
+        }
+        
+        /* بهبود تایپوگرافی فارسی */
+        body {
+            font-feature-settings: "ss02", "ss03", "ss05", "ss06";
+            text-rendering: optimizeLegibility;
         }
         
         /* حالت پرینت */
@@ -460,8 +508,9 @@ layout: null
             }
             
             .post-card {
-                page-break-inside: avoid;
-                border-bottom: 1px solid #ccc;
+                break-inside: avoid;
+                border: 1px solid #ddd;
+                box-shadow: none;
             }
             
             footer {
@@ -470,97 +519,70 @@ layout: null
                 border-top: 1px solid #000;
             }
             
-            .site-name-link {
+            .footer-logo-svg {
                 color: #000;
             }
+            
+            .post-read-more {
+                display: none;
+            }
         }
         
-        /* اسکرول بار زیبا */
-        ::-webkit-scrollbar {
-            width: 10px;
+        /* بهبود نمایش در تبلت‌ها */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .posts-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        
-        /* بهبود تایپوگرافی فارسی */
-        body {
-            font-feature-settings: "ss02", "ss03", "ss05", "ss06", "ss07", "ss08", "ss09", "ss10", "ss11", "ss12", "ss13", "ss14", "ss15", "ss16", "ss17", "ss18", "ss19", "ss20";
-            text-rendering: optimizeLegibility;
-        }
-        
-        /* دکمه‌های اکشن (اگر نیاز باشد) */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        
-        .btn-primary {
-            background: var(--accent-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-        
-        /* سیستم utility classes برای انعطاف بیشتر */
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-        .gap-1 { gap: 0.5rem; }
-        .gap-2 { gap: 1rem; }
-        .gap-3 { gap: 1.5rem; }
-        
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #F9FAFB;
-                --secondary-color: #D1D5DB;
-                --light-color: #111827;
+        /* بهبود نمایش در موبایل‌های کوچک */
+        @media (max-width: 380px) {
+            .hero-title {
+                font-size: 1.75rem;
             }
             
-            body {
-                background-color: #111827;
-                color: #F9FAFB;
-            }
-            
-            .site-header {
-                background: rgba(17, 24, 39, 0.98);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
-            
-            .hero-section {
-                background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+            .hero-description {
+                font-size: 1rem;
             }
             
             .post-card {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 1.25rem;
+            }
+        }
+        
+        /* بهبود عملکرد لمسی */
+        @media (hover: none) {
+            .post-card:hover {
+                transform: none;
+                box-shadow: 0 4px 12px var(--color-shadow);
+            }
+            
+            .post-card:active {
+                transform: scale(0.98);
+            }
+        }
+        
+        /* کنتراست و خوانایی بالا در تمام شرایط */
+        @media (prefers-contrast: high) {
+            :root {
+                --color-border: #2D3748;
+                --color-shadow: rgba(0, 0, 0, 0.15);
+            }
+            
+            .post-card {
+                border-width: 2px;
+            }
+        }
+        
+        /* کاهش حرکت برای کاربران حساس */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
@@ -569,8 +591,8 @@ layout: null
     <!-- هدر مینیمال -->
     <header class="site-header">
         <div class="container header-container">
-            <a href="https://www.pasgah.org/" class="logo-link" aria-label="برگشت به صفحه اصلی">
-                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="60" height="60">
+            <a href="https://www.pasgah.org/" class="logo-link" aria-label="برگشت به صفحه اصلی وبلاگ پاسگاه">
+                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="48" height="48">
             </a>
         </div>
     </header>
@@ -598,17 +620,12 @@ layout: null
                         </h3>
                         
                         <div class="post-excerpt" itemprop="description">
-                            {{ post.excerpt | strip_html | truncate: 200 }}
+                            {{ post.excerpt | strip_html | truncate: 180 }}
                         </div>
                         
-                        <div class="post-meta">
-                            <span class="post-date">
-                                📅
-                                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                                    {{ post.date | date: "%d %B %Y" }}
-                                </time>
-                            </span>
-                        </div>
+                        <a href="{{ post.url }}" class="post-read-more" aria-label="خواندن ادامه مطلب: {{ post.title }}">
+                            خواندن ادامه مطلب
+                        </a>
                         
                         <!-- ساختار schema.org -->
                         <script type="application/ld+json">
@@ -616,7 +633,7 @@ layout: null
                             "@context": "https://schema.org",
                             "@type": "Article",
                             "headline": "{{ post.title | escape }}",
-                            "description": "{{ post.excerpt | strip_html | truncate: 200 | escape }}",
+                            "description": "{{ post.excerpt | strip_html | truncate: 180 | escape }}",
                             "url": "{{ site.url }}{{ post.url }}",
                             "mainEntityOfPage": {
                                 "@type": "WebPage",
@@ -649,49 +666,14 @@ layout: null
         </section>
     </main>
     
-    <!-- فوتر -->
+    <!-- فوتر با لوگو -->
     <footer>
         <div class="container footer-container">
-            <a href="https://www.pasgah.org/" class="site-name-link" aria-label="وبلاگ پاسگاه" itemprop="name">وبلاگ پاسگاه</a>
-            <p class="footer-description">
-                کاوشی در تاریخ و تمدن ایران و جهان. هر نوشته سفری به گذشته و دریچه‌ای به اسرار تمدن‌های کهن.
-            </p>
+            <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
+                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="80" height="80">
+            </a>
+            <p class="footer-tagline">کاوش در تاریخ و تمدن ایران و جهان</p>
         </div>
     </footer>
-    
-    <script>
-        // Progressive enhancement برای مرورگرهای قدیمی
-        if (!CSS.supports('container-type: inline-size')) {
-            console.log('Container Queries not supported, using fallback');
-            document.querySelector('.posts-container').style.gridTemplateColumns = 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))';
-        }
-        
-        // بهبود عملکرد touch devices
-        if ('ontouchstart' in window) {
-            document.body.classList.add('touch-device');
-        }
-        
-        // Lazy loading برای تصاویر (اگر بعداً اضافه شوند)
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            
-            if ('loading' in HTMLImageElement.prototype) {
-                // مرورگر از lazy loading پشتیبانی می‌کند
-            } else {
-                // پلی‌فیل برای مرورگرهای قدیمی
-                const imageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                });
-                
-                images.forEach(img => imageObserver.observe(img));
-            }
-        });
-    </script>
 </body>
 </html>
