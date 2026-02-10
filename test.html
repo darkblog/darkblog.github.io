@@ -181,7 +181,8 @@ layout: null
         }
         
         html {
-            scroll-behavior: auto; /* حذف scroll-behavior smooth */
+            /* حذف scroll-behavior smooth */
+            scroll-behavior: auto;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             font-size: clamp(16px, 16px + 0.25vw, 18px);
@@ -209,8 +210,8 @@ layout: null
             font-feature-settings: "ss02", "ss03", "ss05", "ss06";
             text-rendering: optimizeLegibility;
             
-            /* جلوگیری از overscroll در iOS */
-            overscroll-behavior: none;
+            /* اسکرول بار پیش‌فرض */
+            overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
         }
         
@@ -234,7 +235,7 @@ layout: null
             /* حذف خط مشکی در iOS Safari */
             -webkit-backdrop-filter: none;
             backdrop-filter: none;
-            border-bottom: none; /* حذف border که ممکن است باعث خط شود */
+            border-bottom: none;
         }
         
         /* حذف فضای اضافی در بالای صفحه در iOS */
@@ -318,8 +319,8 @@ layout: null
             border: 1px solid var(--color-border);
             position: relative;
             overflow: hidden;
-            opacity: 1; /* حذف fadeIn */
-            transform: none; /* حذف translateY */
+            opacity: 1;
+            transform: none;
         }
         
         /* خط قرمز کناری */
@@ -541,23 +542,8 @@ layout: null
             }
         }
         
-        /* اسکرول بار ساده */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--color-bg);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--color-border);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-text-light);
-        }
+        /* حذف کامل اسکرول بار سفارشی و استفاده از پیش‌فرض */
+        /* هیچ ::-webkit-scrollbar rule وجود ندارد */
         
         /* حذف highlight روی لینک‌ها در موبایل */
         a {
@@ -580,6 +566,13 @@ layout: null
             width: 100%;
             height: 100%;
             overflow: auto;
+        }
+        
+        /* بهبود عملکرد touch در موبایل */
+        @media (hover: none) and (pointer: coarse) {
+            .post-card:active {
+                opacity: 0.9;
+            }
         }
     </style>
 </head>
