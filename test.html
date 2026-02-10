@@ -6,7 +6,7 @@ layout: null
 <html dir="rtl" lang="fa">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -106,6 +106,8 @@ layout: null
     
     <!-- رنگ تم اصلی - قرمز -->
     <meta name="theme-color" content="#DC2626">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     
     <style>
         /* بهینه‌سازی فونت فارسی */
@@ -119,11 +121,11 @@ layout: null
         
         :root {
             /* پالت رنگی اصلی - فقط عناصر مورد نظر قرمز */
-            --color-primary: #1A365D; /* آبی تیره - دستکاری نشده */
-            --color-accent: #DC2626; /* قرمز برای فلش و خط */
-            --color-accent-light: #EF4444; /* قرمز روشن برای hover */
+            --color-primary: #1A365D;
+            --color-accent: #DC2626;
+            --color-accent-light: #EF4444;
             
-            /* رنگ‌های خنثی - دستکاری نشده */
+            /* رنگ‌های خنثی */
             --color-bg: #F9FAFB;
             --color-surface: #FFFFFF;
             --color-text: #111827;
@@ -131,8 +133,8 @@ layout: null
             --color-text-light: #6B7280;
             --color-border: #E5E7EB;
             --color-shadow: rgba(0, 0, 0, 0.05);
-            --color-hover: rgba(220, 38, 38, 0.05); /* قرمز بسیار ملایم */
-            --color-card-border: #DC2626; /* خط کناری قرمز */
+            --color-hover: rgba(220, 38, 38, 0.05);
+            --color-card-border: #DC2626;
             
             /* واحدهای ریسپانسیو */
             --container-width: min(92%, 1000px);
@@ -142,6 +144,9 @@ layout: null
             --spacing-lg: 2rem;
             --spacing-xl: 3rem;
             --spacing-xxl: 5rem;
+            
+            /* ارتفاع هدر */
+            --header-height: 5rem;
             
             /* زاویه‌های گرد */
             --radius-sm: 0.5rem;
@@ -161,7 +166,7 @@ layout: null
             --line-height-normal: 1.7;
             --line-height-loose: 1.8;
             
-            /* انیمیشن‌ها */
+            /* انیمیشن‌ها - فقط transitionهای ضروری */
             --transition-fast: 0.15s ease;
             --transition-normal: 0.25s ease;
         }
@@ -176,10 +181,14 @@ layout: null
         }
         
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: auto; /* حذف scroll-behavior smooth */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             font-size: clamp(16px, 16px + 0.25vw, 18px);
+            
+            /* حذف خط مشکی در بالای صفحه در iOS */
+            -webkit-tap-highlight-color: transparent;
+            background-color: var(--color-bg);
         }
         
         body {
@@ -192,9 +201,17 @@ layout: null
             display: flex;
             flex-direction: column;
             
+            /* حذف حاشیه‌ها در موبایل */
+            margin: 0;
+            padding: 0;
+            
             /* تایپوگرافی فارسی */
             font-feature-settings: "ss02", "ss03", "ss05", "ss06";
             text-rendering: optimizeLegibility;
+            
+            /* جلوگیری از overscroll در iOS */
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
         }
         
         /* Container */
@@ -203,16 +220,29 @@ layout: null
             margin: 0 auto;
         }
         
-        /* هدر مینیمال */
+        /* هدر مینیمال - حذف خط مشکی */
         .site-header {
             position: sticky;
             top: 0;
             z-index: 100;
             background-color: var(--color-surface);
-            height: clamp(4rem, 3.5rem + 1vw, 5rem);
+            height: var(--header-height);
             display: flex;
             align-items: center;
             box-shadow: 0 1px 2px var(--color-shadow);
+            
+            /* حذف خط مشکی در iOS Safari */
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            border-bottom: none; /* حذف border که ممکن است باعث خط شود */
+        }
+        
+        /* حذف فضای اضافی در بالای صفحه در iOS */
+        @supports (-webkit-touch-callout: none) {
+            .site-header {
+                padding-top: env(safe-area-inset-top);
+                height: calc(var(--header-height) + env(safe-area-inset-top));
+            }
         }
         
         .header-container {
@@ -223,19 +253,30 @@ layout: null
             height: 100%;
         }
         
+        /* لوگو با فضای کلیک به اندازه هدر */
         .logo-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-sm);
-            border-radius: var(--radius-sm);
-            /* بدون انیمیشن */
+            width: 100%;
+            height: 100%; /* ارتفاع کامل هدر */
+            min-height: var(--header-height);
+            padding: 0;
+            margin: 0;
+            
+            /* حذف border-radius و انیمیشن */
+            border-radius: 0;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .logo-svg {
-            width: clamp(3rem, 2.5rem + 1vw, 4rem);
-            height: clamp(3rem, 2.5rem + 1vw, 4rem);
-            color: var(--color-primary); /* آبی - دستکاری نشده */
+            width: 3.5rem;
+            height: 3.5rem;
+            color: var(--color-primary);
+            
+            /* حذف انیمیشن */
+            transition: none;
         }
         
         /* بخش اصلی */
@@ -261,7 +302,7 @@ layout: null
             gap: var(--spacing-lg);
         }
         
-        /* کارت پست - سفید با خط قرمز */
+        /* کارت پست - بدون انیمیشن */
         .post-card {
             background: var(--color-surface);
             border-radius: var(--radius-lg);
@@ -269,13 +310,19 @@ layout: null
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: all var(--transition-normal);
+            
+            /* حذف انیمیشن‌ها */
+            transition: none;
+            animation: none;
+            
             border: 1px solid var(--color-border);
             position: relative;
             overflow: hidden;
+            opacity: 1; /* حذف fadeIn */
+            transform: none; /* حذف translateY */
         }
         
-        /* خط قرمز کناری - همیشه نمایش داده شود */
+        /* خط قرمز کناری */
         .post-card::before {
             content: '';
             position: absolute;
@@ -283,17 +330,13 @@ layout: null
             right: 0;
             width: 5px;
             height: 100%;
-            background: var(--color-card-border); /* خط قرمز */
-            opacity: 1; /* همیشه نمایش */
+            background: var(--color-card-border);
+            opacity: 1;
         }
         
-        /* افکت hover - مرز قرمز */
+        /* افکت hover - فقط تغییر مرز */
         .post-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 10px 15px -3px var(--color-shadow),
-                0 4px 6px -2px var(--color-shadow);
-            border-color: var(--color-accent-light); /* قرمز در hover */
+            border-color: var(--color-accent-light);
         }
         
         /* عنوان پست */
@@ -301,39 +344,44 @@ layout: null
             font-size: var(--font-size-2xl);
             font-weight: 700;
             line-height: var(--line-height-tight);
-            color: var(--color-primary); /* آبی - دستکاری نشده */
+            color: var(--color-primary);
             margin-bottom: var(--spacing-sm);
             position: relative;
-            padding-right: 2rem; /* فضای بیشتر برای فلش */
-            transition: color var(--transition-fast);
+            padding-right: 2rem;
+            
+            /* حذف transition */
+            transition: none;
         }
         
-        /* فلش قرمز - همیشه نمایش داده شود */
+        /* فلش قرمز */
         .post-title::after {
             content: '←';
             position: absolute;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            opacity: 1; /* همیشه نمایش */
-            color: var(--color-accent); /* قرمز */
+            opacity: 1;
+            color: var(--color-accent);
             font-size: 1.2em;
-            transition: transform var(--transition-normal);
+            
+            /* حذف transition */
+            transition: none;
         }
         
         .post-card:hover .post-title::after {
-            transform: translateY(-50%) translateX(-0.25rem); /* حرکت به چپ در hover */
-            color: var(--color-accent-light); /* قرمز روشن‌تر در hover */
+            /* حذف حرکت فلش */
+            transform: translateY(-50%);
+            color: var(--color-accent);
         }
         
-        /* توضیحات پست - دو برابر طول بیشتر */
+        /* توضیحات پست */
         .post-excerpt {
             font-size: var(--font-size-lg);
-            color: var(--color-text-secondary); /* خاکستری - دستکاری نشده */
+            color: var(--color-text-secondary);
             line-height: var(--line-height-loose);
             margin-top: var(--spacing-sm);
             display: -webkit-box;
-            -webkit-line-clamp: 6; /* دو برابر شده (به جای 3) */
+            -webkit-line-clamp: 6;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -345,14 +393,14 @@ layout: null
             align-items: center;
             gap: var(--spacing-md);
             margin-top: var(--spacing-md);
-            color: var(--color-text-light); /* خاکستری - دستکاری نشده */
+            color: var(--color-text-light);
             font-size: var(--font-size-sm);
             flex-wrap: wrap;
         }
         
         .post-category {
-            background: var(--color-hover); /* قرمز بسیار ملایم */
-            color: var(--color-accent); /* قرمز */
+            background: var(--color-hover);
+            color: var(--color-accent);
             padding: 0.25rem 0.75rem;
             border-radius: var(--radius-sm);
             font-weight: 500;
@@ -376,13 +424,15 @@ layout: null
             justify-content: center;
             padding: var(--spacing-md);
             border-radius: var(--radius-md);
-            /* بدون انیمیشن */
+            
+            /* حذف انیمیشن */
+            transition: none;
         }
         
         .footer-logo-svg {
             width: clamp(4rem, 3rem + 2vw, 6rem);
             height: clamp(4rem, 3rem + 2vw, 6rem);
-            color: var(--color-primary); /* آبی - دستکاری نشده */
+            color: var(--color-primary);
         }
         
         /* Responsive */
@@ -398,7 +448,17 @@ layout: null
             
             .post-excerpt {
                 font-size: var(--font-size-base);
-                -webkit-line-clamp: 5; /* کمتر در موبایل */
+                -webkit-line-clamp: 5;
+            }
+            
+            /* کاهش ارتفاع هدر در موبایل */
+            :root {
+                --header-height: 4.5rem;
+            }
+            
+            .logo-svg {
+                width: 3rem;
+                height: 3rem;
             }
         }
         
@@ -413,58 +473,54 @@ layout: null
             }
             
             .post-excerpt {
-                -webkit-line-clamp: 4; /* کمتر در موبایل کوچک */
+                -webkit-line-clamp: 4;
             }
             
             .post-meta {
                 gap: var(--spacing-sm);
             }
-        }
-        
-        /* انیمیشن ورود */
-        @keyframes cardEntrance {
-            from {
-                opacity: 0;
-                transform: translateY(1rem);
+            
+            /* کاهش بیشتر ارتفاع هدر در موبایل کوچک */
+            :root {
+                --header-height: 4rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .logo-svg {
+                width: 2.75rem;
+                height: 2.75rem;
             }
         }
         
+        /* حذف کامل انیمیشن‌های ورود */
         .post-card {
-            animation: cardEntrance 0.6s ease-out both;
-            animation-fill-mode: forwards;
+            animation: none;
+            animation-delay: 0s;
         }
-        
-        .post-card:nth-child(1) { animation-delay: 0.1s; }
-        .post-card:nth-child(2) { animation-delay: 0.2s; }
-        .post-card:nth-child(3) { animation-delay: 0.3s; }
-        .post-card:nth-child(4) { animation-delay: 0.4s; }
-        .post-card:nth-child(5) { animation-delay: 0.5s; }
-        .post-card:nth-child(n+6) { animation-delay: 0.6s; }
         
         /* بهبود دسترسی */
         :focus-visible {
-            outline: 3px solid var(--color-accent); /* قرمز */
+            outline: 3px solid var(--color-accent);
             outline-offset: 3px;
             border-radius: var(--radius-sm);
         }
         
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        /* حذف کامل انیمیشن‌ها برای تمام کاربران */
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0s !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0s !important;
+        }
+        
+        /* فقط transitionهای ضروری را نگه دار */
+        .post-card:hover {
+            transition: border-color 0.15s ease;
         }
         
         /* انتخاب متن */
         ::selection {
-            background-color: rgba(220, 38, 38, 0.15); /* قرمز ملایم */
+            background-color: rgba(220, 38, 38, 0.15);
             color: var(--color-text);
         }
         
@@ -485,7 +541,7 @@ layout: null
             }
         }
         
-        /* اسکرول بار */
+        /* اسکرول بار ساده */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -502,14 +558,37 @@ layout: null
         ::-webkit-scrollbar-thumb:hover {
             background: var(--color-text-light);
         }
+        
+        /* حذف highlight روی لینک‌ها در موبایل */
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* حذف outline روی کلیک در موبایل */
+        a:active {
+            outline: none;
+        }
+        
+        /* حذف pull-to-refresh در موبایل */
+        body {
+            overscroll-behavior-y: contain;
+        }
+        
+        /* حذف bounce effect در iOS */
+        html, body {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
-    <!-- هدر -->
+    <!-- هدر - بدون خط مشکی -->
     <header class="site-header">
         <div class="container header-container">
             <a href="https://www.pasgah.org/" class="logo-link" aria-label="وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="64" height="64">
+                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="56" height="56">
             </a>
         </div>
     </header>
