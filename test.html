@@ -79,12 +79,12 @@ layout: null
     }
     </script>
     
-    <title>وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان</title>
+    <title>وبلاگ پاسگاه</title>
     <meta name="description" content="کاوش در تاریخ و تمدن ایران و جهان">
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان">
+    <meta property="og:title" content="وبلاگ پاسگاه">
     <meta property="og:description" content="کاوش در تاریخ و تمدن ایران و جهان">
     <meta property="og:url" content="https://www.pasgah.org/">
     <meta property="og:site_name" content="وبلاگ پاسگاه">
@@ -95,7 +95,7 @@ layout: null
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان">
+    <meta name="twitter:title" content="وبلاگ پاسگاه">
     <meta name="twitter:description" content="کاوش در تاریخ و تمدن ایران و جهان">
     <meta name="twitter:image" content="https://www.pasgah.org/blog.svg">
     
@@ -118,11 +118,11 @@ layout: null
         }
         
         :root {
-            /* پالت رنگی اصلی - رنگ لوگو */
-            --color-primary: #1A365D;       /* آبی تیره ارغوانی - اصلی */
+            /* پالت رنگی اصلی */
+            --color-primary: #1A365D;
             --color-primary-light: #2D4A8C;
             --color-primary-dark: #0F2544;
-            --color-accent: #4F46E5;        /* بنفش آبی - تأکیدی */
+            --color-accent: #4F46E5;
             --color-accent-light: #6366F1;
             
             /* رنگ‌های خنثی */
@@ -130,13 +130,13 @@ layout: null
             --color-surface: #FFFFFF;
             --color-text: #111827;
             --color-text-secondary: #374151;
+            --color-text-light: #6B7280;
             --color-border: #E5E7EB;
-            --color-overlay: rgba(0, 0, 0, 0.4);
-            --color-shadow: rgba(0, 0, 0, 0.08);
-            --color-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --color-shadow: rgba(0, 0, 0, 0.05);
+            --color-hover: rgba(79, 70, 229, 0.05);
             
             /* واحدهای ریسپانسیو */
-            --container-width: min(94%, 1400px);
+            --container-width: min(92%, 1200px);
             --spacing-xs: 0.5rem;
             --spacing-sm: 0.75rem;
             --spacing-md: 1.25rem;
@@ -146,28 +146,26 @@ layout: null
             
             /* زاویه‌های گرد */
             --radius-sm: 0.5rem;
-            --radius-md: 1rem;
-            --radius-lg: 1.5rem;
-            --radius-xl: 2rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
             
             /* تایپوگرافی */
             --font-size-sm: 0.875rem;
             --font-size-base: 1rem;
             --font-size-lg: 1.125rem;
-            --font-size-xl: 1.5rem;
-            --font-size-2xl: 2rem;
-            --font-size-3xl: 2.5rem;
-            --font-size-4xl: 3.5rem;
+            --font-size-xl: 1.375rem;
+            --font-size-2xl: 1.75rem;
+            --font-size-3xl: 2.25rem;
             
             /* ارتفاع خط */
-            --line-height-tight: 1.2;
-            --line-height-normal: 1.6;
+            --line-height-tight: 1.3;
+            --line-height-normal: 1.7;
             --line-height-loose: 1.8;
             
             /* انیمیشن‌ها */
-            --transition-fast: 0.2s ease;
-            --transition-normal: 0.3s ease;
-            --transition-slow: 0.5s ease;
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.25s ease;
+            --transition-slow: 0.35s ease;
         }
         
         /* Reset */
@@ -183,6 +181,7 @@ layout: null
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-size: clamp(16px, 16px + 0.25vw, 18px);
         }
         
         body {
@@ -206,7 +205,7 @@ layout: null
             margin: 0 auto;
         }
         
-        /* هدر مینیمال بدون نوار قرمز */
+        /* هدر مینیمال */
         .site-header {
             position: sticky;
             top: 0;
@@ -217,7 +216,7 @@ layout: null
             align-items: center;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: none; /* حذف نوار قرمز/رنگی */
+            box-shadow: 0 1px 2px var(--color-shadow);
         }
         
         .header-container {
@@ -234,7 +233,7 @@ layout: null
             justify-content: center;
             padding: var(--spacing-sm);
             border-radius: var(--radius-sm);
-            transition: all var(--transition-normal);
+            transition: transform var(--transition-normal);
         }
         
         .logo-link:hover {
@@ -244,7 +243,7 @@ layout: null
         .logo-svg {
             width: clamp(3rem, 2.5rem + 1vw, 4rem);
             height: clamp(3rem, 2.5rem + 1vw, 4rem);
-            color: var(--color-primary); /* رنگ اصلی سایت */
+            color: var(--color-primary);
         }
         
         /* بخش اصلی */
@@ -254,204 +253,128 @@ layout: null
             flex-direction: column;
         }
         
-        /* عنوان سایت بدون توضیحات */
-        .site-title-section {
-            padding: clamp(var(--spacing-xl), 6vw, var(--spacing-xxl)) 0;
-            text-align: center;
+        /* فضای خالی قبل از پست‌ها */
+        .content-start {
+            height: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl));
+        }
+        
+        /* لیست پست‌ها */
+        .posts-section {
+            padding-bottom: clamp(var(--spacing-xl), 6vw, var(--spacing-xxl));
+        }
+        
+        .posts-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        /* کارت پست - فقط متن */
+        .post-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all var(--transition-normal);
+            border: 1px solid var(--color-border);
             position: relative;
             overflow: hidden;
         }
         
-        .site-title-section::before {
+        /* افکت حاشیه */
+        .post-card::before {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
-            width: 100%;
+            width: 4px;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(26, 54, 93, 0.05) 0%, transparent 50%);
-            z-index: -1;
-        }
-        
-        .site-title {
-            font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-4xl));
-            font-weight: 900;
-            line-height: var(--line-height-tight);
-            color: var(--color-primary);
-            letter-spacing: -0.02em;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .site-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            right: 0;
-            width: 60%;
-            height: 4px;
-            background: var(--color-gradient);
-            border-radius: 2px;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.6s ease;
-        }
-        
-        .site-title:hover::after {
-            transform: scaleX(1);
-        }
-        
-        /* گالری پست‌ها - UI خلاقانه */
-        .posts-gallery {
-            padding-bottom: clamp(var(--spacing-xl), 6vw, var(--spacing-xxl));
-        }
-        
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-            gap: var(--spacing-lg);
-            position: relative;
-        }
-        
-        /* کارت پست - فقط تصویر + عنوان */
-        .post-card {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            background: var(--color-surface);
-            transition: all var(--transition-normal);
-            text-decoration: none;
-            color: inherit;
-            aspect-ratio: 4/3;
-            box-shadow: 
-                0 4px 6px -1px var(--color-shadow),
-                0 2px 4px -1px var(--color-shadow);
-            display: block;
-            isolation: isolate;
-        }
-        
-        /* تصویر پس‌زمینه */
-        .post-image {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-            z-index: 1;
-        }
-        
-        /* گرادیانت روی تصویر */
-        .post-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(0, 0, 0, 0.8) 0%,
-                rgba(0, 0, 0, 0.5) 30%,
-                rgba(0, 0, 0, 0.2) 60%,
-                transparent 100%
-            );
-            z-index: 2;
-            opacity: 0.7;
+            background: var(--color-primary);
+            opacity: 0;
             transition: opacity var(--transition-normal);
-        }
-        
-        /* محتوای روی تصویر */
-        .post-content {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            padding: var(--spacing-lg);
-            z-index: 3;
-            color: white;
-            transform: translateY(0);
-            transition: transform var(--transition-normal);
-        }
-        
-        .post-title {
-            font-size: var(--font-size-xl);
-            font-weight: 700;
-            line-height: var(--line-height-tight);
-            color: white;
-            margin-bottom: var(--spacing-sm);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .post-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.25rem;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width var(--transition-normal);
         }
         
         /* افکت hover */
         .post-card:hover {
-            transform: translateY(-0.5rem);
+            transform: translateY(-2px);
             box-shadow: 
-                0 20px 25px -5px rgba(0, 0, 0, 0.15),
-                0 10px 10px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .post-card:hover .post-image {
-            transform: scale(1.05);
+                0 10px 15px -3px var(--color-shadow),
+                0 4px 6px -2px var(--color-shadow);
+            border-color: var(--color-accent-light);
+            background-color: var(--color-surface);
         }
         
         .post-card:hover::before {
-            opacity: 0.9;
+            opacity: 1;
         }
         
-        .post-card:hover .post-content {
-            transform: translateY(-0.5rem);
+        /* عنوان پست */
+        .post-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            line-height: var(--line-height-tight);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            padding-right: 1.5rem;
+            transition: color var(--transition-fast);
+        }
+        
+        /* آیکون فلش برای عنوان */
+        .post-title::after {
+            content: '←';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(0.5rem);
+            opacity: 0;
+            color: var(--color-accent);
+            transition: all var(--transition-normal);
         }
         
         .post-card:hover .post-title::after {
-            width: 100%;
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
         }
         
-        /* برچسب روی تصویر (اختیاری) */
-        .post-category {
-            position: absolute;
-            top: var(--spacing-md);
-            right: var(--spacing-md);
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--color-primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: var(--radius-sm);
+        /* توضیحات پست */
+        .post-excerpt {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-loose);
+            margin-top: var(--spacing-sm);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* متریک‌های پست (اختیاری) */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            color: var(--color-text-light);
             font-size: var(--font-size-sm);
-            font-weight: 600;
-            z-index: 3;
-            backdrop-filter: blur(4px);
+            flex-wrap: wrap;
+        }
+        
+        .post-category {
+            background: var(--color-hover);
+            color: var(--color-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
         }
         
         /* فوتر مینیمال */
         footer {
             padding: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl)) 0;
             background-color: var(--color-surface);
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                var(--color-border) 50%, 
-                transparent 100%);
         }
         
         .footer-container {
@@ -470,7 +393,7 @@ layout: null
         }
         
         .footer-logo:hover {
-            transform: rotate(-5deg) scale(1.1);
+            transform: scale(1.1);
         }
         
         .footer-logo-svg {
@@ -481,28 +404,36 @@ layout: null
         
         /* Responsive */
         @media (max-width: 768px) {
-            .posts-grid {
-                grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-                gap: var(--spacing-md);
+            .post-card {
+                padding: var(--spacing-md);
+            }
+            
+            .post-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .post-excerpt {
+                font-size: var(--font-size-base);
+                -webkit-line-clamp: 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .post-card {
+                padding: var(--spacing-sm);
             }
             
             .post-title {
                 font-size: var(--font-size-lg);
             }
-        }
-        
-        @media (max-width: 480px) {
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
             
-            .site-title {
-                font-size: var(--font-size-2xl);
+            .post-meta {
+                gap: var(--spacing-sm);
             }
         }
         
         /* انیمیشن ورود */
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(1rem);
@@ -514,19 +445,20 @@ layout: null
         }
         
         .post-card {
-            animation: fadeIn 0.6s ease-out both;
+            animation: fadeInUp 0.5s ease-out both;
         }
         
-        .post-card:nth-child(2) { animation-delay: 0.1s; }
-        .post-card:nth-child(3) { animation-delay: 0.2s; }
-        .post-card:nth-child(4) { animation-delay: 0.3s; }
-        .post-card:nth-child(5) { animation-delay: 0.4s; }
-        .post-card:nth-child(6) { animation-delay: 0.5s; }
+        .post-card:nth-child(1) { animation-delay: 0.1s; }
+        .post-card:nth-child(2) { animation-delay: 0.2s; }
+        .post-card:nth-child(3) { animation-delay: 0.3s; }
+        .post-card:nth-child(4) { animation-delay: 0.4s; }
+        .post-card:nth-child(5) { animation-delay: 0.5s; }
+        .post-card:nth-child(n+6) { animation-delay: 0.6s; }
         
         /* بهبود دسترسی */
         :focus-visible {
             outline: 3px solid var(--color-primary);
-            outline-offset: 3px;
+            outline-offset: 2px;
             border-radius: var(--radius-sm);
         }
         
@@ -542,7 +474,7 @@ layout: null
         
         /* انتخاب متن */
         ::selection {
-            background-color: rgba(79, 70, 229, 0.2);
+            background-color: rgba(79, 70, 229, 0.15);
             color: var(--color-text);
         }
         
@@ -554,18 +486,12 @@ layout: null
                 border: 1px solid var(--color-border);
             }
             
-            .post-image {
-                filter: grayscale(100%);
+            .post-card::before {
+                display: none;
             }
             
-            .post-content {
-                position: relative;
-                color: var(--color-text);
-            }
-            
-            .post-title {
-                color: var(--color-text);
-                text-shadow: none;
+            footer {
+                background: none;
             }
         }
         
@@ -584,12 +510,12 @@ layout: null
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-text-secondary);
+            background: var(--color-text-light);
         }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
-    <!-- هدر بدون نوار قرمز -->
+    <!-- هدر -->
     <header class="site-header">
         <div class="container header-container">
             <a href="https://www.pasgah.org/" class="logo-link" aria-label="وبلاگ پاسگاه">
@@ -600,36 +526,26 @@ layout: null
     
     <!-- محتوای اصلی -->
     <main>
-        <!-- عنوان سایت بدون توضیحات -->
-        <section class="site-title-section">
-            <div class="container">
-                <h1 class="site-title">کاوش در تاریخ و تمدن</h1>
-            </div>
-        </section>
+        <!-- فضای خالی (حذف عنوان اصلی) -->
+        <div class="content-start"></div>
         
-        <!-- گالری پست‌ها -->
-        <section class="posts-gallery">
+        <!-- لیست پست‌ها -->
+        <section class="posts-section">
             <div class="container">
-                <div class="posts-grid">
+                <div class="posts-list">
                     {% for post in site.posts limit: 100 %}
                     <a href="{{ post.url }}" class="post-card" itemscope itemtype="https://schema.org/Article" aria-label="{{ post.title }}">
-                        <!-- تصویر پست -->
-                        {% if post.image %}
-                        <img src="{{ post.image }}" alt="{{ post.title }}" class="post-image" loading="lazy">
-                        {% else %}
-                        <!-- تصویر پیش‌فرض با گرادیانت -->
-                        <div class="post-image" style="background: var(--color-gradient);"></div>
-                        {% endif %}
+                        <h2 class="post-title" itemprop="headline">{{ post.title }}</h2>
                         
-                        <!-- برچسب دسته‌بندی -->
-                        {% if post.category %}
-                        <span class="post-category">{{ post.category }}</span>
-                        {% endif %}
-                        
-                        <!-- عنوان پست -->
-                        <div class="post-content">
-                            <h2 class="post-title" itemprop="headline">{{ post.title }}</h2>
+                        <div class="post-excerpt" itemprop="description">
+                            {{ post.excerpt | strip_html | truncate: 200 }}
                         </div>
+                        
+                        {% if post.category %}
+                        <div class="post-meta">
+                            <span class="post-category">{{ post.category }}</span>
+                        </div>
+                        {% endif %}
                     </a>
                     
                     <!-- داده ساختاریافته -->
@@ -638,12 +554,12 @@ layout: null
                         "@context": "https://schema.org",
                         "@type": "Article",
                         "headline": "{{ post.title | escape }}",
+                        "description": "{{ post.excerpt | strip_html | truncate: 200 | escape }}",
                         "url": "{{ site.url }}{{ post.url }}",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
                             "@id": "{{ site.url }}{{ post.url }}"
                         },
-                        "image": "{% if post.image %}{{ post.image }}{% else %}https://www.pasgah.org/blog.svg{% endif %}",
                         "author": {
                             "@type": "Organization",
                             "name": "وبلاگ پاسگاه"
@@ -661,7 +577,7 @@ layout: null
                         "datePublished": "{{ post.date | date_to_xmlschema }}",
                         "dateModified": "{{ site.time | date_to_xmlschema }}",
                         "inLanguage": "fa",
-                        "articleSection": "تاریخ"
+                        "articleSection": "{% if post.category %}{{ post.category }}{% else %}تاریخ{% endif %}"
                     }
                     </script>
                     {% endfor %}
@@ -670,11 +586,11 @@ layout: null
         </section>
     </main>
     
-    <!-- فوتر مینیمال -->
+    <!-- فوتر -->
     <footer>
         <div class="container footer-container">
             <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="96" height="96">
+                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="80" height="80">
             </a>
         </div>
     </footer>
