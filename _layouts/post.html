@@ -435,13 +435,11 @@
             margin: var(--spacing-lg) 0;
         }
         
-        .article-content .table-container {
+        .table-wrapper {
             margin: var(--spacing-lg) 0;
             border: 1px solid var(--color-border);
             border-radius: var(--radius-sm);
-            overflow: hidden;
-            position: relative;
-            overflow-x: auto;
+            overflow: auto;
             -webkit-overflow-scrolling: touch;
         }
         
@@ -582,7 +580,7 @@
                 font-size: var(--font-size-lg);
             }
             
-            .article-content .table-container {
+            .table-wrapper {
                 border-radius: var(--radius-sm);
             }
             
@@ -629,7 +627,7 @@
                 font-size: var(--font-size-xl);
             }
             
-            .article-content .table-container {
+            .table-wrapper {
                 border: 1px solid var(--color-border);
                 border-radius: var(--radius-sm);
             }
@@ -702,7 +700,7 @@
                 border: 1px solid var(--color-border);
             }
             
-            .article-content .table-container {
+            .table-wrapper {
                 border: 1px solid #000000;
             }
             
@@ -754,7 +752,7 @@
                 <article class="article-container">
                     <h1 class="article-title" itemprop="headline">{{ page.title }}</h1>
                     <div class="article-content" itemprop="articleBody">
-                        {{ content }}
+                        {{ content | replace: '<table>', '<div class="table-wrapper"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
                 </article>
                 
