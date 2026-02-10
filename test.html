@@ -104,8 +104,8 @@ layout: null
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" href="https://www.pasgah.org/blog.svg">
     
-    <!-- رنگ تم اصلی -->
-    <meta name="theme-color" content="#1A365D">
+    <!-- رنگ تم اصلی - قرمز -->
+    <meta name="theme-color" content="#DC2626">
     
     <style>
         /* بهینه‌سازی فونت فارسی */
@@ -118,14 +118,12 @@ layout: null
         }
         
         :root {
-            /* پالت رنگی اصلی */
-            --color-primary: #1A365D;
-            --color-primary-light: #2D4A8C;
-            --color-primary-dark: #0F2544;
-            --color-accent: #4F46E5;
-            --color-accent-light: #6366F1;
+            /* پالت رنگی اصلی - فقط عناصر مورد نظر قرمز */
+            --color-primary: #1A365D; /* آبی تیره - دستکاری نشده */
+            --color-accent: #DC2626; /* قرمز برای فلش و خط */
+            --color-accent-light: #EF4444; /* قرمز روشن برای hover */
             
-            /* رنگ‌های خنثی - کارت‌ها سفید */
+            /* رنگ‌های خنثی - دستکاری نشده */
             --color-bg: #F9FAFB;
             --color-surface: #FFFFFF;
             --color-text: #111827;
@@ -133,8 +131,8 @@ layout: null
             --color-text-light: #6B7280;
             --color-border: #E5E7EB;
             --color-shadow: rgba(0, 0, 0, 0.05);
-            --color-hover: rgba(79, 70, 229, 0.05);
-            --color-card-border: #4F46E5; /* خط آبی برای کارت */
+            --color-hover: rgba(220, 38, 38, 0.05); /* قرمز بسیار ملایم */
+            --color-card-border: #DC2626; /* خط کناری قرمز */
             
             /* واحدهای ریسپانسیو */
             --container-width: min(92%, 1000px);
@@ -237,7 +235,7 @@ layout: null
         .logo-svg {
             width: clamp(3rem, 2.5rem + 1vw, 4rem);
             height: clamp(3rem, 2.5rem + 1vw, 4rem);
-            color: var(--color-primary);
+            color: var(--color-primary); /* آبی - دستکاری نشده */
         }
         
         /* بخش اصلی */
@@ -263,7 +261,7 @@ layout: null
             gap: var(--spacing-lg);
         }
         
-        /* کارت پست - سفید با خط آبی */
+        /* کارت پست - سفید با خط قرمز */
         .post-card {
             background: var(--color-surface);
             border-radius: var(--radius-lg);
@@ -277,7 +275,7 @@ layout: null
             overflow: hidden;
         }
         
-        /* خط آبی کناری - همیشه نمایش داده شود */
+        /* خط قرمز کناری - همیشه نمایش داده شود */
         .post-card::before {
             content: '';
             position: absolute;
@@ -285,17 +283,17 @@ layout: null
             right: 0;
             width: 5px;
             height: 100%;
-            background: var(--color-card-border); /* خط آبی */
+            background: var(--color-card-border); /* خط قرمز */
             opacity: 1; /* همیشه نمایش */
         }
         
-        /* افکت hover */
+        /* افکت hover - مرز قرمز */
         .post-card:hover {
             transform: translateY(-3px);
             box-shadow: 
                 0 10px 15px -3px var(--color-shadow),
                 0 4px 6px -2px var(--color-shadow);
-            border-color: var(--color-accent-light);
+            border-color: var(--color-accent-light); /* قرمز در hover */
         }
         
         /* عنوان پست */
@@ -303,14 +301,14 @@ layout: null
             font-size: var(--font-size-2xl);
             font-weight: 700;
             line-height: var(--line-height-tight);
-            color: var(--color-primary);
+            color: var(--color-primary); /* آبی - دستکاری نشده */
             margin-bottom: var(--spacing-sm);
             position: relative;
             padding-right: 2rem; /* فضای بیشتر برای فلش */
             transition: color var(--transition-fast);
         }
         
-        /* فلش - همیشه نمایش داده شود */
+        /* فلش قرمز - همیشه نمایش داده شود */
         .post-title::after {
             content: '←';
             position: absolute;
@@ -318,19 +316,20 @@ layout: null
             top: 50%;
             transform: translateY(-50%);
             opacity: 1; /* همیشه نمایش */
-            color: var(--color-accent);
+            color: var(--color-accent); /* قرمز */
             font-size: 1.2em;
             transition: transform var(--transition-normal);
         }
         
         .post-card:hover .post-title::after {
             transform: translateY(-50%) translateX(-0.25rem); /* حرکت به چپ در hover */
+            color: var(--color-accent-light); /* قرمز روشن‌تر در hover */
         }
         
         /* توضیحات پست - دو برابر طول بیشتر */
         .post-excerpt {
             font-size: var(--font-size-lg);
-            color: var(--color-text-secondary);
+            color: var(--color-text-secondary); /* خاکستری - دستکاری نشده */
             line-height: var(--line-height-loose);
             margin-top: var(--spacing-sm);
             display: -webkit-box;
@@ -346,14 +345,14 @@ layout: null
             align-items: center;
             gap: var(--spacing-md);
             margin-top: var(--spacing-md);
-            color: var(--color-text-light);
+            color: var(--color-text-light); /* خاکستری - دستکاری نشده */
             font-size: var(--font-size-sm);
             flex-wrap: wrap;
         }
         
         .post-category {
-            background: var(--color-hover);
-            color: var(--color-accent);
+            background: var(--color-hover); /* قرمز بسیار ملایم */
+            color: var(--color-accent); /* قرمز */
             padding: 0.25rem 0.75rem;
             border-radius: var(--radius-sm);
             font-weight: 500;
@@ -383,7 +382,7 @@ layout: null
         .footer-logo-svg {
             width: clamp(4rem, 3rem + 2vw, 6rem);
             height: clamp(4rem, 3rem + 2vw, 6rem);
-            color: var(--color-primary);
+            color: var(--color-primary); /* آبی - دستکاری نشده */
         }
         
         /* Responsive */
@@ -448,7 +447,7 @@ layout: null
         
         /* بهبود دسترسی */
         :focus-visible {
-            outline: 3px solid var(--color-accent);
+            outline: 3px solid var(--color-accent); /* قرمز */
             outline-offset: 3px;
             border-radius: var(--radius-sm);
         }
@@ -465,7 +464,7 @@ layout: null
         
         /* انتخاب متن */
         ::selection {
-            background-color: rgba(79, 70, 229, 0.15);
+            background-color: rgba(220, 38, 38, 0.15); /* قرمز ملایم */
             color: var(--color-text);
         }
         
