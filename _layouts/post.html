@@ -435,13 +435,20 @@
             margin: var(--spacing-lg) 0;
         }
         
-        .article-content table {
-            width: 100%;
-            border-collapse: collapse;
+        .article-content .table-container {
             margin: var(--spacing-lg) 0;
             border: 1px solid var(--color-border);
             border-radius: var(--radius-sm);
             overflow: hidden;
+            position: relative;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .article-content table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
         }
         
         .article-content table thead {
@@ -454,6 +461,7 @@
             text-align: right;
             font-weight: 600;
             border: 1px solid var(--color-border);
+            white-space: nowrap;
         }
         
         .article-content table td {
@@ -574,6 +582,20 @@
                 font-size: var(--font-size-lg);
             }
             
+            .article-content .table-container {
+                border-radius: var(--radius-sm);
+            }
+            
+            .article-content table {
+                min-width: 500px;
+            }
+            
+            .article-content table th,
+            .article-content table td {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+            
             .post-card {
                 padding: var(--spacing-md);
             }
@@ -607,6 +629,21 @@
                 font-size: var(--font-size-xl);
             }
             
+            .article-content .table-container {
+                border: 1px solid var(--color-border);
+                border-radius: var(--radius-sm);
+            }
+            
+            .article-content table {
+                min-width: 400px;
+            }
+            
+            .article-content table th,
+            .article-content table td {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+            
             .post-card {
                 padding: var(--spacing-sm);
             }
@@ -627,6 +664,18 @@
             .logo-svg {
                 width: 2.75rem;
                 height: 2.75rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .article-content table {
+                min-width: 320px;
+            }
+            
+            .article-content table th,
+            .article-content table td {
+                padding: 0.4rem;
+                font-size: 0.8rem;
             }
         }
         
@@ -651,6 +700,10 @@
             .article-container {
                 box-shadow: none;
                 border: 1px solid var(--color-border);
+            }
+            
+            .article-content .table-container {
+                border: 1px solid #000000;
             }
             
             footer {
