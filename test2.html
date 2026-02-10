@@ -470,11 +470,11 @@ layout: null
             background-color: var(--color-bg);
         }
         
-        .related-posts {
+        .more-posts {
             margin-top: var(--spacing-xxl);
         }
         
-        .related-title {
+        .more-posts-title {
             font-size: var(--font-size-2xl);
             font-weight: 700;
             color: var(--color-primary);
@@ -709,8 +709,8 @@ layout: null
                     </div>
                 </article>
                 
-                <div class="related-posts">
-                    <h2 class="related-title">پست‌های مرتبط</h2>
+                <div class="more-posts">
+                    <h2 class="more-posts-title">پست‌های بیشتر</h2>
                     <div class="posts-list">
                         {% assign current_post_url = page.url %}
                         {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
