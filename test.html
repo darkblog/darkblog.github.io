@@ -8,6 +8,7 @@ layout: null
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -81,6 +82,7 @@ layout: null
     <title>وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان</title>
     <meta name="description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم">
     
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان">
     <meta property="og:description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم">
@@ -91,19 +93,23 @@ layout: null
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1024">
     
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="وبلاگ پاسگاه؛ کاوش در تاریخ و تمدن ایران و جهان">
     <meta name="twitter:description" content="همراه ما در وبلاگ پاسگاه باشید تا در سفرهایی جذاب به اعماق تاریخ ایران و جهان غوطه‌ور شویم و اسرار تمدن‌های کهن را کشف کنیم">
     <meta name="twitter:site" content="@pbstwi">
     <meta name="twitter:image" content="https://www.pasgah.org/blog.svg">
     
+    <!-- Links -->
     <link rel="canonical" href="https://www.pasgah.org/">
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" href="https://www.pasgah.org/blog.svg">
-    <meta name="theme-color" content="#1A365D">
+    
+    <!-- پالت رنگی بهینه شده برای روز و شب -->
+    <meta name="theme-color" content="#2563EB">
     
     <style>
-        /* فونت و متغیرهای طراحی */
+        /* بهینه‌سازی فونت فارسی */
         @font-face {
             font-family: 'Vazirmatn';
             src: url('https://www.pasgah.org/blog.woff2') format('woff2');
@@ -113,38 +119,58 @@ layout: null
         }
         
         :root {
-            /* پالت رنگی متعادل برای روز و شب - کنتراست مناسب */
-            --color-bg: #FAFAFA;
-            --color-surface: #FFFFFF;
-            --color-primary: #1A365D;
-            --color-secondary: #4A5568;
-            --color-accent: #2B6CB0;
-            --color-accent-light: #4299E1;
-            --color-accent-dark: #1A365D;
-            --color-border: #E2E8F0;
-            --color-text: #2D3748;
-            --color-text-light: #718096;
-            --color-shadow: rgba(0, 0, 0, 0.05);
-            --color-overlay: rgba(0, 0, 0, 0.02);
+            /* پالت رنگی اصلی سایت - بهینه شده برای خوانایی در روز و شب */
+            --color-primary: #2563EB;       /* آبی اصلی - کنتراست بالا */
+            --color-primary-light: #3B82F6;
+            --color-primary-dark: #1D4ED8;
+            --color-secondary: #4F46E5;     /* بنفش آبی - مکمل */
+            --color-accent: #059669;        /* سبز آبی - برای accents */
+            
+            /* رنگ‌های خنثی برای زمینه و متن */
+            --color-bg: #F8FAFC;           /* خاکستری بسیار روشن */
+            --color-surface: #FFFFFF;      /* سفید خالص */
+            --color-text: #1E293B;         /* خاکستری تیره با کنتراست بالا */
+            --color-text-secondary: #475569; /* خاکستری متوسط */
+            --color-text-muted: #64748B;   /* خاکستری روشن */
+            --color-border: #E2E8F0;       /* خاکستری بسیار روشن */
+            --color-shadow: rgba(148, 163, 184, 0.08); /* سایه ملایم */
             
             /* واحدهای ریسپانسیو */
             --fluid-min: 320px;
-            --fluid-max: 1400px;
-            --fluid-scale: calc((100vw - var(--fluid-min)) / (var(--fluid-max) - var(--fluid-min)));
-            --container-padding: clamp(1rem, 5vw, 3rem);
+            --fluid-max: 1440px;
+            --container-width: min(92%, 1200px);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
             
             /* زاویه‌های گرد */
             --radius-sm: 0.375rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1.25rem;
             
-            /* انیمیشن‌ها */
-            --transition-fast: 150ms ease;
-            --transition-normal: 250ms ease;
-            --transition-slow: 350ms ease;
+            /* تایپوگرافی فارسی بهینه */
+            --font-size-xs: 0.875rem;
+            --font-size-sm: 1rem;
+            --font-size-md: 1.125rem;
+            --font-size-lg: 1.375rem;
+            --font-size-xl: 1.75rem;
+            --font-size-2xl: 2.25rem;
+            --font-size-3xl: 3rem;
+            --font-size-4xl: 3.75rem;
+            
+            /* ارتفاع خط برای خوانایی فارسی */
+            --line-height-tight: 1.3;
+            --line-height-normal: 1.7;
+            --line-height-loose: 2;
         }
         
-        * {
+        /* Reset و پایه */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -158,54 +184,54 @@ layout: null
         }
         
         body {
-            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
-            line-height: 1.7;
+            line-height: var(--line-height-normal);
             font-weight: 400;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-image: 
-                radial-gradient(circle at 10% 20%, var(--color-overlay) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, var(--color-overlay) 0%, transparent 20%);
+            
+            /* ویژگی‌های تایپوگرافی فارسی بهینه */
+            font-feature-settings: "ss02", "ss03", "ss05", "ss06", "ss07", "ss08";
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: subpixel-antialiased;
         }
         
-        /* Container Queries مدرن */
+        /* Container برای ریسپانسیو بودن */
         .container {
-            width: min(100% - var(--container-padding) * 2, 1200px);
-            margin-inline: auto;
-            container-type: inline-size;
-            container-name: main;
+            width: var(--container-width);
+            margin: 0 auto;
         }
         
-        /* هدر مینیمال */
+        /* هدر مینیمال بدون حاشیه */
         .site-header {
-            background-color: var(--color-surface);
-            border-bottom: 1px solid var(--color-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 1px 3px var(--color-shadow);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-        
-        .header-container {
+            background-color: var(--color-surface);
+            box-shadow: 0 1px 0 var(--color-border);
             height: clamp(4rem, 3.5rem + 1vw, 5rem);
             display: flex;
             align-items: center;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
             justify-content: center;
+            width: 100%;
+            height: 100%;
         }
         
         .logo-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            padding: 0.5rem;
+            padding: var(--spacing-xs);
             border-radius: var(--radius-sm);
-            transition: transform var(--transition-fast);
+            transition: transform 0.2s ease;
         }
         
         .logo-link:hover {
@@ -215,8 +241,8 @@ layout: null
         .logo-svg {
             width: clamp(2.5rem, 2rem + 1vw, 3.5rem);
             height: clamp(2.5rem, 2rem + 1vw, 3.5rem);
-            color: var(--color-accent);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            /* رنگ لوگو با پالت اصلی سایت */
+            color: var(--color-primary);
         }
         
         /* بخش اصلی */
@@ -226,279 +252,231 @@ layout: null
             flex-direction: column;
         }
         
-        /* بخش معرفی - یکپارچه بدون کادر */
+        /* بخش معرفی - تایپوگرافی بهینه */
         .hero-section {
-            padding-block: clamp(3rem, 2rem + 3vw, 5rem);
+            padding: clamp(var(--spacing-xl), 5vw, var(--spacing-xxl)) 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(66, 153, 225, 0.03) 0%, 
-                rgba(42, 67, 101, 0.03) 100%);
-            z-index: -1;
         }
         
         .hero-container {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(1.5rem, 1rem + 1vw, 2.5rem);
+            max-width: 48rem;
+            margin: 0 auto;
         }
         
         .hero-title {
-            font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+            font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
             font-weight: 900;
-            line-height: 1.2;
-            color: var(--color-primary);
-            max-width: 25ch;
-            margin-inline: auto;
+            line-height: var(--line-height-tight);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
             letter-spacing: -0.02em;
         }
         
         .hero-description {
-            font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-            color: var(--color-secondary);
-            max-width: 50ch;
-            margin-inline: auto;
-            line-height: 1.8;
-            opacity: 0.9;
+            font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-xl));
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-loose);
+            opacity: 0.95;
         }
         
-        /* بخش پست‌ها - بدون تاریخ */
+        /* بخش پست‌ها - بدون حاشیه */
         .posts-section {
-            padding-block: clamp(2rem, 1.5rem + 1.5vw, 3.5rem);
+            padding-bottom: clamp(var(--spacing-xl), 6vw, var(--spacing-xxl));
         }
         
-        .posts-container {
+        .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-            gap: clamp(1.5rem, 1rem + 1vw, 2.5rem);
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+            gap: var(--spacing-lg);
         }
         
-        @container main (width < 700px) {
-            .posts-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @container main (width > 1000px) {
-            .posts-container {
-                grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
-            }
-        }
-        
-        /* کارت پست */
+        /* کارت پست - مستطیل قابل لمس */
         .post-card {
             background: var(--color-surface);
-            border-radius: var(--radius-lg);
-            padding: clamp(1.5rem, 1.25rem + 0.5vw, 2rem);
-            border: 1px solid var(--color-border);
-            transition: all var(--transition-normal);
-            position: relative;
+            border-radius: var(--radius-md);
             overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            min-height: 280px;
+            box-shadow: 0 1px 3px var(--color-shadow);
+            border: 1px solid transparent;
+        }
+        
+        /* حالت hover و focus برای قابلیت لمس */
+        .post-card:hover,
+        .post-card:focus {
+            transform: translateY(-0.25rem);
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.1),
+                0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-primary-light);
+        }
+        
+        .post-card:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        /* محتوای داخلی کارت */
+        .post-card-content {
+            padding: var(--spacing-lg);
             height: 100%;
             display: flex;
             flex-direction: column;
         }
         
-        .post-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                var(--color-accent-light), 
-                var(--color-accent));
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-        
-        .post-card:hover {
-            transform: translateY(-0.25rem);
-            box-shadow: 0 10px 25px -5px var(--color-shadow),
-                        0 8px 10px -6px var(--color-shadow);
-            border-color: var(--color-accent-light);
-        }
-        
-        .post-card:hover::before {
-            opacity: 1;
-        }
-        
         .post-card-title {
-            font-size: clamp(1.25rem, 1.125rem + 0.5vw, 1.5rem);
-            font-weight: 800;
-            line-height: 1.4;
-            color: var(--color-primary);
-            margin-bottom: 0.75rem;
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            line-height: var(--line-height-tight);
+            color: var(--color-primary-dark);
+            margin-bottom: var(--spacing-sm);
             position: relative;
-            padding-left: 1rem;
+            padding-right: 1.5rem;
         }
         
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
-            transition: color var(--transition-fast);
+        /* آیکون فلش برای نشان دادن لینک */
+        .post-card-title::before {
+            content: "←";
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--color-primary);
+            opacity: 0;
+            transform: translateX(0.5rem);
+            transition: all 0.3s ease;
         }
         
-        .post-card-title a:hover {
-            color: var(--color-accent);
+        .post-card:hover .post-card-title::before {
+            opacity: 1;
+            transform: translateX(0);
         }
         
         .post-excerpt {
-            font-size: 1rem;
-            color: var(--color-text-light);
-            line-height: 1.8;
+            font-size: var(--font-size-md);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-loose);
             flex: 1;
+            margin-bottom: var(--spacing-md);
             display: -webkit-box;
             -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .post-read-more {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1.25rem;
-            color: var(--color-accent);
+            color: var(--color-primary);
             font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: gap var(--transition-fast);
+            font-size: var(--font-size-sm);
+            margin-top: auto;
+            padding: 0.5rem 0;
+            transition: gap 0.2s ease;
         }
         
-        .post-read-more:hover {
+        .post-card:hover .post-read-more {
             gap: 0.75rem;
         }
         
-        .post-read-more::after {
-            content: '←';
-            font-size: 1.1em;
-            transition: transform var(--transition-fast);
+        /* خط جداکننده ظریف در پایین هر کارت */
+        .post-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--color-border) 20%, 
+                var(--color-border) 80%, 
+                transparent 100%);
         }
         
-        .post-read-more:hover::after {
-            transform: translateX(-0.25rem);
-        }
-        
-        /* فوتر با لوگو */
+        /* فوتر مینیمال بدون حاشیه */
         footer {
-            background: var(--color-primary);
-            color: #E2E8F0;
-            padding-block: clamp(3rem, 2.5rem + 1vw, 4rem);
+            background-color: var(--color-surface);
+            padding: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl)) 0;
             margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 2rem;
         }
         
         .footer-logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            transform: scale(1.05);
         }
         
         .footer-logo-svg {
             width: clamp(4rem, 3rem + 2vw, 6rem);
             height: clamp(4rem, 3rem + 2vw, 6rem);
-            color: #FFFFFF;
-            opacity: 0.9;
-            transition: opacity var(--transition-fast), transform var(--transition-normal);
+            color: var(--color-primary);
         }
         
-        .footer-logo:hover .footer-logo-svg {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-        
-        .footer-tagline {
-            text-align: center;
-            font-size: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
-            color: #CBD5E0;
-            max-width: 35ch;
-            line-height: 1.7;
-            opacity: 0.85;
-        }
-        
-        /* بهبود‌های دسترسی و تعامل */
-        ::selection {
-            background-color: rgba(66, 153, 225, 0.2);
-            color: var(--color-text);
-        }
-        
-        :focus-visible {
-            outline: 2px solid var(--color-accent);
-            outline-offset: 2px;
-            border-radius: var(--radius-sm);
-        }
-        
-        /* انیمیشن‌های ورود */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(1rem);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        /* بهبود دسترسی و تعامل */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
         
-        .hero-container {
-            animation: fadeInUp 0.6s var(--transition-normal) both;
+        /* بهبود نمایش در تبلت */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
-        .post-card {
-            animation: fadeInUp 0.5s ease-out both;
+        /* بهبود نمایش در موبایل */
+        @media (max-width: 767px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .post-card {
+                min-height: 240px;
+            }
+            
+            .post-card-content {
+                padding: var(--spacing-md);
+            }
         }
         
-        .post-card:nth-child(2) { animation-delay: 0.1s; }
-        .post-card:nth-child(3) { animation-delay: 0.2s; }
-        .post-card:nth-child(4) { animation-delay: 0.3s; }
-        .post-card:nth-child(5) { animation-delay: 0.4s; }
-        .post-card:nth-child(6) { animation-delay: 0.5s; }
-        
-        /* اسکرول بار زیبا */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--color-bg);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--color-border);
-            border-radius: 5px;
-            border: 2px solid var(--color-bg);
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-text-light);
-        }
-        
-        /* بهبود تایپوگرافی فارسی */
-        body {
-            font-feature-settings: "ss02", "ss03", "ss05", "ss06";
-            text-rendering: optimizeLegibility;
+        /* نمایش در موبایل‌های کوچک */
+        @media (max-width: 360px) {
+            :root {
+                --container-width: 96%;
+            }
+            
+            .hero-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .hero-description {
+                font-size: var(--font-size-md);
+            }
         }
         
         /* حالت پرینت */
@@ -513,86 +491,85 @@ layout: null
                 box-shadow: none;
             }
             
+            .post-card::after {
+                display: none;
+            }
+            
             footer {
                 background: none;
-                color: #000;
-                border-top: 1px solid #000;
             }
             
             .footer-logo-svg {
                 color: #000;
             }
-            
-            .post-read-more {
-                display: none;
-            }
         }
         
-        /* بهبود نمایش در تبلت‌ها */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .posts-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* بهبود نمایش در موبایل‌های کوچک */
-        @media (max-width: 380px) {
-            .hero-title {
-                font-size: 1.75rem;
-            }
-            
-            .hero-description {
-                font-size: 1rem;
-            }
-            
-            .post-card {
-                padding: 1.25rem;
-            }
-        }
-        
-        /* بهبود عملکرد لمسی */
-        @media (hover: none) {
-            .post-card:hover {
-                transform: none;
-                box-shadow: 0 4px 12px var(--color-shadow);
-            }
-            
-            .post-card:active {
-                transform: scale(0.98);
-            }
-        }
-        
-        /* کنتراست و خوانایی بالا در تمام شرایط */
+        /* کنتراست بالا برای کاربران نیازمند */
         @media (prefers-contrast: high) {
             :root {
-                --color-border: #2D3748;
-                --color-shadow: rgba(0, 0, 0, 0.15);
+                --color-border: #1E293B;
+                --color-shadow: rgba(0, 0, 0, 0.2);
             }
             
             .post-card {
-                border-width: 2px;
+                border: 2px solid var(--color-border);
             }
         }
         
-        /* کاهش حرکت برای کاربران حساس */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
+        /* اسکرول بار زیبا */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-muted);
+        }
+        
+        /* انتخاب متن */
+        ::selection {
+            background-color: rgba(37, 99, 235, 0.15);
+            color: var(--color-text);
+        }
+        
+        /* انیمیشن ورود پست‌ها */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+        
+        .post-card {
+            animation: fadeInUp 0.5s ease-out both;
+        }
+        
+        .post-card:nth-child(2) { animation-delay: 0.05s; }
+        .post-card:nth-child(3) { animation-delay: 0.1s; }
+        .post-card:nth-child(4) { animation-delay: 0.15s; }
+        .post-card:nth-child(5) { animation-delay: 0.2s; }
+        .post-card:nth-child(6) { animation-delay: 0.25s; }
+        .post-card:nth-child(n+7) { animation-delay: 0.3s; }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
     <!-- هدر مینیمال -->
     <header class="site-header">
         <div class="container header-container">
-            <a href="https://www.pasgah.org/" class="logo-link" aria-label="برگشت به صفحه اصلی وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="48" height="48">
+            <a href="https://www.pasgah.org/" class="logo-link" aria-label="وبلاگ پاسگاه">
+                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="56" height="56">
             </a>
         </div>
     </header>
@@ -612,67 +589,64 @@ layout: null
         <!-- پست‌های وبلاگ -->
         <section class="posts-section">
             <div class="container">
-                <div class="posts-container">
+                <div class="posts-grid">
                     {% for post in site.posts limit: 100 %}
-                    <article class="post-card" itemscope itemtype="https://schema.org/Article">
-                        <h3 class="post-card-title" itemprop="headline">
-                            <a href="{{ post.url }}" itemprop="url">{{ post.title }}</a>
-                        </h3>
-                        
-                        <div class="post-excerpt" itemprop="description">
-                            {{ post.excerpt | strip_html | truncate: 180 }}
+                    <a href="{{ post.url }}" class="post-card" itemscope itemtype="https://schema.org/Article" aria-label="{{ post.title }}">
+                        <div class="post-card-content">
+                            <h3 class="post-card-title" itemprop="headline">{{ post.title }}</h3>
+                            <div class="post-excerpt" itemprop="description">
+                                {{ post.excerpt | strip_html | truncate: 160 }}
+                            </div>
+                            <span class="post-read-more">
+                                خواندن ادامه مطلب
+                            </span>
                         </div>
-                        
-                        <a href="{{ post.url }}" class="post-read-more" aria-label="خواندن ادامه مطلب: {{ post.title }}">
-                            خواندن ادامه مطلب
-                        </a>
-                        
-                        <!-- ساختار schema.org -->
-                        <script type="application/ld+json">
-                        {
-                            "@context": "https://schema.org",
-                            "@type": "Article",
-                            "headline": "{{ post.title | escape }}",
-                            "description": "{{ post.excerpt | strip_html | truncate: 180 | escape }}",
-                            "url": "{{ site.url }}{{ post.url }}",
-                            "mainEntityOfPage": {
-                                "@type": "WebPage",
-                                "@id": "{{ site.url }}{{ post.url }}"
-                            },
-                            "author": {
-                                "@type": "Organization",
-                                "name": "وبلاگ پاسگاه"
-                            },
-                            "publisher": {
-                                "@type": "Organization",
-                                "name": "وبلاگ پاسگاه",
-                                "logo": {
-                                    "@type": "ImageObject",
-                                    "url": "https://www.pasgah.org/blog.svg",
-                                    "width": 1024,
-                                    "height": 1024
-                                }
-                            },
-                            "datePublished": "{{ post.date | date_to_xmlschema }}",
-                            "dateModified": "{{ site.time | date_to_xmlschema }}",
-                            "inLanguage": "fa",
-                            "articleSection": "تاریخ"
-                        }
-                        </script>
-                    </article>
+                    </a>
+                    
+                    <!-- ساختار schema.org -->
+                    <script type="application/ld+json">
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": "{{ post.title | escape }}",
+                        "description": "{{ post.excerpt | strip_html | truncate: 160 | escape }}",
+                        "url": "{{ site.url }}{{ post.url }}",
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": "{{ site.url }}{{ post.url }}"
+                        },
+                        "author": {
+                            "@type": "Organization",
+                            "name": "وبلاگ پاسگاه"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "وبلاگ پاسگاه",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://www.pasgah.org/blog.svg",
+                                "width": 1024,
+                                "height": 1024
+                            }
+                        },
+                        "datePublished": "{{ post.date | date_to_xmlschema }}",
+                        "dateModified": "{{ site.time | date_to_xmlschema }}",
+                        "inLanguage": "fa",
+                        "articleSection": "تاریخ"
+                    }
+                    </script>
                     {% endfor %}
                 </div>
             </div>
         </section>
     </main>
     
-    <!-- فوتر با لوگو -->
+    <!-- فوتر مینیمال -->
     <footer>
         <div class="container footer-container">
             <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
                 <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="80" height="80">
             </a>
-            <p class="footer-tagline">کاوش در تاریخ و تمدن ایران و جهان</p>
         </div>
     </footer>
 </body>
