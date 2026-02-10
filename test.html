@@ -105,7 +105,7 @@ layout: null
     <link rel="icon" href="https://www.pasgah.org/blog.svg">
     
     <!-- رنگ تم اصلی -->
-    <meta name="theme-color" content="#1A365D">
+    <meta name="theme-color" content="#000000">
     
     <style>
         /* بهینه‌سازی فونت فارسی */
@@ -120,23 +120,23 @@ layout: null
         :root {
             /* پالت رنگی اصلی */
             --color-primary: #1A365D;
-            --color-primary-light: #2D4A8C;
-            --color-primary-dark: #0F2544;
             --color-accent: #4F46E5;
-            --color-accent-light: #6366F1;
             
-            /* رنگ‌های خنثی */
+            /* رنگ‌های خنثی - کارت‌ها مشکی */
             --color-bg: #F9FAFB;
             --color-surface: #FFFFFF;
             --color-text: #111827;
             --color-text-secondary: #374151;
             --color-text-light: #6B7280;
             --color-border: #E5E7EB;
-            --color-shadow: rgba(0, 0, 0, 0.05);
-            --color-hover: rgba(79, 70, 229, 0.05);
+            --color-card: #000000; /* کارت‌ها مشکی */
+            --color-card-text: #FFFFFF; /* متن روی کارت مشکی */
+            --color-card-secondary: #D1D5DB; /* متن ثانویه روی کارت */
+            --color-shadow: rgba(0, 0, 0, 0.08);
+            --color-hover: rgba(255, 255, 255, 0.1);
             
             /* واحدهای ریسپانسیو */
-            --container-width: min(92%, 1200px);
+            --container-width: min(92%, 1000px);
             --spacing-xs: 0.5rem;
             --spacing-sm: 0.75rem;
             --spacing-md: 1.25rem;
@@ -165,7 +165,6 @@ layout: null
             /* انیمیشن‌ها */
             --transition-fast: 0.15s ease;
             --transition-normal: 0.25s ease;
-            --transition-slow: 0.35s ease;
         }
         
         /* Reset */
@@ -214,8 +213,6 @@ layout: null
             height: clamp(4rem, 3.5rem + 1vw, 5rem);
             display: flex;
             align-items: center;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 1px 2px var(--color-shadow);
         }
         
@@ -233,11 +230,7 @@ layout: null
             justify-content: center;
             padding: var(--spacing-sm);
             border-radius: var(--radius-sm);
-            transition: transform var(--transition-normal);
-        }
-        
-        .logo-link:hover {
-            transform: scale(1.08);
+            /* حذف انیمیشن hover */
         }
         
         .logo-svg {
@@ -269,21 +262,27 @@ layout: null
             gap: var(--spacing-lg);
         }
         
-        /* کارت پست - فقط متن */
+        /* کارت پست - مشکی */
         .post-card {
-            background: var(--color-surface);
+            background: var(--color-card); /* مشکی */
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
             text-decoration: none;
             color: inherit;
             display: block;
             transition: all var(--transition-normal);
-            border: 1px solid var(--color-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            
+            /* انیمیشن ثابت - شبیه حالت active */
+            transform: translateY(0);
+            box-shadow: 
+                0 10px 15px -3px rgba(0, 0, 0, 0.2),
+                0 4px 6px -2px rgba(0, 0, 0, 0.1);
         }
         
-        /* افکت حاشیه */
+        /* افکت حاشیه - انیمیشن ثابت */
         .post-card::before {
             content: '';
             position: absolute;
@@ -291,58 +290,51 @@ layout: null
             right: 0;
             width: 4px;
             height: 100%;
-            background: var(--color-primary);
-            opacity: 0;
-            transition: opacity var(--transition-normal);
+            background: linear-gradient(to bottom, #4F46E5, #6366F1);
+            opacity: 1; /* همیشه نمایش داده شود */
         }
         
-        /* افکت hover */
+        /* افکت hover - حالت عادی */
         .post-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 
-                0 10px 15px -3px var(--color-shadow),
-                0 4px 6px -2px var(--color-shadow);
-            border-color: var(--color-accent-light);
-            background-color: var(--color-surface);
+                0 20px 25px -5px rgba(0, 0, 0, 0.3),
+                0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
-        .post-card:hover::before {
-            opacity: 1;
-        }
-        
-        /* عنوان پست */
+        /* عنوان پست - متن سفید روی کارت مشکی */
         .post-title {
             font-size: var(--font-size-2xl);
             font-weight: 700;
             line-height: var(--line-height-tight);
-            color: var(--color-primary);
+            color: var(--color-card-text); /* سفید */
             margin-bottom: var(--spacing-sm);
             position: relative;
             padding-right: 1.5rem;
             transition: color var(--transition-fast);
         }
         
-        /* آیکون فلش برای عنوان */
+        /* آیکون فلش برای عنوان - همیشه نمایش داده شود */
         .post-title::after {
             content: '←';
             position: absolute;
             right: 0;
             top: 50%;
-            transform: translateY(-50%) translateX(0.5rem);
-            opacity: 0;
-            color: var(--color-accent);
-            transition: all var(--transition-normal);
+            transform: translateY(-50%) translateX(0); /* حالت عادی بدون جابجایی */
+            opacity: 1; /* همیشه نمایش داده شود */
+            color: #6366F1; /* رنگ آبی روشن */
+            transition: transform var(--transition-normal);
         }
         
         .post-card:hover .post-title::after {
-            opacity: 1;
-            transform: translateY(-50%) translateX(0);
+            transform: translateY(-50%) translateX(-0.25rem); /* حرکت به چپ در hover */
         }
         
-        /* توضیحات پست */
+        /* توضیحات پست - خاکستری روشن روی کارت مشکی */
         .post-excerpt {
             font-size: var(--font-size-lg);
-            color: var(--color-text-secondary);
+            color: var(--color-card-secondary); /* خاکستری روشن */
             line-height: var(--line-height-loose);
             margin-top: var(--spacing-sm);
             display: -webkit-box;
@@ -352,20 +344,20 @@ layout: null
             text-overflow: ellipsis;
         }
         
-        /* متریک‌های پست (اختیاری) */
+        /* متریک‌های پست */
         .post-meta {
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
             margin-top: var(--spacing-md);
-            color: var(--color-text-light);
+            color: var(--color-card-secondary);
             font-size: var(--font-size-sm);
             flex-wrap: wrap;
         }
         
         .post-category {
-            background: var(--color-hover);
-            color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.15);
+            color: #A5B4FC; /* آبی بسیار روشن */
             padding: 0.25rem 0.75rem;
             border-radius: var(--radius-sm);
             font-weight: 500;
@@ -389,11 +381,7 @@ layout: null
             justify-content: center;
             padding: var(--spacing-md);
             border-radius: var(--radius-md);
-            transition: all var(--transition-normal);
-        }
-        
-        .footer-logo:hover {
-            transform: scale(1.1);
+            /* حذف انیمیشن hover */
         }
         
         .footer-logo-svg {
@@ -432,8 +420,8 @@ layout: null
             }
         }
         
-        /* انیمیشن ورود */
-        @keyframes fadeInUp {
+        /* انیمیشن ورود - حالت پایدار */
+        @keyframes cardEntrance {
             from {
                 opacity: 0;
                 transform: translateY(1rem);
@@ -445,7 +433,8 @@ layout: null
         }
         
         .post-card {
-            animation: fadeInUp 0.5s ease-out both;
+            animation: cardEntrance 0.6s ease-out both;
+            animation-fill-mode: forwards;
         }
         
         .post-card:nth-child(1) { animation-delay: 0.1s; }
@@ -457,8 +446,8 @@ layout: null
         
         /* بهبود دسترسی */
         :focus-visible {
-            outline: 3px solid var(--color-primary);
-            outline-offset: 2px;
+            outline: 3px solid #4F46E5;
+            outline-offset: 3px;
             border-radius: var(--radius-sm);
         }
         
@@ -474,8 +463,8 @@ layout: null
         
         /* انتخاب متن */
         ::selection {
-            background-color: rgba(79, 70, 229, 0.15);
-            color: var(--color-text);
+            background-color: rgba(99, 102, 241, 0.3);
+            color: #FFFFFF;
         }
         
         /* حالت پرینت */
@@ -483,11 +472,21 @@ layout: null
             .post-card {
                 break-inside: avoid;
                 box-shadow: none;
-                border: 1px solid var(--color-border);
+                border: 1px solid #000000;
+                background: #FFFFFF !important;
+                color: #000000 !important;
             }
             
             .post-card::before {
                 display: none;
+            }
+            
+            .post-title {
+                color: #000000 !important;
+            }
+            
+            .post-excerpt {
+                color: #333333 !important;
             }
             
             footer {
@@ -495,9 +494,9 @@ layout: null
             }
         }
         
-        /* اسکرول بار */
+        /* اسکرول بار مشکی */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         
         ::-webkit-scrollbar-track {
@@ -505,12 +504,37 @@ layout: null
         }
         
         ::-webkit-scrollbar-thumb {
-            background: var(--color-border);
-            border-radius: 4px;
+            background: #333333;
+            border-radius: 5px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-text-light);
+            background: #4F46E5;
+        }
+        
+        /* افکت نورپردازی روی کارت‌ها */
+        .post-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+        }
+        
+        /* کنتراست بهتر برای خوانایی */
+        @media (prefers-contrast: high) {
+            .post-card {
+                border: 2px solid #FFFFFF;
+            }
+            
+            .post-title {
+                font-weight: 800;
+            }
         }
     </style>
 </head>
@@ -526,7 +550,7 @@ layout: null
     
     <!-- محتوای اصلی -->
     <main>
-        <!-- فضای خالی (حذف عنوان اصلی) -->
+        <!-- فضای خالی -->
         <div class="content-start"></div>
         
         <!-- لیست پست‌ها -->
