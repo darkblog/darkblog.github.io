@@ -478,6 +478,65 @@
             background-color: var(--color-bg);
         }
         
+        .comments-section {
+            margin-top: var(--spacing-xxl);
+            padding-top: var(--spacing-xl);
+            border-top: 2px solid var(--color-border);
+        }
+        
+        .comments-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .giscus-wrapper {
+            margin: var(--spacing-lg) 0;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+        }
+        
+        .giscus-wrapper .gsc-header {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .giscus-wrapper .gsc-comments {
+            direction: rtl;
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+        
+        .giscus-wrapper .gsc-comment-box textarea {
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            text-align: right;
+            direction: rtl;
+        }
+        
+        .giscus-noscript {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-align: center;
+            margin: var(--spacing-lg) 0;
+            font-size: var(--font-size-base);
+        }
+        
+        .giscus-noscript a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .giscus-noscript a:hover {
+            text-decoration: underline;
+        }
+        
         .more-posts {
             margin-top: var(--spacing-xxl);
         }
@@ -600,6 +659,19 @@
                 font-size: 0.9rem;
             }
             
+            .comments-section {
+                margin-top: var(--spacing-xl);
+                padding-top: var(--spacing-lg);
+            }
+            
+            .comments-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .giscus-wrapper {
+                padding: var(--spacing-md);
+            }
+            
             .post-card {
                 padding: var(--spacing-md);
             }
@@ -646,6 +718,19 @@
             .article-content table td {
                 padding: 0.5rem;
                 font-size: 0.85rem;
+            }
+            
+            .comments-section {
+                margin-top: var(--spacing-lg);
+                padding-top: var(--spacing-md);
+            }
+            
+            .comments-title {
+                font-size: var(--font-size-lg);
+            }
+            
+            .giscus-wrapper {
+                padding: var(--spacing-sm);
             }
             
             .post-card {
@@ -710,6 +795,10 @@
                 border: 1px solid #000000;
             }
             
+            .comments-section {
+                display: none;
+            }
+            
             footer {
                 background: none;
             }
@@ -761,6 +850,34 @@
                         {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
                 </article>
+                
+                <div class="comments-section">
+                    <h2 class="comments-title">نظرات و بحث‌ها</h2>
+                    <div class="giscus-wrapper">
+                        <script src="https://giscus.app/client.js"
+                                data-repo="darkblog/darkblog.github.io"
+                                data-repo-id="MDEwOlJlcG9zaXRvcnkzNjUzNzE2NTI="
+                                data-category="Q&A"
+                                data-category-id="DIC_kwDOFcchBM4Ct4Fa"
+                                data-mapping="pathname"
+                                data-strict="0"
+                                data-reactions-enabled="1"
+                                data-emit-metadata="0"
+                                data-input-position="top"
+                                data-theme="preferred_color_scheme"
+                                data-lang="fa"
+                                data-loading="lazy"
+                                crossorigin="anonymous"
+                                async>
+                        </script>
+                        <noscript>
+                            <div class="giscus-noscript">
+                                <p>برای مشاهده و ثبت نظر، باید جاوااسکریپت را فعال کنید.</p>
+                                <p>همچنین می‌توانید در <a href="https://github.com/darkblog/darkblog.github.io/discussions" target="_blank" rel="noopener">صفحه Discussions گیت‌هاب</a> مشارکت کنید.</p>
+                            </div>
+                        </noscript>
+                    </div>
+                </div>
                 
                 <div class="more-posts">
                     <h2 class="more-posts-title">پست‌های بیشتر</h2>
