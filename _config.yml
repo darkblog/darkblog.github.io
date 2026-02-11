@@ -3,3 +3,12 @@ url: https://www.pasgah.org
 permalink: /blog/:title
 
 encoding: UTF-8
+
+giscus:
+  repo: "darkblog/darkblog.github.io"
+  repo_id: "MDEwOlJlcG9zaXRvcnkzNjUzNzE2NTI="
+  category: "Q&A"
+  category_id: "DIC_kwDOFcchBM4Ct4Fa"
+  enabled: true
+  comments: true
+  show_comments: true
