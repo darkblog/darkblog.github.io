@@ -492,7 +492,7 @@
             text-align: center;
         }
         
-        .mini-comments-section {
+        .github-comments-section {
             margin-top: var(--spacing-xxl);
             padding-top: var(--spacing-xl);
             border-top: 2px solid var(--color-border);
@@ -586,6 +586,7 @@
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
             border: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-xl);
         }
         
         .simple-comment-form {
@@ -687,6 +688,25 @@
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+        }
+        
+        .comment-status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .github-login-note {
+            background: #e7f3ff;
+            border: 1px solid #b8daff;
+            color: #004085;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .more-posts {
@@ -964,7 +984,7 @@
                 border: 1px solid #000000;
             }
             
-            .mini-comments-section {
+            .github-comments-section {
                 display: none;
             }
             
@@ -1020,23 +1040,23 @@
                     </div>
                 </article>
                 
-                <div class="mini-comments-section">
+                <div class="github-comments-section">
                     <div class="comments-header">
                         <h3 class="comments-title-mini">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 8px;">
                                 <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,9H17V11H7V9M17,17H7V15H17V17M16,13H8V11H16V13Z"/>
                             </svg>
-                            نظرات
+                            نظرات گیت‌هاب
                             <span class="comments-count-badge" id="commentsCount">0</span>
                         </h3>
                     </div>
                     
                     <div id="commentsList" class="comments-list-mini">
-                        <div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>
+                        <div class="no-comments-mini">در حال بارگذاری نظرات از گیت‌هاب...</div>
                     </div>
                     
                     <div class="simple-comment-box">
-                        <form id="simpleCommentForm" class="simple-comment-form">
+                        <form id="githubCommentForm" class="simple-comment-form">
                             <div class="comment-input-group">
                                 <input 
                                     type="text" 
@@ -1047,7 +1067,7 @@
                                     class="comment-name-input"
                                 >
                                 <button type="submit" class="comment-submit-btn" id="submitCommentBtn">
-                                    <span>ارسال نظر</span>
+                                    <span>ارسال نظر به گیت‌هاب</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
                                     </svg>
@@ -1059,7 +1079,7 @@
                                     id="commentText" 
                                     name="message" 
                                     rows="3" 
-                                    placeholder="نظر خود را بنویسید..." 
+                                    placeholder="نظر خود را بنویسید... (بعد از ارسال، به صفحه گیت‌هاب هدایت می‌شوید)" 
                                     required
                                     class="comment-textarea"
                                 ></textarea>
@@ -1067,10 +1087,18 @@
                             
                             <input type="hidden" id="commentPostSlug" value="{{ page.slug | default: page.url | slugify }}">
                             <input type="hidden" id="commentPostTitle" value="{{ page.title | escape }}">
+                            <input type="hidden" id="repoOwner" value="darkblog">
+                            <input type="hidden" id="repoName" value="darkblog.github.io">
                             <input type="hidden" id="commentTimestamp" value="">
                         </form>
                         
                         <div id="commentStatus" class="comment-status" style="display: none;"></div>
+                        <div class="github-login-note">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.62 14.5,20.72 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                            </svg>
+                            برای ارسال نظر، به حساب گیت‌هاب خود هدایت می‌شوید. نظر شما به عنوان یک Issue جدید ثبت می‌شود.
+                        </div>
                     </div>
                 </div>
                 
@@ -1104,142 +1132,182 @@
 
 <script>
 (function() {
-  function loadComments() {
-    const postSlug = document.getElementById('commentPostSlug')?.value;
-    if (!postSlug) return;
-    const comments = JSON.parse(localStorage.getItem('blogComments') || '{}');
-    const postComments = comments[postSlug] || [];
-    const commentsContainer = document.getElementById('commentsList');
-    if (commentsContainer) {
-      commentsContainer.innerHTML = '';
-      if (postComments.length === 0) {
-        commentsContainer.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
-      } else {
-        postComments.reverse().forEach(displayComment);
-      }
-    }
-    updateCommentsCount(postComments.length);
-  }
-  
-  function displayComment(comment) {
-    const commentsContainer = document.getElementById('commentsList');
-    if (!commentsContainer) return;
-    const noCommentsMsg = commentsContainer.querySelector('.no-comments-mini');
-    if (noCommentsMsg) noCommentsMsg.remove();
-    const commentElement = document.createElement('div');
-    commentElement.className = 'comment-item-mini';
-    commentElement.id = comment.id;
-    let displayDate = comment.date;
-    if (!displayDate) {
-      displayDate = new Date().toLocaleDateString('fa-IR');
-    }
-    commentElement.innerHTML = `
-      <div class="comment-header-mini">
-        <span class="comment-name-mini">${escapeHtml(comment.name || 'کاربر مهمان')}</span>
-        <span class="comment-date-mini">${escapeHtml(displayDate)}</span>
-      </div>
-      <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
-    `;
-    commentsContainer.prepend(commentElement);
-  }
-  
-  function updateCommentsCount(count) {
-    const countElement = document.getElementById('commentsCount');
-    if (countElement) {
-      countElement.textContent = count || 0;
-    }
-  }
-  
-  function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  function saveComment(commentData) {
-    const allComments = JSON.parse(localStorage.getItem('blogComments') || '{}');
-    const postSlug = commentData.post;
-    if (!allComments[postSlug]) {
-      allComments[postSlug] = [];
-    }
-    allComments[postSlug].push(commentData);
-    localStorage.setItem('blogComments', JSON.stringify(allComments));
-    return allComments[postSlug].length;
-  }
-  
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    const nameInput = document.getElementById('commenterName');
-    const commentInput = document.getElementById('commentText');
+    const repoOwner = document.getElementById('repoOwner').value;
+    const repoName = document.getElementById('repoName').value;
     const postSlug = document.getElementById('commentPostSlug').value;
     const postTitle = document.getElementById('commentPostTitle').value;
-    const statusDiv = document.getElementById('commentStatus');
-    const submitBtn = document.getElementById('submitCommentBtn');
-    const commentText = commentInput.value.trim();
-    if (!commentText) {
-      statusDiv.textContent = 'لطفاً نظر خود را بنویسید';
-      statusDiv.className = 'comment-status error';
-      statusDiv.style.display = 'block';
-      setTimeout(() => {
-        statusDiv.style.opacity = '0';
+    
+    function loadComments() {
+        const commentsContainer = document.getElementById('commentsList');
+        if (!commentsContainer) return;
+        
+        fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/issues?labels=comment,${postSlug}&state=all`)
+            .then(response => response.json())
+            .then(issues => {
+                if (issues && issues.length > 0) {
+                    const comments = [];
+                    issues.forEach(issue => {
+                        if (issue.body) {
+                            const nameMatch = issue.body.match(/\*\*نام:\*\* (.*)/);
+                            const dateMatch = issue.body.match(/\*\*تاریخ:\*\* (.*)/);
+                            const messageMatch = issue.body.match(/\*\*متن نظر:\*\*\n(.*)/s);
+                            
+                            if (messageMatch) {
+                                comments.push({
+                                    id: issue.number,
+                                    name: nameMatch ? nameMatch[1].trim() : 'کاربر گیت‌هاب',
+                                    date: dateMatch ? dateMatch[1].trim() : new Date(issue.created_at).toLocaleDateString('fa-IR'),
+                                    message: messageMatch[1].trim(),
+                                    url: issue.html_url
+                                });
+                            }
+                        }
+                    });
+                    
+                    commentsContainer.innerHTML = '';
+                    if (comments.length === 0) {
+                        commentsContainer.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
+                        updateCommentsCount(0);
+                    } else {
+                        comments.reverse().forEach(displayComment);
+                        updateCommentsCount(comments.length);
+                    }
+                } else {
+                    commentsContainer.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
+                    updateCommentsCount(0);
+                }
+            })
+            .catch(error => {
+                console.error('خطا در بارگذاری نظرات:', error);
+                commentsContainer.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات از گیت‌هاب</div>';
+            });
+    }
+    
+    function displayComment(comment) {
+        const commentsContainer = document.getElementById('commentsList');
+        if (!commentsContainer) return;
+        
+        const noCommentsMsg = commentsContainer.querySelector('.no-comments-mini');
+        if (noCommentsMsg) noCommentsMsg.remove();
+        
+        const commentElement = document.createElement('div');
+        commentElement.className = 'comment-item-mini';
+        commentElement.id = `comment-${comment.id}`;
+        
+        commentElement.innerHTML = `
+            <div class="comment-header-mini">
+                <span class="comment-name-mini">${escapeHtml(comment.name)}</span>
+                <span class="comment-date-mini">${escapeHtml(comment.date)}</span>
+            </div>
+            <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
+            <div style="margin-top: 10px; font-size: 0.8rem;">
+                <a href="${comment.url}" target="_blank" style="color: var(--color-accent); text-decoration: none;">
+                    مشاهده در گیت‌هاب ↶
+                </a>
+            </div>
+        `;
+        
+        commentsContainer.appendChild(commentElement);
+    }
+    
+    function updateCommentsCount(count) {
+        const countElement = document.getElementById('commentsCount');
+        if (countElement) {
+            countElement.textContent = count || 0;
+        }
+    }
+    
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        
+        const nameInput = document.getElementById('commenterName');
+        const commentInput = document.getElementById('commentText');
+        const statusDiv = document.getElementById('commentStatus');
+        const submitBtn = document.getElementById('submitCommentBtn');
+        
+        const commentText = commentInput.value.trim();
+        if (!commentText) {
+            showStatus('لطفاً نظر خود را بنویسید', 'error', statusDiv);
+            return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>در حال آماده‌سازی...</span>';
+        
+        let commenterName = nameInput.value.trim();
+        if (!commenterName) {
+            commenterName = 'کاربر مهمان';
+        }
+        
+        const now = new Date();
+        const persianDate = now.toLocaleDateString('fa-IR', {
+            year: 'numeric',
+            month: 'numeric', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        const issueBody = `## نظر جدید در پست: ${postTitle}
+
+**نام:** ${commenterName}
+**تاریخ:** ${persianDate}
+**اسلاگ:** ${postSlug}
+
+**متن نظر:**
+${commentText}
+
+---
+این نظر از طریق فرم نظرات وبلاگ ارسال شده است.`;
+        
+        const issueUrl = `https://github.com/${repoOwner}/${repoName}/issues/new?title=نظر: ${postTitle}&body=${encodeURIComponent(issueBody)}&labels=comment,${postSlug}`;
+        
+        showStatus('در حال انتقال به گیت‌هاب...', 'info', statusDiv);
+        
         setTimeout(() => {
-          statusDiv.style.display = 'none';
-          statusDiv.style.opacity = '1';
-          statusDiv.className = 'comment-status';
-        }, 300);
-      }, 3000);
-      return;
+            window.open(issueUrl, '_blank');
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>ارسال نظر به گیت‌هاب</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
+            
+            showStatus('✅ به گیت‌هاب منتقل شدید. پس از ثبت Issue، نظر شما نمایش داده می‌شود.', 'success', statusDiv);
+            
+            commentInput.value = '';
+        }, 1500);
     }
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span>در حال ارسال...</span>';
-    let commenterName = nameInput.value.trim();
-    if (!commenterName) {
-      commenterName = 'کاربر مهمان';
+    
+    function showStatus(message, type, statusDiv) {
+        if (!statusDiv) return;
+        
+        statusDiv.textContent = message;
+        statusDiv.className = 'comment-status ' + type;
+        statusDiv.style.display = 'block';
+        
+        setTimeout(() => {
+            statusDiv.style.opacity = '0';
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+                statusDiv.style.opacity = '1';
+                statusDiv.className = 'comment-status';
+            }, 300);
+        }, 5000);
     }
-    const now = new Date();
-    const persianDate = now.toLocaleDateString('fa-IR', {
-      year: 'numeric',
-      month: 'numeric', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        loadComments();
+        
+        const form = document.getElementById('githubCommentForm');
+        if (form) {
+            form.addEventListener('submit', handleFormSubmit);
+        }
     });
-    const commentData = {
-      id: 'comment-' + Date.now() + '-' + Math.random().toString(36).substring(2, 6),
-      name: commenterName,
-      message: commentText,
-      post: postSlug,
-      postTitle: postTitle,
-      date: persianDate,
-      timestamp: now.toISOString()
-    };
-    const totalComments = saveComment(commentData);
-    displayComment(commentData);
-    updateCommentsCount(totalComments);
-    statusDiv.textContent = '✅ نظر شما با موفقیت ثبت شد';
-    statusDiv.className = 'comment-status success';
-    statusDiv.style.display = 'block';
-    commentInput.value = '';
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
-    setTimeout(() => {
-      statusDiv.style.opacity = '0';
-      setTimeout(() => {
-        statusDiv.style.display = 'none';
-        statusDiv.style.opacity = '1';
-        statusDiv.className = 'comment-status';
-      }, 300);
-    }, 3000);
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    loadComments();
-    const form = document.getElementById('simpleCommentForm');
-    if (form) {
-      form.addEventListener('submit', handleFormSubmit);
-    }
-  });
 })();
 </script>
 </body>
