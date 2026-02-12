@@ -3,10 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -119,10 +115,8 @@
         ]
     }
     </script>
-    
     <title>{{ page.title }}</title>
     <meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
-    
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title | escape }}">
     <meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
@@ -131,19 +125,15 @@
     <meta property="og:locale" content="fa_IR">
     <meta property="article:author" content="وبلاگ پاسگاه">
     <meta property="article:section" content="تاریخ">
-    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ page.title | escape }}">
     <meta name="twitter:description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
-    
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
     <link rel="icon" href="https://www.pasgah.org/blog.svg">
-    
     <meta name="theme-color" content="#DC2626">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    
     <style>
         @font-face {
             font-family: 'Vazirmatn';
@@ -152,7 +142,6 @@
             font-style: normal;
             font-display: swap;
         }
-        
         :root {
             --color-primary: #1A365D;
             --color-accent: #DC2626;
@@ -165,7 +154,6 @@
             --color-border: #E5E7EB;
             --color-shadow: rgba(0, 0, 0, 0.05);
             --color-hover: rgba(220, 38, 38, 0.05);
-            --color-card-border: #DC2626;
             --container-width: min(92%, 1000px);
             --spacing-xs: 0.5rem;
             --spacing-sm: 0.75rem;
@@ -186,15 +174,12 @@
             --line-height-tight: 1.3;
             --line-height-normal: 1.7;
             --line-height-loose: 1.8;
-            --transition-fast: 0.15s ease;
         }
-        
         *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         html {
             scroll-behavior: auto;
             -webkit-font-smoothing: antialiased;
@@ -203,7 +188,6 @@
             -webkit-tap-highlight-color: transparent;
             background-color: var(--color-bg);
         }
-        
         body {
             font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
             background-color: var(--color-bg);
@@ -220,12 +204,10 @@
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
         }
-        
         .container {
             width: var(--container-width);
             margin: 0 auto;
         }
-        
         .site-header {
             position: sticky;
             top: 0;
@@ -235,18 +217,14 @@
             display: flex;
             align-items: center;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            -webkit-backdrop-filter: none;
-            backdrop-filter: none;
             border-bottom: none;
         }
-        
         @supports (-webkit-touch-callout: none) {
             .site-header {
                 padding-top: env(safe-area-inset-top);
                 height: calc(var(--header-height) + env(safe-area-inset-top));
             }
         }
-        
         .header-container {
             display: flex;
             align-items: center;
@@ -254,7 +232,6 @@
             width: 100%;
             height: 100%;
         }
-        
         .logo-link {
             display: flex;
             align-items: center;
@@ -268,28 +245,23 @@
             text-decoration: none;
             -webkit-tap-highlight-color: transparent;
         }
-        
         .logo-svg {
             width: 3.5rem;
             height: 3.5rem;
             color: #FFFFFF;
             filter: brightness(0) invert(1);
         }
-        
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
-        
         .content-start {
             height: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl));
         }
-        
         .article-section {
             padding-bottom: clamp(var(--spacing-xl), 6vw, var(--spacing-xxl));
         }
-        
         .article-container {
             background: var(--color-surface);
             border-radius: var(--radius-lg);
@@ -297,7 +269,6 @@
             border: 1px solid var(--color-border);
             position: relative;
         }
-        
         .article-title {
             font-size: var(--font-size-3xl);
             font-weight: 700;
@@ -305,19 +276,18 @@
             color: var(--color-primary);
             margin-bottom: var(--spacing-lg);
             text-align: right;
+            border-bottom: 2px solid var(--color-accent-light);
+            padding-bottom: var(--spacing-md);
         }
-        
         .article-content {
             font-size: var(--font-size-lg);
             color: var(--color-text);
             line-height: var(--line-height-loose);
             text-align: right;
         }
-        
         .article-content p {
             margin: var(--spacing-md) 0;
         }
-        
         .article-content h2 {
             font-size: var(--font-size-2xl);
             font-weight: 700;
@@ -325,43 +295,36 @@
             margin: var(--spacing-lg) 0 var(--spacing-md) 0;
             padding-bottom: 0;
         }
-        
         .article-content h3 {
             font-size: var(--font-size-xl);
             font-weight: 600;
             color: var(--color-primary);
             margin: var(--spacing-md) 0 var(--spacing-sm) 0;
         }
-        
         .article-content h4 {
             font-size: var(--font-size-lg);
             font-weight: 600;
             color: var(--color-text);
             margin: var(--spacing-md) 0 var(--spacing-sm) 0;
         }
-        
         .article-content a {
             color: var(--color-accent);
             text-decoration: none;
             font-weight: 500;
         }
-        
         .article-content a:hover {
             text-decoration: underline;
         }
-        
         .article-content ul {
             margin: var(--spacing-md) 0;
             padding-right: var(--spacing-lg);
             list-style: none;
         }
-        
         .article-content ul li {
             margin-bottom: var(--spacing-sm);
             position: relative;
             padding-right: 1.5rem;
         }
-        
         .article-content ul li::before {
             content: '';
             position: absolute;
@@ -372,21 +335,18 @@
             background-color: var(--color-accent);
             border-radius: 50%;
         }
-        
         .article-content ol {
             margin: var(--spacing-md) 0;
             padding-right: var(--spacing-lg);
             list-style: none;
             counter-reset: list-counter;
         }
-        
         .article-content ol li {
             margin-bottom: var(--spacing-sm);
             position: relative;
             padding-right: 2rem;
             counter-increment: list-counter;
         }
-        
         .article-content ol li::before {
             content: counter(list-counter) ". ";
             position: absolute;
@@ -395,7 +355,6 @@
             font-weight: 700;
             font-size: 1rem;
         }
-        
         .article-content blockquote {
             border-right: 5px solid var(--color-accent);
             padding: var(--spacing-md) var(--spacing-lg);
@@ -405,7 +364,6 @@
             font-style: italic;
             color: var(--color-text-secondary);
         }
-        
         .article-content code {
             background-color: rgba(220, 38, 38, 0.1);
             padding: 0.2em 0.4em;
@@ -414,7 +372,6 @@
             font-size: 0.95em;
             color: var(--color-accent);
         }
-        
         .article-content pre {
             background-color: var(--color-bg);
             border: 1px solid var(--color-border);
@@ -424,13 +381,11 @@
             overflow-x: auto;
             display: block;
         }
-        
         .article-content pre code {
             background-color: transparent;
             padding: 0;
             color: var(--color-text);
         }
-        
         .article-content img {
             max-width: 100%;
             height: auto;
@@ -438,7 +393,6 @@
             margin: var(--spacing-lg) 0;
             display: block;
         }
-        
         .table-scroll {
             margin: var(--spacing-lg) 0;
             border: 1px solid var(--color-border);
@@ -450,18 +404,15 @@
             width: 100%;
             max-width: 100%;
         }
-        
         .article-content table {
             width: 100%;
             border-collapse: collapse;
             min-width: 600px;
             display: table;
         }
-        
         .article-content table thead {
             background: #FFFFFF;
         }
-        
         .article-content table th {
             color: var(--color-text);
             padding: 1rem;
@@ -470,452 +421,41 @@
             border: 1px solid var(--color-border);
             white-space: nowrap;
         }
-        
         .article-content table td {
             padding: 1rem;
             text-align: right;
             border: 1px solid var(--color-border);
         }
-        
         .article-content table tbody tr:nth-child(even) {
             background-color: var(--color-bg);
         }
-        
-        .comments-section {
-            margin-top: var(--spacing-xxl);
-            padding-top: var(--spacing-xl);
-            border-top: 2px solid var(--color-border);
-        }
-        
-        .firebase-comments-section {
-            margin-top: var(--spacing-xxl);
-            padding-top: var(--spacing-xl);
-            border-top: 2px solid var(--color-border);
-        }
-        
-        .comments-header {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .comments-title-mini {
-            display: flex;
-            align-items: center;
-            font-size: var(--font-size-xl);
-            font-weight: 700;
-            color: var(--color-primary);
-        }
-        
-        .comments-count-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--color-accent);
-            color: white;
-            font-size: 0.8rem;
-            font-weight: 600;
-            min-width: 1.8rem;
-            height: 1.8rem;
-            padding: 0 6px;
-            border-radius: 20px;
-            margin-right: 10px;
-        }
-        
-        .comments-list-mini {
-            margin-bottom: var(--spacing-xl);
-            max-height: 500px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-        
-        .comment-item-mini {
-            padding: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            transition: all 0.2s ease;
-        }
-        
-        .comment-item-mini:hover {
-            border-color: var(--color-accent-light);
-            box-shadow: 0 2px 8px var(--color-shadow);
-        }
-        
-        .comment-header-mini {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: var(--spacing-sm);
-            padding-bottom: var(--spacing-xs);
-            border-bottom: 1px dashed var(--color-border);
-        }
-        
-        .comment-name-mini {
-            font-weight: 700;
-            color: var(--color-accent);
-            font-size: var(--font-size-base);
-        }
-        
-        .comment-date-mini {
-            color: var(--color-text-light);
-            font-size: var(--font-size-sm);
-        }
-        
-        .comment-body-mini {
-            color: var(--color-text);
-            line-height: var(--line-height-normal);
-            font-size: var(--font-size-base);
-            padding: var(--spacing-xs) 0;
-            word-wrap: break-word;
-        }
-        
-        .no-comments-mini {
-            text-align: center;
-            padding: var(--spacing-xl);
-            background: var(--color-bg);
-            border-radius: var(--radius-lg);
-            color: var(--color-text-light);
-            font-size: var(--font-size-base);
-            border: 1px dashed var(--color-border);
-        }
-        
-        .simple-comment-box {
-            background: var(--color-bg);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            border: 1px solid var(--color-border);
-            margin-top: var(--spacing-lg);
-            position: relative;
-        }
-        
-        .simple-comment-form {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-        
-        .comment-input-group {
-            display: flex;
-            gap: var(--spacing-sm);
-        }
-        
-        .comment-name-input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: var(--font-size-sm);
-            background: var(--color-surface);
-            transition: all 0.2s ease;
-        }
-        
-        .comment-name-input:focus {
-            outline: none;
-            border-color: var(--color-accent);
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-        }
-        
-        .comment-submit-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0 1.5rem;
-            background: var(--color-accent);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-        
-        .comment-submit-btn:hover {
-            background: var(--color-accent-light);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
-        }
-        
-        .comment-submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .comment-textarea-group {
-            width: 100%;
-        }
-        
-        .comment-textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-normal);
-            resize: vertical;
-            background: var(--color-surface);
-            transition: all 0.2s ease;
-        }
-        
-        .comment-textarea:focus {
-            outline: none;
-            border-color: var(--color-accent);
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-        }
-        
-        .comment-status {
-            margin-top: var(--spacing-md);
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            text-align: center;
-            transition: opacity 0.3s ease;
-        }
-        
-        .comment-status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .comment-status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .pending-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: #FFA500;
-            color: white;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 10px;
-        }
-        
-        .admin-btn-container {
-            position: absolute;
-            left: var(--spacing-lg);
-            top: var(--spacing-lg);
-        }
-        
-        .admin-login-btn {
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            font-size: 0.85rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-        }
-        
-        .admin-login-btn:hover {
-            background: #2C4A6E;
-            transform: translateY(-1px);
-        }
-        
-        .admin-login-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            z-index: 2000;
-            width: 300px;
-        }
-        
-        .admin-login-modal.active {
-            display: block;
-        }
-        
-        .admin-login-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .admin-login-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin: 0;
-        }
-        
-        .admin-login-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--color-text-light);
-        }
-        
-        .admin-login-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-family: 'Vazirmatn', sans-serif;
-            margin-bottom: 15px;
-        }
-        
-        .admin-login-submit {
-            width: 100%;
-            background: var(--color-accent);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: var(--radius-md);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        .admin-login-submit:hover {
-            background: var(--color-accent-light);
-        }
-        
-        .admin-panel {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            z-index: 2000;
-            width: 400px;
-            max-width: 90%;
-        }
-        
-        .admin-panel.active {
-            display: block;
-        }
-        
-        .admin-panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .admin-panel-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin: 0;
-        }
-        
-        .admin-panel-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--color-text-light);
-        }
-        
-        .admin-panel-info {
-            color: var(--color-text-light);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed var(--color-border);
-        }
-        
-        .admin-panel-stats {
-            background: var(--color-bg);
-            padding: 15px;
-            border-radius: var(--radius-md);
-            margin-bottom: 20px;
-        }
-        
-        .admin-logout-btn {
-            background: #6B7280;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .admin-logout-btn:hover {
-            background: #4B5563;
-        }
-        
-        .approve-btn {
-            background: #10B981;
-            color: white;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 0.8rem;
-        }
-        
-        .delete-btn {
-            background: #DC2626;
-            color: white;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 0.8rem;
-        }
-        
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1999;
-        }
-        
-        .overlay.active {
-            display: block;
-        }
-        
         .more-posts {
             margin-top: var(--spacing-xxl);
         }
-        
         .more-posts-title {
             font-size: var(--font-size-2xl);
             font-weight: 700;
             color: var(--color-primary);
             margin-bottom: var(--spacing-lg);
             text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
-        
+        .more-posts-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 0.75rem auto 0;
+            border-radius: 3px;
+        }
         .posts-list {
             display: flex;
             flex-direction: column;
             gap: var(--spacing-lg);
         }
-        
         .post-card {
             background: var(--color-surface);
             border-radius: var(--radius-lg);
@@ -924,19 +464,39 @@
             color: inherit;
             display: block;
             border: 1px solid var(--color-border);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
+        .post-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 8px 20px var(--color-shadow);
+            transform: translateY(-3px);
+        }
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--color-accent);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .post-card:hover::before {
+            opacity: 1;
+        }
         .post-title {
             font-size: var(--font-size-xl);
             font-weight: 700;
             line-height: var(--line-height-tight);
             color: var(--color-primary);
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
             position: relative;
-            padding-right: 2rem;
+            padding-right: 1.75rem;
         }
-        
-        .post-title::after {
+        .post-title::before {
             content: '←';
             position: absolute;
             right: 0;
@@ -945,31 +505,59 @@
             opacity: 1;
             color: var(--color-accent);
             font-size: 1.2em;
+            font-weight: 400;
         }
-        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: var(--spacing-sm);
+            padding-right: 1.75rem;
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+        }
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .post-author svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--color-accent);
+        }
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .post-date svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--color-accent);
+        }
         .post-excerpt {
             font-size: var(--font-size-lg);
             color: var(--color-text-secondary);
             line-height: var(--line-height-loose);
             margin-top: var(--spacing-sm);
+            padding-right: 1.75rem;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
         footer {
             padding: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl)) 0;
             background-color: var(--color-accent);
+            margin-top: auto;
         }
-        
         .footer-container {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
         .footer-logo {
             display: flex;
             align-items: center;
@@ -977,225 +565,149 @@
             padding: var(--spacing-md);
             border-radius: var(--radius-md);
         }
-        
         .footer-logo-svg {
             width: clamp(4rem, 3rem + 2vw, 6rem);
             height: clamp(4rem, 3rem + 2vw, 6rem);
             color: #FFFFFF;
             filter: brightness(0) invert(1);
         }
-        
         @media (max-width: 768px) {
             .article-container {
                 padding: var(--spacing-md);
             }
-            
             .article-title {
                 font-size: var(--font-size-2xl);
             }
-            
             .article-content {
                 font-size: var(--font-size-base);
             }
-            
             .article-content h2 {
                 font-size: var(--font-size-xl);
             }
-            
             .article-content h3 {
                 font-size: var(--font-size-lg);
             }
-            
-            .table-scroll {
-                border-radius: var(--radius-sm);
-            }
-            
             .article-content table {
                 min-width: 500px;
             }
-            
             .article-content table th,
             .article-content table td {
                 padding: 0.75rem;
                 font-size: 0.9rem;
             }
-            
-            .firebase-comments-section {
-                margin-top: var(--spacing-xl);
-                padding-top: var(--spacing-lg);
-            }
-            
-            .comment-input-group {
-                flex-direction: column;
-            }
-            
-            .comment-submit-btn {
-                justify-content: center;
-                padding: 0.8rem;
-            }
-            
-            .comments-title-mini {
-                font-size: var(--font-size-lg);
-            }
-            
-            .comment-item-mini {
-                padding: var(--spacing-sm);
-            }
-            
             .post-card {
                 padding: var(--spacing-md);
             }
-            
             .post-title {
                 font-size: var(--font-size-lg);
                 padding-right: 1.75rem;
             }
-            
             .post-excerpt {
                 font-size: var(--font-size-base);
                 -webkit-line-clamp: 2;
             }
-            
+            .post-meta {
+                padding-right: 1.75rem;
+                flex-wrap: wrap;
+            }
             :root {
                 --header-height: 4.5rem;
             }
-            
             .logo-svg {
                 width: 3rem;
                 height: 3rem;
             }
         }
-        
         @media (max-width: 480px) {
             .article-container {
                 padding: var(--spacing-sm);
             }
-            
             .article-title {
                 font-size: var(--font-size-xl);
+                padding-bottom: var(--spacing-sm);
             }
-            
-            .table-scroll {
-                border: 1px solid var(--color-border);
-                border-radius: var(--radius-sm);
-            }
-            
             .article-content table {
                 min-width: 400px;
             }
-            
             .article-content table th,
             .article-content table td {
                 padding: 0.5rem;
                 font-size: 0.85rem;
             }
-            
-            .firebase-comments-section {
-                margin-top: var(--spacing-lg);
-                padding-top: var(--spacing-md);
-            }
-            
-            .simple-comment-box {
-                padding: var(--spacing-md);
-            }
-            
-            .no-comments-mini {
-                padding: var(--spacing-lg);
-            }
-            
             .post-card {
                 padding: var(--spacing-sm);
             }
-            
             .post-title {
                 font-size: var(--font-size-base);
                 padding-right: 1.5rem;
             }
-            
             .post-excerpt {
                 -webkit-line-clamp: 2;
+                padding-right: 1.5rem;
+                font-size: var(--font-size-sm);
             }
-            
+            .post-meta {
+                padding-right: 1.5rem;
+                font-size: 0.75rem;
+            }
             :root {
                 --header-height: 4rem;
             }
-            
             .logo-svg {
                 width: 2.75rem;
                 height: 2.75rem;
             }
         }
-        
         @media (max-width: 360px) {
             .article-content table {
                 min-width: 320px;
             }
-            
             .article-content table th,
             .article-content table td {
                 padding: 0.4rem;
                 font-size: 0.8rem;
             }
         }
-        
         :focus-visible {
             outline: 3px solid var(--color-accent);
             outline-offset: 3px;
             border-radius: var(--radius-sm);
         }
-        
-        *, *::before, *::after {
-            animation-duration: 0s !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0s !important;
-        }
-        
         ::selection {
             background-color: rgba(220, 38, 38, 0.15);
             color: var(--color-text);
         }
-        
         @media print {
             .article-container {
                 box-shadow: none;
                 border: 1px solid var(--color-border);
             }
-            
             .table-scroll {
                 border: 1px solid #000000;
             }
-            
-            .firebase-comments-section {
-                display: none;
-            }
-            
             footer {
                 background: none;
             }
+            .post-card {
+                break-inside: avoid;
+            }
         }
-        
         a {
             -webkit-tap-highlight-color: transparent;
         }
-        
-        a:active {
-            outline: none;
-        }
-        
         body {
             overscroll-behavior-y: contain;
         }
-        
         html, body {
             position: fixed;
             width: 100%;
             height: 100%;
             overflow: auto;
         }
-        
         @media (hover: none) and (pointer: coarse) {
             .post-card:active {
                 opacity: 0.9;
+                background-color: var(--color-hover);
             }
         }
     </style>
@@ -1208,10 +720,8 @@
             </a>
         </div>
     </header>
-    
     <main>
         <div class="content-start"></div>
-        
         <section class="article-section">
             <div class="container">
                 <article class="article-container">
@@ -1220,76 +730,28 @@
                         {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
                 </article>
-                
-                <div class="firebase-comments-section">
-                    <div class="comments-header">
-                        <h3 class="comments-title-mini">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 8px;">
-                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,9H17V11H7V9M17,17H7V15H17V17M16,13H8V11H16V13Z"/>
-                            </svg>
-                            نظرات
-                            <span class="comments-count-badge" id="commentsCount">0</span>
-                        </h3>
-                    </div>
-                    
-                    <div id="commentsList" class="comments-list-mini">
-                        <div class="no-comments-mini">در حال بارگذاری نظرات...</div>
-                    </div>
-                    
-                    <div class="simple-comment-box">
-                        <div class="admin-btn-container">
-                            <button onclick="openAdminLogin()" class="admin-login-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.62 14.5,20.72 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
-                                </svg>
-                                پنل مدیریت
-                            </button>
-                        </div>
-                        <form id="commentForm" class="simple-comment-form">
-                            <div class="comment-input-group">
-                                <input 
-                                    type="text" 
-                                    id="commenterName" 
-                                    name="name" 
-                                    placeholder="نام شما (پیش‌فرض: کاربر مهمان)" 
-                                    autocomplete="name"
-                                    class="comment-name-input"
-                                >
-                                <button type="submit" class="comment-submit-btn" id="submitCommentBtn">
-                                    <span>ارسال نظر</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            <div class="comment-textarea-group">
-                                <textarea 
-                                    id="commentText" 
-                                    name="message" 
-                                    rows="3" 
-                                    placeholder="نظر خود را بنویسید..." 
-                                    required
-                                    class="comment-textarea"
-                                ></textarea>
-                            </div>
-                            
-                            <input type="hidden" id="commentPostSlug" value="{{ page.slug | default: page.url | slugify }}">
-                            <input type="hidden" id="commentPostTitle" value="{{ page.title | escape }}">
-                        </form>
-                        <div id="commentStatus" class="comment-status" style="display: none;"></div>
-                    </div>
-                </div>
-                
                 <div class="more-posts">
                     <h2 class="more-posts-title">پست‌های بیشتر</h2>
                     <div class="posts-list">
                         {% assign current_post_url = page.url %}
                         {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                        
                         {% for post in all_posts limit: 100 %}
                         <a href="{{ post.url }}" class="post-card" itemscope itemtype="https://schema.org/Article" aria-label="{{ post.title }}">
                             <h3 class="post-title" itemprop="headline">{{ post.title }}</h3>
+                            <div class="post-meta">
+                                <span class="post-author">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                                    </svg>
+                                    پاسگاه
+                                </span>
+                                <span class="post-date">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/>
+                                    </svg>
+                                    {{ post.date | to_persian_date: "%d %B %Y" }}
+                                </span>
+                            </div>
                             <div class="post-excerpt" itemprop="description">
                                 {{ post.excerpt | strip_html | truncate: 200 }}
                             </div>
@@ -1300,7 +762,6 @@
             </div>
         </section>
     </main>
-    
     <footer>
         <div class="container footer-container">
             <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
@@ -1308,340 +769,5 @@
             </a>
         </div>
     </footer>
-
-    <div id="overlay" class="overlay" onclick="closeAllModals()"></div>
-
-    <div id="adminLoginModal" class="admin-login-modal">
-        <div class="admin-login-header">
-            <h4 class="admin-login-title">ورود مدیر</h4>
-            <button onclick="closeAdminLogin()" class="admin-login-close">✕</button>
-        </div>
-        <input type="password" id="adminPassword" class="admin-login-input" placeholder="رمز عبور">
-        <button onclick="checkAdminPassword()" class="admin-login-submit">ورود به پنل</button>
-    </div>
-    
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-panel-header">
-            <h4 class="admin-panel-title">پنل مدیریت نظرات</h4>
-            <button onclick="closeAdminPanel()" class="admin-panel-close">✕</button>
-        </div>
-        <div class="admin-panel-info">
-            <p>در این پنل میتوانید نظرات را تأیید یا حذف کنید.</p>
-        </div>
-        <div id="adminStats" class="admin-panel-stats">
-            در حال بارگذاری آمار...
-        </div>
-        <button onclick="logoutAdmin()" class="admin-logout-btn">خروج از پنل</button>
-    </div>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyD0TyNrrkPqPy82X9olmnALjQWwTWXFhUE",
-  authDomain: "pasgah-blog.firebaseapp.com",
-  projectId: "pasgah-blog",
-  storageBucket: "pasgah-blog.firebasestorage.app",
-  messagingSenderId: "467449201034",
-  appId: "1:467449201034:web:9c9617b2c1d4bfa55cc873"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-const postSlug = document.getElementById('commentPostSlug').value;
-const postTitle = document.getElementById('commentPostTitle').value;
-
-const ADMIN_PASSWORD = "pasgah-blog";
-
-let isAdmin = false;
-
-function openAdminLogin() {
-    document.getElementById('adminLoginModal').classList.add('active');
-    document.getElementById('overlay').classList.add('active');
-}
-
-function closeAdminLogin() {
-    document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('overlay').classList.remove('active');
-    document.getElementById('adminPassword').value = '';
-}
-
-function openAdminPanel() {
-    document.getElementById('adminPanel').classList.add('active');
-    document.getElementById('overlay').classList.add('active');
-    updateAdminStats();
-}
-
-function closeAdminPanel() {
-    document.getElementById('adminPanel').classList.remove('active');
-    document.getElementById('overlay').classList.remove('active');
-}
-
-function closeAllModals() {
-    document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('adminPanel').classList.remove('active');
-    document.getElementById('overlay').classList.remove('active');
-    document.getElementById('adminPassword').value = '';
-}
-
-function checkAdminPassword() {
-    const password = document.getElementById('adminPassword').value;
-    if (password === ADMIN_PASSWORD) {
-        isAdmin = true;
-        closeAdminLogin();
-        openAdminPanel();
-        loadComments();
-    } else {
-        alert('رمز عبور اشتباه است!');
-    }
-}
-
-function logoutAdmin() {
-    isAdmin = false;
-    closeAdminPanel();
-    loadComments();
-}
-
-function updateAdminStats() {
-    const statsDiv = document.getElementById('adminStats');
-    db.collection('comments')
-        .where('slug', '==', postSlug)
-        .get()
-        .then((querySnapshot) => {
-            let total = 0;
-            let pending = 0;
-            let approved = 0;
-            
-            querySnapshot.forEach((doc) => {
-                total++;
-                const comment = doc.data();
-                if (comment.status === 'approved') {
-                    approved++;
-                } else {
-                    pending++;
-                }
-            });
-            
-            statsDiv.innerHTML = `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span>کل نظرات:</span>
-                    <span style="font-weight: 700;">${total}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; color: #FFA500;">
-                    <span>در انتظار تأیید:</span>
-                    <span style="font-weight: 700;">${pending}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; color: #10B981;">
-                    <span>تأیید شده:</span>
-                    <span style="font-weight: 700;">${approved}</span>
-                </div>
-            `;
-        })
-        .catch((error) => {
-            console.error('خطا در دریافت آمار:', error);
-            statsDiv.innerHTML = 'خطا در دریافت آمار';
-        });
-}
-
-function approveComment(commentId) {
-    db.collection('comments').doc(commentId).update({
-        status: 'approved'
-    })
-    .then(() => {
-        alert('نظر تأیید شد');
-        loadComments();
-        updateAdminStats();
-    })
-    .catch((error) => {
-        console.error('خطا در تأیید نظر:', error);
-        alert('خطا در تأیید نظر');
-    });
-}
-
-function deleteComment(commentId) {
-    if (confirm('آیا از حذف این نظر اطمینان دارید؟')) {
-        db.collection('comments').doc(commentId).delete()
-        .then(() => {
-            alert('نظر حذف شد');
-            loadComments();
-            updateAdminStats();
-        })
-        .catch((error) => {
-            console.error('خطا در حذف نظر:', error);
-            alert('خطا در حذف نظر');
-        });
-    }
-}
-
-function loadComments() {
-    const commentsList = document.getElementById('commentsList');
-    
-    let query = db.collection('comments')
-        .where('slug', '==', postSlug)
-        .orderBy('timestamp', 'desc');
-    
-    if (!isAdmin) {
-        query = query.where('status', '==', 'approved');
-    }
-    
-    query.get()
-    .then((querySnapshot) => {
-        commentsList.innerHTML = '';
-        
-        if (querySnapshot.empty) {
-            commentsList.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
-            updateCommentsCount(0);
-            return;
-        }
-        
-        querySnapshot.forEach((doc) => {
-            const comment = doc.data();
-            comment.id = doc.id;
-            displayComment(comment);
-        });
-        
-        updateCommentsCount(querySnapshot.size);
-    })
-    .catch((error) => {
-        console.error('خطا در لود نظرات:', error);
-        commentsList.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات. لطفاً صفحه را رفرش کنید.</div>';
-    });
-}
-
-function displayComment(comment) {
-    const commentsList = document.getElementById('commentsList');
-    const noComments = commentsList.querySelector('.no-comments-mini');
-    
-    const commentElement = document.createElement('div');
-    commentElement.className = 'comment-item-mini';
-    
-    let statusBadge = '';
-    let adminButtons = '';
-    
-    if (comment.status !== 'approved') {
-        statusBadge = '<div class="pending-badge">⏳ در انتظار تأیید</div>';
-    }
-    
-    if (isAdmin) {
-        adminButtons = `
-            <div style="margin-top: 10px;">
-                ${comment.status !== 'approved' ? `<button onclick="approveComment('${comment.id}')" class="approve-btn">✓ تأیید</button>` : ''}
-                <button onclick="deleteComment('${comment.id}')" class="delete-btn">✗ حذف</button>
-            </div>
-        `;
-    }
-    
-    commentElement.innerHTML = `
-        <div class="comment-header-mini">
-            <span class="comment-name-mini">${escapeHtml(comment.name)}</span>
-            <span class="comment-date-mini">${escapeHtml(comment.date)}</span>
-        </div>
-        <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
-        ${statusBadge}
-        ${adminButtons}
-    `;
-    
-    if (noComments) {
-        noComments.remove();
-        commentsList.appendChild(commentElement);
-    } else {
-        commentsList.appendChild(commentElement);
-    }
-}
-
-function updateCommentsCount(count) {
-    const countElement = document.getElementById('commentsCount');
-    if (countElement) {
-        countElement.textContent = count;
-    }
-}
-
-function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-function handleFormSubmit(e) {
-    e.preventDefault();
-    
-    const nameInput = document.getElementById('commenterName');
-    const commentInput = document.getElementById('commentText');
-    const statusDiv = document.getElementById('commentStatus');
-    const submitBtn = document.getElementById('submitCommentBtn');
-    
-    const commentText = commentInput.value.trim();
-    if (!commentText) {
-        showStatus('لطفاً نظر خود را بنویسید', 'error', statusDiv);
-        return;
-    }
-    
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span>در حال ارسال...</span>';
-    
-    let commenterName = nameInput.value.trim();
-    if (!commenterName) {
-        commenterName = 'کاربر مهمان';
-    }
-    
-    const now = new Date();
-    const persianDate = now.toLocaleDateString('fa-IR', {
-        year: 'numeric',
-        month: 'numeric', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-    
-    db.collection('comments').add({
-        name: commenterName,
-        message: commentText,
-        date: persianDate,
-        slug: postSlug,
-        postTitle: postTitle,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        status: 'pending'
-    })
-    .then(() => {
-        showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
-        commentInput.value = '';
-        loadComments();
-    })
-    .catch((error) => {
-        console.error('خطا در ارسال نظر:', error);
-        showStatus('❌ خطا در ارسال نظر. لطفاً دوباره تلاش کنید.', 'error', statusDiv);
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
-    });
-}
-
-function showStatus(message, type, statusDiv) {
-    if (!statusDiv) return;
-    
-    statusDiv.textContent = message;
-    statusDiv.className = 'comment-status ' + type;
-    statusDiv.style.display = 'block';
-    
-    setTimeout(() => {
-        statusDiv.style.opacity = '0';
-        setTimeout(() => {
-            statusDiv.style.display = 'none';
-            statusDiv.style.opacity = '1';
-            statusDiv.className = 'comment-status';
-        }, 300);
-    }, 5000);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    loadComments();
-    
-    const form = document.getElementById('commentForm');
-    if (form) {
-        form.addEventListener('submit', handleFormSubmit);
-    }
-});
-</script>
 </body>
 </html>
