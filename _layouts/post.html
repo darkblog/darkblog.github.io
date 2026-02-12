@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -484,7 +487,7 @@
             border-top: 2px solid var(--color-border);
         }
         
-        .github-comments-section {
+        .firebase-comments-section {
             margin-top: var(--spacing-xxl);
             padding-top: var(--spacing-xl);
             border-top: 2px solid var(--color-border);
@@ -514,6 +517,17 @@
             height: 1.8rem;
             padding: 0 6px;
             border-radius: 20px;
+            margin-right: 10px;
+        }
+        
+        .firebase-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FFCA28;
+            color: #212121;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
             margin-right: 10px;
         }
         
@@ -574,23 +588,6 @@
             color: var(--color-text-light);
             font-size: var(--font-size-base);
             border: 1px dashed var(--color-border);
-        }
-        
-        .pending-comment {
-            opacity: 0.8;
-            border-right: 4px solid #FFA500;
-            background: #fff9e6;
-        }
-        
-        .pending-badge {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 4px 12px;
-            background: #FFA500;
-            color: white;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
         }
         
         .simple-comment-box {
@@ -824,7 +821,7 @@
                 font-size: 0.9rem;
             }
             
-            .github-comments-section {
+            .firebase-comments-section {
                 margin-top: var(--spacing-xl);
                 padding-top: var(--spacing-lg);
             }
@@ -894,7 +891,7 @@
                 font-size: 0.85rem;
             }
             
-            .github-comments-section {
+            .firebase-comments-section {
                 margin-top: var(--spacing-lg);
                 padding-top: var(--spacing-md);
             }
@@ -969,7 +966,7 @@
                 border: 1px solid #000000;
             }
             
-            .github-comments-section {
+            .firebase-comments-section {
                 display: none;
             }
             
@@ -1025,7 +1022,7 @@
                     </div>
                 </article>
                 
-                <div class="github-comments-section">
+                <div class="firebase-comments-section">
                     <div class="comments-header">
                         <h3 class="comments-title-mini">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 8px;">
@@ -1033,24 +1030,12 @@
                             </svg>
                             نظرات
                             <span class="comments-count-badge" id="commentsCount">0</span>
+                            <span class="firebase-badge">🔥 Firebase</span>
                         </h3>
                     </div>
                     
                     <div id="commentsList" class="comments-list-mini">
-                        {% assign issue_comments = site.data.comments[page.slug] %}
-                        {% if issue_comments and issue_comments.size > 0 %}
-                            {% for comment in issue_comments reversed %}
-                                <div class="comment-item-mini">
-                                    <div class="comment-header-mini">
-                                        <span class="comment-name-mini">{{ comment.name }}</span>
-                                        <span class="comment-date-mini">{{ comment.date }}</span>
-                                    </div>
-                                    <div class="comment-body-mini">{{ comment.message | newline_to_br }}</div>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>
-                        {% endif %}
+                        <div class="no-comments-mini">در حال بارگذاری نظرات...</div>
                     </div>
                     
                     <div class="simple-comment-box">
@@ -1119,184 +1104,167 @@
     </footer>
 
 <script>
-(function() {
-    const STORAGE_KEY = 'pending_comments';
-    const postSlug = document.getElementById('commentPostSlug').value;
-    const postTitle = document.getElementById('commentPostTitle').value;
+const firebaseConfig = {
+  apiKey: "AIzaSyD0TyNrrkPqPy82X9olmnALjQWwTWXFhUE",
+  authDomain: "pasgah-blog.firebaseapp.com",
+  projectId: "pasgah-blog",
+  storageBucket: "pasgah-blog.firebasestorage.app",
+  messagingSenderId: "467449201034",
+  appId: "1:467449201034:web:9c9617b2c1d4bfa55cc873"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const postSlug = document.getElementById('commentPostSlug').value;
+const postTitle = document.getElementById('commentPostTitle').value;
+
+function loadComments() {
+    const commentsList = document.getElementById('commentsList');
     
-    function updateCommentsCount() {
-        const commentsCount = document.querySelectorAll('#commentsList .comment-item-mini:not(.pending-comment)').length;
-        const countElement = document.getElementById('commentsCount');
-        if (countElement) {
-            countElement.textContent = commentsCount;
-        }
-    }
-    
-    function loadPendingComments() {
-        const pending = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        const postPending = pending[postSlug] || [];
-        
-        if (postPending.length > 0) {
-            const commentsList = document.getElementById('commentsList');
-            const noComments = commentsList.querySelector('.no-comments-mini');
+    db.collection('comments')
+        .where('slug', '==', postSlug)
+        .where('status', '==', 'approved')
+        .orderBy('timestamp', 'desc')
+        .get()
+        .then((querySnapshot) => {
+            commentsList.innerHTML = '';
             
-            postPending.forEach(comment => {
-                const commentElement = document.createElement('div');
-                commentElement.className = 'comment-item-mini pending-comment';
-                commentElement.innerHTML = `
-                    <div class="comment-header-mini">
-                        <span class="comment-name-mini">${escapeHtml(comment.name)}</span>
-                        <span class="comment-date-mini">${escapeHtml(comment.date)}</span>
-                    </div>
-                    <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
-                    <div class="pending-badge">⏳ در انتظار تأیید</div>
-                `;
-                
-                if (noComments) {
-                    noComments.remove();
-                    commentsList.appendChild(commentElement);
-                } else {
-                    commentsList.appendChild(commentElement);
-                }
-            });
-        }
-    }
-    
-    function savePendingComment(comment) {
-        const pending = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        if (!pending[postSlug]) {
-            pending[postSlug] = [];
-        }
-        pending[postSlug].push(comment);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(pending));
-    }
-    
-    function escapeHtml(text) {
-        if (!text) return '';
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-    
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        
-        const nameInput = document.getElementById('commenterName');
-        const commentInput = document.getElementById('commentText');
-        const statusDiv = document.getElementById('commentStatus');
-        const submitBtn = document.getElementById('submitCommentBtn');
-        
-        const commentText = commentInput.value.trim();
-        if (!commentText) {
-            showStatus('لطفاً نظر خود را بنویسید', 'error', statusDiv);
-            return;
-        }
-        
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>در حال ارسال...</span>';
-        
-        let commenterName = nameInput.value.trim();
-        if (!commenterName) {
-            commenterName = 'کاربر مهمان';
-        }
-        
-        const now = new Date();
-        const persianDate = now.toLocaleDateString('fa-IR', {
-            year: 'numeric',
-            month: 'numeric', 
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-        
-        const comment = {
-            name: commenterName,
-            message: commentText,
-            date: persianDate,
-            timestamp: now.toISOString()
-        };
-        
-        // ذخیره در localStorage برای نمایش موقت
-        savePendingComment(comment);
-        
-        // تلاش برای ارسال به گیت‌هاب (اگر توکن وجود داشته باشد)
-        fetch('https://api.github.com/repos/darkblog/darkblog.github.io/issues', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer {{ site.github_token }}',
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                title: `نظر: ${postTitle}`,
-                body: `## نظر جدید در پست: ${postTitle}
-
-**نام:** ${commenterName}
-**تاریخ:** ${persianDate}
-**اسلاگ:** ${postSlug}
-
-**متن نظر:**
-${commentText}
-
----
-این نظر از طریق فرم نظرات وبلاگ ارسال شده است.`,
-                labels: ['نظر', postSlug]
-            })
-        })
-        .then(response => {
-            if (response.ok) {
-                showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
-                commentInput.value = '';
-                
-                // حذف از pending بعد از تأیید
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
-            } else {
-                showStatus('✅ نظر شما در صف تأیید قرار گرفت.', 'success', statusDiv);
-                commentInput.value = '';
+            if (querySnapshot.empty) {
+                commentsList.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
+                updateCommentsCount(0);
+                return;
             }
-        })
-        .catch(error => {
-            showStatus('✅ نظر شما ذخیره شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
-            commentInput.value = '';
-        })
-        .finally(() => {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
             
-            // بارگذاری مجدد نظرات موقت
-            location.reload(); // صفحه رفرش میشه و نظر موقت نمایش داده میشه
+            querySnapshot.forEach((doc) => {
+                const comment = doc.data();
+                displayComment(comment);
+            });
+            
+            updateCommentsCount(querySnapshot.size);
+        })
+        .catch((error) => {
+            console.error('خطا در لود نظرات:', error);
+            commentsList.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات</div>';
         });
+}
+
+function displayComment(comment) {
+    const commentsList = document.getElementById('commentsList');
+    const noComments = commentsList.querySelector('.no-comments-mini');
+    
+    const commentElement = document.createElement('div');
+    commentElement.className = 'comment-item-mini';
+    commentElement.innerHTML = `
+        <div class="comment-header-mini">
+            <span class="comment-name-mini">${escapeHtml(comment.name)}</span>
+            <span class="comment-date-mini">${escapeHtml(comment.date)}</span>
+        </div>
+        <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
+    `;
+    
+    if (noComments) {
+        noComments.remove();
+        commentsList.appendChild(commentElement);
+    } else {
+        commentsList.appendChild(commentElement);
+    }
+}
+
+function updateCommentsCount(count) {
+    const countElement = document.getElementById('commentsCount');
+    if (countElement) {
+        countElement.textContent = count;
+    }
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    const nameInput = document.getElementById('commenterName');
+    const commentInput = document.getElementById('commentText');
+    const statusDiv = document.getElementById('commentStatus');
+    const submitBtn = document.getElementById('submitCommentBtn');
+    
+    const commentText = commentInput.value.trim();
+    if (!commentText) {
+        showStatus('لطفاً نظر خود را بنویسید', 'error', statusDiv);
+        return;
     }
     
-    function showStatus(message, type, statusDiv) {
-        if (!statusDiv) return;
-        
-        statusDiv.textContent = message;
-        statusDiv.className = 'comment-status ' + type;
-        statusDiv.style.display = 'block';
-        
-        setTimeout(() => {
-            statusDiv.style.opacity = '0';
-            setTimeout(() => {
-                statusDiv.style.display = 'none';
-                statusDiv.style.opacity = '1';
-                statusDiv.className = 'comment-status';
-            }, 300);
-        }, 5000);
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>در حال ارسال...</span>';
+    
+    let commenterName = nameInput.value.trim();
+    if (!commenterName) {
+        commenterName = 'کاربر مهمان';
     }
     
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCommentsCount();
-        loadPendingComments();
-        
-        const form = document.getElementById('commentForm');
-        if (form) {
-            form.addEventListener('submit', handleFormSubmit);
-        }
+    const now = new Date();
+    const persianDate = now.toLocaleDateString('fa-IR', {
+        year: 'numeric',
+        month: 'numeric', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
     });
-})();
+    
+    db.collection('comments').add({
+        name: commenterName,
+        message: commentText,
+        date: persianDate,
+        slug: postSlug,
+        postTitle: postTitle,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        status: 'pending'
+    })
+    .then(() => {
+        showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
+        commentInput.value = '';
+        loadComments();
+    })
+    .catch((error) => {
+        console.error('خطا در ارسال نظر:', error);
+        showStatus('❌ خطا در ارسال نظر. لطفاً دوباره تلاش کنید.', 'error', statusDiv);
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
+    });
+}
+
+function showStatus(message, type, statusDiv) {
+    if (!statusDiv) return;
+    
+    statusDiv.textContent = message;
+    statusDiv.className = 'comment-status ' + type;
+    statusDiv.style.display = 'block';
+    
+    setTimeout(() => {
+        statusDiv.style.opacity = '0';
+        setTimeout(() => {
+            statusDiv.style.display = 'none';
+            statusDiv.style.opacity = '1';
+            statusDiv.className = 'comment-status';
+        }, 300);
+    }, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadComments();
+    
+    const form = document.getElementById('commentForm');
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+});
 </script>
 </body>
 </html>
