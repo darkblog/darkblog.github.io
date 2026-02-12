@@ -1124,7 +1124,6 @@ function loadComments() {
     
     db.collection('comments')
         .where('slug', '==', postSlug)
-        .where('status', '==', 'approved')
         .orderBy('timestamp', 'desc')
         .get()
         .then((querySnapshot) => {
@@ -1145,7 +1144,7 @@ function loadComments() {
         })
         .catch((error) => {
             console.error('خطا در لود نظرات:', error);
-            commentsList.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات</div>';
+            commentsList.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات. لطفاً صفحه را رفرش کنید.</div>';
         });
 }
 
@@ -1222,11 +1221,10 @@ function handleFormSubmit(e) {
         date: persianDate,
         slug: postSlug,
         postTitle: postTitle,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        status: 'pending'
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(() => {
-        showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
+        showStatus('✅ نظر شما با موفقیت ثبت شد.', 'success', statusDiv);
         commentInput.value = '';
         loadComments();
     })
