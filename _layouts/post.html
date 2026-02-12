@@ -519,6 +519,9 @@
         
         .comments-list-mini {
             margin-bottom: var(--spacing-xl);
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
         
         .comment-item-mini {
@@ -563,6 +566,23 @@
             word-wrap: break-word;
         }
         
+        .comment-link {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .comment-link a {
+            color: var(--color-accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .comment-link a:hover {
+            text-decoration: underline;
+        }
+        
         .no-comments-mini {
             text-align: center;
             padding: var(--spacing-xl);
@@ -578,6 +598,7 @@
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
             border: 1px solid var(--color-border);
+            margin-top: var(--spacing-lg);
         }
         
         .simple-comment-form {
@@ -679,6 +700,25 @@
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+        }
+        
+        .comment-status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .github-note {
+            background: #e7f3ff;
+            border: 1px solid #b8daff;
+            color: #004085;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .more-posts {
@@ -1016,15 +1056,25 @@
                     </div>
                     
                     <div id="commentsList" class="comments-list-mini">
-                        {% assign post_comments = site.data.comments[page.slug] %}
-                        {% if post_comments and post_comments.size > 0 %}
-                            {% for comment in post_comments reversed %}
+                        {% assign issue_comments = site.data.comments[page.slug] %}
+                        {% if issue_comments and issue_comments.size > 0 %}
+                            {% for comment in issue_comments reversed %}
                                 <div class="comment-item-mini">
                                     <div class="comment-header-mini">
                                         <span class="comment-name-mini">{{ comment.name }}</span>
                                         <span class="comment-date-mini">{{ comment.date }}</span>
                                     </div>
                                     <div class="comment-body-mini">{{ comment.message | newline_to_br }}</div>
+                                    {% if comment.url %}
+                                    <div class="comment-link">
+                                        <a href="{{ comment.url }}" target="_blank" rel="noopener">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.62 14.5,20.72 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                                            </svg>
+                                            مشاهده در گیت‌هاب
+                                        </a>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             {% endfor %}
                         {% else %}
@@ -1056,7 +1106,7 @@
                                     id="commentText" 
                                     name="message" 
                                     rows="3" 
-                                    placeholder="نظر خود را بنویسید..." 
+                                    placeholder="نظر خود را بنویسید... (با گیت‌هاب لاگین کنید)" 
                                     required
                                     class="comment-textarea"
                                 ></textarea>
@@ -1064,9 +1114,18 @@
                             
                             <input type="hidden" id="commentPostSlug" value="{{ page.slug | default: page.url | slugify }}">
                             <input type="hidden" id="commentPostTitle" value="{{ page.title | escape }}">
-                            <input type="hidden" id="commentTimestamp" value="">
+                            <input type="hidden" id="repoOwner" value="darkblog">
+                            <input type="hidden" id="repoName" value="darkblog.github.io">
                         </form>
+                        
                         <div id="commentStatus" class="comment-status" style="display: none;"></div>
+                        
+                        <div class="github-note">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.62 14.5,20.72 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                            </svg>
+                            برای ارسال نظر، به گیت‌هاب هدایت می‌شوید. نظر شما به صورت Issue ثبت می‌شود و پس از تأیید نمایش داده می‌شود.
+                        </div>
                     </div>
                 </div>
                 
@@ -1100,6 +1159,8 @@
 
 <script>
 (function() {
+    const repoOwner = document.getElementById('repoOwner').value;
+    const repoName = document.getElementById('repoName').value;
     const postSlug = document.getElementById('commentPostSlug').value;
     const postTitle = document.getElementById('commentPostTitle').value;
     
@@ -1133,7 +1194,7 @@
         }
         
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>در حال ارسال...</span>';
+        submitBtn.innerHTML = '<span>در حال آماده‌سازی...</span>';
         
         let commenterName = nameInput.value.trim();
         if (!commenterName) {
@@ -1149,32 +1210,32 @@
             minute: '2-digit'
         });
         
-        fetch('/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                'form-name': 'comment',
-                'post-slug': postSlug,
-                'post-title': postTitle,
-                'name': commenterName,
-                'message': commentText,
-                'date': persianDate,
-                'timestamp': now.toISOString()
-            })
-        })
-        .then(() => {
-            showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
+        const issueBody = `## نظر جدید در پست: ${postTitle}
+
+**نام:** ${commenterName}
+**تاریخ:** ${persianDate}
+**اسلاگ:** ${postSlug}
+
+**متن نظر:**
+${commentText}
+
+---
+این نظر از طریق فرم نظرات وبلاگ ارسال شده است.`;
+        
+        const issueUrl = `https://github.com/${repoOwner}/${repoName}/issues/new?title=نظر: ${postTitle}&body=${encodeURIComponent(issueBody)}&labels=نظر,${postSlug}`;
+        
+        showStatus('در حال انتقال به گیت‌هاب...', 'info', statusDiv);
+        
+        setTimeout(() => {
+            window.open(issueUrl, '_blank');
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
+            
+            showStatus('✅ به گیت‌هاب منتقل شدید. نظر شما به صورت Issue ثبت می‌شود.', 'success', statusDiv);
+            
             commentInput.value = '';
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
-        })
-        .catch(error => {
-            showStatus('❌ خطا در ارسال نظر. لطفاً دوباره تلاش کنید.', 'error', statusDiv);
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
-        });
+        }, 1500);
     }
     
     function showStatus(message, type, statusDiv) {
