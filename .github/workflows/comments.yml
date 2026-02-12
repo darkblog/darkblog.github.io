@@ -1,0 +1,52 @@
+name: Process Comments
+
+on:
+  repository_dispatch:
+    types: [new_comment]
+
+jobs:
+  add-comment:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Save comment
+      run: |
+        # ایجاد پوشه comments اگر وجود ندارد
+        mkdir -p _data/comments
+        
+        # فایل نظرات پست
+        COMMENTS_FILE="_data/comments/${{ github.event.client_payload.post_slug }}.json"
+        
+        # اگر فایل وجود نداره، آرایه خالی بساز
+        if [ ! -f "$COMMENTS_FILE" ]; then
+          echo "[]" > "$COMMENTS_FILE"
+        fi
+        
+        # نظر جدید
+        NEW_COMMENT='{
+          "id": "${{ github.event.client_payload.timestamp }}",
+          "name": "${{ github.event.client_payload.name }}",
+          "message": "${{ github.event.client_payload.message }}",
+          "date": "${{ github.event.client_payload.date }}",
+          "timestamp": "${{ github.event.client_payload.timestamp }}"
+        }'
+        
+        # اضافه کردن نظر به فایل
+        jq --argjson new "$NEW_COMMENT" '. + [$new]' "$COMMENTS_FILE" > tmp.json
+        mv tmp.json "$COMMENTS_FILE"
+        
+    - name: Commit and push
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add _data/comments/
+        git commit -m "Add new comment for ${{ github.event.client_payload.post_slug }}"
+        git push
