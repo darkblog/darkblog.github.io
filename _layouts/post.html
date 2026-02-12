@@ -688,6 +688,80 @@
             border: 1px solid #f5c6cb;
         }
         
+        .pending-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FFA500;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+        
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .admin-btn {
+            background: #1A365D;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .approve-btn {
+            background: #10B981;
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .delete-btn {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .admin-login {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+        }
+        
+        .admin-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        
         .more-posts {
             margin-top: var(--spacing-xxl);
         }
@@ -1091,6 +1165,20 @@
         </div>
     </footer>
 
+    <div id="adminLogin" class="admin-login">
+        <h4>ورود مدیر</h4>
+        <input type="password" id="adminPassword" class="admin-input" placeholder="رمز عبور">
+        <button onclick="checkAdminPassword()" class="admin-btn">ورود</button>
+    </div>
+    
+    <div id="adminPanel" class="admin-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="margin: 0;">پنل مدیریت نظرات</h4>
+            <button onclick="logoutAdmin()" style="background: none; border: none; cursor: pointer; font-size: 1.2rem;">✕</button>
+        </div>
+        <p style="margin: 10px 0 0 0; color: #666; font-size: 0.9rem;">روی دکمه تأیید یا حذف در کنار هر نظر کلیک کنید</p>
+    </div>
+
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyD0TyNrrkPqPy82X9olmnALjQWwTWXFhUE",
@@ -1107,33 +1195,91 @@ const db = firebase.firestore();
 const postSlug = document.getElementById('commentPostSlug').value;
 const postTitle = document.getElementById('commentPostTitle').value;
 
+const ADMIN_PASSWORD = "pasgah-blog";
+
+let isAdmin = false;
+
+function checkAdminPassword() {
+    const password = document.getElementById('adminPassword').value;
+    if (password === ADMIN_PASSWORD) {
+        isAdmin = true;
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        loadComments();
+    } else {
+        alert('رمز عبور اشتباه است!');
+    }
+}
+
+function logoutAdmin() {
+    isAdmin = false;
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    loadComments();
+}
+
+function approveComment(commentId) {
+    db.collection('comments').doc(commentId).update({
+        status: 'approved'
+    })
+    .then(() => {
+        alert('نظر تأیید شد');
+        loadComments();
+    })
+    .catch((error) => {
+        console.error('خطا در تأیید نظر:', error);
+        alert('خطا در تأیید نظر');
+    });
+}
+
+function deleteComment(commentId) {
+    if (confirm('آیا از حذف این نظر اطمینان دارید؟')) {
+        db.collection('comments').doc(commentId).delete()
+        .then(() => {
+            alert('نظر حذف شد');
+            loadComments();
+        })
+        .catch((error) => {
+            console.error('خطا در حذف نظر:', error);
+            alert('خطا در حذف نظر');
+        });
+    }
+}
+
 function loadComments() {
     const commentsList = document.getElementById('commentsList');
     
-    db.collection('comments')
+    let query = db.collection('comments')
         .where('slug', '==', postSlug)
-        .orderBy('timestamp', 'desc')
-        .get()
-        .then((querySnapshot) => {
-            commentsList.innerHTML = '';
-            
-            if (querySnapshot.empty) {
-                commentsList.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
-                updateCommentsCount(0);
-                return;
-            }
-            
-            querySnapshot.forEach((doc) => {
-                const comment = doc.data();
-                displayComment(comment);
-            });
-            
-            updateCommentsCount(querySnapshot.size);
-        })
-        .catch((error) => {
-            console.error('خطا در لود نظرات:', error);
-            commentsList.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات. لطفاً صفحه را رفرش کنید.</div>';
+        .orderBy('timestamp', 'desc');
+    
+    if (!isAdmin) {
+        query = query.where('status', '==', 'approved');
+    }
+    
+    query.get()
+    .then((querySnapshot) => {
+        commentsList.innerHTML = '';
+        
+        if (querySnapshot.empty) {
+            commentsList.innerHTML = '<div class="no-comments-mini">هنوز نظری ثبت نشده. اولین نفر باش!</div>';
+            updateCommentsCount(0);
+            return;
+        }
+        
+        querySnapshot.forEach((doc) => {
+            const comment = doc.data();
+            comment.id = doc.id;
+            displayComment(comment);
         });
+        
+        updateCommentsCount(querySnapshot.size);
+    })
+    .catch((error) => {
+        console.error('خطا در لود نظرات:', error);
+        commentsList.innerHTML = '<div class="no-comments-mini">خطا در بارگذاری نظرات. لطفاً صفحه را رفرش کنید.</div>';
+    });
 }
 
 function displayComment(comment) {
@@ -1142,12 +1288,31 @@ function displayComment(comment) {
     
     const commentElement = document.createElement('div');
     commentElement.className = 'comment-item-mini';
+    
+    let statusBadge = '';
+    let adminButtons = '';
+    
+    if (comment.status !== 'approved') {
+        statusBadge = '<div class="pending-badge">⏳ در انتظار تأیید</div>';
+    }
+    
+    if (isAdmin) {
+        adminButtons = `
+            <div style="margin-top: 10px;">
+                ${comment.status !== 'approved' ? `<button onclick="approveComment('${comment.id}')" class="approve-btn">✓ تأیید</button>` : ''}
+                <button onclick="deleteComment('${comment.id}')" class="delete-btn">✗ حذف</button>
+            </div>
+        `;
+    }
+    
     commentElement.innerHTML = `
         <div class="comment-header-mini">
             <span class="comment-name-mini">${escapeHtml(comment.name)}</span>
             <span class="comment-date-mini">${escapeHtml(comment.date)}</span>
         </div>
         <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
+        ${statusBadge}
+        ${adminButtons}
     `;
     
     if (noComments) {
@@ -1209,10 +1374,11 @@ function handleFormSubmit(e) {
         date: persianDate,
         slug: postSlug,
         postTitle: postTitle,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        status: 'pending'
     })
     .then(() => {
-        showStatus('✅ نظر شما با موفقیت ثبت شد.', 'success', statusDiv);
+        showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
         commentInput.value = '';
         loadComments();
     })
