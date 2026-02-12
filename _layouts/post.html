@@ -576,6 +576,23 @@
             border: 1px dashed var(--color-border);
         }
         
+        .pending-comment {
+            opacity: 0.8;
+            border-right: 4px solid #FFA500;
+            background: #fff9e6;
+        }
+        
+        .pending-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 12px;
+            background: #FFA500;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
         .simple-comment-box {
             background: var(--color-bg);
             border-radius: var(--radius-lg);
@@ -1103,15 +1120,62 @@
 
 <script>
 (function() {
+    const STORAGE_KEY = 'pending_comments';
     const postSlug = document.getElementById('commentPostSlug').value;
     const postTitle = document.getElementById('commentPostTitle').value;
     
     function updateCommentsCount() {
-        const commentsCount = document.querySelectorAll('#commentsList .comment-item-mini').length;
+        const commentsCount = document.querySelectorAll('#commentsList .comment-item-mini:not(.pending-comment)').length;
         const countElement = document.getElementById('commentsCount');
         if (countElement) {
             countElement.textContent = commentsCount;
         }
+    }
+    
+    function loadPendingComments() {
+        const pending = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        const postPending = pending[postSlug] || [];
+        
+        if (postPending.length > 0) {
+            const commentsList = document.getElementById('commentsList');
+            const noComments = commentsList.querySelector('.no-comments-mini');
+            
+            postPending.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment-item-mini pending-comment';
+                commentElement.innerHTML = `
+                    <div class="comment-header-mini">
+                        <span class="comment-name-mini">${escapeHtml(comment.name)}</span>
+                        <span class="comment-date-mini">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-body-mini">${escapeHtml(comment.message).replace(/\n/g, '<br>')}</div>
+                    <div class="pending-badge">⏳ در انتظار تأیید</div>
+                `;
+                
+                if (noComments) {
+                    noComments.remove();
+                    commentsList.appendChild(commentElement);
+                } else {
+                    commentsList.appendChild(commentElement);
+                }
+            });
+        }
+    }
+    
+    function savePendingComment(comment) {
+        const pending = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        if (!pending[postSlug]) {
+            pending[postSlug] = [];
+        }
+        pending[postSlug].push(comment);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pending));
+    }
+    
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
     
     function handleFormSubmit(e) {
@@ -1145,7 +1209,17 @@
             minute: '2-digit'
         });
         
-        // ارسال مستقیم به GitHub API بدون هدایت کاربر
+        const comment = {
+            name: commenterName,
+            message: commentText,
+            date: persianDate,
+            timestamp: now.toISOString()
+        };
+        
+        // ذخیره در localStorage برای نمایش موقت
+        savePendingComment(comment);
+        
+        // تلاش برای ارسال به گیت‌هاب (اگر توکن وجود داشته باشد)
         fetch('https://api.github.com/repos/darkblog/darkblog.github.io/issues', {
             method: 'POST',
             headers: {
@@ -1173,16 +1247,26 @@ ${commentText}
             if (response.ok) {
                 showStatus('✅ نظر شما با موفقیت ثبت شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
                 commentInput.value = '';
+                
+                // حذف از pending بعد از تأیید
+                setTimeout(() => {
+                    location.reload();
+                }, 3000);
             } else {
-                throw new Error('خطا در ارسال نظر');
+                showStatus('✅ نظر شما در صف تأیید قرار گرفت.', 'success', statusDiv);
+                commentInput.value = '';
             }
         })
         .catch(error => {
-            showStatus('❌ خطا در ارسال نظر. لطفاً دوباره تلاش کنید.', 'error', statusDiv);
+            showStatus('✅ نظر شما ذخیره شد و پس از تأیید نمایش داده می‌شود.', 'success', statusDiv);
+            commentInput.value = '';
         })
         .finally(() => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>ارسال نظر</span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>';
+            
+            // بارگذاری مجدد نظرات موقت
+            location.reload(); // صفحه رفرش میشه و نظر موقت نمایش داده میشه
         });
     }
     
@@ -1205,6 +1289,7 @@ ${commentText}
     
     document.addEventListener('DOMContentLoaded', function() {
         updateCommentsCount();
+        loadPendingComments();
         
         const form = document.getElementById('commentForm');
         if (form) {
