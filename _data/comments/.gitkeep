@@ -1,5 +1,0 @@
-mkdir -p _data/comments
-touch _data/comments/.gitkeep
-git add _data/comments/.gitkeep
-git commit -m "Add comments directory"
-git push
