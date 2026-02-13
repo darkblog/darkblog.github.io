@@ -3,5 +3,3 @@ url: https://www.pasgah.org
 permalink: /blog/:title
 
 encoding: UTF-8
-
-github_token: ${{ secrets.GH_TOKEN }}
