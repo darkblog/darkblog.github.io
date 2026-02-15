@@ -431,6 +431,40 @@
         .article-content table tbody tr:nth-child(even) {
             background-color: var(--color-bg);
         }
+        .post-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+        }
+        .share-button, .twitter-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .share-button:hover, .twitter-button:hover {
+            background-color: var(--color-accent);
+            color: #fff;
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+        .share-button:focus-visible, .twitter-button:focus-visible {
+            outline: 3px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+        .share-button svg, .twitter-button svg {
+            width: 24px;
+            height: 24px;
+        }
         .more-posts {
             margin-top: var(--spacing-xxl);
         }
@@ -696,19 +730,18 @@
                         {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
                 </article>
-                <div id="disqus_thread" style="margin-top: var(--spacing-xxl);"></div>
-                <script>
-                    var disqus_config = function () {
-                        this.page.url = '{{ page.url | absolute_url }}';
-                        this.page.identifier = '{{ page.url | absolute_url }}';
-                    };
-                    (function() {
-                        var d = document, s = d.createElement('script');
-                        s.src = 'https://pasgah.disqus.com/embed.js';
-                        s.setAttribute('data-timestamp', +new Date());
-                        (d.head || d.body).appendChild(s);
-                    })();
-                </script>
+                <div class="post-actions">
+                    <button class="share-button" id="shareButton" aria-label="اشتراک‌گذاری">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <a href="https://twitter.com/pbstwi" class="twitter-button" target="_blank" rel="noopener noreferrer" aria-label="توییتر">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10C2.38 10 2.38 10 2.38 10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.24C21.16 7.63 21.88 6.87 22.46 6Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                </div>
                 <div class="more-posts">
                     <h2 class="more-posts-title">پست‌های بیشتر</h2>
                     <div class="posts-list">
@@ -734,5 +767,45 @@
             </a>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var shareButton = document.getElementById('shareButton');
+            if (shareButton) {
+                shareButton.addEventListener('click', function() {
+                    var shareData = {
+                        title: document.title,
+                        url: window.location.href
+                    };
+                    if (navigator.share) {
+                        navigator.share(shareData).catch(function(error) {
+                            console.log('Error sharing:', error);
+                        });
+                    } else {
+                        navigator.clipboard.writeText(window.location.href).then(function() {
+                            var notification = document.createElement('div');
+                            notification.textContent = 'لینک کپی شد';
+                            notification.style.position = 'fixed';
+                            notification.style.bottom = '20px';
+                            notification.style.left = '50%';
+                            notification.style.transform = 'translateX(-50%)';
+                            notification.style.backgroundColor = 'var(--color-accent)';
+                            notification.style.color = '#fff';
+                            notification.style.padding = '8px 16px';
+                            notification.style.borderRadius = 'var(--radius-md)';
+                            notification.style.zIndex = '1000';
+                            notification.style.fontSize = 'var(--font-size-sm)';
+                            notification.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+                            document.body.appendChild(notification);
+                            setTimeout(function() {
+                                notification.remove();
+                            }, 2000);
+                        }).catch(function() {
+                            alert('اشتراک‌گذاری پشتیبانی نمی‌شود');
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
