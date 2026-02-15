@@ -437,33 +437,39 @@
             gap: var(--spacing-md);
             margin: var(--spacing-xl) 0;
         }
-        .share-button, .twitter-button {
+        .share-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
             background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            color: var(--color-primary);
+            border: 2px solid var(--color-accent);
+            border-radius: var(--radius-md);
+            color: var(--color-accent);
+            font-size: var(--font-size-lg);
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
             text-decoration: none;
+            width: auto;
+            height: auto;
+            box-shadow: 0 2px 8px var(--color-shadow);
         }
-        .share-button:hover, .twitter-button:hover {
+        .share-button:hover {
             background-color: var(--color-accent);
             color: #fff;
             border-color: var(--color-accent);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
         }
-        .share-button:focus-visible, .twitter-button:focus-visible {
-            outline: 3px solid var(--color-accent);
-            outline-offset: 2px;
-        }
-        .share-button svg, .twitter-button svg {
+        .share-button svg {
             width: 24px;
             height: 24px;
+        }
+        .share-button:focus-visible {
+            outline: 3px solid var(--color-accent);
+            outline-offset: 2px;
         }
         .more-posts {
             margin-top: var(--spacing-xxl);
@@ -621,6 +627,10 @@
                 width: 3rem;
                 height: 3rem;
             }
+            .share-button {
+                padding: 0.6rem 1.5rem;
+                font-size: var(--font-size-base);
+            }
         }
         @media (max-width: 480px) {
             .article-container {
@@ -656,6 +666,10 @@
             .logo-svg {
                 width: 2.75rem;
                 height: 2.75rem;
+            }
+            .share-button {
+                padding: 0.5rem 1.2rem;
+                font-size: var(--font-size-sm);
             }
         }
         @media (max-width: 360px) {
@@ -731,16 +745,12 @@
                     </div>
                 </article>
                 <div class="post-actions">
-                    <button class="share-button" id="shareButton" aria-label="اشتراک‌گذاری">
+                    <button class="share-button" id="shareButton" aria-label="هم‌رسانی با دوستان">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="currentColor"/>
                         </svg>
+                        هم‌رسانی با دوستان
                     </button>
-                    <a href="https://balatarin.com/users/ehsanchhry" class="twitter-button" target="_blank" rel="noopener noreferrer" aria-label="بالاترین">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 3L4 10H8V20H16V10H20L12 3ZM14 18H10V10H8.5L12 6.5L15.5 10H14V18Z" fill="currentColor"/>
-                        </svg>
-                    </a>
                 </div>
                 <div class="more-posts">
                     <h2 class="more-posts-title">پست‌های بیشتر</h2>
