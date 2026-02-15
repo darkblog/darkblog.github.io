@@ -495,7 +495,7 @@ layout: null
                         <h2 class="post-title" itemprop="headline">{{ post.title }}</h2>
                         
                         <div class="post-excerpt" itemprop="description">
-                            {{ post.excerpt | strip_html | truncate: 400 }}
+                            {{ post.excerpt | strip_html | truncate: 800 }}
                         </div>
                         
                         {% if post.category %}
