@@ -1,11 +1,7 @@
-// functions/api/comments.js
-
-// تابع تولید شناسه یکتا
 function generateCommentId() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
 
-// تابع دریافت نظرات از KV
 async function getComments(env, pageId) {
   const commentsListKey = `comments:${pageId}`;
   const commentIdsJson = await env.COMMENTS_KV.get(commentsListKey);
@@ -20,7 +16,6 @@ async function getComments(env, pageId) {
   return comments.filter(c => c !== null);
 }
 
-// تابع ثبت نظر جدید
 async function addComment(env, pageId, name, content, email) {
   const id = generateCommentId();
   const now = new Date().toISOString();
@@ -31,7 +26,7 @@ async function addComment(env, pageId, name, content, email) {
     content: content.trim(),
     email: email ? email.trim() : null,
     createdAt: now,
-    approved: true, // اگر می‌خواهید نظرات قبل از نمایش تأیید بشن، false بذارید
+    approved: true,
   };
 
   await env.COMMENTS_KV.put(`comment:${id}`, JSON.stringify(comment));
@@ -45,25 +40,21 @@ async function addComment(env, pageId, name, content, email) {
   return comment;
 }
 
-// تابع اصلی که درخواست‌ها رو هندل می‌کنه
 export async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url);
   const method = request.method;
 
-  // CORS headers (برای امنیت، دامنه خود را جایگزین کنید)
   const corsHeaders = {
-    'Access-Control-Allow-Origin': 'https://www.pasgah.org', // یا '*' برای تست
+    'Access-Control-Allow-Origin': 'https://www.pasgah.org',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
 
-  // پاسخ به درخواست‌های Preflight (OPTIONS)
   if (method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
-  // GET: دریافت نظرات
   if (method === 'GET') {
     const pageId = url.searchParams.get('page');
     if (!pageId) {
@@ -78,7 +69,6 @@ export async function onRequest(context) {
     });
   }
 
-  // POST: ثبت نظر جدید
   if (method === 'POST') {
     try {
       const body = await request.json();
