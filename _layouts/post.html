@@ -276,10 +276,28 @@
             font-weight: 700;
             line-height: var(--line-height-tight);
             color: var(--color-primary);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-xs);
             text-align: right;
-            border-bottom: 2px solid var(--color-soft-line);
+        }
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
             padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-soft-line);
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+        }
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .post-date svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: currentColor;
         }
         .article-content {
             font-size: var(--font-size-lg);
@@ -847,6 +865,14 @@
             <div class="container">
                 <article class="article-container">
                     <h1 class="article-title" itemprop="headline">{{ page.title }}</h1>
+                    <div class="post-meta">
+                        <span class="post-date" data-date="{{ page.date | date_to_xmlschema }}">
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
+                            </svg>
+                            <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
+                        </span>
+                    </div>
                     <div class="article-content" itemprop="articleBody">
                         {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
@@ -946,111 +972,125 @@
                     }
                 });
             }
-        });
 
-        (function() {
-            const pageId = window.location.pathname;
-            const commentsListEl = document.getElementById('comments-list');
-            const form = document.getElementById('new-comment-form');
-            const nameInput = document.getElementById('comment-name');
-            const contentInput = document.getElementById('comment-content');
-            const formMessage = document.getElementById('form-message');
+            (function() {
+                const pageId = window.location.pathname;
+                const commentsListEl = document.getElementById('comments-list');
+                const form = document.getElementById('new-comment-form');
+                const nameInput = document.getElementById('comment-name');
+                const contentInput = document.getElementById('comment-content');
+                const formMessage = document.getElementById('form-message');
 
-            function escapeHtml(unsafe) {
-                return unsafe
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#039;");
-            }
+                function escapeHtml(unsafe) {
+                    return unsafe
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;")
+                        .replace(/'/g, "&#039;");
+                }
 
-            async function loadComments() {
-                commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
-                try {
-                    const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
-                    if (!response.ok) throw new Error('خطا در دریافت نظرات');
-                    const comments = await response.json();
+                async function loadComments() {
+                    commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
+                    try {
+                        const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
+                        if (!response.ok) throw new Error('خطا در دریافت نظرات');
+                        const comments = await response.json();
 
-                    if (comments.length === 0) {
-                        commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+                        if (comments.length === 0) {
+                            commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+                            return;
+                        }
+
+                        let html = '';
+                        comments.forEach(comment => {
+                            const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
+                                year: 'numeric', month: 'long', day: 'numeric'
+                            });
+                            html += `
+                                <div class="comment-item">
+                                    <div class="comment-header">
+                                        <span class="comment-name">${escapeHtml(comment.name)}</span>
+                                        <span class="comment-date">${date}</span>
+                                    </div>
+                                    <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
+                                </div>
+                            `;
+                        });
+                        commentsListEl.innerHTML = html;
+                    } catch (err) {
+                        commentsListEl.innerHTML = '<p class="form-message" style="color: var(--color-accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
+                        console.error(err);
+                    }
+                }
+
+                async function submitComment(event) {
+                    event.preventDefault();
+
+                    const name = nameInput.value.trim() || 'کاربر مهمان';
+                    const content = contentInput.value.trim();
+
+                    if (!content) {
+                        formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
+                        formMessage.style.color = 'var(--color-accent)';
                         return;
                     }
 
-                    let html = '';
-                    comments.forEach(comment => {
-                        const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
-                            year: 'numeric', month: 'long', day: 'numeric'
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'در حال ارسال...';
+
+                    try {
+                        const response = await fetch('/api/comments', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ pageId, name, content })
                         });
-                        html += `
-                            <div class="comment-item">
-                                <div class="comment-header">
-                                    <span class="comment-name">${escapeHtml(comment.name)}</span>
-                                    <span class="comment-date">${date}</span>
-                                </div>
-                                <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
-                            </div>
-                        `;
-                    });
-                    commentsListEl.innerHTML = html;
-                } catch (err) {
-                    commentsListEl.innerHTML = '<p class="form-message" style="color: var(--color-accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
-                    console.error(err);
-                }
-            }
 
-            async function submitComment(event) {
-                event.preventDefault();
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.error || 'خطا در ارسال نظر');
+                        }
 
-                const name = nameInput.value.trim() || 'کاربر مهمان';
-                const content = contentInput.value.trim();
+                        nameInput.value = '';
+                        contentInput.value = '';
+                        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
+                        formMessage.style.color = 'green';
 
-                if (!content) {
-                    formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
-                    formMessage.style.color = 'var(--color-accent)';
-                    return;
-                }
-
-                const submitBtn = form.querySelector('button[type="submit"]');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'در حال ارسال...';
-
-                try {
-                    const response = await fetch('/api/comments', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ pageId, name, content })
-                    });
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.error || 'خطا در ارسال نظر');
+                        loadComments();
+                    } catch (err) {
+                        formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
+                        formMessage.style.color = 'var(--color-accent)';
+                        console.error(err);
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'ارسال دیدگاه';
                     }
-
-                    nameInput.value = '';
-                    contentInput.value = '';
-                    formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
-                    formMessage.style.color = 'green';
-
-                    loadComments();
-                } catch (err) {
-                    formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
-                    formMessage.style.color = 'var(--color-accent)';
-                    console.error(err);
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'ارسال دیدگاه';
                 }
-            }
 
-            if (commentsListEl) {
-                loadComments();
-            }
+                if (commentsListEl) {
+                    loadComments();
+                }
 
-            if (form) {
-                form.addEventListener('submit', submitComment);
-            }
-        })();
+                if (form) {
+                    form.addEventListener('submit', submitComment);
+                }
+            })();
+
+            (function formatPostDate() {
+                const dateElement = document.querySelector('.post-date');
+                if (!dateElement) return;
+                const dateStr = dateElement.dataset.date;
+                if (!dateStr) return;
+                const date = new Date(dateStr);
+                const formatted = date.toLocaleDateString('fa-IR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                dateElement.querySelector('.date-text').textContent = formatted;
+            })();
+        });
     </script>
 </body>
 </html>
