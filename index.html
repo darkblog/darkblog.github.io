@@ -510,7 +510,7 @@ layout: null
                         "@context": "https://schema.org",
                         "@type": "Article",
                         "headline": "{{ post.title | escape }}",
-                        "description": "{{ post.excerpt | strip_html | truncate: 400 | escape }}",
+                        "description": "{{ post.excerpt | strip_html | truncate: 800 | escape }}",
                         "url": "{{ site.url }}{{ post.url }}",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
@@ -533,7 +533,7 @@ layout: null
                         "datePublished": "{{ post.date | date_to_xmlschema }}",
                         "dateModified": "{{ site.time | date_to_xmlschema }}",
                         "inLanguage": "fa",
-                        "articleSection": "{% if post.category %}{{ post.category }}{% else %}تاریخ{% endif %}"
+                        "articleSection": "تاریخ"
                     }
                     </script>
                     {% endfor %}
