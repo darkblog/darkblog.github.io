@@ -471,6 +471,116 @@
             outline: 3px solid var(--color-accent);
             outline-offset: 2px;
         }
+
+        /* استایل بخش نظرات */
+        .comments-section {
+            margin: var(--spacing-xl) 0;
+        }
+        .comments-title {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        .comments-list {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        .comment-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--spacing-md) 0;
+        }
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+        .comment-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xs);
+        }
+        .comment-name {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        .comment-date {
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+        }
+        .comment-content {
+            line-height: var(--line-height-loose);
+            color: var(--color-text-secondary);
+        }
+        .comment-form {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        }
+        .comment-form h4 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+        .form-group {
+            margin-bottom: var(--spacing-sm);
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: var(--font-size-base);
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        .comment-submit {
+            background-color: var(--color-accent);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .comment-submit:hover {
+            background-color: var(--color-accent-light);
+        }
+        .comment-submit:active {
+            transform: scale(0.98);
+        }
+        .comment-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .form-message {
+            margin-top: var(--spacing-sm);
+            font-size: var(--font-size-sm);
+            color: var(--color-accent);
+        }
+        .loading-text {
+            color: var(--color-text-light);
+        }
+        .no-comments {
+            color: var(--color-text-light);
+        }
+
         .more-posts {
             margin-top: var(--spacing-xxl);
         }
@@ -752,6 +862,30 @@
                         هم‌رسانی با دوستان
                     </button>
                 </div>
+
+                <!-- بخش نظرات -->
+                <div class="comments-section">
+                    <h3 class="comments-title">دیدگاه‌ها</h3>
+                    <div id="comments-list" class="comments-list">
+                        <p class="loading-text">در حال بارگیری نظرات...</p>
+                    </div>
+                    <div class="comment-form">
+                        <h4>ارسال دیدگاه جدید</h4>
+                        <form id="new-comment-form">
+                            <div class="form-group">
+                                <label for="comment-name">نام</label>
+                                <input type="text" id="comment-name" name="name" maxlength="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment-content">دیدگاه</label>
+                                <textarea id="comment-content" name="content" required rows="4" maxlength="1000"></textarea>
+                            </div>
+                            <button type="submit" class="comment-submit">ارسال دیدگاه</button>
+                        </form>
+                        <div id="form-message" class="form-message"></div>
+                    </div>
+                </div>
+
                 <div class="more-posts">
                     <h2 class="more-posts-title">پست‌های بیشتر</h2>
                     <div class="posts-list">
@@ -777,6 +911,7 @@
             </a>
         </div>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var shareButton = document.getElementById('shareButton');
@@ -816,6 +951,111 @@
                 });
             }
         });
+
+        // سیستم نظرات
+        (function() {
+            const pageId = window.location.pathname;
+            const commentsListEl = document.getElementById('comments-list');
+            const form = document.getElementById('new-comment-form');
+            const nameInput = document.getElementById('comment-name');
+            const contentInput = document.getElementById('comment-content');
+            const formMessage = document.getElementById('form-message');
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            async function loadComments() {
+                commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
+                try {
+                    const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
+                    if (!response.ok) throw new Error('خطا در دریافت نظرات');
+                    const comments = await response.json();
+
+                    if (comments.length === 0) {
+                        commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+                        return;
+                    }
+
+                    let html = '';
+                    comments.forEach(comment => {
+                        const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
+                            year: 'numeric', month: 'long', day: 'numeric'
+                        });
+                        html += `
+                            <div class="comment-item">
+                                <div class="comment-header">
+                                    <span class="comment-name">${escapeHtml(comment.name)}</span>
+                                    <span class="comment-date">${date}</span>
+                                </div>
+                                <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
+                            </div>
+                        `;
+                    });
+                    commentsListEl.innerHTML = html;
+                } catch (err) {
+                    commentsListEl.innerHTML = '<p class="form-message" style="color: var(--color-accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
+                    console.error(err);
+                }
+            }
+
+            async function submitComment(event) {
+                event.preventDefault();
+
+                const name = nameInput.value.trim() || 'کاربر مهمان';
+                const content = contentInput.value.trim();
+
+                if (!content) {
+                    formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
+                    formMessage.style.color = 'var(--color-accent)';
+                    return;
+                }
+
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'در حال ارسال...';
+
+                try {
+                    const response = await fetch('/api/comments', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ pageId, name, content })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'خطا در ارسال نظر');
+                    }
+
+                    nameInput.value = '';
+                    contentInput.value = '';
+                    formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
+                    formMessage.style.color = 'green';
+
+                    loadComments();
+                } catch (err) {
+                    formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
+                    formMessage.style.color = 'var(--color-accent)';
+                    console.error(err);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'ارسال دیدگاه';
+                }
+            }
+
+            if (commentsListEl) {
+                loadComments();
+            }
+
+            if (form) {
+                form.addEventListener('submit', submitComment);
+            }
+        })();
     </script>
 </body>
 </html>
