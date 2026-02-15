@@ -696,6 +696,19 @@
                         {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
                     </div>
                 </article>
+                <div id="disqus_thread" style="margin-top: var(--spacing-xxl);"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = '{{ page.url | absolute_url }}';
+                        this.page.identifier = '{{ page.url | absolute_url }}';
+                    };
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://pasgah.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
                 <div class="more-posts">
                     <h2 class="more-posts-title">پست‌های بیشتر</h2>
                     <div class="posts-list">
