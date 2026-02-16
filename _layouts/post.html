@@ -25,9 +25,9 @@
                 "datePublished": "{{ page.date | date_to_xmlschema }}",
                 "dateModified": "{% if page.last_modified_at %}{{ page.last_modified_at | date_to_xmlschema }}{% else %}{{ page.date | date_to_xmlschema }}{% endif %}",
                 "author": {
-                    "@type": "Organization",
-                    "name": "وبلاگ پاسگاه",
-                    "url": "https://www.pasgah.org/"
+                    "@type": "Person",
+                    "name": "احسان چهری",
+                    "url": "https://x.com/pbstwi"
                 },
                 "publisher": {
                     "@type": "Organization",
@@ -123,7 +123,7 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:site_name" content="وبلاگ پاسگاه">
     <meta property="og:locale" content="fa_IR">
-    <meta property="article:author" content="وبلاگ پاسگاه">
+    <meta property="article:author" content="https://x.com/pbstwi">
     <meta property="article:section" content="تاریخ">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ page.title | escape }}">
@@ -286,6 +286,7 @@
             margin-bottom: var(--spacing-lg);
             color: var(--color-text-light);
             font-size: var(--font-size-sm);
+            flex-wrap: wrap;
         }
         .post-date {
             display: flex;
@@ -296,6 +297,25 @@
             width: 1.2rem;
             height: 1.2rem;
             fill: currentColor;
+        }
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .post-author svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: currentColor;
+        }
+        .post-author a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .post-author a:hover {
+            color: var(--color-accent);
+            text-decoration: underline;
         }
         .article-content {
             font-size: var(--font-size-lg);
@@ -835,6 +855,15 @@
                                 <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
                             </svg>
                             <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
+                        </span>
+                        <span class="post-author">
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span>نویسنده:</span>
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <a href="https://x.com/pbstwi" itemprop="url" rel="author"><span itemprop="name">احسان چهری</span></a>
+                            </span>
                         </span>
                     </div>
                     <div class="article-content" itemprop="articleBody">
