@@ -490,11 +490,6 @@
         .comments-section {
             margin: var(--spacing-xl) 0;
         }
-        .comments-title {
-            font-size: var(--font-size-xl);
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-md);
-        }
         .comments-list {
             background: var(--color-surface);
             border: 1px solid var(--color-border);
@@ -532,11 +527,6 @@
             border: 1px solid var(--color-border);
             border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
-        }
-        .comment-form h4 {
-            font-size: var(--font-size-lg);
-            margin-bottom: var(--spacing-md);
-            color: var(--color-primary);
         }
         .form-group {
             margin-bottom: var(--spacing-sm);
@@ -596,15 +586,6 @@
         }
         .more-posts {
             margin-top: var(--spacing-xxl);
-        }
-        .more-posts-title {
-            font-size: var(--font-size-2xl);
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-            display: inline-block;
-            width: 100%;
         }
         .posts-list {
             display: flex;
@@ -875,12 +856,10 @@
                 </div>
 
                 <div class="comments-section">
-                    <h3 class="comments-title">دیدگاه‌ها</h3>
                     <div id="comments-list" class="comments-list">
                         <p class="loading-text">در حال بارگیری نظرات...</p>
                     </div>
                     <div class="comment-form">
-                        <h4>ارسال دیدگاه جدید</h4>
                         <form id="new-comment-form">
                             <div class="form-group">
                                 <label for="comment-name">نام</label>
@@ -897,7 +876,6 @@
                 </div>
 
                 <div class="more-posts">
-                    <h2 class="more-posts-title">پست‌های بیشتر</h2>
                     <div class="posts-list">
                         {% assign current_post_url = page.url %}
                         {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
