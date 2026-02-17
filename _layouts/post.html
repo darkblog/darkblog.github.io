@@ -73,13 +73,13 @@
                 <div class="more-posts">
                     <div class="posts-list">
                         {% assign current_post_url = page.url %}
-                        {% assign current_tags = page.tags | default: false %}
-                        {% if current_tags and current_tags.size > 0 %}
-                            {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" | where_exp: "post", "post.tags and post.tags.size > 0 and (post.tags | intersect: current_tags | size > 0)" %}
+                        {% assign current_keywords = page.keywords | default: false %}
+                        {% if current_keywords and current_keywords.size > 0 %}
+                            {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" | where_exp: "post", "post.keywords and post.keywords.size > 0 and (post.keywords | intersect: current_keywords | size > 0)" %}
+                            {% if related_posts.size == 0 %}
+                                {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+                            {% endif %}
                         {% else %}
-                            {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                        {% endif %}
-                        {% if related_posts.size == 0 %}
                             {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
                         {% endif %}
                         {% for post in related_posts limit: 100 %}
