@@ -73,8 +73,16 @@
                 <div class="more-posts">
                     <div class="posts-list">
                         {% assign current_post_url = page.url %}
-                        {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                        {% for post in all_posts limit: 100 %}
+                        {% assign current_tags = page.tags | default: false %}
+                        {% if current_tags and current_tags.size > 0 %}
+                            {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" | where_exp: "post", "post.tags and post.tags.size > 0 and (post.tags | intersect: current_tags | size > 0)" %}
+                        {% else %}
+                            {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+                        {% endif %}
+                        {% if related_posts.size == 0 %}
+                            {% assign related_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+                        {% endif %}
+                        {% for post in related_posts limit: 100 %}
                         <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
                             <h3 class="post-title">{{ post.title }}</h3>
                             <div class="post-excerpt">
