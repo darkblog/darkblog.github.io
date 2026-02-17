@@ -74,7 +74,7 @@
                     <div class="posts-list">
                         {% assign current_post_url = page.url %}
                         {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                        {% for post in all_posts limit: 30 %}
+                        {% for post in all_posts limit: 100 %}
                         <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
                             <h3 class="post-title">{{ post.title }}</h3>
                             <div class="post-excerpt">
