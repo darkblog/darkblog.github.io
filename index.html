@@ -30,7 +30,7 @@ layout: null
         <section class="posts-section">
             <div class="container">
                 <div class="posts-list">
-                    {% for post in site.posts limit: 20 %}
+                    {% for post in site.posts limit: 50 %}
                     <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
                         <h2 class="post-title">{{ post.title }}</h2>
                         
