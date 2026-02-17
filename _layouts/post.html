@@ -108,31 +108,42 @@
                         url: window.location.href
                     };
                     if (navigator.share) {
-                        navigator.share(shareData).catch(function(error) {
-                            console.log('Error sharing:', error);
-                        });
+                        navigator.share(shareData)
+                            .catch(function(error) {
+                                console.log('Error sharing:', error);
+                            })
+                            .finally(function() {
+                                // پس از بسته شدن پنجره اشتراک‌گذاری، focus را از دکمه بردار
+                                shareButton.blur();
+                            });
                     } else {
-                        navigator.clipboard.writeText(window.location.href).then(function() {
-                            var notification = document.createElement('div');
-                            notification.textContent = 'لینک کپی شد';
-                            notification.style.position = 'fixed';
-                            notification.style.bottom = '20px';
-                            notification.style.left = '50%';
-                            notification.style.transform = 'translateX(-50%)';
-                            notification.style.backgroundColor = 'var(--color-accent)';
-                            notification.style.color = '#fff';
-                            notification.style.padding = '8px 16px';
-                            notification.style.borderRadius = 'var(--radius-md)';
-                            notification.style.zIndex = '1000';
-                            notification.style.fontSize = 'var(--font-size-sm)';
-                            notification.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-                            document.body.appendChild(notification);
-                            setTimeout(function() {
-                                notification.remove();
-                            }, 2000);
-                        }).catch(function() {
-                            alert('اشتراک‌گذاری پشتیبانی نمی‌شود');
-                        });
+                        navigator.clipboard.writeText(window.location.href)
+                            .then(function() {
+                                var notification = document.createElement('div');
+                                notification.textContent = 'لینک کپی شد';
+                                notification.style.position = 'fixed';
+                                notification.style.bottom = '20px';
+                                notification.style.left = '50%';
+                                notification.style.transform = 'translateX(-50%)';
+                                notification.style.backgroundColor = 'var(--color-accent)';
+                                notification.style.color = '#fff';
+                                notification.style.padding = '8px 16px';
+                                notification.style.borderRadius = 'var(--radius-md)';
+                                notification.style.zIndex = '1000';
+                                notification.style.fontSize = 'var(--font-size-sm)';
+                                notification.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+                                document.body.appendChild(notification);
+                                setTimeout(function() {
+                                    notification.remove();
+                                }, 2000);
+                            })
+                            .catch(function() {
+                                alert('اشتراک‌گذاری پشتیبانی نمی‌شود');
+                            })
+                            .finally(function() {
+                                // پس از کپی شدن یا خطا، focus را از دکمه بردار
+                                shareButton.blur();
+                            });
                     }
                 });
             }
