@@ -1,100 +1,675 @@
 <!doctype html>
-<html dir="rtl" lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
-    <link rel="icon" href="https://www.pasgah.org/blog.svg">
-    <meta name="theme-color" content="#DC2626">
-    <link rel="stylesheet" href="https://www.pasgah.org/blog/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ page.title }}</title>
+<meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
+<link rel="icon" href="https://www.pasgah.org/blog.svg">
+<meta name="theme-color" content="#c62828">
+
+<style>
+@font-face {
+  font-family: Vazirmatn;
+  src: url('https://www.pasgah.org/blog.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg: #fafafa;
+  --text: #222;
+  --text-light: #555;
+  --border: #e5e5e5;
+  --accent: #c62828;
+  --radius: 0.75rem;
+  --w: min(92%, 900px);
+  --lg: 1.75rem;
+  --md: 1.25rem;
+  --sm: 0.75rem;
+  --line-height-loose: 1.8;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-2xl: 1.75rem;
+  --font-size-3xl: 2.25rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Vazirmatn, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: var(--w);
+  margin: 0 auto;
+}
+
+header {
+  background: var(--accent);
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-svg {
+  width: 3rem;
+  height: 3rem;
+  filter: brightness(0) invert(1);
+}
+
+main {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.post-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--lg);
+  margin-bottom: var(--lg);
+}
+
+a.post-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: 0.15s;
+}
+
+a.post-card:hover {
+  border-color: var(--accent);
+  background: #fff7f7;
+}
+
+.post-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.post-author,
+.post-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.post-author svg,
+.post-date svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.post-author a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.post-author a:hover {
+  opacity: 0.8;
+}
+
+.article-content {
+  font-size: var(--font-size-lg);
+  color: var(--text);
+  line-height: var(--line-height-loose);
+}
+
+.article-content p {
+  margin: 1.25rem 0;
+}
+
+.article-content h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text);
+  margin: 1.75rem 0 1rem 0;
+}
+
+.article-content h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.article-content h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem 0;
+}
+
+.article-content a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.article-content a:hover {
+  text-decoration: underline;
+}
+
+.article-content ul {
+  margin: 1.25rem 0;
+  padding-right: 1.75rem;
+  list-style: none;
+}
+
+.article-content ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.article-content ul li::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.7em;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--text-light);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.article-content ol {
+  margin: 1.25rem 0;
+  padding-right: 1.75rem;
+  list-style: none;
+  counter-reset: list-counter;
+}
+
+.article-content ol li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-right: 2rem;
+  counter-increment: list-counter;
+}
+
+.article-content ol li::before {
+  content: counter(list-counter) ". ";
+  position: absolute;
+  right: 0;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.article-content blockquote {
+  border-right: 5px solid var(--accent);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(198, 40, 40, 0.05);
+  border-radius: 0.5rem;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+.article-content code {
+  background: rgba(198, 40, 40, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.375rem;
+  font-family: monospace;
+  font-size: 0.95em;
+  color: var(--accent);
+}
+
+.article-content pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.article-content pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--text);
+}
+
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
+  display: block;
+}
+
+.table-scroll {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.article-content table th,
+.article-content table td {
+  padding: 0.75rem 1rem;
+  text-align: right;
+  border: 1px solid var(--border);
+}
+
+.article-content table th {
+  background: #fff;
+  font-weight: 600;
+}
+
+.article-content table tbody tr:nth-child(even) {
+  background: var(--bg);
+}
+
+.comments-section {
+  margin-top: var(--lg);
+}
+
+.comments-list {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--lg);
+  margin-bottom: var(--lg);
+}
+
+.comment-item {
+  border-bottom: 1px solid var(--border);
+  padding: var(--md) 0;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--sm);
+}
+
+.comment-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.comment-date {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.comment-content {
+  line-height: var(--line-height-loose);
+  color: var(--text-light);
+}
+
+.comment-form {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--lg);
+}
+
+.form-group {
+  margin-bottom: var(--sm);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) / 2);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+}
+
+.comment-submit {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: calc(var(--radius) / 2);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.comment-submit:hover {
+  background: #b71c1c;
+}
+
+.comment-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-message {
+  margin-top: var(--sm);
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.loading-text,
+.no-comments {
+  color: var(--text-light);
+}
+
+.more-posts {
+  margin-top: var(--lg);
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lg);
+}
+
+.posts-list .post-card {
+  margin-bottom: 0;
+}
+
+.posts-list .post-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.posts-list .post-excerpt {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .posts-list .post-title {
+    font-size: 1.15rem;
+  }
+  .posts-list .post-excerpt {
+    font-size: 0.95rem;
+  }
+}
+
+footer {
+  background: var(--accent);
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--lg);
+}
+
+.footer-logo-svg {
+  width: 3.5rem;
+  height: 3.5rem;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 600px) {
+  .post-card {
+    padding: var(--md);
+  }
+  .post-title {
+    font-size: var(--font-size-2xl);
+  }
+  .article-content {
+    font-size: 1rem;
+  }
+  .article-content h2 {
+    font-size: var(--font-size-xl);
+  }
+  .article-content h3 {
+    font-size: var(--font-size-lg);
+  }
+  .article-content table {
+    min-width: 500px;
+  }
+  .post-meta {
+    font-size: 0.8rem;
+  }
+  .comments-list,
+  .comment-form {
+    padding: var(--md);
+  }
+}
+</style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="https://www.pasgah.org/" class="logo-link" aria-label="وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="56" height="56">
-            </a>
-        </div>
-    </header>
-    <main>
-        <div class="content-start"></div>
-        <section class="article-section">
-            <div class="container">
-                <article class="article-container">
-                    <h1 class="article-title">{{ page.title }}</h1>
-                    <div class="post-meta">
-                        <span class="post-author">
-                            <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
-                            <a href="https://t.me/s/pbstwi" rel="author">احسان چهری</a>
-                        </span>
-                        <span class="post-date" data-date="{{ page.date | date_to_xmlschema }}">
-                            <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
-                            </svg>
-                            <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
-                        </span>
-                    </div>
-                    <div class="article-content">
-                        {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
-                    </div>
-                </article>
-                <div class="post-actions">
-                    <button class="share-button" id="shareButton" aria-label="کپی و هم‌رسانی پیوند">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="currentColor"/>
-                        </svg>
-                        کپی و هم‌رسانی پیوند
-                    </button>
-                </div>
 
-                <div class="comments-section">
-                    <div id="comments-list" class="comments-list">
-                        <p class="loading-text">در حال بارگیری نظرات...</p>
-                    </div>
-                    <div class="comment-form">
-                        <form id="new-comment-form">
-                            <div class="form-group">
-                                <input type="text" id="comment-name" name="name" maxlength="50" placeholder="نام">
-                            </div>
-                            <div class="form-group">
-                                <textarea id="comment-content" name="content" required rows="4" maxlength="1000" placeholder="دیدگاه"></textarea>
-                            </div>
-                            <button type="submit" class="comment-submit">ارسال دیدگاه</button>
-                        </form>
-                        <div id="form-message" class="form-message"></div>
-                    </div>
-                </div>
+<header>
+  <a href="/" aria-label="وبلاگ پاسگاه">
+    <img src="https://www.pasgah.org/blog.svg" class="logo-svg" alt="لوگو" loading="lazy">
+  </a>
+</header>
 
-                <div class="more-posts">
-                    <div class="posts-list">
-                        {% assign current_post_url = page.url %}
-                        {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                        {% for post in all_posts limit: 100 %}
-                        <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
-                            <h3 class="post-title">{{ post.title }}</h3>
-                            <div class="post-excerpt">
-                                {{ post.excerpt | strip_html | truncate: 200 }}
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
+<main>
+  <div class="container">
+    <article class="post-card">
+      <h1 class="post-title">{{ page.title }}</h1>
+
+      <div class="post-meta">
+        <span class="post-author">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <a href="https://t.me/s/pbstwi" rel="author">احسان چهری</a>
+        </span>
+        <span class="post-date" data-date="{{ page.date | date_to_xmlschema }}">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
+          </svg>
+          <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
+        </span>
+      </div>
+
+      <div class="article-content">
+        {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
+      </div>
+    </article>
+
+    <div class="comments-section">
+      <div id="comments-list" class="comments-list">
+        <p class="loading-text">در حال بارگیری نظرات...</p>
+      </div>
+      <div class="comment-form">
+        <form id="new-comment-form">
+          <div class="form-group">
+            <input type="text" id="comment-name" name="name" maxlength="50" placeholder="نام">
+          </div>
+          <div class="form-group">
+            <textarea id="comment-content" name="content" required rows="4" maxlength="1000" placeholder="دیدگاه"></textarea>
+          </div>
+          <button type="submit" class="comment-submit">ارسال دیدگاه</button>
+        </form>
+        <div id="form-message" class="form-message"></div>
+      </div>
+    </div>
+
+    <div class="more-posts">
+      <div class="posts-list">
+        {% assign current_post_url = page.url %}
+        {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+        {% for post in all_posts limit: 100 %}
+        <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
+          <h2 class="post-title">{{ post.title }}</h2>
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncate: 400 }}
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="/" aria-label="وبلاگ پاسگاه">
+    <img src="https://www.pasgah.org/blog.svg" class="footer-logo-svg" alt="لوگو" loading="lazy">
+  </a>
+</footer>
+
+<script>
+  (function formatPostDate() {
+    const dateElement = document.querySelector('.post-date');
+    if (!dateElement) return;
+    const dateStr = dateElement.dataset.date;
+    if (!dateStr) return;
+    const date = new Date(dateStr);
+    const formatter = new Intl.DateTimeFormat('fa-IR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    dateElement.querySelector('.date-text').textContent = formatter.format(date);
+  })();
+
+  (function() {
+    const pageId = window.location.pathname;
+    const commentsListEl = document.getElementById('comments-list');
+    const form = document.getElementById('new-comment-form');
+    const nameInput = document.getElementById('comment-name');
+    const contentInput = document.getElementById('comment-content');
+    const formMessage = document.getElementById('form-message');
+
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    async function loadComments() {
+      if (!commentsListEl) return;
+      commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
+      try {
+        const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
+        if (!response.ok) throw new Error('خطا در دریافت نظرات');
+        const comments = await response.json();
+
+        if (comments.length === 0) {
+          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+          return;
+        }
+
+        let html = '';
+        comments.forEach(comment => {
+          const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
+            year: 'numeric', month: 'long', day: 'numeric'
+          });
+          html += `
+            <div class="comment-item">
+              <div class="comment-header">
+                <span class="comment-name">${escapeHtml(comment.name)}</span>
+                <span class="comment-date">${date}</span>
+              </div>
+              <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
             </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container footer-container">
-            <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="80" height="80">
-            </a>
-        </div>
-    </footer>
+          `;
+        });
+        commentsListEl.innerHTML = html;
+      } catch (err) {
+        commentsListEl.innerHTML = '<p class="form-message" style="color: var(--accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
+        console.error(err);
+      }
+    }
 
-    <script src="https://www.pasgah.org/blog/style.js"></script>
+    async function submitComment(event) {
+      event.preventDefault();
+
+      const name = nameInput.value.trim() || 'کاربر مهمان';
+      const content = contentInput.value.trim();
+
+      if (!content) {
+        formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
+        formMessage.style.color = 'var(--accent)';
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'در حال ارسال...';
+
+      try {
+        const response = await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pageId, name, content })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'خطا در ارسال نظر');
+        }
+
+        nameInput.value = '';
+        contentInput.value = '';
+        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
+        formMessage.style.color = 'green';
+
+        loadComments();
+      } catch (err) {
+        formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
+        formMessage.style.color = 'var(--accent)';
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'ارسال دیدگاه';
+      }
+    }
+
+    if (commentsListEl) {
+      loadComments();
+    }
+
+    if (form) {
+      form.addEventListener('submit', submitComment);
+    }
+  })();
+</script>
+
 </body>
 </html>
