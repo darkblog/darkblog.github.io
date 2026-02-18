@@ -61,7 +61,6 @@ body {
   margin: 0 auto;
 }
 
-/* هدر ساده مانند صفحه اصلی */
 header {
   background: var(--accent);
   padding: 1rem 0;
@@ -75,13 +74,11 @@ header {
   filter: brightness(0) invert(1);
 }
 
-/* محتوای اصلی */
 main {
   flex: 1;
   padding: 2rem 0;
 }
 
-/* کارت مقاله */
 .post-card {
   background: #fff;
   border: 1px solid var(--border);
@@ -90,7 +87,13 @@ main {
   margin-bottom: var(--lg);
 }
 
-/* هاور برای کارت‌های لینک (پست‌های بیشتر) */
+a.post-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: 0.15s;
+}
+
 a.post-card:hover {
   border-color: var(--accent);
   background: #fff7f7;
@@ -138,7 +141,6 @@ a.post-card:hover {
   opacity: 0.8;
 }
 
-/* محتوای پست */
 .article-content {
   font-size: var(--font-size-lg);
   color: var(--text);
@@ -266,7 +268,6 @@ a.post-card:hover {
   display: block;
 }
 
-/* جدول با اسکرول افقی */
 .table-scroll {
   margin: 1.5rem 0;
   border: 1px solid var(--border);
@@ -297,7 +298,6 @@ a.post-card:hover {
   background: var(--bg);
 }
 
-/* -------------------- بخش نظرات -------------------- */
 .comments-section {
   margin-top: var(--lg);
 }
@@ -397,16 +397,11 @@ a.post-card:hover {
   color: var(--accent);
 }
 
-.loading-text {
-  color: var(--text-light);
-}
-
+.loading-text,
 .no-comments {
   color: var(--text-light);
 }
-/* ------------------------------------------------ */
 
-/* -------------------- پست‌های بیشتر (مطابق صفحه اصلی) -------------------- */
 .more-posts {
   margin-top: var(--lg);
 }
@@ -417,12 +412,14 @@ a.post-card:hover {
   gap: var(--lg);
 }
 
-/* استایل عنوان پست در لیست (مطابق صفحه اصلی) */
+.posts-list .post-card {
+  margin-bottom: 0;
+}
+
 .posts-list .post-title {
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  /* حذف padding و ::before اضافی */
 }
 
 .posts-list .post-excerpt {
@@ -431,7 +428,6 @@ a.post-card:hover {
   margin-top: 0.5rem;
 }
 
-/* واکنش‌گرایی برای موبایل */
 @media (max-width: 600px) {
   .posts-list .post-title {
     font-size: 1.15rem;
@@ -440,9 +436,7 @@ a.post-card:hover {
     font-size: 0.95rem;
   }
 }
-/* ------------------------------------------------ */
 
-/* فوتر ساده مانند صفحه اصلی */
 footer {
   background: var(--accent);
   padding: 2rem 0;
@@ -457,7 +451,6 @@ footer {
   filter: brightness(0) invert(1);
 }
 
-/* واکنش‌گرایی عمومی */
 @media (max-width: 600px) {
   .post-card {
     padding: var(--md);
@@ -497,7 +490,6 @@ footer {
 
 <main>
   <div class="container">
-    <!-- مقاله اصلی -->
     <article class="post-card">
       <h1 class="post-title">{{ page.title }}</h1>
 
@@ -521,7 +513,6 @@ footer {
       </div>
     </article>
 
-    <!-- بخش نظرات -->
     <div class="comments-section">
       <div id="comments-list" class="comments-list">
         <p class="loading-text">در حال بارگیری نظرات...</p>
@@ -540,7 +531,6 @@ footer {
       </div>
     </div>
 
-    <!-- پست‌های بیشتر (مطابق صفحه اصلی) -->
     <div class="more-posts">
       <div class="posts-list">
         {% assign current_post_url = page.url %}
@@ -565,7 +555,6 @@ footer {
 </footer>
 
 <script>
-  // تبدیل تاریخ میلادی به شمسی
   (function formatPostDate() {
     const dateElement = document.querySelector('.post-date');
     if (!dateElement) return;
@@ -580,7 +569,6 @@ footer {
     dateElement.querySelector('.date-text').textContent = formatter.format(date);
   })();
 
-  // اسکریپت نظرات
   (function() {
     const pageId = window.location.pathname;
     const commentsListEl = document.getElementById('comments-list');
