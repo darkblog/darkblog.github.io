@@ -1,0 +1,104 @@
+<!doctype html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
+    <link rel="icon" href="https://www.pasgah.org/blog.svg">
+    <meta name="theme-color" content="#DC2626">
+    <style>
+      
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="https://www.pasgah.org/" class="logo-link" aria-label="وبلاگ پاسگاه">
+                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="56" height="56">
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="content-start"></div>
+        <section class="article-section">
+            <div class="container">
+                <article class="article-container">
+                    <h1 class="article-title">{{ page.title }}</h1>
+                    <div class="post-meta">
+                        <span class="post-author">
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <a href="https://t.me/s/pbstwi" rel="author">احسان چهری</a>
+                        </span>
+                        <span class="post-date" data-date="{{ page.date | date_to_xmlschema }}">
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
+                            </svg>
+                            <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
+                        </span>
+                    </div>
+                    <div class="article-content">
+                        {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
+                    </div>
+                </article>
+                <div class="post-actions">
+                    <button class="share-button" id="shareButton" aria-label="کپی و هم‌رسانی پیوند">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="currentColor"/>
+                        </svg>
+                        کپی و هم‌رسانی پیوند
+                    </button>
+                </div>
+
+                <div class="comments-section">
+                    <div id="comments-list" class="comments-list">
+                        <p class="loading-text">در حال بارگیری نظرات...</p>
+                    </div>
+                    <div class="comment-form">
+                        <form id="new-comment-form">
+                            <div class="form-group">
+                                <input type="text" id="comment-name" name="name" maxlength="50" placeholder="نام">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="comment-content" name="content" required rows="4" maxlength="1000" placeholder="دیدگاه"></textarea>
+                            </div>
+                            <button type="submit" class="comment-submit">ارسال دیدگاه</button>
+                        </form>
+                        <div id="form-message" class="form-message"></div>
+                    </div>
+                </div>
+
+                <div class="more-posts">
+                    <div class="posts-list">
+                        {% assign current_post_url = page.url %}
+                        {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+                        {% for post in all_posts limit: 100 %}
+                        <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
+                            <h3 class="post-title">{{ post.title }}</h3>
+                            <div class="post-excerpt">
+                                {{ post.excerpt | strip_html | truncate: 200 }}
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer-container">
+            <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
+                <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="80" height="80">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+      
+    </script>
+</body>
+</html>
