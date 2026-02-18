@@ -1,279 +1,191 @@
+---
+layout: null
+---
+
 <!doctype html>
-<html dir="rtl" lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    <link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
-    <link rel="icon" href="https://www.pasgah.org/blog.svg">
-    <meta name="theme-color" content="#DC2626">
-    <style>
-      @font-face {
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ page.title }}</title>
+<meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link href="https://www.pasgah.org/blog.xml" rel="alternate" type="application/atom+xml">
+<link rel="icon" href="https://www.pasgah.org/blog.svg">
+<meta name="theme-color" content="#c62828">
+
+<style>
+@font-face {
   font-family: Vazirmatn;
   src: url('https://www.pasgah.org/blog.woff2') format('woff2');
   font-weight: 100 900;
-  font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --color-primary: #4A3F3A;
-  --color-accent: #DC2626;
-  --color-accent-light: #EF4444;
-  --color-bg: #F9F5F0;
-  --color-surface: #FFFFFF;
-  --color-text: #111827;
-  --color-text-secondary: #374151;
-  --color-text-light: #6B7280;
-  --color-border: #E3DDD5;
-  --color-shadow: rgba(0,0,0,0.05);
-  --color-hover: rgba(220,38,38,0.05);
-  --color-soft-line: #EAD2C0;
-  --color-soft-dot: #B99F8F;
-  --container-width: min(92%, 1000px);
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1.25rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-xxl: 5rem;
-  --header-height: 5rem;
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
+  --bg: #fafafa;
+  --text: #222;
+  --text-light: #555;
+  --border: #e5e5e5;
+  --accent: #c62828;
+  --radius: 0.75rem;
+  --w: min(92%, 900px);
+  --lg: 1.75rem;
+  --md: 1.25rem;
+  --sm: 0.75rem;
+  --line-height-loose: 1.8;
   --font-size-lg: 1.125rem;
   --font-size-xl: 1.375rem;
   --font-size-2xl: 1.75rem;
   --font-size-3xl: 2.25rem;
-  --line-height-tight: 1.3;
-  --line-height-normal: 1.7;
-  --line-height-loose: 1.8;
 }
 
-*,
-::after,
-::before {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: clamp(16px, 16px + 0.25vw, 18px);
-  -webkit-tap-highlight-color: transparent;
-  background-color: var(--color-bg);
-}
-
 body {
-  font-family: Vazirmatn, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: var(--line-height-normal);
-  font-weight: 400;
-  min-height: 100vh;
+  font-family: Vazirmatn, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 0;
-  font-feature-settings: "ss02", "ss03", "ss05", "ss06";
-  text-rendering: optimizeLegibility;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  min-height: 100vh;
 }
 
 .container {
-  width: var(--container-width);
+  width: var(--w);
   margin: 0 auto;
 }
 
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: var(--color-accent);
-  height: var(--header-height);
+/* هدر ساده مانند صفحه اصلی */
+header {
+  background: var(--accent);
+  padding: 1rem 0;
   display: flex;
-  align-items: center;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  border-bottom: none;
-}
-
-@supports (-webkit-touch-callout: none) {
-  .site-header {
-    padding-top: env(safe-area-inset-top);
-    height: calc(var(--header-height) + env(safe-area-inset-top));
-  }
-}
-
-.header-container {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.logo-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: var(--header-height);
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .logo-svg {
-  width: 3.5rem;
-  height: 3.5rem;
-  color: #fff;
+  width: 3rem;
+  height: 3rem;
   filter: brightness(0) invert(1);
 }
 
+/* محتوای اصلی */
 main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  padding: 2rem 0;
 }
 
-.content-start {
-  height: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl));
+/* کارت مقاله */
+.post-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--lg);
+  margin-bottom: var(--lg);
 }
 
-.article-section {
-  padding-bottom: clamp(var(--spacing-xl), 6vw, var(--spacing-xxl));
+/* هاور برای کارت‌های لینک (پست‌های بیشتر) */
+a.post-card:hover {
+  border-color: var(--accent);
+  background: #fff7f7;
 }
 
-.article-container {
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  border: 1px solid var(--color-border);
-  position: relative;
-}
-
-.article-title {
+.post-title {
   font-size: var(--font-size-3xl);
   font-weight: 700;
-  line-height: var(--line-height-tight);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-  text-align: right;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 0.5rem;
 }
 
 .post-meta {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-  color: var(--color-text-light);
-  font-size: var(--font-size-sm);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
   flex-wrap: wrap;
 }
 
+.post-author,
 .post-date {
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
+.post-author svg,
 .post-date svg {
   width: 1.2rem;
   height: 1.2rem;
   fill: currentColor;
 }
 
-.post-author {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.post-author svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  fill: currentColor;
-}
-
 .post-author a {
-  color: var(--color-accent);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
 }
 
-.post-author a:hover,
-.post-author a:active {
-  text-decoration: none;
-  opacity: 0.7;
+.post-author a:hover {
+  opacity: 0.8;
 }
 
+/* محتوای پست */
 .article-content {
   font-size: var(--font-size-lg);
-  color: var(--color-text);
+  color: var(--text);
   line-height: var(--line-height-loose);
-  text-align: right;
 }
 
 .article-content p {
-  margin: var(--spacing-md) 0;
+  margin: 1.25rem 0;
 }
 
 .article-content h2 {
   font-size: var(--font-size-2xl);
   font-weight: 700;
-  color: var(--color-primary);
-  margin: var(--spacing-lg) 0 var(--spacing-md) 0;
-  padding-bottom: 0;
+  color: var(--text);
+  margin: 1.75rem 0 1rem 0;
 }
 
 .article-content h3 {
   font-size: var(--font-size-xl);
   font-weight: 600;
-  color: var(--color-primary);
-  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  margin: 1.5rem 0 0.75rem 0;
 }
 
 .article-content h4 {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--color-text);
-  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  margin: 1.25rem 0 0.5rem 0;
 }
 
 .article-content a {
-  color: var(--color-accent);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 500;
 }
 
 .article-content a:hover {
-  text-decoration: none;
-}
-
-.article-content a:active {
-  opacity: 0.7;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .article-content ul {
-  margin: var(--spacing-md) 0;
-  padding-right: var(--spacing-lg);
+  margin: 1.25rem 0;
+  padding-right: 1.75rem;
   list-style: none;
 }
 
 .article-content ul li {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.5rem;
   position: relative;
   padding-right: 1.5rem;
 }
@@ -282,22 +194,23 @@ main {
   content: '';
   position: absolute;
   right: 0;
-  top: 0.75em;
+  top: 0.7em;
   width: 0.5rem;
   height: 0.5rem;
-  background-color: var(--color-soft-dot);
+  background-color: var(--text-light);
   border-radius: 50%;
+  opacity: 0.5;
 }
 
 .article-content ol {
-  margin: var(--spacing-md) 0;
-  padding-right: var(--spacing-lg);
+  margin: 1.25rem 0;
+  padding-right: 1.75rem;
   list-style: none;
   counter-reset: list-counter;
 }
 
 .article-content ol li {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.5rem;
   position: relative;
   padding-right: 2rem;
   counter-increment: list-counter;
@@ -307,158 +220,99 @@ main {
   content: counter(list-counter) ". ";
   position: absolute;
   right: 0;
-  color: var(--color-soft-dot);
+  color: var(--text-light);
   font-weight: 500;
-  font-size: 1rem;
 }
 
 .article-content blockquote {
-  border-right: 5px solid var(--color-accent);
-  padding: var(--spacing-md) var(--spacing-lg);
-  margin: var(--spacing-lg) 0;
-  background-color: var(--color-hover);
-  border-radius: var(--radius-sm);
+  border-right: 5px solid var(--accent);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(198, 40, 40, 0.05);
+  border-radius: 0.5rem;
   font-style: italic;
-  color: var(--color-text-secondary);
+  color: var(--text-light);
 }
 
 .article-content code {
-  background-color: rgba(220,38,38,0.1);
+  background: rgba(198, 40, 40, 0.1);
   padding: 0.2em 0.4em;
-  border-radius: var(--radius-sm);
+  border-radius: 0.375rem;
   font-family: monospace;
   font-size: 0.95em;
-  color: var(--color-accent);
+  color: var(--accent);
 }
 
 .article-content pre {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-md);
-  margin: var(--spacing-md) 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
   overflow-x: auto;
-  display: block;
 }
 
 .article-content pre code {
-  background-color: transparent;
+  background: transparent;
   padding: 0;
-  color: var(--color-text);
+  color: var(--text);
 }
 
 .article-content img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-md);
-  margin: var(--spacing-lg) 0;
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
   display: block;
 }
 
+/* جدول با اسکرول افقی */
 .table-scroll {
-  margin: var(--spacing-lg) 0;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  overflow-x: scroll;
-  overflow-y: visible;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  display: block;
-  width: 100%;
-  max-width: 100%;
 }
 
 .article-content table {
   width: 100%;
   border-collapse: collapse;
   min-width: 600px;
-  display: table;
 }
 
-.article-content table thead {
-  background: #fff;
+.article-content table th,
+.article-content table td {
+  padding: 0.75rem 1rem;
+  text-align: right;
+  border: 1px solid var(--border);
 }
 
 .article-content table th {
-  color: var(--color-text);
-  padding: 1rem;
-  text-align: right;
+  background: #fff;
   font-weight: 600;
-  border: 1px solid var(--color-border);
-  white-space: nowrap;
-}
-
-.article-content table td {
-  padding: 1rem;
-  text-align: right;
-  border: 1px solid var(--color-border);
 }
 
 .article-content table tbody tr:nth-child(even) {
-  background-color: var(--color-bg);
+  background: var(--bg);
 }
 
-.post-actions {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-md);
-  margin: var(--spacing-xl) 0;
-}
-
-.share-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  background-color: var(--color-surface);
-  border: 2px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  color: var(--color-accent);
-  font-size: var(--font-size-lg);
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-decoration: none;
-  width: auto;
-  height: auto;
-  box-shadow: 0 2px 8px var(--color-shadow);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.share-button:hover,
-.share-button:active,
-.share-button:focus,
-.share-button:focus-visible {
-  background-color: var(--color-surface) !important;
-  color: var(--color-accent) !important;
-  border-color: var(--color-accent) !important;
-  transform: none !important;
-  box-shadow: 0 2px 8px var(--color-shadow) !important;
-  outline: 3px solid var(--color-accent);
-  outline-offset: 2px;
-  opacity: 1 !important;
-}
-
-.share-button svg {
-  width: 24px;
-  height: 24px;
-}
-
+/* -------------------- بخش نظرات -------------------- */
 .comments-section {
-  margin: var(--spacing-xl) 0;
+  margin-top: var(--lg);
 }
 
 .comments-list {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--lg);
+  margin-bottom: var(--lg);
 }
 
 .comment-item {
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border);
+  padding: var(--md) 0;
 }
 
 .comment-item:last-child {
@@ -469,71 +323,67 @@ main {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--sm);
 }
 
 .comment-name {
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--text);
 }
 
 .comment-date {
-  color: var(--color-text-light);
-  font-size: var(--font-size-sm);
+  color: var(--text-light);
+  font-size: 0.9rem;
 }
 
 .comment-content {
   line-height: var(--line-height-loose);
-  color: var(--color-text-secondary);
+  color: var(--text-light);
 }
 
 .comment-form {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--lg);
 }
 
 .form-group {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--sm);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) / 2);
   font-family: inherit;
-  font-size: var(--font-size-base);
+  font-size: 1rem;
   transition: border-color 0.2s;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  outline: 0;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
 }
 
 .comment-submit {
-  background-color: var(--color-accent);
+  background: var(--accent);
   color: #fff;
   border: none;
   padding: 0.75rem 2rem;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
+  border-radius: calc(var(--radius) / 2);
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: background 0.2s;
 }
 
 .comment-submit:hover {
-  background-color: var(--color-accent-light);
-}
-
-.comment-submit:active {
-  transform: scale(0.98);
+  background: #b71c1c;
 }
 
 .comment-submit:disabled {
@@ -542,135 +392,81 @@ main {
 }
 
 .form-message {
-  margin-top: var(--spacing-sm);
-  font-size: var(--font-size-sm);
-  color: var(--color-accent);
+  margin-top: var(--sm);
+  font-size: 0.9rem;
+  color: var(--accent);
 }
 
 .loading-text {
-  color: var(--color-text-light);
+  color: var(--text-light);
 }
 
 .no-comments {
-  color: var(--color-text-light);
+  color: var(--text-light);
 }
+/* ------------------------------------------------ */
 
+/* -------------------- پست‌های بیشتر (مطابق صفحه اصلی) -------------------- */
 .more-posts {
-  margin-top: var(--spacing-xxl);
+  margin-top: var(--lg);
 }
 
 .posts-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--lg);
 }
 
-.post-card {
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  border: 1px solid var(--color-border);
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.post-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 20px var(--color-shadow);
-  transform: translateY(-3px);
-}
-
-.post-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 5px;
-  height: 100%;
-  background: var(--color-accent);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.post-card:hover::before {
-  opacity: 1;
-}
-
-.post-title {
-  font-size: var(--font-size-xl);
+/* استایل عنوان پست در لیست (مطابق صفحه اصلی) */
+.posts-list .post-title {
+  font-size: 1.35rem;
   font-weight: 700;
-  line-height: var(--line-height-tight);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-xs);
-  position: relative;
-  padding-right: 1.75rem;
+  margin-bottom: 0.5rem;
+  /* حذف padding و ::before اضافی */
 }
 
-.post-title::before {
-  content: '←';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 1;
-  color: var(--color-accent);
-  font-size: 1.2em;
-  font-weight: 400;
+.posts-list .post-excerpt {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
 }
 
-.post-excerpt {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-loose);
-  margin-top: var(--spacing-sm);
-  padding-right: 1.75rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* واکنش‌گرایی برای موبایل */
+@media (max-width: 600px) {
+  .posts-list .post-title {
+    font-size: 1.15rem;
+  }
+  .posts-list .post-excerpt {
+    font-size: 0.95rem;
+  }
 }
+/* ------------------------------------------------ */
 
+/* فوتر ساده مانند صفحه اصلی */
 footer {
-  padding: clamp(var(--spacing-xl), 4vw, var(--spacing-xxl)) 0;
-  background-color: var(--color-accent);
-  margin-top: auto;
-}
-
-.footer-container {
+  background: var(--accent);
+  padding: 2rem 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
+  margin-top: var(--lg);
 }
 
 .footer-logo-svg {
-  width: clamp(4rem, 3rem + 2vw, 6rem);
-  height: clamp(4rem, 3rem + 2vw, 6rem);
-  color: #fff;
+  width: 3.5rem;
+  height: 3.5rem;
   filter: brightness(0) invert(1);
 }
 
-@media (max-width: 768px) {
-  .article-container {
-    padding: var(--spacing-md);
+/* واکنش‌گرایی عمومی */
+@media (max-width: 600px) {
+  .post-card {
+    padding: var(--md);
   }
-  .article-title {
+  .post-title {
     font-size: var(--font-size-2xl);
   }
   .article-content {
-    font-size: var(--font-size-base);
+    font-size: 1rem;
   }
   .article-content h2 {
     font-size: var(--font-size-xl);
@@ -681,390 +477,215 @@ footer {
   .article-content table {
     min-width: 500px;
   }
-  .article-content table td,
-  .article-content table th {
-    padding: 0.75rem;
-    font-size: 0.9rem;
-  }
-  .post-card {
-    padding: var(--spacing-md);
-  }
-  .post-title {
-    font-size: var(--font-size-lg);
-    padding-right: 1.75rem;
-  }
-  .post-excerpt {
-    font-size: var(--font-size-base);
-    -webkit-line-clamp: 2;
-    padding-right: 1.75rem;
-  }
-  :root {
-    --header-height: 4.5rem;
-  }
-  .logo-svg {
-    width: 3rem;
-    height: 3rem;
-  }
-  .share-button {
-    padding: 0.6rem 1.5rem;
-    font-size: var(--font-size-base);
-  }
-}
-
-@media (max-width: 480px) {
-  .article-container {
-    padding: var(--spacing-sm);
-  }
-  .article-title {
-    font-size: var(--font-size-xl);
-    padding-bottom: var(--spacing-sm);
-  }
-  .article-content table {
-    min-width: 400px;
-  }
-  .article-content table td,
-  .article-content table th {
-    padding: 0.5rem;
-    font-size: 0.85rem;
-  }
-  .post-card {
-    padding: var(--spacing-sm);
-  }
-  .post-title {
-    font-size: var(--font-size-base);
-    padding-right: 1.5rem;
-  }
-  .post-excerpt {
-    -webkit-line-clamp: 2;
-    padding-right: 1.5rem;
-    font-size: var(--font-size-sm);
-  }
-  :root {
-    --header-height: 4rem;
-  }
-  .logo-svg {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-  .share-button {
-    padding: 0.5rem 1.2rem;
-    font-size: var(--font-size-sm);
-  }
-}
-
-@media (max-width: 360px) {
-  .article-content table {
-    min-width: 320px;
-  }
-  .article-content table td,
-  .article-content table th {
-    padding: 0.4rem;
+  .post-meta {
     font-size: 0.8rem;
   }
-}
-
-:focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
-
-::selection {
-  background-color: rgba(220,38,38,0.15);
-  color: var(--color-text);
-}
-
-@media print {
-  .article-container {
-    box-shadow: none;
-    border: 1px solid var(--color-border);
-  }
-  .table-scroll {
-    border: 1px solid #000;
-  }
-  footer {
-    background: none;
-  }
-  .post-card {
-    break-inside: avoid;
+  .comments-list,
+  .comment-form {
+    padding: var(--md);
   }
 }
-
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  overscroll-behavior-y: contain;
-}
-
-html,
-body {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .post-card:active {
-    opacity: 0.9;
-    background-color: var(--color-hover);
-  }
-}
-    </style>
+</style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="https://www.pasgah.org/" class="logo-link" aria-label="وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="لوگوی وبلاگ پاسگاه" class="logo-svg" loading="lazy" width="56" height="56">
-            </a>
-        </div>
-    </header>
-    <main>
-        <div class="content-start"></div>
-        <section class="article-section">
-            <div class="container">
-                <article class="article-container">
-                    <h1 class="article-title">{{ page.title }}</h1>
-                    <div class="post-meta">
-                        <span class="post-author">
-                            <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
-                            <a href="https://t.me/s/pbstwi" rel="author">احسان چهری</a>
-                        </span>
-                        <span class="post-date" data-date="{{ page.date | date_to_xmlschema }}">
-                            <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
-                            </svg>
-                            <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
-                        </span>
-                    </div>
-                    <div class="article-content">
-                        {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
-                    </div>
-                </article>
-                <div class="post-actions">
-                    <button class="share-button" id="shareButton" aria-label="کپی و هم‌رسانی پیوند">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="currentColor"/>
-                        </svg>
-                        کپی و هم‌رسانی پیوند
-                    </button>
-                </div>
 
-                <div class="comments-section">
-                    <div id="comments-list" class="comments-list">
-                        <p class="loading-text">در حال بارگیری نظرات...</p>
-                    </div>
-                    <div class="comment-form">
-                        <form id="new-comment-form">
-                            <div class="form-group">
-                                <input type="text" id="comment-name" name="name" maxlength="50" placeholder="نام">
-                            </div>
-                            <div class="form-group">
-                                <textarea id="comment-content" name="content" required rows="4" maxlength="1000" placeholder="دیدگاه"></textarea>
-                            </div>
-                            <button type="submit" class="comment-submit">ارسال دیدگاه</button>
-                        </form>
-                        <div id="form-message" class="form-message"></div>
-                    </div>
-                </div>
+<header>
+  <a href="/" aria-label="وبلاگ پاسگاه">
+    <img src="https://www.pasgah.org/blog.svg" class="logo-svg" alt="لوگو" loading="lazy">
+  </a>
+</header>
 
-                <div class="more-posts">
-                    <div class="posts-list">
-                        {% assign current_post_url = page.url %}
-                        {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-                        {% for post in all_posts limit: 100 %}
-                        <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
-                            <h3 class="post-title">{{ post.title }}</h3>
-                            <div class="post-excerpt">
-                                {{ post.excerpt | strip_html | truncate: 200 }}
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container footer-container">
-            <a href="https://www.pasgah.org/" class="footer-logo" aria-label="وبلاگ پاسگاه">
-                <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" class="footer-logo-svg" loading="lazy" width="80" height="80">
-            </a>
-        </div>
-    </footer>
+<main>
+  <div class="container">
+    <!-- مقاله اصلی -->
+    <article class="post-card">
+      <h1 class="post-title">{{ page.title }}</h1>
+
+      <div class="post-meta">
+        <span class="post-author">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <a href="https://t.me/s/pbstwi" rel="author">احسان چهری</a>
+        </span>
+        <span class="post-date" data-date="{{ page.date | date_to_xmlschema }}">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
+          </svg>
+          <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
+        </span>
+      </div>
+
+      <div class="article-content">
+        {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
+      </div>
+    </article>
+
+    <!-- بخش نظرات -->
+    <div class="comments-section">
+      <div id="comments-list" class="comments-list">
+        <p class="loading-text">در حال بارگیری نظرات...</p>
+      </div>
+      <div class="comment-form">
+        <form id="new-comment-form">
+          <div class="form-group">
+            <input type="text" id="comment-name" name="name" maxlength="50" placeholder="نام">
+          </div>
+          <div class="form-group">
+            <textarea id="comment-content" name="content" required rows="4" maxlength="1000" placeholder="دیدگاه"></textarea>
+          </div>
+          <button type="submit" class="comment-submit">ارسال دیدگاه</button>
+        </form>
+        <div id="form-message" class="form-message"></div>
+      </div>
+    </div>
+
+    <!-- پست‌های بیشتر (مطابق صفحه اصلی) -->
+    <div class="more-posts">
+      <div class="posts-list">
+        {% assign current_post_url = page.url %}
+        {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+        {% for post in all_posts limit: 100 %}
+        <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
+          <h2 class="post-title">{{ post.title }}</h2>
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncate: 400 }}
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="/" aria-label="وبلاگ پاسگاه">
+    <img src="https://www.pasgah.org/blog.svg" class="footer-logo-svg" alt="لوگو" loading="lazy">
+  </a>
+</footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var shareButton = document.getElementById('shareButton');
-    if (shareButton) {
-        shareButton.addEventListener('click', function() {
-            var shareData = {
-                title: document.title,
-                url: window.location.href
-            };
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .catch(function(error) {
-                        console.log('Error sharing:', error);
-                    })
-                    .finally(function() {
-                        shareButton.blur();
-                    });
-            } else {
-                navigator.clipboard.writeText(window.location.href)
-                    .then(function() {
-                        var notification = document.createElement('div');
-                        notification.textContent = 'لینک کپی شد';
-                        notification.style.position = 'fixed';
-                        notification.style.bottom = '20px';
-                        notification.style.left = '50%';
-                        notification.style.transform = 'translateX(-50%)';
-                        notification.style.backgroundColor = 'var(--color-accent)';
-                        notification.style.color = '#fff';
-                        notification.style.padding = '8px 16px';
-                        notification.style.borderRadius = 'var(--radius-md)';
-                        notification.style.zIndex = '1000';
-                        notification.style.fontSize = 'var(--font-size-sm)';
-                        notification.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-                        document.body.appendChild(notification);
-                        setTimeout(function() {
-                            notification.remove();
-                        }, 2000);
-                    })
-                    .catch(function() {
-                        alert('اشتراک‌گذاری پشتیبانی نمی‌شود');
-                    })
-                    .finally(function() {
-                        shareButton.blur();
-                    });
-            }
-        });
+  // تبدیل تاریخ میلادی به شمسی
+  (function formatPostDate() {
+    const dateElement = document.querySelector('.post-date');
+    if (!dateElement) return;
+    const dateStr = dateElement.dataset.date;
+    if (!dateStr) return;
+    const date = new Date(dateStr);
+    const formatter = new Intl.DateTimeFormat('fa-IR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    dateElement.querySelector('.date-text').textContent = formatter.format(date);
+  })();
+
+  // اسکریپت نظرات
+  (function() {
+    const pageId = window.location.pathname;
+    const commentsListEl = document.getElementById('comments-list');
+    const form = document.getElementById('new-comment-form');
+    const nameInput = document.getElementById('comment-name');
+    const contentInput = document.getElementById('comment-content');
+    const formMessage = document.getElementById('form-message');
+
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
-    (function() {
-        const pageId = window.location.pathname;
-        const commentsListEl = document.getElementById('comments-list');
-        const form = document.getElementById('new-comment-form');
-        const nameInput = document.getElementById('comment-name');
-        const contentInput = document.getElementById('comment-content');
-        const formMessage = document.getElementById('form-message');
+    async function loadComments() {
+      if (!commentsListEl) return;
+      commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
+      try {
+        const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
+        if (!response.ok) throw new Error('خطا در دریافت نظرات');
+        const comments = await response.json();
 
-        function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+        if (comments.length === 0) {
+          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+          return;
         }
 
-        async function loadComments() {
-            commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
-            try {
-                const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
-                if (!response.ok) throw new Error('خطا در دریافت نظرات');
-                const comments = await response.json();
-
-                if (comments.length === 0) {
-                    commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
-                    return;
-                }
-
-                let html = '';
-                comments.forEach(comment => {
-                    const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
-                        year: 'numeric', month: 'long', day: 'numeric'
-                    });
-                    html += `
-                        <div class="comment-item">
-                            <div class="comment-header">
-                                <span class="comment-name">${escapeHtml(comment.name)}</span>
-                                <span class="comment-date">${date}</span>
-                            </div>
-                            <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
-                        </div>
-                    `;
-                });
-                commentsListEl.innerHTML = html;
-            } catch (err) {
-                commentsListEl.innerHTML = '<p class="form-message" style="color: var(--color-accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
-                console.error(err);
-            }
-        }
-
-        async function submitComment(event) {
-            event.preventDefault();
-
-            const name = nameInput.value.trim() || 'کاربر مهمان';
-            const content = contentInput.value.trim();
-
-            if (!content) {
-                formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
-                formMessage.style.color = 'var(--color-accent)';
-                return;
-            }
-
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'در حال ارسال...';
-
-            try {
-                const response = await fetch('/api/comments', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pageId, name, content })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'خطا در ارسال نظر');
-                }
-
-                nameInput.value = '';
-                contentInput.value = '';
-                formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
-                formMessage.style.color = 'green';
-
-                loadComments();
-            } catch (err) {
-                formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
-                formMessage.style.color = 'var(--color-accent)';
-                console.error(err);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'ارسال دیدگاه';
-            }
-        }
-
-        if (commentsListEl) {
-            loadComments();
-        }
-
-        if (form) {
-            form.addEventListener('submit', submitComment);
-        }
-    })();
-
-    (function formatPostDate() {
-        const dateElement = document.querySelector('.post-date');
-        if (!dateElement) return;
-        const dateStr = dateElement.dataset.date;
-        if (!dateStr) return;
-        const date = new Date(dateStr);
-        const formatted = date.toLocaleDateString('fa-IR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+        let html = '';
+        comments.forEach(comment => {
+          const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
+            year: 'numeric', month: 'long', day: 'numeric'
+          });
+          html += `
+            <div class="comment-item">
+              <div class="comment-header">
+                <span class="comment-name">${escapeHtml(comment.name)}</span>
+                <span class="comment-date">${date}</span>
+              </div>
+              <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
+            </div>
+          `;
         });
-        dateElement.querySelector('.date-text').textContent = formatted;
-    })();
-});
+        commentsListEl.innerHTML = html;
+      } catch (err) {
+        commentsListEl.innerHTML = '<p class="form-message" style="color: var(--accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
+        console.error(err);
+      }
+    }
+
+    async function submitComment(event) {
+      event.preventDefault();
+
+      const name = nameInput.value.trim() || 'کاربر مهمان';
+      const content = contentInput.value.trim();
+
+      if (!content) {
+        formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
+        formMessage.style.color = 'var(--accent)';
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'در حال ارسال...';
+
+      try {
+        const response = await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pageId, name, content })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'خطا در ارسال نظر');
+        }
+
+        nameInput.value = '';
+        contentInput.value = '';
+        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
+        formMessage.style.color = 'green';
+
+        loadComments();
+      } catch (err) {
+        formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
+        formMessage.style.color = 'var(--accent)';
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'ارسال دیدگاه';
+      }
+    }
+
+    if (commentsListEl) {
+      loadComments();
+    }
+
+    if (form) {
+      form.addEventListener('submit', submitComment);
+    }
+  })();
 </script>
-    
+
 </body>
 </html>
