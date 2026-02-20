@@ -18,7 +18,7 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "خانه",
+      "name": "پاسگاه",
       "item": "{{ '/' | absolute_url }}"
     },
     {
@@ -40,7 +40,7 @@
 
 <style>
 @font-face {
-  font-family: Vazirmatn;
+  font-family: 'Vazirmatn';
   src: url('https://www.pasgah.org/blog.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
@@ -78,14 +78,14 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden; /* جلوگیری از اسکرول افقی کل صفحه */
+  overflow-x: hidden;
 }
 
 .container {
   width: var(--w);
   margin: 0 auto;
   max-width: 100%;
-  overflow-x: hidden; /* جلوگیری از خروج محتوا از عرض */
+  overflow-x: hidden;
 }
 
 header {
@@ -312,7 +312,7 @@ a.post-card:hover {
   margin: 1.5rem 0;
   overflow-x: auto;
   max-width: 100%;
-  white-space: pre-wrap; /* شکستن خطوط در pre */
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 
@@ -560,7 +560,7 @@ footer {
 
     <nav class="breadcrumb" aria-label="مسیر راهنما">
       <ol>
-        <li><a href="{{ '/' | relative_url }}">خانه</a></li>
+        <li><a href="{{ '/' | relative_url }}">پاسگاه</a></li>
         <li><a href="{{ '/blog' | relative_url }}">وبلاگ</a></li>
         {% if page.category and page.category_url %}
         <li><a href="{{ page.category_url | relative_url }}">{{ page.category }}</a></li>
