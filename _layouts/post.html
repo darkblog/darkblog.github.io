@@ -10,6 +10,34 @@
 <link rel="icon" href="https://www.pasgah.org/blog.svg">
 <meta name="theme-color" content="#c62828">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "خانه",
+      "item": "{{ '/' | absolute_url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "وبلاگ",
+      "item": "{{ '/blog' | absolute_url }}"
+    }{% if page.category and page.category_url %},
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.category }}",
+      "item": "{{ page.category_url | absolute_url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+
 <style>
 @font-face {
   font-family: Vazirmatn;
@@ -73,6 +101,35 @@ header {
 main {
   flex: 1;
   padding: 2rem 0;
+}
+
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin: 0 0.5rem;
+  color: var(--text-light);
+  opacity: 0.7;
+}
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
 
 .post-card {
@@ -376,7 +433,7 @@ a.post-card:hover {
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
-  font-family: inherit; /* اضافه شد تا فونت از body ارث‌بری شود */
+  font-family: inherit;
 }
 
 .comment-submit:hover {
@@ -487,6 +544,17 @@ footer {
 
 <main>
   <div class="container">
+
+    <nav class="breadcrumb" aria-label="مسیر راهنما">
+      <ol>
+        <li><a href="{{ '/' | relative_url }}">خانه</a></li>
+        <li><a href="{{ '/blog' | relative_url }}">وبلاگ</a></li>
+        {% if page.category and page.category_url %}
+        <li><a href="{{ page.category_url | relative_url }}">{{ page.category }}</a></li>
+        {% endif %}
+      </ol>
+    </nav>
+
     <article class="post-card">
       <h1 class="post-title">{{ page.title }}</h1>
 
@@ -592,7 +660,7 @@ footer {
         const comments = await response.json();
 
         if (comments.length === 0) {
-          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است.</p>';
           return;
         }
 
@@ -648,7 +716,7 @@ footer {
 
         nameInput.value = '';
         contentInput.value = '';
-        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
+        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد.';
         formMessage.style.color = 'green';
 
         loadComments();
