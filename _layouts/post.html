@@ -673,7 +673,7 @@ footer {
         const comments = await response.json();
 
         if (comments.length === 0) {
-          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
+          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است.</p>';
           return;
         }
 
@@ -729,7 +729,7 @@ footer {
 
         nameInput.value = '';
         contentInput.value = '';
-        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
+        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد.';
         formMessage.style.color = 'green';
 
         loadComments();
