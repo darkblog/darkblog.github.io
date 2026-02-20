@@ -78,11 +78,14 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden; /* جلوگیری از اسکرول افقی کل صفحه */
 }
 
 .container {
   width: var(--w);
   margin: 0 auto;
+  max-width: 100%;
+  overflow-x: hidden; /* جلوگیری از خروج محتوا از عرض */
 }
 
 header {
@@ -198,6 +201,7 @@ a.post-card:hover {
   font-size: var(--font-size-lg);
   color: var(--text);
   line-height: var(--line-height-loose);
+  word-wrap: break-word; /* شکستن کلمات بلند */
 }
 
 .article-content p {
@@ -227,6 +231,7 @@ a.post-card:hover {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
+  word-break: break-word; /* شکستن لینک‌های بلند */
 }
 
 .article-content a:hover {
@@ -296,6 +301,7 @@ a.post-card:hover {
   font-family: monospace;
   font-size: 0.95em;
   color: var(--accent);
+  word-break: break-word;
 }
 
 .article-content pre {
@@ -305,12 +311,17 @@ a.post-card:hover {
   padding: 1rem;
   margin: 1.5rem 0;
   overflow-x: auto;
+  max-width: 100%;
+  white-space: pre-wrap; /* شکستن خطوط در pre */
+  word-wrap: break-word;
 }
 
 .article-content pre code {
   background: transparent;
   padding: 0;
   color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .article-content img {
@@ -327,6 +338,7 @@ a.post-card:hover {
   border-radius: 0.5rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 
 .article-content table {
@@ -392,6 +404,7 @@ a.post-card:hover {
 .comment-content {
   line-height: var(--line-height-loose);
   color: var(--text-light);
+  word-wrap: break-word;
 }
 
 .comment-form {
@@ -660,7 +673,7 @@ footer {
         const comments = await response.json();
 
         if (comments.length === 0) {
-          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است.</p>';
+          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>';
           return;
         }
 
@@ -716,7 +729,7 @@ footer {
 
         nameInput.value = '';
         contentInput.value = '';
-        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد.';
+        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد و پس از تأیید نمایش داده خواهد شد.';
         formMessage.style.color = 'green';
 
         loadComments();
