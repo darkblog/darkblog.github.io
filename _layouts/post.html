@@ -96,7 +96,8 @@
         display: flex;
         align-items: center;
       }
-      .breadcrumb li:not(:last-child)::after {
+      /* جداکننده فقط زمانی نمایش داده می‌شود که حداقل دو آیتم وجود داشته باشد */
+      .breadcrumb.has-multiple li:not(:last-child)::after {
         content: '/';
         margin: 0 0.5rem;
         color: var(--text-light);
@@ -544,14 +545,11 @@
       <div class="container">
 
         {% if page.categories and page.categories.size > 0 %}
-        <nav class="breadcrumb" aria-label="مسیر راهنما">
+        <nav class="breadcrumb {% if page.categories.size > 1 %}has-multiple{% endif %}" aria-label="مسیر راهنما">
           <ol>
             {% for category in page.categories %}
             <li>
               <a href="{{ category.url }}">{{ category.title }}</a>
-              {% if forloop.last == false %}
-              <span class="separator">/</span>
-              {% endif %}
             </li>
             {% endfor %}
           </ol>
