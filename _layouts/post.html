@@ -543,14 +543,15 @@ footer {
 <main>
   <div class="container">
 
-    <nav class="breadcrumb" aria-label="مسیر راهنما">
-      <ol>
-        <li><svg viewBox="0 0 24 24" width="18" height="18"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> <a href="https://www.pasgah.org/">وبلاگ پاسگاه</a></li>
-        {% if page.category and page.category_url %}
-        <li><a href="{{ page.category_url | relative_url }}">{{ page.category }}</a></li>
-        {% endif %}
-      </ol>
-    </nav>
+{% if page.categories and page.categories.size > 0 %}
+<nav class="breadcrumb" aria-label="مسیر راهنما">
+  <ol>
+    {% for category in page.categories %}
+    <li><a href="{{ category.url }}">{{ category.title }}</a></li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}
 
     <article class="post-card">
       <h1 class="post-title">{{ page.title }}</h1>
