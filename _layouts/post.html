@@ -547,7 +547,12 @@
         <nav class="breadcrumb" aria-label="مسیر راهنما">
           <ol>
             {% for category in page.categories %}
-            <li><a href="{{ category.url }}">{{ category.title }}</a></li>
+            <li>
+              <a href="{{ category.url }}">{{ category.title }}</a>
+              {% if forloop.last == false %}
+              <span class="separator">/</span>
+              {% endif %}
+            </li>
             {% endfor %}
           </ol>
         </nav>
