@@ -89,7 +89,7 @@
         list-style: none;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem; /* فاصله بین تگ‌ها */
+        gap: 0.5rem;
         padding: 0;
         margin: 0;
       }
@@ -99,14 +99,14 @@
       .breadcrumb a {
         display: inline-block;
         padding: 0.25rem 0.9rem;
-        background-color: rgba(198, 40, 40, 0.1); /* رنگ ملایم از قرمز */
+        background-color: rgba(198, 40, 40, 0.1);
         color: var(--accent);
-        border-radius: 2rem; /* حالت قرصی شکل */
+        border-radius: 2rem;
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 500;
         transition: background-color 0.2s;
-        white-space: nowrap; /* جلوگیری از شکستن تگ */
+        white-space: nowrap;
       }
       .breadcrumb a:hover {
         background-color: rgba(198, 40, 40, 0.2);
@@ -540,15 +540,18 @@
       <div class="container">
 
         {% if page.categories and page.categories.size > 0 %}
-        <nav class="breadcrumb" aria-label="مسیر راهنما">
-          <ol>
-            {% for category in page.categories %}
-            <li>
-              <a href="{{ category.url }}">{{ category.title }}</a>
-            </li>
-            {% endfor %}
-          </ol>
-        </nav>
+          {% assign valid_categories = page.categories | where_exp: "cat", "cat.title != '' and cat.title != nil" %}
+          {% if valid_categories.size > 0 %}
+          <nav class="breadcrumb" aria-label="مسیر راهنما">
+            <ol>
+              {% for category in valid_categories %}
+              <li>
+                <a href="{{ category.url }}">{{ category.title }}</a>
+              </li>
+              {% endfor %}
+            </ol>
+          </nav>
+          {% endif %}
         {% endif %}
 
         <article class="post-card">
