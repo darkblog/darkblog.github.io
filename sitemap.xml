@@ -1,9 +1,17 @@
+---
+layout: null
+---
+
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   
-   <sitemap>
-      <loc>https://www.pasgah.org/blog.xml</loc>
-      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-   </sitemap>
-   
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  {%- assign base = site.url | append: site.baseurl -%}
+
+  {%- for post in site.posts -%}
+  <url>
+    <loc>{{ base }}{{ post.url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+  </url>
+  {%- endfor -%}
+
+</urlset>
