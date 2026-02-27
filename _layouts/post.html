@@ -539,21 +539,6 @@
     <main>
       <div class="container">
 
-        {% if page.categories and page.categories.size > 0 %}
-          {% assign valid_categories = page.categories | where_exp: "cat", "cat.title != '' and cat.title != nil" %}
-          {% if valid_categories.size > 0 %}
-          <nav class="breadcrumb" aria-label="مسیر راهنما">
-            <ol>
-              {% for category in valid_categories %}
-              <li>
-                <a href="{{ category.url }}">{{ category.title }}</a>
-              </li>
-              {% endfor %}
-            </ol>
-          </nav>
-          {% endif %}
-        {% endif %}
-
         <article class="post-card">
           <h1 class="post-title">{{ page.title }}</h1>
 
