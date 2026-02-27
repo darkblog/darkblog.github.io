@@ -79,39 +79,6 @@
         padding: 2rem 0;
       }
 
-      .breadcrumb {
-        margin-bottom: 1.5rem;
-        font-size: 0.95rem;
-        padding-left: var(--lg);
-        padding-right: var(--lg);
-      }
-      .breadcrumb ol {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 0;
-        margin: 0;
-      }
-      .breadcrumb li {
-        display: inline-block;
-      }
-      .breadcrumb a {
-        display: inline-block;
-        padding: 0.25rem 0.9rem;
-        background-color: rgba(198, 40, 40, 0.1);
-        color: var(--accent);
-        border-radius: 2rem;
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: background-color 0.2s;
-        white-space: nowrap;
-      }
-      .breadcrumb a:hover {
-        background-color: rgba(198, 40, 40, 0.2);
-      }
-
       .post-card {
         background: #fff;
         border: 1px solid var(--border);
@@ -472,19 +439,6 @@
         margin-top: 0.5rem;
       }
 
-      @media (max-width: 600px) {
-        .posts-list .post-title {
-          font-size: 1.15rem;
-        }
-        .posts-list .post-excerpt {
-          font-size: 0.95rem;
-        }
-        .breadcrumb {
-          padding-left: var(--md);
-          padding-right: var(--md);
-        }
-      }
-
       footer {
         background: var(--accent);
         padding: 2rem 0;
@@ -497,34 +451,6 @@
         width: 3.5rem;
         height: 3.5rem;
         filter: brightness(0) invert(1);
-      }
-
-      @media (max-width: 600px) {
-        .post-card {
-          padding: var(--md);
-        }
-        .post-title {
-          font-size: var(--font-size-2xl);
-        }
-        .article-content {
-          font-size: 1rem;
-        }
-        .article-content h2 {
-          font-size: var(--font-size-xl);
-        }
-        .article-content h3 {
-          font-size: var(--font-size-lg);
-        }
-        .article-content table {
-          min-width: 500px;
-        }
-        .post-meta {
-          font-size: 0.8rem;
-        }
-        .comments-list,
-        .comment-form {
-          padding: var(--md);
-        }
       }
     </style>
   </head>
