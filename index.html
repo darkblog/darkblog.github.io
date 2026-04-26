@@ -12,17 +12,8 @@ layout: null
 <link rel="canonical" href="https://www.pasgah.org/">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <meta name="theme-color" content="#c62828">
-<link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
 <style>
-@font-face{
-  font-family:'Vazirmatn';
-  src:url('https://www.pasgah.org/blog.woff2') format('woff2');
-  font-weight:100 900;
-  font-style:normal;
-  font-display:swap;
-}
-
 :root{
   --bg:#fafafa;
   --text:#222;
@@ -32,14 +23,20 @@ layout: null
   --radius:.75rem;
   --w:min(92%,900px);
   --lg:1.75rem;
+  --system-font:Tahoma,'Segoe UI',system-ui,-apple-system,sans-serif;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
-  font-family:'Vazirmatn',sans-serif;
+  font-family:var(--system-font);
   background:var(--bg);
   color:var(--text);
-  line-height:1.8;
+  line-height:1.85;
+  font-size:1rem;
+  font-weight:400;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
   display:flex;
   flex-direction:column;
   min-height:100vh;
@@ -84,15 +81,18 @@ main{flex:1;padding:2rem 0}
 }
 
 .post-title{
-  font-size:1.35rem;
+  font-size:1.3rem;
   font-weight:700;
+  line-height:1.5;
   margin-bottom:.5rem;
+  letter-spacing:-0.01em;
 }
 
 .post-excerpt{
-  font-size:1.05rem;
+  font-size:1rem;
   color:var(--text-light);
   margin-top:.5rem;
+  line-height:1.8;
   overflow-wrap: break-word;
 }
 
@@ -102,7 +102,6 @@ footer{
   display:flex;
   justify-content:center;
 }
-
 </style>
 
 </head>
