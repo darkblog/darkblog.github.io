@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <article class="post-card">
   <h1 class="post-title">{{ page.title }}</h1>
 
@@ -20,24 +19,6 @@ layout: default
     {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
   </div>
 </article>
-
-<div class="comments-section">
-  <div id="comments-list" class="comments-list">
-    <p class="loading-text">در حال بارگیری نظرات...</p>
-  </div>
-  <div class="comment-form">
-    <form id="new-comment-form">
-      <div class="form-group">
-        <input type="text" id="comment-name" name="name" maxlength="50" placeholder="نام">
-      </div>
-      <div class="form-group">
-        <textarea id="comment-content" name="content" required rows="4" maxlength="1000" placeholder="دیدگاه"></textarea>
-      </div>
-      <button type="submit" class="comment-submit">ارسال دیدگاه</button>
-    </form>
-    <div id="form-message" class="form-message"></div>
-  </div>
-</div>
 
 <div class="more-posts">
   <div class="posts-list">
@@ -67,110 +48,5 @@ layout: default
       day: 'numeric'
     });
     dateElement.querySelector('.date-text').textContent = formatter.format(date);
-  })();
-
-  (function() {
-    const pageId = window.location.pathname;
-    const commentsListEl = document.getElementById('comments-list');
-    const form = document.getElementById('new-comment-form');
-    const nameInput = document.getElementById('comment-name');
-    const contentInput = document.getElementById('comment-content');
-    const formMessage = document.getElementById('form-message');
-
-    function escapeHtml(unsafe) {
-      return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    async function loadComments() {
-      if (!commentsListEl) return;
-      commentsListEl.innerHTML = '<p class="loading-text">در حال بارگیری نظرات...</p>';
-      try {
-        const response = await fetch(`/api/comments?page=${encodeURIComponent(pageId)}`);
-        if (!response.ok) throw new Error('خطا در دریافت نظرات');
-        const comments = await response.json();
-
-        if (comments.length === 0) {
-          commentsListEl.innerHTML = '<p class="no-comments">هنوز دیدگاهی ثبت نشده است.</p>';
-          return;
-        }
-
-        let html = '';
-        comments.forEach(comment => {
-          const date = new Date(comment.createdAt).toLocaleDateString('fa-IR', {
-            year: 'numeric', month: 'long', day: 'numeric'
-          });
-          html += `
-            <div class="comment-item">
-              <div class="comment-header">
-                <span class="comment-name">${escapeHtml(comment.name)}</span>
-                <span class="comment-date">${date}</span>
-              </div>
-              <div class="comment-content">${escapeHtml(comment.content).replace(/\n/g, '<br>')}</div>
-            </div>
-          `;
-        });
-        commentsListEl.innerHTML = html;
-      } catch (err) {
-        commentsListEl.innerHTML = '<p class="form-message" style="color: var(--accent);">خطا در بارگیری نظرات. لطفاً دوباره تلاش کنید.</p>';
-        console.error(err);
-      }
-    }
-
-    async function submitComment(event) {
-      event.preventDefault();
-
-      const name = nameInput.value.trim() || 'کاربر مهمان';
-      const content = contentInput.value.trim();
-
-      if (!content) {
-        formMessage.textContent = 'لطفاً دیدگاه خود را وارد کنید.';
-        formMessage.style.color = 'var(--accent)';
-        return;
-      }
-
-      const submitBtn = form.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'در حال ارسال...';
-
-      try {
-        const response = await fetch('/api/comments', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ pageId, name, content })
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'خطا در ارسال نظر');
-        }
-
-        nameInput.value = '';
-        contentInput.value = '';
-        formMessage.textContent = 'دیدگاه شما با موفقیت ثبت شد.';
-        formMessage.style.color = 'green';
-
-        loadComments();
-      } catch (err) {
-        formMessage.textContent = err.message || 'خطا در ارسال نظر. لطفاً دوباره تلاش کنید.';
-        formMessage.style.color = 'var(--accent)';
-        console.error(err);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'ارسال دیدگاه';
-      }
-    }
-
-    if (commentsListEl) {
-      loadComments();
-    }
-
-    if (form) {
-      form.addEventListener('submit', submitComment);
-    }
   })();
 </script>
