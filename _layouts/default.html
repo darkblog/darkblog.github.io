@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{ page.title }}</title>
-<meta name="description" content="{% if page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% else %}پاسدار تاریخ و تمدن ایران و جهان. از زندگینامه مشاهیر تاریخی تا جنگ‌ها و سوژه‌های جذاب تاریخ در وبلاگ پاسگاه دنبال کنید.{% endif %}">
+<meta name="description" content="{% if page.layout == 'post' %}{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}{% elsif page.description %}{{ page.description | strip_html | normalize_whitespace | truncate: 160 }}{% endif %}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <meta name="theme-color" content="#c62828">
