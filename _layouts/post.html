@@ -508,7 +508,7 @@
             <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
               <h2 class="post-title">{{ post.title }}</h2>
               <div class="post-excerpt">
-                {{ post.excerpt | strip_html | truncate: 400 }}
+                {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
               </div>
             </a>
             {% endfor %}
