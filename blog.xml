@@ -18,7 +18,7 @@ layout: null
 <author>
 <name>وبلاگ پاسگاه</name>
 </author>
-<summary>{{ post.excerpt | strip_html | truncate: 160 }}</summary>
+<summary>{{ post.excerpt | strip_html | truncatewords: 70 }}</summary>
 </entry>
 {% endfor %}
 </feed>
