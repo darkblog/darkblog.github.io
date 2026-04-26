@@ -451,7 +451,7 @@
   <body>
 
     <header>
-      <a href="https://www.pasgah.org/" aria-label="وبلاگ پاسگاه">
+      <a href="https://www.pasgah.org/">
         <img src="https://www.pasgah.org/blog.svg" class="logo-svg" alt="وبلاگ پاسگاه">
       </a>
     </header>
@@ -504,7 +504,7 @@
           <div class="posts-list">
             {% assign current_post_url = page.url %}
             {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-            {% for post in all_posts limit: 100 %}
+            {% for post in all_posts limit:100 %}
             <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
               <h2 class="post-title">{{ post.title }}</h2>
               <div class="post-excerpt">
@@ -518,7 +518,7 @@
     </main>
 
     <footer>
-      <a href="https://www.pasgah.org/" aria-label="وبلاگ پاسگاه">
+      <a href="https://www.pasgah.org/">
         <img src="https://www.pasgah.org/blog.svg" class="logo-svg" alt="وبلاگ پاسگاه">
       </a>
     </footer>
