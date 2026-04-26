@@ -11,14 +11,6 @@
     <meta name="theme-color" content="#c62828">
 
     <style>
-      @font-face {
-        font-family: 'Vazirmatn';
-        src: url('https://www.pasgah.org/blog.woff2') format('woff2');
-        font-weight: 100 900;
-        font-style: normal;
-        font-display: swap;
-      }
-
       :root {
         --bg: #fafafa;
         --text: #222;
@@ -30,11 +22,12 @@
         --lg: 1.75rem;
         --md: 1.25rem;
         --sm: 0.75rem;
-        --line-height-loose: 1.8;
+        --line-height-loose: 1.85;
         --font-size-lg: 1.125rem;
         --font-size-xl: 1.375rem;
         --font-size-2xl: 1.75rem;
         --font-size-3xl: 2.25rem;
+        --system-font: Tahoma, 'Segoe UI', system-ui, -apple-system, sans-serif;
       }
 
       * {
@@ -44,14 +37,16 @@
       }
 
       body {
-        font-family: 'Vazirmatn', sans-serif;
+        font-family: var(--system-font);
         background: var(--bg);
         color: var(--text);
-        line-height: 1.8;
+        line-height: 1.85;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         overflow-x: hidden;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
       }
 
       .container {
