@@ -1,9 +1,20 @@
+---
+layout: null
+---
+
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-   
-   <sitemap>
-      <loc>https://www.pasgah.org/blog.xml</loc>
-      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-   </sitemap>
-   
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>{{ site.url }}</loc>
+    <lastmod>{{ site.time | date: '%Y-%m-%d' }}</lastmod>
+  </url>
+
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      <lastmod>{{ post.last_modified_at | default: post.date | date: '%Y-%m-%d' }}</lastmod>
+    </url>
+  {% endfor %}
+
+</urlset>
