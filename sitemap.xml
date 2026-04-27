@@ -13,7 +13,7 @@ layout: null
   {% for post in site.posts %}
     <url>
       <loc>{{ site.url }}{{ post.url }}</loc>
-      <lastmod>{{ post.last_modified_at | default: post.date | date: '%Y-%m-%d' }}</lastmod>
+      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     </url>
   {% endfor %}
 
