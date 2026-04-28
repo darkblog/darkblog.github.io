@@ -3,7 +3,6 @@ layout: default
 ---
 <article class="post-card">
   <h1 class="post-title">{{ page.title }}</h1>
-
   <div class="post-meta">
     <span class="post-author">
       <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
@@ -14,12 +13,10 @@ layout: default
       <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
     </span>
   </div>
-
   <div class="article-content">
     {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
   </div>
 </article>
-
 <div class="more-posts">
   <div class="posts-list">
     {% assign current_post_url = page.url %}
@@ -34,7 +31,6 @@ layout: default
     {% endfor %}
   </div>
 </div>
-
 <script>
   (function formatPostDate() {
     const dateElement = document.querySelector('.post-date');
