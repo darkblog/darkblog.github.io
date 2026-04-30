@@ -15,24 +15,26 @@ layout: default
     </span>
   </div>
   <div class="article-content">
-    {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
+    {{ content | replace: '<tr>', '<div class="table-scroll"><td>' | replace: '</table>', '</table></div>' }}
   </div>
 </article>
-<h2 class="post-title">آخرین پست‌های وبلاگ</h2>
-<div class="more-posts">
+
+<section class="more-posts">
+  <h2 class="section-title">آخرین پست‌های وبلاگ</h2>
   <div class="posts-list">
     {% assign current_post_url = page.url %}
     {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
     {% for post in all_posts limit: 100 %}
     <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
-      <h2 class="post-title">{{ post.title }}</h2>
+      <h3 class="post-title">{{ post.title }}</h3>
       <div class="post-excerpt">
         {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
       </div>
     </a>
     {% endfor %}
   </div>
-</div>
+</section>
+
 <script>
   (function formatPostDate() {
     const dateElement = document.querySelector('.post-date');
