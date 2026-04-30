@@ -18,16 +18,7 @@ layout: default
     {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
   </div>
 </article>
-<div class="posts-list">
-  {% for post in site.posts limit: 100 %}
-  <a href="{{ post.url }}" class="post-card">
-    <h2 class="post-title">{{ post.title }}</h2>
-    <div class="post-excerpt">
-      {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
-    </div>
-  </a>
-  {% endfor %}
-</div>
+<h2 class="post-title">آخرین پست‌های وبلاگ</h2>
 <div class="more-posts">
   <div class="posts-list">
     {% assign current_post_url = page.url %}
