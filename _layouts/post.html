@@ -18,7 +18,6 @@ layout: default
     {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
   </div>
 </article>
-<h2 class="post-title">آخرین پست‌های وبلاگ</h2>
 <div class="posts-list">
   {% for post in site.posts limit: 100 %}
   <a href="{{ post.url }}" class="post-card">
