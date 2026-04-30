@@ -4,14 +4,16 @@ title: "وبلاگ پاسگاه؛ گردش در اعماق تاریخ"
 description: "وبلاگ پاسگاه با نگاهی تازه‌تر به تاریخ، شما رو با یک نِرد مورخ همراه می‌کنه"
 ---
 
-<h1 class="post-title">گردش در اعماق تاریخ</h1>
-<div class="posts-list">
-  {% for post in site.posts limit: 100 %}
-  <a href="{{ post.url }}" class="post-card">
-    <h2 class="post-title">{{ post.title }}</h2>
-    <div class="post-excerpt">
-      {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
-    </div>
-  </a>
-  {% endfor %}
-</div>
+<section class="posts-section">
+  <h1 class="page-title">گردش در اعماق تاریخ</h1>
+  <div class="posts-list">
+    {% for post in site.posts limit: 100 %}
+    <a href="{{ post.url }}" class="post-card">
+      <h2 class="post-title">{{ post.title }}</h2>
+      <div class="post-excerpt">
+        {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
