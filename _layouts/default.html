@@ -103,7 +103,7 @@
             overflow-wrap: break-word;
         }
         
-        {% if page.layout == 'home' or page.url == '/' %}
+        {% if page.is_home %}
         .page-title {
             font-size: 2rem;
             font-weight: 800;
