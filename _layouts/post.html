@@ -19,31 +19,21 @@ layout: default
   </div>
 </article>
 
-{%- if page.tags.size > 0 -%}
-  {%- assign related_posts = "" | split: "" -%}
-  {%- for tag in page.tags -%}
-    {%- assign tagged_posts = site.posts | where: "tags", tag -%}
-    {%- assign related_posts = related_posts | concat: tagged_posts -%}
-  {%- endfor -%}
-  {%- assign related_posts = related_posts | uniq | where_exp: "post", "post.url != page.url" -%}
-  
-  {%- if related_posts.size > 0 -%}
-    <section class="more-posts" aria-labelledby="more-posts-heading">
-      <h2 id="more-posts-heading" class="section-title">پست‌های مرتبط</h2>
-      <div class="posts-list">
-        {%- assign max_posts = 100 -%}
-        {%- for post in related_posts limit: max_posts -%}
-        <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
-          <h3 class="post-title">{{ post.title }}</h3>
-          <div class="post-excerpt">
-            {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
-          </div>
-        </a>
-        {%- endfor -%}
+<section class="more-posts" aria-labelledby="more-posts-heading">
+  <h2 id="more-posts-heading" class="section-title">آخرین پست‌های وبلاگ</h2>
+  <div class="posts-list">
+    {% assign current_post_url = page.url %}
+    {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
+    {% for post in all_posts limit: 100 %}
+    <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
+      <h3 class="post-title">{{ post.title }}</h3>
+      <div class="post-excerpt">
+        {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
       </div>
-    </section>
-  {%- endif -%}
-{%- endif -%}
+    </a>
+    {% endfor %}
+  </div>
+</section>
 
 <script>
   (function formatPostDate() {
