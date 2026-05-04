@@ -33,8 +33,12 @@
             --text-light: #cccccc;
             --border: #333333;
             --accent: #ffffff;
-            --accent-hover: #cccccc;
-            --radius: 0.75rem;
+            --card-bg: #0a0a0a;
+            --card-hover-bg: #1a1a1a;
+            --header-footer-bg: #050505;
+            --blockquote-bg: #1a1a1a;
+            --table-header-bg: #1a1a1a;
+            --table-even-bg: #0d0d0d;
             --w: min(92%, 900px);
             --lg: 1.75rem;
             --md: 1.25rem;
@@ -43,7 +47,8 @@
             --line-height: 1.85;
             --font-size-lg: 1.125rem;
             --font-size-xl: 1.375rem;
-            --focus-ring: 0 0 0 2px var(--accent);
+            --focus-ring: 0 0 0 2px currentColor;
+            color-scheme: dark;
         }
         
         html {
@@ -61,13 +66,11 @@
             overflow-x: hidden;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
-            color-scheme: dark;
         }
         
         :focus-visible {
             outline: var(--focus-ring);
             outline-offset: 2px;
-            border-radius: 0.25rem;
         }
         
         .container {
@@ -77,17 +80,11 @@
         
         header,
         footer {
-            background: var(--bg);
+            background: var(--header-footer-bg);
             padding: 1rem 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        footer {
-            border-bottom: none;
-            border-top: 1px solid var(--border);
         }
         
         main {
@@ -102,19 +99,16 @@
         }
         
         .post-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
+            background: var(--card-bg);
             padding: var(--md);
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+            transition: background 0.15s ease, transform 0.1s ease;
         }
         
         .post-card:hover {
-            background: #1a1a1a;
-            border-color: #ffffff;
+            background: var(--card-hover-bg);
         }
         
         .post-card:active {
@@ -201,8 +195,8 @@
             font-weight: 700;
             color: var(--text);
             margin: 1.75rem 0 0.96rem 0;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
+            border-right: 3px solid var(--accent);
+            padding-right: 0.75rem;
         }
         
         .article-content h3 {
@@ -243,7 +237,7 @@
         .article-content ul li,
         .article-content ol li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 0.5rem;
         }
         
@@ -253,8 +247,8 @@
             width: 0.5rem;
             height: 0.5rem;
             background-color: var(--text-light);
-            border-radius: 50%;
             margin-inline-end: 0.5rem;
+            margin-top: 0.6em;
             flex-shrink: 0;
         }
         
@@ -278,8 +272,7 @@
             border-inline-start: 3px solid var(--accent);
             padding: 1rem 1.5rem;
             margin: 1.5rem 0;
-            background: #1a1a1a;
-            border-radius: 0.5rem;
+            background: var(--blockquote-bg);
             font-style: italic;
             color: var(--text-light);
         }
@@ -287,16 +280,12 @@
         .article-content img {
             max-width: 100%;
             height: auto;
-            border-radius: var(--radius);
             margin: 1.5rem 0;
             display: block;
-            border: 1px solid var(--border);
         }
         
         .table-scroll {
             margin: 1.5rem 0;
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             max-width: 100%;
@@ -316,13 +305,13 @@
         }
         
         .article-content table th {
-            background: #1a1a1a;
+            background: var(--table-header-bg);
             font-weight: 600;
             color: var(--text);
         }
         
         .article-content table tbody tr:nth-child(even) {
-            background: #0d0d0d;
+            background: var(--table-even-bg);
         }
         
         .more-posts {
