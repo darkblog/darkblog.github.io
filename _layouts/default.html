@@ -181,8 +181,6 @@
             color: var(--text-light);
             font-size: 0.9rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
         }
         
         .post-author,
@@ -227,16 +225,20 @@
         
         .article-content a {
             color: var(--text-accent);
-            text-decoration: underline;
+            text-decoration: none;
             font-weight: 500;
             word-break: break-word;
-            transition: opacity 0.15s ease;
-            text-underline-offset: 0.2em;
+            background-image: linear-gradient(var(--text-accent), var(--text-accent));
+            background-size: 100% 1px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            transition: background-size 0.25s ease, opacity 0.25s ease;
+            padding-bottom: 2px;
         }
         
         .article-content a:hover {
-            opacity: 0.8;
-            text-decoration: none;
+            background-size: 100% 2px;
+            opacity: 1;
         }
         
         .article-content ul,
