@@ -35,6 +35,8 @@
             --accent: #ffffff;
             --card-bg: #0a0a0a;
             --card-hover-bg: #1a1a1a;
+            --more-card-bg: #111111;
+            --more-card-hover-bg: #1e1e1e;
             --header-footer-bg: #050505;
             --blockquote-bg: #1a1a1a;
             --table-header-bg: #1a1a1a;
@@ -143,9 +145,25 @@
             margin-top: 0;
             width: 100%;
         }
+        .posts-section .post-card {
+            background: var(--more-card-bg);
+        }
+        .posts-section .post-card:hover {
+            background: var(--more-card-hover-bg);
+        }
         {% endif %}
         
         {% if page.layout == 'post' %}
+        .article-main-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            border-right: 3px solid var(--accent);
+            padding-right: 0.75rem;
+        }
+        
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -266,6 +284,7 @@
             font-weight: 500;
             margin-inline-end: 0.5rem;
             white-space: pre;
+            margin-top: 0.05em;
         }
         
         .article-content blockquote {
@@ -316,6 +335,14 @@
         
         .more-posts {
             margin-top: var(--lg);
+        }
+        
+        .more-posts .post-card {
+            background: var(--more-card-bg);
+        }
+        
+        .more-posts .post-card:hover {
+            background: var(--more-card-hover-bg);
         }
         {% endif %}
     </style>
