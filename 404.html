@@ -29,7 +29,18 @@ permalink: /404.html
             max-width: 1100px;
             margin: 0 auto;
         }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
+        .logo {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+        
         .error-box {
             background: white;
             border-radius: 32px;
@@ -65,7 +76,7 @@ permalink: /404.html
             margin: 0 auto 2rem auto;
             line-height: 1.6;
         }
-
+        
         .home-button {
             display: inline-flex;
             align-items: center;
@@ -88,7 +99,7 @@ permalink: /404.html
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
-
+        
         .recent-posts {
             background: white;
             border-radius: 32px;
@@ -134,7 +145,7 @@ permalink: /404.html
             color: #e67e22;
             padding-right: 20px;
         }
-
+        
         .footer-note {
             text-align: center;
             margin-top: 2rem;
@@ -156,11 +167,52 @@ permalink: /404.html
                 font-size: 0.9rem;
                 padding: 10px 4px;
             }
+            .logo {
+                width: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+                <defs>
+                    <linearGradient id="persianGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2C3E50;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#E74C3C;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#F39C12;stop-opacity:1" />
+                    </linearGradient>
+                    
+                    <linearGradient id="subGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#7F8C8D;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#BDC3C7;stop-opacity:1" />
+                    </linearGradient>
+                    
+                    <filter id="softShadow">
+                        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#E74C3C" flood-opacity="0.2"/>
+                    </filter>
+                </defs>
+                
+                <text x="140" y="48" font-family="'Vazir', 'IRANSans', 'Tahoma', system-ui, sans-serif" 
+                      font-size="44" font-weight="900" 
+                      fill="url(#persianGrad)" 
+                      text-anchor="middle" 
+                      letter-spacing="0"
+                      filter="url(#softShadow)">
+                    پاسگاه
+                </text>
+                
+                <text x="140" y="68" font-family="'Poppins', system-ui, sans-serif" 
+                      font-size="10" font-weight="500" 
+                      fill="url(#subGrad)" 
+                      text-anchor="middle" 
+                      letter-spacing="4">
+                    PASGAH.ORG
+                </text>
+            </svg>
+        </div>
+
         <div class="error-box">
             <div class="error-code">۴۰۴</div>
             <div class="error-title">صفحه‌ای که دنبال آن بودید پیدا نشد!</div>
@@ -186,7 +238,7 @@ permalink: /404.html
             </ul>
         </div>
         <div class="footer-note">
-            pasgah.org | In the entire long history of humanity, there has been nothing more terrible than the feeling of loneliness.
+            pasgah.org | In the entire long history of humanity, there has been nothing more terrible than the feeling of loneliness
         </div>
     </div>
 </body>
