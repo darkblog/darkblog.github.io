@@ -1,0 +1,197 @@
+---
+layout: null
+permalink: /404.html
+---
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="status" content="404">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, 'Traditional Arabic', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #1a1a2e;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* box 404 اصلی */
+        .error-box {
+            background: white;
+            border-radius: 32px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .error-code {
+            font-size: 7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: #5a6e7f;
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+
+        /* دکمه برگشت */
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .home-button:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* بخش آخرین پست‌ها */
+        .recent-posts {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #e67e22;
+            display: inline-block;
+            color: #1e2a3a;
+        }
+
+        .posts-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .posts-list li {
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .posts-list a {
+            display: block;
+            padding: 12px 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+
+        .posts-list a:hover {
+            background-color: #fef5e7;
+            color: #e67e22;
+            padding-right: 20px;
+        }
+
+        /* فوتر کوچک */
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 640px) {
+            .error-code {
+                font-size: 4.5rem;
+            }
+            .error-title {
+                font-size: 1.4rem;
+            }
+            .recent-posts {
+                padding: 1.5rem;
+            }
+            .posts-list a {
+                font-size: 0.9rem;
+                padding: 10px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-box">
+            <div class="error-code">۴۰۴</div>
+            <div class="error-title">صفحه‌ای که دنبال آن بودید پیدا نشد!</div>
+            <div class="error-message">
+                ممکن است آدرس اشتباه تایپ شده باشد یا صفحه حذف شده باشد.
+            </div>
+            <a href="https://www.pasgah.org/" class="home-button">
+                🏠 &nbsp; بازگشت به صفحه اصلی
+            </a>
+        </div>
+
+        <div class="recent-posts">
+            <h2 class="section-title">📝 آخرین مطالب سایت</h2>
+            <ul class="posts-list">
+                {% assign posts_to_show = site.posts | slice: 0, 10 %}
+                {% for post in posts_to_show %}
+                    <li>
+                        <a href="{{ post.url | relative_url }}">
+                            {{ post.title | escape }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="footer-note">
+            pasgah.org | صفحه مورد نظر یافت نشد
+        </div>
+    </div>
+</body>
+</html>
