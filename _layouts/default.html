@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8">
@@ -14,6 +14,7 @@
     <meta name="description" content="{{ desc }}">
     {%- endif -%}
 
+    <link rel="preconnect" href="https://www.pasgah.org">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
@@ -45,7 +46,7 @@
             --w: min(92%, 780px);
             --lg: 2rem;
             --md: 1.5rem;
-            --system-font: 'Segoe UI', 'Noto Sans Arabic', 'Tahoma', 'DejaVu Sans', system-ui, -apple-system, sans-serif;
+            --system-font: system-ui, -apple-system, 'Segoe UI', 'Traditional Arabic', Tahoma, sans-serif;
             --line-height: 1.85;
             --font-size-lg: 1.15rem;
             --font-size-xl: 1.4rem;
@@ -77,13 +78,14 @@
         
         .container {
             width: var(--w);
-            margin: 0 auto;
+            margin-inline: auto;
         }
         
         header,
         footer {
             background: var(--header-footer-bg);
-            padding: 1rem 0;
+            padding-block: 1rem;
+            padding-inline: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -91,7 +93,8 @@
         
         main {
             flex: 1;
-            padding: 2rem 0;
+            padding-block: 2rem;
+            padding-inline: 0;
         }
         
         .posts-list {
@@ -123,13 +126,13 @@
             font-weight: 700;
             line-height: 1.35;
             color: var(--text);
-            margin-bottom: 0.5rem;
+            margin-block-end: 0.5rem;
         }
         
         .post-excerpt {
             font-size: 1.05rem;
             color: var(--text-light);
-            margin-top: 0.5rem;
+            margin-block-start: 0.5rem;
             overflow-wrap: break-word;
         }
         
@@ -138,27 +141,27 @@
             font-weight: 800;
             line-height: 1.2;
             color: var(--text);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
+            margin-block-end: 1.5rem;
+            padding-block-end: 0.75rem;
             letter-spacing: -0.02em;
         }
         
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-block-end: 1.5rem;
             color: var(--text-accent);
             letter-spacing: -0.01em;
         }
         
         .posts-section {
-            margin-top: var(--lg);
+            margin-block-start: var(--lg);
             width: 100%;
         }
 
         {% if page.is_home %}
         .posts-section {
-            margin-top: 0;
+            margin-block-start: 0;
         }
         {% endif %}
 
@@ -177,7 +180,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-block-end: 2rem;
             color: var(--text-light);
             font-size: 0.9rem;
             flex-wrap: wrap;
@@ -205,21 +208,21 @@
         }
         
         .article-content p {
-            margin: 1.5rem 0;
+            margin-block: 1.5rem;
         }
         
         .article-content h2 {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-accent);
-            margin: 2rem 0 1rem 0;
+            margin-block: 2rem 1rem;
             letter-spacing: -0.01em;
         }
         
         .article-content h3 {
             font-size: var(--font-size-xl);
             font-weight: 600;
-            margin: 1.5rem 0 1rem 0;
+            margin-block: 1.5rem 1rem;
             color: var(--text-light);
         }
         
@@ -233,7 +236,7 @@
             background-position: 0 100%;
             background-repeat: no-repeat;
             transition: background-size 0.25s ease, opacity 0.25s ease;
-            padding-bottom: 2px;
+            padding-block-end: 2px;
         }
         
         .article-content a:hover {
@@ -243,8 +246,9 @@
         
         .article-content ul,
         .article-content ol {
-            margin: 1.5rem 0;
-            padding: 0 1.5rem 0 0;
+            margin-block: 1.5rem;
+            padding-block: 0;
+            padding-inline: 0 1.5rem;
             list-style: none;
         }
         
@@ -252,7 +256,7 @@
         .article-content ol li {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 0.75rem;
+            margin-block-end: 0.75rem;
         }
         
         .article-content ul li::before {
@@ -262,7 +266,7 @@
             height: 0.4rem;
             background-color: var(--text-accent);
             margin-inline-end: 0.75rem;
-            margin-top: 0.65em;
+            margin-block-start: 0.65em;
             flex-shrink: 0;
         }
         
@@ -280,13 +284,13 @@
             font-weight: 500;
             margin-inline-end: 0.5rem;
             white-space: pre;
-            margin-top: 0.05em;
+            margin-block-start: 0.05em;
         }
         
         .article-content blockquote {
             border-inline-start: 3px solid var(--text-accent);
             padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
+            margin-block: 1.5rem;
             background: var(--blockquote-bg);
             font-style: italic;
             color: var(--text-light);
@@ -295,12 +299,12 @@
         .article-content img {
             max-width: 100%;
             height: auto;
-            margin: 1.5rem 0;
+            margin-block: 1.5rem;
             display: block;
         }
         
         .table-scroll {
-            margin: 1.5rem 0;
+            margin-block: 1.5rem;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             max-width: 100%;
@@ -332,7 +336,16 @@
         {% endif %}
     </style>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}BlogPosting{% else %}WebPage{% endif %}">
+    <meta itemprop="name" content="{{ page.title }}">
+    {% if desc %}
+    <meta itemprop="description" content="{{ desc }}">
+    {% endif %}
+    {% if page.layout == 'post' %}
+    <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
+    <meta itemprop="author" content="پاسگاه">
+    {% endif %}
+
     <svg style="display: none;" aria-hidden="true">
         <defs>
             <g id="logo" transform="translate(0,1024) scale(0.1,-0.1)" fill="#ffffff">
@@ -343,22 +356,49 @@
         </defs>
     </svg>
 
-    <header>
-        <a href="https://www.pasgah.org/" aria-label="صفحهٔ نخست وبلاگ پاسگاه"{% if page.is_home %} aria-current="صفحه اصلی وبلاگ پاسگاه"{% endif %}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="64" height="64" role="img" aria-label="لوگوی وبلاگ پاسگاه">
+    <header role="banner">
+        <a 
+            href="https://www.pasgah.org/" 
+            aria-label="صفحهٔ نخست وبلاگ پاسگاه"
+            {% if page.is_home %} aria-current="page"{% endif %}
+            rel="home"
+        >
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 1024 1024" 
+                width="64" 
+                height="64" 
+                role="img" 
+                aria-label="لوگوی وبلاگ پاسگاه"
+                focusable="false"
+            >
                 <title>وبلاگ پاسگاه</title>
                 <use href="#logo"/>
             </svg>
         </a>
     </header>
-    <main id="main-content" tabindex="-1">
+
+    <main id="main-content" tabindex="-1" itemprop="{% if page.layout == 'post' %}articleBody{% else %}mainContentOfPage{% endif %}" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
         <div class="container">
             {{ content }}
         </div>
     </main>
-    <footer>
-        <a href="https://www.pasgah.org/" aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="48" height="48" role="img" aria-label="لوگوی وبلاگ پاسگاه">
+
+    <footer role="contentinfo">
+        <a 
+            href="https://www.pasgah.org/" 
+            aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه"
+            rel="home"
+        >
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 1024 1024" 
+                width="48" 
+                height="48" 
+                role="img" 
+                aria-label="لوگوی وبلاگ پاسگاه"
+                focusable="false"
+            >
                 <title>وبلاگ پاسگاه</title>
                 <use href="#logo"/>
             </svg>
