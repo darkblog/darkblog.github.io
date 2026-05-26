@@ -9,9 +9,6 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بایگانی وبلاگ پاسگاه</title>
     <style>
-        /* ======================== */
-        /* استایل‌های اصلی شبیه اتم  */
-        /* ======================== */
         
         * {
             margin: 0;
@@ -32,7 +29,6 @@ layout: none
             padding: 2rem 1.5rem;
         }
 
-        /* هدر صفحه */
         .archive-header {
             text-align: center;
             padding-bottom: 2rem;
@@ -55,7 +51,6 @@ layout: none
             font-size: 0.95rem;
         }
 
-        /* جعبه جستجو */
         .search-wrapper {
             margin-bottom: 2rem;
         }
@@ -77,7 +72,6 @@ layout: none
             box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
         }
 
-        /* آمار پست‌ها */
         .stats {
             background: #f6f8fa;
             padding: 0.75rem 1rem;
@@ -88,7 +82,6 @@ layout: none
             text-align: center;
         }
 
-        /* هر سال */
         .year-section {
             margin-bottom: 2.5rem;
         }
@@ -102,7 +95,6 @@ layout: none
             margin-bottom: 1.2rem;
         }
 
-        /* هر ماه */
         .month-section {
             margin-bottom: 1.8rem;
         }
@@ -116,7 +108,6 @@ layout: none
             border-bottom: 1px dashed #e1e4e8;
         }
 
-        /* لیست پست‌ها */
         .posts-list {
             list-style: none;
         }
@@ -170,7 +161,6 @@ layout: none
             color: #586069;
         }
 
-        /* پیغام خالی */
         .no-results {
             text-align: center;
             padding: 3rem;
@@ -179,7 +169,6 @@ layout: none
             border-radius: 12px;
         }
 
-        /* فوتر */
         .footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -189,7 +178,6 @@ layout: none
             color: #586069;
         }
 
-        /* ریسپانسیو */
         @media (max-width: 600px) {
             .container {
                 padding: 1rem;
@@ -206,7 +194,6 @@ layout: none
             }
         }
 
-        /* مخفی کردن آیتم‌ها در جستجو */
         .hidden-post {
             display: none;
         }
@@ -215,18 +202,15 @@ layout: none
 <body>
 
 <div class="container">
-    <!-- هدر -->
     <div class="archive-header">
         <h1>📚 بایگانی مطالب</h1>
         <p class="archive-desc">تمامی نوشته‌های وبلاگ به ترتیب زمانی</p>
     </div>
 
-    <!-- جستجو -->
     <div class="search-wrapper">
         <input type="text" id="searchInput" class="search-box" placeholder="🔍 جستجو در عناوین یا برچسب‌ها ...">
     </div>
 
-    <!-- آمار -->
     <div class="stats" id="stats">
         📊 تعداد کل پست‌ها: {{ site.posts | size }} مورد
     </div>
