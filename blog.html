@@ -7,9 +7,8 @@ layout: none
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بایگانی وبلاگ پاسگاه</title>
+    <title>بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو</title>
     <style>
-        
         * {
             margin: 0;
             padding: 0;
@@ -113,9 +112,6 @@ layout: none
         }
 
         .post-item {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
             padding: 0.6rem 0;
             border-bottom: 1px solid #f0f2f5;
             transition: background 0.1s ease;
@@ -128,37 +124,15 @@ layout: none
             border-radius: 6px;
         }
 
-        .post-day {
-            min-width: 45px;
-            font-size: 0.85rem;
-            font-family: monospace;
-            color: #6a737d;
-        }
-
         .post-link {
-            flex: 1;
             color: #0366d6;
             text-decoration: none;
             font-size: 1rem;
-            margin-left: 1rem;
+            display: block;
         }
 
         .post-link:hover {
             text-decoration: underline;
-        }
-
-        .post-tags {
-            display: inline-flex;
-            gap: 0.3rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            font-size: 0.7rem;
-            background: #eef2f5;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            color: #586069;
         }
 
         .no-results {
@@ -182,13 +156,6 @@ layout: none
             .container {
                 padding: 1rem;
             }
-            .post-item {
-                flex-direction: column;
-            }
-            .post-link {
-                margin-left: 0;
-                margin-top: 0.2rem;
-            }
             .year-title {
                 font-size: 1.3rem;
             }
@@ -208,23 +175,20 @@ layout: none
     </div>
 
     <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 جستجو در عناوین یا برچسب‌ها ...">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 جستجو در عناوین مطالب ...">
     </div>
 
     <div class="stats" id="stats">
         📊 تعداد کل پست‌ها: {{ site.posts | size }} مورد
     </div>
 
-    <!-- محتوای اصلی آرشیو (ساخته شده با Liquid) -->
     <div id="archiveContent">
-        {% comment %} گروه‌بندی پست‌ها بر اساس سال {% endcomment %}
         {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
         
         {% for year_group in posts_by_year %}
         <div class="year-section" data-year="{{ year_group.name }}">
             <h2 class="year-title">{{ year_group.name }}</h2>
             
-            {% comment %} گروه‌بندی بر اساس ماه درون هر سال {% endcomment %}
             {% assign posts_by_month = year_group.items | group_by_exp: "post", "post.date | date: '%B'" %}
             {% assign months_order = "December,November,October,September,August,July,June,May,April,March,February,January" | split: "," %}
             
@@ -252,16 +216,8 @@ layout: none
                     <ul class="posts-list">
                         {% assign sorted_posts = month_posts.items | sort: "date" | reverse %}
                         {% for post in sorted_posts %}
-                        <li class="post-item" data-title="{{ post.title | escape }}" data-tags="{{ post.tags | join: ',' | escape }}">
-                            <span class="post-day">{{ post.date | date: "%d" }}</span>
+                        <li class="post-item" data-title="{{ post.title | escape }}">
                             <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
-                            {% if post.tags.size > 0 %}
-                            <span class="post-tags">
-                                {% for tag in post.tags limit:3 %}
-                                <span class="tag">{{ tag }}</span>
-                                {% endfor %}
-                            </span>
-                            {% endif %}
                         </li>
                         {% endfor %}
                     </ul>
@@ -277,16 +233,15 @@ layout: none
     </div>
 
     <div class="footer">
-        © {{ site.time | date: "%Y" }} | {{ site.title }}
+        © {{ site.time | date: "%Y" }} | وبلاگ پاسگاه
     </div>
 </div>
 
 <script>
-    // جستجوی زنده با جاوااسکریپت (فقط برای فیلتر کردن، بدون دخالت در ساختار Liquid)
     const searchInput = document.getElementById('searchInput');
     const statsDiv = document.getElementById('stats');
     const allPosts = document.querySelectorAll('.post-item');
-    const totalPostsCount = {{ site.posts | size }};
+    const totalPostsCount = allPosts.length;
     
     function updateSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -294,12 +249,10 @@ layout: none
         
         allPosts.forEach(post => {
             const title = post.getAttribute('data-title')?.toLowerCase() || '';
-            const tags = post.getAttribute('data-tags')?.toLowerCase() || '';
             
-            if (searchTerm === '' || title.includes(searchTerm) || tags.includes(searchTerm)) {
+            if (searchTerm === '' || title.includes(searchTerm)) {
                 post.classList.remove('hidden-post');
                 visibleCount++;
-                // اطمینان از نمایش والدین (ماه و سال)
                 let monthSection = post.closest('.month-section');
                 let yearSection = post.closest('.year-section');
                 if (monthSection) monthSection.style.display = '';
@@ -309,7 +262,6 @@ layout: none
             }
         });
         
-        // مخفی کردن ماه‌ها و سال‌های بدون پست قابل مشاهده
         document.querySelectorAll('.month-section').forEach(month => {
             const visiblePosts = month.querySelectorAll('.post-item:not(.hidden-post)').length;
             if (visiblePosts === 0) {
@@ -328,7 +280,6 @@ layout: none
             }
         });
         
-        // به‌روزرسانی آمار
         if (searchTerm === '') {
             statsDiv.innerHTML = `📊 تعداد کل پست‌ها: ${totalPostsCount} مورد`;
         } else {
@@ -338,7 +289,6 @@ layout: none
     
     searchInput.addEventListener('input', updateSearch);
     
-    // استایل برای آیتم‌های مخفی
     const style = document.createElement('style');
     style.textContent = '.hidden-post { display: none; }';
     document.head.appendChild(style);
