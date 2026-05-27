@@ -141,15 +141,15 @@
             font-weight: 800;
             line-height: 1.2;
             color: var(--text);
-            margin-block-end: 1.5rem;
-            padding-block-end: 0.75rem;
+            margin-block-end: 0;
+            padding-block-end: 0;
             letter-spacing: -0.02em;
         }
         
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-block-end: 1.5rem;
+            margin-block-end: 0;
             color: var(--text-accent);
             letter-spacing: -0.01em;
         }
@@ -159,24 +159,13 @@
             width: 100%;
         }
 
-        {% if page.is_home %}
-        .posts-section {
-            margin-block-start: 0;
-        }
-        {% endif %}
-
-        .main-card {
-            background: var(--more-card-bg);
-            border: 1px solid var(--more-card-border);
-            padding: var(--md);
-        }
-
         {% if page.layout == 'post' %}
         .post-meta {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-block-end: 2rem;
+            margin-block-start: 1rem;
+            margin-block-end: 0;
             color: var(--text-light);
             font-size: 0.9rem;
             flex-wrap: wrap;
@@ -201,6 +190,7 @@
             color: var(--text);
             line-height: var(--line-height);
             overflow-wrap: break-word;
+            margin-block-start: 1.5rem;
         }
         
         .article-content p {
@@ -376,9 +366,7 @@
 
     <main id="main-content" tabindex="-1" itemprop="{% if page.layout == 'post' %}articleBody{% else %}mainContentOfPage{% endif %}" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
         <div class="container">
-            <div class="main-card">
-                {{ content }}
-            </div>
+            {{ content }}
         </div>
     </main>
 
