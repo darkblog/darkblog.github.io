@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    
     <title>{{ page.title }}</title>
 
     {%- if page.layout == 'post' -%}
@@ -10,6 +11,7 @@
     {%- elsif page.is_home -%}
       {%- assign desc = page.description | strip_html | normalize_whitespace | truncatewords: 70 -%}
     {%- endif -%}
+    
     {%- if desc -%}
     <meta name="description" content="{{ desc }}">
     {%- endif -%}
@@ -19,6 +21,7 @@
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
     <meta name="theme-color" content="#000000">
+    
     <style>
         *,
         *::before,
