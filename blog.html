@@ -8,159 +8,196 @@ layout: none
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو</title>
+    <link rel="preconnect" href="https://www.pasgah.org">
+    <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
+    <meta name="theme-color" content="#000000">
     <style>
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        :root {
+            --bg: #000000;
+            --text: #ffffff;
+            --text-light: #cccccc;
+            --text-accent: #ffb48a;
+            --border: #333333;
+            --accent: #ffffff;
+            --card-bg: #080808;
+            --more-card-bg: #0f0f0f;
+            --more-card-border: rgba(255, 255, 255, 0.07);
+            --more-card-hover-border: rgba(255, 180, 138, 0.5);
+            --header-footer-bg: #040404;
+            --blockquote-bg: #111111;
+            --table-header-bg: #1a1a1a;
+            --table-even-bg: #0d0d0d;
+            --w: min(92%, 780px);
+            --lg: 2rem;
+            --md: 1.5rem;
+            --system-font: system-ui, -apple-system, 'Segoe UI', 'Traditional Arabic', Tahoma, sans-serif;
+            --line-height: 1.85;
+            --font-size-lg: 1.15rem;
+            --font-size-xl: 1.4rem;
+            --focus-ring: 0 0 0 2px var(--text-accent);
+            color-scheme: dark;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-            background: #fafbfc;
-            color: #24292e;
-            line-height: 1.5;
+            font-family: var(--system-font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: var(--line-height);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
-
+        
+        :focus-visible {
+            outline: var(--focus-ring);
+            outline-offset: 3px;
+        }
+        
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
+            width: var(--w);
+            margin-inline: auto;
         }
-
+        
+        header,
+        footer {
+            background: var(--header-footer-bg);
+            padding-block: 1rem;
+            padding-inline: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        main {
+            flex: 1;
+            padding-block: 2rem;
+            padding-inline: 0;
+        }
+        
         .archive-header {
             text-align: center;
             padding-bottom: 2rem;
             margin-bottom: 2rem;
-            border-bottom: 1px solid #e1e4e8;
+            border-bottom: 1px solid var(--border);
         }
-
+        
         .archive-header h1 {
             font-size: 2.2rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #0366d6, #6f42c1);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-accent);
+            letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
         }
-
+        
         .archive-desc {
-            color: #586069;
+            color: var(--text-light);
             font-size: 0.95rem;
         }
-
+        
         .search-wrapper {
             margin-bottom: 2rem;
         }
-
+        
         .search-box {
             width: 100%;
             padding: 0.8rem 1rem;
             font-size: 1rem;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            background: white;
+            border: 1px solid var(--more-card-border);
+            background: var(--more-card-bg);
+            color: var(--text);
             transition: all 0.2s ease;
             font-family: inherit;
+            border-radius: 0;
         }
-
+        
         .search-box:focus {
             outline: none;
-            border-color: #0366d6;
-            box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+            border-color: var(--more-card-hover-border);
+            box-shadow: 0 0 0 2px rgba(255, 180, 138, 0.15);
         }
-
+        
+        .search-box::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+        
         .stats {
-            background: #f6f8fa;
+            background: var(--more-card-bg);
             padding: 0.75rem 1rem;
-            border-radius: 8px;
+            border: 1px solid var(--more-card-border);
             margin-bottom: 2rem;
             font-size: 0.9rem;
-            color: #586069;
+            color: var(--text-light);
             text-align: center;
         }
-
-        .year-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .year-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #0366d6;
-            border-right: 4px solid #0366d6;
-            padding-right: 0.8rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .month-section {
-            margin-bottom: 1.8rem;
-        }
-
-        .month-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #6f42c1;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px dashed #e1e4e8;
-        }
-
+        
         .posts-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
-
+        
         .post-item {
-            padding: 0.6rem 0;
-            border-bottom: 1px solid #f0f2f5;
+            padding: 0;
+            border-bottom: 1px solid var(--border);
             transition: background 0.1s ease;
         }
-
+        
+        .post-item:last-child {
+            border-bottom: none;
+        }
+        
         .post-item:hover {
-            background: #f6f8fa;
-            margin: 0 -0.5rem;
-            padding: 0.6rem 0.5rem;
-            border-radius: 6px;
+            background: var(--blockquote-bg);
         }
-
+        
         .post-link {
-            color: #0366d6;
+            color: var(--text);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.05rem;
             display: block;
+            padding: 0.8rem 1rem;
+            transition: color 0.2s ease;
         }
-
+        
         .post-link:hover {
-            text-decoration: underline;
+            color: var(--text-accent);
         }
-
+        
         .no-results {
             text-align: center;
             padding: 3rem;
-            color: #586069;
-            background: #f6f8fa;
-            border-radius: 12px;
+            color: var(--text-light);
+            background: var(--more-card-bg);
+            border: 1px solid var(--more-card-border);
         }
-
-        .footer {
+        
+        .archive-footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
             text-align: center;
-            border-top: 1px solid #e1e4e8;
+            border-top: 1px solid var(--border);
             font-size: 0.8rem;
-            color: #586069;
+            color: var(--text-light);
         }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
-            }
-            .year-title {
-                font-size: 1.3rem;
-            }
-        }
-
+        
         .hidden-post {
             display: none;
         }
@@ -168,74 +205,92 @@ layout: none
 </head>
 <body>
 
-<div class="container">
-    <div class="archive-header">
-        <h1>📚 بایگانی مطالب</h1>
-        <p class="archive-desc">تمامی نوشته‌های وبلاگ به ترتیب زمانی</p>
-    </div>
+    <svg style="display: none;" aria-hidden="true">
+        <defs>
+            <g id="logo" transform="translate(0,1024) scale(0.1,-0.1)" fill="#ffffff">
+                <path d="M3110 5120 l0 -2910 73 0 c143 0 349 21 445 46 256 64 459 217 558 419 84 172 78 84 82 1217 l3 1007 997 4 c1087 3 1045 1 1256 62 377 109 647 379 735 736 38 153 43 273 38 849 -3 448 -7 559 -20 626 -88 442 -393 738 -851 826 -110 21 -128 22 -1713 25 l-1603 4 0 -2911z m2822 1871 c37 -10 83 -30 102 -45 47 -36 87 -106 103 -180 16 -77 17 -503 2 -578 -22 -106 -91 -187 -195 -229 l-59 -24 -807 -3 -808 -3 0 541 0 540 798 0 c746 0 802 -1 864 -19z"/>
+                <path d="M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z"/>
+                <path d="M5907 3069 c-125 -127 -227 -235 -225 -240 5 -13 449 -459 458 -459 11 0 71 58 286 278 l188 193 -229 229 c-127 127 -234 230 -240 230 -5 0 -113 -104 -238 -231z"/>
+            </g>
+        </defs>
+    </svg>
 
-    <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 جستجو در عناوین مطالب ...">
-    </div>
+    <header role="banner">
+        <a 
+            href="https://www.pasgah.org/" 
+            aria-label="صفحهٔ نخست وبلاگ پاسگاه"
+            rel="home"
+        >
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 1024 1024" 
+                width="64" 
+                height="64" 
+                role="img" 
+                aria-label="لوگوی وبلاگ پاسگاه"
+                focusable="false"
+            >
+                <title>وبلاگ پاسگاه</title>
+                <use href="#logo"/>
+            </svg>
+        </a>
+    </header>
 
-    <div class="stats" id="stats">
-        📊 تعداد کل پست‌ها: {{ site.posts | size }} مورد
-    </div>
+    <main id="main-content" tabindex="-1">
+        <div class="container">
+            <div class="archive-header">
+                <h1>بایگانی مطالب</h1>
+                <p class="archive-desc">تمامی نوشته‌های وبلاگ</p>
+            </div>
 
-    <div id="archiveContent">
-        {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
-        
-        {% for year_group in posts_by_year %}
-        <div class="year-section" data-year="{{ year_group.name }}">
-            <h2 class="year-title">{{ year_group.name }}</h2>
-            
-            {% assign posts_by_month = year_group.items | group_by_exp: "post", "post.date | date: '%B'" %}
-            {% assign months_order = "December,November,October,September,August,July,June,May,April,March,February,January" | split: "," %}
-            
-            {% for month_name in months_order %}
-                {% assign month_posts = posts_by_month | where: "name", month_name | first %}
-                {% if month_posts %}
-                <div class="month-section" data-month="{{ month_name }}">
-                    <h3 class="month-title">
-                        {% case month_name %}
-                            {% when "January" %}دی
-                            {% when "February" %}بهمن
-                            {% when "March" %}اسفند
-                            {% when "April" %}فروردین
-                            {% when "May" %}اردیبهشت
-                            {% when "June" %}خرداد
-                            {% when "July" %}تیر
-                            {% when "August" %}مرداد
-                            {% when "September" %}شهریور
-                            {% when "October" %}مهر
-                            {% when "November" %}آبان
-                            {% when "December" %}آذر
-                        {% endcase %}
-                        {{ year_group.name }}
-                    </h3>
-                    <ul class="posts-list">
-                        {% assign sorted_posts = month_posts.items | sort: "date" | reverse %}
-                        {% for post in sorted_posts %}
-                        <li class="post-item" data-title="{{ post.title | escape }}">
-                            <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" class="search-box" placeholder="جستجو در عناوین مطالب ...">
+            </div>
+
+            <div class="stats" id="stats">
+                تعداد کل پست‌ها: {{ site.posts | size }} مورد
+            </div>
+
+            <div id="archiveContent">
+                <ul class="posts-list">
+                    {% for post in site.posts %}
+                    <li class="post-item" data-title="{{ post.title | escape }}">
+                        <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                {% if site.posts.size == 0 %}
+                <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
                 {% endif %}
-            {% endfor %}
-        </div>
-        {% endfor %}
-        
-        {% if site.posts.size == 0 %}
-        <div class="no-results">😞 هنوز هیچ پستی منتشر نشده است.</div>
-        {% endif %}
-    </div>
+            </div>
 
-    <div class="footer">
-        © {{ site.time | date: "%Y" }} | وبلاگ پاسگاه
-    </div>
-</div>
+            <div class="archive-footer">
+                © {{ site.time | date: "%Y" }} | وبلاگ پاسگاه
+            </div>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+        <a 
+            href="https://www.pasgah.org/" 
+            aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه"
+            rel="home"
+        >
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 1024 1024" 
+                width="48" 
+                height="48" 
+                role="img" 
+                aria-label="لوگوی وبلاگ پاسگاه"
+                focusable="false"
+            >
+                <title>وبلاگ پاسگاه</title>
+                <use href="#logo"/>
+            </svg>
+        </a>
+    </footer>
 
 <script>
     const searchInput = document.getElementById('searchInput');
@@ -253,37 +308,15 @@ layout: none
             if (searchTerm === '' || title.includes(searchTerm)) {
                 post.classList.remove('hidden-post');
                 visibleCount++;
-                let monthSection = post.closest('.month-section');
-                let yearSection = post.closest('.year-section');
-                if (monthSection) monthSection.style.display = '';
-                if (yearSection) yearSection.style.display = '';
             } else {
                 post.classList.add('hidden-post');
             }
         });
         
-        document.querySelectorAll('.month-section').forEach(month => {
-            const visiblePosts = month.querySelectorAll('.post-item:not(.hidden-post)').length;
-            if (visiblePosts === 0) {
-                month.style.display = 'none';
-            } else {
-                month.style.display = '';
-            }
-        });
-        
-        document.querySelectorAll('.year-section').forEach(year => {
-            const visibleMonths = year.querySelectorAll('.month-section:not([style*="display: none"])').length;
-            if (visibleMonths === 0) {
-                year.style.display = 'none';
-            } else {
-                year.style.display = '';
-            }
-        });
-        
         if (searchTerm === '') {
-            statsDiv.innerHTML = `📊 تعداد کل پست‌ها: ${totalPostsCount} مورد`;
+            statsDiv.innerHTML = `تعداد کل پست‌ها: ${totalPostsCount} مورد`;
         } else {
-            statsDiv.innerHTML = `🔍 تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
+            statsDiv.innerHTML = `تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
         }
     }
     
