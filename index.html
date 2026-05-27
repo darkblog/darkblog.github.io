@@ -14,7 +14,7 @@ is_home: true
     {% assign total_posts = site.posts | size %}
     
     {% for post in site.posts limit: 100 %}
-    <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" aria-label="{{ post.title }}">
+    <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}">
         <h2 class="post-title">{{ post.title }}</h2>
         <div class="post-excerpt">
             {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
