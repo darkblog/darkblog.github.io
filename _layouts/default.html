@@ -380,13 +380,6 @@
 
     <main id="main-content" tabindex="-1" itemprop="{% if page.layout == 'post' %}articleBody{% else %}mainContentOfPage{% endif %}" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
         <div class="container">
-            {% if page.is_home and page.display_title %}
-                <h1 class="page-title">{{ page.display_title }}</h1>
-            {% elsif page.layout == 'post' %}
-            {% elsif page.title %}
-                <h1 class="page-title">{{ page.title }}</h1>
-            {% endif %}
-            
             {{ content }}
         </div>
     </main>
