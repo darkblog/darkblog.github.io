@@ -218,30 +218,31 @@ permalink: /404.html
                     href="https://www.pasgah.org/blog" 
                     class="back-home-link"
                     aria-label="جستجو در وبلاگ"
-                    rel="home"
                 >
                     جستجو در وبلاگ
                 </a>
             </section>
 
-            <aside aria-labelledby="recent-heading" itemscope itemtype="https://schema.org/ItemList">
+            <aside aria-labelledby="recent-heading">
                 <h2 id="recent-heading" class="section-title">
                     <span aria-hidden="true">📝</span>
                     جدیدترین پست‌های تاریخی
                 </h2>
-                <div class="posts-list">
+                <div class="posts-list" itemscope itemtype="https://schema.org/ItemList">
+                    <meta itemprop="numberOfItems" content="10">
                     {% assign posts_to_show = site.posts | slice: 0, 10 %}
                     {% for post in posts_to_show %}
-                        <a 
-                            href="{{ post.url | relative_url }}" 
-                            class="post-card"
-                            aria-label="{{ post.title }}"
-                            itemprop="itemListElement" 
-                            itemscope 
-                            itemtype="https://schema.org/ListItem"
-                        >
-                            <h3 class="post-title" itemprop="name">{{ post.title | escape }}</h3>
-                        </a>
+                        <div itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <meta itemprop="position" content="{{ forloop.index }}">
+                            <a 
+                                href="{{ post.url | relative_url }}" 
+                                class="post-card"
+                                aria-label="{{ post.title }}"
+                                itemprop="url"
+                            >
+                                <h3 class="post-title" itemprop="name">{{ post.title | escape }}</h3>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </aside>
