@@ -113,11 +113,11 @@
             transition: border-color 0.2s ease, transform 0.1s ease;
         }
         
-        .post-card:hover {
+        a.post-card:hover {
             border-color: var(--more-card-hover-border);
         }
         
-        .post-card:active {
+        a.post-card:active {
             transform: scale(0.99);
         }
         
@@ -157,6 +157,61 @@
         .posts-section {
             margin-block-start: var(--lg);
             width: 100%;
+        }
+        
+        .hidden-post {
+            display: none;
+        }
+        
+        .load-more-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--more-card-bg);
+            color: var(--text-accent);
+            border: 1px solid var(--more-card-border);
+            border-radius: 0;
+            font-size: 1.1rem;
+            font-family: var(--system-font);
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            text-align: center;
+        }
+        
+        .load-more-button:hover {
+            background-color: #1a1a1a;
+            border-color: var(--more-card-hover-border);
+        }
+        
+        .load-more-button:focus-visible {
+            outline: var(--focus-ring);
+            outline-offset: 2px;
+        }
+        
+        .breadcrumb-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--system-font);
+        }
+        
+        .breadcrumb-link:hover {
+            color: var(--text-accent);
+        }
+        
+        .breadcrumb-link svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: currentColor;
+            flex-shrink: 0;
         }
 
         {% if page.layout == 'post' %}
@@ -339,6 +394,9 @@
                 <path d="M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z"/>
                 <path d="M5907 3069 c-125 -127 -227 -235 -225 -240 5 -13 449 -459 458 -459 11 0 71 58 286 278 l188 193 -229 229 c-127 127 -234 230 -240 230 -5 0 -113 -104 -238 -231z"/>
             </g>
+            <g id="home-icon">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </g>
         </defs>
     </svg>
 
@@ -366,6 +424,12 @@
 
     <main id="main-content" tabindex="-1" itemprop="{% if page.layout == 'post' %}articleBody{% else %}mainContentOfPage{% endif %}" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
         <div class="container">
+            {% if page.layout == 'post' %}
+            <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#home-icon"/></svg>
+                <span>وبلاگ</span>
+            </a>
+            {% endif %}
             {{ content }}
         </div>
     </main>
