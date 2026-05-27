@@ -7,14 +7,23 @@
     <title>{{ page.title }}</title>
 
     {%- if page.layout == 'post' -%}
-      {%- assign desc = page.excerpt | strip_html | normalize_whitespace | truncatewords: 70 -%}
+      {%- assign desc = page.excerpt | strip_html | strip_newlines | truncate: 160 -%}
     {%- elsif page.is_home -%}
-      {%- assign desc = page.description | strip_html | normalize_whitespace | truncatewords: 70 -%}
+      {%- assign desc = page.description | strip_html | strip_newlines | truncate: 160 -%}
     {%- endif -%}
     
     {%- if desc -%}
     <meta name="description" content="{{ desc }}">
+    <meta property="og:description" content="{{ desc }}">
+    <meta name="twitter:description" content="{{ desc }}">
     {%- endif -%}
+
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="وبلاگ پاسگاه">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title }}">
 
     <link rel="preconnect" href="https://www.pasgah.org">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -380,7 +389,7 @@
         {% endif %}
     </style>
 </head>
-<body itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}BlogPosting{% else %}WebPage{% endif %}">
+<body itemscope itemtype="https://schema.org/WebPage">
     <meta itemprop="name" content="{{ page.title }}">
     {% if desc %}
     <meta itemprop="description" content="{{ desc }}">
@@ -421,7 +430,7 @@
         </a>
     </header>
 
-    <main id="main-content" tabindex="-1" itemprop="mainEntityOfPage" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
+    <main id="main-content" tabindex="-1">
         <div class="container">
             {% if page.layout == 'post' %}
             <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
