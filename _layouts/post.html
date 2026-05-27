@@ -47,7 +47,7 @@ layout: default
     {% endfor %}
     
     {% if total_other_posts > posts_per_page %}
-    <button id="load-more-posts" class="load-more-button">پست‌های بیشتر...</button>
+    <button id="load-more-related" class="load-more-button">پست‌های بیشتر...</button>
     {% endif %}
 </div>
 
@@ -71,8 +71,8 @@ layout: default
 
     (function() {
         const postsPerPage = 10;
-        const hiddenPosts = document.querySelectorAll('.hidden-post');
-        const loadMoreBtn = document.getElementById('load-more-posts');
+        const hiddenPosts = document.querySelectorAll('.posts-list .hidden-post');
+        const loadMoreBtn = document.getElementById('load-more-related');
         
         if (!loadMoreBtn || hiddenPosts.length === 0) return;
         
