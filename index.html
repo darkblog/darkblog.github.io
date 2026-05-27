@@ -23,15 +23,15 @@ is_home: true
     {% endfor %}
     
     {% if total_posts > posts_per_page %}
-    <button id="load-more-posts" class="load-more-button">پست‌های بیشتر...</button>
+    <button id="load-more-home" class="load-more-button">پست‌های بیشتر...</button>
     {% endif %}
 </div>
 
 <script>
     (function() {
         const postsPerPage = {{ posts_per_page }};
-        const hiddenPosts = document.querySelectorAll('.hidden-post');
-        const loadMoreBtn = document.getElementById('load-more-posts');
+        const hiddenPosts = document.querySelectorAll('.posts-list .hidden-post');
+        const loadMoreBtn = document.getElementById('load-more-home');
         
         if (!loadMoreBtn || hiddenPosts.length === 0) return;
         
