@@ -6,13 +6,14 @@
     
     <title>{{ page.title }}</title>
 
+    {%- assign desc = nil -%}
     {%- if page.layout == 'post' -%}
       {%- assign desc = page.excerpt | strip_html | strip_newlines | truncate: 160 -%}
-    {%- elsif page.is_home -%}
+    {%- align-else-if page.is_home -%}
       {%- assign desc = page.description | strip_html | strip_newlines | truncate: 160 -%}
     {%- endif -%}
     
-    {%- if desc -%}
+    {%- if desc and desc != "" -%}
     <meta name="description" content="{{ desc }}">
     <meta property="og:description" content="{{ desc }}">
     <meta name="twitter:description" content="{{ desc }}">
@@ -391,7 +392,7 @@
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
     <meta itemprop="name" content="{{ page.title }}">
-    {% if desc %}
+    {% if desc and desc != "" %}
     <meta itemprop="description" content="{{ desc }}">
     {% endif %}
 
