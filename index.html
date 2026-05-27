@@ -1,20 +1,18 @@
 ---
 layout: default
 title: "وبلاگ پاسگاه؛ سفر به اعماق تاریخ"
+display_title: "سفر به اعماق تاریخ"
 description: "پاسگاه، وبلاگی برای سفر به اعماق تاریخ. روایتگر لحظه‌های از یاد رفته و کاشف ردپای انسان در هزارتوی روزگار"
 is_home: true
 ---
 
-<section class="posts-section" aria-labelledby="page-title-heading">
-  <h1 id="page-title-heading" class="page-title">سفر به اعماق تاریخ</h1>
-  <div class="posts-list">
+<div class="posts-list">
     {% for post in site.posts limit: 100 %}
     <a href="{{ post.url }}" class="post-card" aria-label="{{ post.title }}">
-      <h2 class="post-title">{{ post.title }}</h2>
-      <div class="post-excerpt">
-        {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
-      </div>
+        <h2 class="post-title">{{ post.title }}</h2>
+        <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
+        </div>
     </a>
     {% endfor %}
-  </div>
-</section>
+</div>
