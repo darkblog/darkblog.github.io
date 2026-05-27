@@ -385,10 +385,6 @@
     {% if desc %}
     <meta itemprop="description" content="{{ desc }}">
     {% endif %}
-    {% if page.layout == 'post' %}
-    <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
-    <meta itemprop="author" content="احسان چهری">
-    {% endif %}
 
     <svg style="display: none;" aria-hidden="true">
         <defs>
@@ -425,7 +421,7 @@
         </a>
     </header>
 
-    <main id="main-content" tabindex="-1" itemprop="{% if page.layout == 'post' %}articleBody{% else %}mainContentOfPage{% endif %}" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
+    <main id="main-content" tabindex="-1" itemprop="mainEntityOfPage" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
         <div class="container">
             {% if page.layout == 'post' %}
             <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
