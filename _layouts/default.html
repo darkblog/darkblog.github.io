@@ -113,6 +113,12 @@
             transition: border-color 0.2s ease, transform 0.1s ease;
         }
         
+        .post-card:has(:only-child) {
+            padding: 0;
+            background: transparent;
+            border: none;
+        }
+        
         .post-card:hover {
             border-color: var(--more-card-hover-border);
         }
@@ -190,7 +196,7 @@
             color: var(--text);
             line-height: var(--line-height);
             overflow-wrap: break-word;
-            margin-block-start: 1.5rem;
+            margin-block-start: 0;
         }
         
         .article-content p {
