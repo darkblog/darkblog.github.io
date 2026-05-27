@@ -13,7 +13,7 @@ layout: null
   <url>
     <loc>https://www.pasgah.org/blog</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
 
   {% for post in site.posts %}
