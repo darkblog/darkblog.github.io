@@ -22,7 +22,7 @@ layout: default
     
     <div class="post-card">
         <div class="article-content" itemprop="articleBody">
-            {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</div></div>' }}
+            {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
         </div>
     </div>
     
@@ -36,7 +36,7 @@ layout: default
     </div>
     
     {% for post in all_posts limit: 100 %}
-    <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" aria-label="{{ post.title }}">
+    <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}">
         <h3 class="post-title">{{ post.title }}</h3>
         <div class="post-excerpt">
             {{ post.excerpt | strip_html | truncatewords: 70, "…" }}
