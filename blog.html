@@ -9,6 +9,7 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو</title>
     <link rel="preconnect" href="https://www.pasgah.org">
+    <link rel="canonical" href="https://www.pasgah.org/blog/">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
     <meta name="theme-color" content="#000000">
     <style>
@@ -137,6 +138,7 @@ layout: none
             font-size: 0.9rem;
             text-align: center;
             margin-bottom: 2rem;
+            min-height: 1.5rem;
         }
         
         .posts-list {
@@ -182,7 +184,7 @@ layout: none
         }
         
         .hidden-post {
-            display: none;
+            display: none !important;
         }
     </style>
 </head>
@@ -232,7 +234,7 @@ layout: none
             <div class="search-stats" id="searchStats"></div>
 
             <div id="archiveContent">
-                <ul class="posts-list">
+                <ul class="posts-list" id="postsList">
                     {% for post in site.posts %}
                     <li class="post-item" data-title="{{ post.title | escape }}">
                         <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
@@ -240,6 +242,8 @@ layout: none
                     {% endfor %}
                 </ul>
                 
+                <div id="noResultsMessage" class="no-results" style="display: none;">هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
+
                 {% if site.posts.size == 0 %}
                 <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
                 {% endif %}
@@ -269,38 +273,49 @@ layout: none
     </footer>
 
 <script>
-    const searchInput = document.getElementById('searchInput');
-    const searchStatsDiv = document.getElementById('searchStats');
-    const allPosts = document.querySelectorAll('.post-item');
-    const totalPostsCount = allPosts.length;
-    
-    function updateSearch() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        let visibleCount = 0;
+    (function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchStatsDiv = document.getElementById('searchStats');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        const postsList = document.getElementById('postsList');
+        const allPosts = document.querySelectorAll('.post-item');
+        const totalPostsCount = allPosts.length;
         
-        allPosts.forEach(post => {
-            const title = post.getAttribute('data-title')?.toLowerCase() || '';
+        if (!searchInput || totalPostsCount === 0) return;
+
+        function updateSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
             
-            if (searchTerm === '' || title.includes(searchTerm)) {
-                post.classList.remove('hidden-post');
-                visibleCount++;
+            allPosts.forEach(post => {
+                const title = post.getAttribute('data-title')?.toLowerCase() || '';
+                
+                if (searchTerm === '' || title.includes(searchTerm)) {
+                    post.classList.remove('hidden-post');
+                    visibleCount++;
+                } else {
+                    post.classList.add('hidden-post');
+                }
+            });
+            
+            if (searchTerm === '') {
+                searchStatsDiv.innerHTML = '';
+                noResultsMessage.style.display = 'none';
+                if (postsList) postsList.style.display = 'flex';
             } else {
-                post.classList.add('hidden-post');
+                searchStatsDiv.innerHTML = `تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
+                if (visibleCount === 0) {
+                    noResultsMessage.style.display = 'block';
+                    if (postsList) postsList.style.display = 'none';
+                } else {
+                    noResultsMessage.style.display = 'none';
+                    if (postsList) postsList.style.display = 'flex';
+                }
             }
-        });
-        
-        if (searchTerm === '') {
-            searchStatsDiv.innerHTML = '';
-        } else {
-            searchStatsDiv.innerHTML = `تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
         }
-    }
-    
-    searchInput.addEventListener('input', updateSearch);
-    
-    const style = document.createElement('style');
-    style.textContent = '.hidden-post { display: none; }';
-    document.head.appendChild(style);
+        
+        searchInput.addEventListener('input', updateSearch);
+    })();
 </script>
 
 </body>
