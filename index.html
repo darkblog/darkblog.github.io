@@ -5,7 +5,7 @@ description: "پاسگاه، وبلاگی برای سفر به اعماق تار
 is_home: true
 ---
 
-<div class="posts-list">
+<div class="posts-list space-container">
     <div class="post-card">
         <h1 class="page-title">سفر به اعماق تاریخ</h1>
     </div>
@@ -30,7 +30,7 @@ is_home: true
 <script>
     (function() {
         const postsPerPage = {{ posts_per_page }};
-        const hiddenPosts = document.querySelectorAll('.posts-list .hidden-post');
+        const hiddenPosts = document.querySelectorAll('.space-container .hidden-post');
         const loadMoreBtn = document.getElementById('load-more-home');
         
         if (!loadMoreBtn || hiddenPosts.length === 0) return;
