@@ -6,12 +6,13 @@
     
     <title>{{ page.title }}</title>
 
-    {%- assign desc = nil -%}
+    {%- capture desc -%}
     {%- if page.layout == 'post' -%}
-      {%- assign desc = page.excerpt | strip_html | strip_newlines | truncate: 160 -%}
-    {%- align-else-if page.is_home -%}
-      {%- assign desc = page.description | strip_html | strip_newlines | truncate: 160 -%}
+    {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
+    {%- elsif page.is_home -%}
+    {{ page.description | strip_html | strip_newlines | truncate: 160 }}
     {%- endif -%}
+    {%- endcapture -%}
     
     {%- if desc and desc != "" -%}
     <meta name="description" content="{{ desc }}">
