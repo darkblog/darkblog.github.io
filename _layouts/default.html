@@ -165,17 +165,13 @@
         }
         {% endif %}
 
+        .main-card {
+            background: var(--more-card-bg);
+            border: 1px solid var(--more-card-border);
+            padding: var(--md);
+        }
+
         {% if page.layout == 'post' %}
-        article.post-card {
-            background: var(--card-bg);
-            border: none;
-            padding: 0 0 2rem 0;
-        }
-        
-        article.post-card:hover {
-            border: none;
-        }
-        
         .post-meta {
             display: flex;
             align-items: center;
@@ -380,7 +376,9 @@
 
     <main id="main-content" tabindex="-1" itemprop="{% if page.layout == 'post' %}articleBody{% else %}mainContentOfPage{% endif %}" itemscope itemtype="https://schema.org/{% if page.layout == 'post' %}Text{% else %}WebPageElement{% endif %}">
         <div class="container">
-            {{ content }}
+            <div class="main-card">
+                {{ content }}
+            </div>
         </div>
     </main>
 
