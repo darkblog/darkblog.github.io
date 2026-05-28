@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    
     <title>{{ page.title }}</title>
-
     {%- capture desc -%}
     {%- if page.layout == 'post' -%}
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
@@ -13,27 +11,23 @@
     {{ page.description | strip_html | strip_newlines | truncate: 160 }}
     {%- endif -%}
     {%- endcapture -%}
-    
     {%- if desc and desc != "" -%}
     <meta name="description" content="{{ desc }}">
-    <meta property="og:description" content="{{ desc }}">
-    <meta name="twitter:description" content="{{ desc }}">
     {%- endif -%}
-
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="وبلاگ پاسگاه">
-    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ page.title }}">
-
-    <link rel="preconnect" href="https://www.pasgah.org">
+    <link rel="preload" href="https://pasgah.org/blog.woff2" as="font" type="font/woff2">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
     <meta name="theme-color" content="#000000">
-    
     <style>
+        @font-face {
+            font-family: 'Pasgah';
+            src: url("https://pasgah.org/blog.woff2") format("woff2");
+            font-weight: 100 1000;
+            font-display: swap;
+            font-style: normal;
+            unicode-range: U+0621-063A, U+0641-064A, U+067E, U+0686, U+0698, U+06AF, U+06A9, U+06CC, U+06F0-06F9, U+200C, U+200D, U+202B-202C, U+FB8A, U+FB8B, U+FBD3-FBDD, U+FBFE-FBFF, U+FE80-FEFC;
+        }
         *,
         *::before,
         *::after {
@@ -41,7 +35,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
         :root {
             --bg: #000000;
             --text: #ffffff;
@@ -60,20 +53,18 @@
             --w: min(92%, 780px);
             --lg: 2rem;
             --md: 1.5rem;
-            --system-font: system-ui, -apple-system, 'Segoe UI', 'Traditional Arabic', Tahoma, sans-serif;
+            --font-primary: 'Pasgah', sans-serif;
             --line-height: 1.85;
             --font-size-lg: 1.15rem;
             --font-size-xl: 1.4rem;
             --focus-ring: 0 0 0 2px var(--text-accent);
             color-scheme: dark;
         }
-        
         html {
             scroll-behavior: smooth;
         }
-        
         body {
-            font-family: var(--system-font);
+            font-family: var(--font-primary);
             background: var(--bg);
             color: var(--text);
             line-height: var(--line-height);
@@ -84,17 +75,14 @@
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
-        
         :focus-visible {
             outline: var(--focus-ring);
             outline-offset: 3px;
         }
-        
         .container {
             width: var(--w);
             margin-inline: auto;
         }
-        
         header,
         footer {
             background: var(--header-footer-bg);
@@ -104,19 +92,16 @@
             justify-content: center;
             align-items: center;
         }
-        
         main {
             flex: 1;
             padding-block: 2rem;
             padding-inline: 0;
         }
-        
         .posts-list {
             display: flex;
             flex-direction: column;
             gap: var(--lg);
         }
-        
         .post-card {
             background: var(--more-card-bg);
             padding: var(--md);
@@ -126,15 +111,12 @@
             border: 1px solid var(--more-card-border);
             transition: border-color 0.2s ease, transform 0.1s ease;
         }
-        
         a.post-card:hover {
             border-color: var(--more-card-hover-border);
         }
-        
         a.post-card:active {
             transform: scale(0.99);
         }
-        
         .post-title {
             font-size: 1.45rem;
             font-weight: 700;
@@ -142,14 +124,12 @@
             color: var(--text-accent);
             margin-block-end: 0.5rem;
         }
-        
         .post-excerpt {
             font-size: 1.05rem;
             color: var(--text-light);
             margin-block-start: 0.5rem;
             overflow-wrap: break-word;
         }
-        
         .page-title {
             font-size: 2.2rem;
             font-weight: 800;
@@ -159,7 +139,6 @@
             padding-block-end: 0;
             letter-spacing: -0.02em;
         }
-        
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -167,16 +146,13 @@
             color: var(--text-accent);
             letter-spacing: -0.01em;
         }
-        
         .posts-section {
             margin-block-start: var(--lg);
             width: 100%;
         }
-        
         .hidden-post {
             display: none;
         }
-        
         .load-more-button {
             display: block;
             width: 100%;
@@ -186,22 +162,19 @@
             border: 1px solid var(--more-card-border);
             border-radius: 0;
             font-size: 1.1rem;
-            font-family: var(--system-font);
+            font-family: var(--font-primary);
             cursor: pointer;
             transition: background-color 0.2s ease, border-color 0.2s ease;
             text-align: center;
         }
-        
         .load-more-button:hover {
             background-color: #1a1a1a;
             border-color: var(--more-card-hover-border);
         }
-        
         .load-more-button:focus-visible {
             outline: var(--focus-ring);
             outline-offset: 2px;
         }
-        
         .breadcrumb-link {
             display: inline-flex;
             align-items: center;
@@ -214,20 +187,17 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-family: var(--system-font);
+            font-family: var(--font-primary);
         }
-        
         .breadcrumb-link:hover {
             color: var(--text-accent);
         }
-        
         .breadcrumb-link svg {
             width: 1.2rem;
             height: 1.2rem;
             fill: currentColor;
             flex-shrink: 0;
         }
-
         {% if page.layout == 'post' %}
         .post-meta {
             display: flex;
@@ -239,21 +209,18 @@
             font-size: 0.9rem;
             flex-wrap: wrap;
         }
-        
         .post-author,
         .post-date {
             display: flex;
             align-items: center;
             gap: 0.25rem;
         }
-        
         .post-author svg,
         .post-date svg {
             width: 1.2rem;
             height: 1.2rem;
             fill: currentColor;
         }
-        
         .article-content {
             font-size: var(--font-size-lg);
             color: var(--text);
@@ -261,11 +228,9 @@
             overflow-wrap: break-word;
             margin-block-start: 0;
         }
-        
         .article-content p {
             margin-block: 1.5rem;
         }
-        
         .article-content h2 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -273,14 +238,12 @@
             margin-block: 2rem 1rem;
             letter-spacing: -0.01em;
         }
-        
         .article-content h3 {
             font-size: var(--font-size-xl);
             font-weight: 600;
             margin-block: 1.5rem 1rem;
             color: var(--text-light);
         }
-        
         .article-content a {
             color: var(--text-accent);
             text-decoration: none;
@@ -293,12 +256,10 @@
             transition: background-size 0.25s ease, opacity 0.25s ease;
             padding-block-end: 2px;
         }
-        
         .article-content a:hover {
             background-size: 100% 2px;
             opacity: 1;
         }
-        
         .article-content ul,
         .article-content ol {
             margin-block: 1.5rem;
@@ -306,14 +267,12 @@
             padding-inline: 0 1.5rem;
             list-style: none;
         }
-        
         .article-content ul li,
         .article-content ol li {
             display: flex;
             align-items: flex-start;
             margin-block-end: 0.75rem;
         }
-        
         .article-content ul li::before {
             content: '';
             display: inline-block;
@@ -324,15 +283,12 @@
             margin-block-start: 0.65em;
             flex-shrink: 0;
         }
-        
         .article-content ol {
             counter-reset: list-counter;
         }
-        
         .article-content ol li {
             counter-increment: list-counter;
         }
-        
         .article-content ol li::before {
             content: counter(list-counter) ". ";
             color: var(--text-accent);
@@ -341,7 +297,6 @@
             white-space: pre;
             margin-block-start: 0.05em;
         }
-        
         .article-content blockquote {
             border-inline-start: 3px solid var(--text-accent);
             padding: 1rem 1.5rem;
@@ -350,14 +305,12 @@
             font-style: italic;
             color: var(--text-light);
         }
-        
         .article-content img {
             max-width: 100%;
             height: auto;
             margin-block: 1.5rem;
             display: block;
         }
-        
         .table-scroll {
             margin-block: 1.5rem;
             overflow-x: auto;
@@ -365,26 +318,22 @@
             max-width: 100%;
             border: 1px solid var(--border);
         }
-        
         .article-content table {
             width: 100%;
             border-collapse: collapse;
             min-width: 600px;
         }
-        
         .article-content table th,
         .article-content table td {
             padding: 0.75rem 1rem;
             text-align: right;
             border: 1px solid var(--border);
         }
-        
         .article-content table th {
             background: var(--table-header-bg);
             font-weight: 600;
             color: var(--text);
         }
-        
         .article-content table tbody tr:nth-child(even) {
             background: var(--table-even-bg);
         }
@@ -396,42 +345,18 @@
     {% if desc and desc != "" %}
     <meta itemprop="description" content="{{ desc }}">
     {% endif %}
-
     <svg style="display: none;" aria-hidden="true">
         <defs>
-            <g id="logo" transform="translate(0,1024) scale(0.1,-0.1)" fill="#ffffff">
-                <path d="M3110 5120 l0 -2910 73 0 c143 0 349 21 445 46 256 64 459 217 558 419 84 172 78 84 82 1217 l3 1007 997 4 c1087 3 1045 1 1256 62 377 109 647 379 735 736 38 153 43 273 38 849 -3 448 -7 559 -20 626 -88 442 -393 738 -851 826 -110 21 -128 22 -1713 25 l-1603 4 0 -2911z m2822 1871 c37 -10 83 -30 102 -45 47 -36 87 -106 103 -180 16 -77 17 -503 2 -578 -22 -106 -91 -187 -195 -229 l-59 -24 -807 -3 -808 -3 0 541 0 540 798 0 c746 0 802 -1 864 -19z"/>
-                <path d="M6331 4079 l-195 -200 -197 197 c-143 143 -200 194 -210 188 -8 -5 -115 -111 -238 -236 l-223 -227 247 -246 248 -247 186 186 186 185 189 -185 189 -186 243 243 c134 134 244 248 244 252 0 9 -461 477 -469 477 -3 0 -93 -91 -200 -201z"/>
-                <path d="M5907 3069 c-125 -127 -227 -235 -225 -240 5 -13 449 -459 458 -459 11 0 71 58 286 278 l188 193 -229 229 c-127 127 -234 230 -240 230 -5 0 -113 -104 -238 -231z"/>
-            </g>
             <g id="home-icon">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
             </g>
         </defs>
     </svg>
-
     <header role="banner">
-        <a 
-            href="https://www.pasgah.org/" 
-            aria-label="صفحهٔ نخست وبلاگ پاسگاه"
-            {% if page.is_home %} aria-current="page"{% endif %}
-            rel="home"
-        >
-            <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 1024 1024" 
-                width="64" 
-                height="64" 
-                role="img" 
-                aria-label="لوگوی وبلاگ پاسگاه"
-                focusable="false"
-            >
-                <title>وبلاگ پاسگاه</title>
-                <use href="#logo"/>
-            </svg>
+        <a href="https://www.pasgah.org/" aria-label="صفحهٔ نخست وبلاگ پاسگاه" {% if page.is_home %} aria-current="page"{% endif %} rel="home">
+            <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="64" height="64">
         </a>
     </header>
-
     <main id="main-content" tabindex="-1">
         <div class="container">
             {% if page.layout == 'post' %}
@@ -443,25 +368,9 @@
             {{ content }}
         </div>
     </main>
-
     <footer role="contentinfo">
-        <a 
-            href="https://www.pasgah.org/" 
-            aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه"
-            rel="home"
-        >
-            <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 1024 1024" 
-                width="48" 
-                height="48" 
-                role="img" 
-                aria-label="لوگوی وبلاگ پاسگاه"
-                focusable="false"
-            >
-                <title>وبلاگ پاسگاه</title>
-                <use href="#logo"/>
-            </svg>
+        <a href="https://www.pasgah.org/" aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه" rel="home">
+            <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="48" height="48">
         </a>
     </footer>
 </body>
