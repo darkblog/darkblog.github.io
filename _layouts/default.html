@@ -14,7 +14,7 @@
     {%- if desc and desc != "" -%}
     <meta name="description" content="{{ desc }}">
     {%- endif -%}
-    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2">
+    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
@@ -45,7 +45,7 @@
             --card-bg: #080808;
             --more-card-bg: #0f0f0f;
             --more-card-border: rgba(255, 255, 255, 0.07);
-            --more-card-hover-border: rgba(46, 204, 113, 0.5);
+            --more-card-hover-border: rgba(255, 180, 138, 0.5);
             --header-footer-bg: #040404;
             --blockquote-bg: #111111;
             --table-header-bg: #1a1a1a;
@@ -57,7 +57,7 @@
             --line-height: 1.85;
             --font-size-lg: 1.15rem;
             --font-size-xl: 1.4rem;
-            --focus-ring: 0 0 0 2px var(--text-green);
+            --focus-ring: 0 0 0 2px var(--text-accent);
             color-scheme: dark;
         }
         html {
@@ -121,7 +121,7 @@
             font-size: 1.45rem;
             font-weight: 700;
             line-height: 1.35;
-            color: var(--text-green);
+            color: var(--text-accent);
             margin-block-end: 0.5rem;
         }
         .post-excerpt {
@@ -158,7 +158,7 @@
             width: 100%;
             padding: 1rem;
             background: var(--more-card-bg);
-            color: var(--text-green);
+            color: var(--text-accent);
             border: 1px solid var(--more-card-border);
             border-radius: 0;
             font-size: 1.1rem;
@@ -190,7 +190,7 @@
             font-family: var(--font-primary);
         }
         .breadcrumb-link:hover {
-            color: var(--text-green);
+            color: var(--text-accent);
         }
         .breadcrumb-link svg {
             width: 1.2rem;
@@ -228,6 +228,14 @@
             overflow-wrap: break-word;
             margin-block-start: 0;
         }
+        .article-content h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-green);
+            margin-block: 0 1.5rem;
+            letter-spacing: -0.02em;
+        }
         .article-content p {
             margin-block: 1.5rem;
         }
@@ -245,11 +253,11 @@
             color: var(--text-light);
         }
         .article-content a {
-            color: var(--text-green);
+            color: var(--text-accent);
             text-decoration: none;
             font-weight: 500;
             word-break: break-word;
-            background-image: linear-gradient(var(--text-green), var(--text-green));
+            background-image: linear-gradient(var(--text-accent), var(--text-accent));
             background-size: 100% 1px;
             background-position: 0 100%;
             background-repeat: no-repeat;
@@ -278,7 +286,7 @@
             display: inline-block;
             width: 0.4rem;
             height: 0.4rem;
-            background-color: var(--text-green);
+            background-color: var(--text-accent);
             margin-inline-end: 0.75rem;
             margin-block-start: 0.65em;
             flex-shrink: 0;
@@ -291,14 +299,14 @@
         }
         .article-content ol li::before {
             content: counter(list-counter) ". ";
-            color: var(--text-green);
+            color: var(--text-accent);
             font-weight: 500;
             margin-inline-end: 0.5rem;
             white-space: pre;
             margin-block-start: 0.05em;
         }
         .article-content blockquote {
-            border-inline-start: 3px solid var(--text-green);
+            border-inline-start: 3px solid var(--text-accent);
             padding: 1rem 1.5rem;
             margin-block: 1.5rem;
             background: var(--blockquote-bg);
