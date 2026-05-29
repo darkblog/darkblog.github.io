@@ -4,6 +4,8 @@ layout: default
 
 <div class="posts-list">
     <article itemscope itemtype="https://schema.org/BlogPosting" style="display: contents;">
+        <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
+        
         <div class="post-card">
             <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
         </div>
@@ -11,19 +13,19 @@ layout: default
         <div class="post-card">
             <div class="post-meta">
                 <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     <span itemprop="name">احسان چهری</span>
                 </span>
                 <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
-                    <span class="date-text">{{ page.date | date: "%Y/%m/%d" }}</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
+                    <span class="date-text"></span>
                 </time>
             </div>
         </div>
         
-        <div class="post-card">
-            <div class="article-content" itemprop="articleBody">
-                {{ content | replace: '<table>', '<div class="table-scroll"><table>' | replace: '</table>', '</table></div>' }}
+        <div class="post-card" style="width: 100%; max-width: 100%; overflow: hidden;">
+            <div class="article-content" itemprop="articleBody" style="width: 100%;">
+                {{ content }}
             </div>
         </div>
     </article>
@@ -38,8 +40,8 @@ layout: default
             <h2 class="section-title">آخرین پست‌های وبلاگ</h2>
         </div>
         
-        {% for post in all_posts limit: 100 %}
-        <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}">
+        {% for post in all_posts %}
+        <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
             <h3 class="post-title">{{ post.title }}</h3>
             <div class="post-excerpt">
                 {{ post.excerpt | strip_html | strip_newlines | truncate: 160 }}
@@ -48,7 +50,7 @@ layout: default
         {% endfor %}
         
         {% if total_other_posts > posts_per_page %}
-        <button id="load-more-related" class="load-more-button">پست‌های بیشتر...</button>
+        <button id="load-more-related" class="load-more-button" aria-controls="related-posts-wrapper">پست‌های بیشتر...</button>
         {% endif %}
     </div>
 </div>
@@ -72,28 +74,48 @@ layout: default
     })();
 
     (function() {
+        const tables = document.querySelectorAll('.article-content table');
+        tables.forEach(table => {
+            if (table.parentElement.classList.contains('table-scroll')) return;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-scroll';
+            wrapper.style.overflowX = 'auto';
+            wrapper.style.maxWidth = '100%';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        });
+    })();
+
+    (function() {
         const postsPerPage = 10;
-        const hiddenPosts = document.querySelectorAll('.related-posts-wrapper .hidden-post');
         const loadMoreBtn = document.getElementById('load-more-related');
         
-        if (!loadMoreBtn || hiddenPosts.length === 0) return;
-        
-        let currentlyShown = 0;
+        if (!loadMoreBtn) return;
         
         function showMorePosts() {
-            const nextBatch = Array.from(hiddenPosts).slice(currentlyShown, currentlyShown + postsPerPage);
+            const hiddenPosts = document.querySelectorAll('.related-posts-wrapper .hidden-post');
+            const nextBatch = Array.from(hiddenPosts).slice(0, postsPerPage);
             
-            nextBatch.forEach(post => {
+            nextBatch.forEach((post, index) => {
                 post.classList.remove('hidden-post');
+                post.removeAttribute('aria-hidden');
+                post.removeAttribute('tabindex');
+                if (index === 0) {
+                    post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
             });
             
-            currentlyShown += nextBatch.length;
-            
-            if (currentlyShown >= hiddenPosts.length) {
+            const remainingHidden = document.querySelectorAll('.related-posts-wrapper .hidden-post');
+            if (remainingHidden.length === 0) {
                 loadMoreBtn.style.display = 'none';
             }
         }
         
-        loadMoreBtn.addEventListener('click', showMorePosts);
+        const initialHidden = document.querySelectorAll('.related-posts-wrapper .hidden-post');
+        if (initialHidden.length === 0) {
+            loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.addEventListener('click', showMorePosts);
+        }
     })();
 </script>
