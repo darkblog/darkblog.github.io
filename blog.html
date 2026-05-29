@@ -193,6 +193,18 @@ layout: none
         .hidden-post {
             display: none !important;
         }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -207,33 +219,42 @@ layout: none
         </a>
     </header>
 
-    <main id="main-content" tabindex="-1">
+    <main id="main-content" role="main">
         <div class="container">
             <div class="archive-header">
                 <h1>بایگانی مطالب</h1>
             </div>
 
+            {% if site.posts.size > 0 %}
             <div class="search-wrapper">
-                <input type="text" id="searchInput" class="search-box" placeholder="جستجو در عناوین مطالب ...">
+                <label for="searchInput" class="visually-hidden">جستجو در عناوین مطالب</label>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-box" 
+                    placeholder="جستجو در عناوین مطالب ..."
+                    autocomplete="off"
+                    autocorrect="off"
+                    spellcheck="false"
+                >
             </div>
 
-            <div class="search-stats" id="searchStats"></div>
+            <div class="search-stats" id="searchStats" aria-live="polite"></div>
 
             <div id="archiveContent">
                 <ul class="posts-list" id="postsList">
                     {% for post in site.posts %}
-                    <li class="post-item" data-title="{{ post.title | escape }}">
+                    <li class="post-item" data-title="{{ post.title | strip_html | strip_newlines | escape_once }}">
                         <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
                     </li>
                     {% endfor %}
                 </ul>
                 
                 <div id="noResultsMessage" class="no-results" style="display: none;">هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
-
-                {% if site.posts.size == 0 %}
-                <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
-                {% endif %}
             </div>
+            {% else %}
+            <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
+            {% endif %}
         </div>
     </main>
 
@@ -252,44 +273,65 @@ layout: none
         const searchInput = document.getElementById('searchInput');
         const searchStatsDiv = document.getElementById('searchStats');
         const noResultsMessage = document.getElementById('noResultsMessage');
-        const postsList = document.getElementById('postsList');
         const allPosts = document.querySelectorAll('.post-item');
         const totalPostsCount = allPosts.length;
         
         if (!searchInput || totalPostsCount === 0) return;
 
+        function normalizePersian(text) {
+            if (!text) return '';
+            return text
+                .toLowerCase()
+                .replace(/[\u200c\s]+/g, ' ')
+                .replace(/ی/g, 'ی')
+                .replace(/ي/g, 'ی')
+                .replace(/ک/g, 'ک')
+                .replace(/ك/g, 'ک')
+                .trim();
+        }
+
+        const postsCache = Array.from(allPosts).map(post => ({
+            element: post,
+            normalizedTitle: normalizePersian(post.getAttribute('data-title') || '')
+        }));
+
         function updateSearch() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
+            const searchTerm = normalizePersian(searchInput.value);
             let visibleCount = 0;
             
-            allPosts.forEach(post => {
-                const title = post.getAttribute('data-title')?.toLowerCase() || '';
-                
-                if (searchTerm === '' || title.includes(searchTerm)) {
-                    post.classList.remove('hidden-post');
+            postsCache.forEach(post => {
+                if (searchTerm === '' || post.normalizedTitle.includes(searchTerm)) {
+                    post.element.classList.remove('hidden-post');
                     visibleCount++;
                 } else {
-                    post.classList.add('hidden-post');
+                    post.element.classList.add('hidden-post');
                 }
             });
             
             if (searchTerm === '') {
-                searchStatsDiv.innerHTML = '';
+                searchStatsDiv.textContent = '';
                 noResultsMessage.style.display = 'none';
-                if (postsList) postsList.style.display = 'flex';
             } else {
-                searchStatsDiv.innerHTML = `تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
+                searchStatsDiv.textContent = `تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
                 if (visibleCount === 0) {
                     noResultsMessage.style.display = 'block';
-                    if (postsList) postsList.style.display = 'none';
                 } else {
                     noResultsMessage.style.display = 'none';
-                    if (postsList) postsList.style.display = 'flex';
                 }
             }
         }
-        
-        searchInput.addEventListener('input', updateSearch);
+
+        let debounceTimeout;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(updateSearch, 40); 
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
     })();
 </script>
 
