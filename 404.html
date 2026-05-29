@@ -8,6 +8,7 @@ layout: null
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="#000000">
+    <title>صفحه مورد نظر پیدا نشد - وبلاگ پاسگاه</title>
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
     <style>
         @font-face {
@@ -104,6 +105,7 @@ layout: null
             color: transparent;
             line-height: 1;
             margin-block-end: 1rem;
+            display: block;
         }
 
         .error-title {
@@ -190,7 +192,7 @@ layout: null
         </a>
     </header>
 
-    <main id="main-content" tabindex="-1" itemprop="mainContentOfPage" itemscope itemtype="https://schema.org/WebPageElement">
+    <main id="main-content" itemprop="mainContentOfPage">
         <div class="container">
             <section class="error-box" aria-labelledby="error-heading">
                 <h1 id="error-heading">
@@ -204,7 +206,6 @@ layout: null
                 <a 
                     href="https://www.pasgah.org/blog" 
                     class="back-home-link"
-                    aria-label="جستجو در وبلاگ"
                 >
                     جستجو در وبلاگ
                 </a>
@@ -223,7 +224,6 @@ layout: null
                             <a 
                                 href="{{ post.url | relative_url }}" 
                                 class="post-card"
-                                aria-label="{{ post.title }}"
                                 itemprop="url"
                             >
                                 <h3 class="post-title" itemprop="name">{{ post.title | escape }}</h3>
