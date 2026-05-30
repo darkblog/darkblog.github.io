@@ -141,7 +141,7 @@
             font-weight: 800;
             line-height: 1.4;
             color: var(--text-green);
-            margin-block-end: 0;
+            margin-block-end: 1rem;
             padding-block-end: 0;
             letter-spacing: -0.02em;
         }
@@ -208,6 +208,7 @@
             color: var(--text-light);
             font-size: 0.9rem;
             flex-wrap: wrap;
+            margin-block-end: 1.5rem;
         }
         .post-author, .post-date {
             display: flex;
@@ -339,33 +340,25 @@
             
             <div class="posts-list">
                 {% if page.is_home %}
-                <div class="post-card">
-                    <h1 class="page-title">سفر به اعماق تاریخ</h1>
-                </div>
+                <h1 class="page-title">سفر به اعماق تاریخ</h1>
                 {% endif %}
 
                 {% if page.type == 'post' %}
                 <article itemscope itemtype="https://schema.org/BlogPosting" style="display: contents;">
                     <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
-                    <div class="post-card">
-                        <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
+                    <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
+                    <div class="post-meta">
+                        <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <span itemprop="name">احسان چهری</span>
+                        </span>
+                        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
+                            <span class="date-text"></span>
+                        </time>
                     </div>
-                    <div class="post-card">
-                        <div class="post-meta">
-                            <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                <span itemprop="name">احسان چهری</span>
-                            </span>
-                            <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
-                                <span class="date-text"></span>
-                            </time>
-                        </div>
-                    </div>
-                    <div class="post-card" style="width: 100%; max-width: 100%; overflow: hidden;">
-                        <div class="article-content" itemprop="articleBody" style="width: 100%;">
-                            {{ content }}
-                        </div>
+                    <div class="article-content" itemprop="articleBody">
+                        {{ content }}
                     </div>
                 </article>
 
