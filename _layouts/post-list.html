@@ -1,0 +1,44 @@
+{% comment %} _includes/posts-list.html {% endcomment %}
+{% assign posts_per_page = 10 %}
+{% assign all_posts = site.posts %}
+
+{% if page.layout == 'post' %}
+  {% assign all_posts = all_posts | where_exp: "post", "post.url != page.url" %}
+{% endif %}
+
+<div class="posts-list space-container">
+    {% for post in all_posts %}
+    <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
+        <h2 class="post-title">{{ post.title }}</h2>
+        <div class="post-excerpt">
+            {{ post.excerpt | strip_html | strip_newlines | truncate: 160 }}
+        </div>
+    </a>
+    {% endfor %}
+    
+    {% if all_posts.size > posts_per_page %}
+    <button id="load-more" class="load-more-button">پست‌های بیشتر...</button>
+    {% endif %}
+</div>
+
+<script>
+(function() {
+    const loadMoreBtn = document.getElementById('load-more');
+    if (!loadMoreBtn) return;
+    
+    loadMoreBtn.addEventListener('click', function() {
+        const hiddenPosts = document.querySelectorAll('.hidden-post');
+        const postsPerPage = 10;
+        
+        Array.from(hiddenPosts).slice(0, postsPerPage).forEach(post => {
+            post.classList.remove('hidden-post');
+            post.removeAttribute('aria-hidden');
+            post.removeAttribute('tabindex');
+        });
+        
+        if (document.querySelectorAll('.hidden-post').length === 0) {
+            loadMoreBtn.style.display = 'none';
+        }
+    });
+})();
+</script>
