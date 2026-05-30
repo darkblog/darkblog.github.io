@@ -3,14 +3,54 @@ layout: none
 ---
 
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>بایگانی پست‌های وبلاگ پاسگاه</title>
+
+    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2">
+
+    <meta name="description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه">
+    <meta itemprop="name" content="بایگانی پست‌های وبلاگ پاسگاه">
+    <meta itemprop="description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه">
+
+    <meta property="og:title" content="بایگانی پست‌های وبلاگ پاسگاه">
+    <meta property="og:url" content="https://www.pasgah.org/blog">
+    <meta property="og:site_name" content="وبلاگ پاسگاه">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="بایگانی پست‌های وبلاگ پاسگاه">
+    <meta name="twitter:description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "بایگانی پست‌های وبلاگ پاسگاه",
+      "description": "فهرست و بایگانی تمام مطالب وبلاگ پاسگاه",
+      "url": "https://www.pasgah.org/blog",
+      "publisher": {
+        "@type": "Organization",
+        "name": "وبلاگ پاسگاه",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pasgah.org/blog.svg"
+        }
+      }
+    }
+    </script>
+
     <link rel="canonical" href="https://www.pasgah.org/blog">
+    <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
+
     <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
     <style>
         @font-face {
             font-family: 'Vazir';
@@ -19,14 +59,11 @@ layout: none
             font-display: swap;
             font-style: normal;
         }
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         :root {
             --bg: #000000;
             --text: #ffffff;
@@ -35,30 +72,31 @@ layout: none
             --text-green: #5dbe7e;
             --text-blue: #6bb5e0;
             --border: #333333;
-            --accent: #ffffff;
-            --card-bg: #080808;
             --more-card-bg: #0f0f0f;
             --more-card-border: rgba(255, 255, 255, 0.07);
             --more-card-hover-border: rgba(107, 181, 224, 0.5);
             --header-footer-bg: #040404;
             --blockquote-bg: #111111;
-            --table-header-bg: #1a1a1a;
-            --table-even-bg: #0d0d0d;
             --w: min(92%, 780px);
             --lg: 2rem;
-            --md: 1.5rem;
             --font-primary: 'Vazir', sans-serif;
             --line-height: 1.85;
-            --font-size-lg: 1.15rem;
-            --font-size-xl: 1.4rem;
             --focus-ring: 0 0 0 2px var(--text-accent);
             color-scheme: dark;
         }
-        
-        html {
-            scroll-behavior: smooth;
+        ::selection {
+            background-color: var(--text-green);
+            color: #000000;
         }
-        
+        ::-moz-selection {
+            background-color: var(--text-green);
+            color: #000000;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
         body {
             font-family: var(--font-primary);
             background: var(--bg);
@@ -71,129 +109,56 @@ layout: none
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
-        
         :focus-visible {
             outline: var(--focus-ring);
             outline-offset: 3px;
         }
-        
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            right: 0;
+            background: var(--text-accent);
+            color: #000;
+            padding: 0.5rem 1rem;
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            z-index: 9999;
+            transition: top 0.2s;
+            text-decoration: none;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
         .container {
             width: var(--w);
             margin-inline: auto;
         }
-        
-        header,
-        footer {
+        header, footer {
             background: var(--header-footer-bg);
             padding-block: 1rem;
-            padding-inline: 0;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
         main {
             flex: 1;
             padding-block: 2rem;
-            padding-inline: 0;
         }
-        
         .archive-header {
             text-align: center;
-            padding-bottom: 1.5rem;
             margin-bottom: 2rem;
         }
-        
         .archive-header h1 {
             font-size: 2.2rem;
             font-weight: 800;
             line-height: 1.4;
             color: var(--text-green);
             letter-spacing: -0.02em;
-            margin-bottom: 0;
         }
-        
         .search-wrapper {
             margin-bottom: 2rem;
         }
-        
-        .search-box {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            border: 1px solid var(--more-card-border);
-            background: var(--more-card-bg);
-            color: var(--text);
-            transition: all 0.2s ease;
-            font-family: inherit;
-            border-radius: 0;
-        }
-        
-        .search-box:focus {
-            outline: none;
-            border-color: var(--more-card-hover-border);
-            box-shadow: 0 0 0 2px rgba(107, 181, 224, 0.15);
-        }
-        
-        .search-box::placeholder {
-            color: var(--text-light);
-            opacity: 0.7;
-        }
-        
-        .search-stats {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            min-height: 1.5rem;
-        }
-        
-        .posts-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        
-        .post-item {
-            padding: 0;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.1s ease;
-        }
-        
-        .post-item:last-child {
-            border-bottom: none;
-        }
-        
-        .post-item:hover {
-            background: var(--blockquote-bg);
-        }
-        
-        .post-link {
-            color: var(--text-blue);
-            text-decoration: none;
-            font-size: 1.05rem;
-            display: block;
-            padding: 0.8rem 1rem;
-            transition: color 0.2s ease;
-        }
-        
-        .post-link:hover {
-            color: var(--text-accent);
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-light);
-            background: var(--more-card-bg);
-            border: 1px solid var(--more-card-border);
-        }
-        
-        .hidden-post {
-            display: none !important;
-        }
-
         .visually-hidden {
             position: absolute;
             width: 1px;
@@ -205,21 +170,90 @@ layout: none
             white-space: nowrap;
             border: 0;
         }
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--more-card-border);
+            background: var(--more-card-bg);
+            color: var(--text);
+            font-family: inherit;
+            border-radius: 0;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: var(--more-card-hover-border);
+            box-shadow: 0 0 0 2px rgba(107, 181, 224, 0.15);
+        }
+        .search-box::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+        .search-stats {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            min-height: 1.5rem;
+        }
+        .posts-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .post-item {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s ease;
+        }
+        .post-item:last-child {
+            border-bottom: none;
+        }
+        .post-item:hover {
+            background: var(--blockquote-bg);
+        }
+        .post-link {
+            color: var(--text-blue);
+            text-decoration: none;
+            font-size: 1.05rem;
+            display: block;
+            padding: 0.8rem 1rem;
+            transition: color 0.2s ease;
+        }
+        .post-link:hover {
+            color: var(--text-accent);
+        }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+            background: var(--more-card-bg);
+            border: 1px solid var(--more-card-border);
+        }
+        .hidden-post {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">رفتن به محتوای اصلی</a>
+
+    <svg hidden aria-hidden="true">
+        <defs>
+            <g id="home-icon">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </g>
+        </defs>
+    </svg>
 
     <header role="banner">
-        <a 
-            href="https://www.pasgah.org/" 
-            aria-label="صفحهٔ نخست وبلاگ پاسگاه"
-            rel="home"
-        >
+        <a href="https://www.pasgah.org/" aria-label="صفحهٔ نخست وبلاگ پاسگاه" rel="home">
             <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="64" height="64">
         </a>
     </header>
 
-    <main id="main-content" role="main">
+    <main id="main-content" tabindex="-1">
         <div class="container">
             <div class="archive-header">
                 <h1>بایگانی مطالب</h1>
@@ -228,10 +262,10 @@ layout: none
             {% if site.posts.size > 0 %}
             <div class="search-wrapper">
                 <label for="searchInput" class="visually-hidden">جستجو در عناوین مطالب</label>
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    class="search-box" 
+                <input
+                    type="search"
+                    id="searchInput"
+                    class="search-box"
                     placeholder="جستجو در عناوین پست‌ها ..."
                     autocomplete="off"
                     autocorrect="off"
@@ -239,18 +273,18 @@ layout: none
                 >
             </div>
 
-            <div class="search-stats" id="searchStats" aria-live="polite"></div>
+            <div class="search-stats" id="searchStats" aria-live="polite" aria-atomic="true"></div>
 
             <div id="archiveContent">
-                <ul class="posts-list" id="postsList">
+                <ul class="posts-list" id="postsList" role="list">
                     {% for post in site.posts %}
                     <li class="post-item" data-title="{{ post.title | strip_html | strip_newlines | escape_once }}">
                         <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
                     </li>
                     {% endfor %}
                 </ul>
-                
-                <div id="noResultsMessage" class="no-results" style="display: none;">هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
+
+                <div id="noResultsMessage" class="no-results" hidden>هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
             </div>
             {% else %}
             <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
@@ -259,81 +293,67 @@ layout: none
     </main>
 
     <footer role="contentinfo">
-        <a 
-            href="https://www.pasgah.org/" 
-            aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه"
-            rel="home"
-        >
+        <a href="https://www.pasgah.org/" aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه" rel="home">
             <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="48" height="48">
         </a>
     </footer>
 
-<script>
-    (function() {
-        const searchInput = document.getElementById('searchInput');
-        const searchStatsDiv = document.getElementById('searchStats');
-        const noResultsMessage = document.getElementById('noResultsMessage');
-        const allPosts = document.querySelectorAll('.post-item');
-        const totalPostsCount = allPosts.length;
-        
-        if (!searchInput || totalPostsCount === 0) return;
+    <script>
+        (function () {
+            var searchInput = document.getElementById('searchInput');
+            var searchStats = document.getElementById('searchStats');
+            var noResults = document.getElementById('noResultsMessage');
+            var allItems = document.querySelectorAll('.post-item');
+            var total = allItems.length;
 
-        function normalizePersian(text) {
-            if (!text) return '';
-            return text
-                .toLowerCase()
-                .replace(/[\u200c\s]+/g, ' ')
-                .replace(/ی/g, 'ی')
-                .replace(/ي/g, 'ی')
-                .replace(/ک/g, 'ک')
-                .replace(/ك/g, 'ک')
-                .trim();
-        }
+            if (!searchInput || total === 0) return;
 
-        const postsCache = Array.from(allPosts).map(post => ({
-            element: post,
-            normalizedTitle: normalizePersian(post.getAttribute('data-title') || '')
-        }));
+            function normalize(text) {
+                if (!text) return '';
+                return text
+                    .toLowerCase()
+                    .replace(/[\u200c\s]+/g, ' ')
+                    .replace(/[يی]/g, 'ی')
+                    .replace(/[كک]/g, 'ک')
+                    .trim();
+            }
 
-        function updateSearch() {
-            const searchTerm = normalizePersian(searchInput.value);
-            let visibleCount = 0;
-            
-            postsCache.forEach(post => {
-                if (searchTerm === '' || post.normalizedTitle.includes(searchTerm)) {
-                    post.element.classList.remove('hidden-post');
-                    visibleCount++;
-                } else {
-                    post.element.classList.add('hidden-post');
-                }
+            var cache = Array.from(allItems).map(function (item) {
+                return {
+                    el: item,
+                    title: normalize(item.getAttribute('data-title') || '')
+                };
             });
-            
-            if (searchTerm === '') {
-                searchStatsDiv.textContent = '';
-                noResultsMessage.style.display = 'none';
-            } else {
-                searchStatsDiv.textContent = `تعداد نتایج یافت شده: ${visibleCount} مورد از ${totalPostsCount}`;
-                if (visibleCount === 0) {
-                    noResultsMessage.style.display = 'block';
+
+            function search() {
+                var term = normalize(searchInput.value);
+                var count = 0;
+
+                cache.forEach(function (item) {
+                    var match = term === '' || item.title.includes(term);
+                    item.el.classList.toggle('hidden-post', !match);
+                    if (match) count++;
+                });
+
+                if (term === '') {
+                    searchStats.textContent = '';
+                    noResults.hidden = true;
                 } else {
-                    noResultsMessage.style.display = 'none';
+                    searchStats.textContent = count + ' مورد از ' + total + ' مطلب یافت شد';
+                    noResults.hidden = count > 0;
                 }
             }
-        }
 
-        let debounceTimeout;
-        searchInput.addEventListener('input', function() {
-            clearTimeout(debounceTimeout);
-            debounceTimeout = setTimeout(updateSearch, 40); 
-        });
+            var timer;
+            searchInput.addEventListener('input', function () {
+                clearTimeout(timer);
+                timer = setTimeout(search, 40);
+            });
 
-        searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-            }
-        });
-    })();
-</script>
-
+            searchInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') e.preventDefault();
+            });
+        }());
+    </script>
 </body>
 </html>
