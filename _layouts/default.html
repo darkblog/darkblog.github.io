@@ -18,7 +18,16 @@
     {%- if desc != "" -%}
     <meta name="description" content="{{ desc }}">
     <meta itemprop="description" content="{{ desc }}">
+    <meta property="og:description" content="{{ desc }}">
     {%- endif -%}
+    
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="وبلاگ پاسگاه">
+    
+    {% if page.type == 'post' %}
+    <link itemprop="mainEntityOfPage" href="{{ page.url | absolute_url }}">
+    {% endif %}
     
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="{{ '/blog.xml' | absolute_url }}">
@@ -333,10 +342,12 @@
     <main id="main-content" tabindex="-1">
         <div class="container">
             {% if page.type == 'post' %}
-            <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#home-icon"/></svg>
-                <span>وبلاگ</span>
-            </a>
+            <nav aria-label="Breadcrumb">
+                <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#home-icon"/></svg>
+                    <span>وبلاگ</span>
+                </a>
+            </nav>
             {% endif %}
             
             {% if page.is_home %}
@@ -345,7 +356,6 @@
 
             {% if page.type == 'post' %}
             <article itemscope itemtype="https://schema.org/BlogPosting">
-                <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
                 <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
                 <div class="post-meta">
                     <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
@@ -378,7 +388,11 @@
 
                 {% for post in display_posts limit: max_posts %}
                 <a href="{{ post.url | relative_url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
+                    {% if page.type == 'post' %}
+                    <h3 class="post-title">{{ post.title }}</h3>
+                    {% else %}
                     <h2 class="post-title">{{ post.title }}</h2>
+                    {% endif %}
                     <div class="post-excerpt">
                         {{ post.excerpt | strip_html | strip_newlines | truncate: 160 }}
                     </div>
