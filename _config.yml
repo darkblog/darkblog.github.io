@@ -1,5 +1,9 @@
 url: https://www.pasgah.org
 
+title: "وبلاگ پاسگاه؛ سفر به اعماق تاریخ"
+
+description: "پاسگاه، وبلاگی برای سفر به اعماق تاریخ. روایتگر لحظه‌های از یاد رفته و کاشف ردپای انسان در هزارتوی روزگار"
+
 permalink: /blog/:title
 
 encoding: UTF-8
