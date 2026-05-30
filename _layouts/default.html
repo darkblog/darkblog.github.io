@@ -355,7 +355,6 @@
             if (!loadMoreBtn) return;
             
             loadMoreBtn.addEventListener('click', function() {
-                // اطمینان از اینکه فقط کارت‌های پست انتخاب می‌شوند
                 const hiddenPosts = document.querySelectorAll('a.post-card-item.hidden-post');
                 const nextBatch = Array.from(hiddenPosts).slice(0, postsPerPage);
                 
