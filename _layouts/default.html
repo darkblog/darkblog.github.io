@@ -25,10 +25,6 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:site_name" content="وبلاگ پاسگاه">
     
-    {% if page.type == 'post' %}
-    <link itemprop="mainEntityOfPage" href="{{ page.url | absolute_url }}">
-    {% endif %}
-    
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="{{ '/blog.xml' | absolute_url }}">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
@@ -356,6 +352,7 @@
 
             {% if page.type == 'post' %}
             <article itemscope itemtype="https://schema.org/BlogPosting">
+                <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
                 <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
                 <div class="post-meta">
                     <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
