@@ -3,32 +3,123 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ page.title }}</title>
-    
+
     {%- capture desc_raw -%}
-    {%- if page.type == 'post' -%}
-    {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
-    {%- else -%}
-    {{ page.description | strip_html | strip_newlines | truncate: 160 }}
-    {%- endif -%}
+      {%- if page.type == 'post' -%}
+        {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
+      {%- elsif page.is_home -%}
+        {{ page.description | strip_html | strip_newlines | truncate: 160 }}
+      {%- endif -%}
     {%- endcapture -%}
     {%- assign desc = desc_raw | strip -%}
-    
+
+    <title>{{ page.title }}</title>
+
+    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2">
+
     <meta itemprop="name" content="{{ page.title }}">
     {%- if desc != "" -%}
     <meta name="description" content="{{ desc }}">
     <meta itemprop="description" content="{{ desc }}">
-    <meta property="og:description" content="{{ desc }}">
     {%- endif -%}
-    
+
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:site_name" content="وبلاگ پاسگاه">
-    
+    {%- if desc != "" -%}
+    <meta property="og:description" content="{{ desc }}">
+    {%- endif -%}
+    {%- if page.type == 'post' -%}
+    <meta property="og:type" content="article">
+    {%- if page.date -%}
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    {%- endif -%}
+    {%- if page.last_modified_at -%}
+    <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+    {%- endif -%}
+    {%- else -%}
+    <meta property="og:type" content="website">
+    {%- endif -%}
+    {%- if page.image -%}
+    <meta property="og:image" content="{{ page.image | absolute_url }}">
+    <meta property="og:image:alt" content="{{ page.title }}">
+    {%- endif -%}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title }}">
+    {%- if desc != "" -%}
+    <meta name="twitter:description" content="{{ desc }}">
+    {%- endif -%}
+    {%- if page.image -%}
+    <meta name="twitter:image" content="{{ page.image | absolute_url }}">
+    {%- endif -%}
+
+    {%- if page.type == 'post' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page.url | absolute_url }}"
+          },
+          "headline": {{ page.title | jsonify }},
+          "description": {{ desc | jsonify }},
+          "author": {
+            "@type": "Person",
+            "name": "احسان چهری"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "وبلاگ پاسگاه",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.pasgah.org/blog.svg"
+            }
+          },
+          "datePublished": "{{ page.date | date_to_xmlschema }}",
+          "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}"
+          {%- if page.image -%}
+          ,"image": "{{ page.image | absolute_url }}"
+          {%- endif -%}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "خانه",
+              "item": "https://www.pasgah.org/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "وبلاگ",
+              "item": "https://www.pasgah.org/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": {{ page.title | jsonify }},
+              "item": "{{ page.url | absolute_url }}"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    {%- endif -%}
+
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="{{ '/blog.xml' | absolute_url }}">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
+
     <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
     <style>
         @font-face {
             font-family: 'Vazir';
@@ -76,9 +167,13 @@
             background-color: var(--text-green);
             color: #000000;
         }
-        html {
-            scroll-behavior: smooth;
+
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
         }
+
         body {
             font-family: var(--font-primary);
             background: var(--bg);
@@ -99,6 +194,25 @@
             width: var(--w);
             margin-inline: auto;
         }
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            right: 0;
+            background: var(--text-accent);
+            color: #000;
+            padding: 0.5rem 1rem;
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            z-index: 9999;
+            transition: top 0.2s;
+            text-decoration: none;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
         header, footer {
             background: var(--header-footer-bg);
             padding-block: 1rem;
@@ -323,29 +437,33 @@
     </style>
 </head>
 <body>
-    <svg style="display: none;" aria-hidden="true">
+    <a href="#main-content" class="skip-link">رفتن به محتوای اصلی</a>
+
+    <svg hidden aria-hidden="true">
         <defs>
             <g id="home-icon">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
             </g>
         </defs>
     </svg>
+
     <header role="banner">
         <a href="https://www.pasgah.org/" aria-label="صفحهٔ نخست وبلاگ پاسگاه" {% if page.is_home %} aria-current="page"{% endif %} rel="home">
             <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="64" height="64">
         </a>
     </header>
+
     <main id="main-content" tabindex="-1">
         <div class="container">
             {% if page.type == 'post' %}
-            <nav aria-label="Breadcrumb">
+            <nav aria-label="مسیر صفحه">
                 <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#home-icon"/></svg>
                     <span>وبلاگ</span>
                 </a>
             </nav>
             {% endif %}
-            
+
             {% if page.is_home %}
             <h1 class="page-title">سفر به اعماق تاریخ</h1>
             {% endif %}
@@ -356,11 +474,15 @@
                 <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
                 <div class="post-meta">
                     <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
                         <span itemprop="name">احسان چهری</span>
                     </span>
                     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
+                        </svg>
                         <span class="date-text"></span>
                     </time>
                 </div>
@@ -384,7 +506,9 @@
                 {% endif %}
 
                 {% for post in display_posts limit: max_posts %}
-                <a href="{{ post.url | relative_url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
+                <a href="{{ post.url | relative_url }}"
+                   class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}"
+                   {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
                     {% if page.type == 'post' %}
                     <h3 class="post-title">{{ post.title }}</h3>
                     {% else %}
@@ -401,12 +525,13 @@
                     {% assign total_count = max_posts %}
                 {% endif %}
                 {% if total_count > posts_per_page %}
-                <button id="load-more-shared" class="load-more-button">پست‌های بیشتر...</button>
+                <button id="load-more-shared" class="load-more-button" aria-label="نمایش پست‌های بیشتر">پست‌های بیشتر...</button>
                 {% endif %}
             </div>
-            
+
         </div>
     </main>
+
     <footer role="contentinfo">
         <a href="https://www.pasgah.org/" aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه" rel="home">
             <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="48" height="48">
@@ -414,64 +539,65 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const postsPerPage = 10;
-            const loadMoreBtn = document.getElementById('load-more-shared');
-            
-            if (!loadMoreBtn) return;
-            
-            loadMoreBtn.addEventListener('click', function() {
-                const hiddenPosts = document.querySelectorAll('a.post-card-item.hidden-post');
-                const nextBatch = Array.from(hiddenPosts).slice(0, postsPerPage);
-                
-                nextBatch.forEach((post, index) => {
+        (function () {
+            var btn = document.getElementById('load-more-shared');
+            if (!btn) return;
+
+            var hiddenPosts = Array.from(
+                document.querySelectorAll('a.post-card-item.hidden-post')
+            );
+            var batchSize = 10;
+            var offset = 0;
+
+            btn.addEventListener('click', function () {
+                var batch = hiddenPosts.slice(offset, offset + batchSize);
+                offset += batchSize;
+
+                batch.forEach(function (post, i) {
                     post.classList.remove('hidden-post');
                     post.removeAttribute('aria-hidden');
                     post.removeAttribute('tabindex');
-                    
-                    if (index === 0) {
+
+                    if (i === 0) {
                         post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
                 });
-                
-                if (document.querySelectorAll('a.post-card-item.hidden-post').length === 0) {
-                    loadMoreBtn.style.display = 'none';
+
+                if (offset >= hiddenPosts.length) {
+                    btn.hidden = true;
                 }
             });
-        });
+        }());
     </script>
 
     {% if page.type == 'post' %}
     <script>
-        (function() {
-            const dateElement = document.querySelector('.post-date');
-            if (!dateElement) return;
-            const dateStr = dateElement.getAttribute('datetime');
+        (function () {
+            var dateEl = document.querySelector('.post-date');
+            if (!dateEl) return;
+            var dateStr = dateEl.getAttribute('datetime');
             if (!dateStr) return;
-            const date = new Date(dateStr);
-            const formatter = new Intl.DateTimeFormat('fa-IR', {
+            var date = new Date(dateStr);
+            if (isNaN(date)) return;
+            var formatter = new Intl.DateTimeFormat('fa-IR', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             });
-            const dateTextSpan = dateElement.querySelector('.date-text');
-            if (dateTextSpan) {
-                dateTextSpan.textContent = formatter.format(date);
-            }
-        })();
+            var span = dateEl.querySelector('.date-text');
+            if (span) span.textContent = formatter.format(date);
+        }());
 
-        (function() {
-            const tables = document.querySelectorAll('.article-content table');
-            tables.forEach(table => {
+        (function () {
+            var tables = document.querySelectorAll('.article-content table');
+            tables.forEach(function (table) {
                 if (table.parentElement.classList.contains('table-scroll')) return;
-                const wrapper = document.createElement('div');
+                var wrapper = document.createElement('div');
                 wrapper.className = 'table-scroll';
-                wrapper.style.overflowX = 'auto';
-                wrapper.style.maxWidth = '100%';
                 table.parentNode.insertBefore(wrapper, table);
                 wrapper.appendChild(table);
             });
-        })();
+        }());
     </script>
     {% endif %}
 </body>
