@@ -5,13 +5,17 @@ layout: default
     <div class="post-card">
         <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
         <div class="post-meta">
-            <span>احسان چهری</span> | <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y/%m/%d" }}</time>
+            <span>احسان چهری</span>
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y/%m/%d" }}</time>
         </div>
     </div>
-    <div class="article-content" itemprop="articleBody">
-        {{ content }}
+    <div class="post-card">
+        <div class="article-content" itemprop="articleBody">
+            {{ content }}
+        </div>
     </div>
 </article>
-
-<h2 class="section-title" style="margin-top: 3rem;">آخرین پست‌ها</h2>
+<div class="post-card" style="margin-top: 2rem;">
+    <h2 class="section-title">آخرین پست‌های وبلاگ</h2>
+</div>
 {% include posts-list.html %}
