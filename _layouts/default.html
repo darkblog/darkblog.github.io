@@ -6,7 +6,7 @@
     <title>{{ page.title }}</title>
     
     {%- capture desc_raw -%}
-    {%- if page.layout == 'post' -%}
+    {%- if page.type == 'post' -%}
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
     {%- else -%}
     {{ page.description | strip_html | strip_newlines | truncate: 160 }}
@@ -200,7 +200,7 @@
             flex-shrink: 0;
         }
 
-        {% if page.layout == 'post' %}
+        {% if page.type == 'post' %}
         .post-meta {
             display: flex;
             align-items: center;
@@ -330,7 +330,7 @@
     </header>
     <main id="main-content" tabindex="-1">
         <div class="container">
-            {% if page.layout == 'post' %}
+            {% if page.type == 'post' %}
             <a href="https://www.pasgah.org/blog" class="breadcrumb-link" aria-label="بازگشت به وبلاگ">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#home-icon"/></svg>
                 <span>وبلاگ</span>
@@ -344,7 +344,7 @@
                 </div>
                 {% endif %}
 
-                {% if page.layout == 'post' %}
+                {% if page.type == 'post' %}
                 <article itemscope itemtype="https://schema.org/BlogPosting" style="display: contents;">
                     <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
                     <div class="post-card">
@@ -396,7 +396,7 @@
                 <button id="load-more-shared" class="load-more-button">پست‌های بیشتر...</button>
                 {% endif %}
 
-                {% if page.layout == 'post' %}
+                {% if page.type == 'post' %}
                 </div>
                 {% endif %}
             </div>
@@ -437,7 +437,7 @@
         });
     </script>
 
-    {% if page.layout == 'post' %}
+    {% if page.type == 'post' %}
     <script>
         (function() {
             const dateElement = document.querySelector('.post-date');
