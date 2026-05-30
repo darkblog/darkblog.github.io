@@ -4,19 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ page.title }}</title>
+    
     {%- capture desc_raw -%}
     {%- if page.layout == 'post' -%}
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
-    {%- elsif page.is_home -%}
+    {%- else -%}
     {{ page.description | strip_html | strip_newlines | truncate: 160 }}
     {%- endif -%}
     {%- endcapture -%}
     {%- assign desc = desc_raw | strip -%}
-    {%- if desc and desc != "" -%}
+    
+    {%- if desc != "" -%}
     <meta name="description" content="{{ desc }}">
     {%- endif -%}
+    
     <link rel="canonical" href="{{ page.url | absolute_url }}">
-    <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
+    <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="{{ '/blog.xml' | absolute_url }}">
     <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
     <meta name="theme-color" content="#000000">
     <style>
@@ -27,9 +30,7 @@
             font-display: swap;
             font-style: normal;
         }
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -42,7 +43,6 @@
             --text-green: #5dbe7e;
             --text-blue: #6bb5e0;
             --border: #333333;
-            --accent: #ffffff;
             --card-bg: #080808;
             --more-card-bg: #0f0f0f;
             --more-card-border: rgba(255, 255, 255, 0.07);
@@ -92,11 +92,9 @@
             width: var(--w);
             margin-inline: auto;
         }
-        header,
-        footer {
+        header, footer {
             background: var(--header-footer-bg);
             padding-block: 1rem;
-            padding-inline: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -104,7 +102,6 @@
         main {
             flex: 1;
             padding-block: 2rem;
-            padding-inline: 0;
         }
         .posts-list {
             display: flex;
@@ -155,12 +152,8 @@
             color: var(--text-green);
             letter-spacing: -0.01em;
         }
-        .posts-section {
-            margin-block-start: var(--lg);
-            width: 100%;
-        }
         .hidden-post {
-            display: none;
+            display: none !important;
         }
         .load-more-button {
             display: block;
@@ -169,7 +162,6 @@
             background: var(--more-card-bg);
             color: var(--text-blue);
             border: 1px solid var(--more-card-border);
-            border-radius: 0;
             font-size: 1.1rem;
             font-family: var(--font-primary);
             cursor: pointer;
@@ -207,25 +199,22 @@
             fill: currentColor;
             flex-shrink: 0;
         }
+        
         {% if page.layout == 'post' %}
         .post-meta {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-block-start: 0;
-            margin-block-end: 0;
             color: var(--text-light);
             font-size: 0.9rem;
             flex-wrap: wrap;
         }
-        .post-author,
-        .post-date {
+        .post-author, .post-date {
             display: flex;
             align-items: center;
             gap: 0.25rem;
         }
-        .post-author svg,
-        .post-date svg {
+        .post-author svg, .post-date svg {
             width: 1.2rem;
             height: 1.2rem;
             fill: currentColor;
@@ -235,7 +224,6 @@
             color: var(--text);
             line-height: var(--line-height);
             overflow-wrap: break-word;
-            margin-block-start: 0;
         }
         .article-content h1 {
             font-size: 2.2rem;
@@ -253,7 +241,6 @@
             font-weight: 700;
             color: var(--text-accent);
             margin-block: 2rem 1rem;
-            letter-spacing: -0.01em;
         }
         .article-content h3 {
             font-size: var(--font-size-xl);
@@ -265,7 +252,6 @@
             color: var(--text-accent);
             text-decoration: none;
             font-weight: 500;
-            word-break: break-word;
             background-image: linear-gradient(var(--text-accent), var(--text-accent));
             background-size: 100% 1px;
             background-position: 0 100%;
@@ -277,42 +263,12 @@
             background-size: 100% 2px;
             opacity: 1;
         }
-        .article-content ul,
-        .article-content ol {
+        .article-content ul, .article-content ol {
             margin-block: 1.5rem;
-            padding-block: 0;
             padding-inline: 0 1.5rem;
-            list-style: none;
         }
-        .article-content ul li,
-        .article-content ol li {
-            display: flex;
-            align-items: flex-start;
+        .article-content ul li, .article-content ol li {
             margin-block-end: 0.75rem;
-        }
-        .article-content ul li::before {
-            content: '';
-            display: inline-block;
-            width: 0.4rem;
-            height: 0.4rem;
-            background-color: var(--text-accent);
-            margin-inline-end: 0.75rem;
-            margin-block-start: 0.65em;
-            flex-shrink: 0;
-        }
-        .article-content ol {
-            counter-reset: list-counter;
-        }
-        .article-content ol li {
-            counter-increment: list-counter;
-        }
-        .article-content ol li::before {
-            content: counter(list-counter) ". ";
-            color: var(--text-accent);
-            font-weight: 500;
-            margin-inline-end: 0.5rem;
-            white-space: pre;
-            margin-block-start: 0.05em;
         }
         .article-content blockquote {
             border-inline-start: 3px solid var(--text-accent);
@@ -340,15 +296,13 @@
             border-collapse: collapse;
             min-width: 600px;
         }
-        .article-content table th,
-        .article-content table td {
+        .article-content table th, .article-content table td {
             padding: 0.75rem 1rem;
             text-align: right;
             border: 1px solid var(--border);
         }
         .article-content table th {
             background: var(--table-header-bg);
-            font-weight: 600;
             color: var(--text);
         }
         .article-content table tbody tr:nth-child(even) {
@@ -382,7 +336,9 @@
                 <span>وبلاگ</span>
             </a>
             {% endif %}
+            
             {{ content }}
+            
         </div>
     </main>
     <footer role="contentinfo">
@@ -399,7 +355,8 @@
             if (!loadMoreBtn) return;
             
             loadMoreBtn.addEventListener('click', function() {
-                const hiddenPosts = document.querySelectorAll('.hidden-post');
+                // اطمینان از اینکه فقط کارت‌های پست انتخاب می‌شوند
+                const hiddenPosts = document.querySelectorAll('a.post-card-item.hidden-post');
                 const nextBatch = Array.from(hiddenPosts).slice(0, postsPerPage);
                 
                 nextBatch.forEach((post, index) => {
@@ -412,7 +369,7 @@
                     }
                 });
                 
-                if (document.querySelectorAll('.hidden-post').length === 0) {
+                if (document.querySelectorAll('a.post-card-item.hidden-post').length === 0) {
                     loadMoreBtn.style.display = 'none';
                 }
             });
