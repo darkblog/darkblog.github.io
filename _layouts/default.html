@@ -401,10 +401,14 @@
                 const hiddenPosts = document.querySelectorAll('.hidden-post');
                 const nextBatch = Array.from(hiddenPosts).slice(0, postsPerPage);
                 
-                nextBatch.forEach(post => {
+                nextBatch.forEach((post, index) => {
                     post.classList.remove('hidden-post');
                     post.removeAttribute('aria-hidden');
                     post.removeAttribute('tabindex');
+                    
+                    if (index === 0) {
+                        post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
                 });
                 
                 if (document.querySelectorAll('.hidden-post').length === 0) {
