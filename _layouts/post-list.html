@@ -1,10 +1,11 @@
 {% assign posts_per_page = 10 %}
 {% assign max_posts = 100 %}
 
-{% if page.layout == 'post' %}
-    {% assign display_posts = site.posts | where_exp: "item", "item.url != page.url" %}
-{% else %}
+{% if page.is_home %}
     {% assign display_posts = site.posts %}
+{% else %}
+    {% assign current_url = page.url %}
+    {% assign display_posts = site.posts | where_exp: "post", "post.url != current_url" %}
 {% endif %}
 
 {% for post in display_posts limit: max_posts %}
