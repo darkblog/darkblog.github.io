@@ -1,121 +1,17 @@
 ---
 layout: default
 ---
-
-<div class="posts-list">
-    <article itemscope itemtype="https://schema.org/BlogPosting" style="display: contents;">
-        <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
-        
-        <div class="post-card">
-            <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="post-card">
+        <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
+        <div class="post-meta">
+            <span>احسان چهری</span> | <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y/%m/%d" }}</time>
         </div>
-        
-        <div class="post-card">
-            <div class="post-meta">
-                <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    <span itemprop="name">احسان چهری</span>
-                </span>
-                <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
-                    <span class="date-text"></span>
-                </time>
-            </div>
-        </div>
-        
-        <div class="post-card" style="width: 100%; max-width: 100%; overflow: hidden;">
-            <div class="article-content" itemprop="articleBody" style="width: 100%;">
-                {{ content }}
-            </div>
-        </div>
-    </article>
-    
-    {% assign current_post_url = page.url %}
-    {% assign all_posts = site.posts | where_exp: "post", "post.url != current_post_url" %}
-    {% assign posts_per_page = 10 %}
-    {% assign total_other_posts = all_posts | size %}
-    
-    <div class="related-posts-wrapper" style="display: flex; flex-direction: column; gap: var(--lg); width: 100%;">
-        <div class="post-card">
-            <h2 class="section-title">آخرین پست‌های وبلاگ</h2>
-        </div>
-        
-        {% for post in all_posts %}
-        <a href="{{ post.url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
-            <h3 class="post-title">{{ post.title }}</h3>
-            <div class="post-excerpt">
-                {{ post.excerpt | strip_html | strip_newlines | truncate: 160 }}
-            </div>
-        </a>
-        {% endfor %}
-        
-        {% if total_other_posts > posts_per_page %}
-        <button id="load-more-related" class="load-more-button" aria-controls="related-posts-wrapper">پست‌های بیشتر...</button>
-        {% endif %}
     </div>
-</div>
+    <div class="article-content" itemprop="articleBody">
+        {{ content }}
+    </div>
+</article>
 
-<script>
-    (function() {
-        const dateElement = document.querySelector('.post-date');
-        if (!dateElement) return;
-        const dateStr = dateElement.getAttribute('datetime');
-        if (!dateStr) return;
-        const date = new Date(dateStr);
-        const formatter = new Intl.DateTimeFormat('fa-IR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        const dateTextSpan = dateElement.querySelector('.date-text');
-        if (dateTextSpan) {
-            dateTextSpan.textContent = formatter.format(date);
-        }
-    })();
-
-    (function() {
-        const tables = document.querySelectorAll('.article-content table');
-        tables.forEach(table => {
-            if (table.parentElement.classList.contains('table-scroll')) return;
-            const wrapper = document.createElement('div');
-            wrapper.className = 'table-scroll';
-            wrapper.style.overflowX = 'auto';
-            wrapper.style.maxWidth = '100%';
-            table.parentNode.insertBefore(wrapper, table);
-            wrapper.appendChild(table);
-        });
-    })();
-
-    (function() {
-        const postsPerPage = 10;
-        const loadMoreBtn = document.getElementById('load-more-related');
-        
-        if (!loadMoreBtn) return;
-        
-        function showMorePosts() {
-            const hiddenPosts = document.querySelectorAll('.related-posts-wrapper .hidden-post');
-            const nextBatch = Array.from(hiddenPosts).slice(0, postsPerPage);
-            
-            nextBatch.forEach((post, index) => {
-                post.classList.remove('hidden-post');
-                post.removeAttribute('aria-hidden');
-                post.removeAttribute('tabindex');
-                if (index === 0) {
-                    post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-            });
-            
-            const remainingHidden = document.querySelectorAll('.related-posts-wrapper .hidden-post');
-            if (remainingHidden.length === 0) {
-                loadMoreBtn.style.display = 'none';
-            }
-        }
-        
-        const initialHidden = document.querySelectorAll('.related-posts-wrapper .hidden-post');
-        if (initialHidden.length === 0) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.addEventListener('click', showMorePosts);
-        }
-    })();
-</script>
+<h2 class="section-title" style="margin-top: 3rem;">آخرین پست‌ها</h2>
+{% include posts-list.html %}
