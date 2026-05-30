@@ -199,7 +199,7 @@
             fill: currentColor;
             flex-shrink: 0;
         }
-        
+
         {% if page.layout == 'post' %}
         .post-meta {
             display: flex;
@@ -337,7 +337,69 @@
             </a>
             {% endif %}
             
-            {{ content }}
+            <div class="posts-list">
+                {% if page.is_home %}
+                <div class="post-card">
+                    <h1 class="page-title">سفر به اعماق تاریخ</h1>
+                </div>
+                {% endif %}
+
+                {% if page.layout == 'post' %}
+                <article itemscope itemtype="https://schema.org/BlogPosting" style="display: contents;">
+                    <meta itemprop="mainEntityOfPage" content="{{ page.url | absolute_url }}">
+                    <div class="post-card">
+                        <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-meta">
+                            <span class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                <span itemprop="name">احسان چهری</span>
+                            </span>
+                            <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/></svg>
+                                <span class="date-text"></span>
+                            </time>
+                        </div>
+                    </div>
+                    <div class="post-card" style="width: 100%; max-width: 100%; overflow: hidden;">
+                        <div class="article-content" itemprop="articleBody" style="width: 100%;">
+                            {{ content }}
+                        </div>
+                    </div>
+                </article>
+
+                <div class="related-posts-wrapper" style="display: flex; flex-direction: column; gap: var(--lg); width: 100%;">
+                    <div class="post-card">
+                        <h2 class="section-title">آخرین پست‌های وبلاگ</h2>
+                    </div>
+                {% endif %}
+
+                {% assign posts_per_page = 10 %}
+                {% assign max_posts = 100 %}
+                {% assign display_posts = site.posts | where_exp: "item", "item.id != page.id" %}
+
+                {% for post in display_posts limit: max_posts %}
+                <a href="{{ post.url | relative_url }}" class="post-card post-card-item {% if forloop.index > posts_per_page %}hidden-post{% endif %}" {% if forloop.index > posts_per_page %}aria-hidden="true" tabindex="-1"{% endif %}>
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <div class="post-excerpt">
+                        {{ post.excerpt | strip_html | strip_newlines | truncate: 160 }}
+                    </div>
+                </a>
+                {% endfor %}
+
+                {% assign total_count = display_posts.size %}
+                {% if total_count > max_posts %}
+                    {% assign total_count = max_posts %}
+                {% endif %}
+                {% if total_count > posts_per_page %}
+                <button id="load-more-shared" class="load-more-button">پست‌های بیشتر...</button>
+                {% endif %}
+
+                {% if page.layout == 'post' %}
+                </div>
+                {% endif %}
+            </div>
             
         </div>
     </main>
@@ -374,5 +436,39 @@
             });
         });
     </script>
+
+    {% if page.layout == 'post' %}
+    <script>
+        (function() {
+            const dateElement = document.querySelector('.post-date');
+            if (!dateElement) return;
+            const dateStr = dateElement.getAttribute('datetime');
+            if (!dateStr) return;
+            const date = new Date(dateStr);
+            const formatter = new Intl.DateTimeFormat('fa-IR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const dateTextSpan = dateElement.querySelector('.date-text');
+            if (dateTextSpan) {
+                dateTextSpan.textContent = formatter.format(date);
+            }
+        })();
+
+        (function() {
+            const tables = document.querySelectorAll('.article-content table');
+            tables.forEach(table => {
+                if (table.parentElement.classList.contains('table-scroll')) return;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-scroll';
+                wrapper.style.overflowX = 'auto';
+                wrapper.style.maxWidth = '100%';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            });
+        })();
+    </script>
+    {% endif %}
 </body>
 </html>
