@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ page.title }}</title>
-    {%- capture desc -%}
+    {%- capture desc_raw -%}
     {%- if page.layout == 'post' -%}
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
     {%- elsif page.is_home -%}
     {{ page.description | strip_html | strip_newlines | truncate: 160 }}
     {%- endif -%}
     {%- endcapture -%}
+    {%- assign desc = desc_raw | strip -%}
     {%- if desc and desc != "" -%}
     <meta name="description" content="{{ desc }}">
     {%- endif -%}
