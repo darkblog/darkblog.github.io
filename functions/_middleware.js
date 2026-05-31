@@ -3,7 +3,6 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const path = url.pathname;
   
-  // فقط مسیرهای عددی مثل /1 یا /256
   const numericPostPattern = /^\/(\d+)\/?$/;
   const match = path.match(numericPostPattern);
   
@@ -15,6 +14,13 @@ export async function onRequest(context) {
     );
   }
   
-  // اگه عددی نبود، ادامه بده
+  if (path !== "/" && path.endsWith("/")) {
+    const newPath = path.slice(0, -1);
+    return Response.redirect(
+      `https://www.pasgah.org${newPath}`,
+      301
+    );
+  }
+  
   return next();
 }
