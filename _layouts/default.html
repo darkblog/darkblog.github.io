@@ -127,6 +127,10 @@
             font-weight: 100 1000;
             font-display: swap;
             font-style: normal;
+            ascent-override: 85%;
+            descent-override: 20%;
+            line-gap-override: 0%;
+            size-adjust: 105%;
         }
         *, *::before, *::after {
             margin: 0;
@@ -555,15 +559,17 @@
                 var batch = hiddenPosts.slice(offset, offset + batchSize);
                 offset += batchSize;
 
-                batch.forEach(function (post, i) {
+                batch.forEach(function (post) {
                     post.classList.remove('hidden-post');
                     post.removeAttribute('aria-hidden');
                     post.removeAttribute('tabindex');
-
-                    if (i === 0) {
-                        post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
                 });
+
+                if (batch.length > 0) {
+                    requestAnimationFrame(function () {
+                        batch[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    });
+                }
 
                 if (offset >= hiddenPosts.length) {
                     btn.hidden = true;
@@ -592,6 +598,12 @@
 
         (function () {
             var tables = document.querySelectorAll('.article-content table');
+            if (tables.length === 0) return;
+
+            var article = tables[0].closest('.article-content');
+            var originalVisibility = article.style.visibility;
+            article.style.visibility = 'hidden';
+
             tables.forEach(function (table) {
                 if (table.parentElement.classList.contains('table-scroll')) return;
                 var wrapper = document.createElement('div');
@@ -599,6 +611,8 @@
                 table.parentNode.insertBefore(wrapper, table);
                 wrapper.appendChild(table);
             });
+
+            article.style.visibility = originalVisibility || '';
         }());
     </script>
     {% endif %}
