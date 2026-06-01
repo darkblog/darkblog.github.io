@@ -2,3 +2,4 @@
 /atom.xml /blog.xml 301
 /feed /blog.xml 301
 /rss /blog.xml 301
+/api/comments / 410
