@@ -489,7 +489,7 @@
                         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
                             <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM7 12h5v5H7v-5z"/>
                         </svg>
-                        <span class="date-text"></span>
+                        <span class="date-text">{{ page.date | jdate }}</span>
                     </time>
                 </div>
                 <div class="article-content" itemprop="articleBody">
@@ -580,22 +580,6 @@
 
     {% if page.type == 'post' %}
     <script>
-        (function () {
-            var dateEl = document.querySelector('.post-date');
-            if (!dateEl) return;
-            var dateStr = dateEl.getAttribute('datetime');
-            if (!dateStr) return;
-            var date = new Date(dateStr);
-            if (isNaN(date)) return;
-            var formatter = new Intl.DateTimeFormat('fa-IR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            var span = dateEl.querySelector('.date-text');
-            if (span) span.textContent = formatter.format(date);
-        }());
-
         (function () {
             var tables = document.querySelectorAll('.article-content table');
             if (tables.length === 0) return;
