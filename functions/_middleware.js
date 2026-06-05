@@ -33,5 +33,9 @@ export async function onRequest(context) {
     );
   }
   
+  if (path === "/404.html") {
+    return Response.redirect('https://www.pasgah.org/blog/1', 301);
+  }
+  
   return next();
 }
