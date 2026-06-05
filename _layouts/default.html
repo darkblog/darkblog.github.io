@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {%- capture desc_raw -%}
       {%- if page.type == 'post' -%}
@@ -17,17 +17,17 @@
 
     <link rel="preload" href="/blog.woff2" as="font" type="font/woff2">
 
-    <meta itemprop="name" content="{{ page.title }}">
+    <meta itemprop="name" content="{{ page.title | escape }}">
     {%- if desc != "" -%}
-    <meta name="description" content="{{ desc }}">
-    <meta itemprop="description" content="{{ desc }}">
+    <meta name="description" content="{{ desc | escape }}">
+    <meta itemprop="description" content="{{ desc | escape }}">
     {%- endif -%}
 
-    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:title" content="{{ page.title | escape }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:site_name" content="وبلاگ پاسگاه">
     {%- if desc != "" -%}
-    <meta property="og:description" content="{{ desc }}">
+    <meta property="og:description" content="{{ desc | escape }}">
     {%- endif -%}
     {%- if page.type == 'post' -%}
     <meta property="og:type" content="article">
@@ -42,13 +42,13 @@
     {%- endif -%}
     {%- if page.image -%}
     <meta property="og:image" content="{{ page.image | absolute_url }}">
-    <meta property="og:image:alt" content="{{ page.title }}">
+    <meta property="og:image:alt" content="{{ page.title | escape }}">
     {%- endif -%}
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:title" content="{{ page.title | escape }}">
     {%- if desc != "" -%}
-    <meta name="twitter:description" content="{{ desc }}">
+    <meta name="twitter:description" content="{{ desc | escape }}">
     {%- endif -%}
     {%- if page.image -%}
     <meta name="twitter:image" content="{{ page.image | absolute_url }}">
@@ -160,7 +160,7 @@
             --line-height: 1.85;
             --font-size-lg: 1.15rem;
             --font-size-xl: 1.4rem;
-            --focus-ring: 0 0 0 2px var(--text-accent);
+            --focus-ring: 2px solid var(--text-accent);
             color-scheme: dark;
         }
         ::selection {
@@ -445,7 +445,7 @@
 <body>
     <a href="#main-content" class="skip-link">رفتن به محتوای اصلی</a>
 
-    <svg hidden aria-hidden="true">
+    <svg style="display: none;" aria-hidden="true">
         <defs>
             <g id="home-icon">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
@@ -584,10 +584,6 @@
             var tables = document.querySelectorAll('.article-content table');
             if (tables.length === 0) return;
 
-            var article = tables[0].closest('.article-content');
-            var originalVisibility = article.style.visibility;
-            article.style.visibility = 'hidden';
-
             tables.forEach(function (table) {
                 if (table.parentElement.classList.contains('table-scroll')) return;
                 var wrapper = document.createElement('div');
@@ -595,8 +591,6 @@
                 table.parentNode.insertBefore(wrapper, table);
                 wrapper.appendChild(table);
             });
-
-            article.style.visibility = originalVisibility || '';
         }());
     </script>
     {% endif %}
