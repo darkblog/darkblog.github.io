@@ -33,5 +33,11 @@ export async function onRequest(context) {
     );
   }
   
-  return next();
+  const response = await next();
+  
+  if (response.status === 404) {
+    return Response.redirect('https://www.pasgah.org/blog/1', 301);
+  }
+  
+  return response;
 }
