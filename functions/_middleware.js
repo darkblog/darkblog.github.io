@@ -1,5 +1,5 @@
 export async function onRequest(context) {
-  const { request, next } = context;
+  const { request } = context;
   const url = new URL(request.url);
   const path = url.pathname;
   
@@ -33,11 +33,15 @@ export async function onRequest(context) {
     );
   }
   
-  const response = await next();
-  
-  if (response.status === 404) {
+  try {
+    const response = await context.next();
+    
+    if (response.status === 404) {
+      return Response.redirect('https://www.pasgah.org/blog/1', 301);
+    }
+    
+    return response;
+  } catch (e) {
     return Response.redirect('https://www.pasgah.org/blog/1', 301);
   }
-  
-  return response;
 }
