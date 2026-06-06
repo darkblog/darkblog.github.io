@@ -15,7 +15,7 @@
 
     <title>{{ page.title }}</title>
 
-    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2">
+    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2" crossorigin>
 
     <meta itemprop="name" content="{{ page.title }}">
     {%- if desc != "" -%}
@@ -601,8 +601,12 @@
             if (tables.length === 0) return;
 
             var article = tables[0].closest('.article-content');
-            var originalVisibility = article.style.visibility;
-            article.style.visibility = 'hidden';
+            var originalVisibility = '';
+            
+            if (article) {
+                originalVisibility = article.style.visibility;
+                article.style.visibility = 'hidden';
+            }
 
             tables.forEach(function (table) {
                 if (table.parentElement.classList.contains('table-scroll')) return;
@@ -612,7 +616,9 @@
                 wrapper.appendChild(table);
             });
 
-            article.style.visibility = originalVisibility || '';
+            if (article) {
+                article.style.visibility = originalVisibility || '';
+            }
         }());
     </script>
     {% endif %}
