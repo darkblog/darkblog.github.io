@@ -7,7 +7,11 @@ export async function onRequest(context) {
     return new Response(null, { status: 410 });
   }
 
-  if (path === '/blog.xml' || path === '/feed.xml' || path === '/atom.xml') {
+  if (path === '/blog.xml') {
+    return Response.redirect('https://www.pasgah.org/sitemap.xml', 301);
+  }
+
+  if (path.includes('feed') || path.includes('rss') || path.includes('atom')) {
     return Response.redirect('https://www.pasgah.org/sitemap.xml', 301);
   }
 
