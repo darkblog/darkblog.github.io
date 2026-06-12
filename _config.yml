@@ -8,9 +8,6 @@ permalink: /blog/:title
 
 encoding: UTF-8
 
-plugins:
-  - jekyll-redirect-from
-
 defaults:
   - scope:
       path: ""
