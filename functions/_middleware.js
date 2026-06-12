@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const path = url.pathname;
 
-  if (path === '/blog.xml' || path === '/feed.xml' || path === '/atom.xml') {
+  if (path === '/blog.xml' || path === '/feed.xml') {
     return Response.redirect('https://www.pasgah.org/sitemap.xml', 301);
   }
 
@@ -11,17 +11,15 @@ export async function onRequest(context) {
     return Response.redirect('https://www.pasgah.org/blog.svg', 301);
   }
 
-  const bioPattern = /^\/biography\/(\d+)\/?$/;
-  const bioMatch = path.match(bioPattern);
-
-  if (bioMatch) {
-    const postId = bioMatch[1];
-    return Response.redirect(`https://www.pasgah.org/blog/${postId}`, 301);
+  if (path.startsWith('/biography/')) {
+    const slug = path.replace('/biography/', '').replace(/\/$/, '');
+    if (slug) {
+      return Response.redirect(`https://www.pasgah.org/blog/${slug}`, 301);
+    }
   }
 
   const numericPostPattern = /^\/(\d+)\/?$/;
   const numericMatch = path.match(numericPostPattern);
-
   if (numericMatch) {
     const postId = numericMatch[1];
     return Response.redirect(`https://www.pasgah.org/blog/${postId}`, 301);
