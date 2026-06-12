@@ -7,6 +7,10 @@ export async function onRequest(context) {
     return Response.redirect('https://www.pasgah.org/sitemap.xml', 301);
   }
 
+  if (path === '/favicon.ico') {
+    return Response.redirect('https://www.pasgah.org/blog.svg', 301);
+  }
+
   const bioPattern = /^\/biography\/(\d+)\/?$/;
   const bioMatch = path.match(bioPattern);
 
