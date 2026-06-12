@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const path = url.pathname;
 
-  if (path === '/blog.xml' || path === '/feed.xml') {
+  if (path === '/blog.xml' || path === '/feed.xml' || path === '/atom.xml') {
     return Response.redirect('https://www.pasgah.org/sitemap.xml', 301);
   }
 
