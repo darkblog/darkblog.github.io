@@ -5,345 +5,723 @@ layout: none
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو</title>
+  <title>بایگانی پست‌های وبلاگ پاسگاه</title>
 
-    <link rel="preload" href="/blog.woff2" as="font" type="font/woff2">
+  <meta name="description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه. جستجوی زنده در پست‌های وبلاگ برای دسترسی آسان و سریع">
+  <meta itemprop="name" content="بایگانی پست‌های وبلاگ پاسگاه">
+  <meta itemprop="description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه. جستجوی زنده در پست‌های وبلاگ برای دسترسی آسان و سریع">
 
-    <meta name="description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه. جستجوی زنده در پست‌های وبلاگ برای دسترسی آسان و سریع">
-    <meta itemprop="name" content="بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو">
-    <meta itemprop="description" content="فهرست و بایگانی تمام مطالب وبلاگ پاسگاه. جستجوی زنده در پست‌های وبلاگ برای دسترسی آسان و سریع">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "بایگانی پست‌های وبلاگ پاسگاه: صفحهٔ جستجو",
-      "description": "فهرست و بایگانی تمام مطالب وبلاگ پاسگاه. جستجوی زنده در پست‌های وبلاگ برای دسترسی آسان و سریع",
-      "url": "https://www.pasgah.org/blog",
-      "publisher": {
-        "@type": "Organization",
-        "name": "پاسگاه",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.pasgah.org/blog.svg"
-        }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "بایگانی پست‌های وبلاگ پاسگاه",
+    "description": "فهرست و بایگانی تمام مطالب وبلاگ پاسگاه. جستجوی زنده در پست‌های وبلاگ برای دسترسی آسان و سریع",
+    "url": "https://www.pasgah.org/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "پاسگاه",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.pasgah.org/blog.svg"
       }
     }
-    </script>
+  }
+  </script>
 
-    <link rel="canonical" href="https://www.pasgah.org/blog">
-    <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
-    <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
+  <link rel="canonical" href="https://www.pasgah.org/blog">
+  <link rel="alternate" type="application/atom+xml" title="وبلاگ پاسگاه" href="https://www.pasgah.org/blog.xml">
+  <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <style>
-        @font-face {
-            font-family: 'Vazir';
-            src: url("/blog.woff2") format("woff2");
-            font-weight: 100 1000;
-            font-display: swap;
-            font-style: normal;
-        }
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        :root {
-            --bg: #000000;
-            --text: #ffffff;
-            --text-light: #cccccc;
-            --text-accent: #ffb48a;
-            --text-green: #5dbe7e;
-            --text-blue: #6bb5e0;
-            --border: #333333;
-            --more-card-bg: #0f0f0f;
-            --more-card-border: rgba(255, 255, 255, 0.07);
-            --more-card-hover-border: rgba(107, 181, 224, 0.5);
-            --header-footer-bg: #040404;
-            --blockquote-bg: #111111;
-            --w: min(92%, 780px);
-            --lg: 2rem;
-            --font-primary: 'Vazir', sans-serif;
-            --line-height: 1.85;
-            --focus-ring: 0 0 0 2px var(--text-accent);
-            color-scheme: dark;
-        }
-        ::selection {
-            background-color: var(--text-green);
-            color: #000000;
-        }
-        ::-moz-selection {
-            background-color: var(--text-green);
-            color: #000000;
-        }
-        @media (prefers-reduced-motion: no-preference) {
-            html {
-                scroll-behavior: smooth;
-            }
-        }
-        body {
-            font-family: var(--font-primary);
-            background: var(--bg);
-            color: var(--text);
-            line-height: var(--line-height);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-        }
-        :focus-visible {
-            outline: var(--focus-ring);
-            outline-offset: 3px;
-        }
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            right: 0;
-            background: var(--text-accent);
-            color: #000;
-            padding: 0.5rem 1rem;
-            font-family: var(--font-primary);
-            font-size: 0.95rem;
-            font-weight: 700;
-            z-index: 9999;
-            transition: top 0.2s;
-            text-decoration: none;
-        }
-        .skip-link:focus {
-            top: 0;
-        }
-        .container {
-            width: var(--w);
-            margin-inline: auto;
-        }
-        header, footer {
-            background: var(--header-footer-bg);
-            padding-block: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        main {
-            flex: 1;
-            padding-block: 2rem;
-        }
-        .archive-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .archive-header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            line-height: 1.4;
-            color: var(--text-green);
-            letter-spacing: -0.02em;
-        }
-        .search-wrapper {
-            margin-bottom: 2rem;
-        }
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        .search-box {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            border: 1px solid var(--more-card-border);
-            background: var(--more-card-bg);
-            color: var(--text);
-            font-family: inherit;
-            border-radius: 0;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .search-box:focus {
-            outline: none;
-            border-color: var(--more-card-hover-border);
-            box-shadow: 0 0 0 2px rgba(107, 181, 224, 0.15);
-        }
-        .search-box::placeholder {
-            color: var(--text-light);
-            opacity: 0.7;
-        }
-        .search-stats {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            min-height: 1.5rem;
-        }
-        .posts-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .post-item {
-            border-bottom: 1px solid var(--border);
-            transition: background 0.1s ease;
-        }
-        .post-item:last-child {
-            border-bottom: none;
-        }
-        .post-item:hover {
-            background: var(--blockquote-bg);
-        }
-        .post-link {
-            color: var(--text-blue);
-            text-decoration: none;
-            font-size: 1.05rem;
-            display: block;
-            padding: 0.8rem 1rem;
-            transition: color 0.2s ease;
-        }
-        .post-link:hover {
-            color: var(--text-green);
-        }
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-light);
-            background: var(--more-card-bg);
-            border: 1px solid var(--more-card-border);
-        }
-        .hidden-post {
-            display: none !important;
-        }
-    </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --header-height: 5rem;
+      --gap: clamp(1rem, 2vw, 2rem);
+      --font-size-base: 1.125rem;
+    }
+
+    body {
+      font-family: 'Vazirmatn', system-ui, sans-serif;
+      font-weight: 400;
+      background-color: #f8f1e9;
+      color: #1e1b1a;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: var(--font-size-base);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background-color: #000000;
+      border-bottom: 1px solid #2a2a2a;
+      transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      font-size: inherit;
+    }
+
+    .site-header.hidden-nav {
+      transform: translateY(-100%);
+    }
+
+    .site-header.visible-nav {
+      transform: translateY(0);
+    }
+
+    .header-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 1.25rem clamp(1rem, 3vw, 1.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--gap);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      flex-shrink: 0;
+      font-size: inherit;
+    }
+
+    .brand img {
+      height: 2.5rem;
+      width: auto;
+    }
+
+    .desktop-nav {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      font-size: inherit;
+    }
+
+    .desktop-nav ul {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2.5vw, 2.5rem);
+      list-style: none;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      font-size: inherit;
+    }
+
+    .desktop-nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+      font-size: inherit;
+    }
+
+    .desktop-nav a:hover {
+      color: #2dd4bf;
+    }
+
+    .desktop-nav h1 {
+      margin: 0;
+      font-weight: 700;
+      display: inline;
+      font-size: inherit;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.375rem;
+      background: none;
+      border: none;
+      padding: 0.25rem;
+      cursor: pointer;
+      margin-right: auto;
+      flex-shrink: 0;
+      font-size: inherit;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 1.75rem;
+      height: 0.125rem;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 48;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-nav-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: auto;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 80vw);
+      background-color: #000000;
+      padding: calc(var(--header-height) + 1.75rem) clamp(1rem, 3vw, 2rem) 2rem;
+      z-index: 49;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3);
+      font-size: inherit;
+    }
+
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+
+    .mobile-nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      list-style: none;
+      font-weight: 400;
+      padding: 0;
+      margin: 0;
+      font-size: inherit;
+    }
+
+    .mobile-nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: block;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: inherit;
+    }
+
+    .mobile-nav a:hover {
+      color: #2dd4bf;
+    }
+
+    .mobile-nav h1 {
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.4;
+      font-size: inherit;
+    }
+
+    .main-content {
+      padding-top: calc(var(--header-height) + 2rem);
+      padding-bottom: 1.5rem;
+      padding-left: clamp(1rem, 3vw, 1.5rem);
+      padding-right: clamp(1rem, 3vw, 1.5rem);
+      background-color: white;
+      font-size: inherit;
+    }
+
+    .main-content-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+
+    .archive-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-top: 1rem;
+    }
+
+    .archive-header h1 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: #1c1917;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .search-wrapper {
+      margin-bottom: 1.5rem;
+      max-width: 40rem;
+      margin-inline: auto;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 2px solid #e5e0db;
+      border-radius: 1rem;
+      background-color: white;
+      color: #1e1b1a;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: #0d9488;
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+    }
+
+    .search-box::placeholder {
+      color: #a8a09a;
+      opacity: 0.8;
+    }
+
+    .search-stats {
+      color: #4a4643;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      min-height: 1.8rem;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+      gap: var(--gap);
+      list-style: none;
+      padding: 0;
+    }
+
+    .post-card {
+      background-color: white;
+      border: 1px solid #e5e0db;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .post-card-body {
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .post-card-body h2 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: #1c1917;
+      margin: 0;
+    }
+
+    .hidden-post {
+      display: none !important;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: #4a4643;
+      background-color: #faf8f5;
+      border: 1px solid #e5e0db;
+      border-radius: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .load-more-wrapper {
+      text-align: center;
+      margin-top: var(--gap);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background-color: #1c1917;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 1rem;
+      font-weight: 400;
+      text-decoration: none;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .btn-primary:hover {
+      background-color: #000;
+    }
+
+    .btn-primary i {
+      font-size: 0.9rem;
+    }
+
+    .site-footer {
+      background-color: #000000;
+      padding: 2rem clamp(1rem, 3vw, 1.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 80rem;
+      margin: 0 auto;
+      width: 100%;
+      flex-direction: row;
+      font-size: inherit;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      height: 3rem;
+      width: auto;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .footer-logo img:hover {
+      opacity: 1;
+    }
+
+    .footer-social-link {
+      color: #ffffff;
+      font-size: 2rem;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-social-link:hover {
+      color: #2dd4bf;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">رفتن به محتوای اصلی</a>
 
-    <svg hidden aria-hidden="true">
-        <defs>
-            <g id="home-icon">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </g>
-        </defs>
-    </svg>
+  <header class="site-header visible-nav" role="banner">
+    <section class="header-inner">
+      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" />
+      </a>
+      <nav class="desktop-nav" aria-label="منوی اصلی">
+        <ul>
+          <li><a href="https://www.pasgah.org/">پاسگاه</a></li>
+          <li><a href="https://www.pasgah.org/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
+          <li><a href="https://www.pasgah.org/blog/record">فاتحان تاریخ</a></li>
+          <li><a href="https://www.pasgah.org/blog/201">چرا شاه رفت؟</a></li>
+          <li><a href="https://www.pasgah.org/blog/epstein">جفری اپستین</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="باز و بسته کردن منو" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </section>
+  </header>
 
-    <header role="banner">
-        <a href="https://www.pasgah.org/" aria-label="صفحهٔ نخست وبلاگ پاسگاه" rel="home">
-            <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="64" height="64">
+  <section class="mobile-nav-overlay" id="mobileOverlay"></section>
+
+  <nav class="mobile-nav" id="mobileMenu" aria-label="منوی موبایل">
+    <ul>
+      <li><a href="https://www.pasgah.org/" class="mobile-link">پاسگاه</a></li>
+      <li><a href="https://www.pasgah.org/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
+      <li><a href="https://www.pasgah.org/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
+      <li><a href="https://www.pasgah.org/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
+      <li><a href="https://www.pasgah.org/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content" role="main">
+    <article class="main-content-inner">
+
+      <header class="archive-header">
+        <h1>بایگانی مطالب</h1>
+      </header>
+
+      {% if site.posts.size > 0 %}
+      <div class="search-wrapper">
+        <label for="searchInput" class="sr-only">جستجو در عناوین مطالب</label>
+        <input
+          type="search"
+          id="searchInput"
+          class="search-box"
+          placeholder="جستجو در عناوین پست‌ها ..."
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+        >
+      </div>
+
+      <div class="search-stats" id="searchStats" aria-live="polite" aria-atomic="true"></div>
+
+      <div id="archiveContent">
+        <ul class="posts-grid" id="postsList" role="list">
+          {% for post in site.posts %}
+          <li class="post-card" data-title="{{ post.title | strip_html | strip_newlines | escape_once }}">
+            <a href="{{ post.url | relative_url }}" class="post-card">
+              <div class="post-card-body">
+                <h2>{{ post.title }}</h2>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div id="noResultsMessage" class="no-results" hidden>هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
+      </div>
+
+      <footer class="load-more-wrapper">
+        <a href="https://www.pasgah.org/" class="btn-primary">
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          بازگشت به صفحه اصلی
         </a>
-    </header>
+      </footer>
 
-    <main id="main-content" tabindex="-1">
-        <div class="container">
-            <div class="archive-header">
-                <h1>بایگانی مطالب</h1>
-            </div>
+      {% else %}
+      <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
+      {% endif %}
 
-            {% if site.posts.size > 0 %}
-            <div class="search-wrapper">
-                <label for="searchInput" class="visually-hidden">جستجو در عناوین مطالب</label>
-                <input
-                    type="search"
-                    id="searchInput"
-                    class="search-box"
-                    placeholder="جستجو در عناوین پست‌ها ..."
-                    autocomplete="off"
-                    autocorrect="off"
-                    spellcheck="false"
-                >
-            </div>
+    </article>
+  </main>
 
-            <div class="search-stats" id="searchStats" aria-live="polite" aria-atomic="true"></div>
+  <footer class="site-footer" role="contentinfo">
+    <a href="https://www.pasgah.org/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
+      <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" />
+    </a>
+    <a href="https://www.facebook.com/ehsanchehri" rel="me" class="footer-social-link" aria-label="فیسبوک">
+      <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+    </a>
+  </footer>
 
-            <div id="archiveContent">
-                <ul class="posts-list" id="postsList" role="list">
-                    {% for post in site.posts %}
-                    <li class="post-item" data-title="{{ post.title | strip_html | strip_newlines | escape_once }}">
-                        <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
+  <script>
+    (function() {
+      'use strict';
 
-                <div id="noResultsMessage" class="no-results" hidden>هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
-            </div>
-            {% else %}
-            <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
-            {% endif %}
-        </div>
-    </main>
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      const body = document.body;
+      const desktopNav = document.querySelector('.desktop-nav');
 
-    <footer role="contentinfo">
-        <a href="https://www.pasgah.org/" aria-label="بازگشت به صفحه اصلی وبلاگ پاسگاه" rel="home">
-            <img src="https://www.pasgah.org/blog.svg" alt="وبلاگ پاسگاه" width="48" height="48">
-        </a>
-    </footer>
+      function handleResize() {
+        const width = window.innerWidth;
+        if (width > 768) {
+          if (desktopNav) desktopNav.style.display = 'flex';
+          if (hamburger) hamburger.style.display = 'none';
+          if (mobileMenu) mobileMenu.classList.remove('open');
+          if (mobileOverlay) mobileOverlay.classList.remove('open');
+          body.classList.remove('no-scroll');
+        } else {
+          if (desktopNav) desktopNav.style.display = 'none';
+          if (hamburger) hamburger.style.display = 'flex';
+        }
+      }
 
-    <script>
-        (function () {
-            var searchInput = document.getElementById('searchInput');
-            var searchStats = document.getElementById('searchStats');
-            var noResults = document.getElementById('noResultsMessage');
-            var allItems = document.querySelectorAll('.post-item');
-            var total = allItems.length;
+      function toggleMenu() {
+        const isOpen = mobileMenu.classList.contains('open');
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('open');
+        mobileOverlay.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', String(!isOpen));
+        body.classList.toggle('no-scroll');
+      }
 
-            if (!searchInput || total === 0) return;
+      if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+      }
 
-            function normalize(text) {
-                if (!text) return '';
-                return text
-                    .toLowerCase()
-                    .replace(/[\u200c\s]+/g, ' ')
-                    .replace(/[يی]/g, 'ی')
-                    .replace(/[كک]/g, 'ک')
-                    .trim();
-            }
+      mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (mobileMenu.classList.contains('open')) toggleMenu();
+        });
+      });
 
-            var cache = Array.from(allItems).map(function (item) {
-                return {
-                    el: item,
-                    title: normalize(item.getAttribute('data-title') || '')
-                };
-            });
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', function() {
+          if (mobileMenu.classList.contains('open')) toggleMenu();
+        });
+      }
 
-            function search() {
-                var term = normalize(searchInput.value);
-                var count = 0;
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) toggleMenu();
+      });
 
-                cache.forEach(function (item) {
-                    var match = term === '' || item.title.includes(term);
-                    item.el.classList.toggle('hidden-post', !match);
-                    if (match) count++;
-                });
+      window.addEventListener('resize', handleResize);
+      handleResize();
 
-                if (term === '') {
-                    searchStats.textContent = '';
-                    noResults.hidden = true;
-                } else {
-                    searchStats.textContent = count + ' مورد از ' + total + ' مطلب یافت شد';
-                    noResults.hidden = count > 0;
-                }
-            }
+      const header = document.querySelector('.site-header');
+      let lastScrollY = window.scrollY;
+      const SCROLL_THRESHOLD = 30;
+      let ticking = false;
 
-            var timer;
-            searchInput.addEventListener('input', function () {
-                clearTimeout(timer);
-                timer = setTimeout(search, 40);
-            });
+      function updateNavbarVisibility(currentScrollY) {
+        if (mobileMenu.classList.contains('open')) toggleMenu();
+        if (currentScrollY > SCROLL_THRESHOLD) {
+          if (currentScrollY > lastScrollY) {
+            header.classList.remove('visible-nav');
+            header.classList.add('hidden-nav');
+          } else {
+            header.classList.remove('hidden-nav');
+            header.classList.add('visible-nav');
+          }
+        } else {
+          header.classList.remove('hidden-nav');
+          header.classList.add('visible-nav');
+        }
+        lastScrollY = currentScrollY;
+      }
 
-            searchInput.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter') e.preventDefault();
-            });
-        }());
-    </script>
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateNavbarVisibility(window.scrollY);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      window.addEventListener('load', function() {
+        header.classList.add('visible-nav');
+        header.classList.remove('hidden-nav');
+      });
+
+      // Search functionality
+      var searchInput = document.getElementById('searchInput');
+      var searchStats = document.getElementById('searchStats');
+      var noResults = document.getElementById('noResultsMessage');
+      var allItems = document.querySelectorAll('.post-card');
+      var total = allItems.length;
+
+      if (searchInput && total > 0) {
+        function normalize(text) {
+          if (!text) return '';
+          return text
+            .toLowerCase()
+            .replace(/[\u200c\s]+/g, ' ')
+            .replace(/[يی]/g, 'ی')
+            .replace(/[كک]/g, 'ک')
+            .trim();
+        }
+
+        var cache = Array.from(allItems).map(function(item) {
+          return {
+            el: item,
+            title: normalize(item.getAttribute('data-title') || '')
+          };
+        });
+
+        function search() {
+          var term = normalize(searchInput.value);
+          var count = 0;
+
+          cache.forEach(function(item) {
+            var match = term === '' || item.title.includes(term);
+            item.el.classList.toggle('hidden-post', !match);
+            if (match) count++;
+          });
+
+          if (term === '') {
+            searchStats.textContent = '';
+            noResults.hidden = true;
+          } else {
+            searchStats.textContent = count + ' مورد از ' + total + ' مطلب یافت شد';
+            noResults.hidden = count > 0;
+          }
+        }
+
+        var timer;
+        searchInput.addEventListener('input', function() {
+          clearTimeout(timer);
+          timer = setTimeout(search, 40);
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') e.preventDefault();
+        });
+      }
+    })();
+  </script>
+
 </body>
 </html>
