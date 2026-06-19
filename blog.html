@@ -356,7 +356,7 @@ layout: none
     }
 
     .post-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-10px);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
     }
 
@@ -511,7 +511,7 @@ layout: none
     <article class="main-content-inner">
 
       <header class="archive-header">
-        <h1>جستجو در پست‌ها</h1>
+        <h1>بایگانی مطالب</h1>
       </header>
 
       {% if site.posts.size > 0 %}
@@ -666,7 +666,6 @@ layout: none
         header.classList.remove('hidden-nav');
       });
 
-      // Search functionality
       var searchInput = document.getElementById('searchInput');
       var searchStats = document.getElementById('searchStats');
       var noResults = document.getElementById('noResultsMessage');
