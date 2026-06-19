@@ -810,10 +810,10 @@
 
         {% if site.posts.size > posts_per_page %}
         <div class="load-more-wrapper">
-          <button type="button" class="btn-primary" id="loadMoreBtn">
+          <a href="https://www.pasgah.org/blog" class="btn-primary">
             پست‌های بیشتر
             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-          </button>
+          </a>
         </div>
         {% endif %}
       </section>
@@ -942,17 +942,6 @@
         header.classList.add('visible-nav');
         header.classList.remove('hidden-nav');
       });
-
-      const loadMoreBtn = document.getElementById('loadMoreBtn');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-          const hiddenItems = document.querySelectorAll('.hidden-article');
-          hiddenItems.forEach(function(item) {
-            item.classList.remove('hidden-article');
-          });
-          loadMoreBtn.parentElement.remove();
-        });
-      }
 
     })();
   </script>
