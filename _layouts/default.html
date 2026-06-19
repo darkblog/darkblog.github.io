@@ -7,8 +7,10 @@
   {%- capture desc_raw -%}
     {%- if page.type == 'post' -%}
       {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
-    {%- elsif page.is_home -%}
+    {%- elsif page.description -%}
       {{ page.description | strip_html | strip_newlines | truncate: 160 }}
+    {%- elsif page.is_home -%}
+      {{ site.description | strip_html | strip_newlines | truncate: 160 }}
     {%- endif -%}
   {%- endcapture -%}
   {%- assign desc = desc_raw | strip -%}
@@ -19,8 +21,6 @@
   {%- if desc != "" -%}
   <meta name="description" content="{{ desc }}">
   <meta itemprop="description" content="{{ desc }}">
-  {%- else -%}
-  <meta name="description" content="{{ desc }}">
   {%- endif -%}
 
   <meta property="og:title" content="{{ page.title }}">
@@ -92,13 +92,13 @@
             "@type": "ListItem",
             "position": 1,
             "name": "خانه",
-            "item": "https://www.pasgah.org/"
+            "item": "{{ site.url | absolute_url }}"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "وبلاگ",
-            "item": "https://www.pasgah.org/blog"
+            "item": "{{ site.url }}/blog"
           },
           {
             "@type": "ListItem",
@@ -114,7 +114,7 @@
   {%- endif -%}
 
   <link rel="canonical" href="{{ page.url | absolute_url }}">
-  <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
+  <link rel="icon" type="image/svg+xml" href="{{ site.url }}/blog.svg">
 
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -124,7 +124,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -547,6 +547,17 @@
       color: #1c1917;
     }
 
+    .post-image {
+      margin-bottom: 2.5rem;
+    }
+
+    .post-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+    }
+
     .article-content {
       line-height: 1.9;
       color: #2d2a28;
@@ -655,23 +666,23 @@
 <body>
 
   <header class="site-header visible-nav" role="banner">
-    <section class="header-inner">
-      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
-        <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" />
+    <div class="header-inner">
+      <a href="{{ site.url }}/" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="{{ site.url }}/blog.svg" alt="لوگوی پاسگاه" />
       </a>
       <nav class="desktop-nav" aria-label="منوی اصلی">
         <ul>
           <li>
             {% if page.is_home %}
-            <h1><a href="https://www.pasgah.org/">پاسگاه</a></h1>
+            <h1><a href="{{ site.url }}/">پاسگاه</a></h1>
             {% else %}
-            <a href="https://www.pasgah.org/">پاسگاه</a>
+            <a href="{{ site.url }}/">پاسگاه</a>
             {% endif %}
           </li>
-          <li><a href="https://www.pasgah.org/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
-          <li><a href="https://www.pasgah.org/blog/record">فاتحان تاریخ</a></li>
-          <li><a href="https://www.pasgah.org/blog/201">چرا شاه رفت؟</a></li>
-          <li><a href="https://www.pasgah.org/blog/epstein">جفری اپستین</a></li>
+          <li><a href="{{ site.url }}/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
+          <li><a href="{{ site.url }}/blog/record">فاتحان تاریخ</a></li>
+          <li><a href="{{ site.url }}/blog/201">چرا شاه رفت؟</a></li>
+          <li><a href="{{ site.url }}/blog/epstein">جفری اپستین</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="باز و بسته کردن منو" aria-expanded="false">
@@ -679,84 +690,93 @@
         <span></span>
         <span></span>
       </button>
-    </section>
+    </div>
   </header>
 
-  <section class="mobile-nav-overlay" id="mobileOverlay"></section>
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 
   <nav class="mobile-nav" id="mobileMenu" aria-label="منوی موبایل">
     <ul>
       <li>
         {% if page.is_home %}
-        <h1><a href="https://www.pasgah.org/" class="mobile-link">پاسگاه</a></h1>
+        <h1><a href="{{ site.url }}/" class="mobile-link">پاسگاه</a></h1>
         {% else %}
-        <a href="https://www.pasgah.org/" class="mobile-link">پاسگاه</a>
+        <a href="{{ site.url }}/" class="mobile-link">پاسگاه</a>
         {% endif %}
       </li>
-      <li><a href="https://www.pasgah.org/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
-      <li><a href="https://www.pasgah.org/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
-      <li><a href="https://www.pasgah.org/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
-      <li><a href="https://www.pasgah.org/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+      <li><a href="{{ site.url }}/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
+      <li><a href="{{ site.url }}/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
+      <li><a href="{{ site.url }}/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
+      <li><a href="{{ site.url }}/blog/epstein" class="mobile-link">جفری اپستین</a></li>
     </ul>
   </nav>
 
   <main class="main-content" role="main">
-    <article class="main-content-inner">
+    <div class="main-content-inner">
       {% if page.type == 'post' %}
-      <header class="post-header">
-        <nav class="post-breadcrumb" aria-label="مسیر صفحه">
-          <a href="{{ site.url }}/blog">
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            وبلاگ
-          </a>
-        </nav>
+      <article>
+        <header class="post-header">
+          <nav class="post-breadcrumb" aria-label="مسیر صفحه">
+            <a href="{{ site.url }}/blog">
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              وبلاگ
+            </a>
+          </nav>
 
-        <h1 class="post-title">{{ page.title }}</h1>
+          <h1 class="post-title">{{ page.title }}</h1>
 
-        <section class="post-meta">
-          <span class="post-author">
-            <i class="fa-solid fa-user" aria-hidden="true"></i>
-            <span>احسان چهری</span>
-          </span>
-          <time datetime="{{ page.date | date_to_xmlschema }}">
-            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-            <span class="date-text"></span>
-          </time>
-        </section>
-      </header>
+          <div class="post-meta">
+            <span class="post-author">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <span>احسان چهری</span>
+            </span>
+            <time datetime="{{ page.date | date_to_xmlschema }}">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <span class="date-text"></span>
+            </time>
+          </div>
+        </header>
 
-      <section class="article-content">
-        {{ content }}
-      </section>
+        {% if page.image %}
+        <figure class="post-image">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+        </figure>
+        {% endif %}
 
-      <section class="articles-section">
+        <div class="article-content">
+          {{ content }}
+        </div>
+      </article>
+
+      <section class="articles-section" aria-label="مطالب مرتبط">
         <ul class="article-list">
           {% assign other_posts = site.posts | where_exp: "item", "item.id != page.id" %}
           {% for post in other_posts limit: 3 %}
           <li class="article-item">
-            <a href="{{ post.url | relative_url }}" class="article-link">
-              {% if post.image %}
-              <figure>
-                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
-                <figcaption class="sr-only">{{ post.title }}</figcaption>
-              </figure>
-              {% endif %}
-              <section class="article-body">
-                <time datetime="{{ post.date | date_to_xmlschema }}"></time>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
-              </section>
-            </a>
+            <article>
+              <a href="{{ post.url | relative_url }}" class="article-link">
+                {% if post.image %}
+                <figure>
+                  <img src="{{ post.image | relative_url }}" alt="" loading="lazy" />
+                </figure>
+                {% endif %}
+                <div class="article-body">
+                  <time datetime="{{ post.date | date_to_xmlschema }}"></time>
+                  <h2>{{ post.title }}</h2>
+                  <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+                </div>
+              </a>
+            </article>
           </li>
           {% endfor %}
         </ul>
 
-        <footer class="load-more-wrapper">
-          <a href="https://www.pasgah.org/blog" class="btn-primary">
+        <div class="load-more-wrapper">
+          <a href="{{ site.url }}/blog" class="btn-primary">
             پست‌های بیشتر
             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
           </a>
-        </footer>
+        </div>
       </section>
 
       {% else %}
@@ -765,43 +785,45 @@
           {% assign posts_per_page = 10 %}
           {% for post in site.posts %}
           <li class="article-item {% if forloop.index > posts_per_page %}hidden-article{% endif %}">
-            <a href="{{ post.url | relative_url }}" class="article-link">
-              {% if post.image %}
-              <figure>
-                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
-                <figcaption class="sr-only">{{ post.title }}</figcaption>
-              </figure>
-              {% endif %}
-              <section class="article-body">
-                <time datetime="{{ post.date | date_to_xmlschema }}"></time>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
-                <span class="read-more">
-                  ادامه مطلب
-                  <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                </span>
-              </section>
-            </a>
+            <article>
+              <a href="{{ post.url | relative_url }}" class="article-link">
+                {% if post.image %}
+                <figure>
+                  <img src="{{ post.image | relative_url }}" alt="" loading="lazy" />
+                </figure>
+                {% endif %}
+                <div class="article-body">
+                  <time datetime="{{ post.date | date_to_xmlschema }}"></time>
+                  <h2>{{ post.title }}</h2>
+                  <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+                  <span class="read-more">
+                    ادامه مطلب
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                  </span>
+                </div>
+              </a>
+            </article>
           </li>
           {% endfor %}
         </ul>
 
+        {% assign total_pages = site.posts.size | divided_by: posts_per_page | plus: 1 %}
         {% if site.posts.size > posts_per_page %}
-        <footer class="load-more-wrapper">
-          <a href="https://www.pasgah.org/blog" class="btn-primary">
+        <div class="load-more-wrapper">
+          <button type="button" class="btn-primary" id="loadMoreBtn">
             پست‌های بیشتر
             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-          </a>
-        </footer>
+          </button>
+        </div>
         {% endif %}
       </section>
       {% endif %}
-    </article>
+    </div>
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <a href="https://www.pasgah.org/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
-      <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" />
+    <a href="{{ site.url }}/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
+      <img src="{{ site.url }}/blog.svg" alt="لوگوی پاسگاه" />
     </a>
     <a href="https://www.facebook.com/ehsanchehri" rel="me" class="footer-social-link" aria-label="فیسبوک">
       <i class="fa-brands fa-facebook" aria-hidden="true"></i>
@@ -818,7 +840,7 @@
         const date = new Date(datetime);
         if (isNaN(date)) return;
         const span = element.querySelector('.date-text');
-        const formatted = new Intl.DateTimeFormat('fa-IR', {
+        const formatted = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
           year: 'numeric',
           month: 'long',
           day: 'numeric'
@@ -920,6 +942,17 @@
         header.classList.add('visible-nav');
         header.classList.remove('hidden-nav');
       });
+
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+          const hiddenItems = document.querySelectorAll('.hidden-article');
+          hiddenItems.forEach(function(item) {
+            item.classList.remove('hidden-article');
+          });
+          loadMoreBtn.parentElement.remove();
+        });
+      }
 
     })();
   </script>
