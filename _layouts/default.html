@@ -889,7 +889,6 @@
       let ticking = false;
 
       function updateNavbarVisibility(currentScrollY) {
-        if (mobileMenu.classList.contains('open')) toggleMenu();
         if (currentScrollY > SCROLL_THRESHOLD) {
           if (currentScrollY > lastScrollY) {
             header.classList.remove('visible-nav');
