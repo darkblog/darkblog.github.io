@@ -568,22 +568,21 @@
       background-color: #1c1917;
       color: #fff;
     }
-    .article-content table th {
-      padding: 2rem 2.5rem;
-      font-weight: 700;
-      border-bottom: 2px solid #2d2a28;
-      white-space: nowrap;
-      text-align: right;
-      direction: rtl;
-    }
+    .article-content table th,
     .article-content table td {
       padding: 2rem 2.5rem;
       border-bottom: 1px solid #e5e0db;
       white-space: normal;
       word-break: break-word;
       min-width: 10rem;
-      text-align: right;
-      direction: rtl;
+      text-align: right !important;
+      direction: rtl !important;
+      unicode-bidi: plaintext !important;
+    }
+    .article-content table th {
+      font-weight: 700;
+      border-bottom: 2px solid #2d2a28;
+      white-space: nowrap;
     }
     .article-content table tbody tr:last-child td {
       border-bottom: none;
