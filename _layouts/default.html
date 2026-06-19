@@ -420,10 +420,12 @@
     }
 
     .article-body h2 {
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1.4;
       margin: 0 0 0.5rem 0;
-      font-size: inherit;
+      font-size: 1.75rem;
+      letter-spacing: -0.02em;
+      color: #1c1917;
     }
 
     .article-body p {
@@ -455,9 +457,7 @@
     }
 
     .load-more-wrapper {
-      text-align: center;
-      margin-top: var(--gap);
-      font-size: inherit;
+      display: none;
     }
 
     .btn-primary {
@@ -776,12 +776,6 @@
         </ul>
 
         {% if site.posts.size > posts_per_page %}
-        <footer class="load-more-wrapper" id="loadMoreWrapper">
-          <button class="btn-primary" id="loadMoreBtn">
-            پست‌های بیشتر
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-          </button>
-        </footer>
         {% endif %}
       </section>
       {% endif %}
@@ -910,16 +904,6 @@
         header.classList.remove('hidden-nav');
       });
 
-      const loadMoreBtn = document.getElementById('loadMoreBtn');
-      if (loadMoreBtn) {
-        const hiddenArticles = document.querySelectorAll('.hidden-article');
-        loadMoreBtn.addEventListener('click', function() {
-          hiddenArticles.forEach(function(article) {
-            article.style.display = 'block';
-          });
-          loadMoreBtn.style.display = 'none';
-        });
-      }
     })();
   </script>
 
