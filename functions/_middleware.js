@@ -7,6 +7,10 @@ export async function onRequest(context) {
     return new Response(null, { status: 410 });
   }
 
+  if (path === '/blog.woff2') {
+    return new Response(null, { status: 410 });
+  }
+
   if (path === '/blog.xml') {
     return Response.redirect('https://www.pasgah.org/sitemap.xml', 301);
   }
