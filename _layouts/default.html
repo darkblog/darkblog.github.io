@@ -554,7 +554,7 @@
       width: 100%;
       border-collapse: collapse;
       margin: 2rem 0;
-      font-size: 1rem;
+      font-size: 1.1rem;
       text-align: right;
       border: 1px solid #e5e0db;
       border-radius: 0.75rem;
@@ -568,12 +568,12 @@
       color: #fff;
     }
     .article-content th {
-      padding: 0.75rem 1rem;
+      padding: 1.5rem 2rem;
       font-weight: 700;
       border-bottom: 2px solid #2d2a28;
     }
     .article-content td {
-      padding: 0.75rem 1rem;
+      padding: 1.5rem 2rem;
       border-bottom: 1px solid #e5e0db;
     }
     .article-content tbody tr:last-child td {
@@ -584,6 +584,15 @@
     }
     .article-content tbody tr:hover {
       background-color: #f1ede8;
+    }
+    @media (max-width: 600px) {
+      .article-content table {
+        font-size: 1rem;
+      }
+      .article-content th,
+      .article-content td {
+        padding: 0.75rem 1rem;
+      }
     }
     .site-footer {
       background-color: #000000;
