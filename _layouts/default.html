@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   {%- capture desc_raw -%}
-    {%- if page.type == 'post' -%}
-      {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
-    {%- elsif page.description -%}
+    {%- if page.is_home -%}
       {{ page.description | strip_html | strip_newlines | truncate: 160 }}
-    {%- elsif page.is_home -%}
-      {{ site.description | strip_html | strip_newlines | truncate: 160 }}
+    {%- elsif page.type == 'post' -%}
+      {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
     {%- endif -%}
   {%- endcapture -%}
   {%- assign desc = desc_raw | strip -%}
