@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه جستجو در پست‌های وبلاگ پاسگاه</title>
+    <title>جستجوی زنده بلاگ جکیل</title>
     <style>
         * {
             margin: 0;
@@ -13,116 +13,112 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 60px 20px;
+            padding: 50px 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 650px;
+            max-width: 680px;
         }
 
-        .search-wrapper {
+        .search-card {
             background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            border-radius: 24px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            transition: box-shadow 0.35s ease;
+            transition: all 0.3s ease;
         }
 
-        .search-wrapper:focus-within {
-            box-shadow: 0 30px 70px rgba(0, 140, 255, 0.3);
+        .search-card:focus-within {
+            box-shadow: 0 35px 75px rgba(56, 189, 248, 0.25);
         }
 
         .search-header {
-            padding: 28px 30px 18px;
-            background: #ffffff;
+            padding: 28px 28px 18px;
         }
 
         .search-header h2 {
-            font-size: 1.6em;
-            color: #1a1a2e;
-            margin-bottom: 20px;
+            font-size: 1.8em;
             font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 18px;
             letter-spacing: -0.3px;
         }
 
         .search-box {
-            position: relative;
             display: flex;
             align-items: center;
-            background: #f4f6fb;
-            border-radius: 50px;
+            background: #f1f5f9;
+            border-radius: 60px;
             padding: 6px 8px;
             border: 2px solid transparent;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
         .search-box:focus-within {
-            border-color: #0f3460;
+            border-color: #0f172a;
             background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(15, 52, 96, 0.08);
+            box-shadow: 0 0 0 5px rgba(15, 23, 42, 0.05);
         }
 
-        .search-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .search-icon-btn {
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: #0f3460;
-            color: #ffffff;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
             font-size: 1.2em;
             flex-shrink: 0;
-            cursor: pointer;
-            border: none;
-            transition: background 0.25s ease;
+            transition: background 0.2s;
         }
 
-        .search-icon:hover {
-            background: #1a4a7a;
+        .search-icon-btn:hover {
+            background: #1e293b;
         }
 
         #searchInput {
             flex: 1;
             border: none;
-            outline: none;
             background: transparent;
             padding: 12px 16px;
             font-size: 1.05em;
-            color: #1a1a2e;
-            font-family: inherit;
-            direction: rtl;
+            color: #0f172a;
+            outline: none;
             min-width: 0;
         }
 
         #searchInput::placeholder {
-            color: #9aa0b4;
-            opacity: 1;
+            color: #94a3b8;
+            font-weight: 400;
         }
 
         .clear-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 38px;
             height: 38px;
             border-radius: 50%;
             background: transparent;
-            color: #7b8194;
-            font-size: 1.3em;
-            cursor: pointer;
             border: none;
+            font-size: 1.3em;
+            color: #64748b;
+            cursor: pointer;
             flex-shrink: 0;
             opacity: 0;
             pointer-events: none;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             margin-left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .clear-btn.visible {
@@ -131,320 +127,423 @@
         }
 
         .clear-btn:hover {
-            background: #e8ecf4;
-            color: #e74c3c;
+            background: #e2e8f0;
+            color: #dc2626;
         }
 
-        .results-area {
-            max-height: 420px;
+        .results-panel {
+            max-height: 460px;
             overflow-y: auto;
             background: #ffffff;
-            border-top: 1px solid #eef1f7;
+            border-top: 1px solid #e2e8f0;
         }
 
-        .results-area::-webkit-scrollbar {
-            width: 6px;
+        .results-panel::-webkit-scrollbar {
+            width: 5px;
         }
 
-        .results-area::-webkit-scrollbar-track {
+        .results-panel::-webkit-scrollbar-track {
             background: transparent;
         }
 
-        .results-area::-webkit-scrollbar-thumb {
-            background: #c5cad8;
+        .results-panel::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
             border-radius: 20px;
         }
 
-        .results-area::-webkit-scrollbar-thumb:hover {
-            background: #a0a7b8;
-        }
-
-        .result-item {
+        .post-item {
             display: flex;
             align-items: center;
             padding: 16px 28px;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            border-bottom: 1px solid #f5f6fa;
             gap: 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s ease;
         }
 
-        .result-item:last-child {
+        .post-item:last-child {
             border-bottom: none;
         }
 
-        .result-item:hover {
-            background: #f8faff;
+        .post-item:hover {
+            background: #f8fafc;
         }
 
-        .result-item:active {
-            background: #eef2fb;
-        }
-
-        .result-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.35em;
-            font-weight: 700;
-            color: #ffffff;
+        .post-date {
+            font-size: 0.8em;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            white-space: nowrap;
             flex-shrink: 0;
         }
 
-        .result-info {
+        .post-content {
             flex: 1;
             min-width: 0;
         }
 
-        .result-title {
-            font-weight: 600;
-            color: #1a1a2e;
+        .post-title {
+            font-weight: 650;
+            color: #0f172a;
             font-size: 1.02em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .result-subtitle {
-            font-size: 0.85em;
-            color: #7b8194;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .result-badge {
-            background: #f4f6fb;
-            color: #5a6070;
-            padding: 6px 14px;
-            border-radius: 20px;
+        .post-slug {
             font-size: 0.8em;
-            font-weight: 600;
+            color: #94a3b8;
             white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 50px 30px;
-            color: #9aa0b4;
-        }
-
-        .no-results .icon {
-            font-size: 3.5em;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .no-results p {
-            font-size: 1em;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .results-count {
-            padding: 12px 30px;
-            font-size: 0.82em;
-            color: #8b91a0;
-            background: #fbfcfe;
-            border-top: 1px solid #eef1f7;
-            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .highlight {
-            background: #fff3b0;
-            color: #1a1a2e;
-            padding: 1px 3px;
-            border-radius: 3px;
+            background: #fef08a;
+            color: #0f172a;
+            padding: 1px 4px;
+            border-radius: 4px;
             font-weight: 700;
         }
 
+        .status-message {
+            text-align: center;
+            padding: 45px 25px;
+            color: #64748b;
+        }
+
+        .status-message .icon {
+            font-size: 3.2em;
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .status-message p {
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .footer-bar {
+            padding: 12px 28px;
+            font-size: 0.82em;
+            color: #64748b;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .repo-config {
+            padding: 14px 28px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .repo-config input {
+            flex: 1;
+            min-width: 140px;
+            border: 1px solid #cbd5e1;
+            border-radius: 30px;
+            padding: 10px 16px;
+            font-size: 0.9em;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .repo-config input:focus {
+            border-color: #0f172a;
+        }
+
+        .repo-config button {
+            background: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 22px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .repo-config button:hover {
+            background: #1e293b;
+        }
+
+        .error-text {
+            color: #dc2626;
+            font-size: 0.8em;
+            margin-top: 6px;
+            padding: 0 28px;
+        }
+
         @media (max-width: 500px) {
-            body {
-                padding: 30px 12px;
-            }
             .search-header {
-                padding: 22px 18px 14px;
+                padding: 20px 16px 14px;
             }
-            .search-header h2 {
-                font-size: 1.3em;
-                margin-bottom: 14px;
+            .post-item {
+                padding: 14px 16px;
+                gap: 10px;
             }
-            #searchInput {
-                font-size: 0.95em;
-                padding: 10px 12px;
-            }
-            .result-item {
-                padding: 14px 18px;
-                gap: 12px;
-            }
-            .result-avatar {
-                width: 40px;
-                height: 40px;
-                border-radius: 10px;
-                font-size: 1.1em;
-            }
-            .result-title {
-                font-size: 0.95em;
+            .repo-config {
+                padding: 12px 16px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="search-wrapper">
+        <div class="search-card">
             <div class="search-header">
-                <h2>جستجوی محصولات</h2>
+                <h2>جستجو در بلاگ جکیل</h2>
                 <div class="search-box">
-                    <button class="search-icon" id="searchTriggerBtn" aria-label="جستجو">
+                    <button class="search-icon-btn" id="searchTrigger" aria-label="جستجو">
                         &#128269;
                     </button>
-                    <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="نام محصول یا دسته‌بندی را جستجو کنید..."
-                    autocomplete="off"
-                    >
-                    <button class="clear-btn" id="clearBtn" aria-label="پاک کردن">
-                        &#10005;
-                    </button>
+                    <input type="text" id="searchInput" placeholder="عنوان پست را جستجو کنید..." autocomplete="off">
+                    <button class="clear-btn" id="clearBtn" aria-label="پاک کردن">&#10005;</button>
                 </div>
             </div>
-            <div class="results-area" id="resultsArea"></div>
-            <div class="results-count" id="resultsCount">۱۲ محصول یافت شد</div>
+            <div class="repo-config">
+                <input type="text" id="ownerInput" placeholder="نام کاربری گیت‌هاب" value="">
+                <input type="text" id="repoInput" placeholder="نام مخزن" value="">
+                <button id="loadRepoBtn">بارگذاری پست‌ها</button>
+            </div>
+            <div id="errorMessage" class="error-text"></div>
+            <div class="results-panel" id="resultsArea">
+                <div class="status-message">
+                    <span class="icon">&#128187;</span>
+                    <p>اطلاعات مخزن را وارد و بارگذاری کنید</p>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <span id="resultsCount">۰ پست</span>
+                <span id="statusIndicator"></span>
+            </div>
         </div>
     </div>
 
     <script>
         (function() {
-            const data = [
-                { title: 'لپ‌تاپ ایسوس ZenBook 14', subtitle: 'دسته‌بندی: الکترونیک', color: '#4a6cf7', badge: 'موجود' },
-                { title: 'گوشی سامسونگ Galaxy S24 Ultra', subtitle: 'دسته‌بندی: موبایل', color: '#e74c8b',
-                badge: 'پرفروش' },
-                { title: 'هدفون بی‌سیم سونی WH-1000XM5', subtitle: 'دسته‌بندی: لوازم جانبی', color: '#2ecc71',
-                    badge: 'تخفیف‌دار' },
-                { title: 'مانیتور ال‌جی 27 اینچ 4K', subtitle: 'دسته‌بندی: الکترونیک', color: '#f39c12', badge: 'موجود' },
-                { title: 'کیبورد مکانیکی Keychron K2', subtitle: 'دسته‌بندی: لوازم جانبی', color: '#8e44ad',
-                    badge: 'جدید' },
-                { title: 'ماوس لاجیتک MX Master 3S', subtitle: 'دسته‌بندی: لوازم جانبی', color: '#1abc9c',
-                badge: 'پرفروش' },
-                { title: 'تبلت اپل iPad Air M2', subtitle: 'دسته‌بندی: تبلت', color: '#e67e22', badge: 'موجود' },
-                { title: 'پاوربانک انکر 20,000mAh', subtitle: 'دسته‌بندی: لوازم جانبی', color: '#3498db',
-                    badge: 'تخفیف‌دار' },
-                { title: 'اسپیکر بلوتوثی JBL Flip 6', subtitle: 'دسته‌بندی: صوتی', color: '#e84393', badge: 'جدید' },
-                { title: 'ساعت هوشمند اپل Watch Series 9', subtitle: 'دسته‌بندی: پوشیدنی', color: '#6c5ce7',
-                    badge: 'پرفروش' },
-                { title: 'هارد اکسترنال وسترن دیجیتال 2TB', subtitle: 'دسته‌بندی: ذخیره‌سازی', color: '#00b894',
-                    badge: 'موجود' },
-                { title: 'کارت گرافیک انویدیا RTX 4070', subtitle: 'دسته‌بندی: قطعات کامپیوتر', color: '#d63031',
-                    badge: 'تخفیف‌دار' },
-            ];
-
+            const ownerInput = document.getElementById('ownerInput');
+            const repoInput = document.getElementById('repoInput');
+            const loadRepoBtn = document.getElementById('loadRepoBtn');
             const searchInput = document.getElementById('searchInput');
             const clearBtn = document.getElementById('clearBtn');
             const resultsArea = document.getElementById('resultsArea');
             const resultsCount = document.getElementById('resultsCount');
-            const searchTriggerBtn = document.getElementById('searchTriggerBtn');
+            const statusIndicator = document.getElementById('statusIndicator');
+            const searchTrigger = document.getElementById('searchTrigger');
+            const errorMessageEl = document.getElementById('errorMessage');
 
-            function getAvatarLetter(title) {
-                return title.trim().charAt(0);
+            let allPosts = [];
+            let currentQuery = '';
+
+            function normalizeText(text) {
+                return text.replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
             }
 
-            function highlightText(text, query) {
+            function extractFromFilename(filename) {
+                const match = filename.match(/^(\d{4}-\d{2}-\d{2})-(.*)\.(md|markdown)$/i);
+                if (!match) {
+                    return {
+                        date: '',
+                        title: normalizeText(filename.replace(/\.(md|markdown)$/i, '')),
+                        slug: filename
+                    };
+                }
+                const dateStr = match[1];
+                const rawTitle = match[2];
+                const title = normalizeText(rawTitle);
+                return {
+                    date: dateStr,
+                    title: title,
+                    slug: filename,
+                    rawDate: dateStr
+                };
+            }
+
+            async function fetchPosts(owner, repo) {
+                const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/_posts`;
+                const response = await fetch(url, {
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error('پوشه _posts یافت نشد. مطمئن شوید مخزن جکیل است.');
+                    } else if (response.status === 403) {
+                        throw new Error('محدودیت دسترسی یا rate limit. کمی بعد تلاش کنید.');
+                    } else {
+                        throw new Error(`خطای شبکه: ${response.status}`);
+                    }
+                }
+
+                const data = await response.json();
+                if (!Array.isArray(data)) {
+                    throw new Error('فرمت پاسخ غیرمنتظره.');
+                }
+
+                const posts = data
+                    .filter(file => file.type === 'file' && /\.(md|markdown)$/i.test(file.name))
+                    .map(file => {
+                        const info = extractFromFilename(file.name);
+                        return {
+                            title: info.title,
+                            date: info.date,
+                            slug: info.slug,
+                            downloadUrl: file.download_url,
+                            path: file.path
+                        };
+                    })
+                    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+                return posts;
+            }
+
+            function highlightMatch(text, query) {
                 if (!query || query.trim().length === 0) return text;
-                const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`(${escapedQuery})`, 'gi');
+                const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${escaped})`, 'gi');
                 return text.replace(regex, '<span class="highlight">$1</span>');
             }
 
-            function renderResults(filteredData, query) {
+            function renderPosts(posts, query) {
                 resultsArea.innerHTML = '';
-
-                if (filteredData.length === 0) {
+                if (posts.length === 0) {
                     resultsArea.innerHTML = `
-                            <div class="no-results">
-                                <span class="icon">&#128533;</span>
-                                <p>نتیجه‌ای یافت نشد</p>
+                        <div class="status-message">
+                            <span class="icon">&#128269;</span>
+                            <p>پستی با این مشخصات یافت نشد</p>
+                        </div>
+                    `;
+                } else {
+                    posts.forEach(post => {
+                        const div = document.createElement('div');
+                        div.className = 'post-item';
+                        div.innerHTML = `
+                            <span class="post-date">${post.date || 'بدون تاریخ'}</span>
+                            <div class="post-content">
+                                <div class="post-title">${highlightMatch(post.title, query)}</div>
+                                <div class="post-slug">${post.slug}</div>
                             </div>
                         `;
-                } else {
-                    filteredData.forEach(function(item) {
-                        const itemEl = document.createElement('div');
-                        itemEl.className = 'result-item';
-                        itemEl.innerHTML = `
-                                <div class="result-avatar" style="background:${item.color};">
-                                    ${getAvatarLetter(item.title)}
-                                </div>
-                                <div class="result-info">
-                                    <div class="result-title">${highlightText(item.title, query)}</div>
-                                    <div class="result-subtitle">${highlightText(item.subtitle, query)}</div>
-                                </div>
-                                <span class="result-badge">${item.badge}</span>
-                            `;
-                        itemEl.addEventListener('click', function() {
-                            searchInput.value = item.title;
-                            handleSearch();
-                            searchInput.focus();
+                        div.addEventListener('click', () => {
+                            if (post.downloadUrl) {
+                                window.open(post.downloadUrl, '_blank');
+                            }
                         });
-                        resultsArea.appendChild(itemEl);
+                        resultsArea.appendChild(div);
                     });
                 }
-
-                const countText = filteredData.length === 0 ?
-                    'نتیجه‌ای یافت نشد' :
-                    filteredData.length + ' محصول یافت شد';
-                resultsCount.textContent = countText;
+                resultsCount.textContent = `${posts.length} پست`;
             }
 
-            function handleSearch() {
-                const query = searchInput.value.trim();
-                const lowerQuery = query.toLowerCase();
+            function filterAndRender() {
+                const q = currentQuery.trim().toLowerCase();
+                let filtered;
+                if (q === '') {
+                    filtered = allPosts.slice();
+                } else {
+                    filtered = allPosts.filter(p =>
+                        p.title.toLowerCase().includes(q) ||
+                        p.slug.toLowerCase().includes(q) ||
+                        (p.date && p.date.includes(q))
+                    );
+                }
+                renderPosts(filtered, q);
+            }
 
-                if (query.length > 0) {
+            function updateClearButton() {
+                if (searchInput.value.trim().length > 0) {
                     clearBtn.classList.add('visible');
                 } else {
                     clearBtn.classList.remove('visible');
                 }
-
-                let filtered;
-                if (lowerQuery === '') {
-                    filtered = data.slice();
-                } else {
-                    filtered = data.filter(function(item) {
-                        return item.title.toLowerCase().includes(lowerQuery) ||
-                            item.subtitle.toLowerCase().includes(lowerQuery);
-                    });
-                }
-
-                renderResults(filtered, query);
             }
 
-            searchInput.addEventListener('input', handleSearch);
+            async function loadRepository(owner, repo) {
+                errorMessageEl.textContent = '';
+                statusIndicator.textContent = 'در حال بارگذاری...';
+                resultsArea.innerHTML = `
+                    <div class="status-message">
+                        <span class="icon">&#9200;</span>
+                        <p>دریافت پست‌ها از گیت‌هاب...</p>
+                    </div>
+                `;
+                try {
+                    const posts = await fetchPosts(owner, repo);
+                    allPosts = posts;
+                    statusIndicator.textContent = 'آماده';
+                    filterAndRender();
+                } catch (err) {
+                    console.error(err);
+                    errorMessageEl.textContent = 'خطا: ' + err.message;
+                    resultsArea.innerHTML = `
+                        <div class="status-message">
+                            <span class="icon">&#9888;</span>
+                            <p>بارگذاری با خطا مواجه شد</p>
+                        </div>
+                    `;
+                    statusIndicator.textContent = 'خطا';
+                    allPosts = [];
+                    resultsCount.textContent = '۰ پست';
+                }
+            }
 
-            clearBtn.addEventListener('click', function() {
+            loadRepoBtn.addEventListener('click', () => {
+                const owner = ownerInput.value.trim();
+                const repo = repoInput.value.trim();
+                if (!owner || !repo) {
+                    errorMessageEl.textContent = 'نام کاربری و مخزن را وارد کنید.';
+                    return;
+                }
+                loadRepository(owner, repo);
+            });
+
+            searchInput.addEventListener('input', () => {
+                currentQuery = searchInput.value;
+                updateClearButton();
+                filterAndRender();
+            });
+
+            clearBtn.addEventListener('click', () => {
                 searchInput.value = '';
-                handleSearch();
+                currentQuery = '';
+                updateClearButton();
+                filterAndRender();
                 searchInput.focus();
             });
 
-            searchTriggerBtn.addEventListener('click', function() {
-                handleSearch();
+            searchTrigger.addEventListener('click', () => {
+                filterAndRender();
                 searchInput.focus();
             });
 
-            searchInput.addEventListener('keydown', function(e) {
+            searchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     searchInput.value = '';
-                    handleSearch();
+                    currentQuery = '';
+                    updateClearButton();
+                    filterAndRender();
                     searchInput.blur();
                 }
             });
 
-            handleSearch();
+            updateClearButton();
         })();
     </script>
 </body>
