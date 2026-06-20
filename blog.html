@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جستجو در وبلاگ پاسگاه</title>
+    <title>جستجوی زنده در وبلاگ پاسگاه</title>
 
-    <meta name="description" content="جستجوی زنده در پست‌های وبلاگ پاسگاه">
-    <meta property="og:title" content="جستجو در وبلاگ پاسگاه">
+    <meta name="description" content="جستجوی تمام پست‌های منتشرشده در وبلاگ پاسگاه">
+    <meta property="og:title" content="جستجوی وبلاگ پاسگاه">
     <meta property="og:site_name" content="وبلاگ پاسگاه">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="جستجو در وبلاگ پاسگاه">
+    <meta name="twitter:title" content="جستجوی وبلاگ پاسگاه">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -248,29 +248,33 @@
             margin: 0 auto;
         }
 
-        .search-hero {
-            text-align: center;
-            padding: 2rem 0 1.5rem;
+        .articles-section {
+            width: 100%;
         }
 
-        .search-hero h1 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        .search-box-area {
+            text-align: center;
+            padding: 2rem 0 1rem;
+        }
+
+        .search-box-area h1 {
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
             font-weight: 800;
             color: #1c1917;
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
 
-        .search-hero p {
+        .search-box-area p {
             color: #4a4643;
-            font-size: 1rem;
             margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .search-bar-wrapper {
             display: flex;
             align-items: center;
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto;
             background: #f8f1e9;
             border: 2px solid #e5e0db;
@@ -352,18 +356,18 @@
             color: #dc2626;
         }
 
-        .repo-config-bar {
+        .repo-bar {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
             flex-wrap: wrap;
             padding: 1rem 0 0.5rem;
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto;
         }
 
-        .repo-config-bar input {
+        .repo-bar input {
             border: 1px solid #d6d0ca;
             border-radius: 2rem;
             padding: 0.6rem 1rem;
@@ -373,18 +377,18 @@
             background: #faf8f5;
             color: #1c1917;
             transition: border 0.2s;
-            min-width: 120px;
+            min-width: 130px;
             flex: 1;
             direction: ltr;
             text-align: left;
         }
 
-        .repo-config-bar input:focus {
+        .repo-bar input:focus {
             border-color: #0d9488;
             background: #ffffff;
         }
 
-        .repo-config-bar button {
+        .repo-bar button {
             background: #1c1917;
             color: white;
             border: none;
@@ -401,24 +405,23 @@
             gap: 0.4rem;
         }
 
-        .repo-config-bar button:hover {
+        .repo-bar button:hover {
             background: #000000;
         }
 
-        .status-bar {
+        .status-text {
             text-align: center;
-            padding: 0.5rem;
-            font-size: 0.82rem;
+            padding: 0.4rem 0 0.8rem;
+            font-size: 0.85rem;
             color: #8a8178;
             min-height: 1.8rem;
-            transition: color 0.3s;
         }
 
-        .status-bar.error {
+        .status-text.error {
             color: #dc2626;
         }
 
-        .status-bar.success {
+        .status-text.success {
             color: #0d9488;
         }
 
@@ -489,20 +492,20 @@
             font-weight: 700;
         }
 
-        .empty-state {
+        .empty-message {
             text-align: center;
             padding: 3rem 1.5rem;
             color: #8a8178;
         }
 
-        .empty-state .icon {
+        .empty-message .icon {
             font-size: 3.5rem;
             display: block;
             margin-bottom: 1rem;
             opacity: 0.7;
         }
 
-        .empty-state p {
+        .empty-message p {
             font-size: 1rem;
             font-weight: 500;
             margin: 0;
@@ -562,14 +565,14 @@
             .hamburger {
                 display: flex;
             }
-            .search-hero h1 {
-                font-size: 1.5rem;
+            .search-box-area h1 {
+                font-size: 1.6rem;
             }
-            .repo-config-bar {
+            .repo-bar {
                 flex-direction: column;
                 align-items: stretch;
             }
-            .repo-config-bar input {
+            .repo-bar input {
                 text-align: left;
                 direction: ltr;
             }
@@ -617,34 +620,34 @@
 
     <main class="main-content" role="main">
         <div class="main-content-inner">
-            <section class="search-hero">
+            <div class="search-box-area">
                 <h1>جستجو در وبلاگ</h1>
-                <p>پست‌های منتشر شده را به صورت زنده جستجو کنید</p>
+                <p>تمام پست‌های منتشرشده، بدون محدودیت</p>
                 <div class="search-bar-wrapper">
                     <button class="search-icon-btn" id="searchTriggerBtn" aria-label="جستجو">
                         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
-                    <input type="text" id="searchInput" placeholder="عنوان پست را تایپ کنید..." autocomplete="off">
+                    <input type="text" id="searchInput" placeholder="عنوان پست را جستجو کنید..." autocomplete="off">
                     <button class="clear-btn" id="clearBtn" aria-label="پاک کردن">
                         <i class="fa-solid fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="repo-config-bar">
-                    <input type="text" id="ownerInput" placeholder="نام کاربری گیت‌هاب" value="" dir="ltr">
-                    <input type="text" id="repoInput" placeholder="نام مخزن (مثلاً my-blog)" value="" dir="ltr">
+                <div class="repo-bar">
+                    <input type="text" id="ownerInput" placeholder="نام کاربری گیت‌هاب" dir="ltr">
+                    <input type="text" id="repoInput" placeholder="نام مخزن (مثلاً my-blog)" dir="ltr">
                     <button id="loadRepoBtn">
                         <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i>
-                        بارگذاری پست‌ها
+                        دریافت همه پست‌ها
                     </button>
                 </div>
-                <div class="status-bar" id="statusBar"></div>
-            </section>
+                <div class="status-text" id="statusText"></div>
+            </div>
 
-            <section aria-label="نتایج جستجو">
-                <div id="resultsArea">
-                    <div class="empty-state">
+            <section class="articles-section" aria-label="نتایج جستجو">
+                <div id="resultsContainer">
+                    <div class="empty-message">
                         <span class="icon">&#128218;</span>
-                        <p>اطلاعات مخزن گیت‌هاب را وارد کنید و روی «بارگذاری پست‌ها» کلیک کنید</p>
+                        <p>اطلاعات مخزن را وارد و روی «دریافت همه پست‌ها» کلیک کنید</p>
                     </div>
                 </div>
             </section>
@@ -664,42 +667,43 @@
         (function() {
             'use strict';
 
-            const ownerInput = document.getElementById('ownerInput');
-            const repoInput = document.getElementById('repoInput');
-            const loadRepoBtn = document.getElementById('loadRepoBtn');
-            const searchInput = document.getElementById('searchInput');
-            const clearBtn = document.getElementById('clearBtn');
-            const resultsArea = document.getElementById('resultsArea');
-            const statusBar = document.getElementById('statusBar');
-            const searchTriggerBtn = document.getElementById('searchTriggerBtn');
+            var ownerInput = document.getElementById('ownerInput');
+            var repoInput = document.getElementById('repoInput');
+            var loadRepoBtn = document.getElementById('loadRepoBtn');
+            var searchInput = document.getElementById('searchInput');
+            var clearBtn = document.getElementById('clearBtn');
+            var resultsContainer = document.getElementById('resultsContainer');
+            var statusText = document.getElementById('statusText');
+            var searchTriggerBtn = document.getElementById('searchTriggerBtn');
 
-            let allPosts = [];
-            let currentQuery = '';
+            var allPosts = [];
+            var currentQuery = '';
 
-            function setStatus(text, type) {
-                statusBar.textContent = text;
-                statusBar.className = 'status-bar';
-                if (type === 'error') statusBar.classList.add('error');
-                if (type === 'success') statusBar.classList.add('success');
+            function setStatus(msg, type) {
+                statusText.textContent = msg;
+                statusText.className = 'status-text';
+                if (type === 'error') statusText.classList.add('error');
+                if (type === 'success') statusText.classList.add('success');
             }
 
             function normalizeText(text) {
                 return text.replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
             }
 
-            function parseFilename(filename) {
-                const match = filename.match(/^(\d{4}-\d{2}-\d{2})-(.*)\.(md|markdown)$/i);
+            function parseJekyllFilename(filename) {
+                var match = filename.match(/^(\d{4}-\d{2}-\d{2})-(.*)\.(md|markdown)$/i);
                 if (!match) {
+                    var clean = filename.replace(/\.(md|markdown)$/i, '');
                     return {
                         date: '',
-                        title: normalizeText(filename.replace(/\.(md|markdown)$/i, '')),
-                        slug: filename.replace(/\.(md|markdown)$/i, ''),
+                        title: normalizeText(clean),
+                        slug: clean,
                         rawDate: ''
                     };
                 }
-                const dateStr = match[1];
-                const rawTitle = match[2];
-                const title = normalizeText(rawTitle);
+                var dateStr = match[1];
+                var rawTitle = match[2];
+                var title = normalizeText(rawTitle);
                 return {
                     date: dateStr,
                     title: title,
@@ -709,65 +713,57 @@
                 };
             }
 
-            function formatJalaliDate(dateStr) {
+            function toJalali(dateStr) {
                 if (!dateStr) return '';
-                const date = new Date(dateStr + 'T00:00:00');
-                if (isNaN(date.getTime())) return dateStr;
+                var d = new Date(dateStr + 'T00:00:00');
+                if (isNaN(d.getTime())) return dateStr;
                 return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                }).format(date);
+                }).format(d);
             }
 
             function buildPostUrl(post, owner, repo) {
-                let baseUrl;
+                var base;
                 if (repo.endsWith('.github.io')) {
-                    baseUrl = 'https://' + repo;
+                    base = 'https://' + repo;
                 } else {
-                    baseUrl = 'https://' + owner + '.github.io/' + repo;
+                    base = 'https://' + owner + '.github.io/' + repo;
                 }
                 if (!post.rawDate) {
-                    return baseUrl + '/blog/' + post.slug + '/';
+                    return base + '/blog/' + post.slug + '/';
                 }
-                const parts = post.rawDate.split('-');
-                const year = parts[0];
-                const month = parts[1];
-                const day = parts[2];
-                return baseUrl + '/' + year + '/' + month + '/' + day + '/' + post.slug + '/';
+                var parts = post.rawDate.split('-');
+                var year = parts[0];
+                var month = parts[1];
+                var day = parts[2];
+                return base + '/' + year + '/' + month + '/' + day + '/' + post.slug + '/';
             }
 
-            async function fetchPosts(owner, repo) {
-                const url = 'https://api.github.com/repos/' +
+            async function fetchAllPosts(owner, repo) {
+                var url = 'https://api.github.com/repos/' +
                     encodeURIComponent(owner) + '/' +
                     encodeURIComponent(repo) +
                     '/contents/_posts';
 
-                const response = await fetch(url, {
+                var response = await fetch(url, {
                     headers: { 'Accept': 'application/vnd.github.v3+json' }
                 });
 
                 if (!response.ok) {
-                    if (response.status === 404) {
-                        throw new Error('پوشه _posts در این مخزن یافت نشد. آیا این یک مخزن جکیل است؟');
-                    } else if (response.status === 403) {
-                        throw new Error('محدودیت نرخ درخواست گیت‌هاب. لطفاً چند دقیقه صبر کنید.');
-                    } else {
-                        throw new Error('خطای شبکه: ' + response.status + ' - ' + response.statusText);
-                    }
+                    if (response.status === 404) throw new Error('پوشه _posts در این مخزن پیدا نشد.');
+                    if (response.status === 403) throw new Error('محدودیت درخواست گیت‌هاب. کمی صبر کنید.');
+                    throw new Error('خطای شبکه: ' + response.status);
                 }
 
-                const data = await response.json();
-                if (!Array.isArray(data)) {
-                    throw new Error('فرمت پاسخ غیرمنتظره از گیت‌هاب.');
-                }
+                var data = await response.json();
+                if (!Array.isArray(data)) throw new Error('پاسخ غیرمنتظره از گیت‌هاب.');
 
-                const posts = data
-                    .filter(function(file) {
-                        return file.type === 'file' && /\.(md|markdown)$/i.test(file.name);
-                    })
+                var posts = data
+                    .filter(function(file) { return file.type === 'file' && /\.(md|markdown)$/i.test(file.name); })
                     .map(function(file) {
-                        var info = parseFilename(file.name);
+                        var info = parseJekyllFilename(file.name);
                         return {
                             title: info.title,
                             date: info.date,
@@ -780,9 +776,7 @@
                             repo: repo
                         };
                     })
-                    .sort(function(a, b) {
-                        return (b.date || '').localeCompare(a.date || '');
-                    });
+                    .sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
 
                 return posts;
             }
@@ -794,45 +788,46 @@
                 return text.replace(regex, '<span class="highlight">$1</span>');
             }
 
-            function renderResults(posts, query, owner, repo) {
-                resultsArea.innerHTML = '';
+            function renderCards(posts, query, owner, repo) {
+                resultsContainer.innerHTML = '';
                 if (posts.length === 0) {
-                    resultsArea.innerHTML =
-                        '<div class="empty-state">' +
+                    resultsContainer.innerHTML =
+                        '<div class="empty-message">' +
                         '<span class="icon">&#128269;</span>' +
-                        '<p>پستی با این مشخصات یافت نشد</p>' +
+                        '<p>هیچ پستی با این مشخصات یافت نشد</p>' +
                         '</div>';
-                } else {
-                    var listEl = document.createElement('div');
-                    listEl.className = 'article-list';
-                    posts.forEach(function(post) {
-                        var card = document.createElement('div');
-                        card.className = 'article-item';
-                        var postUrl = buildPostUrl(post, owner, repo);
-                        card.innerHTML =
-                            '<a href="' + postUrl + '" class="article-link" target="_blank" rel="noopener">' +
-                            '<div class="article-body">' +
-                            '<time datetime="' + (post.date || '') + '">' + (post.date ? formatJalaliDate(post.date) :
-                                'بدون تاریخ') + '</time>' +
-                            '<h2>' + highlightMatch(post.title, query) + '</h2>' +
-                            '<div class="post-slug">' + post.filename + '</div>' +
-                            '</div>' +
-                            '</a>';
-                        card.addEventListener('click', function(e) {
-                            window.open(postUrl, '_blank', 'noopener');
-                        });
-                        listEl.appendChild(card);
-                    });
-                    resultsArea.appendChild(listEl);
+                    return;
                 }
+
+                var grid = document.createElement('div');
+                grid.className = 'article-list';
+                posts.forEach(function(post) {
+                    var card = document.createElement('div');
+                    card.className = 'article-item';
+                    var postUrl = buildPostUrl(post, owner, repo);
+                    card.innerHTML =
+                        '<a href="' + postUrl + '" class="article-link" target="_blank" rel="noopener">' +
+                        '<div class="article-body">' +
+                        '<time datetime="' + (post.date || '') + '">' + (post.date ? toJalali(post.date) :
+                            'بدون تاریخ') + '</time>' +
+                        '<h2>' + highlightMatch(post.title, query) + '</h2>' +
+                        '<div class="post-slug">' + post.filename + '</div>' +
+                        '</div>' +
+                        '</a>';
+                    card.addEventListener('click', function(e) {
+                        window.open(postUrl, '_blank', 'noopener');
+                    });
+                    grid.appendChild(card);
+                });
+                resultsContainer.appendChild(grid);
             }
 
-            function filterAndRender() {
+            function applyFilter() {
                 if (allPosts.length === 0) {
-                    resultsArea.innerHTML =
-                        '<div class="empty-state">' +
+                    resultsContainer.innerHTML =
+                        '<div class="empty-message">' +
                         '<span class="icon">&#128218;</span>' +
-                        '<p>ابتدا پست‌ها را از مخزن گیت‌هاب بارگذاری کنید</p>' +
+                        '<p>ابتدا پست‌ها را از مخزن دریافت کنید</p>' +
                         '</div>';
                     return;
                 }
@@ -850,10 +845,10 @@
                 }
                 var owner = ownerInput.value.trim() || 'unknown';
                 var repo = repoInput.value.trim() || 'unknown';
-                renderResults(filtered, q, owner, repo);
+                renderCards(filtered, q, owner, repo);
             }
 
-            function updateClearButton() {
+            function updateClearVisibility() {
                 if (searchInput.value.trim().length > 0) {
                     clearBtn.classList.add('visible');
                 } else {
@@ -865,27 +860,27 @@
                 var owner = ownerInput.value.trim();
                 var repo = repoInput.value.trim();
                 if (!owner || !repo) {
-                    setStatus('لطفاً نام کاربری و مخزن گیت‌هاب را وارد کنید.', 'error');
+                    setStatus('نام کاربری و مخزن را وارد کنید.', 'error');
                     return;
                 }
-                setStatus('در حال دریافت پست‌ها از گیت‌هاب...', '');
-                resultsArea.innerHTML =
-                    '<div class="empty-state">' +
+                setStatus('در حال دریافت تمام پست‌ها...', '');
+                resultsContainer.innerHTML =
+                    '<div class="empty-message">' +
                     '<span class="icon"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i></span>' +
-                    '<p>در حال بارگذاری پست‌ها...</p>' +
+                    '<p>در حال بارگذاری همه پست‌ها (بدون محدودیت)...</p>' +
                     '</div>';
                 try {
-                    var posts = await fetchPosts(owner, repo);
+                    var posts = await fetchAllPosts(owner, repo);
                     allPosts = posts;
-                    setStatus(posts.length + ' پست با موفقیت بارگذاری شد.', 'success');
-                    filterAndRender();
-                } catch (err) {
-                    console.error(err);
-                    setStatus('خطا: ' + err.message, 'error');
-                    resultsArea.innerHTML =
-                        '<div class="empty-state">' +
+                    setStatus(posts.length + ' پست با موفقیت دریافت شد.', 'success');
+                    applyFilter();
+                } catch (e) {
+                    console.error(e);
+                    setStatus('خطا: ' + e.message, 'error');
+                    resultsContainer.innerHTML =
+                        '<div class="empty-message">' +
                         '<span class="icon">&#9888;</span>' +
-                        '<p>بارگذاری با خطا مواجه شد. لطفاً اطلاعات مخزن را بررسی کنید.</p>' +
+                        '<p>دریافت پست‌ها با مشکل مواجه شد. اطلاعات را بررسی کنید.</p>' +
                         '</div>';
                     allPosts = [];
                 }
@@ -895,20 +890,20 @@
 
             searchInput.addEventListener('input', function() {
                 currentQuery = searchInput.value;
-                updateClearButton();
-                filterAndRender();
+                updateClearVisibility();
+                applyFilter();
             });
 
             clearBtn.addEventListener('click', function() {
                 searchInput.value = '';
                 currentQuery = '';
-                updateClearButton();
-                filterAndRender();
+                updateClearVisibility();
+                applyFilter();
                 searchInput.focus();
             });
 
             searchTriggerBtn.addEventListener('click', function() {
-                filterAndRender();
+                applyFilter();
                 searchInput.focus();
             });
 
@@ -916,16 +911,16 @@
                 if (e.key === 'Escape') {
                     searchInput.value = '';
                     currentQuery = '';
-                    updateClearButton();
-                    filterAndRender();
+                    updateClearVisibility();
+                    applyFilter();
                     searchInput.blur();
                 }
                 if (e.key === 'Enter') {
-                    filterAndRender();
+                    applyFilter();
                 }
             });
 
-            updateClearButton();
+            updateClearVisibility();
 
             var hamburger = document.getElementById('hamburger');
             var mobileMenu = document.getElementById('mobileMenu');
@@ -962,9 +957,7 @@
             });
 
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
-                    toggleMenu();
-                }
+                if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) toggleMenu();
             });
 
             var header = document.querySelector('.site-header');
