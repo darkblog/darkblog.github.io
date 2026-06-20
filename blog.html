@@ -659,7 +659,6 @@ layout: none
         header.classList.remove('hidden-nav');
       });
 
-      /* ========== بخش جستجوی زنده (بدون تغییر استایل) ========== */
       var searchInput = document.getElementById('searchInput');
       var searchStats = document.getElementById('searchStats');
       var noResults = document.getElementById('noResultsMessage');
@@ -678,7 +677,6 @@ layout: none
             .trim();
         }
 
-        // استفاده از متن واقعی عنوان داخل h2 برای جلوگیری از مشکلات escape
         var cache = Array.from(allItems).map(function(item) {
           var titleElement = item.querySelector('h2');
           var rawTitle = titleElement ? titleElement.textContent : '';
@@ -717,7 +715,6 @@ layout: none
           if (e.key === 'Enter') e.preventDefault();
         });
 
-        // پاکسازی اولیه (اگر متنی از قبل در input باشد)
         performSearch();
       }
     })();
