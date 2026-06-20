@@ -697,10 +697,10 @@ layout: none
           });
 
           if (term === '') {
-            searchStats.textContent = '';
+            searchStats.textContent = total + ' پست';
             noResults.hidden = true;
           } else {
-            searchStats.textContent = count + ' مورد از ' + total + ' مطلب یافت شد';
+            searchStats.textContent = count + ' مورد از ' + total + ' مطلب';
             noResults.hidden = count > 0;
           }
         }
