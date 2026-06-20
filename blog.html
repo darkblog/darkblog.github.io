@@ -659,6 +659,7 @@ layout: none
         header.classList.remove('hidden-nav');
       });
 
+      /* ========== بخش جستجوی زنده (بدون تغییر استایل) ========== */
       var searchInput = document.getElementById('searchInput');
       var searchStats = document.getElementById('searchStats');
       var noResults = document.getElementById('noResultsMessage');
@@ -666,30 +667,34 @@ layout: none
       var total = allItems.length;
 
       if (searchInput && total > 0) {
+
         function normalize(text) {
           if (!text) return '';
           return text
             .toLowerCase()
             .replace(/[\u200c\s]+/g, ' ')
-            .replace(/[يی]/g, 'ی')
-            .replace(/[كک]/g, 'ک')
+            .replace(/[يى]/g, 'ی')
+            .replace(/[ك]/g, 'ک')
             .trim();
         }
 
+        // استفاده از متن واقعی عنوان داخل h2 برای جلوگیری از مشکلات escape
         var cache = Array.from(allItems).map(function(item) {
+          var titleElement = item.querySelector('h2');
+          var rawTitle = titleElement ? titleElement.textContent : '';
           return {
             el: item,
-            title: normalize(item.getAttribute('data-title') || '')
+            title: normalize(rawTitle)
           };
         });
 
-        function search() {
+        function performSearch() {
           var term = normalize(searchInput.value);
           var count = 0;
 
-          cache.forEach(function(item) {
-            var match = term === '' || item.title.includes(term);
-            item.el.classList.toggle('hidden-post', !match);
+          cache.forEach(function(entry) {
+            var match = term === '' || entry.title.includes(term);
+            entry.el.classList.toggle('hidden-post', !match);
             if (match) count++;
           });
 
@@ -702,15 +707,18 @@ layout: none
           }
         }
 
-        var timer;
+        var debounceTimer;
         searchInput.addEventListener('input', function() {
-          clearTimeout(timer);
-          timer = setTimeout(search, 40);
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(performSearch, 40);
         });
 
         searchInput.addEventListener('keydown', function(e) {
           if (e.key === 'Enter') e.preventDefault();
         });
+
+        // پاکسازی اولیه (اگر متنی از قبل در input باشد)
+        performSearch();
       }
     })();
   </script>
