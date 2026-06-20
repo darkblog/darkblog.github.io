@@ -1,1002 +1,395 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جستجوی زنده در وبلاگ پاسگاه</title>
-
-    <meta name="description" content="جستجوی تمام پست‌های منتشرشده در وبلاگ پاسگاه">
-    <meta property="og:title" content="جستجوی وبلاگ پاسگاه">
-    <meta property="og:site_name" content="وبلاگ پاسگاه">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="جستجوی وبلاگ پاسگاه">
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-    <link rel="icon" type="image/svg+xml" href="/blog.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --header-height: 5rem;
-            --gap: clamp(1rem, 2vw, 2rem);
-            --font-size-base: 1.125rem;
-        }
-
-        body {
-            font-family: 'Vazirmatn', system-ui, sans-serif;
-            font-weight: 400;
-            background-color: #f8f1e9;
-            color: #1e1b1a;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-size: var(--font-size-base);
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            background-color: #000000;
-            border-bottom: 1px solid #2a2a2a;
-            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            font-size: inherit;
-        }
-
-        .site-header.hidden-nav {
-            transform: translateY(-100%);
-        }
-
-        .site-header.visible-nav {
-            transform: translateY(0);
-        }
-
-        .header-inner {
-            max-width: 80rem;
-            margin: 0 auto;
-            padding: 1.25rem clamp(1rem, 3vw, 1.5rem);
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: var(--gap);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            flex-shrink: 0;
-            font-size: inherit;
-        }
-
-        .brand img {
-            height: 2.5rem;
-            width: auto;
-        }
-
-        .desktop-nav {
-            flex: 1;
-            display: flex;
-            justify-content: flex-start;
-            font-size: inherit;
-        }
-
-        .desktop-nav ul {
-            display: flex;
-            align-items: center;
-            gap: clamp(1rem, 2.5vw, 2.5rem);
-            list-style: none;
-            font-weight: 400;
-            margin: 0;
-            padding: 0;
-            direction: rtl;
-            font-size: inherit;
-        }
-
-        .desktop-nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.2s;
-            white-space: nowrap;
-            font-size: inherit;
-        }
-
-        .desktop-nav a:hover {
-            color: #2dd4bf;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 0.375rem;
-            background: none;
-            border: none;
-            padding: 0.25rem;
-            cursor: pointer;
-            margin-right: auto;
-            flex-shrink: 0;
-            font-size: inherit;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 1.75rem;
-            height: 0.125rem;
-            background-color: white;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 48;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .mobile-nav-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            left: auto;
-            right: 0;
-            bottom: 0;
-            width: min(300px, 80vw);
-            background-color: #000000;
-            padding: calc(var(--header-height) + 1.75rem) clamp(1rem, 3vw, 2rem) 2rem;
-            z-index: 49;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3);
-            font-size: inherit;
-        }
-
-        .mobile-nav.open {
-            transform: translateX(0);
-        }
-
-        .mobile-nav ul {
-            display: flex;
-            flex-direction: column;
-            gap: 1.75rem;
-            list-style: none;
-            font-weight: 400;
-            padding: 0;
-            margin: 0;
-            font-size: inherit;
-        }
-
-        .mobile-nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.2s;
-            display: block;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: inherit;
-        }
-
-        .mobile-nav a:hover {
-            color: #2dd4bf;
-        }
-
-        .main-content {
-            padding-top: calc(var(--header-height) + 2rem);
-            padding-bottom: 1.5rem;
-            padding-left: clamp(1rem, 3vw, 1.5rem);
-            padding-right: clamp(1rem, 3vw, 1.5rem);
-            background-color: white;
-            font-size: inherit;
-        }
-
-        .main-content-inner {
-            max-width: 80rem;
-            margin: 0 auto;
-        }
-
-        .articles-section {
-            width: 100%;
-        }
-
-        .search-box-area {
-            text-align: center;
-            padding: 2rem 0 1rem;
-        }
-
-        .search-box-area h1 {
-            font-size: clamp(1.8rem, 4vw, 2.2rem);
-            font-weight: 800;
-            color: #1c1917;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .search-box-area p {
-            color: #4a4643;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .search-bar-wrapper {
-            display: flex;
-            align-items: center;
-            max-width: 620px;
-            margin: 0 auto;
-            background: #f8f1e9;
-            border: 2px solid #e5e0db;
-            border-radius: 3rem;
-            padding: 0.4rem 0.5rem;
-            transition: all 0.3s ease;
-            gap: 0.25rem;
-        }
-
-        .search-bar-wrapper:focus-within {
-            border-color: #1c1917;
-            background: #ffffff;
-            box-shadow: 0 0 0 5px rgba(28, 25, 23, 0.04);
-        }
-
-        .search-icon-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #1c1917;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1em;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .search-icon-btn:hover {
-            background: #000000;
-        }
-
-        #searchInput {
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            padding: 0.75rem 1rem;
-            font-size: 1.05rem;
-            color: #1c1917;
-            font-family: inherit;
-            direction: rtl;
-            min-width: 0;
-        }
-
-        #searchInput::placeholder {
-            color: #9c948f;
-            font-weight: 400;
-        }
-
-        .clear-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-            color: #8a8178;
-            cursor: pointer;
-            font-size: 1.2em;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.2s ease;
-        }
-
-        .clear-btn.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .clear-btn:hover {
-            background: #e5e0db;
-            color: #dc2626;
-        }
-
-        .repo-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            padding: 1rem 0 0.5rem;
-            max-width: 620px;
-            margin: 0 auto;
-        }
-
-        .repo-bar input {
-            border: 1px solid #d6d0ca;
-            border-radius: 2rem;
-            padding: 0.6rem 1rem;
-            font-size: 0.85rem;
-            font-family: inherit;
-            outline: none;
-            background: #faf8f5;
-            color: #1c1917;
-            transition: border 0.2s;
-            min-width: 130px;
-            flex: 1;
-            direction: ltr;
-            text-align: left;
-        }
-
-        .repo-bar input:focus {
-            border-color: #0d9488;
-            background: #ffffff;
-        }
-
-        .repo-bar button {
-            background: #1c1917;
-            color: white;
-            border: none;
-            border-radius: 2rem;
-            padding: 0.6rem 1.5rem;
-            font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .repo-bar button:hover {
-            background: #000000;
-        }
-
-        .status-text {
-            text-align: center;
-            padding: 0.4rem 0 0.8rem;
-            font-size: 0.85rem;
-            color: #8a8178;
-            min-height: 1.8rem;
-        }
-
-        .status-text.error {
-            color: #dc2626;
-        }
-
-        .status-text.success {
-            color: #0d9488;
-        }
-
-        .article-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-            gap: var(--gap);
-            list-style: none;
-            padding: 0;
-            margin-top: 0.5rem;
-        }
-
-        .article-item {
-            background-color: white;
-            border: 1px solid #e5e0db;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .article-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .article-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .article-body {
-            padding: clamp(1rem, 2.5vw, 1.75rem);
-            font-size: inherit;
-        }
-
-        .article-body time {
-            display: inline-block;
-            color: #0d9488;
-            margin-bottom: 0.5rem;
-            font-size: inherit;
-        }
-
-        .article-body h2 {
-            font-weight: 800;
-            line-height: 1.4;
-            margin: 0 0 0.5rem 0;
-            font-size: 1.5rem;
-            letter-spacing: -0.02em;
-            color: #1c1917;
-        }
-
-        .article-body .post-slug {
-            color: #8a8178;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .highlight {
-            background: #fef08a;
-            color: #1c1917;
-            padding: 1px 4px;
-            border-radius: 3px;
-            font-weight: 700;
-        }
-
-        .empty-message {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            color: #8a8178;
-        }
-
-        .empty-message .icon {
-            font-size: 3.5rem;
-            display: block;
-            margin-bottom: 1rem;
-            opacity: 0.7;
-        }
-
-        .empty-message p {
-            font-size: 1rem;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .site-footer {
-            background-color: #000000;
-            padding: 2rem clamp(1rem, 3vw, 1.5rem);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 80rem;
-            margin: 0 auto;
-            width: 100%;
-            flex-direction: row;
-            font-size: inherit;
-            margin-top: auto;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-logo img {
-            height: 3rem;
-            width: auto;
-            opacity: 0.9;
-            transition: opacity 0.2s;
-        }
-
-        .footer-logo img:hover {
-            opacity: 1;
-        }
-
-        .footer-social-link {
-            color: #ffffff;
-            font-size: 2rem;
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .footer-social-link:hover {
-            color: #2dd4bf;
-        }
-
-        body.no-scroll {
-            overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .search-box-area h1 {
-                font-size: 1.6rem;
-            }
-            .repo-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .repo-bar input {
-                text-align: left;
-                direction: ltr;
-            }
-            .search-bar-wrapper {
-                max-width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>جستجوی وبلاگ پاسگاه</title>
+
+  <meta itemprop="name" content="جستجوی وبلاگ پاسگاه">
+  <meta name="description" content="جستجوی زنده در تمام پست‌های منتشر شده وبلاگ پاسگاه">
+  <meta itemprop="description" content="جستجوی زنده در تمام پست‌های منتشر شده وبلاگ پاسگاه">
+
+  <meta property="og:title" content="جستجوی وبلاگ پاسگاه">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="وبلاگ پاسگاه">
+  <meta property="og:description" content="جستجوی زنده در تمام پست‌های منتشر شده وبلاگ پاسگاه">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="جستجوی وبلاگ پاسگاه">
+  <meta name="twitter:description" content="جستجوی زنده در تمام پست‌های منتشر شده وبلاگ پاسگاه">
+
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="icon" type="image/svg+xml" href="/blog.svg">
+
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --header-height: 5rem; --gap: clamp(1rem, 2vw, 2rem); --font-size-base: 1.125rem; }
+    body { font-family: 'Vazirmatn', system-ui, sans-serif; font-weight: 400; background-color: #f8f1e9; color: #1e1b1a; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; font-size: var(--font-size-base); }
+    main { flex: 1; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background-color: #000000; border-bottom: 1px solid #2a2a2a; transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); font-size: inherit; }
+    .site-header.hidden-nav { transform: translateY(-100%); }
+    .site-header.visible-nav { transform: translateY(0); }
+    .header-inner { max-width: 80rem; margin: 0 auto; padding: 1.25rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: flex-start; gap: var(--gap); }
+    .brand { display: flex; align-items: center; text-decoration: none; color: white; flex-shrink: 0; font-size: inherit; }
+    .brand img { height: 2.5rem; width: auto; }
+    .desktop-nav { flex: 1; display: flex; justify-content: flex-start; font-size: inherit; }
+    .desktop-nav ul { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.5rem); list-style: none; font-weight: 400; margin: 0; padding: 0; direction: rtl; font-size: inherit; }
+    .desktop-nav a { color: white; text-decoration: none; transition: color 0.2s; white-space: nowrap; font-size: inherit; }
+    .desktop-nav a:hover { color: #2dd4bf; }
+    .desktop-nav h1 { margin: 0; font-weight: 700; display: inline; font-size: inherit; }
+    .hamburger { display: none; flex-direction: column; gap: 0.375rem; background: none; border: none; padding: 0.25rem; cursor: pointer; margin-right: auto; flex-shrink: 0; font-size: inherit; }
+    .hamburger span { display: block; width: 1.75rem; height: 0.125rem; background-color: white; transition: all 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    .mobile-nav-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 48; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+    .mobile-nav-overlay.open { opacity: 1; visibility: visible; }
+    .mobile-nav { position: fixed; top: 0; left: auto; right: 0; bottom: 0; width: min(300px, 80vw); background-color: #000000; padding: calc(var(--header-height) + 1.75rem) clamp(1rem, 3vw, 2rem) 2rem; z-index: 49; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3); font-size: inherit; }
+    .mobile-nav.open { transform: translateX(0); }
+    .mobile-nav ul { display: flex; flex-direction: column; gap: 1.75rem; list-style: none; font-weight: 400; padding: 0; margin: 0; font-size: inherit; }
+    .mobile-nav a { color: white; text-decoration: none; transition: color 0.2s; display: block; padding: 0.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: inherit; }
+    .mobile-nav a:hover { color: #2dd4bf; }
+    .mobile-nav h1 { margin: 0; font-weight: 700; line-height: 1.4; font-size: inherit; }
+    .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 1.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
+    .main-content-inner { max-width: 80rem; margin: 0 auto; }
+
+    .search-section { text-align: center; padding: 2rem 0 1.5rem; }
+    .search-section h1 { font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 800; color: #1c1917; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    .search-section p { color: #4a4643; margin-bottom: 1.5rem; font-size: 1rem; }
+    .search-bar-wrapper { display: flex; align-items: center; max-width: 600px; margin: 0 auto; background: #f8f1e9; border: 2px solid #e5e0db; border-radius: 3rem; padding: 0.4rem 0.5rem; transition: all 0.3s ease; gap: 0.25rem; }
+    .search-bar-wrapper:focus-within { border-color: #1c1917; background: #ffffff; box-shadow: 0 0 0 5px rgba(28, 25, 23, 0.04); }
+    .search-icon-btn { width: 44px; height: 44px; border-radius: 50%; background: #1c1917; color: #ffffff; border: none; cursor: pointer; font-size: 1.1em; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .search-icon-btn:hover { background: #000000; }
+    #searchInput { flex: 1; border: none; outline: none; background: transparent; padding: 0.75rem 1rem; font-size: 1.05rem; color: #1c1917; font-family: inherit; direction: rtl; min-width: 0; }
+    #searchInput::placeholder { color: #9c948f; font-weight: 400; }
+    .clear-btn { width: 38px; height: 38px; border-radius: 50%; border: none; background: transparent; color: #8a8178; cursor: pointer; font-size: 1.2em; flex-shrink: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: all 0.2s ease; }
+    .clear-btn.visible { opacity: 1; pointer-events: auto; }
+    .clear-btn:hover { background: #e5e0db; color: #dc2626; }
+    .results-count { text-align: center; font-size: 0.85rem; color: #8a8178; margin: 1rem 0 0.5rem; min-height: 1.5rem; }
+
+    .article-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: var(--gap); list-style: none; padding: 0; margin-top: 0.5rem; }
+    .article-item { background-color: white; border: 1px solid #e5e0db; border-radius: 1.5rem; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .article-item:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
+    .article-item.hidden { display: none; }
+    .article-link { text-decoration: none; color: inherit; display: block; }
+    .article-item figure { margin: 0; }
+    .article-item figure img { display: block; width: 100%; height: clamp(10rem, 20vw, 14rem); object-fit: cover; }
+    .article-body { padding: clamp(1rem, 2.5vw, 1.75rem); font-size: inherit; }
+    .article-body time { display: inline-block; color: #0d9488; margin-bottom: 0.5rem; font-size: inherit; }
+    .article-body h2 { font-weight: 800; line-height: 1.4; margin: 0 0 0.5rem 0; font-size: 1.5rem; letter-spacing: -0.02em; color: #1c1917; }
+    .article-body p { color: #4a4643; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: inherit; }
+    .read-more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: #0d9488; font-weight: 400; transition: color 0.2s; font-size: inherit; }
+    .read-more:hover { color: #0f766e; }
+    .highlight { background: #fef08a; color: #1c1917; padding: 1px 4px; border-radius: 3px; font-weight: 700; }
+    .no-results { text-align: center; padding: 3rem 1.5rem; color: #8a8178; display: none; }
+    .no-results.visible { display: block; }
+    .no-results .icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; opacity: 0.7; }
+    .no-results p { font-size: 1rem; font-weight: 500; }
+
+    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; max-width: 80rem; margin: 0 auto; width: 100%; flex-direction: row; font-size: inherit; }
+    .footer-logo { display: flex; align-items: center; }
+    .footer-logo img { height: 3rem; width: auto; opacity: 0.9; transition: opacity 0.2s; }
+    .footer-logo img:hover { opacity: 1; }
+    .footer-social-link { color: #ffffff; font-size: 2rem; transition: color 0.2s; display: flex; align-items: center; text-decoration: none; }
+    .footer-social-link:hover { color: #2dd4bf; }
+    body.no-scroll { overflow: hidden; }
+    @media (max-width: 768px) { .desktop-nav { display: none; } .hamburger { display: flex; } }
+  </style>
 </head>
 <body>
 
-    <header class="site-header visible-nav" role="banner">
-        <div class="header-inner">
-            <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
-                <img src="/blog.svg" alt="لوگوی پاسگاه">
-            </a>
-            <nav class="desktop-nav" aria-label="منوی اصلی">
-                <ul>
-                    <li><a href="/">پاسگاه</a></li>
-                    <li><a href="/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
-                    <li><a href="/blog/record">فاتحان تاریخ</a></li>
-                    <li><a href="/blog/201">چرا شاه رفت؟</a></li>
-                    <li><a href="/blog/epstein">جفری اپستین</a></li>
-                </ul>
-            </nav>
-            <button class="hamburger" id="hamburger" type="button" aria-label="باز و بسته کردن منو" aria-expanded="false" aria-controls="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
-
-    <nav class="mobile-nav" id="mobileMenu" aria-label="منوی موبایل">
+  <header class="site-header visible-nav" role="banner">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="/blog.svg" alt="لوگوی پاسگاه">
+      </a>
+      <nav class="desktop-nav" aria-label="منوی اصلی">
         <ul>
-            <li><a href="/" class="mobile-link">پاسگاه</a></li>
-            <li><a href="/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
-            <li><a href="/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
-            <li><a href="/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
-            <li><a href="/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+          <li><a href="/">پاسگاه</a></li>
+          <li><a href="/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
+          <li><a href="/blog/record">فاتحان تاریخ</a></li>
+          <li><a href="/blog/201">چرا شاه رفت؟</a></li>
+          <li><a href="/blog/epstein">جفری اپستین</a></li>
         </ul>
-    </nav>
+      </nav>
+      <button class="hamburger" id="hamburger" type="button" aria-label="باز و بسته کردن منو" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
-    <main class="main-content" role="main">
-        <div class="main-content-inner">
-            <div class="search-box-area">
-                <h1>جستجو در وبلاگ</h1>
-                <p>تمام پست‌های منتشرشده، بدون محدودیت</p>
-                <div class="search-bar-wrapper">
-                    <button class="search-icon-btn" id="searchTriggerBtn" aria-label="جستجو">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    </button>
-                    <input type="text" id="searchInput" placeholder="عنوان پست را جستجو کنید..." autocomplete="off">
-                    <button class="clear-btn" id="clearBtn" aria-label="پاک کردن">
-                        <i class="fa-solid fa-times" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="repo-bar">
-                    <input type="text" id="ownerInput" placeholder="نام کاربری گیت‌هاب" dir="ltr">
-                    <input type="text" id="repoInput" placeholder="نام مخزن (مثلاً my-blog)" dir="ltr">
-                    <button id="loadRepoBtn">
-                        <i class="fa-solid fa-cloud-arrow-down" aria-hidden="true"></i>
-                        دریافت همه پست‌ها
-                    </button>
-                </div>
-                <div class="status-text" id="statusText"></div>
-            </div>
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 
-            <section class="articles-section" aria-label="نتایج جستجو">
-                <div id="resultsContainer">
-                    <div class="empty-message">
-                        <span class="icon">&#128218;</span>
-                        <p>اطلاعات مخزن را وارد و روی «دریافت همه پست‌ها» کلیک کنید</p>
-                    </div>
-                </div>
-            </section>
+  <nav class="mobile-nav" id="mobileMenu" aria-label="منوی موبایل">
+    <ul>
+      <li><a href="/" class="mobile-link">پاسگاه</a></li>
+      <li><a href="/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
+      <li><a href="/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
+      <li><a href="/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
+      <li><a href="/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content" role="main">
+    <div class="main-content-inner">
+      <section class="search-section">
+        <h1>جستجو در وبلاگ</h1>
+        <p>تمام پست‌های منتشر شده، بدون محدودیت</p>
+        <div class="search-bar-wrapper">
+          <button class="search-icon-btn" id="searchTriggerBtn" aria-label="جستجو">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </button>
+          <input type="text" id="searchInput" placeholder="عنوان پست را جستجو کنید..." autocomplete="off">
+          <button class="clear-btn" id="clearBtn" aria-label="پاک کردن">
+            <i class="fa-solid fa-times" aria-hidden="true"></i>
+          </button>
         </div>
-    </main>
+        <div class="results-count" id="resultsCount"></div>
+      </section>
 
-    <footer class="site-footer" role="contentinfo">
-        <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
-            <img src="/blog.svg" alt="لوگوی پاسگاه">
-        </a>
-        <a href="https://www.facebook.com/ehsanchehri" rel="me" class="footer-social-link" aria-label="فیسبوک">
-            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-        </a>
-    </footer>
+      <section class="articles-section" aria-label="مطالب وبلاگ">
+        <ul class="article-list" id="postsList">
+          {% for post in site.posts %}
+          <li class="article-item" data-title="{{ post.title | escape }}" data-excerpt="{{ post.excerpt | strip_html | escape }}" data-date="{{ post.date | date_to_xmlschema }}">
+            <article>
+              <a href="{{ post.url | relative_url }}" class="article-link">
+                {% if post.image %}
+                <figure>
+                  <img src="{{ post.image | relative_url }}" alt="" loading="lazy">
+                </figure>
+                {% endif %}
+                <div class="article-body">
+                  <time datetime="{{ post.date | date_to_xmlschema }}"></time>
+                  <h2>{{ post.title | escape }}</h2>
+                  <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+                  <span class="read-more">
+                    ادامه مطلب
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                  </span>
+                </div>
+              </a>
+            </article>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="no-results" id="noResults">
+          <span class="icon">🔍</span>
+          <p>پستی با این مشخصات یافت نشد</p>
+        </div>
+      </section>
+    </div>
+  </main>
 
-    <script>
-        (function() {
-            'use strict';
+  <footer class="site-footer" role="contentinfo">
+    <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
+      <img src="/blog.svg" alt="لوگوی پاسگاه">
+    </a>
+    <a href="https://www.facebook.com/ehsanchehri" rel="me" class="footer-social-link" aria-label="فیسبوک">
+      <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+    </a>
+  </footer>
 
-            var ownerInput = document.getElementById('ownerInput');
-            var repoInput = document.getElementById('repoInput');
-            var loadRepoBtn = document.getElementById('loadRepoBtn');
-            var searchInput = document.getElementById('searchInput');
-            var clearBtn = document.getElementById('clearBtn');
-            var resultsContainer = document.getElementById('resultsContainer');
-            var statusText = document.getElementById('statusText');
-            var searchTriggerBtn = document.getElementById('searchTriggerBtn');
+  <script>
+    (function() {
+      'use strict';
 
-            var allPosts = [];
-            var currentQuery = '';
+      function formatJalaliDate(element) {
+        const datetime = element.getAttribute('datetime');
+        if (!datetime) return;
+        const date = new Date(datetime);
+        if (isNaN(date)) return;
+        const span = element.querySelector('.date-text');
+        const formatted = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }).format(date);
+        if (span) {
+          span.textContent = formatted;
+        } else {
+          element.textContent = formatted;
+        }
+      }
 
-            function setStatus(msg, type) {
-                statusText.textContent = msg;
-                statusText.className = 'status-text';
-                if (type === 'error') statusText.classList.add('error');
-                if (type === 'success') statusText.classList.add('success');
+      document.querySelectorAll('time').forEach(formatJalaliDate);
+
+      const searchInput = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearBtn');
+      const searchTriggerBtn = document.getElementById('searchTriggerBtn');
+      const postsList = document.getElementById('postsList');
+      const noResults = document.getElementById('noResults');
+      const resultsCount = document.getElementById('resultsCount');
+      const articleItems = document.querySelectorAll('.article-item');
+
+      function updateResultsCount(visibleCount, totalCount) {
+        if (searchInput.value.trim() === '') {
+          resultsCount.textContent = totalCount + ' پست';
+        } else {
+          resultsCount.textContent = visibleCount + ' از ' + totalCount + ' پست';
+        }
+      }
+
+      function filterPosts() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+        const totalCount = articleItems.length;
+
+        articleItems.forEach(function(item) {
+          const title = item.getAttribute('data-title') || '';
+          const excerpt = item.getAttribute('data-excerpt') || '';
+          const date = item.getAttribute('data-date') || '';
+          
+          if (query === '') {
+            item.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            if (title.toLowerCase().includes(query) || 
+                excerpt.toLowerCase().includes(query) ||
+                date.includes(query)) {
+              item.classList.remove('hidden');
+              visibleCount++;
+            } else {
+              item.classList.add('hidden');
             }
+          }
+        });
 
-            function normalizeText(text) {
-                return text.replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
-            }
+        updateResultsCount(visibleCount, totalCount);
 
-            function parseJekyllFilename(filename) {
-                var match = filename.match(/^(\d{4}-\d{2}-\d{2})-(.*)\.(md|markdown)$/i);
-                if (!match) {
-                    var clean = filename.replace(/\.(md|markdown)$/i, '');
-                    return {
-                        date: '',
-                        title: normalizeText(clean),
-                        slug: clean,
-                        rawDate: ''
-                    };
-                }
-                var dateStr = match[1];
-                var rawTitle = match[2];
-                var title = normalizeText(rawTitle);
-                return {
-                    date: dateStr,
-                    title: title,
-                    slug: rawTitle,
-                    rawDate: dateStr,
-                    filename: filename
-                };
-            }
+        if (visibleCount === 0 && query !== '') {
+          noResults.classList.add('visible');
+        } else {
+          noResults.classList.remove('visible');
+        }
+      }
 
-            function toJalali(dateStr) {
-                if (!dateStr) return '';
-                var d = new Date(dateStr + 'T00:00:00');
-                if (isNaN(d.getTime())) return dateStr;
-                return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                }).format(d);
-            }
+      function updateClearButton() {
+        if (searchInput.value.trim().length > 0) {
+          clearBtn.classList.add('visible');
+        } else {
+          clearBtn.classList.remove('visible');
+        }
+      }
 
-            function buildPostUrl(post, owner, repo) {
-                var base;
-                if (repo.endsWith('.github.io')) {
-                    base = 'https://' + repo;
-                } else {
-                    base = 'https://' + owner + '.github.io/' + repo;
-                }
-                if (!post.rawDate) {
-                    return base + '/blog/' + post.slug + '/';
-                }
-                var parts = post.rawDate.split('-');
-                var year = parts[0];
-                var month = parts[1];
-                var day = parts[2];
-                return base + '/' + year + '/' + month + '/' + day + '/' + post.slug + '/';
-            }
+      searchInput.addEventListener('input', function() {
+        updateClearButton();
+        filterPosts();
+      });
 
-            async function fetchAllPosts(owner, repo) {
-                var url = 'https://api.github.com/repos/' +
-                    encodeURIComponent(owner) + '/' +
-                    encodeURIComponent(repo) +
-                    '/contents/_posts';
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        updateClearButton();
+        filterPosts();
+        searchInput.focus();
+      });
 
-                var response = await fetch(url, {
-                    headers: { 'Accept': 'application/vnd.github.v3+json' }
-                });
+      searchTriggerBtn.addEventListener('click', function() {
+        filterPosts();
+        searchInput.focus();
+      });
 
-                if (!response.ok) {
-                    if (response.status === 404) throw new Error('پوشه _posts در این مخزن پیدا نشد.');
-                    if (response.status === 403) throw new Error('محدودیت درخواست گیت‌هاب. کمی صبر کنید.');
-                    throw new Error('خطای شبکه: ' + response.status);
-                }
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          updateClearButton();
+          filterPosts();
+          searchInput.blur();
+        }
+      });
 
-                var data = await response.json();
-                if (!Array.isArray(data)) throw new Error('پاسخ غیرمنتظره از گیت‌هاب.');
+      updateClearButton();
+      updateResultsCount(articleItems.length, articleItems.length);
 
-                var posts = data
-                    .filter(function(file) { return file.type === 'file' && /\.(md|markdown)$/i.test(file.name); })
-                    .map(function(file) {
-                        var info = parseJekyllFilename(file.name);
-                        return {
-                            title: info.title,
-                            date: info.date,
-                            slug: info.slug,
-                            rawDate: info.rawDate,
-                            filename: info.filename,
-                            downloadUrl: file.download_url,
-                            path: file.path,
-                            owner: owner,
-                            repo: repo
-                        };
-                    })
-                    .sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      const body = document.body;
 
-                return posts;
-            }
+      function toggleMenu() {
+        const isOpen = mobileMenu.classList.contains('open');
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('open');
+        mobileOverlay.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', String(!isOpen));
+        body.classList.toggle('no-scroll');
+      }
 
-            function highlightMatch(text, query) {
-                if (!query || query.trim().length === 0) return text;
-                var escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                var regex = new RegExp('(' + escaped + ')', 'gi');
-                return text.replace(regex, '<span class="highlight">$1</span>');
-            }
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
 
-            function renderCards(posts, query, owner, repo) {
-                resultsContainer.innerHTML = '';
-                if (posts.length === 0) {
-                    resultsContainer.innerHTML =
-                        '<div class="empty-message">' +
-                        '<span class="icon">&#128269;</span>' +
-                        '<p>هیچ پستی با این مشخصات یافت نشد</p>' +
-                        '</div>';
-                    return;
-                }
+      mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (mobileMenu.classList.contains('open')) toggleMenu();
+        });
+      });
 
-                var grid = document.createElement('div');
-                grid.className = 'article-list';
-                posts.forEach(function(post) {
-                    var card = document.createElement('div');
-                    card.className = 'article-item';
-                    var postUrl = buildPostUrl(post, owner, repo);
-                    card.innerHTML =
-                        '<a href="' + postUrl + '" class="article-link" target="_blank" rel="noopener">' +
-                        '<div class="article-body">' +
-                        '<time datetime="' + (post.date || '') + '">' + (post.date ? toJalali(post.date) :
-                            'بدون تاریخ') + '</time>' +
-                        '<h2>' + highlightMatch(post.title, query) + '</h2>' +
-                        '<div class="post-slug">' + post.filename + '</div>' +
-                        '</div>' +
-                        '</a>';
-                    card.addEventListener('click', function(e) {
-                        window.open(postUrl, '_blank', 'noopener');
-                    });
-                    grid.appendChild(card);
-                });
-                resultsContainer.appendChild(grid);
-            }
+      mobileOverlay.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('open')) toggleMenu();
+      });
 
-            function applyFilter() {
-                if (allPosts.length === 0) {
-                    resultsContainer.innerHTML =
-                        '<div class="empty-message">' +
-                        '<span class="icon">&#128218;</span>' +
-                        '<p>ابتدا پست‌ها را از مخزن دریافت کنید</p>' +
-                        '</div>';
-                    return;
-                }
-                var q = currentQuery.trim().toLowerCase();
-                var filtered;
-                if (q === '') {
-                    filtered = allPosts.slice();
-                } else {
-                    filtered = allPosts.filter(function(p) {
-                        return p.title.toLowerCase().includes(q) ||
-                            p.slug.toLowerCase().includes(q) ||
-                            (p.date && p.date.includes(q)) ||
-                            (p.filename && p.filename.toLowerCase().includes(q));
-                    });
-                }
-                var owner = ownerInput.value.trim() || 'unknown';
-                var repo = repoInput.value.trim() || 'unknown';
-                renderCards(filtered, q, owner, repo);
-            }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) toggleMenu();
+      });
 
-            function updateClearVisibility() {
-                if (searchInput.value.trim().length > 0) {
-                    clearBtn.classList.add('visible');
-                } else {
-                    clearBtn.classList.remove('visible');
-                }
-            }
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
+          toggleMenu();
+        }
+      });
 
-            async function loadRepository() {
-                var owner = ownerInput.value.trim();
-                var repo = repoInput.value.trim();
-                if (!owner || !repo) {
-                    setStatus('نام کاربری و مخزن را وارد کنید.', 'error');
-                    return;
-                }
-                setStatus('در حال دریافت تمام پست‌ها...', '');
-                resultsContainer.innerHTML =
-                    '<div class="empty-message">' +
-                    '<span class="icon"><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i></span>' +
-                    '<p>در حال بارگذاری همه پست‌ها (بدون محدودیت)...</p>' +
-                    '</div>';
-                try {
-                    var posts = await fetchAllPosts(owner, repo);
-                    allPosts = posts;
-                    setStatus(posts.length + ' پست با موفقیت دریافت شد.', 'success');
-                    applyFilter();
-                } catch (e) {
-                    console.error(e);
-                    setStatus('خطا: ' + e.message, 'error');
-                    resultsContainer.innerHTML =
-                        '<div class="empty-message">' +
-                        '<span class="icon">&#9888;</span>' +
-                        '<p>دریافت پست‌ها با مشکل مواجه شد. اطلاعات را بررسی کنید.</p>' +
-                        '</div>';
-                    allPosts = [];
-                }
-            }
+      const header = document.querySelector('.site-header');
+      let lastScrollY = window.scrollY;
+      const SCROLL_THRESHOLD = 30;
+      let ticking = false;
 
-            loadRepoBtn.addEventListener('click', loadRepository);
+      function updateNavbarVisibility(currentScrollY) {
+        if (currentScrollY > SCROLL_THRESHOLD) {
+          if (currentScrollY > lastScrollY) {
+            header.classList.remove('visible-nav');
+            header.classList.add('hidden-nav');
+          } else {
+            header.classList.remove('hidden-nav');
+            header.classList.add('visible-nav');
+          }
+        } else {
+          header.classList.remove('hidden-nav');
+          header.classList.add('visible-nav');
+        }
+        lastScrollY = currentScrollY;
+      }
 
-            searchInput.addEventListener('input', function() {
-                currentQuery = searchInput.value;
-                updateClearVisibility();
-                applyFilter();
-            });
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateNavbarVisibility(window.scrollY);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
 
-            clearBtn.addEventListener('click', function() {
-                searchInput.value = '';
-                currentQuery = '';
-                updateClearVisibility();
-                applyFilter();
-                searchInput.focus();
-            });
+      window.addEventListener('load', function() {
+        header.classList.add('visible-nav');
+        header.classList.remove('hidden-nav');
+      });
 
-            searchTriggerBtn.addEventListener('click', function() {
-                applyFilter();
-                searchInput.focus();
-            });
+    })();
+  </script>
 
-            searchInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    searchInput.value = '';
-                    currentQuery = '';
-                    updateClearVisibility();
-                    applyFilter();
-                    searchInput.blur();
-                }
-                if (e.key === 'Enter') {
-                    applyFilter();
-                }
-            });
-
-            updateClearVisibility();
-
-            var hamburger = document.getElementById('hamburger');
-            var mobileMenu = document.getElementById('mobileMenu');
-            var mobileOverlay = document.getElementById('mobileOverlay');
-            var mobileLinks = document.querySelectorAll('.mobile-link');
-            var body = document.body;
-
-            function toggleMenu() {
-                var isOpen = mobileMenu.classList.contains('open');
-                hamburger.classList.toggle('active');
-                mobileMenu.classList.toggle('open');
-                mobileOverlay.classList.toggle('open');
-                hamburger.setAttribute('aria-expanded', String(!isOpen));
-                body.classList.toggle('no-scroll');
-            }
-
-            hamburger.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleMenu();
-            });
-
-            mobileLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    if (mobileMenu.classList.contains('open')) toggleMenu();
-                });
-            });
-
-            mobileOverlay.addEventListener('click', function() {
-                if (mobileMenu.classList.contains('open')) toggleMenu();
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && mobileMenu.classList.contains('open')) toggleMenu();
-            });
-
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) toggleMenu();
-            });
-
-            var header = document.querySelector('.site-header');
-            var lastScrollY = window.scrollY;
-            var SCROLL_THRESHOLD = 30;
-            var ticking = false;
-
-            function updateNavbarVisibility(currentScrollY) {
-                if (currentScrollY > SCROLL_THRESHOLD) {
-                    if (currentScrollY > lastScrollY) {
-                        header.classList.remove('visible-nav');
-                        header.classList.add('hidden-nav');
-                    } else {
-                        header.classList.remove('hidden-nav');
-                        header.classList.add('visible-nav');
-                    }
-                } else {
-                    header.classList.remove('hidden-nav');
-                    header.classList.add('visible-nav');
-                }
-                lastScrollY = currentScrollY;
-            }
-
-            window.addEventListener('scroll', function() {
-                if (!ticking) {
-                    window.requestAnimationFrame(function() {
-                        updateNavbarVisibility(window.scrollY);
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-
-            window.addEventListener('load', function() {
-                header.classList.add('visible-nav');
-                header.classList.remove('hidden-nav');
-            });
-
-        })();
-    </script>
 </body>
 </html>
