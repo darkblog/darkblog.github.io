@@ -302,10 +302,13 @@ layout: none
       margin-bottom: 1.5rem;
       max-width: 40rem;
       margin-inline: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .search-box {
-      width: 100%;
+      flex: 1;
       padding: 0.8rem 1.2rem;
       font-size: 1rem;
       font-family: inherit;
@@ -325,6 +328,31 @@ layout: none
     .search-box::placeholder {
       color: #a8a09a;
       opacity: 0.8;
+    }
+
+    .search-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1c1917;
+      color: white;
+      border: none;
+      border-radius: 1rem;
+      padding: 0.8rem 1.2rem;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .search-button:hover {
+      background-color: #000;
+    }
+
+    .search-button i {
+      margin-left: 0.4rem;
     }
 
     .search-stats {
@@ -461,6 +489,13 @@ layout: none
       .hamburger {
         display: flex;
       }
+      .search-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-button {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -514,11 +549,15 @@ layout: none
           type="search"
           id="searchInput"
           class="search-box"
-          placeholder="جستجو در عناوین پست‌ها ..."
+          placeholder="جستجو..."
           autocomplete="off"
           autocorrect="off"
           spellcheck="false"
         >
+        <button id="searchButton" class="search-button" type="button">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          جستجو
+        </button>
       </div>
 
       <div class="search-stats" id="searchStats" aria-live="polite" aria-atomic="true"></div>
@@ -660,6 +699,7 @@ layout: none
       });
 
       var searchInput = document.getElementById('searchInput');
+      var searchButton = document.getElementById('searchButton');
       var searchStats = document.getElementById('searchStats');
       var noResults = document.getElementById('noResultsMessage');
       var allItems = document.querySelectorAll('.post-card');
@@ -705,15 +745,22 @@ layout: none
           }
         }
 
-        var debounceTimer;
         searchInput.addEventListener('input', function() {
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(performSearch, 40);
+          performSearch();
         });
 
         searchInput.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') e.preventDefault();
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+          }
         });
+
+        if (searchButton) {
+          searchButton.addEventListener('click', function() {
+            performSearch();
+          });
+        }
 
         performSearch();
       }
