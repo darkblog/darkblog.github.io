@@ -1,94 +1,49 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحه آزمایشی - وبلاگ پاسگاه</title>
+    <meta charset="UTF-8">
+    <style>
+        /* این همان بخش CSS است که در کد قبلی برای اصلاح لیست‌ها داشتیم */
+        .article-content {
+            border: 2px solid #333;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            font-family: Tahoma, sans-serif;
+            line-height: 1.8;
+        }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --header-height: 5rem; --gap: clamp(1rem, 2vw, 2rem); --font-size-base: 1.125rem; }
-    body { font-family: 'Vazirmatn', system-ui, sans-serif; background-color: #f8f1e9; color: #1e1b1a; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; font-size: var(--font-size-base); }
-    main { flex: 1; }
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background-color: #000000; border-bottom: 1px solid #2a2a2a; color: white; padding: 1.25rem clamp(1rem, 3vw, 1.5rem); }
-    .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 3rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; }
-    .main-content-inner { max-width: 80rem; margin: 0 auto; }
-    
-    /* Article Styles */
-    .post-title { font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 800; margin-bottom: 2rem; color: #1c1917; }
-    .article-content { line-height: 1.9; color: #2d2a28; }
-    .article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: #1c1917; font-size: clamp(1.5rem, 3.5vw, 2rem); }
-    .article-content p { margin-bottom: 1.5rem; }
-    .article-content blockquote { border-right: 4px solid #000000; padding: 1.5rem; margin: 2rem 0; background: #faf8f5; color: #4a4643; }
-    .article-content ul { margin: 1.5rem 0; padding-right: 2rem; }
-    .article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e5e0db; }
-    .article-content table th, .article-content table td { padding: 1rem; border-bottom: 1px solid #e5e0db; text-align: right; }
-    .article-content table thead { background-color: #1c1917; color: #fff; }
-    .article-content table tbody tr:nth-child(even) { background-color: #faf8f5; }
-  </style>
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-right: 1.5rem; /* فضای کافی برای شماره‌ها */
+            list-style-position: inside; /* نکته اصلی: نگه داشتن لیست در داخل باکس */
+        }
+
+        .article-content li {
+            margin-bottom: 0.75rem;
+        }
+    </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div style="max-width: 80rem; margin: 0 auto;">وبلاگ پاسگاه</div>
-  </header>
-
-  <main class="main-content">
-    <div class="main-content-inner">
-      <article>
-        <h1 class="post-title">عنوان آزمایشی برای بررسی استایل‌های صفحه</h1>
+    <div class="article-content">
+        <h2>تست نمایش لیست‌ها</h2>
+        <p>در اینجا یک لیست شماره‌دار داریم که باید کاملاً داخل کادر باقی بماند:</p>
         
-        <div class="article-content">
-          <p>این یک پاراگراف متن معمولی برای بررسی فونت <strong>Vazirmatn</strong> و فاصله خطوط است. هدف از این متن، نمایش نحوه نمایش متن‌های طولانی در قالب سایت «پاسگاه» است تا مطمئن شویم خوانایی محتوا در دستگاه‌های مختلف به درستی حفظ می‌شود.</p>
+        <ol>
+            <li>این اولین مورد از لیست شماره‌دار است که متن طولانی دارد تا مطمئن شویم اگر خط‌شکنی انجام شد، شماره‌ها بیرون نمی‌افتند.</li>
+            <li>مورد دوم؛ این هم یک تست برای بررسی تراز بودن شماره‌ها در سمت راست است.</li>
+            <li>مورد سوم.</li>
+        </ol>
 
-          <h2>تیتر دوم برای بخش‌بندی محتوا</h2>
-          <p>این پاراگراف زیر تیتر دوم قرار دارد. اینجا می‌توانید نحوه فاصله گذاری بین تیترها و متن را مشاهده کنید. همچنین این یک <a href="#">لینک نمونه</a> است تا رنگ و استایل لینک‌ها در متن را چک کنید.</p>
-
-          <h3>تیتر سوم برای جزئیات</h3>
-          <ul>
-            <li>این یک آیتم از لیست نامرتب است.</li>
-            <li>آیتم دوم لیست برای چک کردن فاصله بین خطوط.</li>
-            <li>آیتم سوم که نشان‌دهنده نحوه نمایش لیست‌های طولانی است.</li>
-          </ul>
-
-          <blockquote>این یک بلاک‌نقل‌قول (Blockquote) است. باید با استایل متفاوت و خط تیره در سمت راست نمایش داده شود تا جملات مهم یا نقل‌قول‌ها در نوشته‌های شما متمایز باشند.</blockquote>
-
-          <h2>بررسی جداول (Table)</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>عنوان ستون اول</th>
-                <th>عنوان ستون دوم</th>
-                <th>نتیجه نهایی</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ردیف اول</td>
-                <td>تست محتوا</td>
-                <td>عالی</td>
-              </tr>
-              <tr>
-                <td>ردیف دوم</td>
-                <td>تست چینش</td>
-                <td>خوب</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h2>لیست شماره‌دار</h2>
-          <ol>
-            <li>اولین مورد مهم.</li>
-            <li>دومین مورد که کمی طولانی‌تر است تا نحوه شکستن خطوط را در لیست‌های عددی بررسی کنیم.</li>
-            <li>سومین مورد که پایان‌بخش لیست آزمایشی است.</li>
-          </ol>
-        </div>
-      </article>
+        <p>و این هم یک لیست گلوله‌ای (نقطه‌ای):</p>
+        
+        <ul>
+            <li>این یک آیتم در لیست غیرترتیبی است.</li>
+            <li>این هم آیتم دوم که باید مانند لیست عددی، در داخل محدوده باکس محتوا قرار گرفته باشد و از کادر بیرون نزند.</li>
+        </ul>
     </div>
-  </main>
+
 </body>
 </html>
