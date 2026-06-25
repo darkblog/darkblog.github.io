@@ -64,9 +64,7 @@
           "@id": "{{ page.url | absolute_url }}"
         },
         "headline": {{ page.title | jsonify }},
-        {%- if desc != "" -%}
-        "description": {{ desc | jsonify }},
-        {%- endif -%}
+        "description": {{ desc | default: "" | jsonify }},
         "author": {
           "@type": "Person",
           "name": "احسان چهری"
