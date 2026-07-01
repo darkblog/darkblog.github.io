@@ -147,16 +147,16 @@
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
     .main-content-inner { max-width: 80rem; margin: 0 auto; }
     .article-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: var(--gap); list-style: none; padding: 0; }
-    .article-item { background-color: white; border: 1px solid #e5e0db; border-radius: 1.5rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .article-item { background-color: white; border: 1px solid #e5e0db; border-radius: 1.5rem; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
     .article-item:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
-    .article-link { text-decoration: none; color: inherit; display: block; }
-    .article-item figure { margin: 0; background-color: #f1ede8; }
-    .article-item figure img { display: block; width: 100%; height: clamp(10rem, 20vw, 14rem); object-fit: cover; }
-    .article-body { padding: clamp(1rem, 2.5vw, 1.75rem); font-size: inherit; }
+    .article-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; flex: 1; }
+    .article-item figure { margin: 0; background-color: #f1ede8; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .article-item figure img { display: block; max-width: 100%; max-height: 16rem; height: auto; width: auto; object-fit: contain; }
+    .article-body { padding: clamp(1rem, 2.5vw, 1.75rem); font-size: inherit; flex: 1; display: flex; flex-direction: column; }
     .article-body time { display: inline-block; color: #0d9488; margin-bottom: 0.5rem; font-size: inherit; }
     .article-body h2 { font-weight: 800; line-height: 1.4; margin: 0 0 0.5rem 0; font-size: 1.5rem; letter-spacing: -0.02em; color: #1c1917; }
     .article-body p { color: #4a4643; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: inherit; }
-    .read-more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; color: #0d9488; font-weight: 500; transition: color 0.2s; font-size: inherit; }
+    .read-more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 1rem; color: #0d9488; font-weight: 500; transition: color 0.2s; font-size: inherit; }
     .read-more:hover { color: #0f766e; }
     .load-more-wrapper { text-align: center; margin-top: calc(var(--gap) * 1.5); font-size: inherit; }
     .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background-color: #1c1917; color: white; padding: 0.75rem 2rem; border-radius: 1rem; font-weight: 500; text-decoration: none; transition: background-color 0.2s; cursor: pointer; border: none; font-family: inherit; font-size: inherit; }
@@ -173,11 +173,11 @@
     .post-image img { display: block; width: 100%; height: auto; border-radius: 1rem; }
     .article-content { line-height: 1.9; color: #2d2a28; margin-top: 2.5rem; font-size: inherit; }
     .article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: #1c1917; font-size: clamp(1.4rem, 3.5vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.4; }
-    .article-content p { margin-bottom: 1.5rem; font-size: inherit; text-align: justify; }
+    .article-content p { margin-bottom: 1.5rem; font-size: inherit; }
     .article-content a { color: #0d9488; text-decoration: none; font-weight: 500; border-bottom: 1px dashed currentColor; }
     .article-content a:hover { text-decoration: none; color: #0f766e; border-bottom-style: solid; }
     .article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 2rem 0; }
-    .article-content blockquote { border-right: 4px solid #1c1917; padding: 1.5rem; margin: 2rem 0; color: #4a4643; background: #faf8f5; border-radius: 0 0.5rem 0.5rem 0; }
+    .article-content blockquote { border-right: 4px solid #000000; padding: 1.5rem; margin: 2rem 0; color: #4a4643; background: #faf8f5; }
     .article-content ul, .article-content ol { margin: 1.5rem 0; padding-right: 1.5rem; }
     .article-content li { margin-bottom: 0.75rem; }
     .article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid #e5e0db; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; direction: rtl !important; text-align: right !important; }
