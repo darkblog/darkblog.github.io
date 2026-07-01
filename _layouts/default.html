@@ -206,7 +206,6 @@
       <nav class="desktop-nav" aria-label="منوی اصلی">
         <ul>
           {% if page.type == 'post' %}
-            <li><a href="/">پاسگاه</a></li>
             {% assign current_post_id = page.id %}
             {% for post in site.posts %}
               {% if post.id != current_post_id %}
@@ -222,7 +221,6 @@
               {% endif %}
             {% endfor %}
           {% else %}
-            <li><a href="/">پاسگاه</a></li>
             <li><a href="/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
             <li><a href="/blog/record">فاتحان تاریخ</a></li>
             <li><a href="/blog/201">چرا شاه رفت؟</a></li>
@@ -241,7 +239,6 @@
   <nav class="mobile-nav" id="mobileMenu" aria-label="منوی موبایل">
     <ul>
       {% if page.type == 'post' %}
-        <li><a href="/" class="mobile-link">پاسگاه</a></li>
         {% assign current_post_id = page.id %}
         {% for post in site.posts %}
           {% if post.id != current_post_id %}
@@ -257,7 +254,6 @@
           {% endif %}
         {% endfor %}
       {% else %}
-        <li><a href="/" class="mobile-link">پاسگاه</a></li>
         <li><a href="/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
         <li><a href="/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
         <li><a href="/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
