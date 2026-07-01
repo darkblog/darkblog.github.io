@@ -205,11 +205,29 @@
       </a>
       <nav class="desktop-nav" aria-label="منوی اصلی">
         <ul>
-          <li><a href="/">پاسگاه</a></li>
-          <li><a href="/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
-          <li><a href="/blog/record">فاتحان تاریخ</a></li>
-          <li><a href="/blog/201">چرا شاه رفت؟</a></li>
-          <li><a href="/blog/epstein">جفری اپستین</a></li>
+          {% if page.type == 'post' %}
+            <li><a href="/">پاسگاه</a></li>
+            {% assign current_post_id = page.id %}
+            {% for post in site.posts %}
+              {% if post.id != current_post_id %}
+                {% assign common_tags_count = 0 %}
+                {% for tag in post.tags %}
+                  {% if page.tags contains tag %}
+                    {% assign common_tags_count = common_tags_count | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+                {% if common_tags_count > 0 %}
+                  <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <li><a href="/">پاسگاه</a></li>
+            <li><a href="/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
+            <li><a href="/blog/record">فاتحان تاریخ</a></li>
+            <li><a href="/blog/201">چرا شاه رفت؟</a></li>
+            <li><a href="/blog/epstein">جفری اپستین</a></li>
+          {% endif %}
         </ul>
       </nav>
       <button class="hamburger" id="hamburger" type="button" aria-label="باز و بسته کردن منو" aria-expanded="false" aria-controls="mobileMenu">
@@ -222,11 +240,29 @@
   <div class="mobile-nav-overlay" id="mobileOverlay"></div>
   <nav class="mobile-nav" id="mobileMenu" aria-label="منوی موبایل">
     <ul>
-      <li><a href="/" class="mobile-link">پاسگاه</a></li>
-      <li><a href="/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
-      <li><a href="/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
-      <li><a href="/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
-      <li><a href="/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+      {% if page.type == 'post' %}
+        <li><a href="/" class="mobile-link">پاسگاه</a></li>
+        {% assign current_post_id = page.id %}
+        {% for post in site.posts %}
+          {% if post.id != current_post_id %}
+            {% assign common_tags_count = 0 %}
+            {% for tag in post.tags %}
+              {% if page.tags contains tag %}
+                {% assign common_tags_count = common_tags_count | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+            {% if common_tags_count > 0 %}
+              <li><a href="{{ post.url | relative_url }}" class="mobile-link">{{ post.title | escape }}</a></li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <li><a href="/" class="mobile-link">پاسگاه</a></li>
+        <li><a href="/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
+        <li><a href="/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
+        <li><a href="/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
+        <li><a href="/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+      {% endif %}
     </ul>
   </nav>
   <main class="main-content">
