@@ -123,7 +123,7 @@ layout: null
         <h2 id="recent-heading" class="section-title">آخرین پست‌های وبلاگ</h2>
         <meta itemprop="numberOfItems" content="6">
         <ul class="posts-grid">
-          {% assign posts_to_show = site.posts | slice: 0, 6 %}
+          {% assign posts_to_show = site.posts | slice: 0, 10 %}
           {% for post in posts_to_show %}
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <meta itemprop="position" content="{{ forloop.index }}">
