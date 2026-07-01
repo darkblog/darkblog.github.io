@@ -166,7 +166,7 @@
     .post-breadcrumb { margin-bottom: 1.5rem; font-size: inherit; }
     .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.5rem; color: #0d9488; text-decoration: none; font-weight: 500; font-size: inherit; }
     .post-breadcrumb a:hover { color: #0f766e; }
-    .post-meta { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; color: #1c1917; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e0db; font-size: inherit; }
+    .post-meta { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; color: #1c1917; padding-top: 1.5rem; font-size: inherit; }
     .post-meta time { color: #1c1917; display: flex; align-items: center; gap: 0.35rem; font-size: inherit; }
     .post-author { display: flex; align-items: center; gap: 0.35rem; color: #1c1917; font-size: inherit; }
     .post-image { margin-bottom: 2.5rem; }
@@ -271,22 +271,22 @@
             </a>
           </nav>
           <h1 class="post-title">{{ page.title | escape }}</h1>
-          <div class="post-meta">
-            <span class="post-author">
-              <span aria-hidden="true">👤</span>
-              <span>احسان چهری</span>
-            </span>
-            <time datetime="{{ page.date | date_to_xmlschema }}">
-              <span aria-hidden="true">📅</span>
-              <span class="date-text"></span>
-            </time>
-          </div>
         </header>
         {% if page.image %}
         <figure class="post-image">
           <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}">
         </figure>
         {% endif %}
+        <div class="post-meta">
+          <span class="post-author">
+            <span aria-hidden="true">👤</span>
+            <span>احسان چهری</span>
+          </span>
+          <time datetime="{{ page.date | date_to_xmlschema }}">
+            <span aria-hidden="true">📅</span>
+            <span class="date-text"></span>
+          </time>
+        </div>
         <div class="article-content">
           {{ content }}
         </div>
