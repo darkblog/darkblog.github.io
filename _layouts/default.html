@@ -180,14 +180,17 @@
     .article-content blockquote { border-right: 4px solid #1c1917; padding: 1.5rem; margin: 2rem 0; color: #4a4643; background: #faf8f5; border-radius: 0 0.5rem 0.5rem 0; }
     .article-content ul, .article-content ol { margin: 1.5rem 0; padding-right: 1.5rem; }
     .article-content li { margin-bottom: 0.75rem; }
-    .article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid #e5e0db; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; direction: rtl; }
-    .article-content table thead { background-color: #1c1917; color: #fff; }
+    
+    /* تنظیمات مربوط به جدول و راست‌چین کردن محتوا */
+    .article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid #e5e0db; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; direction: rtl; text-align: right; }
+    .article-content table thead { background-color: #1c1917; color: #fff; text-align: right; }
     .article-content table th, .article-content table td { padding: 1rem 1.5rem; border-bottom: 1px solid #e5e0db; white-space: normal; word-break: break-word; min-width: 10rem; text-align: right; direction: rtl; }
-    .article-content table th { font-weight: 700; border-bottom: 2px solid #2d2a28; white-space: nowrap; }
+    .article-content table th { font-weight: 700; border-bottom: 2px solid #2d2a28; white-space: nowrap; text-align: right; }
     .article-content table tbody tr:last-child td { border-bottom: none; }
     .article-content table tbody tr:nth-child(even) { background-color: #faf8f5; }
     .article-content table tbody tr:hover { background-color: #f1ede8; }
     .article-content table caption { direction: rtl; text-align: right; padding: 0.5rem 0; font-weight: 500; color: #1c1917; }
+    
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; max-width: 80rem; margin: 0 auto; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; transition: opacity 0.2s; }
@@ -342,6 +345,8 @@
   <script>
     (function() {
       'use strict';
+      if (typeof window === 'undefined') return;
+      
       function formatJalaliDate(element) {
         const datetime = element.getAttribute('datetime');
         if (!datetime) return;
