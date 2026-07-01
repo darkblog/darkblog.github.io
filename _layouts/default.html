@@ -47,7 +47,7 @@
   <meta name="twitter:image" content="{{ page.image | absolute_url }}">
   {%- endif -%}
   {%- if page.type == 'post' -%}
-  <script type="application/ld+json">
+  <script type="application+json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -221,10 +221,9 @@
               {% endif %}
             {% endfor %}
           {% else %}
-            <li><a href="/blog/mohammadreza-pahlavi">محمدرضا پهلوی</a></li>
-            <li><a href="/blog/record">فاتحان تاریخ</a></li>
-            <li><a href="/blog/201">چرا شاه رفت؟</a></li>
-            <li><a href="/blog/epstein">جفری اپستین</a></li>
+            {% for post in site.posts limit: 5 %}
+              <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+            {% endfor %}
           {% endif %}
         </ul>
       </nav>
@@ -254,10 +253,9 @@
           {% endif %}
         {% endfor %}
       {% else %}
-        <li><a href="/blog/mohammadreza-pahlavi" class="mobile-link">محمدرضا پهلوی</a></li>
-        <li><a href="/blog/record" class="mobile-link">فاتحان تاریخ</a></li>
-        <li><a href="/blog/201" class="mobile-link">چرا شاه رفت؟</a></li>
-        <li><a href="/blog/epstein" class="mobile-link">جفری اپستین</a></li>
+        {% for post in site.posts limit: 5 %}
+          <li><a href="{{ post.url | relative_url }}" class="mobile-link">{{ post.title | escape }}</a></li>
+        {% endfor %}
       {% endif %}
     </ul>
   </nav>
