@@ -171,8 +171,8 @@
     .post-meta { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; color: #1c1917; padding-top: 1.5rem; font-size: inherit; }
     .post-meta time { color: #1c1917; display: flex; align-items: center; gap: 0.35rem; font-size: inherit; min-width: 16ch; }
     .post-author { display: flex; align-items: center; gap: 0.35rem; color: #1c1917; font-size: inherit; }
-    .post-image { margin-bottom: 2.5rem; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 1rem; background-color: #f1ede8; }
-    .post-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .post-image { margin-bottom: 2.5rem; border-radius: 1rem; overflow: hidden; background-color: #f1ede8; }
+    .post-image img { display: block; width: 100%; height: auto; }
     .article-content { line-height: 1.9; color: #2d2a28; margin-top: 2.5rem; font-size: inherit; }
     .article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: #1c1917; font-size: clamp(1.4rem, 3.5vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.4; }
     .article-content p { margin-bottom: 1.5rem; font-size: inherit; }
@@ -251,7 +251,7 @@
         </header>
         {% if page.image %}
         <figure class="post-image">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" width="16" height="9" fetchpriority="high">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" fetchpriority="high">
         </figure>
         {% endif %}
         <div class="post-meta">
