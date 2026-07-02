@@ -262,7 +262,7 @@
           </span>
           <time datetime="{{ page.date | date_to_xmlschema }}">
             <span aria-hidden="true">📅</span>
-            <span class="date-text"></span>
+            <span class="date-text">{{ page.date | date: "%Y-%m-%d" }}</span>
           </time>
         </div>
         <div class="article-content">
@@ -292,7 +292,7 @@
                       </figure>
                       {% endif %}
                       <div class="article-body">
-                        <time datetime="{{ post.date | date_to_xmlschema }}"></time>
+                        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
                         <h2>{{ post.title | escape }}</h2>
                         <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
                       </div>
@@ -325,7 +325,7 @@
                 </figure>
                 {% endif %}
                 <div class="article-body">
-                  <time datetime="{{ post.date | date_to_xmlschema }}"></time>
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
                   <h2>{{ post.title | escape }}</h2>
                   <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
                   <span class="read-more">
