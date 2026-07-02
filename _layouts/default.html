@@ -1,3 +1,7 @@
+---
+layout: null
+---
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
 <head>
@@ -53,7 +57,7 @@
   <meta name="twitter:image" content="{{ page.image | absolute_url }}">
   {%- endif -%}
   {%- if page.type == 'post' -%}
-  <script type="application+json">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -198,7 +202,7 @@
         <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
           <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40" fetchpriority="high">
         </a>
-        <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو">
+        <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو" tabindex="0">
           <span></span>
           <span></span>
           <span></span>
@@ -270,7 +274,7 @@
                     <a href="{{ post.url | relative_url }}" class="article-link">
                       {% if post.image %}
                       <figure>
-                        <img src="{{ post.image | relative_url }}" alt="" width="16" height="9" loading="lazy" {% if related_count == 1 %}fetchpriority="high"{% endif %}>
+                        <img src="{{ post.image | relative_url }}" alt="" width="640" height="360" loading="lazy" {% if related_count == 1 %}fetchpriority="high"{% endif %}>
                       </figure>
                       {% endif %}
                       <div class="article-body">
@@ -302,7 +306,7 @@
               <a href="{{ post.url | relative_url }}" class="article-link">
                 {% if post.image %}
                 <figure>
-                  <img src="{{ post.image | relative_url }}" alt="" width="16" height="9" loading="lazy" {% if forloop.first %}fetchpriority="high"{% endif %}>
+                  <img src="{{ post.image | relative_url }}" alt="" width="640" height="360" loading="lazy" {% if forloop.first %}fetchpriority="high"{% endif %}>
                 </figure>
                 {% endif %}
                 <div class="article-body">
@@ -333,7 +337,7 @@
       <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
         <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40">
       </a>
-      <label for="menu-toggle" class="hamburger-footer" aria-label="باز و بسته کردن منو از فوتر">
+      <label for="menu-toggle" class="hamburger-footer" aria-label="باز و بسته کردن منو از فوتر" tabindex="0">
         <span></span>
         <span></span>
         <span></span>
