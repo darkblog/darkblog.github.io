@@ -24,50 +24,25 @@ layout: null
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
+    "@type": "BreadcrumbList",
+    "itemListElement": [
       {
-        "@type": "BlogPosting",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "{{ page.url | absolute_url }}"
-        },
-        "headline": {{ page.title | jsonify }},
-        "description": {{ desc | jsonify }},
-        "publisher": {
-          "@type": "Organization",
-          "name": "وبلاگ پاسگاه",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "{{ site.url | absolute_url }}/blog.svg"
-          }
-        },
-        "datePublished": "{{ page.date | date_to_xmlschema }}"
-        {%- if page.image -%}
-        ,"image": "{{ page.image | absolute_url }}"
-        {%- endif -%}
+        "@type": "ListItem",
+        "position": 1,
+        "name": "خانه",
+        "item": "{{ site.url | absolute_url }}"
       },
       {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "خانه",
-            "item": "{{ site.url | absolute_url }}"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "وبلاگ",
-            "item": "{{ site.url | absolute_url }}/blog"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": {{ page.title | jsonify }},
-            "item": "{{ page.url | absolute_url }}"
-          }
-        ]
+        "@type": "ListItem",
+        "position": 2,
+        "name": "وبلاگ",
+        "item": "{{ site.url | absolute_url }}/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{ page.title | jsonify }},
+        "item": "{{ page.url | absolute_url }}"
       }
     ]
   }
@@ -188,14 +163,15 @@ layout: null
               وبلاگ
             </a>
           </nav>
-          <h1 class="post-title">{{ page.title | escape }}</h1>
+          <time datetime="{{ page.date | date_to_xmlschema }}" style="display:none;">{{ page.date | date: "%Y-%m-%d" }}</time>
+          <h1 class="post-title" itemprop="headline">{{ page.title | escape }}</h1>
         </header>
         {% if page.image %}
         <figure class="post-image">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" fetchpriority="high">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" itemprop="image" fetchpriority="high">
         </figure>
         {% endif %}
-        <div class="article-content">
+        <div class="article-content" itemprop="articleBody">
           {{ content }}
         </div>
       </article>
