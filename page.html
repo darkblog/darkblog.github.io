@@ -73,7 +73,6 @@ layout: none
     .search-box { width: 100%; padding: 0.8rem 1.2rem; font-size: 1rem; font-family: inherit; border: 2px solid #e5e0db; border-radius: 1rem; background-color: white; color: #1e1b1a; }
     .search-box:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15); }
     .search-box::placeholder { color: #a8a09a; opacity: 0.8; }
-    .search-stats { color: #4a4643; font-size: 0.95rem; margin-bottom: 1.5rem; min-height: 1.8rem; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
     .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
     .posts-list li:last-child { border-bottom: none; }
@@ -135,8 +134,6 @@ layout: none
         >
       </div>
 
-      <div class="search-stats" id="searchStats" aria-live="polite" aria-atomic="true"></div>
-
       <div id="archiveContent">
         <ul class="posts-list" id="postsList">
           {% for post in site.posts %}
@@ -169,10 +166,10 @@ layout: none
       'use strict';
 
       var searchInput = document.getElementById('searchInput');
-      var searchStats = document.getElementById('searchStats');
       var noResults = document.getElementById('noResultsMessage');
       var allItems = document.querySelectorAll('#postsList > li');
       var total = allItems.length;
+      var INITIAL_LIMIT = 50;
 
       if (searchInput && total > 0) {
 
@@ -186,32 +183,32 @@ layout: none
             .trim();
         }
 
-        var cache = Array.from(allItems).map(function(item) {
+        var cache = Array.from(allItems).map(function(item, index) {
           var titleElement = item.querySelector('a');
           var rawTitle = titleElement ? titleElement.textContent : '';
           return {
             el: item,
-            title: normalize(rawTitle)
+            title: normalize(rawTitle),
+            index: index
           };
         });
 
         function performSearch() {
           var term = normalize(searchInput.value);
-          var count = 0;
+          var anyVisible = false;
 
           cache.forEach(function(entry) {
-            var match = term === '' || entry.title.includes(term);
-            entry.el.classList.toggle('hidden-post', !match);
-            if (match) count++;
+            var shouldShow = false;
+            if (term === '') {
+              shouldShow = entry.index < INITIAL_LIMIT;
+            } else {
+              shouldShow = entry.title.includes(term);
+            }
+            entry.el.classList.toggle('hidden-post', !shouldShow);
+            if (shouldShow) anyVisible = true;
           });
 
-          if (term === '') {
-            searchStats.textContent = '';
-            noResults.hidden = true;
-          } else {
-            searchStats.textContent = count + ' مورد از ' + total + ' مطلب';
-            noResults.hidden = count > 0;
-          }
+          noResults.hidden = anyVisible || term === '';
         }
 
         var debounceTimer;
