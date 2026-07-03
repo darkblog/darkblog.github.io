@@ -48,6 +48,21 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
+    .slider { position: relative; width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); background: #f0ebe4; aspect-ratio: 16 / 9; }
+    .slider input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+    .slides { position: relative; width: 100%; height: 100%; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; z-index: 1; }
+    .slide a { display: block; width: 100%; height: 100%; text-decoration: none; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #s1-radio:checked ~ .slides #s1,
+    #s2-radio:checked ~ .slides #s2,
+    #s3-radio:checked ~ .slides #s3 { opacity: 1; z-index: 2; }
+    .slider-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.75rem; z-index: 5; direction: ltr; }
+    .slider-dots label { width: 0.75rem; height: 0.75rem; border-radius: 50%; background: rgba(255,255,255,0.6); cursor: pointer; transition: background 0.3s, transform 0.2s; border: 2px solid transparent; }
+    .slider-dots label:hover { background: rgba(255,255,255,0.9); transform: scale(1.2); }
+    #s1-radio:checked ~ .slider-dots label[for="s1-radio"],
+    #s2-radio:checked ~ .slider-dots label[for="s2-radio"],
+    #s3-radio:checked ~ .slider-dots label[for="s3-radio"] { background: #ffffff; border-color: #1e1b1a; transform: scale(1.3); }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
     .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
     .posts-list li:last-child { border-bottom: none; }
@@ -90,6 +105,33 @@ layout: null
   </nav>
   <main class="main-content">
     <h1 class="sr-only">پاسگاه</h1>
+    <div class="slider">
+      <input type="radio" name="slider" id="s1-radio" checked>
+      <input type="radio" name="slider" id="s2-radio">
+      <input type="radio" name="slider" id="s3-radio">
+      <div class="slides">
+        <div class="slide" id="s1">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1504711434969-e33886168b56?w=800&h=400&fit=crop&q=80" alt="تصویر اول" loading="eager">
+          </a>
+        </div>
+        <div class="slide" id="s2">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1496449903678-68ddcb189a24?w=800&h=400&fit=crop&q=80" alt="تصویر دوم" loading="lazy">
+          </a>
+        </div>
+        <div class="slide" id="s3">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop&q=80" alt="تصویر سوم" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="slider-dots">
+        <label for="s1-radio" aria-label="برگه اول"></label>
+        <label for="s2-radio" aria-label="برگه دوم"></label>
+        <label for="s3-radio" aria-label="برگه سوم"></label>
+      </div>
+    </div>
     <ul class="posts-list">
       {% for post in site.posts limit: 20 %}
         <li>
