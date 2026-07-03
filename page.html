@@ -52,11 +52,11 @@ layout: null
     .subtitle { color: #4a4643; margin-bottom: 2rem; font-size: 1.05rem; }
     .century-group { margin-bottom: 2.5rem; }
     .century-group h2 { font-size: 1.6rem; font-weight: 700; color: #0d9488; border-bottom: 2px solid #e5e0db; padding-bottom: 0.5rem; margin-bottom: 1rem; }
-    .people-list { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; }
+    .people-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
     .people-list li { font-size: 1rem; }
-    .people-list li a { text-decoration: none; color: #1e1b1a; display: block; padding: 0.75rem 1rem; background-color: #faf8f5; border-right: 4px solid #0d9488; border-radius: 0 0.5rem 0.5rem 0; transition: all 0.2s ease; }
-    .people-list li a:hover { background-color: #f0ece7; border-right-color: #0f766e; color: #0d9488; transform: translateX(-4px); }
-    .no-link { color: #8c8884; cursor: default; padding: 0.75rem 1rem; display: block; background-color: #faf8f5; border-right: 4px solid #d6d0c8; border-radius: 0 0.5rem 0.5rem 0; }
+    .people-list li a { text-decoration: none; color: #1e1b1a; display: inline-block; padding: 0.25rem 0; border-bottom: 1px solid transparent; transition: border-color 0.2s, color 0.2s; }
+    .people-list li a:hover { color: #0d9488; border-bottom-color: #0d9488; }
+    .no-link { color: #8c8884; cursor: default; padding: 0.25rem 0; display: inline-block; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
