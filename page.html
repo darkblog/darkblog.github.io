@@ -47,15 +47,15 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-    .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
-    .hero-svg { display: flex; justify-content: center; align-items: center; margin-bottom: 2.5rem; }
-    .hero-svg svg { width: 100%; max-width: 200px; height: auto; }
-    .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
-    .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
-    .posts-list li:last-child { border-bottom: none; }
-    .posts-list a { text-decoration: none; color: #1e1b1a; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; margin-bottom: 0.25rem; }
+    .main-content { padding-top: calc(var(--header-height) + 2.5rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
+    .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+    .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #ffffff; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: all 0.25s ease; border: 1px solid #edeae7; }
+    .posts-list li:hover { background-color: #fafafa; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: #e0dcd7; transform: translateY(-2px); }
+    .posts-list li::before { content: ''; position: absolute; top: 1.25rem; right: 0; width: 4px; height: 2rem; background-color: #2dd4bf; border-radius: 0 4px 4px 0; opacity: 0; transform: scaleY(0); transition: opacity 0.25s, transform 0.25s; }
+    .posts-list li:hover::before { opacity: 1; transform: scaleY(1); }
+    .posts-list a { text-decoration: none; color: #1e1b1a; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; margin-bottom: 0.5rem; padding-right: 0.25rem; }
     .posts-list a:hover { color: #0d9488; }
-    .post-excerpt { font-size: 0.95rem; color: #4a4643; margin-top: 0.25rem; line-height: 1.5; }
+    .post-excerpt { font-size: 0.95rem; color: #4a4643; margin-top: 0.25rem; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
@@ -92,17 +92,6 @@ layout: null
   </nav>
   <main class="main-content">
     <h1 class="sr-only">پاسگاه</h1>
-    <div class="hero-svg">
-      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100 20 L100 60" stroke="#2dd4bf" stroke-width="5" stroke-linecap="round"/>
-        <path d="M40 180 L40 100 Q40 40 100 40 Q160 40 160 100 L160 180" stroke="#1e1b1a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M40 180 L160 180" stroke="#1e1b1a" stroke-width="6" stroke-linecap="round"/>
-        <path d="M100 20 L85 35" stroke="#2dd4bf" stroke-width="5" stroke-linecap="round"/>
-        <path d="M100 20 L115 35" stroke="#2dd4bf" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="100" cy="130" r="12" fill="#2dd4bf" opacity="0.15"/>
-        <circle cx="100" cy="130" r="6" fill="#2dd4bf"/>
-      </svg>
-    </div>
     <ul class="posts-list">
       {% for post in site.posts limit: 20 %}
         <li>
