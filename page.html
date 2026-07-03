@@ -34,8 +34,6 @@ layout: null
     .header-inner { margin: 0 auto; padding: 1.25rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: flex-start; gap: var(--gap); }
     .brand { display: flex; align-items: center; text-decoration: none; color: white; flex-shrink: 0; font-size: inherit; }
     .brand img { height: 2.5rem; width: auto; display: block; }
-    .search-icon { display: flex; align-items: center; justify-content: center; color: white; padding: 0.25rem; flex-shrink: 0; }
-    .search-icon:hover { color: #2dd4bf; }
     .hamburger { display: flex; flex-direction: column; gap: 0.375rem; background: none; border: none; padding: 0.25rem; cursor: pointer; flex-shrink: 0; font-size: inherit; touch-action: manipulation; margin-right: auto; }
     .hamburger span { display: block; width: 1.75rem; height: 0.125rem; background-color: white; }
     .mobile-nav-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 48; display: none; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
@@ -50,8 +48,7 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
-    .page-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #1c1917; margin: 0 0 0.5rem 0; letter-spacing: -0.02em; }
-    .subtitle { color: #4a4643; margin-bottom: 2rem; font-size: 1.05rem; }
+    .page-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #1c1917; margin: 0 0 1.5rem 0; letter-spacing: -0.02em; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
     .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
     .posts-list li:last-child { border-bottom: none; }
@@ -77,12 +74,6 @@ layout: null
       <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
         <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40" fetchpriority="high">
       </a>
-      <a href="https://www.pasgah.org/blog" class="search-icon" aria-label="جستجو در وبلاگ">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </a>
       <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو" tabindex="0">
         <span></span>
         <span></span>
@@ -99,8 +90,7 @@ layout: null
     </ul>
   </nav>
   <main class="main-content">
-    <h1 class="page-title">آخرین پست‌های منتشر شده</h1>
-    <p class="subtitle">۲۰ پست اخیر وبلاگ پاسگاه</p>
+    <h1 class="page-title">پاسگاه؛ تاریخ + سرگرمی</h1>
     <ul class="posts-list">
       {% for post in site.posts limit: 20 %}
         <li>
