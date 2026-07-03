@@ -48,9 +48,9 @@ layout: null
     .error-code { font-size: clamp(5rem, 15vw, 8rem); font-weight: 800; line-height: 1.1; color: #1c1917; letter-spacing: -0.03em; display: block; margin-bottom: 0.5rem; }
     .error-title { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: #1c1917; margin-bottom: 1rem; }
     .error-message { font-size: 1.125rem; color: #4a4643; max-width: 36ch; margin: 0 auto 2rem; line-height: 1.7; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background-color: #1c1917; color: white; padding: 0.75rem 2rem; border-radius: 2rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-family: inherit; font-size: inherit; transition: background-color 0.2s; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; background-color: #1c1917; color: white; padding: 0.75rem 2rem; border-radius: 2rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-family: inherit; font-size: inherit; transition: background-color 0.2s; }
     .btn-primary:hover { background-color: #000; }
-    .section-title { font-size: 1.4rem; font-weight: 700; color: #1c1917; margin-bottom: 1.5rem; text-align: center; }
+    .section-title { font-size: 1.4rem; font-weight: 700; color: #1c1917; margin-bottom: 2.5rem; text-align: center; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
     .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
     .posts-list li:last-child { border-bottom: none; }
@@ -101,7 +101,6 @@ layout: null
         <h1 id="error-heading" class="error-title">صفحه‌ای که دنبال آن بودید پیدا نشد!</h1>
         <p class="error-message">ممکن است آدرس اشتباه تایپ شده باشد یا صفحه حذف شده باشد.</p>
         <a href="https://www.pasgah.org/blog/iran" class="btn-primary">
-          <span aria-hidden="true">→</span>
           بازگشت به ایران
         </a>
       </section>
@@ -123,8 +122,8 @@ layout: null
       <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
         <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" width="40" height="40">
       </a>
-      <a href="https://www.pasgah.org/blog/iran" class="special-blog-link" dir="ltr">
-        /iran
+      <a href="https://www.pasgah.org/blog" class="special-blog-link" dir="ltr">
+        /blog
         <span aria-hidden="true">→</span>
       </a>
     </footer>
