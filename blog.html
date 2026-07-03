@@ -8,16 +8,16 @@ layout: none
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>صفحهٔ جستجو در پست‌های وبلاگ پاسگاه</title>
+  <title>جستجو در وبلاگ پاسگاه</title>
 
-  <meta name="description" content="صفحهٔ جستجو در پست‌های وبلاگ پاسگاه">
+  <meta name="description" content="جستجو در پست‌های وبلاگ پاسگاه">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "صفحهٔ جستجو در پست‌های وبلاگ پاسگاه",
-    "description": "صفحهٔ جستجو در پست‌های وبلاگ پاسگاه",
+    "name": "جستجو در وبلاگ پاسگاه",
+    "description": "جستجو در پست‌های وبلاگ پاسگاه",
     "url": "https://www.pasgah.org/blog",
     "publisher": {
       "@type": "Organization",
@@ -54,10 +54,8 @@ layout: none
     .header-inner { margin: 0 auto; padding: 1.25rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: flex-start; gap: var(--gap); }
     .brand { display: flex; align-items: center; text-decoration: none; color: white; flex-shrink: 0; font-size: inherit; }
     .brand img { height: 2.5rem; width: auto; display: block; }
-    .desktop-nav { display: none; }
-    .hamburger, .hamburger-footer { display: flex; flex-direction: column; gap: 0.375rem; background: none; border: none; padding: 0.25rem; cursor: pointer; flex-shrink: 0; font-size: inherit; touch-action: manipulation; }
-    .hamburger { margin-right: auto; }
-    .hamburger span, .hamburger-footer span { display: block; width: 1.75rem; height: 0.125rem; background-color: white; }
+    .hamburger { display: flex; flex-direction: column; gap: 0.375rem; background: none; border: none; padding: 0.25rem; cursor: pointer; flex-shrink: 0; font-size: inherit; touch-action: manipulation; margin-right: auto; }
+    .hamburger span { display: block; width: 1.75rem; height: 0.125rem; background-color: white; }
     .mobile-nav-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 48; display: none; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
     .mobile-nav { position: fixed; top: 0; left: auto; right: max(0px, calc((100vw - 767px) / 2)); bottom: 0; width: min(300px, 80vw); background-color: #000000; padding: calc(var(--header-height) + 1.75rem) clamp(1rem, 3vw, 2rem) 2rem; z-index: 49; overflow-y: auto; box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3); font-size: inherit; display: none; -ms-overflow-style: none; scrollbar-width: none; }
     .mobile-nav::-webkit-scrollbar { display: none; }
@@ -66,34 +64,31 @@ layout: none
     .mobile-nav a:hover { color: #2dd4bf; }
     #menu-toggle:checked ~ .mobile-nav-overlay { display: block; }
     #menu-toggle:checked ~ .mobile-nav { display: block; }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1),
-    #menu-toggle:checked ~ .site-footer .hamburger-footer span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2),
-    #menu-toggle:checked ~ .site-footer .hamburger-footer span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3),
-    #menu-toggle:checked ~ .site-footer .hamburger-footer span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
-    .archive-header { text-align: center; margin-bottom: 2rem; padding-top: 1rem; }
-    .archive-header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: #1c1917; letter-spacing: -0.02em; line-height: 1.3; }
+    .page-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #1c1917; margin: 0 0 1.5rem 0; letter-spacing: -0.02em; text-align: center; }
     .search-wrapper { margin-bottom: 1.5rem; max-width: 100%; margin-inline: auto; }
     .search-box { width: 100%; padding: 0.8rem 1.2rem; font-size: 1rem; font-family: inherit; border: 2px solid #e5e0db; border-radius: 1rem; background-color: white; color: #1e1b1a; }
     .search-box:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15); }
     .search-box::placeholder { color: #a8a09a; opacity: 0.8; }
-    .search-stats { color: #4a4643; font-size: 0.95rem; text-align: center; margin-bottom: 1.5rem; min-height: 1.8rem; }
-    .posts-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); list-style: none; padding: 0; }
-    .post-card { background-color: white; border: 1px solid #e5e0db; border-radius: 1.5rem; overflow: hidden; text-decoration: none; color: inherit; display: block; }
-    .post-card:hover { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
-    .post-card-body { padding: clamp(1rem, 2.5vw, 1.5rem); }
-    .post-card-body h2 { font-weight: 700; font-size: 1.25rem; line-height: 1.4; color: #1c1917; margin: 0; }
+    .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+    .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
+    .posts-list li:last-child { border-bottom: none; }
+    .posts-list a { text-decoration: none; color: #1e1b1a; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; margin-bottom: 0.25rem; }
+    .posts-list a:hover { color: #0d9488; }
     .hidden-post { display: none !important; }
     .no-results { text-align: center; padding: 3rem 1.5rem; color: #4a4643; background-color: #faf8f5; border: 1px solid #e5e0db; border-radius: 1.5rem; font-size: 1.1rem; }
-    .load-more-wrapper { text-align: center; margin-top: calc(var(--gap) * 1.5); }
-    .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background-color: #1c1917; color: white; padding: 0.75rem 2rem; border-radius: 1rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-family: inherit; font-size: inherit; }
-    .btn-primary:hover { background-color: #000; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
     .footer-logo:hover img { opacity: 1; }
+    .special-blog-link { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #1c1917; color: #fff; text-decoration: none; padding: 0.75rem 1.75rem; border-radius: 2rem; font-weight: 500; font-family: inherit; font-size: inherit; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; direction: ltr; }
+    .special-blog-link:hover { background-color: #2d2a28; border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
+    .special-blog-link:active { transform: translateY(0); }
+    .special-blog-link span { font-size: 1.2em; transition: transform 0.2s ease; }
+    .special-blog-link:hover span { transform: translateX(4px); }
   </style>
 </head>
 <body>
@@ -102,10 +97,10 @@ layout: none
     <input type="checkbox" id="menu-toggle" class="sr-only">
     <header class="site-header">
       <div class="header-inner">
-        <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
-          <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه">
+        <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
+          <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" width="40" height="40" fetchpriority="high">
         </a>
-        <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو">
+        <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو" tabindex="0">
           <span></span>
           <span></span>
           <span></span>
@@ -125,9 +120,7 @@ layout: none
 
     <main class="main-content">
 
-      <header class="archive-header">
-        <h1>جستجو در پست‌ها</h1>
-      </header>
+      <h1 class="page-title">جستجو در وبلاگ</h1>
 
       {% if site.posts.size > 0 %}
       <div class="search-wrapper">
@@ -141,30 +134,16 @@ layout: none
         >
       </div>
 
-      <div class="search-stats" id="searchStats" aria-live="polite" aria-atomic="true"></div>
-
       <div id="archiveContent">
-        <ul class="posts-grid" id="postsList">
+        <ul class="posts-list" id="postsList">
           {% for post in site.posts %}
           <li>
-            <a href="{{ post.url | relative_url }}" class="post-card">
-              <div class="post-card-body">
-                <h2>{{ post.title }}</h2>
-              </div>
-            </a>
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
           </li>
           {% endfor %}
         </ul>
         <div id="noResultsMessage" class="no-results" hidden>هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
       </div>
-
-      <footer class="load-more-wrapper">
-        <a href="https://www.pasgah.org/" class="btn-primary">
-          <span aria-hidden="true">→</span>
-          بازگشت به صفحه اصلی
-        </a>
-      </footer>
-
       {% else %}
       <div class="no-results">هنوز هیچ پستی منتشر نشده است.</div>
       {% endif %}
@@ -172,14 +151,13 @@ layout: none
     </main>
 
     <footer class="site-footer">
-      <a href="https://www.pasgah.org/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
-        <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه">
+      <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
+        <img src="https://www.pasgah.org/blog.svg" alt="لوگوی پاسگاه" width="40" height="40">
       </a>
-      <label for="menu-toggle" class="hamburger-footer" aria-label="باز و بسته کردن منو از فوتر">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
+      <a href="https://www.pasgah.org/blog" class="special-blog-link" dir="ltr">
+        /blog
+        <span aria-hidden="true">→</span>
+      </a>
     </footer>
   </div>
 
@@ -188,10 +166,10 @@ layout: none
       'use strict';
 
       var searchInput = document.getElementById('searchInput');
-      var searchStats = document.getElementById('searchStats');
       var noResults = document.getElementById('noResultsMessage');
       var allItems = document.querySelectorAll('#postsList > li');
       var total = allItems.length;
+      var INITIAL_LIMIT = 50;
 
       if (searchInput && total > 0) {
 
@@ -205,32 +183,32 @@ layout: none
             .trim();
         }
 
-        var cache = Array.from(allItems).map(function(item) {
-          var titleElement = item.querySelector('h2');
+        var cache = Array.from(allItems).map(function(item, index) {
+          var titleElement = item.querySelector('a');
           var rawTitle = titleElement ? titleElement.textContent : '';
           return {
             el: item,
-            title: normalize(rawTitle)
+            title: normalize(rawTitle),
+            index: index
           };
         });
 
         function performSearch() {
           var term = normalize(searchInput.value);
-          var count = 0;
+          var anyVisible = false;
 
           cache.forEach(function(entry) {
-            var match = term === '' || entry.title.includes(term);
-            entry.el.classList.toggle('hidden-post', !match);
-            if (match) count++;
+            var shouldShow = false;
+            if (term === '') {
+              shouldShow = entry.index < INITIAL_LIMIT;
+            } else {
+              shouldShow = entry.title.includes(term);
+            }
+            entry.el.classList.toggle('hidden-post', !shouldShow);
+            if (shouldShow) anyVisible = true;
           });
 
-          if (term === '') {
-            searchStats.textContent = '';
-            noResults.hidden = true;
-          } else {
-            searchStats.textContent = count + ' مورد از ' + total + ' مطلب';
-            noResults.hidden = count > 0;
-          }
+          noResults.hidden = anyVisible || term === '';
         }
 
         var debounceTimer;
