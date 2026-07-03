@@ -57,7 +57,7 @@ layout: null
     .posts-list li:last-child { border-bottom: none; }
     .posts-list a { text-decoration: none; color: #1e1b1a; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; margin-bottom: 0.25rem; }
     .posts-list a:hover { color: #0d9488; }
-    .post-date { font-size: 0.85rem; color: #8c8884; display: block; }
+    .post-excerpt { font-size: 0.95rem; color: #4a4643; margin-top: 0.25rem; line-height: 1.5; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
@@ -105,7 +105,7 @@ layout: null
       {% for post in site.posts limit: 20 %}
         <li>
           <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %B %Y" }}</time>
+          <p class="post-excerpt">{{ post.excerpt | default: post.content | strip_html | truncatewords: 30 }}</p>
         </li>
       {% endfor %}
     </ul>
