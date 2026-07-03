@@ -102,9 +102,8 @@ layout: null
     .header-inner { margin: 0 auto; padding: 1.25rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: flex-start; gap: var(--gap); }
     .brand { display: flex; align-items: center; text-decoration: none; color: white; flex-shrink: 0; font-size: inherit; }
     .brand img { height: 2.5rem; width: auto; display: block; }
-    .hamburger, .hamburger-footer { display: flex; flex-direction: column; gap: 0.375rem; background: none; border: none; padding: 0.25rem; cursor: pointer; flex-shrink: 0; font-size: inherit; touch-action: manipulation; }
-    .hamburger { margin-right: auto; }
-    .hamburger span, .hamburger-footer span { display: block; width: 1.75rem; height: 0.125rem; background-color: white; }
+    .hamburger { display: flex; flex-direction: column; gap: 0.375rem; background: none; border: none; padding: 0.25rem; cursor: pointer; flex-shrink: 0; font-size: inherit; touch-action: manipulation; margin-right: auto; }
+    .hamburger span { display: block; width: 1.75rem; height: 0.125rem; background-color: white; }
     .mobile-nav-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 48; display: none; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
     .mobile-nav { position: fixed; top: 0; left: auto; right: max(0px, calc((100vw - 767px) / 2)); bottom: 0; width: min(300px, 80vw); background-color: #000000; padding: calc(var(--header-height) + 1.75rem) clamp(1rem, 3vw, 2rem) 2rem; z-index: 49; overflow-y: auto; box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3); font-size: inherit; display: none; -ms-overflow-style: none; scrollbar-width: none; }
     .mobile-nav::-webkit-scrollbar { display: none; }
@@ -113,12 +112,9 @@ layout: null
     .mobile-nav a:hover { color: #2dd4bf; }
     #menu-toggle:checked ~ .mobile-nav-overlay { display: block; }
     #menu-toggle:checked ~ .mobile-nav { display: block; }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1),
-    #menu-toggle:checked ~ .site-footer .hamburger-footer span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2),
-    #menu-toggle:checked ~ .site-footer .hamburger-footer span:nth-child(2) { opacity: 0; }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3),
-    #menu-toggle:checked ~ .site-footer .hamburger-footer span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
     .article-list { display: grid; grid-template-columns: 1fr; gap: var(--gap); list-style: none; padding: 0; }
     .article-item { background-color: white; border: 1px solid #e5e0db; border-radius: 1.5rem; overflow: hidden; display: flex; flex-direction: column; }
@@ -130,9 +126,6 @@ layout: null
     .article-body p { color: #4a4643; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: inherit; }
     .read-more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 1rem; color: #0d9488; font-weight: 500; font-size: inherit; }
     .read-more:hover { color: #0f766e; }
-    .load-more-wrapper { text-align: center; margin-top: calc(var(--gap) * 1.5); font-size: inherit; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background-color: #1c1917; color: white; padding: 0.75rem 2rem; border-radius: 1rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-family: inherit; font-size: inherit; }
-    .btn-primary:hover { background-color: #000; }
     .post-header { margin-bottom: 3rem; }
     .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #1c1917; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
     .post-breadcrumb { margin-bottom: 1.5rem; font-size: inherit; }
@@ -162,6 +155,11 @@ layout: null
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
     .footer-logo:hover img { opacity: 1; }
+    .special-blog-link { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #1c1917; color: #fff; text-decoration: none; padding: 0.75rem 1.75rem; border-radius: 2rem; font-weight: 500; font-family: inherit; font-size: inherit; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; direction: ltr; }
+    .special-blog-link:hover { background-color: #2d2a28; border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
+    .special-blog-link:active { transform: translateY(0); }
+    .special-blog-link span { font-size: 1.2em; transition: transform 0.2s ease; }
+    .special-blog-link:hover span { transform: translateX(4px); }
   </style>
 </head>
 <body>
@@ -259,7 +257,10 @@ layout: null
       <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
         <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40">
       </a>
-      <a href="https://www.pasgah.org/blog" class="btn-primary">وبلاگ</a>
+      <a href="https://www.pasgah.org/blog" class="special-blog-link" dir="ltr">
+        /blog
+        <span aria-hidden="true">→</span>
+      </a>
     </footer>
   </div>
 </body>
