@@ -3,7 +3,7 @@ layout: null
 ---
 
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebPage">
+<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/Article">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,21 +13,14 @@ layout: null
   {%- if page.image -%}
   <link rel="preload" href="{{ page.image | relative_url }}" as="image">
   {%- endif -%}
-  {%- capture desc_raw -%}
-    {%- if page.is_home -%}
-      {{ page.description | strip_html | strip_newlines | truncate: 160 }}
-    {%- elsif page.type == 'post' -%}
-      {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
-    {%- endif -%}
+  {%- capture desc -%}
+    {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
   {%- endcapture -%}
-  {%- assign desc = desc_raw | strip -%}
   <title>{{ page.title | escape }}</title>
   <meta itemprop="name" content="{{ page.title | escape }}">
-  {%- if desc != "" -%}
   <meta name="description" content="{{ desc | escape }}">
   <meta itemprop="description" content="{{ desc | escape }}">
-  {%- endif -%}
-  {%- if page.type == 'post' -%}
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,7 +32,7 @@ layout: null
           "@id": "{{ page.url | absolute_url }}"
         },
         "headline": {{ page.title | jsonify }},
-        "description": {{ desc | default: "" | jsonify }},
+        "description": {{ desc | jsonify }},
         "publisher": {
           "@type": "Organization",
           "name": "وبلاگ پاسگاه",
@@ -79,7 +72,7 @@ layout: null
     ]
   }
   </script>
-  {%- endif -%}
+
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
   <meta name="theme-color" content="#000000">
@@ -116,16 +109,6 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
-    .article-list { display: grid; grid-template-columns: 1fr; gap: var(--gap); list-style: none; padding: 0; }
-    .article-item { background-color: white; border: 1px solid #e5e0db; border-radius: 1.5rem; overflow: hidden; display: flex; flex-direction: column; }
-    .article-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; flex: 1; }
-    .article-item figure { margin: 0; background-color: #f1ede8; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; }
-    .article-item figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .article-body { padding: clamp(1rem, 2.5vw, 1.75rem); font-size: inherit; flex: 1; display: flex; flex-direction: column; }
-    .article-body h2 { font-weight: 800; line-height: 1.4; margin: 0 0 0.5rem 0; font-size: 1.5rem; letter-spacing: -0.02em; color: #1c1917; }
-    .article-body p { color: #4a4643; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: inherit; }
-    .read-more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 1rem; color: #0d9488; font-weight: 500; font-size: inherit; }
-    .read-more:hover { color: #0f766e; }
     .post-header { margin-bottom: 3rem; }
     .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #1c1917; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
     .post-breadcrumb { margin-bottom: 1.5rem; font-size: inherit; }
@@ -180,30 +163,23 @@ layout: null
     <label for="menu-toggle" class="mobile-nav-overlay"></label>
     <nav class="mobile-nav" aria-label="منوی اصلی">
       <ul>
-        {% if page.type == 'post' %}
-          {% assign current_post_id = page.id %}
-          {% for post in site.posts %}
-            {% if post.id != current_post_id %}
-              {% assign common_tags_count = 0 %}
-              {% for tag in post.tags %}
-                {% if page.tags contains tag %}
-                  {% assign common_tags_count = common_tags_count | plus: 1 %}
-                {% endif %}
-              {% endfor %}
-              {% if common_tags_count > 0 %}
-                <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+        {% assign current_post_id = page.id %}
+        {% for post in site.posts %}
+          {% if post.id != current_post_id %}
+            {% assign common_tags_count = 0 %}
+            {% for tag in post.tags %}
+              {% if page.tags contains tag %}
+                {% assign common_tags_count = common_tags_count | plus: 1 %}
               {% endif %}
+            {% endfor %}
+            {% if common_tags_count > 0 %}
+              <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
             {% endif %}
-          {% endfor %}
-        {% else %}
-          {% for post in site.posts limit: 5 %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
-          {% endfor %}
-        {% endif %}
+          {% endif %}
+        {% endfor %}
       </ul>
     </nav>
     <main class="main-content">
-      {% if page.type == 'post' %}
       <article>
         <header class="post-header">
           <nav class="post-breadcrumb" aria-label="مسیر صفحه">
@@ -223,35 +199,6 @@ layout: null
           {{ content }}
         </div>
       </article>
-      {% else %}
-      <section class="articles-section" aria-labelledby="main-listing-title">
-        <h1 id="main-listing-title" class="sr-only">وبلاگ پاسگاه</h1>
-        <ul class="article-list">
-          {% assign posts_per_page = 10 %}
-          {% for post in site.posts limit: posts_per_page %}
-          <li class="article-item">
-            <article>
-              <a href="{{ post.url | relative_url }}" class="article-link">
-                {% if post.image %}
-                <figure>
-                  <img src="{{ post.image | relative_url }}" alt="" width="640" height="360" loading="lazy" {% if forloop.first %}fetchpriority="high"{% endif %}>
-                </figure>
-                {% endif %}
-                <div class="article-body">
-                  <h2>{{ post.title | escape }}</h2>
-                  <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
-                  <span class="read-more">
-                    ادامه مطلب
-                    <span aria-hidden="true">←</span>
-                  </span>
-                </div>
-              </a>
-            </article>
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
     </main>
     <footer class="site-footer">
       <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
