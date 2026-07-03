@@ -10,7 +10,7 @@ layout: null
   <link rel="preconnect" href="https://www.pasgah.org" crossorigin>
   <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/blog.svg" as="image" type="image/svg+xml">
-  <title>وبلاگ پاسگاه – فهرست تأثیرگذارترین افراد جهان</title>
+  <title>پاسگاه – فهرست تأثیرگذارترین افراد جهان</title>
   <meta name="description" content="فهرست جامع تأثیرگذارترین افراد تاریخ از پیش از میلاد تا قرن ۲۱، به همراه مقالات و تحلیل‌های اختصاصی.">
   <link rel="canonical" href="{{ site.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
@@ -52,12 +52,11 @@ layout: null
     .subtitle { color: #4a4643; margin-bottom: 2rem; font-size: 1.05rem; }
     .century-group { margin-bottom: 2.5rem; }
     .century-group h2 { font-size: 1.6rem; font-weight: 700; color: #0d9488; border-bottom: 2px solid #e5e0db; padding-bottom: 0.5rem; margin-bottom: 1rem; }
-    .people-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; list-style: none; padding: 0; }
-    .people-list li { font-size: 1rem; padding: 0.2rem 0; border-bottom: 1px dashed #f0ece7; }
-    .people-list li a { text-decoration: none; color: #1e1b1a; display: block; padding: 0.2rem 0.5rem; border-radius: 0.5rem; transition: background 0.15s, color 0.15s; }
-    .people-list li a:hover { background-color: #f1ede8; color: #0d9488; }
-    .people-list li .century-badge { display: inline-block; background: #e5e0db; color: #2d2a28; font-size: 0.7rem; padding: 0.1rem 0.6rem; border-radius: 1rem; margin-right: 0.5rem; font-weight: 500; }
-    .no-link { color: #6b6560; cursor: default; padding: 0.2rem 0.5rem; display: block; }
+    .people-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .people-list li { font-size: 1rem; }
+    .people-list li a { text-decoration: none; color: #1e1b1a; display: block; padding: 0.5rem 1.25rem; background-color: #f5f2ed; border-radius: 0.5rem; transition: all 0.2s ease; font-weight: 500; }
+    .people-list li a:hover { background-color: #0d9488; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25); }
+    .no-link { color: #8c8884; cursor: default; padding: 0.5rem 1.25rem; display: block; background-color: #f5f2ed; border-radius: 0.5rem; font-weight: 500; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
@@ -67,9 +66,6 @@ layout: null
     .special-blog-link:active { transform: translateY(0); }
     .special-blog-link span { font-size: 1.2em; transition: transform 0.2s ease; }
     .special-blog-link:hover span { transform: translateX(4px); }
-    @media (max-width: 480px) {
-      .people-list { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
