@@ -27,35 +27,7 @@ layout: null
   <meta name="description" content="{{ desc | escape }}">
   <meta itemprop="description" content="{{ desc | escape }}">
   {%- endif -%}
-  <meta property="og:title" content="{{ page.title | escape }}">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:site_name" content="وبلاگ پاسگاه">
-  {%- if desc != "" -%}
-  <meta property="og:description" content="{{ desc | escape }}">
-  {%- endif -%}
-  {%- if page.type == 'post' -%}
-  <meta property="og:type" content="article">
-  {%- if page.date -%}
-  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
-  {%- endif -%}
-  {%- if page.last_modified_at -%}
-  <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
-  {%- endif -%}
-  {%- else -%}
-  <meta property="og:type" content="website">
-  {%- endif -%}
-  {%- if page.image -%}
-  <meta property="og:image" content="{{ page.image | absolute_url }}">
-  <meta property="og:image:alt" content="{{ page.title | escape }}">
-  {%- endif -%}
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ page.title | escape }}">
-  {%- if desc != "" -%}
-  <meta name="twitter:description" content="{{ desc | escape }}">
-  {%- endif -%}
-  {%- if page.image -%}
-  <meta name="twitter:image" content="{{ page.image | absolute_url }}">
-  {%- endif -%}
+  
   {%- if page.type == 'post' -%}
   <script type="application/ld+json">
   {
