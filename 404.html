@@ -21,8 +21,8 @@ layout: null
       font-display: swap;
     }
     :root { --header-height: 5rem; --gap: clamp(1rem, 2vw, 2rem); --font-size-base: 1.125rem; }
-    body { font-family: 'vazir', system-ui, -apple-system, sans-serif; font-weight: 400; background-color: #f8f1e9; color: #1e1b1a; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; font-size: var(--font-size-base); -webkit-font-smoothing: antialiased; }
-    .page-wrapper { max-width: 767px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; min-height: 100vh; background-color: white; position: relative; }
+    body { font-family: 'vazir', system-ui, -apple-system, sans-serif; font-weight: 400; background-color: #000000; color: #d1ccc5; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; font-size: var(--font-size-base); -webkit-font-smoothing: antialiased; }
+    .page-wrapper { max-width: 767px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; min-height: 100vh; background-color: #111111; position: relative; }
     main { flex: 1; }
     a:focus-visible, button:focus-visible, label:focus-visible { outline: 3px solid #2dd4bf; outline-offset: 2px; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -43,19 +43,21 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-    .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
+    .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: #111111; font-size: inherit; }
     .error-section { text-align: center; padding: clamp(2rem, 4vw, 3rem) 0; margin-bottom: 2rem; }
-    .error-code { font-size: clamp(5rem, 15vw, 8rem); font-weight: 800; line-height: 1.1; color: #1c1917; letter-spacing: -0.03em; display: block; margin-bottom: 0.5rem; }
-    .error-title { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: #1c1917; margin-bottom: 1rem; }
-    .error-message { font-size: 1.125rem; color: #4a4643; max-width: 36ch; margin: 0 auto 2rem; line-height: 1.7; }
-    .btn-primary { display: inline-flex; align-items: center; justify-content: center; background-color: #1c1917; color: white; padding: 0.75rem 2rem; border-radius: 2rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-family: inherit; font-size: inherit; transition: background-color 0.2s; }
-    .btn-primary:hover { background-color: #000; }
-    .section-title { font-size: 1.4rem; font-weight: 700; color: #1c1917; margin-bottom: 2.5rem; text-align: center; }
-    .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
-    .posts-list li { border-bottom: 1px solid #e5e0db; padding-bottom: 1rem; }
-    .posts-list li:last-child { border-bottom: none; }
-    .posts-list a { text-decoration: none; color: #1e1b1a; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; }
-    .posts-list a:hover { color: #0d9488; }
+    .error-code { font-size: clamp(5rem, 15vw, 8rem); font-weight: 800; line-height: 1.1; color: #f0ece6; letter-spacing: -0.03em; display: block; margin-bottom: 0.5rem; }
+    .error-title { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: #f0ece6; margin-bottom: 1rem; }
+    .error-message { font-size: 1.125rem; color: #b0aaa3; max-width: 36ch; margin: 0 auto 2rem; line-height: 1.7; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; background-color: #f0ece6; color: #000; padding: 0.75rem 2rem; border-radius: 2rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-family: inherit; font-size: inherit; transition: background-color 0.2s, color 0.2s; }
+    .btn-primary:hover { background-color: #fff; color: #000; }
+    .section-title { font-size: 1.4rem; font-weight: 700; color: #f0ece6; margin-bottom: 2.5rem; text-align: center; }
+    .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+    .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; }
+    .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
+    .posts-list li::before { content: ''; position: absolute; top: 1.25rem; right: 0; width: 4px; height: 2rem; background-color: #2dd4bf; border-radius: 0 4px 4px 0; opacity: 0; transform: scaleY(0); transition: opacity 0.25s, transform 0.25s; }
+    .posts-list li:hover::before { opacity: 1; transform: scaleY(1); }
+    .posts-list a { text-decoration: none; color: #f0ece6; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; }
+    .posts-list a:hover { color: #2dd4bf; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
     .footer-logo { display: flex; align-items: center; }
     .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
