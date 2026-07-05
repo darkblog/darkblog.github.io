@@ -48,6 +48,11 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2.5rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: white; font-size: inherit; }
+    .slider { position: relative; width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); background: #f0ebe4; aspect-ratio: 16 / 9; }
+    .slides { position: relative; width: 100%; height: 100%; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .slide a { display: block; width: 100%; height: 100%; text-decoration: none; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
     .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #ffffff; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: all 0.25s ease; border: 1px solid #edeae7; }
     .posts-list li:hover { background-color: #fafafa; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: #e0dcd7; transform: translateY(-2px); }
@@ -92,6 +97,15 @@ layout: null
   </nav>
   <main class="main-content">
     <h1 class="sr-only">پاسگاه</h1>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <a href="#">
+            <img src="https://www.pasgah.org/blog/mohammadreza-pahlavi.jpeg" alt="تصویر اصلی" loading="eager">
+          </a>
+        </div>
+      </div>
+    </div>
     <ul class="posts-list">
       {% for post in site.posts limit: 20 %}
         <li>
