@@ -62,16 +62,15 @@ layout: null
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
     .posts-list li::before { content: ''; position: absolute; top: 1.25rem; right: 0; width: 4px; height: 2rem; background-color: #2dd4bf; border-radius: 0 4px 4px 0; opacity: 0; transform: scaleY(0); transition: opacity 0.25s, transform 0.25s; }
     .posts-list li:hover::before { opacity: 1; transform: scaleY(1); }
-    .posts-list a { text-decoration: none; color: #ffffff; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; margin-bottom: 0.5rem; padding-right: 0.25rem; }
+    .posts-list a { text-decoration: none; color: #ffffff; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; }
     .posts-list a:hover { color: #2dd4bf; }
-    .post-excerpt { font-size: 0.95rem; color: #ffffff; margin-top: 0.25rem; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; font-size: inherit; }
-    .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: flex; align-items: center; gap: 0.15rem; }
+    .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: inline-flex; align-items: center; gap: 0.15rem; }
     .footer-love .green { color: #239f40; }
     .footer-love .red { color: #da0000; }
     .footer-love a { text-decoration: none; }
     .footer-love a:hover { text-decoration: underline; }
-    .heart-icon { display: inline-block; width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
+    .heart-icon { display: inline-block; width: 1.5rem; height: 1.5rem; flex-shrink: 0; vertical-align: middle; }
   </style>
 </head>
 <body>
@@ -120,7 +119,6 @@ layout: null
       {% for post in site.posts limit: 20 %}
         <li>
           <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          <p class="post-excerpt">{{ post.excerpt | default: post.content | strip_html | truncatewords: 30 }}</p>
         </li>
       {% endfor %}
     </ul>
