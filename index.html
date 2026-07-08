@@ -16,6 +16,7 @@ layout: null
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     @font-face {
@@ -48,11 +49,14 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2.5rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: #111111; font-size: inherit; }
-    .slider { position: relative; width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); line-height: 0; }
-    .slides { position: relative; width: 100%; }
-    .slide { position: relative; top: 0; left: 0; width: 100%; }
-    .slide a { display: block; width: 100%; text-decoration: none; }
-    .slide img { width: 100%; height: auto; display: block; }
+    .search-btn-wrapper { text-align: center; margin-bottom: 1.5rem; }
+    .search-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #2dd4bf; color: #000000; padding: 0.75rem 2.5rem; border-radius: 2.5rem; font-weight: 700; font-size: 1.1rem; text-decoration: none; font-family: inherit; border: none; transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(45, 212, 191, 0.25); }
+    .search-btn:hover { background-color: #5eead4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45, 212, 191, 0.35); }
+    .search-btn:active { transform: translateY(0); }
+    .search-btn svg { width: 1.2rem; height: 1.2rem; fill: currentColor; flex-shrink: 0; }
+    .featured-image { width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); line-height: 0; }
+    .featured-image a { display: block; width: 100%; text-decoration: none; }
+    .featured-image img { width: 100%; height: auto; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
     .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; }
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
@@ -97,15 +101,23 @@ layout: null
   </nav>
   <main class="main-content">
     <h1 class="sr-only">پاسگاه</h1>
-    <div class="slider">
-      <div class="slides">
-        <div class="slide">
-          <a href="https://www.pasgah.org/blog/mohammadreza-pahlavi">
-            <img src="https://www.pasgah.org/blog/mohammadreza-pahlavi.jpeg" alt="محمدرضا پهلوی" loading="eager">
-          </a>
-        </div>
-      </div>
+
+    <div class="search-btn-wrapper">
+      <a href="https://www.pasgah.org/blog" class="search-btn" aria-label="رفتن به صفحه جستجو">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        جستجو
+      </a>
     </div>
+
+    <div class="featured-image">
+      <a href="https://www.pasgah.org/blog/mohammadreza-pahlavi">
+        <img src="https://www.pasgah.org/blog/mohammadreza-pahlavi.jpeg" alt="محمدرضا پهلوی" loading="eager">
+      </a>
+    </div>
+
     <ul class="posts-list">
       {% for post in site.posts limit: 20 %}
         <li>
