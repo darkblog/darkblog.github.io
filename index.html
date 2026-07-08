@@ -112,9 +112,7 @@ layout: null
   <label for="menu-toggle" class="mobile-nav-overlay"></label>
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul>
-      {% for post in site.posts limit: 5 %}
-        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
-      {% endfor %}
+      <li><a href="/blog">وبلاگ پاسگاه</a></li>
     </ul>
   </nav>
   <main class="main-content">
