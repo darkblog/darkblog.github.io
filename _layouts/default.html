@@ -110,15 +110,13 @@ layout: null
     .article-content table tbody tr:nth-child(even) { background-color: #1c1c1c; }
     .article-content table tbody tr:hover { background-color: #252525; }
     .article-content table caption { padding: 0.5rem 0; font-weight: 500; color: #ffffff; }
-    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: space-between; width: 100%; flex-direction: row; font-size: inherit; }
-    .footer-logo { display: flex; align-items: center; }
-    .footer-logo img { height: 2.5rem; width: auto; opacity: 0.9; display: block; }
-    .footer-logo:hover img { opacity: 1; }
-    .special-blog-link { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #1c1917; color: #fff; text-decoration: none; padding: 0.75rem 1.75rem; border-radius: 2rem; font-weight: 500; font-family: inherit; font-size: inherit; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; direction: ltr; }
-    .special-blog-link:hover { background-color: #2d2a28; border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
-    .special-blog-link:active { transform: translateY(0); }
-    .special-blog-link span { font-size: 1.2em; transition: transform 0.2s ease; }
-    .special-blog-link:hover span { transform: translateX(4px); }
+    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; font-size: inherit; }
+    .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: flex; align-items: center; gap: 0.15rem; line-height: 1; }
+    .footer-love .green { color: #239f40; }
+    .footer-love .red { color: #da0000; }
+    .footer-love a { text-decoration: none; line-height: 1; }
+    .footer-love a:hover { text-decoration: underline; }
+    .heart-icon { width: 1.4rem; height: 1.4rem; flex-shrink: 0; display: block; transform: translateY(-0.15em); }
   </style>
 </head>
 <body>
@@ -178,13 +176,13 @@ layout: null
       </article>
     </main>
     <footer class="site-footer">
-      <a href="/" class="footer-logo" aria-label="صفحه اصلی پاسگاه">
-        <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40">
-      </a>
-      <a href="https://www.pasgah.org/blog" class="special-blog-link" dir="ltr">
-        /blog
-        <span aria-hidden="true">→</span>
-      </a>
+      <div class="footer-love">
+        <span class="green">I</span>
+        <svg class="heart-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <a href="https://www.pasgah.org/blog/iran" class="red">IRAN</a>
+      </div>
     </footer>
   </div>
 </body>
