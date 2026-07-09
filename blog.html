@@ -130,8 +130,13 @@ layout: none
         <ul class="live-search-results" id="liveSearchResults"></ul>
       </div>
 
-      <ul class="posts-list" id="postsList"></ul>
-      <div id="noResultsMessage" class="no-results" hidden>هیچ مطلبی مطابق با جستجوی شما پیدا نشد.</div>
+      <ul class="posts-list" id="postsList">
+        {% for post in site.posts limit: 50 %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </li>
+        {% endfor %}
+      </ul>
 
     </main>
 
@@ -152,8 +157,6 @@ layout: none
 
       var searchInput = document.getElementById('liveSearch');
       var resultsBox = document.getElementById('liveSearchResults');
-      var postsList = document.getElementById('postsList');
-      var noResults = document.getElementById('noResultsMessage');
       var postsData = [];
       var debounceTimer;
 
@@ -167,32 +170,12 @@ layout: none
           .trim();
       }
 
-      function renderPosts(posts) {
-        if (!posts || posts.length === 0) {
-          postsList.innerHTML = '';
-          noResults.hidden = false;
-          resultsBox.style.display = 'none';
-          return;
-        }
-
-        var html = '';
-        posts.forEach(function(item) {
-          html += '<li><a href="' + item.url + '">' + item.title + '</a></li>';
-        });
-        postsList.innerHTML = html;
-        noResults.hidden = true;
-        resultsBox.style.display = 'none';
-      }
-
       function renderResults(term) {
         var normalizedTerm = normalize(term);
         var html = '';
 
         if (!normalizedTerm || postsData.length === 0) {
           resultsBox.style.display = 'none';
-          if (!normalizedTerm) {
-            renderPosts(postsData.slice(0, 50));
-          }
           return;
         }
 
@@ -202,22 +185,14 @@ layout: none
 
         if (filtered.length === 0) {
           html = '<li class="no-result">هیچ مطلبی یافت نشد</li>';
-          resultsBox.innerHTML = html;
-          resultsBox.style.display = 'block';
-          postsList.innerHTML = '';
-          noResults.hidden = false;
-        } else if (filtered.length <= 50) {
-          resultsBox.style.display = 'none';
-          renderPosts(filtered);
         } else {
           filtered.forEach(function(item) {
             html += '<li><a href="' + item.url + '">' + item.title + '</a></li>';
           });
-          resultsBox.innerHTML = html;
-          resultsBox.style.display = 'block';
-          postsList.innerHTML = '';
-          noResults.hidden = true;
         }
+
+        resultsBox.innerHTML = html;
+        resultsBox.style.display = 'block';
       }
 
       fetch('/blog.json')
@@ -227,11 +202,9 @@ layout: none
         })
         .then(function(data) {
           postsData = data;
-          renderPosts(postsData.slice(0, 50));
         })
         .catch(function(err) {
           console.warn('خطا در بارگذاری blog.json:', err);
-          postsList.innerHTML = '<li class="no-results">خطا در بارگذاری مطالب</li>';
         });
 
       searchInput.addEventListener('input', function() {
