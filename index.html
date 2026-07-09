@@ -1,5 +1,5 @@
 ---
-layout: null
+layoit: null
 ---
 
 <!DOCTYPE html>
@@ -84,12 +84,47 @@ layout: null
     .featured-image a { display: block; width: 100%; text-decoration: none; }
     .featured-image img { width: 100%; height: auto; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
-    .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; }
+    .posts-list li {
+      position: relative;
+      padding: 1.25rem 1.25rem 1.25rem 1rem;
+      border-radius: 0.75rem;
+      background-color: #111111;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      transition: all 0.25s ease;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+    }
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
-    .posts-list li::before { content: ''; position: absolute; top: 1.25rem; right: 0; width: 4px; height: 2rem; background-color: #2dd4bf; border-radius: 0 4px 4px 0; opacity: 0; transform: scaleY(0); transition: opacity 0.25s, transform 0.25s; }
-    .posts-list li:hover::before { opacity: 1; transform: scaleY(1); }
-    .posts-list a { text-decoration: none; color: #ffffff; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; }
-    .posts-list a:hover { color: #2dd4bf; }
+    .posts-list li::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 2rem;
+      background-color: #2dd4bf;
+      border-radius: 0 4px 4px 0;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .posts-list li:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) scaleY(1);
+    }
+    .posts-list a {
+      text-decoration: none;
+      color: #ffffff;
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      transition: color 0.2s;
+      pointer-events: none;
+    }
+    .posts-list li:hover a {
+      color: #2dd4bf;
+    }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; font-size: inherit; }
     .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: flex; align-items: center; gap: 0.15rem; line-height: 1; }
     .footer-love .green { color: #239f40; }
@@ -136,7 +171,7 @@ layout: null
 
     <ul class="posts-list">
       {% for post in site.posts limit: 20 %}
-        <li>
+        <li role="link" tabindex="0" data-url="{{ post.url | relative_url }}">
           <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
         </li>
       {% endfor %}
@@ -226,6 +261,25 @@ layout: null
       if (!e.target.closest('.live-search-wrapper')) {
         resultsBox.style.display = 'none';
       }
+    });
+
+    var postItems = document.querySelectorAll('.posts-list li');
+    postItems.forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        var url = this.getAttribute('data-url');
+        if (url) {
+          window.location.href = url;
+        }
+      });
+      item.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          var url = this.getAttribute('data-url');
+          if (url) {
+            window.location.href = url;
+          }
+        }
+      });
     });
 
   })();
