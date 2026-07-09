@@ -70,6 +70,16 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2.5rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: #111111; font-size: inherit; }
+    .live-search-wrapper { position: relative; margin-bottom: 1.5rem; width: 100%; }
+    .live-search-input { width: 100%; padding: 0.8rem 1.2rem; font-size: 1rem; font-family: inherit; border: 2px solid #2a2a2a; border-radius: 1rem; background-color: #1c1c1c; color: #f0ece6; outline: none; }
+    .live-search-input:focus { border-color: #2dd4bf; box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15); }
+    .live-search-input::placeholder { color: #6b6560; opacity: 0.8; }
+    .live-search-results { position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1rem; max-height: 300px; overflow-y: auto; z-index: 20; display: none; list-style: none; padding: 0.5rem 0; margin: 0; box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+    .live-search-results li { padding: 0.6rem 1.2rem; border-bottom: 1px solid #2a2a2a; }
+    .live-search-results li:last-child { border-bottom: none; }
+    .live-search-results a { color: #f0ece6; text-decoration: none; display: block; font-size: 0.95rem; transition: color 0.2s; }
+    .live-search-results a:hover { color: #2dd4bf; }
+    .live-search-results .no-result { color: #b0aaa3; padding: 1rem 1.2rem; text-align: center; }
     .search-btn-wrapper { text-align: center; margin-bottom: 1.5rem; outline: none !important; }
     .search-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #2dd4bf; color: #000000; padding: 0.75rem 1.5rem; border-radius: 2.5rem; font-weight: 700; font-size: 1.1rem; text-decoration: none; font-family: inherit; border: none; transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(45, 212, 191, 0.25); width: 100%; cursor: pointer; outline: none !important; }
     .search-btn:hover { background-color: #5eead4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45, 212, 191, 0.35); }
@@ -119,6 +129,11 @@ layout: null
   <main class="main-content">
     <h1 class="sr-only">پاسگاه</h1>
 
+    <div class="live-search-wrapper">
+      <input type="text" id="liveSearch" class="live-search-input" placeholder="جستجوی زنده در همهٔ مطالب..." autocomplete="off">
+      <ul class="live-search-results" id="liveSearchResults"></ul>
+    </div>
+
     <div class="search-btn-wrapper">
       <a href="https://www.pasgah.org/blog" class="search-btn" aria-label="رفتن به صفحه جستجو">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -153,5 +168,84 @@ layout: null
     </div>
   </footer>
 </div>
+
+<script>
+  (function() {
+    'use strict';
+
+    var searchInput = document.getElementById('liveSearch');
+    var resultsBox = document.getElementById('liveSearchResults');
+    var postsData = [];
+    var debounceTimer;
+
+    fetch('/blog.json')
+      .then(function(response) {
+        if (!response.ok) throw new Error('مشکل در بارگذاری داده‌ها');
+        return response.json();
+      })
+      .then(function(data) {
+        postsData = data;
+      })
+      .catch(function(err) {
+        console.warn('خطا در بارگذاری blog.json:', err);
+      });
+
+    function normalize(text) {
+      if (!text) return '';
+      return text
+        .toLowerCase()
+        .replace(/[\u200c\s]+/g, ' ')
+        .replace(/[يى]/g, 'ی')
+        .replace(/[ك]/g, 'ک')
+        .trim();
+    }
+
+    function renderResults(term) {
+      var normalizedTerm = normalize(term);
+      var html = '';
+
+      if (!normalizedTerm || postsData.length === 0) {
+        resultsBox.style.display = 'none';
+        return;
+      }
+
+      var filtered = postsData.filter(function(item) {
+        return normalize(item.title).includes(normalizedTerm);
+      });
+
+      if (filtered.length === 0) {
+        html = '<li class="no-result">هیچ مطلبی یافت نشد</li>';
+      } else {
+        filtered.forEach(function(item) {
+          html += '<li><a href="' + item.url + '">' + item.title + '</a></li>';
+        });
+      }
+
+      resultsBox.innerHTML = html;
+      resultsBox.style.display = 'block';
+    }
+
+    searchInput.addEventListener('input', function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() {
+        renderResults(searchInput.value);
+      }, 200);
+    });
+
+    searchInput.addEventListener('focus', function() {
+      if (searchInput.value.trim() !== '' && postsData.length > 0) {
+        renderResults(searchInput.value);
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.live-search-wrapper')) {
+        resultsBox.style.display = 'none';
+      }
+    });
+
+  })();
+</script>
+
 </body>
 </html>
