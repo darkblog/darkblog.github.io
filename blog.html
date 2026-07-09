@@ -79,6 +79,9 @@ layout: none
     .live-search-results a { color: #f0ece6; text-decoration: none; display: block; font-size: 0.95rem; transition: color 0.2s; }
     .live-search-results a:hover { color: #2dd4bf; }
     .live-search-results .no-result { color: #b0aaa3; padding: 1rem 1.2rem; text-align: center; }
+    .featured-image { width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); line-height: 0; }
+    .featured-image a { display: block; width: 100%; text-decoration: none; }
+    .featured-image img { width: 100%; height: auto; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
     .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; }
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
@@ -128,6 +131,12 @@ layout: none
       <div class="live-search-wrapper">
         <input type="text" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off">
         <ul class="live-search-results" id="liveSearchResults"></ul>
+      </div>
+
+      <div class="featured-image">
+        <a href="https://www.pasgah.org/blog/189">
+          <img src="https://www.pasgah.org/blog/takhte-jamshid.jpeg" alt="تخت جمشید" loading="eager">
+        </a>
       </div>
 
       <ul class="posts-list" id="postsList">
