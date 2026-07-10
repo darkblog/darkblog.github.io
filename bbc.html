@@ -17,7 +17,9 @@ layout: null
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
   {%- endcapture -%}
   <title>{{ page.title | escape }}</title>
+  <meta property="name" content="{{ page.title | escape }}">
   <meta name="description" content="{{ desc | escape }}">
+  <meta property="description" content="{{ desc | escape }}">
 
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
@@ -91,20 +93,6 @@ layout: null
   </style>
 </head>
 <body>
-  <!-- Organization (hidden meta tags) -->
-  <div resource="https://www.pasgah.org#organization" typeof="Organization">
-    <meta property="name" content="پاسگاه">
-    <meta property="url" content="https://www.pasgah.org">
-    <div property="logo" typeof="ImageObject">
-      <meta property="url" content="https://www.pasgah.org/blog.svg">
-    </div>
-  </div>
-
-  <!-- Person (author) -->
-  <div resource="https://www.pasgah.org#ehsanchehri" typeof="Person">
-    <meta property="name" content="احسان چهری">
-  </div>
-
   <div class="page-wrapper">
     <input type="checkbox" id="menu-toggle" class="sr-only">
     <header class="site-header">
@@ -139,43 +127,16 @@ layout: null
       </ul>
     </nav>
     <main class="main-content">
-      <!-- BreadcrumbList -->
-      <div typeof="BreadcrumbList">
-        <nav class="post-breadcrumb" aria-label="مسیر صفحه">
-          <span property="itemListElement" typeof="ListItem">
-            <a property="item" typeof="WebPage" href="{{ site.url | absolute_url }}">
-              <span property="name">خانه</span>
-            </a>
-            <meta property="position" content="1">
-          </span>
-          <span> / </span>
-          <span property="itemListElement" typeof="ListItem">
-            <a property="item" typeof="WebPage" href="{{ site.url | absolute_url }}/blog">
-              <span property="name">وبلاگ</span>
-            </a>
-            <meta property="position" content="2">
-          </span>
-          <span> / </span>
-          <span property="itemListElement" typeof="ListItem">
-            <span property="name">{{ page.title | escape }}</span>
-            <link property="item" href="{{ page.url | absolute_url }}">
-            <meta property="position" content="3">
-          </span>
-        </nav>
-      </div>
-
-      <!-- BlogPosting -->
-      <article resource="{{ page.url | absolute_url }}" typeof="BlogPosting">
+      <article typeof="Article">
         <header class="post-header">
-          <time datetime="{{ page.date | date_to_xmlschema }}" style="display:none;" property="datePublished">{{ page.date | date: "%Y-%m-%d" }}</time>
+          <nav class="post-breadcrumb" aria-label="مسیر صفحه">
+            <a href="/blog">
+              <span aria-hidden="true">→</span>
+              وبلاگ
+            </a>
+          </nav>
+          <time datetime="{{ page.date | date_to_xmlschema }}" style="display:none;">{{ page.date | date: "%Y-%m-%d" }}</time>
           <h1 class="post-title" property="headline">{{ page.title | escape }}</h1>
-          <meta property="description" content="{{ desc | escape }}">
-          
-          <!-- author -->
-          <link property="author" resource="https://www.pasgah.org#ehsanchehri">
-          
-          <!-- publisher -->
-          <link property="publisher" resource="https://www.pasgah.org#organization">
         </header>
         {% if page.image %}
         <figure class="post-image">
