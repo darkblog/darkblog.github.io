@@ -3,7 +3,7 @@ layout: null
 ---
 
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/Article">
+<html lang="fa" dir="rtl" vocab="https://schema.org/">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -17,69 +17,9 @@ layout: null
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
   {%- endcapture -%}
   <title>{{ page.title | escape }}</title>
-  <meta itemprop="name" content="{{ page.title | escape }}">
+  <meta property="name" content="{{ page.title | escape }}">
   <meta name="description" content="{{ desc | escape }}">
-  <meta itemprop="description" content="{{ desc | escape }}">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.pasgah.org#organization",
-        "name": "پاسگاه",
-        "url": "https://www.pasgah.org",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.pasgah.org/blog.svg"
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "خانه",
-            "item": "{{ site.url | absolute_url }}"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "وبلاگ",
-            "item": "{{ site.url | absolute_url }}/blog"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": {{ page.title | jsonify }},
-            "item": "{{ page.url | absolute_url }}"
-          }
-        ]
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": {{ page.title | jsonify }},
-        "description": {{ desc | jsonify }},
-        {% if page.image %}
-        "image": "{{ page.image | absolute_url }}",
-        {% endif %}
-        "author": {
-          "@type": "Person",
-          "name": "احسان چهری"
-        },
-        "publisher": {
-          "@id": "https://www.pasgah.org#organization"
-        },
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "{{ page.url | absolute_url }}"
-        }
-      }
-    ]
-  }
-  </script>
+  <meta property="description" content="{{ desc | escape }}">
 
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
@@ -187,7 +127,7 @@ layout: null
       </ul>
     </nav>
     <main class="main-content">
-      <article itemscope itemtype="https://schema.org/Article">
+      <article typeof="Article">
         <header class="post-header">
           <nav class="post-breadcrumb" aria-label="مسیر صفحه">
             <a href="/blog">
@@ -196,14 +136,14 @@ layout: null
             </a>
           </nav>
           <time datetime="{{ page.date | date_to_xmlschema }}" style="display:none;">{{ page.date | date: "%Y-%m-%d" }}</time>
-          <h1 class="post-title" itemprop="headline">{{ page.title | escape }}</h1>
+          <h1 class="post-title" property="headline">{{ page.title | escape }}</h1>
         </header>
         {% if page.image %}
         <figure class="post-image">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" itemprop="image" fetchpriority="high">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high">
         </figure>
         {% endif %}
-        <div class="article-content" itemprop="articleBody">
+        <div class="article-content" property="articleBody">
           {{ content }}
         </div>
       </article>
