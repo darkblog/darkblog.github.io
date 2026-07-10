@@ -1,9 +1,9 @@
 ---
-layoit: null
+layout: null
 ---
 
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" itemscope itemtype="https://schema.org/WebSite">
+<html lang="fa" dir="rtl" vocab="https://schema.org/">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -19,33 +19,9 @@ layoit: null
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "پاسگاه",
-    "alternateName": "پاسگاه؛ تاریخ + سرگرمی",
-    "description": "پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.",
-    "url": "https://www.pasgah.org",
-    "publisher": {
-      "@type": "Organization",
-      "name": "پاسگاه",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.pasgah.org/blog.svg"
-      }
-    }
-  }
-  </script>
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    @font-face {
-      font-family: 'vazir';
-      src: url('https://www.pasgah.org/blog.woff2') format('woff2');
-      font-weight: 100 900;
-      font-display: swap;
-    }
+    @font-face { font-family: 'vazir'; src: url('https://www.pasgah.org/blog.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
     :root { --header-height: 5rem; --gap: clamp(1rem, 2vw, 2rem); --font-size-base: 1.125rem; }
     body { font-family: 'vazir', system-ui, -apple-system, sans-serif; font-weight: 400; background-color: #000000; color: #ffffff; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; font-size: var(--font-size-base); -webkit-font-smoothing: antialiased; }
     .page-wrapper { max-width: 767px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; min-height: 100vh; background-color: #111111; position: relative; }
@@ -84,47 +60,12 @@ layoit: null
     .featured-image a { display: block; width: 100%; text-decoration: none; }
     .featured-image img { width: 100%; height: auto; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
-    .posts-list li {
-      position: relative;
-      padding: 1.25rem 1.25rem 1.25rem 1rem;
-      border-radius: 0.75rem;
-      background-color: #111111;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-      transition: all 0.25s ease;
-      border: 1px solid #2a2a2a;
-      cursor: pointer;
-    }
+    .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; cursor: pointer; }
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
-    .posts-list li::before {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 2rem;
-      background-color: #2dd4bf;
-      border-radius: 0 4px 4px 0;
-      opacity: 0;
-      transition: opacity 0.25s, transform 0.25s;
-    }
-    .posts-list li:hover::before {
-      opacity: 1;
-      transform: translateY(-50%) scaleY(1);
-    }
-    .posts-list a {
-      text-decoration: none;
-      color: #ffffff;
-      display: block;
-      font-size: 1.25rem;
-      font-weight: 700;
-      line-height: 1.4;
-      transition: color 0.2s;
-      pointer-events: none;
-    }
-    .posts-list li:hover a {
-      color: #2dd4bf;
-    }
+    .posts-list li::before { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 2rem; background-color: #2dd4bf; border-radius: 0 4px 4px 0; opacity: 0; transition: opacity 0.25s, transform 0.25s; }
+    .posts-list li:hover::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
+    .posts-list a { text-decoration: none; color: #ffffff; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; pointer-events: none; }
+    .posts-list li:hover a { color: #2dd4bf; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; font-size: inherit; }
     .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: flex; align-items: center; gap: 0.15rem; line-height: 1; }
     .footer-love .green { color: #239f40; }
