@@ -65,6 +65,11 @@ layout: null
     .posts-list li:hover::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
     .posts-list a { text-decoration: none; color: #ffffff; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; pointer-events: none; }
     .posts-list li:hover a { color: #2dd4bf; }
+    .posts-list li:first-child a { pointer-events: auto; }
+    .posts-list li:first-child a img { width: 100%; height: auto; border-radius: 0.5rem; display: block; }
+    .posts-list li:first-child { padding: 0.5rem; background-color: #1a1a1a; }
+    .posts-list li:first-child:hover { background-color: #222; }
+    .posts-list li:first-child::before { display: none; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; font-size: inherit; }
     .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: flex; align-items: center; gap: 0.15rem; line-height: 1; }
     .footer-love .green { color: #239f40; }
@@ -103,16 +108,23 @@ layout: null
       <ul class="live-search-results" id="liveSearchResults"></ul>
     </div>
 
+    {% assign first_post = site.posts[0] %}
     <div class="featured-image">
-      <a href="https://www.pasgah.org/blog/mohammadreza-pahlavi">
-        <img src="https://www.pasgah.org/blog/mohammadreza-pahlavi.jpeg" alt="محمدرضا پهلوی" loading="eager">
+      <a href="{{ first_post.url | relative_url }}">
+        <img src="{{ first_post.image | default: '/default.jpg' }}" alt="{{ first_post.title | escape }}" loading="eager">
       </a>
     </div>
 
     <ul class="posts-list">
-      {% for post in site.posts limit: 20 %}
+      {% for post in site.posts limit:20 %}
         <li role="link" tabindex="0" data-url="{{ post.url | relative_url }}">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          {% if forloop.first %}
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.image | default: '/default.jpg' }}" alt="{{ post.title | escape }}">
+            </a>
+          {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
