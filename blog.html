@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: null
 ---
 
 <!DOCTYPE html>
@@ -65,6 +65,11 @@ layout: none
     .posts-list li:hover::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
     .posts-list a { text-decoration: none; color: #f0ece6; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; pointer-events: none; }
     .posts-list li:hover a { color: #2dd4bf; }
+    .posts-list li:first-child a { pointer-events: auto; }
+    .posts-list li:first-child a img { width: 100%; height: auto; border-radius: 0.5rem; display: block; }
+    .posts-list li:first-child { padding: 0.5rem; background-color: #1a1a1a; }
+    .posts-list li:first-child:hover { background-color: #222; }
+    .posts-list li:first-child::before { display: none; }
     .no-results { text-align: center; padding: 3rem 1.5rem; color: #b0aaa3; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1.5rem; font-size: 1.1rem; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
     .footer-blog-btn {
@@ -137,16 +142,16 @@ layout: none
         <ul class="live-search-results" id="liveSearchResults"></ul>
       </div>
 
-      <div class="featured-image">
-        <a href="https://www.pasgah.org/blog/189">
-          <img src="https://www.pasgah.org/blog/takhte-jamshid.jpeg" alt="تخت جمشید" loading="eager">
-        </a>
-      </div>
-
       <ul class="posts-list" id="postsList">
         {% for post in site.posts limit: 20 %}
-          <li data-url="{{ post.url | relative_url }}">
-            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          <li role="link" tabindex="0" data-url="{{ post.url | relative_url }}">
+            {% if forloop.first %}
+              <a href="{{ post.url | relative_url }}">
+                <img src="{{ post.image | default: '/default.jpg' }}" alt="{{ post.title | escape }}">
+              </a>
+            {% else %}
+              <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
