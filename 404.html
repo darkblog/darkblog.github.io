@@ -10,10 +10,10 @@ layout: null
   <link rel="preconnect" href="https://www.pasgah.org" crossorigin>
   <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/blog.svg" as="image" type="image/svg+xml">
+  <link rel="canonical" href="{{ site.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     @font-face { font-family: 'vazir'; src: url('https://www.pasgah.org/blog.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
@@ -51,9 +51,6 @@ layout: null
     .live-search-results a { color: #f0ece6; text-decoration: none; display: block; font-size: 0.95rem; transition: color 0.2s; }
     .live-search-results a:hover { color: #2dd4bf; }
     .live-search-results .no-result { color: #b0aaa3; padding: 1rem 1.2rem; text-align: center; }
-    .featured-image { width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); line-height: 0; }
-    .featured-image a { display: block; width: 100%; text-decoration: none; }
-    .featured-image img { width: 100%; height: auto; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
     .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; cursor: pointer; }
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
@@ -61,13 +58,32 @@ layout: null
     .posts-list li:hover::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
     .posts-list a { text-decoration: none; color: #ffffff; display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; transition: color 0.2s; pointer-events: none; }
     .posts-list li:hover a { color: #2dd4bf; }
-    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; font-size: inherit; }
-    .footer-love { font-size: 1.5rem; font-weight: 500; direction: ltr; display: flex; align-items: center; gap: 0.15rem; line-height: 1; }
-    .footer-love .green { color: #239f40; }
-    .footer-love .red { color: #da0000; }
-    .footer-love a { text-decoration: none; line-height: 1; border-bottom: 2px dashed rgba(218, 0, 0, 0.6); }
-    .footer-love a:hover { border-bottom-style: solid; }
-    .heart-icon { width: 1.4rem; height: 1.4rem; flex-shrink: 0; display: block; transform: translateY(-0.15em); }
+    .posts-list li:first-child a { pointer-events: auto; }
+    .posts-list li:first-child a img { width: 100%; height: auto; border-radius: 0.5rem; display: block; }
+    .posts-list li:first-child { padding: 0.5rem; background-color: #1a1a1a; }
+    .posts-list li:first-child:hover { background-color: #222; }
+    .posts-list li:first-child::before { display: none; }
+    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
+    .footer-blog-btn {
+      font-family: 'vazir', system-ui, sans-serif;
+      display: inline-block;
+      padding: 0.8rem 2.5rem;
+      background-color: #2dd4bf;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 0.75rem;
+      transition: background-color 0.2s, transform 0.15s;
+      box-shadow: 0 4px 12px rgba(45, 212, 191, 0.25);
+    }
+    .footer-blog-btn:hover {
+      background-color: #5eead4;
+      transform: scale(1.02);
+    }
+    .footer-blog-btn:active {
+      transform: scale(0.97);
+    }
   </style>
 </head>
 <body>
@@ -99,28 +115,22 @@ layout: null
       <ul class="live-search-results" id="liveSearchResults"></ul>
     </div>
 
-    <div class="featured-image">
-      <a href="https://www.pasgah.org/blog/mohammadreza-pahlavi">
-        <img src="https://www.pasgah.org/blog/mohammadreza-pahlavi.jpeg" alt="محمدرضا پهلوی" loading="eager">
-      </a>
-    </div>
-
     <ul class="posts-list">
-      {% for post in site.posts limit: 20 %}
+      {% for post in site.posts limit:20 %}
         <li role="link" tabindex="0" data-url="{{ post.url | relative_url }}">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          {% if forloop.first %}
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.image | default: '/default.jpg' }}" alt="{{ post.title | escape }}">
+            </a>
+          {% else %}
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
   </main>
   <footer class="site-footer">
-    <div class="footer-love">
-      <span class="green">I</span>
-      <svg class="heart-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-      </svg>
-      <a href="https://www.pasgah.org/blog/iran" class="red">IRAN</a>
-    </div>
+    <a href="/blog" class="footer-blog-btn">آرشیو پست‌ها</a>
   </footer>
 </div>
 
