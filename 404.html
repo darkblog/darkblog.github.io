@@ -10,7 +10,6 @@ layout: null
   <link rel="preconnect" href="https://www.pasgah.org" crossorigin>
   <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/blog.svg" as="image" type="image/svg+xml">
-  <script src="/blog.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -119,85 +118,60 @@ layout: null
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  (function() {
     var searchInput = document.getElementById('liveSearch');
     var resultsBox = document.getElementById('liveSearchResults');
-    var postsData = window.PASGAH_POSTS || [];
+    var postsData = [
+{%- for post in site.posts -%}
+      { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
+{%- endfor -%}
+    ];
     var debounceTimer;
 
     function normalize(text) {
       if (!text) return '';
-      return text
-        .toLowerCase()
-        .replace(/[\u200c\s]+/g, ' ')
-        .replace(/[يى]/g, 'ی')
-        .replace(/[ك]/g, 'ک')
-        .trim();
+      return text.toLowerCase().replace(/[\u200c\s]+/g, ' ').replace(/[يى]/g, 'ی').replace(/[ك]/g, 'ک').trim();
     }
 
     function renderResults(term) {
       var normalizedTerm = normalize(term);
       var html = '';
-
-      if (!normalizedTerm || postsData.length === 0) {
-        resultsBox.style.display = 'none';
-        return;
-      }
-
-      var filtered = postsData.filter(function(item) {
-        return normalize(item.title).includes(normalizedTerm);
-      });
-
+      if (!normalizedTerm || postsData.length === 0) { resultsBox.style.display = 'none'; return; }
+      var filtered = postsData.filter(function(item) { return normalize(item.title).includes(normalizedTerm); });
       if (filtered.length === 0) {
         html = '<li class="no-result">هیچ مطلبی یافت نشد</li>';
       } else {
-        filtered.forEach(function(item) {
-          html += '<li><a href="' + item.url + '">' + item.title + '</a></li>';
-        });
+        filtered.forEach(function(item) { html += '<li><a href="' + item.url + '">' + item.title + '</a></li>'; });
       }
-
       resultsBox.innerHTML = html;
       resultsBox.style.display = 'block';
     }
 
     searchInput.addEventListener('input', function() {
       clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function() {
-        renderResults(searchInput.value);
-      }, 200);
+      debounceTimer = setTimeout(function() { renderResults(searchInput.value); }, 200);
     });
-
     searchInput.addEventListener('focus', function() {
-      if (searchInput.value.trim() !== '' && postsData.length > 0) {
-        renderResults(searchInput.value);
-      }
+      if (searchInput.value.trim() !== '' && postsData.length > 0) renderResults(searchInput.value);
     });
-
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.live-search-wrapper')) {
-        resultsBox.style.display = 'none';
-      }
+      if (!e.target.closest('.live-search-wrapper')) resultsBox.style.display = 'none';
     });
 
-    var postItems = document.querySelectorAll('.posts-list li');
-    postItems.forEach(function(item) {
+    document.querySelectorAll('.posts-list li').forEach(function(item) {
       item.addEventListener('click', function(e) {
         var url = this.getAttribute('data-url');
-        if (url) {
-          window.location.href = url;
-        }
+        if (url) window.location.href = url;
       });
       item.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           var url = this.getAttribute('data-url');
-          if (url) {
-            window.location.href = url;
-          }
+          if (url) window.location.href = url;
         }
       });
     });
-  });
+  })();
 </script>
 
 </body>
