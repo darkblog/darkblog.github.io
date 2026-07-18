@@ -54,8 +54,9 @@ layout: null
     .post-header { margin-bottom: 3rem; }
     .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #ffffff; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
     .post-breadcrumb { margin-bottom: 1.5rem; font-size: inherit; }
-    .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.5rem; color: #2dd4bf; text-decoration: none; font-weight: 500; font-size: inherit; }
-    .post-breadcrumb a:hover { color: #5eeadb; }
+    .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.5rem; color: #ffffff; text-decoration: none; font-weight: 500; font-size: inherit; }
+    .post-breadcrumb a:hover { color: #2dd4bf; }
+    .post-breadcrumb a span { font-weight: 900; }
     .post-featured-image { overflow: hidden; border-radius: 1rem; margin-bottom: 2.5rem; }
     .post-featured-image img { width: 100%; height: auto; display: block; }
     .article-content { line-height: 1.9; color: #ffffff; margin-top: 2.5rem; font-size: inherit; }
@@ -78,9 +79,9 @@ layout: null
     .article-content table tbody tr:hover { background-color: #252525; }
     .article-content table caption { padding: 0.5rem 0; font-weight: 500; color: #ffffff; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
-    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: #2dd4bf; color: #000000; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; transition: background-color 0.2s, transform 0.15s; box-shadow: 0 4px 12px rgba(45, 212, 191, 0.25); }
-    .footer-blog-btn:hover { background-color: #5eead4; transform: scale(1.02); }
-    .footer-blog-btn:active { transform: scale(0.97); }
+    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; }
+    .footer-blog-btn:hover { background-color: rgba(45, 212, 191, 0.1); border-color: #2dd4bf; color: #2dd4bf; transform: scale(1.02); }
+    .footer-blog-btn:active { transform: scale(0.97); color: #2dd4bf; }
   </style>
 </head>
 <body>
