@@ -49,15 +49,14 @@ layout: null
     .live-search-input { width: 100%; padding: 0.8rem 1.2rem; font-size: 1rem; font-family: inherit; border: 2px solid #2a2a2a; border-radius: 1rem; background-color: #1c1c1c; color: #f0ece6; outline: none; }
     .live-search-input:focus { border-color: #2dd4bf; box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15); }
     .live-search-input::placeholder { color: #6b6560; opacity: 0.8; }
+    .search-clear-btn { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); background: #1c1c1c; border: none; color: #6b6560; font-size: 1.25rem; line-height: 1; cursor: pointer; padding: 0.25rem 0.4rem; border-radius: 50%; display: none; z-index: 21; }
+    .search-clear-btn:hover { color: #f0ece6; background: #2a2a2a; }
     .live-search-results { position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1rem; overflow-y: hidden; z-index: 20; display: none; list-style: none; padding: 0.5rem 0; margin: 0; box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
     .live-search-results li { padding: 0.6rem 1.2rem; border-bottom: 1px solid #2a2a2a; }
     .live-search-results li:last-child { border-bottom: none; }
     .live-search-results a { color: #f0ece6; text-decoration: none; display: block; font-size: 0.95rem; transition: color 0.2s; }
     .live-search-results a:hover { color: #2dd4bf; }
     .live-search-results .no-result { color: #b0aaa3; padding: 1rem 1.2rem; text-align: center; }
-    .featured-image { width: 100%; margin-bottom: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); line-height: 0; }
-    .featured-image a { display: block; width: 100%; text-decoration: none; }
-    .featured-image img { width: 100%; height: auto; display: block; }
     .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
     .posts-list li { position: relative; padding: 1.25rem 1.25rem 1.25rem 1rem; border-radius: 0.75rem; background-color: #111111; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: all 0.25s ease; border: 1px solid #2a2a2a; cursor: pointer; }
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
@@ -73,9 +72,9 @@ layout: null
     .post-card-image img { width: 100%; height: auto; display: block; }
     .no-results { text-align: center; padding: 3rem 1.5rem; color: #b0aaa3; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1.5rem; font-size: 1.1rem; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
-    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: #2dd4bf; color: #000000; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; transition: background-color 0.2s, transform 0.15s; box-shadow: 0 4px 12px rgba(45, 212, 191, 0.25); cursor: pointer; border: none; font-family: inherit; }
-    .footer-blog-btn:hover { background-color: #5eead4; transform: scale(1.02); }
-    .footer-blog-btn:active { transform: scale(0.97); }
+    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; cursor: pointer; }
+    .footer-blog-btn:hover { background-color: rgba(45, 212, 191, 0.1); border-color: #2dd4bf; color: #2dd4bf; transform: scale(1.02); }
+    .footer-blog-btn:active { transform: scale(0.97); color: #2dd4bf; }
     .footer-blog-btn.hidden { visibility: hidden; }
   </style>
 </head>
@@ -118,6 +117,7 @@ layout: null
 
       <div class="live-search-wrapper">
         <input type="text" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off">
+        <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو">&times;</button>
         <ul class="live-search-results" id="liveSearchResults"></ul>
       </div>
 
@@ -146,6 +146,7 @@ layout: null
     (function() {
       var searchInput = document.getElementById('liveSearch');
       var resultsBox = document.getElementById('liveSearchResults');
+      var clearBtn = document.getElementById('searchClearBtn');
       var postsData = [
 {%- for post in site.posts -%}
         { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
@@ -175,12 +176,21 @@ layout: null
       searchInput.addEventListener('input', function() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function() { renderResults(searchInput.value); }, 200);
+        clearBtn.style.display = searchInput.value ? 'block' : 'none';
       });
       searchInput.addEventListener('focus', function() {
         if (searchInput.value.trim() !== '' && postsData.length > 0) renderResults(searchInput.value);
+        clearBtn.style.display = searchInput.value ? 'block' : 'none';
       });
       document.addEventListener('click', function(e) {
         if (!e.target.closest('.live-search-wrapper')) resultsBox.style.display = 'none';
+      });
+
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        searchInput.focus();
+        resultsBox.style.display = 'none';
+        clearBtn.style.display = 'none';
       });
 
       document.querySelectorAll('.posts-list li').forEach(function(item) {
