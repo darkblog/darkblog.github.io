@@ -66,9 +66,10 @@ layout: null
     .post-card-image { overflow: hidden; border-radius: 0.5rem; display: block; }
     .post-card-image img { width: 100%; height: auto; display: block; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
-    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; }
+    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; cursor: pointer; }
     .footer-blog-btn:hover { background-color: rgba(45, 212, 191, 0.1); border-color: #2dd4bf; color: #2dd4bf; transform: scale(1.02); }
     .footer-blog-btn:active { transform: scale(0.97); color: #2dd4bf; }
+    .footer-blog-btn.hidden { visibility: hidden; }
   </style>
 </head>
 <body>
@@ -101,7 +102,7 @@ layout: null
       <ul class="live-search-results" id="liveSearchResults"></ul>
     </div>
 
-    <ul class="posts-list">
+    <ul class="posts-list" id="postsList">
       {% for post in site.posts limit:20 %}
         <li role="link" tabindex="0" data-url="{{ post.url | relative_url }}">
           {% if forloop.first %}
@@ -116,7 +117,7 @@ layout: null
     </ul>
   </main>
   <footer class="site-footer">
-    <a href="/blog" class="footer-blog-btn">آرشیو پست‌ها</a>
+    <button id="loadMoreBtn" class="footer-blog-btn">پست‌های بیشتر</button>
   </footer>
 </div>
 
@@ -184,6 +185,49 @@ layout: null
         }
       });
     });
+
+    var loadBtn = document.getElementById('loadMoreBtn');
+    var postsList = document.getElementById('postsList');
+    var allPosts = postsData.slice();
+    var currentIndex = 20;
+    var step = 10;
+
+    function appendPosts() {
+      var total = allPosts.length;
+      if (currentIndex >= total) { loadBtn.classList.add('hidden'); return; }
+      var endIndex = Math.min(currentIndex + step, total);
+      var fragment = document.createDocumentFragment();
+      for (var i = currentIndex; i < endIndex; i++) {
+        var post = allPosts[i];
+        if (!post) continue;
+        var li = document.createElement('li');
+        li.setAttribute('role', 'link');
+        li.setAttribute('tabindex', '0');
+        li.setAttribute('data-url', post.url);
+        var a = document.createElement('a');
+        a.href = post.url;
+        a.textContent = post.title;
+        li.appendChild(a);
+        li.addEventListener('click', function(e) {
+          var url = this.getAttribute('data-url');
+          if (url) window.location.href = url;
+        });
+        li.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            var url = this.getAttribute('data-url');
+            if (url) window.location.href = url;
+          }
+        });
+        fragment.appendChild(li);
+      }
+      postsList.appendChild(fragment);
+      currentIndex = endIndex;
+      if (currentIndex >= total) loadBtn.classList.add('hidden');
+    }
+
+    loadBtn.addEventListener('click', function() { appendPosts(); });
+    if (allPosts.length <= currentIndex) loadBtn.classList.add('hidden');
   })();
 </script>
 
