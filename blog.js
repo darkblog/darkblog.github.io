@@ -1,0 +1,9 @@
+---
+layout: null
+---
+
+var PASGAH_POSTS = [
+{%- for post in site.posts -%}
+  { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
+{%- endfor -%}
+];
