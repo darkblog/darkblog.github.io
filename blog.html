@@ -62,14 +62,8 @@ layout: null
     .posts-list li:hover { background-color: #1c1c1c; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: #3a3a3a; transform: translateY(-2px); }
     .posts-list li::before { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 2rem; background-color: #2dd4bf; border-radius: 0 4px 4px 0; opacity: 0; transition: opacity 0.25s, transform 0.25s; }
     .posts-list li:hover::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
-    .posts-list a { text-decoration: none; color: #f0ece6; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; pointer-events: none; }
+    .posts-list a { text-decoration: none; color: #f0ece6; display: block; font-size: 1.2rem; font-weight: 600; transition: color 0.2s; }
     .posts-list li:hover a { color: #2dd4bf; }
-    .posts-list li:first-child a { pointer-events: auto; }
-    .posts-list li:first-child { padding: 0.5rem; background-color: #1a1a1a; }
-    .posts-list li:first-child:hover { background-color: #222; }
-    .posts-list li:first-child::before { display: none; }
-    .post-card-image { overflow: hidden; border-radius: 0.5rem; display: block; }
-    .post-card-image img { width: 100%; height: auto; display: block; }
     .no-results { text-align: center; padding: 3rem 1.5rem; color: #b0aaa3; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1.5rem; font-size: 1.1rem; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
     .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; cursor: pointer; }
@@ -124,13 +118,7 @@ layout: null
       <ul class="posts-list" id="postsList">
         {% for post in site.posts limit: 20 %}
           <li role="link" tabindex="0" data-url="{{ post.url | relative_url }}">
-            {% if forloop.first %}
-              <a href="{{ post.url | relative_url }}" class="post-card-image">
-                <img src="{{ post.image | default: '/default.jpg' }}" alt="{{ post.title | escape }}" fetchpriority="high">
-              </a>
-            {% else %}
-              <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-            {% endif %}
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
           </li>
         {% endfor %}
       </ul>
