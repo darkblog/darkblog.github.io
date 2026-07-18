@@ -72,32 +72,10 @@ layout: null
     .posts-list li:first-child::before { display: none; }
     .no-results { text-align: center; padding: 3rem 1.5rem; color: #b0aaa3; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1.5rem; font-size: 1.1rem; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
-    .footer-blog-btn {
-      font-family: 'vazir', system-ui, sans-serif;
-      display: inline-block;
-      padding: 0.8rem 2.5rem;
-      background-color: #2dd4bf;
-      color: #000000;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.2rem;
-      border-radius: 0.75rem;
-      transition: background-color 0.2s, transform 0.15s;
-      box-shadow: 0 4px 12px rgba(45, 212, 191, 0.25);
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
-    }
-    .footer-blog-btn:hover {
-      background-color: #5eead4;
-      transform: scale(1.02);
-    }
-    .footer-blog-btn:active {
-      transform: scale(0.97);
-    }
-    .footer-blog-btn.hidden {
-      display: none;
-    }
+    .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-block; padding: 0.8rem 2.5rem; background-color: #2dd4bf; color: #000000; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; transition: background-color 0.2s, transform 0.15s; box-shadow: 0 4px 12px rgba(45, 212, 191, 0.25); cursor: pointer; border: none; font-family: inherit; }
+    .footer-blog-btn:hover { background-color: #5eead4; transform: scale(1.02); }
+    .footer-blog-btn:active { transform: scale(0.97); }
+    .footer-blog-btn.hidden { display: none; }
   </style>
 </head>
 <body>
@@ -169,7 +147,11 @@ layout: null
 
       var searchInput = document.getElementById('liveSearch');
       var resultsBox = document.getElementById('liveSearchResults');
-      var postsData = [];
+      var postsData = [
+{%- for post in site.posts -%}
+        { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
+{%- endfor -%}
+      ];
       var debounceTimer;
 
       function normalize(text) {
@@ -206,18 +188,6 @@ layout: null
         resultsBox.innerHTML = html;
         resultsBox.style.display = 'block';
       }
-
-      fetch('/blog.json')
-        .then(function(response) {
-          if (!response.ok) throw new Error('مشکل در بارگذاری داده‌ها');
-          return response.json();
-        })
-        .then(function(data) {
-          postsData = data;
-        })
-        .catch(function(err) {
-          console.warn('خطا در بارگذاری blog.json:', err);
-        });
 
       searchInput.addEventListener('input', function() {
         clearTimeout(debounceTimer);
@@ -259,11 +229,9 @@ layout: null
 
       var loadBtn = document.getElementById('loadMoreBtn');
       var postsList = document.getElementById('postsList');
-      var allPosts = [];
+      var allPosts = postsData.slice();
       var currentIndex = 20;
       var step = 10;
-      var dataLoaded = false;
-      var pendingLoad = false;
 
       function appendPosts() {
         var total = allPosts.length;
@@ -279,6 +247,8 @@ layout: null
           var post = allPosts[i];
           if (!post) continue;
           var li = document.createElement('li');
+          li.setAttribute('role', 'link');
+          li.setAttribute('tabindex', '0');
           li.setAttribute('data-url', post.url);
           var a = document.createElement('a');
           a.href = post.url;
@@ -310,49 +280,12 @@ layout: null
         }
       }
 
-      function loadMorePosts() {
-        if (allPosts.length === 0 && !dataLoaded) {
-          pendingLoad = true;
-          fetch('/blog.json')
-            .then(function(response) {
-              if (!response.ok) throw new Error('مشکل در بارگذاری داده‌ها');
-              return response.json();
-            })
-            .then(function(data) {
-              allPosts = data;
-              dataLoaded = true;
-              pendingLoad = false;
-              appendPosts();
-            })
-            .catch(function(err) {
-              console.warn('خطا در بارگذاری blog.json:', err);
-              pendingLoad = false;
-            });
-        } else if (allPosts.length > 0) {
-          appendPosts();
-        }
-      }
-
       loadBtn.addEventListener('click', function() {
-        loadMorePosts();
+        appendPosts();
       });
 
-      var checkData = setInterval(function() {
-        if (postsData.length > 0 && !dataLoaded) {
-          allPosts = postsData.slice();
-          dataLoaded = true;
-          clearInterval(checkData);
-          if (pendingLoad) {
-            pendingLoad = false;
-            appendPosts();
-          }
-        }
-      }, 100);
-
-      if (postsData.length > 0) {
-        allPosts = postsData.slice();
-        dataLoaded = true;
-        clearInterval(checkData);
+      if (allPosts.length <= currentIndex) {
+        loadBtn.classList.add('hidden');
       }
 
     })();
