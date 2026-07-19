@@ -75,7 +75,6 @@ layout: null
   </style>
 </head>
 <body>
-
   <div typeof="Organization">
     <meta property="name" content="پاسگاه">
     <div property="logo" typeof="ImageObject">
@@ -83,7 +82,6 @@ layout: null
     </div>
     <link property="url" href="https://www.pasgah.org">
   </div>
-
   <div class="page-wrapper">
     <input type="checkbox" id="menu-toggle" class="sr-only">
     <header class="site-header">
@@ -98,25 +96,19 @@ layout: null
         </label>
       </div>
     </header>
-
     <label for="menu-toggle" class="mobile-nav-overlay"></label>
-
     <nav class="mobile-nav" aria-label="منوی اصلی">
       <ul>
         <li><a href="/">صفحه اصلی</a></li>
       </ul>
     </nav>
-
     <main class="main-content">
-
       <h1 class="sr-only">وبلاگ پاسگاه</h1>
-
       <div class="live-search-wrapper">
         <input type="text" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off" aria-label="جستجو در پست‌ها">
         <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو">&times;</button>
         <ul class="live-search-results" id="liveSearchResults" aria-label="نتایج جستجو"></ul>
       </div>
-
       <ul class="posts-list" id="postsList">
         {% for post in site.posts limit: 20 %}
           <li>
@@ -124,23 +116,20 @@ layout: null
           </li>
         {% endfor %}
       </ul>
-
     </main>
-
     <footer class="site-footer">
       <button id="loadMoreBtn" class="footer-blog-btn">پست‌های بیشتر</button>
     </footer>
   </div>
-
   <script>
     (function() {
       var searchInput = document.getElementById('liveSearch');
       var resultsBox = document.getElementById('liveSearchResults');
       var clearBtn = document.getElementById('searchClearBtn');
       var postsData = [
-{%- for post in site.posts -%}
+      {%- for post in site.posts -%}
         { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
-{%- endfor -%}
+      {%- endfor -%}
       ];
       var debounceTimer;
 
@@ -214,6 +203,5 @@ layout: null
       if (allPosts.length <= currentIndex) loadBtn.classList.add('hidden');
     })();
   </script>
-
 </body>
 </html>
