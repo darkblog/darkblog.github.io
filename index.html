@@ -70,8 +70,8 @@ layout: null
     .posts-list li:first-child { background-color: #1a1a1a; }
     .posts-list li:first-child:hover { background-color: #222; }
     .posts-list li:first-child::before { display: none; }
-    .post-card-image { overflow: hidden; border-radius: 0.5rem; display: block; padding: 0 !important; min-height: 48px !important; }
-    .post-card-image img { width: 100%; height: auto; display: block; }
+    .post-card-image { overflow: hidden; border-radius: 0.5rem; display: block; padding: 0 !important; min-height: 48px !important; width: 100%; aspect-ratio: 16 / 9; background-color: #1c1c1c; }
+    .post-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
     .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; cursor: pointer; min-height: 48px; min-width: 48px; }
     .footer-blog-btn:hover { background-color: rgba(45, 212, 191, 0.1); border-color: #2dd4bf; color: #2dd4bf; transform: scale(1.02); }
@@ -112,7 +112,7 @@ layout: null
         <li>
           {% if forloop.first %}
             <a href="{{ post.url | relative_url }}" class="post-card-image" aria-label="{{ post.title | escape }}">
-              <img src="{{ post.image | default: '/default.jpg' }}" alt="{{ post.title | escape }}" fetchpriority="high">
+              <img src="{{ post.image | default: '/default.jpg' }}" alt="{{ post.title | escape }}" fetchpriority="high" width="800" height="450">
             </a>
           {% else %}
             <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
