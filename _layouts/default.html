@@ -56,8 +56,8 @@ layout: null
     .post-breadcrumb { margin-bottom: 1.5rem; font-size: inherit; }
     .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.5rem; color: #ffffff; text-decoration: none; font-weight: 500; font-size: inherit; min-height: 48px; }
     .post-breadcrumb a:hover { color: #2dd4bf; }
-    .post-breadcrumb a span { font-weight: 900; }
-    .post-featured-image { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 1rem; margin-bottom: 2.5rem; background-color: #1c1c1c; }
+    .post-breadcrumb a span { font-weight: 900; font-size: 1.5rem; line-height: 1; display: inline-block; vertical-align: middle; }
+    .post-featured-image { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 1rem; margin-bottom: 2.5rem; background-color: #1c1c1c; }
     .post-featured-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .article-content { line-height: 1.9; color: #ffffff; margin-top: 2.5rem; font-size: inherit; }
     .article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: #ffffff; font-size: clamp(1.4rem, 3.5vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.4; }
@@ -66,7 +66,7 @@ layout: null
     .article-content a { color: #2dd4bf; text-decoration: none; font-weight: 500; border-bottom: 1px dashed currentColor; }
     .article-content a:hover { text-decoration: none; color: #5eeadb; border-bottom-style: solid; }
     .article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 2rem 0; display: block; }
-    .article-content blockquote { border-right: 4px solid #3a3a3a; padding: 1.5rem; margin: 2rem 0; color: #ffffff; background: #1c1c1c; }
+    .article-content blockquote { border-right: 4px solid #3a3a3a; padding: 1.5rem; margin: 1.5rem 0; color: #ffffff; background: #1c1c1c; }
     .article-content ul, .article-content ol { margin: 1.5rem 0; padding-right: 1.5rem; }
     .article-content li { margin-bottom: 0.75rem; }
     .article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; direction: rtl !important; text-align: right !important; }
@@ -132,7 +132,7 @@ layout: null
         </header>
         {% if page.image %}
         <figure class="post-featured-image">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high" width="800" height="800">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high" width="800" height="533">
         </figure>
         {% endif %}
         <div class="article-content" property="articleBody">
