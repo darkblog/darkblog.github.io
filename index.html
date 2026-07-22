@@ -40,9 +40,9 @@ layout: null
     #menu-toggle:focus-visible ~ .site-header .hamburger { outline: 3px solid #2dd4bf; outline-offset: 2px; }
     #menu-toggle:checked ~ .mobile-nav-overlay { display: block; }
     #menu-toggle:checked ~ .mobile-nav { display: block; }
-    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    #menu-toggle:checked ~ .site-header .hamburger span:nth-child(4) { transform: rotate(45deg) translate(5px, 5px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: #111111; font-size: inherit; }
     .live-search-wrapper { position: relative; margin-bottom: 1.5rem; width: 100%; }
     .live-search-input { width: 100%; padding: 0.8rem 1.2rem 0.8rem 3rem; font-size: 1rem; font-family: inherit; border: 2px solid #2a2a2a; border-radius: 1rem; background-color: #1c1c1c; color: #f0ece6; outline: none; min-height: 48px; }
@@ -85,7 +85,8 @@ layout: null
       <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
         <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40" fetchpriority="high">
       </a>
-      <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو">
+      <label for="menu-toggle" class="hamburger">
+        <span class="sr-only">باز و بسته کردن منو</span>
         <span></span>
         <span></span>
         <span></span>
