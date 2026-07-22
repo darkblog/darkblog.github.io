@@ -17,9 +17,7 @@ layout: null
     {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
   {%- endcapture -%}
   <title>{{ page.title | escape }}</title>
-  <meta property="name" content="{{ page.title | escape }}">
   <meta name="description" content="{{ desc | escape }}">
-  <meta property="description" content="{{ desc | escape }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
   <meta name="theme-color" content="#000000">
@@ -45,6 +43,7 @@ layout: null
     .mobile-nav ul { display: flex; flex-direction: column; gap: 1.75rem; list-style: none; font-weight: 400; padding: 0; margin: 0; font-size: inherit; }
     .mobile-nav a { color: white; text-decoration: none; display: block; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: inherit; min-height: 48px; }
     .mobile-nav a:hover { color: #2dd4bf; }
+    #menu-toggle:focus-visible ~ .site-header .hamburger { outline: 3px solid #2dd4bf; outline-offset: 2px; }
     #menu-toggle:checked ~ .mobile-nav-overlay { display: block; }
     #menu-toggle:checked ~ .mobile-nav { display: block; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
@@ -93,7 +92,7 @@ layout: null
         <a href="/" class="brand" aria-label="صفحه اصلی پاسگاه">
           <img src="/blog.svg" alt="لوگوی پاسگاه" width="40" height="40" fetchpriority="high">
         </a>
-        <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو" tabindex="0">
+        <label for="menu-toggle" class="hamburger" aria-label="باز و بسته کردن منو">
           <span></span>
           <span></span>
           <span></span>
