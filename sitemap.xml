@@ -12,7 +12,7 @@ layout: null
   </url>
   {% for post in site.posts %}
   <url>
-    <loc>{{ post.url | relative_url }}</loc>
+    <loc>{{ site.url }}{{ post.url }}</loc>
   </url>
   {% endfor %}
 </urlset>
