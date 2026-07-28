@@ -7,11 +7,9 @@ layout: null
   <url>
     <loc>https://www.pasgah.org/</loc>
   </url>
-
   <url>
     <loc>https://www.pasgah.org/blog</loc>
   </url>
-
   {% for post in site.posts %}
   <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
