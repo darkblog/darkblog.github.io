@@ -111,7 +111,7 @@ layout: null
         <li>
           {% if forloop.first %}
             <a href="{{ post.url | relative_url }}" class="post-card-image" aria-label="{{ post.title | escape }}">
-              <img src="{{ post.image | default: '/blog.svg' }}" alt="{{ post.title | escape }}" fetchpriority="high">
+              <img src="{{ post.image | default: '/blog.svg' }}" alt="{{ post.title | escape }}" fetchpriority="high" width="1200" height="800">
             </a>
           {% else %}
             <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
