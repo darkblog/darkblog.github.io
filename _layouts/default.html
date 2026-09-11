@@ -57,14 +57,14 @@ layout: null
     .post-breadcrumb a:hover { color: #2dd4bf; }
     .post-breadcrumb a span { font-weight: 900; font-size: 1.5rem; line-height: 1; display: inline-block; vertical-align: middle; }
     .post-featured-image { width: calc(100% + clamp(2rem, 6vw, 3rem)); margin-right: calc(clamp(1rem, 3vw, 1.5rem) * -1); overflow: hidden; border-radius: 1rem; margin-bottom: 2.5rem; background-color: #1c1c1c; }
-    .post-featured-image img { width: 100%; height: 450px; display: block; }
+    .post-featured-image img { max-width: 100%; height: auto; display: block; }
     .article-content { line-height: 1.9; color: #ffffff; margin-top: 2.5rem; font-size: inherit; }
     .article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: #ffffff; font-size: clamp(1.4rem, 3.5vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.4; }
     .article-content h3, .article-content h4 { color: #ffffff; }
     .article-content p { margin-bottom: 1.5rem; font-size: inherit; }
     .article-content a { color: #2dd4bf; text-decoration: none; font-weight: 500; border-bottom: 1px dashed currentColor; }
     .article-content a:hover { text-decoration: none; color: #5eeadb; border-bottom-style: solid; }
-    .article-content img { max-width: 100%; height: 400px; border-radius: 0.5rem; margin: 2rem 0; display: block; }
+    .article-content img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 2rem 0; display: block; }
     .article-content blockquote { border-right: 4px solid #3a3a3a; padding: 1.5rem; margin: 1.5rem 0; color: #ffffff; background: #1c1c1c; }
     .article-content blockquote p { margin: 0; }
     .article-content ul, .article-content ol { margin: 1.5rem 0; padding-right: 1.5rem; }
@@ -133,7 +133,7 @@ layout: null
         </header>
         {% if page.image %}
         <figure class="post-featured-image">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high" height="400px">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high" width="1200" height="800">
         </figure>
         {% endif %}
         <div class="article-content" property="articleBody">
