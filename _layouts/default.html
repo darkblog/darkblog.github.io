@@ -19,6 +19,109 @@ layout: null
   <title>{{ page.title | escape }}</title>
   <meta name="description" content="{{ desc | escape }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.pasgah.org/#organization",
+        "name": "پاسگاه",
+        "url": "https://www.pasgah.org/",
+        "logo": "https://www.pasgah.org/blog.svg",
+        "sameAs": [
+          "https://www.facebook.com/ehsanchehri/",
+          "https://www.youtube.com/@endchess",
+          "https://www.instagram.com/ehsanchehri",
+          "https://x.com/pbstwi",
+          "https://www.linkedin.com/in/ehsanchehri/fa",
+          "https://t.me/s/linkedulist",
+          "https://www.pinterest.com/ehsanchehri/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.pasgah.org/#website",
+        "url": "https://www.pasgah.org/",
+        "name": "پاسگاه",
+        "publisher": { "@id": "https://www.pasgah.org/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.pasgah.org/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "{{ page.url | absolute_url }}#blogposting",
+        "mainEntityOfPage": { "@id": "{{ page.url | absolute_url }}#webpage" },
+        "isPartOf": { "@id": "https://www.pasgah.org/#website" },
+        "headline": {{ page.title | jsonify }},
+        "description": {{ desc | jsonify }},
+        "url": "{{ page.url | absolute_url }}",
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+        "inLanguage": "fa-IR",
+        "author": { "@id": "https://www.pasgah.org/#organization" },
+        "publisher": { "@id": "https://www.pasgah.org/#organization" }
+        {%- if page.image -%},
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ page.image | absolute_url }}",
+          "width": 1200,
+          "height": 800
+        }
+        {%- endif -%}
+        {%- if page.tags and page.tags.size > 0 -%},
+        "keywords": {{ page.tags | join: ", " | jsonify }}
+        {%- endif -%}
+      },
+      {
+        "@type": "WebPage",
+        "@id": "{{ page.url | absolute_url }}#webpage",
+        "url": "{{ page.url | absolute_url }}",
+        "name": {{ page.title | jsonify }},
+        "isPartOf": { "@id": "https://www.pasgah.org/#website" },
+        "about": { "@id": "https://www.pasgah.org/#organization" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "{{ page.image | default: '/blog.svg' | absolute_url }}"
+        },
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+        "breadcrumb": { "@id": "{{ page.url | absolute_url }}#breadcrumb" },
+        "inLanguage": "fa-IR"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "{{ page.url | absolute_url }}#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "صفحه اصلی",
+            "item": "https://www.pasgah.org/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "وبلاگ",
+            "item": "https://www.pasgah.org/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": {{ page.title | jsonify }},
+            "item": "{{ page.url | absolute_url }}"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -50,6 +153,20 @@ layout: null
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(2) { opacity: 0; }
     #menu-toggle:checked ~ .site-header .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
     .main-content { padding-top: calc(var(--header-height) + 2rem); padding-bottom: 2.5rem; padding-left: clamp(1rem, 3vw, 1.5rem); padding-right: clamp(1rem, 3vw, 1.5rem); background-color: #111111; font-size: inherit; }
+    .live-search-wrapper { position: relative; margin-bottom: 2rem; width: 100%; }
+    .live-search-input { width: 100%; padding: 0.8rem 1.2rem 0.8rem 3rem; font-size: 1rem; font-family: inherit; border: 2px solid #2a2a2a; border-radius: 1rem; background-color: #1c1c1c; color: #f0ece6; outline: none; min-height: 48px; }
+    .live-search-input:focus { border-color: #2dd4bf; box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15); }
+    .live-search-input::placeholder { color: #6b6560; opacity: 0.8; }
+    .live-search-input::-webkit-search-cancel-button,
+    .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+    .search-clear-btn { position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #6b6560; font-size: 1.5rem; line-height: 1; cursor: pointer; display: none; z-index: 21; min-width: 48px; min-height: 48px; border-radius: 50%; align-items: center; justify-content: center; }
+    .search-clear-btn:hover { color: #f0ece6; background: #2a2a2a; }
+    .live-search-results { position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1rem; overflow-y: auto; max-height: 60vh; z-index: 20; display: none; list-style: none; padding: 0; margin: 0; box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+    .live-search-results li { padding: 0; margin: 0; border-bottom: 1px solid #2a2a2a; list-style: none; }
+    .live-search-results li:last-child { border-bottom: none; }
+    .live-search-results a { color: #f0ece6; text-decoration: none; display: flex; align-items: center; font-size: 0.95rem; transition: color 0.2s; padding: 0.8rem 1.2rem; min-height: 48px; }
+    .live-search-results a:hover { color: #2dd4bf; }
+    .live-search-results .no-result { color: #b0aaa3; padding: 1rem 1.2rem; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; border-bottom: none; }
     .post-header { margin-bottom: 3rem; }
     .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: #ffffff; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
     .post-breadcrumb { margin-bottom: 1.5rem; font-size: inherit; }
@@ -120,6 +237,11 @@ layout: null
       </ul>
     </nav>
     <main class="main-content">
+      <div class="live-search-wrapper">
+        <input type="search" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off" enterkeyhint="search" aria-label="جستجو در پست‌ها">
+        <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو">&times;</button>
+        <ul class="live-search-results" id="liveSearchResults" aria-label="نتایج جستجو"></ul>
+      </div>
       <article typeof="Article">
         <header class="post-header">
           <nav class="post-breadcrumb" aria-label="مسیر صفحه">
@@ -145,5 +267,79 @@ layout: null
       <a href="/" class="footer-blog-btn">بازگشت به صفحه اصلی</a>
     </footer>
   </div>
+  <script>
+    (function() {
+      var searchInput = document.getElementById('liveSearch');
+      var resultsBox = document.getElementById('liveSearchResults');
+      var clearBtn = document.getElementById('searchClearBtn');
+      var postsData = [
+      {%- for post in site.posts -%}
+        { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
+      {%- endfor -%}
+      ];
+      var debounceTimer;
+
+      function normalize(text) {
+        if (!text) return '';
+        return text.toLowerCase().replace(/[\u200c\s]+/g, ' ').replace(/[يى]/g, 'ی').replace(/[ك]/g, 'ک').trim();
+      }
+
+      function renderResults(term) {
+        var normalizedTerm = normalize(term);
+        resultsBox.innerHTML = '';
+        if (!normalizedTerm || postsData.length === 0) { 
+          resultsBox.style.display = 'none'; 
+          return; 
+        }
+        var filtered = postsData.filter(function(item) { return normalize(item.title).includes(normalizedTerm); });
+        if (filtered.length === 0) {
+          var li = document.createElement('li');
+          li.className = 'no-result';
+          li.textContent = 'هیچ مطلبی یافت نشد';
+          resultsBox.appendChild(li);
+        } else {
+          var fragment = document.createDocumentFragment();
+          filtered.forEach(function(item) { 
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = item.url;
+            a.textContent = item.title;
+            li.appendChild(a);
+            fragment.appendChild(li);
+          });
+          resultsBox.appendChild(fragment);
+        }
+        resultsBox.style.display = 'block';
+      }
+
+      searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() { renderResults(searchInput.value); }, 200);
+        clearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+      });
+      searchInput.addEventListener('focus', function() {
+        if (searchInput.value.trim() !== '' && postsData.length > 0) renderResults(searchInput.value);
+        clearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+      });
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          var q = searchInput.value.trim();
+          if (q) { window.location.href = '/search?q=' + encodeURIComponent(q); }
+        }
+      });
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.live-search-wrapper')) { resultsBox.style.display = 'none'; resultsBox.innerHTML = ''; }
+      });
+
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        searchInput.focus();
+        resultsBox.style.display = 'none';
+        resultsBox.innerHTML = '';
+        clearBtn.style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 </html>
