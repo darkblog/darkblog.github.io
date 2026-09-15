@@ -16,18 +16,38 @@ layout: null
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "پاسگاه",
-    "url": "https://www.pasgah.org/",
-    "logo": "https://www.pasgah.org/blog.svg",
-    "sameAs": [
-      "https://www.facebook.com/ehsanchehri/",
-      "https://www.youtube.com/@endchess",
-      "https://www.instagram.com/ehsanchehri",
-      "https://x.com/pbstwi",
-      "https://www.linkedin.com/in/ehsanchehri/fa",
-      "https://t.me/s/linkedulist",
-      "https://www.pinterest.com/ehsanchehri/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.pasgah.org/#organization",
+        "name": "پاسگاه",
+        "url": "https://www.pasgah.org/",
+        "logo": "https://www.pasgah.org/blog.svg",
+        "sameAs": [
+          "https://www.facebook.com/ehsanchehri/",
+          "https://www.youtube.com/@endchess",
+          "https://www.instagram.com/ehsanchehri",
+          "https://x.com/pbstwi",
+          "https://www.linkedin.com/in/ehsanchehri/fa",
+          "https://t.me/s/linkedulist",
+          "https://www.pinterest.com/ehsanchehri/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.pasgah.org/#website",
+        "url": "https://www.pasgah.org/",
+        "name": "پاسگاه",
+        "publisher": { "@id": "https://www.pasgah.org/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.pasgah.org/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
     ]
   }
   </script>
