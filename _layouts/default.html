@@ -22,51 +22,39 @@ layout: null
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": "{{ page.url | absolute_url }}#blogposting",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "{{ page.url | absolute_url }}"
-    },
-    "isPartOf": {
-      "@type": "WebSite",
-      "@id": "https://www.pasgah.org/#website",
-      "url": "https://www.pasgah.org/",
-      "name": "پاسگاه"
-    },
-    "headline": {{ page.title | jsonify }},
-    "description": {{ desc | jsonify }},
-    "url": "{{ page.url | absolute_url }}",
-    "datePublished": "{{ page.date | date_to_xmlschema }}",
-    "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
-    "inLanguage": "fa-IR",
-    "author": {
-      "@type": "Organization",
-      "@id": "https://www.pasgah.org/#organization",
-      "name": "پاسگاه",
-      "url": "https://www.pasgah.org/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "@id": "https://www.pasgah.org/#organization",
-      "name": "پاسگاه",
-      "url": "https://www.pasgah.org/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.pasgah.org/blog.svg"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.pasgah.org/#organization",
+        "name": "پاسگاه",
+        "url": "https://www.pasgah.org/",
+        "logo": "https://www.pasgah.org/blog.svg",
+        "sameAs": [
+          "https://www.facebook.com/ehsanchehri/",
+          "https://www.youtube.com/@endchess",
+          "https://www.instagram.com/ehsanchehri",
+          "https://x.com/pbstwi",
+          "https://www.linkedin.com/in/ehsanchehri/fa",
+          "https://t.me/s/linkedulist",
+          "https://www.pinterest.com/ehsanchehri/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.pasgah.org/#website",
+        "url": "https://www.pasgah.org/",
+        "name": "پاسگاه",
+        "publisher": { "@id": "https://www.pasgah.org/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.pasgah.org/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       }
-    }
-    {%- if page.image -%},
-    "image": {
-      "@type": "ImageObject",
-      "url": "{{ page.image | absolute_url }}",
-      "width": 1200,
-      "height": 800
-    }
-    {%- endif -%}
-    {%- if page.tags and page.tags.size > 0 -%},
-    "keywords": {{ page.tags | join: ", " | jsonify }}
-    {%- endif -%}
+    ]
   }
   </script>
   <link rel="icon" type="image/svg+xml" href="/blog.svg">
