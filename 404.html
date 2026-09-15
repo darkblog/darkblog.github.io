@@ -42,6 +42,8 @@ layout: null
     .live-search-input { width: 100%; padding: 0.8rem 1.2rem 0.8rem 3rem; font-size: 1rem; font-family: inherit; border: 2px solid #2a2a2a; border-radius: 1rem; background-color: #1c1c1c; color: #f0ece6; outline: none; min-height: 48px; }
     .live-search-input:focus { border-color: #2dd4bf; box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15); }
     .live-search-input::placeholder { color: #6b6560; opacity: 0.8; }
+    .live-search-input::-webkit-search-cancel-button,
+    .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
     .search-clear-btn { position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #6b6560; font-size: 1.5rem; line-height: 1; cursor: pointer; display: none; z-index: 21; min-width: 48px; min-height: 48px; border-radius: 50%; align-items: center; justify-content: center; }
     .search-clear-btn:hover { color: #f0ece6; background: #2a2a2a; }
     .live-search-results { position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0; background-color: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 1rem; overflow-y: auto; max-height: 60vh; z-index: 20; display: none; list-style: none; padding: 0; margin: 0; box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
@@ -98,7 +100,7 @@ layout: null
     <main class="main-content">
       <h1 class="sr-only">404</h1>
       <div class="live-search-wrapper">
-        <input type="text" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off" aria-label="جستجو در پست‌ها">
+        <input type="search" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off" enterkeyhint="search" aria-label="جستجو در پست‌ها">
         <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو">&times;</button>
         <ul class="live-search-results" id="liveSearchResults" aria-label="نتایج جستجو"></ul>
       </div>
@@ -167,6 +169,13 @@ layout: null
       searchInput.addEventListener('focus', function() {
         if (searchInput.value.trim() !== '' && postsData.length > 0) renderResults(searchInput.value);
         clearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+      });
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          var q = searchInput.value.trim();
+          if (q) { window.location.href = '/search?q=' + encodeURIComponent(q); }
+        }
       });
       document.addEventListener('click', function(e) {
         if (!e.target.closest('.live-search-wrapper')) { resultsBox.style.display = 'none'; resultsBox.innerHTML = ''; }
