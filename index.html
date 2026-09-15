@@ -13,7 +13,6 @@ layout: null
   <title>پاسگاه؛ تاریخ + سرگرمی</title>
   <meta name="description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
   <link rel="canonical" href="https://www.pasgah.org/">
-  <link rel="me" href="https://www.facebook.com/ehsanchehri/">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -22,7 +21,13 @@ layout: null
     "url": "https://www.pasgah.org/",
     "logo": "https://www.pasgah.org/blog.svg",
     "sameAs": [
-      "https://www.facebook.com/ehsanchehri/"
+      "https://www.facebook.com/ehsanchehri/",
+      "https://www.youtube.com/@endchess",
+      "https://www.instagram.com/ehsanchehri",
+      "https://x.com/pbstwi",
+      "https://www.linkedin.com/in/ehsanchehri/fa",
+      "https://t.me/s/linkedulist",
+      "https://www.pinterest.com/ehsanchehri/"
     ]
   }
   </script>
@@ -83,7 +88,10 @@ layout: null
     .posts-list li:first-child::before { display: none; }
     .post-card-image { overflow: hidden; border-radius: 0.5rem; display: block; padding: 0 !important; background-color: #1c1c1c; }
     .post-card-image img { max-width: 100%; height: auto; display: block; }
-    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; align-items: center; justify-content: center; width: 100%; }
+    .site-footer { background-color: #000000; padding: 2rem clamp(1rem, 3vw, 1.5rem); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; width: 100%; }
+    .footer-social { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 1.25rem; list-style: none; padding: 0; margin: 0; }
+    .footer-social a { color: #b0aaa3; text-decoration: none; font-size: 0.95rem; transition: color 0.2s; padding: 0.5rem; min-height: 48px; display: inline-flex; align-items: center; }
+    .footer-social a:hover { color: #2dd4bf; }
     .footer-blog-btn { font-family: 'vazir', system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: transparent; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: 0.75rem; border: 2px solid #2a2a2a; transition: background-color 0.2s, transform 0.15s, border-color 0.2s, color 0.2s; min-height: 48px; }
     .footer-blog-btn:hover { background-color: rgba(45, 212, 191, 0.1); border-color: #2dd4bf; color: #2dd4bf; transform: scale(1.02); }
     .footer-blog-btn:active { transform: scale(0.97); color: #2dd4bf; }
@@ -134,7 +142,16 @@ layout: null
     </ul>
   </main>
   <footer class="site-footer">
-    <a href="https://www.facebook.com/pasgah" rel="me" target="_blank" class="footer-blog-btn">فیسبوک ما</a>
+    <ul class="footer-social">
+      <li><a href="https://www.facebook.com/pasgah" rel="me" target="_blank">فیسبوک</a></li>
+      <li><a href="https://www.youtube.com/@pasgah" rel="me" target="_blank">یوتیوب</a></li>
+      <li><a href="https://www.instagram.com/pasgah" rel="me" target="_blank">اینستاگرام</a></li>
+      <li><a href="https://x.com/pasgah" rel="me" target="_blank">ایکس</a></li>
+      <li><a href="https://www.linkedin.com/company/pasgah" rel="me" target="_blank">لینکدین</a></li>
+      <li><a href="https://t.me/pasgah" rel="me" target="_blank">تلگرام</a></li>
+      <li><a href="https://www.pinterest.com/pasgah" rel="me" target="_blank">پینترست</a></li>
+      <li><a href="https://www.tiktok.com/@pasgah" rel="me" target="_blank">تیک‌تاک</a></li>
+    </ul>
     <button id="loadMoreBtn" class="footer-blog-btn">نمایش پست‌های بیشتر</button>
   </footer>
 </div>
