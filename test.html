@@ -157,10 +157,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .posts-list li:hover::before, .posts-list li:focus-within::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
 .posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
 .posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
-.posts-list li:first-child { background-color: var(--bg-hero); overflow: hidden; padding: 0; }
-.posts-list li:first-child:hover { background-color: var(--bg-hero-h); }
+.posts-list li:first-child { background-color: transparent; border-color: transparent; box-shadow: none; padding: 0; }
+.posts-list li:first-child:hover { background-color: transparent; border-color: transparent; box-shadow: none; }
 .posts-list li:first-child::before { display: none; }
-.post-card-image { display: block; padding: 0; overflow: hidden; border-radius: var(--r-md); background-color: var(--bg-elev); width: 100%; }
+.post-card-image { display: block; padding: 0; overflow: hidden; border-radius: var(--r-sm); background-color: var(--bg-elev); width: 100%; }
 .post-card-image img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
 .post-card-image--fallback img { object-fit: contain; }
 .load-more-wrap { display: flex; justify-content: center; margin-block-start: 2rem; }
@@ -171,7 +171,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .site-footer p { margin: 0; }
 .site-footer a { color: var(--text-muted); text-decoration: none; transition: color var(--dur); }
 .site-footer a:hover, .site-footer a:focus-visible { color: var(--accent); }
-@media (hover: hover) { .posts-list li:hover { background-color: var(--bg-elev); border-color: var(--border-h); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); transform: translateY(-2px); } }
+@media (hover: hover) { .posts-list li:not(:first-child):hover { background-color: var(--bg-elev); border-color: var(--border-h); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
 </head>
