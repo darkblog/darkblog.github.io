@@ -1,7 +1,6 @@
 ---
 layout: null
 ---
-
 <!DOCTYPE html>
 <html lang="fa-IR" dir="rtl">
 <head>
@@ -15,26 +14,18 @@ layout: null
 <meta name="apple-mobile-web-app-title" content="پاسگاه">
 <title>پاسگاه؛ تاریخ + سرگرمی</title>
 <meta name="description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
-<link rel="canonical" href="{{ '/' | absolute_url }}">
-<link rel="alternate" type="application/rss+xml" title="پاسگاه" href="{{ '/feed.xml' | absolute_url }}">
-<link rel="icon" type="image/svg+xml" href="{{ '/blog.svg' | relative_url }}">
-<link rel="apple-touch-icon" href="{{ '/blog.svg' | relative_url }}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="پاسگاه">
-<meta property="og:title" content="پاسگاه؛ تاریخ + سرگرمی">
-<meta property="og:description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
-<meta property="og:url" content="{{ '/' | absolute_url }}">
-<meta property="og:image" content="{{ '/blog.svg' | absolute_url }}">
-<meta property="og:locale" content="fa_IR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="پاسگاه؛ تاریخ + سرگرمی">
-<meta name="twitter:description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
-<meta name="twitter:image" content="{{ '/blog.svg' | absolute_url }}">
-<link rel="preload" href="{{ '/blog.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://www.pasgah.org/">
+<link rel="alternate" type="application/rss+xml" title="پاسگاه" href="https://www.pasgah.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
+<link rel="apple-touch-icon" href="https://www.pasgah.org/blog.svg">
+<link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 {%- assign hero_post = site.posts.first -%}
-{%- if hero_post -%}
-  {%- assign hero_img = hero_post.image | default: '/blog.svg' -%}
-  <link rel="preload" href="{{ hero_img | relative_url }}" as="image" fetchpriority="high">
+{%- if hero_post and hero_post.image -%}
+  {%- assign hero_img = hero_post.image -%}
+  {%- unless hero_img contains '://' -%}
+    {%- assign hero_img = 'https://www.pasgah.org' | append: hero_img -%}
+  {%- endunless -%}
+  <link rel="preload" href="{{ hero_img | escape }}" as="image" fetchpriority="high">
 {%- endif -%}
 <script type="application/ld+json">
 {
@@ -74,29 +65,6 @@ layout: null
         },
         "query-input": "required name=search_term_string"
       }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://www.pasgah.org/#webpage",
-      "url": "https://www.pasgah.org/",
-      "name": "پاسگاه",
-      "inLanguage": "fa-IR",
-      "isPartOf": { "@id": "https://www.pasgah.org/#website" },
-      "about": { "@id": "https://www.pasgah.org/#organization" }
-    },
-    {
-      "@type": "ItemList",
-      "@id": "https://www.pasgah.org/#postlist",
-      "itemListElement": [
-      {%- for post in site.posts limit:20 -%}
-        {
-          "@type": "ListItem",
-          "position": {{ forloop.index }},
-          "url": "{{ post.url | absolute_url }}",
-          "name": {{ post.title | jsonify | replace: '</', '<\/' }}
-        }{%- unless forloop.last -%},{%- endunless -%}
-      {%- endfor -%}
-      ]
     }
   ]
 }
@@ -104,8 +72,8 @@ layout: null
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
-:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #000000; --bg-shell: #111111; --bg-card: #181818; --bg-elev: #1c1c1c; --bg-hero: #1a1a1a; --bg-hero-h: #222222; --border: #2a2a2a; --border-h: #3a3a3a; --text: #ffffff; --text-body: #f0ece6; --text-muted: #a8a29c; --text-dim: #8a8580; --accent: #2dd4bf; --accent-bg: rgba(45, 212, 191, 0.12); --accent-ring: rgba(45, 212, 191, 0.3); --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: dark; }
-@font-face { font-family: 'vazir'; src: url('{{ '/blog.woff2' | relative_url }}') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #000000; --bg-shell: #111111; --bg-card: #181818; --bg-elev: #1c1c1c; --border: #2a2a2a; --border-h: #3a3a3a; --text: #ffffff; --text-body: #f0ece6; --text-muted: #a8a29c; --text-dim: #8a8580; --accent: #2dd4bf; --accent-bg: rgba(45, 212, 191, 0.12); --accent-ring: rgba(45, 212, 191, 0.3); --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: dark; }
+@font-face { font-family: 'vazir'; src: url('https://www.pasgah.org/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
 html { scrollbar-gutter: stable; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
 body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-inline: auto; display: flex; flex-direction: column; flex: 1; background-color: var(--bg-shell); position: relative; }
@@ -150,40 +118,36 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .live-search-results li[aria-selected="true"] a { color: var(--accent); background-color: var(--accent-bg); }
 .live-search-results .no-result { color: var(--text-muted); padding: 1rem 1.2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 48px; }
 .live-search-results .more-result a { justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
-.search-hit { background: transparent; color: var(--accent); font-weight: 700; padding: 0; }
 .posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; }
 .posts-list li { position: relative; border-radius: var(--r-md); background-color: var(--bg-card); border: 1px solid var(--border); transition: background-color var(--dur), border-color var(--dur), box-shadow var(--dur), transform var(--dur); }
 .posts-list li::before { content: ''; position: absolute; inset-inline-start: 0; inset-block-start: 50%; transform: translateY(-50%) scaleY(0); width: 4px; height: 2rem; background-color: var(--accent); border-start-start-radius: 4px; border-end-start-radius: 4px; opacity: 0; transition: opacity var(--dur), transform var(--dur); z-index: 1; pointer-events: none; }
 .posts-list li:hover::before, .posts-list li:focus-within::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
 .posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
 .posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
-.posts-list li:first-child { background-color: var(--bg-hero); padding: 0.5rem; }
-.posts-list li:first-child:hover { background-color: var(--bg-hero-h); }
+.posts-list li:first-child { padding: 0; background-color: transparent; border-color: transparent; box-shadow: none; overflow: hidden; }
+.posts-list li:first-child:hover { background-color: transparent; border-color: transparent; box-shadow: none; }
 .posts-list li:first-child::before { display: none; }
-.posts-list li:first-child a { padding: 0; }
-.post-card-image { display: block; padding: 0; overflow: hidden; border-radius: var(--r-sm); background-color: var(--bg-elev); width: 100%; }
+.posts-list li:first-child a { padding: 0; border-radius: inherit; }
+.posts-list li:first-child:hover a { color: inherit; }
+.post-card-image { display: block; padding: 0; overflow: hidden; border-radius: inherit; background-color: var(--bg-elev); width: 100%; }
 .post-card-image img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
 .post-card-image--fallback img { object-fit: contain; }
 .load-more-wrap { display: flex; justify-content: center; margin-block-start: 2rem; }
 .load-more-btn { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: transparent; color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: var(--r-md); border: 2px solid var(--border); transition: background-color var(--dur), transform var(--dur-fast), border-color var(--dur), color var(--dur); min-height: 48px; cursor: pointer; }
 .load-more-btn:hover { background-color: var(--accent-bg); border-color: var(--accent); color: var(--accent); transform: scale(1.02); }
 .load-more-btn:active { transform: scale(0.97); color: var(--accent); }
-.site-footer { background-color: var(--bg-page); padding-block: 2rem max(2rem, var(--safe-b)); padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); display: flex; align-items: center; justify-content: center; width: 100%; color: var(--text-muted); font-size: 0.9rem; }
-.site-footer p { margin: 0; }
-.site-footer a { color: var(--text-muted); text-decoration: none; transition: color var(--dur); }
-.site-footer a:hover, .site-footer a:focus-visible { color: var(--accent); }
 @media (hover: hover) { .posts-list li:not(:first-child):hover { background-color: var(--bg-elev); border-color: var(--border-h); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">مقالات پاسگاه</a>
+<a class="skip-link" href="#main">پرش به محتوا</a>
 <div class="page-wrapper">
   <input type="checkbox" id="menu-toggle" class="sr-only" autocomplete="off" aria-label="باز و بسته کردن منو">
   <header class="site-header">
     <div class="header-inner">
-      <a href="{{ '/' | relative_url }}" class="brand" aria-label="صفحه اصلی پاسگاه">
-        <img src="{{ '/blog.svg' | relative_url }}" alt="" width="40" height="40" fetchpriority="high" decoding="async">
+      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="https://www.pasgah.org/blog.svg" alt="" width="40" height="40" fetchpriority="high" decoding="async">
       </a>
       <label for="menu-toggle" class="hamburger">
         <span class="hamburger__bar"></span>
@@ -193,47 +157,44 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     </div>
   </header>
   <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
-  <nav class="mobile-nav" aria-label="منوی پاسگاه">
+  <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
-      <li><a href="{{ '/blog' | relative_url }}">وبلاگ پاسگاه</a></li>
+      <li><a href="https://www.pasgah.org/blog">وبلاگ پاسگاه</a></li>
     </ul>
   </nav>
   <main id="main" class="main-content">
     <h1 class="sr-only">پاسگاه</h1>
-    <form class="live-search-wrapper" role="search" action="{{ '/search' | relative_url }}" method="get">
+    <form class="live-search-wrapper" role="search" action="https://www.pasgah.org/search" method="get">
       <label for="liveSearch" class="sr-only">جستجو در پست‌ها</label>
       <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
       <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden><span aria-hidden="true">×</span></button>
       <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
       <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite"></div>
     </form>
-    <h2 class="sr-only">آخرین مقالات پاسگاه</h2>
+    <h2 class="sr-only">آخرین پست‌های پاسگاه</h2>
     <ul class="posts-list" id="postsList" role="list">
       {%- for post in site.posts limit:20 -%}
         <li>
         {%- if forloop.first -%}
-          {%- assign card_img = post.image | default: '/blog.svg' -%}
-          <a href="{{ post.url | relative_url }}" class="post-card-image{% unless post.image %} post-card-image--fallback{% endunless %}" aria-label="{{ post.title | escape }}">
-            <img src="{{ card_img | relative_url | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
+          {%- assign card_img = post.image | default: 'https://www.pasgah.org/blog.svg' -%}
+          <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image{% unless post.image %} post-card-image--fallback{% endunless %}" aria-label="{{ post.title | escape }}">
+            <img src="{{ card_img | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
           </a>
         {%- else -%}
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          <a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a>
         {%- endif -%}
         </li>
       {%- endfor -%}
     </ul>
     <div class="load-more-wrap">
-      <a href="{{ '/blog' | relative_url }}" id="loadMoreBtn" class="load-more-btn">نمایش پست‌های بیشتر</a>
+      <a href="https://www.pasgah.org/blog" id="loadMoreBtn" class="load-more-btn">نمایش پست‌های بیشتر</a>
     </div>
   </main>
-  <footer class="site-footer">
-    <p>پاسگاه · <a href="{{ '/blog' | relative_url }}">وبلاگ</a> · <a href="https://x.com/pbstwi">x.com/pbstwi</a></p>
-  </footer>
 </div>
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
-{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":{{ post.url | relative_url | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}
+{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
@@ -267,7 +228,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     }
   }
 
-  var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || '/search') : '/search';
+  var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://www.pasgah.org/search') : 'https://www.pasgah.org/search';
   var MAX_RESULTS = 10;
   var DEBOUNCE_MS = 200;
   var idCounter = 0;
@@ -292,42 +253,13 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     return lower.length === 1 ? lower : ch;
   }
 
-  function foldWithMap(s) {
+  function fold(s) {
     s = String(s);
     var out = '';
-    var map = [];
     for (var i = 0; i < s.length; i++) {
-      var f = foldChar(s.charAt(i));
-      for (var j = 0; j < f.length; j++) {
-        out += f.charAt(j);
-        map.push(i);
-      }
+      out += foldChar(s.charAt(i));
     }
-    map.push(s.length);
-    return { text: out, map: map };
-  }
-
-  function fold(s) {
-    return foldWithMap(s).text;
-  }
-
-  function highlightTitle(title, foldedTerm) {
-    if (!foldedTerm) return document.createTextNode(title);
-    var folded = foldWithMap(title);
-    var idx = folded.text.indexOf(foldedTerm);
-    if (idx === -1) return document.createTextNode(title);
-    var start = folded.map[idx];
-    var end = folded.map[idx + foldedTerm.length];
-    if (typeof start !== 'number') start = 0;
-    if (typeof end !== 'number') end = title.length;
-    var frag = document.createDocumentFragment();
-    if (start > 0) frag.appendChild(document.createTextNode(title.slice(0, start)));
-    var mark = document.createElement('mark');
-    mark.className = 'search-hit';
-    mark.textContent = title.slice(start, end);
-    frag.appendChild(mark);
-    if (end < title.length) frag.appendChild(document.createTextNode(title.slice(end)));
-    return frag;
+    return out;
   }
 
   function announce(msg) {
@@ -404,7 +336,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         var a = document.createElement('a');
         a.href = item.url;
         a.tabIndex = -1;
-        a.appendChild(highlightTitle(item.title, term));
+        a.textContent = item.title;
         li.appendChild(a);
         frag.appendChild(li);
         optionEls.push(li);
