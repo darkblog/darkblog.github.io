@@ -157,9 +157,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .posts-list li:hover::before, .posts-list li:focus-within::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
 .posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
 .posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
-.posts-list li:first-child { background-color: transparent; border-color: transparent; box-shadow: none; padding: 0; }
-.posts-list li:first-child:hover { background-color: transparent; border-color: transparent; box-shadow: none; }
+.posts-list li:first-child { background-color: var(--bg-hero); padding: 0.5rem; }
+.posts-list li:first-child:hover { background-color: var(--bg-hero-h); }
 .posts-list li:first-child::before { display: none; }
+.posts-list li:first-child a { padding: 0; }
 .post-card-image { display: block; padding: 0; overflow: hidden; border-radius: var(--r-sm); background-color: var(--bg-elev); width: 100%; }
 .post-card-image img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
 .post-card-image--fallback img { object-fit: contain; }
