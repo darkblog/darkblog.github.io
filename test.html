@@ -177,7 +177,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">پرش به محتوا</a>
+<a class="skip-link" href="#main">مقالات پاسگاه</a>
 <div class="page-wrapper">
   <input type="checkbox" id="menu-toggle" class="sr-only" autocomplete="off" aria-label="باز و بسته کردن منو">
   <header class="site-header">
@@ -193,7 +193,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     </div>
   </header>
   <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
-  <nav class="mobile-nav" aria-label="منوی اصلی">
+  <nav class="mobile-nav" aria-label="منوی پاسگاه">
     <ul role="list">
       <li><a href="{{ '/blog' | relative_url }}">وبلاگ پاسگاه</a></li>
     </ul>
@@ -207,7 +207,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
       <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite"></div>
     </form>
-    <h2 class="sr-only">آخرین مطالب</h2>
+    <h2 class="sr-only">آخرین مقالات پاسگاه</h2>
     <ul class="posts-list" id="postsList" role="list">
       {%- for post in site.posts limit:20 -%}
         <li>
@@ -227,7 +227,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     </div>
   </main>
   <footer class="site-footer">
-    <p>پاسگاه · <a href="{{ '/blog' | relative_url }}">وبلاگ</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+    <p>پاسگاه · <a href="{{ '/blog' | relative_url }}">وبلاگ</a> · <a href="https://x.com/pbstwi">x.com/pbstwi</a></p>
   </footer>
 </div>
 <script type="application/json" id="postsData">
