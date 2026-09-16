@@ -14,13 +14,13 @@ layout: null
     <name>پاسگاه</name>
   </author>
 
-  {% for post in site.posts %}
+  {% for post in site.posts limit:100 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <link href="https://www.pasgah.org{{ post.url }}" rel="alternate" type="text/html"/>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <id>https://www.pasgah.org{{ post.url }}</id>
-    <content type="html">{{ post.content | xml_escape }}</content>
+    <summary type="html">{{ post.excerpt | strip_html | truncate: 300 | xml_escape }}</summary>
   </entry>
   {% endfor %}
 </feed>
