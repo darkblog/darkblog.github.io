@@ -1,0 +1,565 @@
+---
+layout: null
+---
+
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="پاسگاه">
+<title>پاسگاه؛ تاریخ + سرگرمی</title>
+<meta name="description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
+<link rel="canonical" href="{{ '/' | absolute_url }}">
+<link rel="alternate" type="application/rss+xml" title="پاسگاه" href="{{ '/feed.xml' | absolute_url }}">
+<link rel="icon" type="image/svg+xml" href="{{ '/blog.svg' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/blog.svg' | relative_url }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="پاسگاه">
+<meta property="og:title" content="پاسگاه؛ تاریخ + سرگرمی">
+<meta property="og:description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
+<meta property="og:url" content="{{ '/' | absolute_url }}">
+<meta property="og:image" content="{{ '/blog.svg' | absolute_url }}">
+<meta property="og:locale" content="fa_IR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="پاسگاه؛ تاریخ + سرگرمی">
+<meta name="twitter:description" content="پاسگاه یک دانشنامهٔ تاریخی شخصی است که تاریخ ایران و جهان را از زاویه‌ای متفاوت و با روایتی جذاب و سرگرم‌کننده بررسی می‌کند.">
+<meta name="twitter:image" content="{{ '/blog.svg' | absolute_url }}">
+<link rel="preload" href="{{ '/blog.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+{%- assign hero_post = site.posts.first -%}
+{%- if hero_post -%}
+  {%- assign hero_img = hero_post.image | default: '/blog.svg' -%}
+  <link rel="preload" href="{{ hero_img | relative_url }}" as="image" fetchpriority="high">
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.pasgah.org/#organization",
+      "name": "پاسگاه",
+      "url": "https://www.pasgah.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.pasgah.org/blog.svg"
+      },
+      "sameAs": [
+        "https://www.facebook.com/ehsanchehri/",
+        "https://www.youtube.com/@endchess",
+        "https://www.instagram.com/ehsanchehri",
+        "https://x.com/pbstwi",
+        "https://www.linkedin.com/in/ehsanchehri/fa",
+        "https://t.me/s/linkedulist",
+        "https://www.pinterest.com/ehsanchehri/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.pasgah.org/#website",
+      "url": "https://www.pasgah.org/",
+      "name": "پاسگاه",
+      "inLanguage": "fa-IR",
+      "publisher": { "@id": "https://www.pasgah.org/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.pasgah.org/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.pasgah.org/#webpage",
+      "url": "https://www.pasgah.org/",
+      "name": "پاسگاه؛ تاریخ + سرگرمی",
+      "inLanguage": "fa-IR",
+      "isPartOf": { "@id": "https://www.pasgah.org/#website" },
+      "about": { "@id": "https://www.pasgah.org/#organization" }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.pasgah.org/#postlist",
+      "itemListElement": [
+      {%- for post in site.posts limit:20 -%}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "url": "{{ post.url | absolute_url }}",
+          "name": {{ post.title | jsonify | replace: '</', '<\/' }}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #000000; --bg-shell: #111111; --bg-card: #181818; --bg-elev: #1c1c1c; --bg-hero: #1a1a1a; --bg-hero-h: #222222; --border: #2a2a2a; --border-h: #3a3a3a; --text: #ffffff; --text-body: #f0ece6; --text-muted: #a8a29c; --text-dim: #8a8580; --accent: #2dd4bf; --accent-bg: rgba(45, 212, 191, 0.12); --accent-ring: rgba(45, 212, 191, 0.3); --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: dark; }
+@font-face { font-family: 'vazir'; src: url('{{ '/blog.woff2' | relative_url }}') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+html { scrollbar-gutter: stable; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
+body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; }
+.page-wrapper { max-width: var(--max-w); width: 100%; margin-inline: auto; display: flex; flex-direction: column; flex: 1; background-color: var(--bg-shell); position: relative; }
+main { flex: 1; }
+a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; clip-path: inset(50%) !important; white-space: nowrap !important; border: 0 !important; }
+.skip-link { position: absolute; inset-inline-start: 1rem; inset-block-start: 1rem; padding: 0.75rem 1.25rem; background: var(--accent); color: #000000; font-weight: 700; border-radius: var(--r-md); transform: translateY(-200%); transition: transform var(--dur-fast); z-index: 100; text-decoration: none; }
+.skip-link:focus { transform: translateY(0); }
+.site-header { position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 50; background-color: var(--bg-page); border-block-end: 1px solid var(--border); max-width: var(--max-w); margin-inline: auto; width: 100%; }
+.header-inner { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); }
+.brand { display: inline-flex; align-items: center; text-decoration: none; color: var(--text); flex-shrink: 0; min-width: 48px; min-height: 48px; }
+.brand img { height: 2.5rem; width: auto; display: block; }
+.hamburger { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.375rem; background: none; border: 0; padding: 0; cursor: pointer; flex-shrink: 0; touch-action: manipulation; min-width: 48px; min-height: 48px; border-radius: 0.375rem; }
+.hamburger__bar { display: block; width: 1.75rem; height: 0.125rem; background-color: var(--text); transition: transform var(--dur), opacity var(--dur); }
+#menu-toggle:focus-visible ~ .site-header .hamburger { outline: 3px solid var(--accent); outline-offset: 2px; }
+#menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(1) { transform: translateY(0.5rem) rotate(45deg); }
+#menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(2) { opacity: 0; }
+#menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(3) { transform: translateY(-0.5rem) rotate(-45deg); }
+.mobile-nav-overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 48; opacity: 0; visibility: hidden; transition: opacity var(--dur), visibility 0s var(--dur); cursor: pointer; }
+#menu-toggle:checked ~ .mobile-nav-overlay { opacity: 1; visibility: visible; transition: opacity var(--dur), visibility 0s; }
+.mobile-nav { position: fixed; inset-block: 0; inset-inline-start: max(0px, calc((100% - var(--max-w)) / 2)); inset-inline-end: auto; width: min(300px, 80vw); background-color: var(--bg-page); padding-block: calc(var(--header-h) + 1.75rem) max(2rem, var(--safe-b)); padding-inline: max(var(--pad-x-lg), var(--safe-r)) max(var(--pad-x-lg), var(--safe-l)); z-index: 49; overflow-y: auto; overscroll-behavior: contain; box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3); transform: translateX(100%); visibility: hidden; transition: transform var(--dur), visibility 0s var(--dur); -ms-overflow-style: none; scrollbar-width: none; }
+.mobile-nav::-webkit-scrollbar { display: none; }
+#menu-toggle:checked ~ .mobile-nav { transform: translateX(0); visibility: visible; transition: transform var(--dur), visibility 0s; }
+html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
+.mobile-nav ul { display: flex; flex-direction: column; gap: 1.75rem; list-style: none; padding: 0; margin: 0; }
+.mobile-nav a { color: var(--text); text-decoration: none; display: flex; align-items: center; padding: 0.75rem 0; border-block-end: 1px solid rgba(255, 255, 255, 0.05); min-height: 48px; transition: color var(--dur); }
+.mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--accent); }
+.main-content { padding-block: calc(var(--header-h) + 2rem) 2.5rem; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); background-color: var(--bg-shell); }
+.live-search-wrapper { position: relative; margin-block-end: 1.5rem; width: 100%; }
+.live-search-input { width: 100%; padding-block: 0.8rem; padding-inline: 1.2rem 3.5rem; font: inherit; font-size: 1rem; border: 2px solid var(--border); border-radius: var(--r-lg); background-color: var(--bg-elev); color: var(--text-body); min-height: 48px; -webkit-appearance: none; appearance: none; }
+.live-search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); outline: none; }
+.live-search-input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.live-search-input::placeholder { color: var(--text-dim); opacity: 1; }
+.live-search-input::-webkit-search-cancel-button, .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+.search-clear-btn { position: absolute; inset-inline-end: 0.5rem; inset-block-start: 50%; transform: translateY(-50%); background: transparent; border: 0; color: var(--text-dim); font-size: 1.5rem; line-height: 1; cursor: pointer; min-width: 44px; min-height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: color var(--dur), background-color var(--dur); }
+.search-clear-btn:hover { color: var(--text-body); background: var(--border); }
+.live-search-results { position: absolute; inset-block-start: calc(100% + 0.5rem); inset-inline: 0; background-color: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--r-lg); overflow-y: auto; overscroll-behavior: contain; max-height: 60vh; z-index: 20; list-style: none; padding: 0; margin: 0; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); }
+.live-search-results li { border-block-end: 1px solid var(--border); list-style: none; }
+.live-search-results li:last-child { border-block-end: none; }
+.live-search-results a { color: var(--text-body); text-decoration: none; display: flex; align-items: center; font-size: 0.95rem; padding: 0.8rem 1.2rem; min-height: 48px; transition: color var(--dur), background-color var(--dur); }
+.live-search-results a:hover, .live-search-results a:focus-visible { color: var(--accent); background-color: rgba(255, 255, 255, 0.03); }
+.live-search-results li[aria-selected="true"] a { color: var(--accent); background-color: var(--accent-bg); }
+.live-search-results .no-result { color: var(--text-muted); padding: 1rem 1.2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 48px; }
+.live-search-results .more-result a { justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
+.search-hit { background: transparent; color: var(--accent); font-weight: 700; padding: 0; }
+.posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+.posts-list li { position: relative; border-radius: var(--r-md); background-color: var(--bg-card); border: 1px solid var(--border); transition: background-color var(--dur), border-color var(--dur), box-shadow var(--dur), transform var(--dur); }
+.posts-list li::before { content: ''; position: absolute; inset-inline-start: 0; inset-block-start: 50%; transform: translateY(-50%) scaleY(0); width: 4px; height: 2rem; background-color: var(--accent); border-start-start-radius: 4px; border-end-start-radius: 4px; opacity: 0; transition: opacity var(--dur), transform var(--dur); z-index: 1; pointer-events: none; }
+.posts-list li:hover::before, .posts-list li:focus-within::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
+.posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
+.posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
+.posts-list li:first-child { background-color: var(--bg-hero); overflow: hidden; padding: 0; }
+.posts-list li:first-child:hover { background-color: var(--bg-hero-h); }
+.posts-list li:first-child::before { display: none; }
+.post-card-image { display: block; padding: 0; overflow: hidden; border-radius: var(--r-md); background-color: var(--bg-elev); width: 100%; }
+.post-card-image img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.post-card-image--fallback img { object-fit: contain; }
+.load-more-wrap { display: flex; justify-content: center; margin-block-start: 2rem; }
+.load-more-btn { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: transparent; color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: var(--r-md); border: 2px solid var(--border); transition: background-color var(--dur), transform var(--dur-fast), border-color var(--dur), color var(--dur); min-height: 48px; cursor: pointer; }
+.load-more-btn:hover { background-color: var(--accent-bg); border-color: var(--accent); color: var(--accent); transform: scale(1.02); }
+.load-more-btn:active { transform: scale(0.97); color: var(--accent); }
+.site-footer { background-color: var(--bg-page); padding-block: 2rem max(2rem, var(--safe-b)); padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); display: flex; align-items: center; justify-content: center; width: 100%; color: var(--text-muted); font-size: 0.9rem; }
+.site-footer p { margin: 0; }
+.site-footer a { color: var(--text-muted); text-decoration: none; transition: color var(--dur); }
+.site-footer a:hover, .site-footer a:focus-visible { color: var(--accent); }
+@media (hover: hover) { .posts-list li:hover { background-color: var(--bg-elev); border-color: var(--border-h); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); transform: translateY(-2px); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">پرش به محتوا</a>
+<div class="page-wrapper">
+  <input type="checkbox" id="menu-toggle" class="sr-only" autocomplete="off" aria-label="باز و بسته کردن منو">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="{{ '/' | relative_url }}" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="{{ '/blog.svg' | relative_url }}" alt="" width="40" height="40" fetchpriority="high" decoding="async">
+      </a>
+      <label for="menu-toggle" class="hamburger">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </label>
+    </div>
+  </header>
+  <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
+  <nav class="mobile-nav" aria-label="منوی اصلی">
+    <ul role="list">
+      <li><a href="{{ '/blog' | relative_url }}">وبلاگ پاسگاه</a></li>
+    </ul>
+  </nav>
+  <main id="main" class="main-content">
+    <h1 class="sr-only">پاسگاه</h1>
+    <form class="live-search-wrapper" role="search" action="{{ '/search' | relative_url }}" method="get">
+      <label for="liveSearch" class="sr-only">جستجو در پست‌ها</label>
+      <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
+      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden><span aria-hidden="true">×</span></button>
+      <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
+      <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite"></div>
+    </form>
+    <h2 class="sr-only">آخرین مطالب</h2>
+    <ul class="posts-list" id="postsList" role="list">
+      {%- for post in site.posts limit:20 -%}
+        <li>
+        {%- if forloop.first -%}
+          {%- assign card_img = post.image | default: '/blog.svg' -%}
+          <a href="{{ post.url | relative_url }}" class="post-card-image{% unless post.image %} post-card-image--fallback{% endunless %}" aria-label="{{ post.title | escape }}">
+            <img src="{{ card_img | relative_url | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
+          </a>
+        {%- else -%}
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    <div class="load-more-wrap">
+      <a href="{{ '/blog' | relative_url }}" id="loadMoreBtn" class="load-more-btn">نمایش پست‌های بیشتر</a>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>پاسگاه · <a href="{{ '/blog' | relative_url }}">وبلاگ</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+  </footer>
+</div>
+<script type="application/json" id="postsData">
+[
+{%- for post in site.posts -%}
+{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":{{ post.url | relative_url | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
+</script>
+<script>
+(function () {
+  'use strict';
+
+  var byId = function (id) { return document.getElementById(id); };
+
+  var searchForm = document.querySelector('.live-search-wrapper');
+  var searchInput = byId('liveSearch');
+  var resultsBox = byId('liveSearchResults');
+  var clearBtn = byId('searchClearBtn');
+  var liveStatus = byId('liveSearchStatus');
+  var menuToggle = byId('menu-toggle');
+  var postsList = byId('postsList');
+  var loadMoreBtn = byId('loadMoreBtn');
+  var postsDataEl = byId('postsData');
+
+  var posts = [];
+  if (postsDataEl) {
+    try {
+      var parsed = JSON.parse(postsDataEl.textContent);
+      if (Array.isArray(parsed)) {
+        posts = parsed.filter(function (p) {
+          return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
+        });
+      }
+    } catch (err) {
+      posts = [];
+    }
+  }
+
+  var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || '/search') : '/search';
+  var MAX_RESULTS = 10;
+  var DEBOUNCE_MS = 200;
+  var idCounter = 0;
+  var optionEls = [];
+  var activeIndex = -1;
+  var debounceTimer = null;
+  var statusTimer = null;
+
+  function foldChar(ch) {
+    var c = ch.charCodeAt(0);
+    if (c >= 0x06F0 && c <= 0x06F9) return String.fromCharCode(c - 0x06F0 + 48);
+    if (c >= 0x0660 && c <= 0x0669) return String.fromCharCode(c - 0x0660 + 48);
+    if (c === 0x064A || c === 0x0649 || c === 0x06CC || c === 0x0626) return '\u06CC';
+    if (c === 0x0643 || c === 0x06A9) return '\u06A9';
+    if (c === 0x0623 || c === 0x0625 || c === 0x0622 || c === 0x0671) return '\u0627';
+    if (c === 0x0629) return '\u0647';
+    if (c === 0x0624) return '\u0648';
+    if (c >= 0x064B && c <= 0x0652) return '';
+    if (c === 0x0640 || c === 0x200C || c === 0x200D || c === 0x200E || c === 0x200F) return '';
+    if (c === 32 || c === 9 || c === 10 || c === 13 || c === 0x00A0) return '';
+    var lower = ch.toLowerCase();
+    return lower.length === 1 ? lower : ch;
+  }
+
+  function foldWithMap(s) {
+    s = String(s);
+    var out = '';
+    var map = [];
+    for (var i = 0; i < s.length; i++) {
+      var f = foldChar(s.charAt(i));
+      for (var j = 0; j < f.length; j++) {
+        out += f.charAt(j);
+        map.push(i);
+      }
+    }
+    map.push(s.length);
+    return { text: out, map: map };
+  }
+
+  function fold(s) {
+    return foldWithMap(s).text;
+  }
+
+  function highlightTitle(title, foldedTerm) {
+    if (!foldedTerm) return document.createTextNode(title);
+    var folded = foldWithMap(title);
+    var idx = folded.text.indexOf(foldedTerm);
+    if (idx === -1) return document.createTextNode(title);
+    var start = folded.map[idx];
+    var end = folded.map[idx + foldedTerm.length];
+    if (typeof start !== 'number') start = 0;
+    if (typeof end !== 'number') end = title.length;
+    var frag = document.createDocumentFragment();
+    if (start > 0) frag.appendChild(document.createTextNode(title.slice(0, start)));
+    var mark = document.createElement('mark');
+    mark.className = 'search-hit';
+    mark.textContent = title.slice(start, end);
+    frag.appendChild(mark);
+    if (end < title.length) frag.appendChild(document.createTextNode(title.slice(end)));
+    return frag;
+  }
+
+  function announce(msg) {
+    if (!liveStatus) return;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { liveStatus.textContent = msg; }, 300);
+  }
+
+  function closeResults() {
+    if (!resultsBox || resultsBox.hidden) return;
+    resultsBox.hidden = true;
+    resultsBox.innerHTML = '';
+    optionEls = [];
+    activeIndex = -1;
+    if (searchInput) {
+      searchInput.setAttribute('aria-expanded', 'false');
+      searchInput.removeAttribute('aria-activedescendant');
+    }
+  }
+
+  function setActiveOption(idx) {
+    if (!optionEls.length || !searchInput) return;
+    if (activeIndex >= 0 && optionEls[activeIndex]) {
+      optionEls[activeIndex].setAttribute('aria-selected', 'false');
+    }
+    activeIndex = idx;
+    if (activeIndex < 0) {
+      searchInput.removeAttribute('aria-activedescendant');
+      return;
+    }
+    var el = optionEls[activeIndex];
+    if (!el) return;
+    el.setAttribute('aria-selected', 'true');
+    searchInput.setAttribute('aria-activedescendant', el.id);
+    if (typeof el.scrollIntoView === 'function') {
+      el.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  function renderResults(rawTerm) {
+    if (!resultsBox || !searchInput) return;
+    var term = fold(rawTerm);
+    resultsBox.innerHTML = '';
+    optionEls = [];
+    activeIndex = -1;
+
+    if (!term) {
+      closeResults();
+      announce('');
+      return;
+    }
+
+    var matched = [];
+    for (var i = 0; i < posts.length; i++) {
+      if (fold(posts[i].title).indexOf(term) !== -1) matched.push(posts[i]);
+    }
+    var total = matched.length;
+    var limited = matched.slice(0, MAX_RESULTS);
+
+    if (total === 0) {
+      var empty = document.createElement('li');
+      empty.className = 'no-result';
+      empty.setAttribute('role', 'option');
+      empty.setAttribute('aria-disabled', 'true');
+      empty.textContent = 'هیچ مطلبی یافت نشد';
+      resultsBox.appendChild(empty);
+    } else {
+      var frag = document.createDocumentFragment();
+      for (var k = 0; k < limited.length; k++) {
+        var item = limited[k];
+        var li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.id = 'search-opt-' + (idCounter++);
+        var a = document.createElement('a');
+        a.href = item.url;
+        a.tabIndex = -1;
+        a.appendChild(highlightTitle(item.title, term));
+        li.appendChild(a);
+        frag.appendChild(li);
+        optionEls.push(li);
+      }
+      if (total > MAX_RESULTS) {
+        var more = document.createElement('li');
+        more.className = 'more-result';
+        more.setAttribute('role', 'option');
+        more.setAttribute('aria-disabled', 'true');
+        var moreA = document.createElement('a');
+        moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
+        moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
+        more.appendChild(moreA);
+        frag.appendChild(more);
+      }
+      resultsBox.appendChild(frag);
+    }
+
+    resultsBox.hidden = false;
+    searchInput.setAttribute('aria-expanded', 'true');
+    announce(total === 0 ? 'نتیجه‌ای یافت نشد' : total + ' نتیجه یافت شد');
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      clearTimeout(debounceTimer);
+      var val = searchInput.value;
+      debounceTimer = setTimeout(function () { renderResults(val); }, DEBOUNCE_MS);
+      if (clearBtn) clearBtn.hidden = val === '';
+    });
+
+    searchInput.addEventListener('focus', function () {
+      var val = searchInput.value;
+      if (clearBtn) clearBtn.hidden = val === '';
+      if (fold(val)) renderResults(val);
+    });
+
+    searchInput.addEventListener('keydown', function (e) {
+      if (e.isComposing) return;
+      var key = e.key;
+      if (key === 'ArrowDown') {
+        if (!optionEls.length) return;
+        e.preventDefault();
+        setActiveOption(activeIndex + 1 >= optionEls.length ? 0 : activeIndex + 1);
+        return;
+      }
+      if (key === 'ArrowUp') {
+        if (!optionEls.length) return;
+        e.preventDefault();
+        setActiveOption(activeIndex - 1 < 0 ? optionEls.length - 1 : activeIndex - 1);
+        return;
+      }
+      if (key === 'Enter') {
+        if (activeIndex >= 0 && optionEls[activeIndex]) {
+          e.preventDefault();
+          var activeLink = optionEls[activeIndex].querySelector('a');
+          if (activeLink) activeLink.click();
+        }
+        return;
+      }
+      if (key === 'Escape') {
+        if (resultsBox && !resultsBox.hidden) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeResults();
+          announce('');
+        }
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      if (!searchInput) return;
+      searchInput.value = '';
+      searchInput.focus();
+      closeResults();
+      clearBtn.hidden = true;
+      announce('');
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!(t instanceof Element) || !t.closest('.live-search-wrapper')) {
+      closeResults();
+    }
+  });
+
+  if (menuToggle) {
+    menuToggle.addEventListener('change', function () {
+      document.documentElement.classList.toggle('nav-open', menuToggle.checked);
+    });
+
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) {
+        menuToggle.checked = false;
+        document.documentElement.classList.remove('nav-open');
+      }
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (menuToggle && menuToggle.checked) {
+      menuToggle.checked = false;
+      document.documentElement.classList.remove('nav-open');
+    }
+  });
+
+  var navLinks = document.querySelectorAll('.mobile-nav a');
+  for (var n = 0; n < navLinks.length; n++) {
+    navLinks[n].addEventListener('click', function () {
+      if (menuToggle) menuToggle.checked = false;
+      document.documentElement.classList.remove('nav-open');
+    });
+  }
+
+  if (loadMoreBtn && postsList) {
+    var currentIndex = postsList.children.length;
+    var step = 10;
+
+    function updateLoadBtn() {
+      if (currentIndex >= posts.length) {
+        loadMoreBtn.hidden = true;
+      }
+    }
+
+    loadMoreBtn.addEventListener('click', function (e) {
+      if (currentIndex >= posts.length) return;
+      e.preventDefault();
+      var endIndex = Math.min(currentIndex + step, posts.length);
+      var frag = document.createDocumentFragment();
+      for (var i = currentIndex; i < endIndex; i++) {
+        var post = posts[i];
+        if (!post) continue;
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = post.url;
+        a.textContent = post.title;
+        li.appendChild(a);
+        frag.appendChild(li);
+      }
+      var firstNew = frag.firstChild;
+      postsList.appendChild(frag);
+      currentIndex = endIndex;
+      updateLoadBtn();
+      if (firstNew) {
+        var newLink = firstNew.querySelector('a');
+        if (newLink) newLink.focus();
+      }
+    });
+
+    updateLoadBtn();
+  }
+})();
+</script>
+</body>
+</html>
