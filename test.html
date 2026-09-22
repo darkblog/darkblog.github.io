@@ -2,14 +2,36 @@
 layout: null
 ---
 
+{%- assign current_post_id = page.id -%}
+{%- assign related_total = 0 -%}
+{%- for post in site.posts -%}
+  {%- if post.id != current_post_id -%}
+    {%- assign common_tags_count = 0 -%}
+    {%- for tag in post.tags -%}
+      {%- if page.tags contains tag -%}
+        {%- assign common_tags_count = common_tags_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if common_tags_count > 0 -%}
+      {%- assign related_total = related_total | plus: 1 -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>وبلاگ پاسگاه؛ آرشیو مقالات</title>
-<meta name="description" content="وبلاگ پاسگاه آرشیو کامل مقالات سایت پاسگاه برای علاقمندان به تاریخ و تمدن ایران و جهان">
-<link rel="canonical" href="https://www.pasgah.org/blog">
+{%- if page.image -%}
+<link rel="preload" href="{{ page.image | relative_url }}" as="image">
+{%- endif -%}
+{%- capture desc -%}
+  {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
+{%- endcapture -%}
+<title>{{ page.title | escape }}</title>
+<meta name="description" content="{{ desc | escape }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
 <link rel="alternate" type="application/atom+xml" title="پاسگاه" href="https://www.pasgah.org/blog.xml">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
@@ -117,6 +139,35 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .load-more-btn:active { transform: scale(0.97); color: var(--accent); }
 @media (hover: hover) { .posts-list li:hover { background-color: var(--bg-elev); border-color: var(--border-h); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+.post-header { margin-block-end: 2rem; }
+.post-breadcrumb { margin-block-end: 1.25rem; }
+.post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text); text-decoration: none; font-weight: 500; min-height: 48px; transition: color var(--dur); }
+.post-breadcrumb a:hover, .post-breadcrumb a:focus-visible { color: var(--accent); }
+.post-breadcrumb a span { font-weight: 900; font-size: 1.5rem; line-height: 1; display: inline-block; }
+.post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: var(--text); letter-spacing: -0.02em; margin-block-end: 1rem; }
+.post-featured-image { width: 100%; margin: 0 0 2.5rem; overflow: hidden; border-radius: var(--r-lg); background-color: var(--bg-elev); border: 1px solid var(--border); }
+.post-featured-image img { max-width: 100%; height: auto; display: block; }
+.article-content { line-height: 1.9; color: var(--text); margin-block-start: 2rem; font-size: inherit; }
+.article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: var(--text); font-size: clamp(1.4rem, 3.5vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.4; }
+.article-content h3, .article-content h4 { color: var(--text); margin: 2rem 0 0.85rem; font-weight: 700; line-height: 1.4; }
+.article-content p { margin-block-end: 1.5rem; font-size: inherit; }
+.article-content a { color: var(--accent); text-decoration: none; font-weight: 500; border-block-end: 1px dashed currentColor; transition: color var(--dur), border-color var(--dur); }
+.article-content a:hover, .article-content a:focus-visible { color: #5eeadb; border-block-end-style: solid; }
+.article-content img { max-width: 100%; height: auto; border-radius: var(--r-sm); margin: 2rem 0; display: block; }
+.article-content blockquote { border-inline-start: 4px solid var(--border-h); padding: 1.5rem; margin: 1.5rem 0; color: var(--text); background: var(--bg-elev); border-radius: var(--r-sm); }
+.article-content blockquote p { margin: 0; }
+.article-content ul, .article-content ol { margin: 1.5rem 0; padding-inline-start: 1.75rem; }
+.article-content li { margin-block-end: 0.75rem; }
+.article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid var(--border); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; direction: rtl !important; text-align: right !important; border-radius: var(--r-sm); }
+.article-content table * { direction: rtl !important; text-align: right !important; }
+.article-content table thead { background-color: var(--border); color: var(--text); }
+.article-content table th, .article-content table td { padding: 1rem 1.5rem; border-block-end: 1px solid var(--border); white-space: normal; word-break: break-word; min-width: 10rem; }
+.article-content table th { font-weight: 700; border-block-end: 2px solid var(--border-h); white-space: nowrap; }
+.article-content table tbody tr:last-child td { border-block-end: none; }
+.article-content table tbody tr:nth-child(even) { background-color: var(--bg-elev); }
+.article-content table tbody tr:hover { background-color: #252525; }
+.article-content table caption { padding: 0.5rem 0; font-weight: 500; color: var(--text); }
+.related-section { margin-block-start: 3rem; padding-block-start: 1.5rem; border-block-start: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -142,7 +193,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     </ul>
   </nav>
   <main id="main" class="main-content">
-    <h1 class="sr-only">وبلاگ پاسگاه</h1>
     <form class="live-search-wrapper" role="search" action="https://www.pasgah.org/search" method="get">
       <label for="liveSearch" class="sr-only">جستجو</label>
       <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
@@ -150,14 +200,109 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
       <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite"></div>
     </form>
-    <h2 class="sr-only">آرشیو پست‌های پاسگاه</h2>
-    <ul class="posts-list" id="postsList" role="list">
-      {%- for post in site.posts limit:20 -%}
-        <li><a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a></li>
+    <article typeof="Article">
+      <header class="post-header">
+        <nav class="post-breadcrumb" aria-label="مسیر صفحه">
+          <a href="https://www.pasgah.org/blog">
+            <span aria-hidden="true">→</span>
+            وبلاگ
+          </a>
+        </nav>
+        <time datetime="{{ page.date | date_to_xmlschema }}" class="sr-only">{{ page.date | date: "%Y-%m-%d" }}</time>
+        <h1 class="post-title" property="headline">{{ page.title | escape }}</h1>
+      </header>
+      {% if page.image %}
+      <figure class="post-featured-image">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high" width="1200" height="800">
+      </figure>
+      {% endif %}
+      <div class="article-content" property="articleBody">
+        {{ content }}
+      </div>
+    </article>
+
+    {%- if related_total > 0 -%}
+    <section class="related-section" aria-labelledby="related-heading">
+      <h2 id="related-heading" class="sr-only">پست‌های مرتبط</h2>
+      <ul class="posts-list" id="relatedPostsList" role="list">
+        {%- assign shown = 0 -%}
+        {%- for post in site.posts -%}
+          {%- if post.id != current_post_id -%}
+            {%- assign common_tags_count = 0 -%}
+            {%- for tag in post.tags -%}
+              {%- if page.tags contains tag -%}
+                {%- assign common_tags_count = common_tags_count | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if common_tags_count > 0 -%}
+              {%- if shown < 5 -%}
+                <li><a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a></li>
+                {%- assign shown = shown | plus: 1 -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      {%- if related_total > 5 -%}
+      <div class="load-more-wrap" id="relatedLoadMoreWrap">
+        <button type="button" id="relatedLoadMoreBtn" class="load-more-btn">نمایش پست‌های بیشتر</button>
+      </div>
+      <script type="application/json" id="relatedPostsData">
+      [
+      {%- assign first_item = true -%}
+      {%- for post in site.posts -%}
+        {%- if post.id != current_post_id -%}
+          {%- assign common_tags_count = 0 -%}
+          {%- for tag in post.tags -%}
+            {%- if page.tags contains tag -%}
+              {%- assign common_tags_count = common_tags_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if common_tags_count > 0 -%}
+            {%- unless first_item -%},{%- endunless -%}
+            {"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}
+            {%- assign first_item = false -%}
+          {%- endif -%}
+        {%- endif -%}
       {%- endfor -%}
-    </ul>
+      ]
+      </script>
+      {%- endif -%}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "پست‌های مرتبط",
+        "itemListElement": [
+          {%- assign first_ld = true -%}
+          {%- for post in site.posts -%}
+            {%- if post.id != current_post_id -%}
+              {%- assign common_tags_count = 0 -%}
+              {%- for tag in post.tags -%}
+                {%- if page.tags contains tag -%}
+                  {%- assign common_tags_count = common_tags_count | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if common_tags_count > 0 -%}
+                {%- unless first_ld -%},{%- endunless -%}
+                {
+                  "@type": "ListItem",
+                  "position": {{ forloop.index }},
+                  "url": "https://www.pasgah.org{{ post.url }}",
+                  "name": {{ post.title | jsonify | replace: '</', '<\/' }}
+                }
+                {%- assign first_ld = false -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+      </script>
+    </section>
+    {%- endif -%}
+
     <div class="load-more-wrap">
-      <a href="https://www.pasgah.org/blog" id="loadMoreBtn" class="load-more-btn">نمایش پست‌های بیشتر</a>
+      <a href="https://www.pasgah.org/" class="load-more-btn">بازگشت به صفحه اصلی</a>
     </div>
   </main>
 </div>
@@ -180,9 +325,11 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var clearBtn = byId('searchClearBtn');
   var liveStatus = byId('liveSearchStatus');
   var menuToggle = byId('menu-toggle');
-  var postsList = byId('postsList');
-  var loadMoreBtn = byId('loadMoreBtn');
   var postsDataEl = byId('postsData');
+  var relatedDataEl = byId('relatedPostsData');
+  var relatedPostsList = byId('relatedPostsList');
+  var relatedLoadMoreBtn = byId('relatedLoadMoreBtn');
+  var relatedLoadMoreWrap = byId('relatedLoadMoreWrap');
 
   var posts = [];
   if (postsDataEl) {
@@ -425,42 +572,51 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     });
   }
 
-  if (loadMoreBtn && postsList) {
-    var currentIndex = postsList.children.length;
-    var step = 10;
-
-    function updateLoadBtn() {
-      if (currentIndex >= posts.length) {
-        loadMoreBtn.hidden = true;
+  if (relatedDataEl && relatedPostsList && relatedLoadMoreBtn && relatedLoadMoreWrap) {
+    var relatedPosts = [];
+    try {
+      var parsedR = JSON.parse(relatedDataEl.textContent);
+      if (Array.isArray(parsedR)) {
+        relatedPosts = parsedR.filter(function (p) {
+          return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
+        });
       }
+    } catch (err) {
+      relatedPosts = [];
     }
 
-    loadMoreBtn.addEventListener('click', function (e) {
-      if (currentIndex >= posts.length) return;
-      e.preventDefault();
-      var endIndex = Math.min(currentIndex + step, posts.length);
-      var frag = document.createDocumentFragment();
-      for (var i = currentIndex; i < endIndex; i++) {
-        var post = posts[i];
-        if (!post) continue;
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        a.href = post.url;
-        a.textContent = post.title;
-        li.appendChild(a);
-        frag.appendChild(li);
-      }
-      var firstNew = frag.firstChild;
-      postsList.appendChild(frag);
-      currentIndex = endIndex;
-      updateLoadBtn();
-      if (firstNew) {
-        var newLink = firstNew.querySelector('a');
-        if (newLink) newLink.focus();
-      }
-    });
+    if (relatedPosts.length <= 5) {
+      relatedLoadMoreWrap.hidden = true;
+    } else {
+      var currentIndex = 5;
+      var step = 5;
 
-    updateLoadBtn();
+      relatedLoadMoreBtn.addEventListener('click', function () {
+        if (currentIndex >= relatedPosts.length) return;
+        var endIndex = Math.min(currentIndex + step, relatedPosts.length);
+        var frag = document.createDocumentFragment();
+        for (var i = currentIndex; i < endIndex; i++) {
+          var post = relatedPosts[i];
+          if (!post) continue;
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = post.url;
+          a.textContent = post.title;
+          li.appendChild(a);
+          frag.appendChild(li);
+        }
+        var firstNew = frag.firstChild;
+        relatedPostsList.appendChild(frag);
+        currentIndex = endIndex;
+        if (currentIndex >= relatedPosts.length) {
+          relatedLoadMoreWrap.hidden = true;
+        }
+        if (firstNew) {
+          var newLink = firstNew.querySelector('a');
+          if (newLink) newLink.focus();
+        }
+      });
+    }
   }
 })();
 </script>
