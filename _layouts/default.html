@@ -4,6 +4,7 @@ layout: null
 
 {%- assign current_post_id = page.id -%}
 {%- assign related_total = 0 -%}
+{%- assign related_ids = "" -%}
 {%- for post in site.posts -%}
   {%- if post.id != current_post_id -%}
     {%- assign common_tags_count = 0 -%}
@@ -14,6 +15,7 @@ layout: null
     {%- endfor -%}
     {%- if common_tags_count > 0 -%}
       {%- assign related_total = related_total | plus: 1 -%}
+      {%- assign related_ids = related_ids | append: post.id | append: "|" -%}
     {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
@@ -189,7 +191,16 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
-      <li><a href="https://www.pasgah.org/">صفحه اصلی</a></li>
+      {%- assign nav_count = 0 -%}
+      {%- for post in site.posts -%}
+        {%- if post.id != current_post_id and nav_count < 5 -%}
+          {%- assign nav_check = post.id | append: "|" -%}
+          {%- unless related_ids contains nav_check -%}
+            <li><a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a></li>
+            {%- assign nav_count = nav_count | plus: 1 -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
     </ul>
   </nav>
   <main id="main" class="main-content">
