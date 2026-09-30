@@ -70,14 +70,17 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .error-btn:active { transform: scale(0.97); color: var(--accent); }
 .error-btn--primary { background-color: var(--accent); border-color: var(--accent); color: #ffffff; }
 .error-btn--primary:hover { background-color: #0f766e; border-color: #0f766e; color: #ffffff; }
-.error-suggest { margin-block-start: 3rem; }
-.error-suggest-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-block-end: 1rem; }
+.suggest-section { margin-block-start: 2.5rem; }
 .posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
 .posts-list li { position: relative; border-radius: var(--r-md); background-color: transparent; border: 0; }
 .posts-list li::before { content: ''; position: absolute; inset-inline-start: 0.35rem; inset-block-start: 50%; transform: translateY(-50%); width: 0.55rem; height: 0.55rem; background-color: var(--border-h); border-radius: 0.2rem; transition: background-color var(--dur), transform var(--dur), box-shadow var(--dur); z-index: 1; pointer-events: none; }
 .posts-list li:hover::before, .posts-list li:focus-within::before { background-color: var(--accent); transform: translateY(-50%) scale(1.2); box-shadow: 0 0 0 4px var(--accent-bg); }
 .posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.15rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.1rem 1.75rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
 .posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
+.load-more-wrap { display: flex; justify-content: center; margin-block-start: 2rem; }
+.load-more-btn { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: transparent; color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: var(--r-md); border: 2px solid var(--border); transition: background-color var(--dur), transform var(--dur-fast), border-color var(--dur), color var(--dur); min-height: 48px; cursor: pointer; }
+.load-more-btn:hover { background-color: var(--accent-bg); border-color: var(--accent); color: var(--accent); transform: scale(1.02); }
+.load-more-btn:active { transform: scale(0.97); color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
 </head>
@@ -119,21 +122,22 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       <h2 id="error-title" class="error-title">صفحه‌ای که به دنبالش بودید پیدا نشد</h2>
       <p class="error-text">
         ممکن است نشانی تغییر کرده باشد یا این صفحه دیگر در دسترس نباشد.
-        با جستجو در کادر بالا یا یکی از گزینه‌های زیر می‌توانید مسیر خود را ادامه دهید.
+        با جستجو در کادر بالا یا بازگشت به صفحه اصلی می‌تونی مقاله مورد نظرتو پیدا کنی.
       </p>
       <div class="error-actions">
         <a class="error-btn error-btn--primary" href="https://www.pasgah.org/">بازگشت به صفحه اصلی</a>
-        <a class="error-btn" href="https://www.pasgah.org/blog">مشاهدهٔ وبلاگ</a>
       </div>
     </section>
 
-    <section class="error-suggest" aria-labelledby="suggest-title">
-      <h3 id="suggest-title" class="error-suggest-title">شاید این مطالب را بخواهید</h3>
+    <section class="suggest-section" aria-label="پیشنهاد مطالب">
       <ul class="posts-list" id="postsList" role="list">
         {%- for post in site.posts limit:5 -%}
           <li><a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a></li>
         {%- endfor -%}
       </ul>
+      <div class="load-more-wrap">
+        <button type="button" id="loadMoreBtn" class="load-more-btn">نمایش پست‌های بیشتر</button>
+      </div>
     </section>
   </main>
 </div>
@@ -156,6 +160,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var clearBtn = byId('searchClearBtn');
   var liveStatus = byId('liveSearchStatus');
   var menuToggle = byId('menu-toggle');
+  var postsList = byId('postsList');
+  var loadMoreBtn = byId('loadMoreBtn');
   var postsDataEl = byId('postsData');
 
   var posts = [];
@@ -397,6 +403,43 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       if (menuToggle) menuToggle.checked = false;
       document.documentElement.classList.remove('nav-open');
     });
+  }
+
+  if (loadMoreBtn && postsList) {
+    var currentIndex = postsList.children.length;
+    var step = 5;
+
+    function updateLoadBtn() {
+      if (currentIndex >= posts.length) {
+        loadMoreBtn.hidden = true;
+      }
+    }
+
+    loadMoreBtn.addEventListener('click', function () {
+      if (currentIndex >= posts.length) return;
+      var endIndex = Math.min(currentIndex + step, posts.length);
+      var frag = document.createDocumentFragment();
+      for (var i = currentIndex; i < endIndex; i++) {
+        var post = posts[i];
+        if (!post) continue;
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = post.url;
+        a.textContent = post.title;
+        li.appendChild(a);
+        frag.appendChild(li);
+      }
+      var firstNew = frag.firstChild;
+      postsList.appendChild(frag);
+      currentIndex = endIndex;
+      updateLoadBtn();
+      if (firstNew) {
+        var newLink = firstNew.querySelector('a');
+        if (newLink) newLink.focus();
+      }
+    });
+
+    updateLoadBtn();
   }
 })();
 </script>
