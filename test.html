@@ -115,9 +115,9 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .live-search-results .more-result a { justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
 .posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
 .posts-list li { position: relative; border-radius: var(--r-md); background-color: transparent; border: 0; }
-.posts-list li::before { content: ''; position: absolute; inset-inline-start: 0; inset-block-start: 50%; transform: translateY(-50%); width: 4px; height: 2rem; background-color: var(--border-h); border-start-start-radius: 4px; border-end-start-radius: 4px; transition: background-color var(--dur); z-index: 1; pointer-events: none; }
-.posts-list li:hover::before, .posts-list li:focus-within::before { background-color: var(--accent); }
-.posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem 1.25rem 1.25rem 1.75rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
+.posts-list li::before { content: ''; position: absolute; inset-inline-start: 0.35rem; inset-block-start: 50%; transform: translateY(-50%); width: 0.55rem; height: 0.55rem; background-color: var(--border-h); border-radius: 0.2rem; transition: background-color var(--dur), transform var(--dur), box-shadow var(--dur); z-index: 1; pointer-events: none; }
+.posts-list li:hover::before, .posts-list li:focus-within::before { background-color: var(--accent); transform: translateY(-50%) scale(1.2); box-shadow: 0 0 0 4px var(--accent-bg); }
+.posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem 1.75rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
 .posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
 .posts-list li:first-child { padding: 0; background-color: transparent; overflow: hidden; }
 .posts-list li:first-child::before { display: none; }
