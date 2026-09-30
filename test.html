@@ -21,8 +21,8 @@ layout: null
   {%- endunless -%}
   <link rel="preload" href="{{ hero_img | escape }}" as="image" fetchpriority="high">
 {%- endif -%}
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -67,7 +67,7 @@ layout: null
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
-:root { --max-w: 767px; --header-h: 5rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-inline: max(var(--pad-x), env(safe-area-inset-right, 0px)) max(var(--pad-x), env(safe-area-inset-left, 0px)); --pad-inline-lg: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-right, 0px)) max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-left, 0px)); --bg-page: #000; --bg-shell: #111; --bg-card: #181818; --bg-elev: #1c1c1c; --border: #2a2a2a; --text: #fff; --text-body: #f0ece6; --text-muted: #a8a29c; --text-dim: #8a8580; --accent: #2dd4bf; --accent-bg: rgba(45, 212, 191, .12); --r-md: .75rem; --r-lg: 1rem; --dur: .25s; color-scheme: dark; }
+:root { --max-w: 767px; --header-h: 5rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-inline: max(var(--pad-x), env(safe-area-inset-right, 0px)) max(var(--pad-x), env(safe-area-inset-left, 0px)); --pad-inline-lg: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-right, 0px)) max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-left, 0px)); --bg-page: #f0f0f0; --bg-shell: #fff; --bg-card: #fff; --bg-elev: #f5f5f5; --border: #e5e5e5; --text: #111; --text-body: #1f2937; --text-muted: #6b7280; --text-dim: #9ca3af; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, .1); --r-md: .75rem; --r-lg: 1rem; --dur: .25s; color-scheme: light; }
 @font-face { font-family: 'vazir'; src: url('https://www.pasgah.org/blog.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
 html { scroll-padding-top: calc(var(--header-h) + 1rem); }
 body { font: 400 1.125rem/1.6 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; background-color: var(--bg-page); color: var(--text); min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; overflow-wrap: break-word; }
@@ -110,7 +110,7 @@ body, .site-header, .mobile-nav { background-color: var(--bg-page); }
 .mobile-nav, .mobile-nav-overlay { visibility: hidden; }
 .hamburger, .posts-list li:first-child, .post-card-image, .posts-list li:first-child a { padding: 0; }
 .live-search-input, .live-search-input::-webkit-search-cancel-button, .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
-.skip-link { inset-inline-start: 1rem; inset-block-start: 1rem; padding: .75rem 1.25rem; background-color: var(--accent); color: #000; transform: translateY(-200%); transition: transform var(--dur); z-index: 100; }
+.skip-link { inset-inline-start: 1rem; inset-block-start: 1rem; padding: .75rem 1.25rem; background-color: var(--accent); color: #fff; transform: translateY(-200%); transition: transform var(--dur); z-index: 100; }
 .skip-link:focus { transform: translateY(0); }
 .site-header { inset-block-start: 0; inset-inline: 0; z-index: 50; border-block-end: 1px solid var(--border); max-width: var(--max-w); }
 .header-inner { height: var(--header-h); justify-content: space-between; padding-inline: var(--pad-inline); }
@@ -120,13 +120,13 @@ body, .site-header, .mobile-nav { background-color: var(--bg-page); }
 #menu-toggle:checked ~ .site-header .hamburger__bar:nth-child(1) { transform: translateY(.5rem) rotate(45deg); }
 #menu-toggle:checked ~ .site-header .hamburger__bar:nth-child(2) { opacity: 0; }
 #menu-toggle:checked ~ .site-header .hamburger__bar:nth-child(3) { transform: translateY(-.5rem) rotate(-45deg); }
-.mobile-nav-overlay { inset: 0; background-color: rgba(0, 0, 0, .6); z-index: 48; opacity: 0; transition: opacity var(--dur), visibility 0s var(--dur); }
+.mobile-nav-overlay { inset: 0; background-color: rgba(0, 0, 0, .5); z-index: 48; opacity: 0; transition: opacity var(--dur), visibility 0s var(--dur); }
 #menu-toggle:checked ~ .mobile-nav-overlay { opacity: 1; visibility: visible; transition: opacity var(--dur), visibility 0s; }
 .mobile-nav { inset-block: 0; inset-inline-start: max(0px, calc((100% - var(--max-w)) / 2)); width: min(300px, 80vw); padding-block: calc(var(--header-h) + 1.75rem) max(2rem, env(safe-area-inset-bottom, 0px)); padding-inline: var(--pad-inline-lg); z-index: 49; transform: translateX(100%); transition: transform var(--dur), visibility 0s var(--dur); }
 #menu-toggle:checked ~ .mobile-nav { transform: translateX(0); visibility: visible; transition: transform var(--dur), visibility 0s; }
 html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .mobile-nav ul { gap: 1.75rem; }
-.mobile-nav a { padding: .75rem 0; border-block-end: 1px solid rgba(255, 255, 255, .05); }
+.mobile-nav a { padding: .75rem 0; border-block-end: 1px solid rgba(0, 0, 0, .06); }
 .live-search-wrapper { margin-block-end: 1.5rem; }
 .live-search-input { padding-block: .8rem; padding-inline: 1.2rem 3.5rem; font: inherit; font-size: 1rem; border: 2px solid var(--border); }
 .live-search-input:focus { border-color: var(--accent); }
@@ -137,7 +137,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .live-search-results li { border-block-end: 1px solid var(--border); }
 .live-search-results li:last-child { border-block-end: none; }
 .live-search-results a { font-size: .95rem; padding: .8rem 1.2rem; transition: color var(--dur), background-color var(--dur); }
-.live-search-results a:hover, .live-search-results a:focus-visible { color: var(--accent); background-color: rgba(255, 255, 255, .03); }
+.live-search-results a:hover, .live-search-results a:focus-visible { color: var(--accent); background-color: rgba(0, 0, 0, .03); }
 .live-search-results li[aria-selected="true"] a { color: var(--accent); background-color: var(--accent-bg); }
 .live-search-results .no-result { padding: 1rem 1.2rem; text-align: center; }
 .live-search-results .more-result a { font-size: .9rem; }
