@@ -66,7 +66,7 @@ layout: null
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
-:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-card: #ffffff; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
+:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-card: transparent; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
 @font-face { font-family: 'vazir'; src: url('https://www.pasgah.org/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
 html { scrollbar-gutter: stable; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
 body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; }
@@ -113,14 +113,13 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .live-search-results li[aria-selected="true"] a { color: var(--accent); background-color: var(--accent-bg); }
 .live-search-results .no-result { color: var(--text-muted); padding: 1rem 1.2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 48px; }
 .live-search-results .more-result a { justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
-.posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; }
-.posts-list li { position: relative; border-radius: var(--r-md); background-color: var(--bg-card); border: 1px solid var(--border); transition: background-color var(--dur), border-color var(--dur), box-shadow var(--dur), transform var(--dur); }
+.posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+.posts-list li { position: relative; border-radius: var(--r-md); background-color: transparent; border: 0; }
 .posts-list li::before { content: ''; position: absolute; inset-inline-start: 0; inset-block-start: 50%; transform: translateY(-50%) scaleY(0); width: 4px; height: 2rem; background-color: var(--accent); border-start-start-radius: 4px; border-end-start-radius: 4px; opacity: 0; transition: opacity var(--dur), transform var(--dur); z-index: 1; pointer-events: none; }
 .posts-list li:hover::before, .posts-list li:focus-within::before { opacity: 1; transform: translateY(-50%) scaleY(1); }
 .posts-list li a { text-decoration: none; color: var(--text); display: flex; align-items: center; font-size: 1.25rem; font-weight: 700; line-height: 1.4; min-height: 48px; padding: 1.25rem; width: 100%; border-radius: inherit; transition: color var(--dur); }
 .posts-list li:hover a, .posts-list li:focus-within a { color: var(--accent); }
-.posts-list li:first-child { padding: 0; background-color: transparent; border-color: transparent; box-shadow: none; overflow: hidden; }
-.posts-list li:first-child:hover { background-color: transparent; border-color: transparent; box-shadow: none; }
+.posts-list li:first-child { padding: 0; background-color: transparent; overflow: hidden; }
 .posts-list li:first-child::before { display: none; }
 .posts-list li:first-child a { padding: 0; border-radius: inherit; }
 .posts-list li:first-child:hover a { color: inherit; }
@@ -132,7 +131,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .load-more-btn { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: transparent; color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.2rem; border-radius: var(--r-md); border: 2px solid var(--border); transition: background-color var(--dur), transform var(--dur-fast), border-color var(--dur), color var(--dur); min-height: 48px; cursor: pointer; }
 .load-more-btn:hover { background-color: var(--accent-bg); border-color: var(--accent); color: var(--accent); transform: scale(1.02); }
 .load-more-btn:active { transform: scale(0.97); color: var(--accent); }
-@media (hover: hover) { .posts-list li:not(:first-child):hover { background-color: var(--bg-elev); border-color: var(--border-h); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
 </head>
