@@ -170,7 +170,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- for post in site.posts limit:20 -%}
         <li>
         {%- if forloop.first -%}
-          {%- assign card_img = post.image | default: 'https://www.pasgah.org/blog.svg' -%}
+          {%- assign card_img = post.image | default: 'https://www.pasgah.org/icon.png' -%}
           <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image{% unless post.image %} post-card-image--fallback{% endunless %}" aria-label="{{ post.title | escape }}">
             <img src="{{ card_img | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
           </a>
