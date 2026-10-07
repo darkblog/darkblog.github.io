@@ -11,7 +11,7 @@ layout: null
 <meta name="description" content="وب‌سایت پاسگاه با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.">
 <link rel="canonical" href="https://www.pasgah.org/">
 <link rel="alternate" type="application/atom+xml" title="پاسگاه" href="https://www.pasgah.org/sitemap.xml">
-<link rel="icon" type="image/png" href="icon.png">
+<link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 {%- assign hero_post = site.posts.first -%}
 {%- if hero_post and hero_post.image -%}
@@ -33,7 +33,7 @@ layout: null
       "url": "https://www.pasgah.org/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.pasgah.org/icon.png"
+        "url": "https://www.pasgah.org/blog.svg"
       },
       "sameAs": [
         "https://www.facebook.com/ehsanchehri/",
@@ -141,7 +141,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   <header class="site-header">
     <div class="header-inner">
       <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
-        <img src="https://www.pasgah.org/icon.png" alt="" width="40" height="40" fetchpriority="high" decoding="async">
+        <img src="https://www.pasgah.org/blog.svg" alt="" width="40" height="40" fetchpriority="high" decoding="async">
       </a>
       <label for="menu-toggle" class="hamburger">
         <span class="hamburger__bar"></span>
@@ -170,7 +170,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- for post in site.posts limit:20 -%}
         <li>
         {%- if forloop.first -%}
-          {%- assign card_img = post.image | default: 'https://www.pasgah.org/icon.png' -%}
+          {%- assign card_img = post.image | default: 'https://www.pasgah.org/blog.svg' -%}
           <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image{% unless post.image %} post-card-image--fallback{% endunless %}" aria-label="{{ post.title | escape }}">
             <img src="{{ card_img | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
           </a>
