@@ -1,12 +1,12 @@
 ---
 layout: null
 ---
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>پاسگاه؛ تاریخ + سرگرمی</title>
 <meta name="description" content="وب‌سایت پاسگاه با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.">
 <link rel="canonical" href="https://www.pasgah.org/">
@@ -21,7 +21,7 @@ layout: null
   {%- endunless -%}
   <link rel="preload" href="{{ hero_img | escape }}" as="image" fetchpriority="high">
 {%- endif -%}
-<meta name="theme-color" content="black">
+<meta name="theme-color" content="#000000">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -161,9 +161,9 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     <form class="live-search-wrapper" role="search" action="https://www.pasgah.org/search" method="get">
       <label for="liveSearch" class="sr-only">جستجو</label>
       <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
-      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden><span aria-hidden="true">×</span></button>
+      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden><span aria-hidden="true">&times;</span></button>
       <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
-      <div id="liveSearchStatus" class="sr-only" role="status"></div>
+      <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     </form>
     <h2 class="sr-only">آخرین پست‌های پاسگاه</h2>
     <ul class="posts-list" id="postsList" role="list">
