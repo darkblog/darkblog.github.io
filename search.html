@@ -46,8 +46,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--header-accent); }
 .main-content { padding-block: calc(var(--header-h) + 2rem) 2.5rem; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); background-color: var(--bg-shell); }
 .live-search-wrapper { position: relative; margin-block-end: 1.5rem; width: 100%; }
-.live-search-input { width: 100%; padding-block: 0.8rem; padding-inline: 1.2rem 3.5rem; font: inherit; font-size: 1rem; border: 2px solid var(--border); border-radius: var(--r-lg); background-color: var(--bg-elev); color: var(--text-body); min-height: 48px; -webkit-appearance: none; appearance: none; }
-.live-search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); outline: none; }
+.live-search-input { width: 100%; padding-block: 0.8rem; padding-inline: 1.2rem 3.5rem; font: inherit; font-size: 1rem; border: 0; border-radius: var(--r-lg); background-color: var(--bg-elev); color: var(--text-body); min-height: 48px; -webkit-appearance: none; appearance: none; transition: background-color var(--dur), box-shadow var(--dur); }
+.live-search-input:focus { background-color: var(--bg-shell); box-shadow: 0 0 0 3px var(--accent-ring); outline: none; }
 .live-search-input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .live-search-input::placeholder { color: var(--text-dim); opacity: 1; }
 .live-search-input::-webkit-search-cancel-button, .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
