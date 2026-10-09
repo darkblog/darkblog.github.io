@@ -14,6 +14,7 @@ layout: null
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 {%- assign hero_post = site.posts.first -%}
+{%- assign hero_img = '' -%}
 {%- if hero_post and hero_post.image -%}
   {%- assign hero_img = hero_post.image -%}
   {%- unless hero_img contains '://' -%}
@@ -170,10 +171,15 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- for post in site.posts limit:20 -%}
         <li>
         {%- if forloop.first -%}
-          {%- assign card_img = post.image | default: 'https://www.pasgah.org/blog.svg' -%}
-          <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image{% unless post.image %} post-card-image--fallback{% endunless %}" aria-label="{{ post.title | escape }}">
-            <img src="{{ card_img | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
-          </a>
+          {%- if hero_img != '' -%}
+            <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image" aria-label="{{ post.title | escape }}">
+              <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
+            </a>
+          {%- else -%}
+            <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image post-card-image--fallback" aria-label="{{ post.title | escape }}">
+              <img src="https://www.pasgah.org/blog.svg" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
+            </a>
+          {%- endif -%}
         {%- else -%}
           <a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a>
         {%- endif -%}
@@ -188,7 +194,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
-{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
+{"t":{{ post.title | jsonify | replace: '</', '<\/' }},"u":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
@@ -207,20 +213,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var postsList = byId('postsList');
   var loadMoreBtn = byId('loadMoreBtn');
   var postsDataEl = byId('postsData');
-
-  var posts = [];
-  if (postsDataEl) {
-    try {
-      var parsed = JSON.parse(postsDataEl.textContent);
-      if (Array.isArray(parsed)) {
-        posts = parsed.filter(function (p) {
-          return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
-        });
-      }
-    } catch (err) {
-      posts = [];
-    }
-  }
+  var postsDataRaw = postsDataEl ? postsDataEl.textContent : '[]';
 
   var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://www.pasgah.org/search') : 'https://www.pasgah.org/search';
   var MAX_RESULTS = 10;
@@ -230,6 +223,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var activeIndex = -1;
   var debounceTimer = null;
   var statusTimer = null;
+  var postsCache = null;
 
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
@@ -254,6 +248,26 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       out += foldChar(s.charAt(i));
     }
     return out;
+  }
+
+  function getPosts() {
+    if (postsCache !== null) return postsCache;
+    var arr = [];
+    try {
+      var parsed = JSON.parse(postsDataRaw);
+      if (Array.isArray(parsed)) {
+        for (var i = 0; i < parsed.length; i++) {
+          var p = parsed[i];
+          if (p && typeof p.t === 'string' && typeof p.u === 'string' && p.t && p.u) {
+            arr.push({ title: p.t, url: p.u, folded: fold(p.t) });
+          }
+        }
+      }
+    } catch (err) {}
+    postsCache = arr;
+    postsDataRaw = '';
+    if (postsDataEl) postsDataEl.textContent = '';
+    return arr;
   }
 
   function announce(msg) {
@@ -306,9 +320,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       return;
     }
 
+    var allPosts = getPosts();
     var matched = [];
-    for (var i = 0; i < posts.length; i++) {
-      if (fold(posts[i].title).indexOf(term) !== -1) matched.push(posts[i]);
+    for (var i = 0; i < allPosts.length; i++) {
+      if (allPosts[i].folded.indexOf(term) !== -1) matched.push(allPosts[i]);
     }
     var total = matched.length;
     var limited = matched.slice(0, MAX_RESULTS);
@@ -452,20 +467,23 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   if (loadMoreBtn && postsList) {
     var currentIndex = postsList.children.length;
     var step = 10;
+    var currentTotal = -1;
 
     function updateLoadBtn() {
-      if (currentIndex >= posts.length) {
+      if (currentTotal >= 0 && currentIndex >= currentTotal) {
         loadMoreBtn.hidden = true;
       }
     }
 
     loadMoreBtn.addEventListener('click', function (e) {
-      if (currentIndex >= posts.length) return;
+      var allPosts = getPosts();
+      currentTotal = allPosts.length;
+      if (currentIndex >= allPosts.length) return;
       e.preventDefault();
-      var endIndex = Math.min(currentIndex + step, posts.length);
+      var endIndex = Math.min(currentIndex + step, allPosts.length);
       var frag = document.createDocumentFragment();
       for (var i = currentIndex; i < endIndex; i++) {
-        var post = posts[i];
+        var post = allPosts[i];
         if (!post) continue;
         var li = document.createElement('li');
         var a = document.createElement('a');
@@ -484,7 +502,17 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       }
     });
 
-    updateLoadBtn();
+    var runIdleCheck = function () {
+      var allPosts = getPosts();
+      currentTotal = allPosts.length;
+      updateLoadBtn();
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(runIdleCheck, { timeout: 2000 });
+    } else {
+      setTimeout(runIdleCheck, 1500);
+    }
   }
 })();
 </script>
