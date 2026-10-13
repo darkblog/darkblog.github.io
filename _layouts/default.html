@@ -2,24 +2,6 @@
 layout: null
 ---
 
-{%- assign current_post_id = page.id -%}
-{%- assign related_total = 0 -%}
-{%- assign related_ids = "" -%}
-{%- for post in site.posts -%}
-  {%- if post.id != current_post_id -%}
-    {%- assign common_tags_count = 0 -%}
-    {%- for tag in post.tags -%}
-      {%- if page.tags contains tag -%}
-        {%- assign common_tags_count = common_tags_count | plus: 1 -%}
-      {%- endif -%}
-    {%- endfor -%}
-    {%- if common_tags_count > 0 -%}
-      {%- assign related_total = related_total | plus: 1 -%}
-      {%- assign related_ids = related_ids | append: post.id | append: "|" -%}
-    {%- endif -%}
-  {%- endif -%}
-{%- endfor -%}
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -190,16 +172,9 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
-      {%- assign nav_count = 0 -%}
-      {%- for post in site.posts -%}
-        {%- if post.id != current_post_id and nav_count < 5 -%}
-          {%- assign nav_check = post.id | append: "|" -%}
-          {%- unless related_ids contains nav_check -%}
-            <li><a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a></li>
-            {%- assign nav_count = nav_count | plus: 1 -%}
-          {%- endunless -%}
-        {%- endif -%}
-      {%- endfor -%}
+      <li><a href="https://www.pasgah.org/">صفحه اصلی</a></li>
+      <li><a href="https://www.pasgah.org/blog">وبلاگ</a></li>
+      <li><a href="https://www.pasgah.org/sitemap.xml">RSS feed</a></li>
     </ul>
   </nav>
   <main id="main" class="main-content">
@@ -231,13 +206,28 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       </div>
     </article>
 
+    {%- assign related_total = 0 -%}
+    {%- for post in site.posts -%}
+      {%- if post.id != page.id -%}
+        {%- assign common_tags_count = 0 -%}
+        {%- for tag in post.tags -%}
+          {%- if page.tags contains tag -%}
+            {%- assign common_tags_count = common_tags_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if common_tags_count > 0 -%}
+          {%- assign related_total = related_total | plus: 1 -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
     {%- if related_total > 0 -%}
     <section class="related-section" aria-labelledby="related-heading">
       <h2 id="related-heading" class="sr-only">پست‌های مرتبط</h2>
       <ul class="posts-list" id="relatedPostsList" role="list">
         {%- assign shown = 0 -%}
         {%- for post in site.posts -%}
-          {%- if post.id != current_post_id -%}
+          {%- if post.id != page.id -%}
             {%- assign common_tags_count = 0 -%}
             {%- for tag in post.tags -%}
               {%- if page.tags contains tag -%}
@@ -261,7 +251,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       [
       {%- assign first_item = true -%}
       {%- for post in site.posts -%}
-        {%- if post.id != current_post_id -%}
+        {%- if post.id != page.id -%}
           {%- assign common_tags_count = 0 -%}
           {%- for tag in post.tags -%}
             {%- if page.tags contains tag -%}
@@ -286,7 +276,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         "itemListElement": [
           {%- assign first_ld = true -%}
           {%- for post in site.posts -%}
-            {%- if post.id != current_post_id -%}
+            {%- if post.id != page.id -%}
               {%- assign common_tags_count = 0 -%}
               {%- for tag in post.tags -%}
                 {%- if page.tags contains tag -%}
