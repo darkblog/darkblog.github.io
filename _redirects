@@ -1,9 +1,11 @@
 # ===== ریدایرکت‌های ثابت فیدها (باید اول باشند) =====
 /rss              /sitemap.xml  301
 /rss/             /sitemap.xml  301
+/rss.xml          /sitemap.xml  301
 /atom.xml         /sitemap.xml  301
 /feed             /sitemap.xml  301
 /feed/            /sitemap.xml  301
+/feed.xml         /sitemap.xml  301
 
 # ===== ریدایرکت الگوی Biography به Blog =====
 /biography/:slug  /blog/:slug  301
