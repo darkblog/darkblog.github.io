@@ -1,1 +1,5 @@
+---
+layout: null
+---
+
 Sitemap: https://www.pasgah.org/sitemap.xml
