@@ -7,6 +7,7 @@
 /feed.xml         /sitemap.xml  301
 /blog.xml         /sitemap.xml  301
 /blog/            /blog         301
+/api/comments     /sitemap.xml  301
 
 /biography/*      /blog/:splat  301
 
