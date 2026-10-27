@@ -9,3 +9,5 @@
 /blog/            /blog         301
 
 /biography/*      /blog/:splat  301
+
+/:id              /blog/:id     301
