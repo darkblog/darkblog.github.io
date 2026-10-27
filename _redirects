@@ -1,4 +1,3 @@
-# ===== ریدایرکت‌های ثابت فیدها (باید اول باشند) =====
 /rss              /sitemap.xml  301
 /rss/             /sitemap.xml  301
 /rss.xml          /sitemap.xml  301
@@ -8,5 +7,4 @@
 /feed.xml         /sitemap.xml  301
 /blog.xml         /sitemap.xml  301
 
-# ===== ریدایرکت الگوی Biography به Blog =====
 /biography/*      /blog/:splat  301
