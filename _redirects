@@ -7,6 +7,7 @@
 /feed.xml         /sitemap.xml  301
 /blog.xml         /sitemap.xml  301
 /api/comments     /sitemap.xml  301
+/2026-5-19-190    /blog/190     301
 
 /biography/*      /blog/:splat  301
 /*/               /:splat       301
