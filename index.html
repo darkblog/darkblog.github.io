@@ -174,11 +174,11 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         {%- if forloop.first -%}
           {%- if hero_img != '' -%}
             <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image" aria-label="{{ post.title | escape }}">
-              <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
+              <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="800" height="800">
             </a>
           {%- else -%}
             <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image post-card-image--fallback" aria-label="{{ post.title | escape }}">
-              <img src="https://www.pasgah.org/blog.svg" alt="" fetchpriority="high" decoding="async" width="1200" height="800">
+              <img src="https://www.pasgah.org/blog.svg" alt="" fetchpriority="high" decoding="async" width="800" height="800">
             </a>
           {%- endif -%}
         {%- else -%}
