@@ -23,42 +23,31 @@ layout: null
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.pasgah.org/#organization",
-      "name": "پاسگاه",
-      "url": "https://www.pasgah.org/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.pasgah.org/blog.svg"
-      },
-      "sameAs": [
-        "https://www.facebook.com/ehsanchehri/",
-        "https://www.youtube.com/@endchess",
-        "https://www.instagram.com/ehsanchehri",
-        "https://x.com/pbstwi",
-        "https://www.linkedin.com/in/ehsanchehri/fa",
-        "https://t.me/s/linkedulist",
-        "https://www.pinterest.com/ehsanchehri/"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.pasgah.org/#website",
-      "url": "https://www.pasgah.org/",
-      "name": "پاسگاه",
-      "publisher": { "@id": "https://www.pasgah.org/#organization" },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.pasgah.org/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ desc | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ page.author | default: site.author | default: "پاسگاه" | jsonify }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "پاسگاه",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.pasgah.org/blog.svg"
     }
-  ]
+  },
+  {% if page.image %}
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ page.image | absolute_url }}"
+  },
+  {% endif %}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  }
 }
 </script>
 <style>
@@ -126,7 +115,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .post-breadcrumb { margin-block-end: 1.25rem; }
 .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text); text-decoration: none; font-weight: 500; min-height: 48px; transition: color var(--dur); }
 .post-breadcrumb a:hover, .post-breadcrumb a:focus-visible { color: var(--accent); }
-.post-breadcrumb a span { font-weight: 900; font-size: 1.5rem; line-height: 1; display: inline-block; }
+.post-breadcrumb a [aria-hidden="true"] { font-weight: 900; font-size: 1.5rem; line-height: 1; display: inline-block; }
 .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: var(--text); letter-spacing: -0.02em; margin-block-end: 1rem; }
 .post-featured-image { width: 100%; margin: 0 0 2.5rem; overflow: hidden; border-radius: var(--r-lg); background-color: var(--bg-elev); border: 1px solid var(--border); }
 .post-featured-image img { max-width: 100%; height: auto; display: block; }
@@ -184,23 +173,33 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
       <div id="liveSearchStatus" class="sr-only" role="status"></div>
     </form>
-    <article typeof="Article">
+    <article>
       <header class="post-header">
-        <nav class="post-breadcrumb" aria-label="مسیر صفحه">
-          <a href="https://www.pasgah.org/blog">
-            <span aria-hidden="true">→</span>
-            وبلاگ
-          </a>
+        <nav class="post-breadcrumb" aria-label="مسیر صفحه" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="name" content="پاسگاه">
+            <meta itemprop="item" content="https://www.pasgah.org/">
+            <meta itemprop="position" content="1">
+          </span>
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="https://www.pasgah.org/blog" itemprop="item"><span aria-hidden="true">→</span><span itemprop="name">وبلاگ</span></a>
+            <meta itemprop="position" content="2">
+          </span>
+          <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <meta itemprop="name" content="{{ page.title | escape }}">
+            <meta itemprop="item" content="{{ page.url | absolute_url }}">
+            <meta itemprop="position" content="3">
+          </span>
         </nav>
         <time datetime="{{ page.date | date_to_xmlschema }}" class="sr-only">{{ page.date | date: "%Y-%m-%d" }}</time>
-        <h1 class="post-title" property="headline">{{ page.title | escape }}</h1>
+        <h1 class="post-title">{{ page.title | escape }}</h1>
       </header>
       {% if page.image %}
       <figure class="post-featured-image">
-        <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" property="image" fetchpriority="high" width="1200" height="800">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" fetchpriority="high" width="1200" height="800">
       </figure>
       {% endif %}
-      <div class="article-content" property="articleBody">
+      <div class="article-content">
         {{ content }}
       </div>
     </article>
@@ -274,6 +273,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         "name": "پست‌های مرتبط",
         "itemListElement": [
           {%- assign first_ld = true -%}
+          {%- assign shown_ld = 0 -%}
           {%- for post in site.posts -%}
             {%- if post.id != page.id -%}
               {%- assign common_tags_count = 0 -%}
@@ -284,11 +284,16 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
               {%- endfor -%}
               {%- if common_tags_count > 0 -%}
                 {%- unless first_ld -%},{%- endunless -%}
+                {%- assign shown_ld = shown_ld | plus: 1 -%}
                 {
                   "@type": "ListItem",
-                  "position": {{ forloop.index }},
-                  "url": "https://www.pasgah.org{{ post.url }}",
-                  "name": {{ post.title | jsonify | replace: '</', '<\/' }}
+                  "position": {{ shown_ld }},
+                  "item": {
+                    "@type": "BlogPosting",
+                    "url": "https://www.pasgah.org{{ post.url }}",
+                    "headline": {{ post.title | jsonify | replace: '</', '<\/' }},
+                    "datePublished": "{{ post.date | date_to_xmlschema }}"
+                  }
                 }
                 {%- assign first_ld = false -%}
               {%- endif -%}
