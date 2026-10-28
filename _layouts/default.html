@@ -8,7 +8,7 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {%- if page.image -%}
-<link rel="preload" href="{{ page.image | relative_url }}" as="image">
+<link rel="preload" href="{{ page.image | relative_url }}" as="image" fetchpriority="high">
 {%- endif -%}
 {%- capture desc -%}
   {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
