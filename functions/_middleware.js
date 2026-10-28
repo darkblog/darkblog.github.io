@@ -8,7 +8,7 @@ export async function onRequest(context) {
   // قالب: '/مسیر-قدیمی': '/مسیر-جدید',
   // ==========================================
   const singleRedirects = {
-    '/blog/2026-5-10-126':          '/blog/126',
+    '/blog/2026-5-19-190':          '/blog/190',
     '/api/comments':        '/sitemap.xml',
   };
 
