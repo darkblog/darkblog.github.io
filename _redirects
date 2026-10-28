@@ -10,6 +10,11 @@
 /blog/icon.png    /blog.svg     301
 /favicon.ico      /blog.svg     301
 
+/robots.txt       /robots.txt   200
+/sitemap.xml      /sitemap.xml  200
+/blog.svg         /blog.svg     200
+/blog.woff2       /blog.woff2   200
+
 /biography/*      /blog/:splat  301
 /*/               /:splat       301
 /:id              /blog/:id     301
