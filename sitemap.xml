@@ -1,47 +1,40 @@
 ---
 layout: null
 ---
-
-{% assign latest_post_date = nil %}
-
-{% assign now_timestamp = site.time | date: "%s" | plus: 0 %}
-
-{% for post in site.posts %}
-  {% assign post_timestamp = post.date | date: "%s" | plus: 0 %}
-
-  {% if post_timestamp <= now_timestamp %}
-    {% if latest_post_date == nil or post.date > latest_post_date %}
-      {% assign latest_post_date = post.date %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign now_timestamp = site.time | date: "%s" | plus: 0 -%}
+{%- assign latest_post_date = nil -%}
+{%- for post in site.posts -%}
+  {%- assign post_timestamp = post.date | date: "%s" | plus: 0 -%}
+  {%- if post_timestamp <= now_timestamp -%}
+    {%- if latest_post_date == nil or post.date > latest_post_date -%}
+      {%- assign latest_post_date = post.date -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
 
   <url>
     <loc>https://www.pasgah.org/</loc>
-    {% if latest_post_date %}
+    {%- if latest_post_date %}
     <lastmod>{{ latest_post_date | date_to_xmlschema }}</lastmod>
-    {% endif %}
+    {%- endif %}
   </url>
 
   <url>
     <loc>https://www.pasgah.org/blog</loc>
-    {% if latest_post_date %}
+    {%- if latest_post_date %}
     <lastmod>{{ latest_post_date | date_to_xmlschema }}</lastmod>
-    {% endif %}
+    {%- endif %}
   </url>
 
-  {% for post in site.posts %}
-    {% assign post_timestamp = post.date | date: "%s" | plus: 0 %}
-
-    {% if post_timestamp <= now_timestamp %}
+{%- for post in site.posts -%}
+  {%- assign post_timestamp = post.date | date: "%s" | plus: 0 -%}
+  {%- if post_timestamp <= now_timestamp %}
   <url>
     <loc>https://www.pasgah.org{{ post.url | xml_escape }}</loc>
     <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>
   </url>
-    {% endif %}
-  {% endfor %}
-
+  {%- endif -%}
+{%- endfor %}
 </urlset>
