@@ -2,25 +2,46 @@
 layout: null
 ---
 
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>پاسگاه</title>
-  <link href="https://www.pasgah.org/" rel="alternate" type="text/html"/>
-  <link href="https://www.pasgah.org/sitemap.xml" rel="self" type="application/atom+xml"/>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>https://www.pasgah.org/</id>
+{% assign latest_post_date = nil %}
 
-  <author>
-    <name>احسان چهری</name>
-  </author>
+{% assign now_timestamp = site.time | date: "%s" | plus: 0 %}
 
-  {% for post in site.posts limit:20 %}
-  <entry>
-    <title>{{ post.title | xml_escape }}</title>
-    <link href="https://www.pasgah.org{{ post.url }}" rel="alternate" type="text/html"/>
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>https://www.pasgah.org{{ post.url }}</id>
-    <summary type="html">{{ post.excerpt | strip_html | truncate: 300 | xml_escape }}</summary>
-  </entry>
+{% for post in site.posts %}
+  {% assign post_timestamp = post.date | date: "%s" | plus: 0 %}
+
+  {% if post_timestamp <= now_timestamp %}
+    {% if latest_post_date == nil or post.date > latest_post_date %}
+      {% assign latest_post_date = post.date %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://www.pasgah.org/</loc>
+    {% if latest_post_date %}
+    <lastmod>{{ latest_post_date | date_to_xmlschema }}</lastmod>
+    {% endif %}
+  </url>
+
+  <url>
+    <loc>https://www.pasgah.org/blog</loc>
+    {% if latest_post_date %}
+    <lastmod>{{ latest_post_date | date_to_xmlschema }}</lastmod>
+    {% endif %}
+  </url>
+
+  {% for post in site.posts %}
+    {% assign post_timestamp = post.date | date: "%s" | plus: 0 %}
+
+    {% if post_timestamp <= now_timestamp %}
+  <url>
+    <loc>https://www.pasgah.org{{ post.url | xml_escape }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>
+  </url>
+    {% endif %}
   {% endfor %}
-</feed>
+
+</urlset>
