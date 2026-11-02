@@ -19,36 +19,30 @@ layout: null
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": {{ page.title | jsonify }},
   "description": {{ desc | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }}{% if page.last_modified_at %},
+  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}{% endif %},
   "author": {
     "@type": "Person",
-    "name": {{ page.author | default: site.author | default: "پاسگاه" | jsonify }}
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "پاسگاه",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.pasgah.org/blog.svg"
-    }
-  },
-  {% if page.image %}
+    "name": {{ page.author | default: site.author | default: "احسان چهری" | jsonify }}
+  }{% if page.image %},
   "image": {
     "@type": "ImageObject",
-    "url": "{{ page.image | absolute_url }}"
-  },
-  {% endif %}
+    "url": {{ page.image | absolute_url | jsonify }}
+  }{% endif %},
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ page.url | absolute_url }}"
+    "@id": {{ page.url | absolute_url | jsonify }}
   }
 }
 </script>
+
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
@@ -142,15 +136,19 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .related-section { margin-block-start: 3rem; }
 </style>
 </head>
+
 <body>
 <a class="skip-link" href="#main">پرش به محتوا</a>
+
 <div class="page-wrapper">
   <input type="checkbox" id="menu-toggle" class="sr-only" aria-label="باز و بسته کردن منو">
+
   <header class="site-header">
     <div class="header-inner">
       <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
         <img src="https://www.pasgah.org/blog.svg" alt="پاسگاه" width="40" height="40" fetchpriority="high" decoding="async">
       </a>
+
       <label for="menu-toggle" class="hamburger">
         <span class="hamburger__bar"></span>
         <span class="hamburger__bar"></span>
@@ -158,21 +156,27 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       </label>
     </div>
   </header>
+
   <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
+
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
       <li><a href="https://www.pasgah.org/">صفحه اصلی</a></li>
       <li><a href="https://www.pasgah.org/blog">وبلاگ پاسگاه</a></li>
     </ul>
   </nav>
+
   <main id="main" class="main-content" tabindex="-1">
     <form class="live-search-wrapper" role="search" action="https://www.pasgah.org/search" method="get">
       <label for="liveSearch" class="sr-only">جستجو</label>
       <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
-      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden><span aria-hidden="true">&times;</span></button>
+      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden>
+        <span aria-hidden="true">&times;</span>
+      </button>
       <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
       <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     </form>
+
     <article>
       <header class="post-header">
         <nav class="post-breadcrumb" aria-label="مسیر صفحه" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -181,24 +185,31 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
             <meta itemprop="item" content="https://www.pasgah.org/">
             <meta itemprop="position" content="1">
           </span>
+
           <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="https://www.pasgah.org/blog" itemprop="item"><span aria-hidden="true">→</span><span itemprop="name">وبلاگ</span></a>
+            <a href="https://www.pasgah.org/blog" itemprop="item">
+              <span aria-hidden="true">→</span>
+              <span itemprop="name">وبلاگ</span>
+            </a>
             <meta itemprop="position" content="2">
           </span>
+
           <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <meta itemprop="name" content="{{ page.title | escape }}">
             <meta itemprop="item" content="{{ page.url | absolute_url }}">
             <meta itemprop="position" content="3">
           </span>
         </nav>
-        <time datetime="{{ page.date | date_to_xmlschema }}" class="sr-only">{{ page.date | date: "%Y-%m-%d" }}</time>
+
         <h1 class="post-title">{{ page.title | escape }}</h1>
       </header>
+
       {% if page.image %}
       <figure class="post-featured-image">
         <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" fetchpriority="high" width="1200" height="800">
       </figure>
       {% endif %}
+
       <div class="article-content">
         {{ content }}
       </div>
@@ -222,6 +233,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     {%- if related_total > 0 -%}
     <section class="related-section" aria-labelledby="related-heading">
       <h2 id="related-heading" class="sr-only">پست‌های مرتبط</h2>
+
       <ul class="posts-list" id="relatedPostsList" role="list">
         {%- assign shown = 0 -%}
         {%- for post in site.posts -%}
@@ -234,17 +246,26 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
             {%- endfor -%}
             {%- if common_tags_count > 0 -%}
               {%- if shown < 5 -%}
-                <li><a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a></li>
+                <li>
+                  <a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a>
+                </li>
                 {%- assign shown = shown | plus: 1 -%}
               {%- endif -%}
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </ul>
+
       {%- if related_total > 5 -%}
       <div class="load-more-wrap" id="relatedLoadMoreWrap">
-        <button type="button" id="relatedLoadMoreBtn" class="load-more-btn">مقالات بیشتر<svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:0.5rem"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button type="button" id="relatedLoadMoreBtn" class="load-more-btn">
+          مقالات بیشتر
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:0.5rem">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
       </div>
+
       <script type="application/json" id="relatedPostsData">
       [
       {%- assign first_item = true -%}
@@ -258,7 +279,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
           {%- endfor -%}
           {%- if common_tags_count > 0 -%}
             {%- unless first_item -%},{%- endunless -%}
-            {"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}
+            {"title":{{ post.title | jsonify | replace: '</', '</' }},"url":"https://www.pasgah.org{{ post.url }}"}
             {%- assign first_item = false -%}
           {%- endif -%}
         {%- endif -%}
@@ -266,53 +287,19 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       ]
       </script>
       {%- endif -%}
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "پست‌های مرتبط",
-        "itemListElement": [
-          {%- assign first_ld = true -%}
-          {%- assign shown_ld = 0 -%}
-          {%- for post in site.posts -%}
-            {%- if post.id != page.id -%}
-              {%- assign common_tags_count = 0 -%}
-              {%- for tag in post.tags -%}
-                {%- if page.tags contains tag -%}
-                  {%- assign common_tags_count = common_tags_count | plus: 1 -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {%- if common_tags_count > 0 -%}
-                {%- unless first_ld -%},{%- endunless -%}
-                {%- assign shown_ld = shown_ld | plus: 1 -%}
-                {
-                  "@type": "ListItem",
-                  "position": {{ shown_ld }},
-                  "item": {
-                    "@type": "BlogPosting",
-                    "url": "https://www.pasgah.org{{ post.url }}",
-                    "headline": {{ post.title | jsonify | replace: '</', '<\/' }},
-                    "datePublished": "{{ post.date | date_to_xmlschema }}"
-                  }
-                }
-                {%- assign first_ld = false -%}
-              {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
-        ]
-      }
-      </script>
     </section>
     {%- endif -%}
   </main>
 </div>
+
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
-{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
+{"title":{{ post.title | jsonify | replace: '</', '</' }},"url":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
+
 <script>
 (function () {
   'use strict';
@@ -332,9 +319,11 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var relatedLoadMoreWrap = byId('relatedLoadMoreWrap');
 
   var posts = [];
+
   if (postsDataEl) {
     try {
       var parsed = JSON.parse(postsDataEl.textContent);
+
       if (Array.isArray(parsed)) {
         posts = parsed.filter(function (p) {
           return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
@@ -356,16 +345,18 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
+
     if (c >= 0x06F0 && c <= 0x06F9) return String.fromCharCode(c - 0x06F0 + 48);
     if (c >= 0x0660 && c <= 0x0669) return String.fromCharCode(c - 0x0660 + 48);
-    if (c === 0x064A || c === 0x0649 || c === 0x06CC || c === 0x0626) return '\u06CC';
-    if (c === 0x0643 || c === 0x06A9) return '\u06A9';
-    if (c === 0x0623 || c === 0x0625 || c === 0x0622 || c === 0x0671) return '\u0627';
-    if (c === 0x0629) return '\u0647';
-    if (c === 0x0624) return '\u0648';
+    if (c === 0x064A || c === 0x0649 || c === 0x06CC || c === 0x0626) return 'ی';
+    if (c === 0x0643 || c === 0x06A9) return 'ک';
+    if (c === 0x0623 || c === 0x0625 || c === 0x0622 || c === 0x0671) return 'ا';
+    if (c === 0x0629) return 'ه';
+    if (c === 0x0624) return 'و';
     if (c >= 0x064B && c <= 0x0652) return '';
     if (c === 0x0640 || c === 0x200C || c === 0x200D || c === 0x200E || c === 0x200F) return '';
     if (c === 32 || c === 9 || c === 10 || c === 13 || c === 0x00A0) return '';
+
     var lower = ch.toLowerCase();
     return lower.length === 1 ? lower : ch;
   }
@@ -373,24 +364,31 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   function fold(s) {
     s = String(s);
     var out = '';
+
     for (var i = 0; i < s.length; i++) {
       out += foldChar(s.charAt(i));
     }
+
     return out;
   }
 
   function announce(msg) {
     if (!liveStatus) return;
+
     clearTimeout(statusTimer);
-    statusTimer = setTimeout(function () { liveStatus.textContent = msg; }, 300);
+    statusTimer = setTimeout(function () {
+      liveStatus.textContent = msg;
+    }, 300);
   }
 
   function closeResults() {
     if (!resultsBox || resultsBox.hidden) return;
+
     resultsBox.hidden = true;
     resultsBox.innerHTML = '';
     optionEls = [];
     activeIndex = -1;
+
     if (searchInput) {
       searchInput.setAttribute('aria-expanded', 'false');
       searchInput.removeAttribute('aria-activedescendant');
@@ -399,18 +397,25 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   function setActiveOption(idx) {
     if (!optionEls.length || !searchInput) return;
+
     if (activeIndex >= 0 && optionEls[activeIndex]) {
       optionEls[activeIndex].setAttribute('aria-selected', 'false');
     }
+
     activeIndex = idx;
+
     if (activeIndex < 0) {
       searchInput.removeAttribute('aria-activedescendant');
       return;
     }
+
     var el = optionEls[activeIndex];
+
     if (!el) return;
+
     el.setAttribute('aria-selected', 'true');
     searchInput.setAttribute('aria-activedescendant', el.id);
+
     if (typeof el.scrollIntoView === 'function') {
       el.scrollIntoView({ block: 'nearest' });
     }
@@ -418,7 +423,9 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   function renderResults(rawTerm) {
     if (!resultsBox || !searchInput) return;
+
     var term = fold(rawTerm);
+
     resultsBox.innerHTML = '';
     optionEls = [];
     activeIndex = -1;
@@ -430,45 +437,60 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     }
 
     var matched = [];
+
     for (var i = 0; i < posts.length; i++) {
-      if (fold(posts[i].title).indexOf(term) !== -1) matched.push(posts[i]);
+      if (fold(posts[i].title).indexOf(term) !== -1) {
+        matched.push(posts[i]);
+      }
     }
+
     var total = matched.length;
     var limited = matched.slice(0, MAX_RESULTS);
 
     if (total === 0) {
       var empty = document.createElement('li');
+
       empty.className = 'no-result';
       empty.setAttribute('role', 'option');
       empty.setAttribute('aria-disabled', 'true');
       empty.textContent = 'هیچ مطلبی یافت نشد';
+
       resultsBox.appendChild(empty);
     } else {
       var frag = document.createDocumentFragment();
+
       for (var k = 0; k < limited.length; k++) {
         var item = limited[k];
         var li = document.createElement('li');
+        var a = document.createElement('a');
+
         li.setAttribute('role', 'option');
         li.id = 'search-opt-' + (idCounter++);
-        var a = document.createElement('a');
+
         a.href = item.url;
         a.tabIndex = -1;
         a.textContent = item.title;
+
         li.appendChild(a);
         frag.appendChild(li);
         optionEls.push(li);
       }
+
       if (total > MAX_RESULTS) {
         var more = document.createElement('li');
+        var moreA = document.createElement('a');
+
         more.className = 'more-result';
         more.setAttribute('role', 'option');
         more.setAttribute('aria-disabled', 'true');
-        var moreA = document.createElement('a');
+
         moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
         moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
+
         more.appendChild(moreA);
         frag.appendChild(more);
       }
+
       resultsBox.appendChild(frag);
     }
 
@@ -480,40 +502,65 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       clearTimeout(debounceTimer);
+
       var val = searchInput.value;
-      debounceTimer = setTimeout(function () { renderResults(val); }, DEBOUNCE_MS);
-      if (clearBtn) clearBtn.hidden = val === '';
+
+      debounceTimer = setTimeout(function () {
+        renderResults(val);
+      }, DEBOUNCE_MS);
+
+      if (clearBtn) {
+        clearBtn.hidden = val === '';
+      }
     });
 
     searchInput.addEventListener('focus', function () {
       var val = searchInput.value;
-      if (clearBtn) clearBtn.hidden = val === '';
-      if (fold(val)) renderResults(val);
+
+      if (clearBtn) {
+        clearBtn.hidden = val === '';
+      }
+
+      if (fold(val)) {
+        renderResults(val);
+      }
     });
 
     searchInput.addEventListener('keydown', function (e) {
       if (e.isComposing) return;
+
       var key = e.key;
+
       if (key === 'ArrowDown') {
         if (!optionEls.length) return;
+
         e.preventDefault();
         setActiveOption(activeIndex + 1 >= optionEls.length ? 0 : activeIndex + 1);
         return;
       }
+
       if (key === 'ArrowUp') {
         if (!optionEls.length) return;
+
         e.preventDefault();
         setActiveOption(activeIndex - 1 < 0 ? optionEls.length - 1 : activeIndex - 1);
         return;
       }
+
       if (key === 'Enter') {
         if (activeIndex >= 0 && optionEls[activeIndex]) {
           e.preventDefault();
+
           var activeLink = optionEls[activeIndex].querySelector('a');
-          if (activeLink) activeLink.click();
+
+          if (activeLink) {
+            activeLink.click();
+          }
         }
+
         return;
       }
+
       if (key === 'Escape') {
         if (resultsBox && !resultsBox.hidden) {
           e.preventDefault();
@@ -528,6 +575,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   if (clearBtn) {
     clearBtn.addEventListener('click', function () {
       if (!searchInput) return;
+
       searchInput.value = '';
       searchInput.focus();
       closeResults();
@@ -538,6 +586,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   document.addEventListener('click', function (e) {
     var t = e.target;
+
     if (!(t instanceof Element) || !t.closest('.live-search-wrapper')) {
       closeResults();
     }
@@ -558,6 +607,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+
     if (menuToggle && menuToggle.checked) {
       menuToggle.checked = false;
       document.documentElement.classList.remove('nav-open');
@@ -565,17 +615,23 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   });
 
   var navLinks = document.querySelectorAll('.mobile-nav a');
+
   for (var n = 0; n < navLinks.length; n++) {
     navLinks[n].addEventListener('click', function () {
-      if (menuToggle) menuToggle.checked = false;
+      if (menuToggle) {
+        menuToggle.checked = false;
+      }
+
       document.documentElement.classList.remove('nav-open');
     });
   }
 
   if (relatedDataEl && relatedPostsList && relatedLoadMoreBtn && relatedLoadMoreWrap) {
     var relatedPosts = [];
+
     try {
       var parsedR = JSON.parse(relatedDataEl.textContent);
+
       if (Array.isArray(parsedR)) {
         relatedPosts = parsedR.filter(function (p) {
           return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
@@ -593,32 +649,46 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
       relatedLoadMoreBtn.addEventListener('click', function () {
         if (currentIndex >= relatedPosts.length) return;
+
         var endIndex = Math.min(currentIndex + step, relatedPosts.length);
         var frag = document.createDocumentFragment();
+
         for (var i = currentIndex; i < endIndex; i++) {
           var post = relatedPosts[i];
+
           if (!post) continue;
+
           var li = document.createElement('li');
           var a = document.createElement('a');
+
           a.href = post.url;
           a.textContent = post.title;
+
           li.appendChild(a);
           frag.appendChild(li);
         }
+
         var firstNew = frag.firstChild;
+
         relatedPostsList.appendChild(frag);
         currentIndex = endIndex;
+
         if (currentIndex >= relatedPosts.length) {
           relatedLoadMoreWrap.hidden = true;
         }
+
         if (firstNew) {
           var newLink = firstNew.querySelector('a');
-          if (newLink) newLink.focus();
+
+          if (newLink) {
+            newLink.focus();
+          }
         }
       });
     }
   }
 })();
 </script>
+
 </body>
 </html>
