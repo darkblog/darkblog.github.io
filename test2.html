@@ -86,7 +86,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .post-breadcrumb { margin-block-end: 1.25rem; }
 .post-breadcrumb ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; }
 .post-breadcrumb li { display: inline-flex; align-items: center; }
-.post-breadcrumb li + li::before { content: '•'; margin-inline: 0.5rem; color: var(--text); }
+.post-breadcrumb li + li::before { content: '‹'; margin-inline: 0.5rem; color: var(--text-muted); font-size: 1.5rem; font-weight: 700; line-height: 1; }
 .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text); text-decoration: none; font-weight: 500; min-height: 48px; transition: color var(--dur); }
 .post-breadcrumb a:hover, .post-breadcrumb a:focus-visible { color: var(--accent); }
 .post-breadcrumb [aria-current="page"] { color: var(--text-muted); }
