@@ -19,7 +19,6 @@ layout: null
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
-
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
@@ -44,11 +43,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible,
 #menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(1) { transform: translateY(0.5rem) rotate(45deg); }
 #menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(2) { opacity: 0; }
 #menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(3) { transform: translateY(-0.5rem) rotate(-45deg); }
-.mobile-nav-overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 48; opacity: 0; visibility: hidden; transition: opacity var(--dur), visibility 0s var(--dur); cursor: pointer; }
-#menu-toggle:checked ~ .mobile-nav-overlay { opacity: 1; visibility: visible; transition: opacity var(--dur), visibility 0s; }
-.mobile-nav { position: fixed; inset-block: 0; inset-inline-start: max(0px, calc((100% - var(--max-w)) / 2)); inset-inline-end: auto; width: min(300px, 80vw); background-color: var(--header-bg); padding-block: calc(var(--header-h) + 1.75rem) max(2rem, var(--safe-b)); padding-inline: max(var(--pad-x-lg), var(--safe-r)) max(var(--pad-x-lg), var(--safe-l)); z-index: 49; overflow-y: auto; overscroll-behavior: contain; box-shadow: -8px 0 30px rgba(0, 0, 0, 0.3); transform: translateX(100%); visibility: hidden; transition: transform var(--dur), visibility 0s var(--dur); -ms-overflow-style: none; scrollbar-width: none; }
+.mobile-nav { position: fixed; inset-block-start: var(--header-h); inset-block-end: 0; inset-inline-start: max(0px, calc((100% - var(--max-w)) / 2)); inset-inline-end: max(0px, calc((100% - var(--max-w)) / 2)); background-color: var(--header-bg); padding-block: 2rem max(2rem, var(--safe-b)); padding-inline: max(var(--pad-x-lg), var(--safe-r)) max(var(--pad-x-lg), var(--safe-l)); z-index: 49; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); transform: translateY(-8px); opacity: 0; visibility: hidden; transition: transform var(--dur), opacity var(--dur), visibility 0s var(--dur); -ms-overflow-style: none; scrollbar-width: none; }
 .mobile-nav::-webkit-scrollbar { display: none; }
-#menu-toggle:checked ~ .mobile-nav { transform: translateX(0); visibility: visible; transition: transform var(--dur), visibility 0s; }
+#menu-toggle:checked ~ .mobile-nav { transform: translateY(0); opacity: 1; visibility: visible; transition: transform var(--dur), opacity var(--dur), visibility 0s; }
 html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .mobile-nav ul { display: flex; flex-direction: column; gap: 1.75rem; list-style: none; padding: 0; margin: 0; }
 .mobile-nav a { color: var(--header-text); text-decoration: none; display: flex; align-items: center; padding: 0.75rem 0; border-block-end: 1px solid rgba(255, 255, 255, 0.05); min-height: 48px; transition: color var(--dur); }
@@ -129,19 +126,17 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   <header class="site-header">
     <div class="header-inner">
-      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
-        <img src="https://www.pasgah.org/blog.svg" alt="پاسگاه" width="40" height="40" fetchpriority="high" decoding="async">
-      </a>
-
       <label for="menu-toggle" class="hamburger">
         <span class="hamburger__bar"></span>
         <span class="hamburger__bar"></span>
         <span class="hamburger__bar"></span>
       </label>
+
+      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="https://www.pasgah.org/blog.svg" alt="پاسگاه" width="40" height="40" fetchpriority="high" decoding="async">
+      </a>
     </div>
   </header>
-
-  <label for="menu-toggle" class="mobile-nav-overlay" aria-hidden="true"></label>
 
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
