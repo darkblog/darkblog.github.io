@@ -10,6 +10,7 @@ export async function onRequest(context) {
   const singleRedirects = {
     '/blog/2026-5-19-190':          '/blog/190',
     '/api/comments':        '/sitemap.xml',
+    '/gftrdft':             'https://telegra.ph/%D8%AA%D8%A7%DA%A9%D8%B1-%DA%A9%D8%A7%D8%B1%D9%84%D8%B3%D9%88%D9%86-%D8%AD%D9%85%D9%84%D9%87-%D8%A7%D8%AA%D9%85%DB%8C-%D8%A2%D9%85%D8%B1%DB%8C%DA%A9%D8%A7-%D8%B9%D9%84%DB%8C%D9%87-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-11-03',
   };
 
   if (singleRedirects[pathname]) {
