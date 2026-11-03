@@ -20,29 +20,6 @@ layout: null
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": {{ page.title | jsonify }},
-  "description": {{ desc | jsonify }},
-  "datePublished": {{ page.date | date_to_xmlschema | jsonify }}{% if page.last_modified_at %},
-  "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }}{% endif %},
-  "author": {
-    "@type": "Person",
-    "name": {{ page.author | default: site.author | default: "احسان چهری" | jsonify }}
-  }{% if page.image %},
-  "image": {
-    "@type": "ImageObject",
-    "url": {{ page.image | absolute_url | jsonify }}
-  }{% endif %},
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": {{ page.url | absolute_url | jsonify }}
-  }
-}
-</script>
-
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
@@ -111,6 +88,9 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .post-breadcrumb a:hover, .post-breadcrumb a:focus-visible { color: var(--accent); }
 .post-breadcrumb a [aria-hidden="true"] { font-weight: 900; font-size: 1.5rem; line-height: 1; display: inline-block; }
 .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: var(--text); letter-spacing: -0.02em; margin-block-end: 1rem; }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+.post-meta__item { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+.post-meta__item svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 .post-featured-image { width: 100%; margin: 0 0 2.5rem; overflow: hidden; border-radius: var(--r-lg); background-color: var(--bg-elev); border: 1px solid var(--border); }
 .post-featured-image img { max-width: 100%; height: auto; display: block; }
 .article-content { line-height: 1.9; color: var(--text); margin-block-start: 2rem; font-size: inherit; }
@@ -178,6 +158,106 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     </form>
 
     <article>
+      {%- assign gy = page.date | date: "%Y" | plus: 0 -%}
+      {%- assign gm = page.date | date: "%-m" | plus: 0 -%}
+      {%- assign gd = page.date | date: "%-d" | plus: 0 -%}
+
+      {%- assign gy1600 = gy | minus: 1600 -%}
+      {%- assign gm0 = gm | minus: 1 -%}
+      {%- assign gd0 = gd | minus: 1 -%}
+
+      {%- case gm0 -%}
+        {%- when 0 -%}{%- assign g_days_before = 0 -%}
+        {%- when 1 -%}{%- assign g_days_before = 31 -%}
+        {%- when 2 -%}{%- assign g_days_before = 59 -%}
+        {%- when 3 -%}{%- assign g_days_before = 90 -%}
+        {%- when 4 -%}{%- assign g_days_before = 120 -%}
+        {%- when 5 -%}{%- assign g_days_before = 151 -%}
+        {%- when 6 -%}{%- assign g_days_before = 181 -%}
+        {%- when 7 -%}{%- assign g_days_before = 212 -%}
+        {%- when 8 -%}{%- assign g_days_before = 243 -%}
+        {%- when 9 -%}{%- assign g_days_before = 273 -%}
+        {%- when 10 -%}{%- assign g_days_before = 304 -%}
+        {%- when 11 -%}{%- assign g_days_before = 334 -%}
+      {%- endcase -%}
+
+      {%- assign part1 = gy1600 | times: 365 -%}
+      {%- assign gy3   = gy1600 | plus: 3 -%}
+      {%- assign gy99  = gy1600 | plus: 99 -%}
+      {%- assign gy399 = gy1600 | plus: 399 -%}
+      {%- assign part2 = gy3   | divided_by: 4 -%}
+      {%- assign part3 = gy99  | divided_by: 100 -%}
+      {%- assign part4 = gy399 | divided_by: 400 -%}
+
+      {%- assign g_day_no = part1 | plus: part2 | minus: part3 | plus: part4 | plus: gd0 | plus: g_days_before -%}
+
+      {%- assign gy_mod4   = gy | modulo: 4 -%}
+      {%- assign gy_mod100 = gy | modulo: 100 -%}
+      {%- assign gy_mod400 = gy | modulo: 400 -%}
+      {%- assign is_leap = false -%}
+      {%- if gy_mod4 == 0 and gy_mod100 != 0 -%}{%- assign is_leap = true -%}{%- endif -%}
+      {%- if gy_mod400 == 0 -%}{%- assign is_leap = true -%}{%- endif -%}
+
+      {%- if gm0 > 1 and is_leap -%}
+        {%- assign g_day_no = g_day_no | plus: 1 -%}
+      {%- endif -%}
+
+      {%- assign j_day_no = g_day_no | minus: 79 -%}
+      {%- assign j_np = j_day_no | divided_by: 12053 -%}
+      {%- assign j_day_no = j_day_no | modulo: 12053 -%}
+
+      {%- assign j_np33 = j_np | times: 33 -%}
+      {%- assign j_day_1461 = j_day_no | divided_by: 1461 -%}
+      {%- assign j_day_1461_4 = j_day_1461 | times: 4 -%}
+      {%- assign jy = 979 | plus: j_np33 | plus: j_day_1461_4 -%}
+      {%- assign j_day_no = j_day_no | modulo: 1461 -%}
+
+      {%- if j_day_no >= 366 -%}
+        {%- assign jd1 = j_day_no | minus: 1 -%}
+        {%- assign jy_inc = jd1 | divided_by: 365 -%}
+        {%- assign jy = jy | plus: jy_inc -%}
+        {%- assign j_day_no = jd1 | modulo: 365 -%}
+      {%- endif -%}
+
+      {%- if j_day_no < 186 -%}
+        {%- assign jm = j_day_no | divided_by: 31 | plus: 1 -%}
+        {%- assign jd = j_day_no | modulo: 31 | plus: 1 -%}
+      {%- else -%}
+        {%- assign jm_calc = j_day_no | minus: 186 -%}
+        {%- assign jm = jm_calc | divided_by: 30 | plus: 7 -%}
+        {%- assign jd = jm_calc | modulo: 30 | plus: 1 -%}
+      {%- endif -%}
+
+      {%- case jm -%}
+        {%- when 1  -%}{%- assign jm_name = "فروردین" -%}
+        {%- when 2  -%}{%- assign jm_name = "اردیبهشت" -%}
+        {%- when 3  -%}{%- assign jm_name = "خرداد" -%}
+        {%- when 4  -%}{%- assign jm_name = "تیر" -%}
+        {%- when 5  -%}{%- assign jm_name = "مرداد" -%}
+        {%- when 6  -%}{%- assign jm_name = "شهریور" -%}
+        {%- when 7  -%}{%- assign jm_name = "مهر" -%}
+        {%- when 8  -%}{%- assign jm_name = "آبان" -%}
+        {%- when 9  -%}{%- assign jm_name = "آذر" -%}
+        {%- when 10 -%}{%- assign jm_name = "دی" -%}
+        {%- when 11 -%}{%- assign jm_name = "بهمن" -%}
+        {%- when 12 -%}{%- assign jm_name = "اسفند" -%}
+      {%- endcase -%}
+
+      {%- assign jd_fa = jd | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
+      {%- assign jy_fa = jy | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
+
+      {%- assign author_name = page.author | default: site.author.name | default: site.author | default: "احسان چهری" -%}
+      {%- assign word_count = content | strip_html | number_of_words -%}
+      {%- assign reading_time = word_count | divided_by: 200 -%}
+      {%- assign reading_rem = word_count | modulo: 200 -%}
+      {%- if reading_rem > 0 -%}
+        {%- assign reading_time = reading_time | plus: 1 -%}
+      {%- endif -%}
+      {%- if reading_time < 1 -%}
+        {%- assign reading_time = 1 -%}
+      {%- endif -%}
+      {%- assign reading_time_fa = reading_time | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
+
       <header class="post-header">
         <nav class="post-breadcrumb" aria-label="مسیر صفحه" itemscope itemtype="https://schema.org/BreadcrumbList">
           <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -202,6 +282,21 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         </nav>
 
         <h1 class="post-title">{{ page.title | escape }}</h1>
+
+        <div class="post-meta">
+          <span class="post-meta__item">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ jd_fa }} {{ jm_name }} {{ jy_fa }}</time>
+          </span>
+          <span class="post-meta__item">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            {{ author_name | escape }}
+          </span>
+          <span class="post-meta__item">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            {{ reading_time_fa }} دقیقه مطالعه
+          </span>
+        </div>
       </header>
 
       {% if page.image %}
