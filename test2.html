@@ -181,86 +181,93 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     </form>
 
     <article>
-      {%- assign date_iso = page.date | date_to_xmlschema -%}
-      {%- if date_iso == nil or date_iso == "" -%}
-        {%- assign date_iso = "2000-01-01T00:00:00+00:00" -%}
-      {%- endif -%}
-      {%- assign gy = date_iso | slice: 0, 4 | plus: 0 -%}
-      {%- assign gm = date_iso | slice: 5, 2 | plus: 0 -%}
-      {%- assign gd = date_iso | slice: 8, 2 | plus: 0 -%}
+      {%- assign gy = page.date | date: "%Y" | plus: 0 -%}
+      {%- assign gm = page.date | date: "%-m" | plus: 0 -%}
+      {%- assign gd = page.date | date: "%-d" | plus: 0 -%}
 
-      {%- if gy <= 1600 -%}
-        {%- assign jy = 0 -%}
-        {%- assign gy = gy | minus: 621 -%}
+      {%- assign gy1600 = gy | minus: 1600 -%}
+      {%- assign gm0 = gm | minus: 1 -%}
+      {%- assign gd0 = gd | minus: 1 -%}
+
+      {%- case gm0 -%}
+        {%- when 0 -%}{%- assign g_days_before = 0 -%}
+        {%- when 1 -%}{%- assign g_days_before = 31 -%}
+        {%- when 2 -%}{%- assign g_days_before = 59 -%}
+        {%- when 3 -%}{%- assign g_days_before = 90 -%}
+        {%- when 4 -%}{%- assign g_days_before = 120 -%}
+        {%- when 5 -%}{%- assign g_days_before = 151 -%}
+        {%- when 6 -%}{%- assign g_days_before = 181 -%}
+        {%- when 7 -%}{%- assign g_days_before = 212 -%}
+        {%- when 8 -%}{%- assign g_days_before = 243 -%}
+        {%- when 9 -%}{%- assign g_days_before = 273 -%}
+        {%- when 10 -%}{%- assign g_days_before = 304 -%}
+        {%- when 11 -%}{%- assign g_days_before = 334 -%}
+      {%- endcase -%}
+
+      {%- assign part1 = gy1600 | times: 365 -%}
+      {%- assign gy3   = gy1600 | plus: 3 -%}
+      {%- assign gy99  = gy1600 | plus: 99 -%}
+      {%- assign gy399 = gy1600 | plus: 399 -%}
+      {%- assign part2 = gy3   | divided_by: 4 -%}
+      {%- assign part3 = gy99  | divided_by: 100 -%}
+      {%- assign part4 = gy399 | divided_by: 400 -%}
+
+      {%- assign g_day_no = part1 | plus: part2 | minus: part3 | plus: part4 | plus: gd0 | plus: g_days_before -%}
+
+      {%- assign gy_mod4   = gy | modulo: 4 -%}
+      {%- assign gy_mod100 = gy | modulo: 100 -%}
+      {%- assign gy_mod400 = gy | modulo: 400 -%}
+      {%- assign is_leap = false -%}
+      {%- if gy_mod4 == 0 and gy_mod100 != 0 -%}{%- assign is_leap = true -%}{%- endif -%}
+      {%- if gy_mod400 == 0 -%}{%- assign is_leap = true -%}{%- endif -%}
+
+      {%- if gm0 > 1 and is_leap -%}
+        {%- assign g_day_no = g_day_no | plus: 1 -%}
+      {%- endif -%}
+
+      {%- assign j_day_no = g_day_no | minus: 79 -%}
+      {%- assign j_np = j_day_no | divided_by: 12053 -%}
+      {%- assign j_day_no = j_day_no | modulo: 12053 -%}
+
+      {%- assign j_np33 = j_np | times: 33 -%}
+      {%- assign j_day_1461 = j_day_no | divided_by: 1461 -%}
+      {%- assign j_day_1461_4 = j_day_1461 | times: 4 -%}
+      {%- assign jy = 979 | plus: j_np33 | plus: j_day_1461_4 -%}
+      {%- assign j_day_no = j_day_no | modulo: 1461 -%}
+
+      {%- if j_day_no >= 366 -%}
+        {%- assign jd1 = j_day_no | minus: 1 -%}
+        {%- assign jy_inc = jd1 | divided_by: 365 -%}
+        {%- assign jy = jy | plus: jy_inc -%}
+        {%- assign j_day_no = jd1 | modulo: 365 -%}
+      {%- endif -%}
+
+      {%- if j_day_no < 186 -%}
+        {%- assign jm = j_day_no | divided_by: 31 | plus: 1 -%}
+        {%- assign jd = j_day_no | modulo: 31 | plus: 1 -%}
       {%- else -%}
-        {%- assign jy = 979 -%}
-        {%- assign gy = gy | minus: 1600 -%}
+        {%- assign jm_calc = j_day_no | minus: 186 -%}
+        {%- assign jm = jm_calc | divided_by: 30 | plus: 7 -%}
+        {%- assign jd = jm_calc | modulo: 30 | plus: 1 -%}
       {%- endif -%}
 
-      {%- if gm > 2 -%}
-        {%- assign gy2 = gy | plus: 1 -%}
-      {%- else -%}
-        {%- assign gy2 = gy -%}
-      {%- endif -%}
+      {%- case jm -%}
+        {%- when 1  -%}{%- assign jm_name = "فروردین" -%}
+        {%- when 2  -%}{%- assign jm_name = "اردیبهشت" -%}
+        {%- when 3  -%}{%- assign jm_name = "خرداد" -%}
+        {%- when 4  -%}{%- assign jm_name = "تیر" -%}
+        {%- when 5  -%}{%- assign jm_name = "مرداد" -%}
+        {%- when 6  -%}{%- assign jm_name = "شهریور" -%}
+        {%- when 7  -%}{%- assign jm_name = "مهر" -%}
+        {%- when 8  -%}{%- assign jm_name = "آبان" -%}
+        {%- when 9  -%}{%- assign jm_name = "آذر" -%}
+        {%- when 10 -%}{%- assign jm_name = "دی" -%}
+        {%- when 11 -%}{%- assign jm_name = "بهمن" -%}
+        {%- when 12 -%}{%- assign jm_name = "اسفند" -%}
+      {%- endcase -%}
 
-      {%- assign gdm = 0 -%}
-      {%- if gm == 2 -%}{%- assign gdm = 31 -%}{%- endif -%}
-      {%- if gm == 3 -%}{%- assign gdm = 59 -%}{%- endif -%}
-      {%- if gm == 4 -%}{%- assign gdm = 90 -%}{%- endif -%}
-      {%- if gm == 5 -%}{%- assign gdm = 120 -%}{%- endif -%}
-      {%- if gm == 6 -%}{%- assign gdm = 151 -%}{%- endif -%}
-      {%- if gm == 7 -%}{%- assign gdm = 181 -%}{%- endif -%}
-      {%- if gm == 8 -%}{%- assign gdm = 212 -%}{%- endif -%}
-      {%- if gm == 9 -%}{%- assign gdm = 243 -%}{%- endif -%}
-      {%- if gm == 10 -%}{%- assign gdm = 273 -%}{%- endif -%}
-      {%- if gm == 11 -%}{%- assign gdm = 304 -%}{%- endif -%}
-      {%- if gm == 12 -%}{%- assign gdm = 334 -%}{%- endif -%}
-
-      {%- assign t1 = gy2 | plus: 3 | divided_by: 4 -%}
-      {%- assign t2 = gy2 | plus: 99 | divided_by: 100 -%}
-      {%- assign t3 = gy2 | plus: 399 | divided_by: 400 -%}
-      {%- assign days = gy | times: 365 | plus: t1 | minus: t2 | plus: t3 | minus: 80 | plus: gd | plus: gdm -%}
-
-      {%- assign j1 = days | divided_by: 12053 | times: 33 -%}
-      {%- assign jy = jy | plus: j1 -%}
-      {%- assign j2 = days | divided_by: 12053 | times: 12053 -%}
-      {%- assign days = days | minus: j2 -%}
-
-      {%- assign j3 = days | divided_by: 1461 | times: 4 -%}
-      {%- assign jy = jy | plus: j3 -%}
-      {%- assign j4 = days | divided_by: 1461 | times: 1461 -%}
-      {%- assign days = days | minus: j4 -%}
-
-      {%- if days > 365 -%}
-        {%- assign j5 = days | minus: 1 | divided_by: 365 -%}
-        {%- assign jy = jy | plus: j5 -%}
-        {%- assign j6 = j5 | times: 365 -%}
-        {%- assign days = days | minus: 1 | minus: j6 -%}
-      {%- endif -%}
-
-      {%- if days < 186 -%}
-        {%- assign jm = days | divided_by: 31 | plus: 1 -%}
-        {%- assign j7 = jm | minus: 1 | times: 31 -%}
-        {%- assign jd = days | minus: j7 | plus: 1 -%}
-      {%- else -%}
-        {%- assign jm = days | minus: 186 | divided_by: 30 | plus: 7 -%}
-        {%- assign j7 = jm | minus: 7 | times: 30 | plus: 186 -%}
-        {%- assign jd = days | minus: j7 | plus: 1 -%}
-      {%- endif -%}
-
-      {%- assign jm_name = "" -%}
-      {%- if jm == 1 -%}{%- assign jm_name = "فروردین" -%}{%- endif -%}
-      {%- if jm == 2 -%}{%- assign jm_name = "اردیبهشت" -%}{%- endif -%}
-      {%- if jm == 3 -%}{%- assign jm_name = "خرداد" -%}{%- endif -%}
-      {%- if jm == 4 -%}{%- assign jm_name = "تیر" -%}{%- endif -%}
-      {%- if jm == 5 -%}{%- assign jm_name = "مرداد" -%}{%- endif -%}
-      {%- if jm == 6 -%}{%- assign jm_name = "شهریور" -%}{%- endif -%}
-      {%- if jm == 7 -%}{%- assign jm_name = "مهر" -%}{%- endif -%}
-      {%- if jm == 8 -%}{%- assign jm_name = "آبان" -%}{%- endif -%}
-      {%- if jm == 9 -%}{%- assign jm_name = "آذر" -%}{%- endif -%}
-      {%- if jm == 10 -%}{%- assign jm_name = "دی" -%}{%- endif -%}
-      {%- if jm == 11 -%}{%- assign jm_name = "بهمن" -%}{%- endif -%}
-      {%- if jm == 12 -%}{%- assign jm_name = "اسفند" -%}{%- endif -%}
+      {%- assign jd_fa = jd | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
+      {%- assign jy_fa = jy | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
 
       {%- assign author_name = page.author | default: site.author.name | default: site.author | default: "احسان چهری" -%}
       {%- assign word_count = content | strip_html | number_of_words -%}
@@ -272,6 +279,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- if reading_time < 1 -%}
         {%- assign reading_time = 1 -%}
       {%- endif -%}
+      {%- assign reading_time_fa = reading_time | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
 
       <header class="post-header">
         <nav class="post-breadcrumb" aria-label="مسیر صفحه" itemscope itemtype="https://schema.org/BreadcrumbList">
@@ -301,7 +309,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         <div class="post-meta">
           <span class="post-meta__item">
             <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ jd }} {{ jm_name }} {{ jy }}</time>
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ jd_fa }} {{ jm_name }} {{ jy_fa }}</time>
           </span>
           <span class="post-meta__item">
             <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -309,7 +317,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
           </span>
           <span class="post-meta__item">
             <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            {{ reading_time }} دقیقه مطالعه
+            {{ reading_time_fa }} دقیقه مطالعه
           </span>
         </div>
       </header>
