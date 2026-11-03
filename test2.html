@@ -86,8 +86,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .post-breadcrumb { margin-block-end: 1.25rem; }
 .post-breadcrumb ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; }
 .post-breadcrumb li { display: inline-flex; align-items: center; }
-.post-breadcrumb li + li::before { content: '‹'; margin-inline: 0.5rem; color: var(--text-muted); font-size: 1.5rem; font-weight: 700; line-height: 1; }
-.post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text); text-decoration: none; font-weight: 500; min-height: 48px; transition: color var(--dur); }
+.post-breadcrumb li + li::before { content: ''; display: inline-block; width: 0.875rem; height: 0.875rem; margin-inline: 0.4rem; vertical-align: -0.125em; background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2.5' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpolyline points='15 18 9 12 15 6'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; background-position: center; }
+.post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-muted); text-decoration: none; font-weight: 400; min-height: 48px; transition: color var(--dur); }
 .post-breadcrumb a:hover, .post-breadcrumb a:focus-visible { color: var(--accent); }
 .post-breadcrumb [aria-current="page"] { color: var(--text-muted); }
 .post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: var(--text); letter-spacing: -0.02em; margin-block-end: 0; }
