@@ -51,7 +51,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .mobile-nav a { color: var(--header-text); text-decoration: none; display: flex; align-items: center; padding: 0.75rem 0; border-block-end: 1px solid rgba(255, 255, 255, 0.05); min-height: 48px; transition: color var(--dur); }
 .mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--header-accent); }
 .main-content { padding-block: calc(var(--header-h) + 2rem) 2.5rem; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); background-color: var(--bg-shell); }
-.live-search-wrapper { position: relative; margin-block-end: 1.5rem; width: 100%; }
+.live-search-wrapper { display: block; position: relative; margin-block-end: 1.5rem; width: 100%; }
 .live-search-input { width: 100%; padding-block: 0.8rem; padding-inline: 3rem 3.5rem; font: inherit; font-size: 1rem; border: 1px solid #dfe1e5; border-radius: 24px; background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='20'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%235f6368'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='11'%20cy='11'%20r='7'/%3E%3Cline%20x1='21'%20y1='21'%20x2='16.65'%20y2='16.65'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem 1.25rem; color: var(--text-body); min-height: 48px; -webkit-appearance: none; appearance: none; transition: box-shadow var(--dur), border-color var(--dur), background-color var(--dur); }
 .live-search-input:hover { box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); border-color: transparent; }
 .live-search-input:focus { background-color: #ffffff; box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); border-color: transparent; outline: none; }
@@ -286,10 +286,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
           <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           {{ jd_fa }} {{ jm_name }} {{ jy_fa }}
         </time>
-        <address class="post-meta__item">
+        <span class="post-meta__item">
           <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           {{ author_name | escape }}
-        </address>
+        </span>
         <data class="post-meta__item" value="{{ reading_time }}">
           <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           {{ reading_time_fa }} دقیقه مطالعه
@@ -365,7 +365,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
           {%- endfor -%}
           {%- if common_tags_count > 0 -%}
             {%- unless first_item -%},{%- endunless -%}
-            {"title":{{ post.title | jsonify | replace: '</', '</' }},"url":"https://www.pasgah.org{{ post.url }}"}
+            {"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}
             {%- assign first_item = false -%}
           {%- endif -%}
         {%- endif -%}
@@ -381,7 +381,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
-{"title":{{ post.title | jsonify | replace: '</', '</' }},"url":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
+{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
@@ -502,8 +502,15 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     el.setAttribute('aria-selected', 'true');
     searchInput.setAttribute('aria-activedescendant', el.id);
 
-    if (typeof el.scrollIntoView === 'function') {
-      el.scrollIntoView({ block: 'nearest' });
+    if (resultsBox) {
+      var boxRect = resultsBox.getBoundingClientRect();
+      var elRect = el.getBoundingClientRect();
+
+      if (elRect.top < boxRect.top) {
+        resultsBox.scrollTop -= (boxRect.top - elRect.top);
+      } else if (elRect.bottom > boxRect.bottom) {
+        resultsBox.scrollTop += (elRect.bottom - boxRect.bottom);
+      }
     }
   }
 
@@ -515,6 +522,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     resultsBox.innerHTML = '';
     optionEls = [];
     activeIndex = -1;
+    searchInput.removeAttribute('aria-activedescendant');
 
     if (!term) {
       closeResults();
@@ -568,13 +576,15 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
         more.className = 'more-result';
         more.setAttribute('role', 'option');
-        more.setAttribute('aria-disabled', 'true');
+        more.id = 'search-opt-' + (idCounter++);
 
         moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
         moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
+        moreA.tabIndex = -1;
 
         more.appendChild(moreA);
         frag.appendChild(more);
+        optionEls.push(more);
       }
 
       resultsBox.appendChild(frag);
@@ -692,6 +702,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   }
 
   document.addEventListener('keydown', function (e) {
+    if (e.isComposing) return;
     if (e.key !== 'Escape') return;
 
     if (menuToggle && menuToggle.checked) {
@@ -706,6 +717,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     navLinks[n].addEventListener('click', function () {
       if (menuToggle) {
         menuToggle.checked = false;
+        menuToggle.focus();
       }
 
       document.documentElement.classList.remove('nav-open');
