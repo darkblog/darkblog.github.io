@@ -7,8 +7,6 @@ layout: null
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>جستجو</title>
-<meta name="description" content="جستجو در مطالب پاسگاه؛ تاریخ ایران و جهان با روایتی جذاب و سرگرم‌کننده.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
@@ -25,16 +23,24 @@ main { flex: 1; }
 a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .site-header :focus-visible, .mobile-nav :focus-visible { outline-color: var(--header-accent); }
 .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; clip-path: inset(50%) !important; white-space: nowrap !important; border: 0 !important; }
+.skip-link { position: absolute; inset-inline-start: 1rem; inset-block-start: 1rem; padding: 0.75rem 1.25rem; background: var(--accent); color: #ffffff; font-weight: 700; border-radius: var(--r-md); transform: translateY(-200%); transition: transform var(--dur-fast); z-index: 100; text-decoration: none; }
+.skip-link:focus { transform: translateY(0); }
 .site-header { position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 50; background-color: var(--header-bg); border-block-end: 1px solid var(--header-border); max-width: var(--max-w); margin-inline: auto; width: 100%; }
 .header-inner { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); }
 .brand { display: inline-flex; align-items: center; text-decoration: none; color: var(--header-text); flex-shrink: 0; min-width: 48px; min-height: 48px; }
 .brand img { height: 2.5rem; width: auto; display: block; }
+.header-icon-btn { display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; cursor: pointer; color: var(--header-text); flex-shrink: 0; min-width: 48px; min-height: 48px; border-radius: 0.375rem; transition: color var(--dur); touch-action: manipulation; }
+.header-icon-btn:hover { color: var(--header-accent); }
+.header-icon-btn:focus-visible { outline: 3px solid var(--header-accent); outline-offset: 2px; }
 .hamburger { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.375rem; background: none; border: 0; padding: 0; cursor: pointer; flex-shrink: 0; touch-action: manipulation; min-width: 48px; min-height: 48px; border-radius: 0.375rem; }
 .hamburger__bar { display: block; width: 1.75rem; height: 0.125rem; background-color: var(--header-text); transition: transform var(--dur), opacity var(--dur); }
 #menu-toggle:focus-visible ~ .site-header .hamburger { outline: 3px solid var(--header-accent); outline-offset: 2px; }
 #menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(1) { transform: translateY(0.5rem) rotate(45deg); }
 #menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(2) { opacity: 0; }
 #menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(3) { transform: translateY(-0.5rem) rotate(-45deg); }
+.header-search { height: var(--header-h); display: flex; align-items: center; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); }
+.header-search-form { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
+.header-search .live-search-wrapper { flex: 1; margin-block-end: 0; }
 .mobile-nav { position: fixed; inset-block-start: var(--header-h); inset-block-end: 0; inset-inline-start: max(0px, calc((100% - var(--max-w)) / 2)); inset-inline-end: max(0px, calc((100% - var(--max-w)) / 2)); background-color: var(--header-bg); padding-block: 2rem max(2rem, var(--safe-b)); padding-inline: max(var(--pad-x-lg), var(--safe-r)) max(var(--pad-x-lg), var(--safe-l)); z-index: 49; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); transform: translateY(-8px); opacity: 0; visibility: hidden; transition: transform var(--dur), opacity var(--dur), visibility 0s var(--dur); -ms-overflow-style: none; scrollbar-width: none; }
 .mobile-nav::-webkit-scrollbar { display: none; }
 #menu-toggle:checked ~ .mobile-nav { transform: translateY(0); opacity: 1; visibility: visible; transition: transform var(--dur), opacity var(--dur), visibility 0s; }
@@ -43,7 +49,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .mobile-nav a { color: var(--header-text); text-decoration: none; display: flex; align-items: center; padding: 0.75rem 0; border-block-end: 1px solid rgba(255, 255, 255, 0.05); min-height: 48px; transition: color var(--dur); }
 .mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--header-accent); }
 .main-content { padding-block: calc(var(--header-h) + 2rem) 2.5rem; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); background-color: var(--bg-shell); }
-.live-search-wrapper { position: relative; margin-block-end: 1.5rem; width: 100%; }
+.live-search-wrapper { display: block; position: relative; margin-block-end: 1.5rem; width: 100%; }
 .live-search-input { width: 100%; padding-block: 0.8rem; padding-inline: 3rem 3.5rem; font: inherit; font-size: 1rem; border: 1px solid #dfe1e5; border-radius: 24px; background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='20'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%235f6368'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='11'%20cy='11'%20r='7'/%3E%3Cline%20x1='21'%20y1='21'%20x2='16.65'%20y2='16.65'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem 1.25rem; color: var(--text-body); min-height: 48px; -webkit-appearance: none; appearance: none; transition: box-shadow var(--dur), border-color var(--dur), background-color var(--dur); }
 .live-search-input:hover { box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); border-color: transparent; }
 .live-search-input:focus { background-color: #ffffff; box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); border-color: transparent; outline: none; }
@@ -52,6 +58,14 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .live-search-input::-webkit-search-cancel-button, .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
 .search-clear-btn { position: absolute; inset-inline-end: 0.6rem; inset-block-start: 50%; transform: translateY(-50%); background: transparent; border: 0; color: #70757a; font-size: 1.5rem; line-height: 1; cursor: pointer; min-width: 40px; min-height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: color var(--dur), background-color var(--dur); }
 .search-clear-btn:hover { color: #202124; background: #f1f3f4; }
+.live-search-results { position: absolute; inset-block-start: calc(100% + 0.5rem); inset-inline: 0; background-color: var(--bg-elev); border: 0; border-radius: var(--r-lg); overflow-y: auto; overscroll-behavior: contain; max-height: 60vh; z-index: 20; list-style: none; padding: 0; margin: 0; box-shadow: 0 10px 34px rgba(0, 0, 0, 0.14); }
+.live-search-results li { border-block-end: 1px solid var(--border); list-style: none; }
+.live-search-results li:last-child { border-block-end: none; }
+.live-search-results a { color: var(--text-body); text-decoration: none; display: flex; align-items: center; font-size: 0.95rem; padding: 0.8rem 1.2rem; min-height: 48px; transition: color var(--dur), background-color var(--dur); }
+.live-search-results a:hover, .live-search-results a:focus-visible { color: var(--accent); background-color: rgba(0, 0, 0, 0.04); }
+.live-search-results li[aria-selected="true"] a { color: var(--accent); background-color: var(--accent-bg); }
+.live-search-results .no-result { color: var(--text-muted); padding: 1rem 1.2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 48px; }
+.live-search-results .more-result a { justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
 .posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
 .posts-list li { position: relative; border-radius: var(--r-md); background-color: transparent; border: 0; }
 .posts-list li::before { content: ''; position: absolute; inset-inline-start: 0.35rem; inset-block-start: 50%; transform: translateY(-50%); width: 0.55rem; height: 0.55rem; background-color: var(--border-h); border-radius: 0.2rem; transition: background-color var(--dur), transform var(--dur), box-shadow var(--dur); z-index: 1; pointer-events: none; }
@@ -63,39 +77,77 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">پرش به محتوا</a>
 <div class="page-wrapper">
   <input type="checkbox" id="menu-toggle" class="sr-only" aria-label="باز و بسته کردن منو">
+
   <header class="site-header">
-    <div class="header-inner">
-      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
-        <img src="https://www.pasgah.org/blog.svg" alt="پاسگاه" width="40" height="40" fetchpriority="high" decoding="async">
-      </a>
+    <div class="header-inner" id="headerDefault">
       <label for="menu-toggle" class="hamburger">
         <span class="hamburger__bar"></span>
         <span class="hamburger__bar"></span>
         <span class="hamburger__bar"></span>
       </label>
+
+      <a href="https://www.pasgah.org/" class="brand" aria-label="صفحه اصلی پاسگاه">
+        <img src="https://www.pasgah.org/blog.svg" alt="پاسگاه" width="40" height="40" fetchpriority="high" decoding="async">
+      </a>
+
+      <button type="button" class="header-icon-btn search-toggle" id="searchToggle" aria-label="باز کردن جستجو" aria-expanded="false" aria-controls="headerSearch">
+        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="header-search" id="headerSearch" hidden>
+      <form action="https://www.pasgah.org/search" method="get" class="header-search-form" role="search">
+        <button type="button" class="header-icon-btn search-close" id="searchClose" aria-label="بستن جستجو">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+
+        <div class="live-search-wrapper">
+          <label for="liveSearchHeader" class="sr-only">جستجو</label>
+          <input type="search" id="liveSearchHeader" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="headerLiveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
+          <button type="button" id="headerSearchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden>
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <ul class="live-search-results" id="headerLiveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
+          <div id="headerLiveSearchStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      </form>
     </div>
   </header>
+
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
       <li><a href="https://www.pasgah.org/">صفحه اصلی</a></li>
       <li><a href="https://www.pasgah.org/blog">وبلاگ پاسگاه</a></li>
     </ul>
   </nav>
-  <main id="main" class="main-content">
+
+  <main id="main" class="main-content" tabindex="-1">
     <h1 class="sr-only">جستجو در پاسگاه</h1>
-    <div class="live-search-wrapper">
+
+    <search class="live-search-wrapper" aria-label="جستجو در پست‌ها">
       <label for="liveSearch" class="sr-only">جستجو</label>
       <input type="search" id="liveSearch" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="جستجو در پست‌ها">
-      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden><span aria-hidden="true">×</span></button>
-    </div>
+      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </search>
+
     <ul class="posts-list" id="postsList" role="list"></ul>
-    <p class="posts-empty" id="postsEmpty" hidden>برای شروع، عبارتی را در کادر بالا بنویسید.</p>
+    <p class="posts-empty" id="postsEmpty">برای شروع، عبارتی را در کادر بالا بنویسید.</p>
   </main>
 </div>
+
 <script>
-(function() {
+(function () {
   'use strict';
 
   var byId = function (id) { return document.getElementById(id); };
@@ -105,12 +157,33 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var postsList = byId('postsList');
   var postsEmpty = byId('postsEmpty');
   var menuToggle = byId('menu-toggle');
+
+  var headerSearchInput = byId('liveSearchHeader');
+  var headerResultsBox = byId('headerLiveSearchResults');
+  var headerClearBtn = byId('headerSearchClearBtn');
+  var headerLiveStatus = byId('headerLiveSearchStatus');
+  var searchToggle = byId('searchToggle');
+  var searchClose = byId('searchClose');
+  var headerDefault = byId('headerDefault');
+  var headerSearch = byId('headerSearch');
+  var headerForm = document.querySelector('.header-search-form');
+
   var postsData = [
   {%- for post in site.posts -%}
     { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
   {%- endfor -%}
   ];
+
   var debounceTimer;
+  var headerDebounceTimer;
+  var headerStatusTimer;
+  var idCounter = 0;
+  var optionEls = [];
+  var activeIndex = -1;
+
+  var SEARCH_URL = headerForm ? (headerForm.getAttribute('action') || 'https://www.pasgah.org/search') : 'https://www.pasgah.org/search';
+  var MAX_RESULTS = 10;
+  var DEBOUNCE_MS = 200;
 
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
@@ -138,30 +211,53 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   }
 
   function setUrlQuery(q) {
-    var url = new URL(window.location.href);
-    if (q) { url.searchParams.set('q', q); } else { url.searchParams.delete('q'); }
-    window.history.replaceState({}, '', url.toString());
+    try {
+      var url = new URL(window.location.href);
+      if (q) {
+        url.searchParams.set('q', q);
+      } else {
+        url.searchParams.delete('q');
+      }
+      window.history.replaceState({}, '', url.toString());
+    } catch (err) {}
   }
 
   function renderList(term) {
     var normalizedTerm = fold(term);
-    postsList.innerHTML = '';
+
+    if (postsList) {
+      postsList.innerHTML = '';
+    }
+
     if (!normalizedTerm) {
-      postsEmpty.textContent = 'برای شروع، عبارتی را در کادر بالا بنویسید.';
-      postsEmpty.hidden = false;
+      if (postsEmpty) {
+        postsEmpty.textContent = 'برای شروع، عبارتی را در کادر بالا بنویسید.';
+        postsEmpty.hidden = false;
+      }
       setUrlQuery('');
       return;
     }
-    var filtered = postsData.filter(function(item) { return fold(item.title).indexOf(normalizedTerm) !== -1; });
+
+    var filtered = postsData.filter(function (item) {
+      return fold(item.title).indexOf(normalizedTerm) !== -1;
+    });
+
     if (filtered.length === 0) {
-      postsEmpty.textContent = 'هیچ مطلبی یافت نشد.';
-      postsEmpty.hidden = false;
+      if (postsEmpty) {
+        postsEmpty.textContent = 'هیچ مطلبی یافت نشد.';
+        postsEmpty.hidden = false;
+      }
       setUrlQuery(term);
       return;
     }
-    postsEmpty.hidden = true;
+
+    if (postsEmpty) {
+      postsEmpty.hidden = true;
+    }
+
     var fragment = document.createDocumentFragment();
-    filtered.forEach(function(item) {
+
+    filtered.forEach(function (item) {
       var li = document.createElement('li');
       var a = document.createElement('a');
       a.href = item.url;
@@ -169,27 +265,266 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       li.appendChild(a);
       fragment.appendChild(li);
     });
-    postsList.appendChild(fragment);
+
+    if (postsList) {
+      postsList.appendChild(fragment);
+    }
+
     setUrlQuery(term);
   }
 
+  function announceHeader(msg) {
+    if (!headerLiveStatus) return;
+    clearTimeout(headerStatusTimer);
+    headerStatusTimer = setTimeout(function () {
+      headerLiveStatus.textContent = msg;
+    }, 300);
+  }
+
+  function closeHeaderResults() {
+    if (!headerResultsBox || headerResultsBox.hidden) return;
+    headerResultsBox.hidden = true;
+    headerResultsBox.innerHTML = '';
+    optionEls = [];
+    activeIndex = -1;
+    if (headerSearchInput) {
+      headerSearchInput.setAttribute('aria-expanded', 'false');
+      headerSearchInput.removeAttribute('aria-activedescendant');
+    }
+  }
+
+  function setActiveOption(idx) {
+    if (!optionEls.length || !headerSearchInput) return;
+    if (activeIndex >= 0 && optionEls[activeIndex]) {
+      optionEls[activeIndex].setAttribute('aria-selected', 'false');
+    }
+    activeIndex = idx;
+    if (activeIndex < 0) {
+      headerSearchInput.removeAttribute('aria-activedescendant');
+      return;
+    }
+    var el = optionEls[activeIndex];
+    if (!el) return;
+    el.setAttribute('aria-selected', 'true');
+    headerSearchInput.setAttribute('aria-activedescendant', el.id);
+    if (headerResultsBox) {
+      var boxRect = headerResultsBox.getBoundingClientRect();
+      var elRect = el.getBoundingClientRect();
+      if (elRect.top < boxRect.top) {
+        headerResultsBox.scrollTop -= (boxRect.top - elRect.top);
+      } else if (elRect.bottom > boxRect.bottom) {
+        headerResultsBox.scrollTop += (elRect.bottom - boxRect.bottom);
+      }
+    }
+  }
+
+  function renderHeaderResults(rawTerm) {
+    if (!headerResultsBox || !headerSearchInput) return;
+    var term = fold(rawTerm);
+    headerResultsBox.innerHTML = '';
+    optionEls = [];
+    activeIndex = -1;
+    headerSearchInput.removeAttribute('aria-activedescendant');
+
+    if (!term) {
+      closeHeaderResults();
+      announceHeader('');
+      return;
+    }
+
+    var matched = [];
+    for (var i = 0; i < postsData.length; i++) {
+      if (fold(postsData[i].title).indexOf(term) !== -1) matched.push(postsData[i]);
+    }
+    var total = matched.length;
+    var limited = matched.slice(0, MAX_RESULTS);
+
+    if (total === 0) {
+      var empty = document.createElement('li');
+      empty.className = 'no-result';
+      empty.setAttribute('role', 'option');
+      empty.setAttribute('aria-disabled', 'true');
+      empty.textContent = 'هیچ مطلبی یافت نشد';
+      headerResultsBox.appendChild(empty);
+    } else {
+      var frag = document.createDocumentFragment();
+      for (var k = 0; k < limited.length; k++) {
+        var item = limited[k];
+        var li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.id = 'header-search-opt-' + (idCounter++);
+        var a = document.createElement('a');
+        a.href = item.url;
+        a.tabIndex = -1;
+        a.textContent = item.title;
+        li.appendChild(a);
+        frag.appendChild(li);
+        optionEls.push(li);
+      }
+      if (total > MAX_RESULTS) {
+        var more = document.createElement('li');
+        more.className = 'more-result';
+        more.setAttribute('role', 'option');
+        more.id = 'header-search-opt-' + (idCounter++);
+        var moreA = document.createElement('a');
+        moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
+        moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
+        moreA.tabIndex = -1;
+        more.appendChild(moreA);
+        frag.appendChild(more);
+        optionEls.push(more);
+      }
+      headerResultsBox.appendChild(frag);
+    }
+
+    headerResultsBox.hidden = false;
+    headerSearchInput.setAttribute('aria-expanded', 'true');
+    announceHeader(total === 0 ? 'نتیجه‌ای یافت نشد' : total + ' نتیجه یافت شد');
+  }
+
+  function openSearchPanel() {
+    if (!headerDefault || !headerSearch) return;
+
+    if (menuToggle && menuToggle.checked) {
+      menuToggle.checked = false;
+      document.documentElement.classList.remove('nav-open');
+    }
+
+    headerDefault.hidden = true;
+    headerSearch.hidden = false;
+
+    if (searchToggle) {
+      searchToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    if (headerSearchInput) {
+      headerSearchInput.focus();
+    }
+  }
+
+  function closeSearchPanel() {
+    if (!headerDefault || !headerSearch) return;
+
+    headerSearch.hidden = true;
+    headerDefault.hidden = false;
+
+    if (headerSearchInput) {
+      headerSearchInput.value = '';
+    }
+
+    closeHeaderResults();
+
+    if (headerClearBtn) {
+      headerClearBtn.hidden = true;
+    }
+
+    announceHeader('');
+
+    if (searchToggle) {
+      searchToggle.setAttribute('aria-expanded', 'false');
+      searchToggle.focus();
+    }
+  }
+
+  if (searchToggle) {
+    searchToggle.addEventListener('click', openSearchPanel);
+  }
+
+  if (searchClose) {
+    searchClose.addEventListener('click', closeSearchPanel);
+  }
+
+  if (headerSearchInput) {
+    headerSearchInput.addEventListener('input', function () {
+      clearTimeout(headerDebounceTimer);
+      var val = headerSearchInput.value;
+      headerDebounceTimer = setTimeout(function () { renderHeaderResults(val); }, DEBOUNCE_MS);
+      if (headerClearBtn) headerClearBtn.hidden = val === '';
+    });
+
+    headerSearchInput.addEventListener('focus', function () {
+      var val = headerSearchInput.value;
+      if (headerClearBtn) headerClearBtn.hidden = val === '';
+      if (fold(val)) renderHeaderResults(val);
+    });
+
+    headerSearchInput.addEventListener('keydown', function (e) {
+      if (e.isComposing) return;
+      var key = e.key;
+      if (key === 'ArrowDown') {
+        if (!optionEls.length) return;
+        e.preventDefault();
+        setActiveOption(activeIndex + 1 >= optionEls.length ? 0 : activeIndex + 1);
+        return;
+      }
+      if (key === 'ArrowUp') {
+        if (!optionEls.length) return;
+        e.preventDefault();
+        setActiveOption(activeIndex - 1 < 0 ? optionEls.length - 1 : activeIndex - 1);
+        return;
+      }
+      if (key === 'Enter') {
+        if (activeIndex >= 0 && optionEls[activeIndex]) {
+          e.preventDefault();
+          var activeLink = optionEls[activeIndex].querySelector('a');
+          if (activeLink) activeLink.click();
+        }
+        return;
+      }
+      if (key === 'Escape') {
+        if (headerResultsBox && !headerResultsBox.hidden) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeHeaderResults();
+          announceHeader('');
+        }
+      }
+    });
+  }
+
+  if (headerClearBtn) {
+    headerClearBtn.addEventListener('click', function () {
+      if (!headerSearchInput) return;
+      headerSearchInput.value = '';
+      headerSearchInput.focus();
+      closeHeaderResults();
+      headerClearBtn.hidden = true;
+      announceHeader('');
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!(t instanceof Element) || !t.closest('.header-search')) {
+      closeHeaderResults();
+    }
+  });
+
   if (searchInput) {
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
       clearTimeout(debounceTimer);
       var val = searchInput.value;
-      debounceTimer = setTimeout(function() { renderList(val); }, 200);
-      if (clearBtn) clearBtn.hidden = val === '';
+      debounceTimer = setTimeout(function () {
+        renderList(val);
+      }, 200);
+      if (clearBtn) {
+        clearBtn.hidden = val === '';
+      }
     });
   }
 
   if (clearBtn) {
-    clearBtn.addEventListener('click', function() {
+    clearBtn.addEventListener('click', function () {
       if (!searchInput) return;
       searchInput.value = '';
       searchInput.focus();
-      postsList.innerHTML = '';
-      postsEmpty.textContent = 'برای شروع، عبارتی را در کادر بالا بنویسید.';
-      postsEmpty.hidden = false;
+      if (postsList) {
+        postsList.innerHTML = '';
+      }
+      if (postsEmpty) {
+        postsEmpty.textContent = 'برای شروع، عبارتی را در کادر بالا بنویسید.';
+        postsEmpty.hidden = false;
+      }
       clearBtn.hidden = true;
       setUrlQuery('');
     });
@@ -204,12 +539,21 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       if (e.persisted) {
         menuToggle.checked = false;
         document.documentElement.classList.remove('nav-open');
+        if (headerDefault) headerDefault.hidden = false;
+        if (headerSearch) headerSearch.hidden = true;
       }
     });
   }
 
   document.addEventListener('keydown', function (e) {
+    if (e.isComposing) return;
     if (e.key !== 'Escape') return;
+
+    if (headerSearch && !headerSearch.hidden) {
+      closeSearchPanel();
+      return;
+    }
+
     if (menuToggle && menuToggle.checked) {
       menuToggle.checked = false;
       document.documentElement.classList.remove('nav-open');
@@ -219,17 +563,27 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var navLinks = document.querySelectorAll('.mobile-nav a');
   for (var n = 0; n < navLinks.length; n++) {
     navLinks[n].addEventListener('click', function () {
-      if (menuToggle) menuToggle.checked = false;
+      if (menuToggle) {
+        menuToggle.checked = false;
+        menuToggle.focus();
+      }
       document.documentElement.classList.remove('nav-open');
     });
   }
 
   var params = new URLSearchParams(window.location.search);
   var initialQuery = params.get('q') || '';
+
   if (initialQuery) {
-    searchInput.value = initialQuery;
-    if (clearBtn) clearBtn.hidden = false;
+    if (searchInput) {
+      searchInput.value = initialQuery;
+    }
+    if (clearBtn) {
+      clearBtn.hidden = false;
+    }
     renderList(initialQuery);
+  } else {
+    renderList('');
   }
 })();
 </script>
