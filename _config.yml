@@ -5,16 +5,6 @@ lang: fa
 timezone: Asia/Tehran
 encoding: UTF-8
 
-# Author & publisher (consistent with JSON-LD)
-author:
-  name: "احسان چهری"
-  url: "https://www.facebook.com/ehsanchehri"
-
-publisher:
-  name: "پاسگاه"
-  url: "https://www.pasgah.org/"
-  logo: "https://www.pasgah.org/blog.svg"
-
 # Permalinks
 permalink: /blog/:title
 
