@@ -12,7 +12,7 @@ layout: null
 <link rel="preload" href="{{ post_image }}" as="image" fetchpriority="high">
 {%- endif -%}
 {%- assign published_iso = page.date | date_to_xmlschema -%}
-{%- assign desc = page.excerpt | strip_html | strip_newlines | strip | truncate: 160 -%}
+{%- assign desc = page.excerpt | strip_html | strip_newlines | strip | truncatewords: 25 -%}
 <title>{{ page.title | escape }}</title>
 <meta name="description" content="{{ desc | escape_once }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
