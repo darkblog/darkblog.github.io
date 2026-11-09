@@ -8,17 +8,45 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {%- if page.image -%}
-<link rel="preload" href="{{ page.image | relative_url }}" as="image" fetchpriority="high">
+  {%- assign og_image = page.image | absolute_url -%}
+{%- endif -%}
+{%- assign published_iso = page.date | date_to_xmlschema -%}
+{%- assign modified_iso = page.last_modified_at | default: page.date | date_to_xmlschema -%}
+{%- if page.image -%}
+<link rel="preload" href="{{ og_image }}" as="image" fetchpriority="high">
 {%- endif -%}
 {%- capture desc -%}
   {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
 {%- endcapture -%}
 <title>{{ page.title | escape }}</title>
 <meta name="description" content="{{ desc | escape }}">
+<meta name="author" content="احسان چهری">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="پاسگاه">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ desc | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{%- if page.image %}
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="{{ page.title | escape }}">
+{%- endif %}
+<meta property="article:published_time" content="{{ published_iso }}">
+<meta property="article:modified_time" content="{{ modified_iso }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | escape }}">
+<meta name="twitter:description" content="{{ desc | escape }}">
+{%- if page.image %}
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:image:alt" content="{{ page.title | escape }}">
+{%- endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,13 +57,19 @@ layout: null
       "headline": {{ page.title | jsonify | replace: '</', '<\/' }},
       "description": {{ desc | strip | jsonify | replace: '</', '<\/' }},
       {%- if page.image %}
-      "image": {{ page.image | absolute_url | jsonify }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ og_image | jsonify | replace: '</', '<\/' }},
+        "width": 1200,
+        "height": 800
+      },
       {%- endif %}
-      "datePublished": "{{ page.date | date_to_xmlschema }}",
-      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+      "datePublished": {{ published_iso | jsonify }},
+      "dateModified": {{ modified_iso | jsonify }},
       "author": {
         "@type": "Person",
-        "name": "احسان چهری"
+        "name": "احسان چهری",
+        "url": "https://www.pasgah.org/"
       },
       "publisher": {
         "@type": "Organization",
@@ -360,12 +394,12 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
       {% if page.image %}
       <figure class="post-featured-image">
-        <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" width="1200" height="800" fetchpriority="high">
+        <img src="{{ og_image }}" alt="{{ page.title | escape }}" width="1200" height="800" fetchpriority="high">
       </figure>
       {% endif %}
 
       <div class="post-meta">
-        <time class="post-meta__item" datetime="{{ page.date | date_to_xmlschema }}">
+        <time class="post-meta__item" datetime="{{ published_iso }}">
           <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           {{ jd_fa }} {{ jm_name }} {{ jy_fa }}
         </time>
