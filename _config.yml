@@ -8,9 +8,6 @@ encoding: UTF-8
 # Permalinks
 permalink: /blog/:title
 
-# Excerpts (used for meta description and schema description)
-excerpt_separator: "\n\n"
-
 # Markdown
 markdown: kramdown
 kramdown:
