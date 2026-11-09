@@ -270,7 +270,23 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- assign jd_fa = jd | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
       {%- assign jy_fa = jy | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
 
-      {%- assign reading_time = page.reading_time | plus: 0 -%}
+      {%- assign pre_parts = content | split: '<pre' -%}
+      {%- assign content_no_code = pre_parts[0] -%}
+      {%- for pre_part in pre_parts offset: 1 -%}
+        {%- assign post_pre = pre_part | split: '</pre>' -%}
+        {%- if post_pre.size > 1 -%}
+          {%- assign content_no_code = content_no_code | append: post_pre[1] -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- assign word_count = content_no_code | strip_html | number_of_words -%}
+      {%- assign reading_time = word_count | divided_by: 200 -%}
+      {%- assign reading_rem = word_count | modulo: 200 -%}
+      {%- if reading_rem > 0 -%}
+        {%- assign reading_time = reading_time | plus: 1 -%}
+      {%- endif -%}
+      {%- if reading_time < 1 -%}
+        {%- assign reading_time = 1 -%}
+      {%- endif -%}
       {%- assign reading_time_fa = reading_time | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
 
       <header class="post-header">
