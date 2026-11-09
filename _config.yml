@@ -1,16 +1,45 @@
-url: https://www.pasgah.org
-
-title: "وبلاگ پاسگاه – فهرست تأثیرگذارترین افراد"
-
-description: "فهرست جامع و مقاله‌های اختصاصی دربارهٔ تأثیرگذارترین شخصیت‌های تاریخ از دوران باستان تا امروز"
-
-permalink: /blog/:title
-
+# Site identity
+url: "https://www.pasgah.org"
+baseurl: ""
+lang: fa
+timezone: Asia/Tehran
 encoding: UTF-8
 
+# Author & publisher (consistent with JSON-LD)
+author:
+  name: "احسان چهری"
+  url: "https://www.facebook.com/ehsanchehri"
+
+publisher:
+  name: "پاسگاه"
+  url: "https://www.pasgah.org/"
+  logo: "https://www.pasgah.org/blog.svg"
+
+# Permalinks
+permalink: /blog/:title
+
+# Excerpts (used for meta description and schema description)
+excerpt_separator: "\n\n"
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+
+# Defaults
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "default"
+      author: "احسان چهری"
+
+# Future posts
+future: false
+
+# Build behavior
+strict_front_matter: false
+incremental: false
