@@ -12,30 +12,13 @@ layout: null
 <link rel="preload" href="{{ post_image }}" as="image" fetchpriority="high">
 {%- endif -%}
 {%- assign published_iso = page.date | date_to_xmlschema -%}
-{%- capture desc -%}
-  {{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}
-{%- endcapture -%}
+{%- assign desc = page.excerpt | strip_html | strip_newlines | strip | truncate: 160 -%}
 <title>{{ page.title | escape }}</title>
-<meta name="description" content="{{ desc | escape }}">
+<meta name="description" content="{{ desc | escape_once }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="پاسگاه">
-<meta property="og:title" content="{{ page.title | escape }}">
-<meta property="og:description" content="{{ desc | escape }}">
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="article:published_time" content="{{ published_iso }}">
-{%- if page.image -%}
-<meta property="og:image" content="{{ post_image }}">
-{%- endif -%}
-<meta name="twitter:card" content="{% if page.image %}summary_large_image{% else %}summary{% endif %}">
-<meta name="twitter:title" content="{{ page.title | escape }}">
-<meta name="twitter:description" content="{{ desc | escape }}">
-{%- if page.image -%}
-<meta name="twitter:image" content="{{ post_image }}">
-{%- endif -%}
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
@@ -110,14 +93,14 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .post-breadcrumb a { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-muted); text-decoration: none; font-weight: 400; font-size: 0.95rem; min-height: 48px; transition: color var(--dur); }
 .post-breadcrumb a:hover, .post-breadcrumb a:focus-visible { color: var(--accent); }
 .post-breadcrumb a svg { width: 1rem; height: 1rem; flex-shrink: 0; }
-.post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: var(--text); letter-spacing: -0.02em; margin-block-end: 0; }
+.post-title { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.3; color: var(--text); margin-block-end: 0; }
 .post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-block-end: 2.5rem; }
 .post-meta__item { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; font-style: normal; }
 .post-meta__item svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 .post-featured-image { width: 100%; margin: 0 0 1.25rem; overflow: hidden; border-radius: var(--r-lg); background-color: var(--bg-elev); border: 1px solid var(--border); }
 .post-featured-image img { max-width: 100%; height: auto; display: block; }
 .article-content { line-height: 1.9; color: var(--text); margin-block-start: 2rem; font-size: inherit; }
-.article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: var(--text); font-size: clamp(1.4rem, 3.5vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.4; }
+.article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: var(--text); font-size: clamp(1.4rem, 3.5vw, 1.85rem); line-height: 1.4; }
 .article-content h3, .article-content h4 { color: var(--text); margin: 2rem 0 0.85rem; font-weight: 700; line-height: 1.4; }
 .article-content p { margin-block-end: 1.5rem; font-size: inherit; }
 .article-content a { color: var(--accent); text-decoration: none; font-weight: 500; border-block-end: 1px dashed currentColor; transition: color var(--dur), border-color var(--dur); }
@@ -127,7 +110,9 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .article-content blockquote p { margin: 0; }
 .article-content ul, .article-content ol { margin: 1.5rem 0; padding-inline-start: 1.75rem; }
 .article-content li { margin-block-end: 0.75rem; }
-.article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid var(--border); display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; direction: rtl !important; text-align: right !important; border-radius: var(--r-sm); }
+.article-content .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 2rem 0; border-radius: var(--r-sm); }
+.article-content .table-wrap > table { margin: 0; }
+.article-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 1rem; border: 1px solid var(--border); direction: rtl !important; text-align: right !important; border-radius: var(--r-sm); }
 .article-content table * { direction: rtl !important; text-align: right !important; }
 .article-content table thead { background-color: var(--bg-elev); color: var(--text); }
 .article-content table th, .article-content table td { padding: 1rem 1.5rem; border-block-end: 1px solid var(--border); white-space: normal; word-break: break-word; min-width: 10rem; }
@@ -198,9 +183,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   <main id="main" class="main-content" tabindex="-1">
     <article>
       {%- assign gy = page.date | date: "%Y" | plus: 0 -%}
-      {%- if gy < 1600 -%}{%- assign gy = 1600 -%}{%- endif -%}
-      {%- assign gm = page.date | date: "%-m" | plus: 0 -%}
-      {%- assign gd = page.date | date: "%-d" | plus: 0 -%}
+      {%- assign gm = page.date | date: "%m" | plus: 0 -%}
+      {%- assign gd = page.date | date: "%d" | plus: 0 -%}
 
       {%- assign gy1600 = gy | minus: 1600 -%}
       {%- assign gm0 = gm | minus: 1 -%}
@@ -286,27 +270,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- assign jd_fa = jd | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
       {%- assign jy_fa = jy | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
 
-      {%- if page.reading_time -%}
-        {%- assign reading_time = page.reading_time | plus: 0 -%}
-      {%- else -%}
-        {%- assign pre_parts = content | split: '<pre' -%}
-        {%- assign content_no_code = pre_parts[0] -%}
-        {%- for pre_part in pre_parts offset: 1 -%}
-          {%- assign post_pre = pre_part | split: '</pre>' -%}
-          {%- if post_pre.size > 1 -%}
-            {%- assign content_no_code = content_no_code | append: post_pre[1] -%}
-          {%- endif -%}
-        {%- endfor -%}
-        {%- assign word_count = content_no_code | strip_html | number_of_words -%}
-        {%- assign reading_time = word_count | divided_by: 200 -%}
-        {%- assign reading_rem = word_count | modulo: 200 -%}
-        {%- if reading_rem > 0 -%}
-          {%- assign reading_time = reading_time | plus: 1 -%}
-        {%- endif -%}
-      {%- endif -%}
-      {%- if reading_time < 1 -%}
-        {%- assign reading_time = 1 -%}
-      {%- endif -%}
+      {%- assign reading_time = page.reading_time | plus: 0 -%}
       {%- assign reading_time_fa = reading_time | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
 
       <header class="post-header">
@@ -477,6 +441,21 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     }
   }
 
+  var articleContent = document.querySelector('.article-content');
+
+  if (articleContent) {
+    var tables = document.querySelectorAll('.article-content > table');
+
+    for (var tIdx = 0; tIdx < tables.length; tIdx++) {
+      var tableEl = tables[tIdx];
+      var tableWrap = document.createElement('div');
+
+      tableWrap.className = 'table-wrap';
+      tableEl.parentNode.insertBefore(tableWrap, tableEl);
+      tableWrap.appendChild(tableEl);
+    }
+  }
+
   var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://www.pasgah.org/search') : 'https://www.pasgah.org/search';
   var MAX_RESULTS = 10;
   var DEBOUNCE_MS = 200;
@@ -485,6 +464,12 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var activeIndex = -1;
   var debounceTimer = null;
   var statusTimer = null;
+
+  function toPersianDigits(n) {
+    return String(n).replace(/[0-9]/g, function (d) {
+      return '۰۱۲۳۴۵۶۷۸۹'[+d];
+    });
+  }
 
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
@@ -604,6 +589,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       empty.className = 'no-result';
       empty.setAttribute('role', 'option');
       empty.setAttribute('aria-disabled', 'true');
+      empty.setAttribute('aria-selected', 'false');
       empty.textContent = 'هیچ مطلبی یافت نشد';
 
       resultsBox.appendChild(empty);
@@ -616,6 +602,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         var a = document.createElement('a');
 
         li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', 'false');
         li.id = 'search-opt-' + (idCounter++);
 
         a.href = item.url;
@@ -633,10 +620,11 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
         more.className = 'more-result';
         more.setAttribute('role', 'option');
+        more.setAttribute('aria-selected', 'false');
         more.id = 'search-opt-' + (idCounter++);
 
         moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
-        moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
+        moreA.textContent = 'نمایش همهٔ ' + toPersianDigits(total) + ' نتیجه';
         moreA.tabIndex = -1;
 
         more.appendChild(moreA);
@@ -649,7 +637,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
     resultsBox.hidden = false;
     searchInput.setAttribute('aria-expanded', 'true');
-    announce(total === 0 ? 'نتیجه‌ای یافت نشد' : total + ' نتیجه یافت شد');
+    announce(total === 0 ? 'نتیجه‌ای یافت نشد' : toPersianDigits(total) + ' نتیجه یافت شد');
   }
 
   function openSearchPanel() {
