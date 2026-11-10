@@ -14,7 +14,7 @@ layout: null
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 {%- assign hero_post = site.posts.first -%}
 {%- assign hero_img = '' -%}
-{%- if hero_post and hero_post.image -%}
+{%- if hero_post.image and hero_post.image != '' -%}
   {%- assign hero_img = hero_post.image -%}
   {%- unless hero_img contains '://' -%}
     {%- assign hero_img = 'https://www.pasgah.org' | append: hero_img -%}
@@ -187,6 +187,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
           <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
           <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         </div>
+
+        <button type="submit" class="sr-only">جستجو</button>
       </form>
     </div>
   </header>
@@ -206,7 +208,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         <li>
         {%- if forloop.first -%}
           {%- if hero_img != '' -%}
-            <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image" aria-label="{{ post.title | escape }}">
+            <a href="https://www.pasgah.org{{ post.url | escape }}" class="post-card-image" aria-label="{{ post.title | escape }}">
               <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="800" height="800">
               <span class="post-hero-overlay">
                 <span class="post-hero-badge">جدیدترین</span>
@@ -214,7 +216,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
               </span>
             </a>
           {%- else -%}
-            <a href="https://www.pasgah.org{{ post.url }}" class="post-card-image post-card-image--fallback" aria-label="{{ post.title | escape }}">
+            <a href="https://www.pasgah.org{{ post.url | escape }}" class="post-card-image post-card-image--fallback" aria-label="{{ post.title | escape }}">
               <img src="https://www.pasgah.org/blog.svg" alt="" fetchpriority="high" decoding="async" width="800" height="800">
               <span class="post-hero-overlay">
                 <span class="post-hero-badge">جدیدترین</span>
@@ -223,7 +225,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
             </a>
           {%- endif -%}
         {%- else -%}
-          <a href="https://www.pasgah.org{{ post.url }}">{{ post.title | escape }}</a>
+          <a href="https://www.pasgah.org{{ post.url | escape }}">{{ post.title | escape }}</a>
         {%- endif -%}
         </li>
       {%- endfor -%}
@@ -237,7 +239,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
-{"t":{{ post.title | jsonify | replace: '</', '<\/' }},"u":"https://www.pasgah.org{{ post.url }}"}{%- unless forloop.last -%},{%- endunless -%}
+{"t":{{ post.title | jsonify | replace: '<', '\u003C' }},"u":{{ post.url | prepend: 'https://www.pasgah.org' | jsonify | replace: '<', '\u003C' }}}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
@@ -248,8 +250,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   var byId = function (id) { return document.getElementById(id); };
 
-  var searchForm = document.querySelector('.live-search-wrapper form');
   var searchInput = byId('liveSearch');
+  var searchForm = searchInput ? searchInput.closest('form') : null;
   var resultsBox = byId('liveSearchResults');
   var clearBtn = byId('searchClearBtn');
   var liveStatus = byId('liveSearchStatus');
@@ -388,6 +390,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       empty.className = 'no-result';
       empty.setAttribute('role', 'option');
       empty.setAttribute('aria-disabled', 'true');
+      empty.setAttribute('aria-selected', 'false');
       empty.textContent = 'هیچ مطلبی یافت نشد';
       resultsBox.appendChild(empty);
     } else {
@@ -397,6 +400,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         var li = document.createElement('li');
         li.setAttribute('role', 'option');
         li.id = 'search-opt-' + (idCounter++);
+        li.setAttribute('aria-selected', 'false');
         var a = document.createElement('a');
         a.href = item.url;
         a.tabIndex = -1;
@@ -410,6 +414,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         more.className = 'more-result';
         more.setAttribute('role', 'option');
         more.id = 'search-opt-' + (idCounter++);
+        more.setAttribute('aria-selected', 'false');
         var moreA = document.createElement('a');
         moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
         moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
@@ -597,10 +602,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     }
 
     loadMoreBtn.addEventListener('click', function (e) {
+      e.preventDefault();
       var allPosts = getPosts();
       currentTotal = allPosts.length;
       if (currentIndex >= allPosts.length) return;
-      e.preventDefault();
       var endIndex = Math.min(currentIndex + step, allPosts.length);
       var frag = document.createDocumentFragment();
       for (var i = currentIndex; i < endIndex; i++) {
