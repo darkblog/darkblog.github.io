@@ -20,12 +20,7 @@ layout: null
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ page.title | escape }}">
-<meta property="og:description" content="{{ desc | escape_once }}">
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:site_name" content="پاسگاه">
-<meta property="og:locale" content="fa_IR">
+<meta property="article:section" content="{{ page.title | escape }}">
 {%- if page.image -%}
 <meta property="og:image" content="{{ post_image }}">
 {%- endif -%}
