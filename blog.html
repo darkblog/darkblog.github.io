@@ -7,12 +7,21 @@ layout: null
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+{%- assign latest_post = site.posts.first -%}
+{%- assign lp_pub = latest_post.date -%}
+{%- assign lp_mod = latest_post.last_modified_at | default: latest_post.date -%}
+{%- assign lp_pub_iso = lp_pub | date_to_xmlschema -%}
+{%- assign lp_mod_iso = lp_mod | date_to_xmlschema -%}
+
 <title>وبلاگ</title>
 <meta name="description" content="آرشیو مقالات تاریخی بر اساس تاریخ انتشار">
 <link rel="canonical" href="https://www.pasgah.org/blog">
 <link rel="icon" type="image/svg+xml" href="https://www.pasgah.org/blog.svg">
 <link rel="preload" href="https://www.pasgah.org/blog.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#000000">
+<meta property="article:published_time" content="{{ lp_pub_iso }}">
+<meta property="article:modified_time" content="{{ lp_mod_iso }}">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,6 +59,32 @@ layout: null
         },
         "query-input": "required name=search_term_string"
       }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.pasgah.org/blog#webpage",
+      "url": "https://www.pasgah.org/blog",
+      "name": "وبلاگ پاسگاه",
+      "description": "آرشیو مقالات تاریخی بر اساس تاریخ انتشار",
+      "isPartOf": { "@id": "https://www.pasgah.org/#website" },
+      "publisher": { "@id": "https://www.pasgah.org/#organization" },
+      "datePublished": {{ lp_pub_iso | jsonify }},
+      "dateModified": {{ lp_mod_iso | jsonify }},
+      "inLanguage": "fa-IR",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.pasgah.org/blog.svg"
+      }
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://www.pasgah.org/blog#blog",
+      "url": "https://www.pasgah.org/blog",
+      "name": "وبلاگ پاسگاه",
+      "description": "آرشیو مقالات تاریخی بر اساس تاریخ انتشار",
+      "isPartOf": { "@id": "https://www.pasgah.org/#website" },
+      "publisher": { "@id": "https://www.pasgah.org/#organization" },
+      "inLanguage": "fa-IR"
     }
   ]
 }
