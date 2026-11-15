@@ -429,7 +429,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
           {%- endfor -%}
           {%- if common_tags_count > 0 -%}
             {%- unless first_item -%},{%- endunless -%}
-            {"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://www.pasgah.org{{ post.url }}"}
+            {"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":"https://blunder.ir{{ post.url }}"}
             {%- assign first_item = false -%}
           {%- endif -%}
         {%- endif -%}
