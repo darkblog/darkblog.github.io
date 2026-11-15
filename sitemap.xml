@@ -4,16 +4,16 @@ layout: null
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.pasgah.org/</loc>
+    <loc>https://blunder.ir/</loc>
   </url>
 
   <url>
-    <loc>https://www.pasgah.org/blog</loc>
+    <loc>https://blunder.ir/blog</loc>
   </url>
 
 {%- for post in site.posts -%}
   <url>
-    <loc>https://www.pasgah.org{{ post.url | xml_escape }}</loc>
+    <loc>https://blunder.ir{{ post.url | xml_escape }}</loc>
   </url>
 {%- endfor %}
 </urlset>
