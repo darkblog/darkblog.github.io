@@ -32,9 +32,6 @@ layout: null
   },
   "headline": {{ page.title | jsonify }},
   "description": {{ desc | jsonify }},
-  {%- if post_image -%}
-  "image": {{ post_image | jsonify }},
-  {%- endif -%}
   "datePublished": {{ published_iso | jsonify }},
   "dateModified": {{ modified_iso | jsonify }},
   "author": {
