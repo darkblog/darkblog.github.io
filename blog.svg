@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-  <rect width="1024" height="1024" fill="#000"/>
-  <text x="512" y="512"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="900" height="250">
+  <rect width="900" height="250" fill="#000"/>
+  <text x="450" y="125"
         fill="#fff"
         font-family="Arial, Helvetica, sans-serif"
         font-weight="bold"
         font-size="200"
         text-anchor="middle"
-        dominant-baseline="middle">blunder</text>
+        dominant-baseline="central">blunder</text>
 </svg>
