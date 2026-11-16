@@ -15,7 +15,7 @@ layout: null
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
 :root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-card: transparent; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
-@font-face { font-family: 'vazir'; src: url('https://blunder.ir/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'vazir'; src: url('https://blunder.ir/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: optional; }
 html { scrollbar-gutter: stable; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
 body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-inline: auto; display: flex; flex-direction: column; flex: 1; background-color: var(--bg-shell); position: relative; }
@@ -90,7 +90,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       </label>
 
       <a href="https://blunder.ir/" class="brand" aria-label="صفحه اصلی بلاندر">
-        <img src="https://blunder.ir/blog.svg" alt="بلاندر" width="40" height="40" fetchpriority="high" decoding="async">
+        <img src="https://blunder.ir/blog.svg?v=2" alt="بلاندر" width="144" height="40" fetchpriority="high" decoding="async">
       </a>
 
       <button type="button" class="header-icon-btn search-toggle" id="searchToggle" aria-label="باز کردن جستجو" aria-expanded="false" aria-controls="headerSearch">
@@ -146,6 +146,14 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   </main>
 </div>
 
+<script type="application/json" id="postsData">
+[
+{%- for post in site.posts -%}
+{"title":{{ post.title | jsonify | replace: '</', '<\/' }},"url":{{ post.url | relative_url | jsonify | replace: '</', '<\/' }}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
+</script>
+
 <script>
 (function () {
   'use strict';
@@ -168,12 +176,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var headerSearch = byId('headerSearch');
   var headerForm = document.querySelector('.header-search-form');
 
-  var postsData = [
-  {%- for post in site.posts -%}
-    { "title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }} }{%- unless forloop.last -%},{%- endunless %}
-  {%- endfor -%}
-  ];
-
   var debounceTimer;
   var headerDebounceTimer;
   var headerStatusTimer;
@@ -184,6 +186,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var SEARCH_URL = headerForm ? (headerForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
   var MAX_RESULTS = 10;
   var DEBOUNCE_MS = 200;
+
+  var postsCache = null;
 
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
@@ -208,6 +212,31 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       out += foldChar(s.charAt(i));
     }
     return out;
+  }
+
+  function getPosts() {
+    if (postsCache !== null) return postsCache;
+
+    var arr = [];
+    var el = byId('postsData');
+
+    if (el) {
+      try {
+        var parsed = JSON.parse(el.textContent);
+        if (Array.isArray(parsed)) {
+          for (var i = 0; i < parsed.length; i++) {
+            var p = parsed[i];
+            if (p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url) {
+              arr.push({ title: p.title, url: p.url, folded: fold(p.title) });
+            }
+          }
+        }
+      } catch (err) {}
+      el.textContent = '';
+    }
+
+    postsCache = arr;
+    return arr;
   }
 
   function setUrlQuery(q) {
@@ -238,9 +267,14 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       return;
     }
 
-    var filtered = postsData.filter(function (item) {
-      return fold(item.title).indexOf(normalizedTerm) !== -1;
-    });
+    var allPosts = getPosts();
+    var filtered = [];
+
+    for (var i = 0; i < allPosts.length; i++) {
+      if (allPosts[i].folded.indexOf(normalizedTerm) !== -1) {
+        filtered.push(allPosts[i]);
+      }
+    }
 
     if (filtered.length === 0) {
       if (postsEmpty) {
@@ -257,14 +291,15 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
     var fragment = document.createDocumentFragment();
 
-    filtered.forEach(function (item) {
+    for (var k = 0; k < filtered.length; k++) {
+      var item = filtered[k];
       var li = document.createElement('li');
       var a = document.createElement('a');
       a.href = item.url;
       a.textContent = item.title;
       li.appendChild(a);
       fragment.appendChild(li);
-    });
+    }
 
     if (postsList) {
       postsList.appendChild(fragment);
@@ -332,9 +367,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       return;
     }
 
+    var allPosts = getPosts();
     var matched = [];
-    for (var i = 0; i < postsData.length; i++) {
-      if (fold(postsData[i].title).indexOf(term) !== -1) matched.push(postsData[i]);
+    for (var i = 0; i < allPosts.length; i++) {
+      if (allPosts[i].folded.indexOf(term) !== -1) matched.push(allPosts[i]);
     }
     var total = matched.length;
     var limited = matched.slice(0, MAX_RESULTS);
@@ -506,7 +542,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       var val = searchInput.value;
       debounceTimer = setTimeout(function () {
         renderList(val);
-      }, 200);
+      }, DEBOUNCE_MS);
       if (clearBtn) {
         clearBtn.hidden = val === '';
       }
@@ -583,7 +619,10 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     }
     renderList(initialQuery);
   } else {
-    renderList('');
+    if (postsEmpty) {
+      postsEmpty.textContent = 'برای شروع، عبارتی را در کادر بالا بنویسید.';
+      postsEmpty.hidden = false;
+    }
   }
 })();
 </script>
