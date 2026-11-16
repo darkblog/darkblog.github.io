@@ -43,7 +43,7 @@ layout: null
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
 :root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-card: transparent; --bg-elev: #f7f7f7; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
-@font-face { font-family: 'vazir'; src: url('https://blunder.ir/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'vazir'; src: url('https://blunder.ir/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: optional; }
 html { scrollbar-gutter: stable; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
 body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-inline: auto; display: flex; flex-direction: column; flex: 1; background-color: var(--bg-shell); position: relative; }
@@ -118,7 +118,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .post-meta__item { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; font-style: normal; }
 .post-meta__item svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 .post-featured-image { width: 100%; margin: 0 0 1.25rem; overflow: hidden; border-radius: var(--r-lg); background-color: var(--bg-elev); border: 1px solid var(--border); }
-.post-featured-image img { max-width: 100%; height: auto; display: block; }
+.post-featured-image img { width: 100%; max-width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
 .article-content { line-height: 1.9; color: var(--text); margin-block-start: 2rem; font-size: inherit; }
 .article-content h2 { font-weight: 800; margin: 2.5rem 0 1rem; color: var(--text); font-size: clamp(1.4rem, 3.5vw, 1.85rem); line-height: 1.4; }
 .article-content h3, .article-content h4 { color: var(--text); margin: 2rem 0 0.85rem; font-weight: 700; line-height: 1.4; }
@@ -448,8 +448,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var clearBtn = byId('searchClearBtn');
   var liveStatus = byId('liveSearchStatus');
   var menuToggle = byId('menu-toggle');
-  var postsDataEl = byId('postsData');
-  var relatedDataEl = byId('relatedPostsData');
   var relatedPostsList = byId('relatedPostsList');
   var relatedLoadMoreBtn = byId('relatedLoadMoreBtn');
   var relatedLoadMoreWrap = byId('relatedLoadMoreWrap');
@@ -457,40 +455,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var searchClose = byId('searchClose');
   var headerDefault = byId('headerDefault');
   var headerSearch = byId('headerSearch');
-
-  var posts = [];
-
-  if (postsDataEl) {
-    try {
-      var parsed = JSON.parse(postsDataEl.textContent);
-
-      if (Array.isArray(parsed)) {
-        posts = parsed.filter(function (p) {
-          return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
-        });
-      }
-    } catch (err) {
-      if (window.console && console.warn) {
-        console.warn('Search data parse error:', err);
-      }
-      posts = [];
-    }
-  }
-
-  var articleContent = document.querySelector('.article-content');
-
-  if (articleContent) {
-    var tables = document.querySelectorAll('.article-content > table');
-
-    for (var tIdx = 0; tIdx < tables.length; tIdx++) {
-      var tableEl = tables[tIdx];
-      var tableWrap = document.createElement('div');
-
-      tableWrap.className = 'table-wrap';
-      tableEl.parentNode.insertBefore(tableWrap, tableEl);
-      tableWrap.appendChild(tableEl);
-    }
-  }
 
   var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
   var MAX_RESULTS = 10;
@@ -500,6 +464,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var activeIndex = -1;
   var debounceTimer = null;
   var statusTimer = null;
+
+  var searchPostsCache = null;
 
   function toPersianDigits(n) {
     return String(n).replace(/[0-9]/g, function (d) {
@@ -534,6 +500,77 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     }
 
     return out.replace(/\s+/g, ' ').trim();
+  }
+
+  function getSearchPosts() {
+    if (searchPostsCache !== null) return searchPostsCache;
+
+    var arr = [];
+    var el = byId('postsData');
+
+    if (el) {
+      try {
+        var parsed = JSON.parse(el.textContent);
+
+        if (Array.isArray(parsed)) {
+          for (var i = 0; i < parsed.length; i++) {
+            var p = parsed[i];
+            if (p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url) {
+              arr.push({ title: p.title, url: p.url, folded: fold(p.title) });
+            }
+          }
+        }
+      } catch (err) {}
+
+      el.textContent = '';
+    }
+
+    searchPostsCache = arr;
+    return arr;
+  }
+
+  var relatedPostsCache = null;
+
+  function getRelatedPosts() {
+    if (relatedPostsCache !== null) return relatedPostsCache;
+
+    var arr = [];
+    var el = byId('relatedPostsData');
+
+    if (el) {
+      try {
+        var parsed = JSON.parse(el.textContent);
+
+        if (Array.isArray(parsed)) {
+          for (var i = 0; i < parsed.length; i++) {
+            var p = parsed[i];
+            if (p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url) {
+              arr.push(p);
+            }
+          }
+        }
+      } catch (err) {}
+
+      el.textContent = '';
+    }
+
+    relatedPostsCache = arr;
+    return arr;
+  }
+
+  var articleContent = document.querySelector('.article-content');
+
+  if (articleContent) {
+    var tables = articleContent.querySelectorAll(':scope > table');
+
+    for (var tIdx = 0; tIdx < tables.length; tIdx++) {
+      var tableEl = tables[tIdx];
+      var tableWrap = document.createElement('div');
+
+      tableWrap.className = 'table-wrap';
+      tableEl.parentNode.insertBefore(tableWrap, tableEl);
+      tableWrap.appendChild(tableEl);
+    }
   }
 
   function announce(msg) {
@@ -608,11 +645,12 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       return;
     }
 
+    var allPosts = getSearchPosts();
     var matched = [];
 
-    for (var i = 0; i < posts.length; i++) {
-      if (fold(posts[i].title).indexOf(term) !== -1) {
-        matched.push(posts[i]);
+    for (var i = 0; i < allPosts.length; i++) {
+      if (allPosts[i].folded.indexOf(term) !== -1) {
+        matched.push(allPosts[i]);
       }
     }
 
@@ -872,69 +910,53 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
     });
   }
 
-  if (relatedDataEl && relatedPostsList && relatedLoadMoreBtn && relatedLoadMoreWrap) {
-    var relatedPosts = [];
+  if (relatedPostsList && relatedLoadMoreBtn && relatedLoadMoreWrap) {
+    var currentIndex = relatedPostsList.querySelectorAll('li').length;
+    var step = 5;
 
-    try {
-      var parsedR = JSON.parse(relatedDataEl.textContent);
+    relatedLoadMoreBtn.addEventListener('click', function () {
+      var allPosts = getRelatedPosts();
 
-      if (Array.isArray(parsedR)) {
-        relatedPosts = parsedR.filter(function (p) {
-          return p && typeof p.title === 'string' && typeof p.url === 'string' && p.title && p.url;
-        });
+      if (currentIndex >= allPosts.length) {
+        relatedLoadMoreWrap.hidden = true;
+        return;
       }
-    } catch (err) {
-      if (window.console && console.warn) {
-        console.warn('Related posts parse error:', err);
+
+      var endIndex = Math.min(currentIndex + step, allPosts.length);
+      var frag = document.createDocumentFragment();
+
+      for (var i = currentIndex; i < endIndex; i++) {
+        var post = allPosts[i];
+
+        if (!post) continue;
+
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+
+        a.href = post.url;
+        a.textContent = post.title;
+
+        li.appendChild(a);
+        frag.appendChild(li);
       }
-      relatedPosts = [];
-    }
 
-    if (relatedPosts.length <= 5) {
-      relatedLoadMoreWrap.hidden = true;
-    } else {
-      var currentIndex = relatedPostsList.querySelectorAll('li').length;
-      var step = 5;
+      var firstNew = frag.firstChild;
 
-      relatedLoadMoreBtn.addEventListener('click', function () {
-        if (currentIndex >= relatedPosts.length) return;
+      relatedPostsList.appendChild(frag);
+      currentIndex = endIndex;
 
-        var endIndex = Math.min(currentIndex + step, relatedPosts.length);
-        var frag = document.createDocumentFragment();
+      if (currentIndex >= allPosts.length) {
+        relatedLoadMoreWrap.hidden = true;
+      }
 
-        for (var i = currentIndex; i < endIndex; i++) {
-          var post = relatedPosts[i];
+      if (firstNew) {
+        var newLink = firstNew.querySelector('a');
 
-          if (!post) continue;
-
-          var li = document.createElement('li');
-          var a = document.createElement('a');
-
-          a.href = post.url;
-          a.textContent = post.title;
-
-          li.appendChild(a);
-          frag.appendChild(li);
+        if (newLink) {
+          newLink.focus();
         }
-
-        var firstNew = frag.firstChild;
-
-        relatedPostsList.appendChild(frag);
-        currentIndex = endIndex;
-
-        if (currentIndex >= relatedPosts.length) {
-          relatedLoadMoreWrap.hidden = true;
-        }
-
-        if (firstNew) {
-          var newLink = firstNew.querySelector('a');
-
-          if (newLink) {
-            newLink.focus();
-          }
-        }
-      });
-    }
+      }
+    });
   }
 })();
 </script>
