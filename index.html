@@ -92,7 +92,7 @@ layout: null
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
 :root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-card: transparent; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
-@font-face { font-family: 'vazir'; src: url('https://blunder.ir/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'vazir'; src: url('https://blunder.ir/blog.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: optional; }
 html { scrollbar-gutter: stable; scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; }
 body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-inline: auto; display: flex; flex-direction: column; flex: 1; background-color: var(--bg-shell); position: relative; }
@@ -154,7 +154,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 .posts-list li:first-child a { padding: 0; border-radius: inherit; }
 .posts-list li:first-child:hover a { color: inherit; }
 .post-card-image { display: block; position: relative; padding: 0; overflow: hidden; border-radius: inherit; background-color: var(--bg-elev); width: 100%; }
-.post-card-image img { width: 100%; height: auto; aspect-ratio: 3 / 3; object-fit: cover; display: block; transition: transform var(--dur); }
+.post-card-image img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; transition: transform var(--dur); }
 .post-card-image:hover img { transform: scale(1.04); }
 .post-card-image--fallback { background-color: var(--bg-fallback); }
 .post-card-image--fallback img { object-fit: contain; }
@@ -256,7 +256,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       {%- endfor -%}
     </ul>
     <div class="load-more-wrap">
-      <a href="https://blunder.ir/blog" id="loadMoreBtn" class="load-more-btn">مقالات بیشتر<svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:0.5rem"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://blunder.ir/blog" id="loadMoreBtn" class="load-more-btn" data-total="{{ site.posts.size }}">مقالات بیشتر<svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start:0.5rem"><path d="M6 9l6 6 6-6"/></svg></a>
     </div>
   </main>
 </div>
@@ -283,8 +283,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   var menuToggle = byId('menu-toggle');
   var postsList = byId('postsList');
   var loadMoreBtn = byId('loadMoreBtn');
-  var postsDataEl = byId('postsData');
-  var postsDataRaw = postsDataEl ? postsDataEl.textContent : '[]';
   var searchToggle = byId('searchToggle');
   var searchClose = byId('searchClose');
   var headerDefault = byId('headerDefault');
@@ -327,9 +325,11 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
 
   function getPosts() {
     if (postsCache !== null) return postsCache;
+    var el = byId('postsData');
+    var raw = el ? el.textContent : '[]';
     var arr = [];
     try {
-      var parsed = JSON.parse(postsDataRaw);
+      var parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) {
         for (var i = 0; i < parsed.length; i++) {
           var p = parsed[i];
@@ -340,8 +340,7 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       }
     } catch (err) {}
     postsCache = arr;
-    postsDataRaw = '';
-    if (postsDataEl) postsDataEl.textContent = '';
+    if (el) el.textContent = '';
     return arr;
   }
 
@@ -618,7 +617,8 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
   if (loadMoreBtn && postsList) {
     var currentIndex = postsList.children.length;
     var step = 10;
-    var currentTotal = -1;
+    var totalFromAttr = parseInt(loadMoreBtn.getAttribute('data-total'), 10);
+    var currentTotal = isNaN(totalFromAttr) ? -1 : totalFromAttr;
 
     function updateLoadBtn() {
       if (currentTotal >= 0 && currentIndex >= currentTotal) {
@@ -626,11 +626,16 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       }
     }
 
+    updateLoadBtn();
+
     loadMoreBtn.addEventListener('click', function (e) {
       e.preventDefault();
       var allPosts = getPosts();
       currentTotal = allPosts.length;
-      if (currentIndex >= allPosts.length) return;
+      if (currentIndex >= allPosts.length) {
+        loadMoreBtn.hidden = true;
+        return;
+      }
       var endIndex = Math.min(currentIndex + step, allPosts.length);
       var frag = document.createDocumentFragment();
       for (var i = currentIndex; i < endIndex; i++) {
@@ -652,18 +657,6 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
         if (newLink) newLink.focus();
       }
     });
-
-    var runIdleCheck = function () {
-      var allPosts = getPosts();
-      currentTotal = allPosts.length;
-      updateLoadBtn();
-    };
-
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(runIdleCheck, { timeout: 2000 });
-    } else {
-      setTimeout(runIdleCheck, 1500);
-    }
   }
 })();
 </script>
