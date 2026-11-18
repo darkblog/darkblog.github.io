@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="900" height="250">
+  <rect width="900" height="250" fill="#000"/>
+  <text x="450" y="125"
+        fill="#fff"
+        font-family="'vazir', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif"
+        font-weight="bold"
+        font-size="200"
+        text-anchor="middle"
+        dominant-baseline="central">بلاندر</text>
+</svg>
