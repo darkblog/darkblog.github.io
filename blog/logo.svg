@@ -1,23 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="900" height="250">
-  <defs>
-    <style>
-      @font-face {
-        font-family: "Vazir";
-        src: url("https://blunder.ir/blog/vazir.woff2") format("woff2");
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
-  </defs>
-
   <rect width="900" height="250" fill="#000"/>
-
   <text x="450" y="125"
         fill="#fff"
-        font-family="Vazir, Tahoma, sans-serif"
+        font-family="'vazir', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif"
         font-weight="bold"
         font-size="200"
         text-anchor="middle"
-        dominant-baseline="central">blunder</text>
+        dominant-baseline="central">بلاندر</text>
 </svg>
