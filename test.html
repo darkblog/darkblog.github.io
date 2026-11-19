@@ -105,7 +105,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible,
 .site-header { position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 50; background-color: var(--header-bg); border-block-end: 1px solid var(--header-border); max-width: var(--max-w); margin-inline: auto; width: 100%; }
 .header-inner { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; padding-inline: max(var(--pad-x), var(--safe-r)) max(var(--pad-x), var(--safe-l)); }
 .brand { display: inline-flex; align-items: center; text-decoration: none; color: var(--header-text); flex-shrink: 0; min-width: 48px; min-height: 48px; }
-.brand img { height: 2.5rem; width: auto; display: block; }
+.brand svg { height: 2.5rem; width: auto; display: block; }
 .header-icon-btn { display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; cursor: pointer; color: var(--header-text); flex-shrink: 0; min-width: 48px; min-height: 48px; border-radius: 0.375rem; transition: color var(--dur); touch-action: manipulation; }
 .header-icon-btn:hover { color: var(--header-accent); }
 .header-icon-btn:focus-visible { outline: 3px solid var(--header-accent); outline-offset: 2px; }
@@ -183,7 +183,16 @@ html:has(#menu-toggle:checked), html.nav-open { overflow: hidden; }
       </label>
 
       <a href="https://blunder.ir/" class="brand" aria-label="صفحه اصلی بلاندر">
-        <img src="https://blunder.ir/blog/logo.svg" alt="بلاندر" width="144" height="40" fetchpriority="high" decoding="async">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="144" height="40" role="img" aria-label="بلاندر" focusable="false">
+          <rect width="900" height="250" fill="#000"/>
+          <text x="450" y="125"
+                fill="#fff"
+                font-family="'vazir', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif"
+                font-weight="bold"
+                font-size="200"
+                text-anchor="middle"
+                dominant-baseline="central">بلاندر</text>
+        </svg>
       </a>
 
       <button type="button" class="header-icon-btn search-toggle" id="searchToggle" aria-label="باز کردن جستجو" aria-expanded="false" aria-controls="headerSearch">
