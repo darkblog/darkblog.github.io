@@ -8,10 +8,14 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {%- assign latest_post = site.posts.first -%}
-{%- assign lp_pub = latest_post.date -%}
-{%- assign lp_mod = latest_post.last_modified_at | default: latest_post.date -%}
-{%- assign lp_pub_iso = lp_pub | date_to_xmlschema -%}
-{%- assign lp_mod_iso = lp_mod | date_to_xmlschema -%}
+{%- assign lp_pub_iso = '' -%}
+{%- assign lp_mod_iso = '' -%}
+{%- if latest_post -%}
+  {%- assign lp_pub = latest_post.date -%}
+  {%- assign lp_mod = latest_post.last_modified_at | default: latest_post.date -%}
+  {%- assign lp_pub_iso = lp_pub | date_to_xmlschema -%}
+  {%- assign lp_mod_iso = lp_mod | date_to_xmlschema -%}
+{%- endif -%}
 
 <title>بلاندر؛ تاریخ + سرگرمی</title>
 <meta name="description" content="وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.">
@@ -21,7 +25,7 @@ layout: null
 
 {%- assign hero_post = latest_post -%}
 {%- assign hero_img = '' -%}
-{%- if hero_post.image and hero_post.image != '' -%}
+{%- if hero_post and hero_post.image and hero_post.image != '' -%}
   {%- assign hero_img = hero_post.image -%}
   {%- unless hero_img contains '://' -%}
     {%- assign hero_img = 'https://blunder.ir' | append: hero_img -%}
@@ -77,8 +81,10 @@ layout: null
       "description": "وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.",
       "isPartOf": { "@id": "https://blunder.ir/#website" },
       "publisher": { "@id": "https://blunder.ir/#organization" },
+      {%- if lp_pub_iso != '' -%}
       "datePublished": {{ lp_pub_iso | jsonify }},
       "dateModified": {{ lp_mod_iso | jsonify }},
+      {%- endif -%}
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "https://blunder.ir/blog/icon.svg"
@@ -95,7 +101,7 @@ layout: null
 html { scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { font-family: 'vazir', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -moz-box-orient: vertical; -moz-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -moz-box-align: center; -ms-flex-align: center; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; overflow-wrap: break-word; word-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-left: auto; margin-right: auto; display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -moz-box-orient: vertical; -moz-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-flex: 1; -webkit-flex: 1; -moz-box-flex: 1; -ms-flex: 1; flex: 1; background-color: var(--bg-shell); position: relative; }
-main { -webkit-box-flex: 1; -webkit-flex: 1; -moz-box-flex: 1; -ms-flex: 1; flex: 1; }
+main { -webkit-box-flex: 1; -webkit-flex: 1; -moz-box-flex: 1; -ms-flex: 1; flex: 1; width: 100%; }
 a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .site-header :focus-visible, .mobile-nav :focus-visible { outline-color: var(--header-accent); }
 .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; -webkit-clip-path: inset(50%) !important; clip-path: inset(50%) !important; white-space: nowrap !important; border: 0 !important; }
@@ -268,9 +274,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         </li>
       {%- endfor -%}
     </ul>
+    {%- if site.posts.size > 0 -%}
     <div class="load-more-wrap">
       <a href="https://blunder.ir/blog" id="loadMoreBtn" class="load-more-btn" data-total="{{ site.posts.size }}">مقالات بیشتر<svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
     </div>
+    {%- endif -%}
   </main>
 </div>
 
@@ -289,7 +297,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var byId = function (id) { return document.getElementById(id); };
 
   var searchInput = byId('liveSearch');
-  var searchForm = searchInput ? searchInput.closest('form') : null;
   var resultsBox = byId('liveSearchResults');
   var clearBtn = byId('searchClearBtn');
   var liveStatus = byId('liveSearchStatus');
@@ -301,14 +308,13 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var headerDefault = byId('headerDefault');
   var headerSearch = byId('headerSearch');
 
-  var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
-  var MAX_RESULTS = 10;
+  var debounceTimer = null;
+  var statusTimer = null;
   var DEBOUNCE_MS = 200;
+  var MAX_RESULTS = 10;
   var idCounter = 0;
   var optionEls = [];
   var activeIndex = -1;
-  var debounceTimer = null;
-  var statusTimer = null;
   var postsCache = null;
 
   function matchesSelector(el, selector) {
@@ -327,6 +333,9 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return null;
   }
+
+  var searchForm = searchInput ? findClosest(searchInput, 'form') : null;
+  var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
 
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
@@ -648,23 +657,28 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     var step = 10;
     var totalFromAttr = parseInt(loadMoreBtn.getAttribute('data-total'), 10);
     var currentTotal = isNaN(totalFromAttr) ? -1 : totalFromAttr;
+    var archiveHref = loadMoreBtn.getAttribute('href') || 'https://blunder.ir/blog';
 
     function updateLoadBtn() {
       if (currentTotal >= 0 && currentIndex >= currentTotal) {
-        loadMoreBtn.hidden = true;
+        loadMoreBtn.setAttribute('href', archiveHref);
+        loadMoreBtn.setAttribute('data-expanded', 'true');
       }
     }
 
     updateLoadBtn();
 
     loadMoreBtn.addEventListener('click', function (e) {
-      e.preventDefault();
+      if (loadMoreBtn.getAttribute('data-expanded') === 'true') {
+        return;
+      }
       var allPosts = getPosts();
       currentTotal = allPosts.length;
       if (currentIndex >= allPosts.length) {
-        loadMoreBtn.hidden = true;
+        updateLoadBtn();
         return;
       }
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
       var endIndex = Math.min(currentIndex + step, allPosts.length);
       var frag = document.createDocumentFragment();
       for (var i = currentIndex; i < endIndex; i++) {
