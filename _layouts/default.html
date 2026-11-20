@@ -309,7 +309,8 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       {%- for pre_part in pre_parts offset: 1 -%}
         {%- assign post_pre = pre_part | split: '</pre>' -%}
         {%- if post_pre.size > 1 -%}
-          {%- assign content_no_code = content_no_code | append: post_pre[1] -%}
+          {%- assign rest_after_pre = post_pre | slice: 1, post_pre.size | join: '</pre>' -%}
+          {%- assign content_no_code = content_no_code | append: ' ' | append: rest_after_pre -%}
         {%- endif -%}
       {%- endfor -%}
       {%- assign word_count = content_no_code | strip_html | number_of_words -%}
@@ -942,23 +943,38 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   }
 
   if (relatedPostsList && relatedLoadMoreBtn && relatedLoadMoreWrap) {
-    var currentIndex = relatedPostsList.querySelectorAll('li').length;
+    var existingLinks = relatedPostsList.querySelectorAll('a');
+    var seenUrls = {};
+    for (var s = 0; s < existingLinks.length; s++) {
+      if (existingLinks[s].href) seenUrls[existingLinks[s].href] = true;
+    }
+
+    var allRelated = getRelatedPosts();
+    var remainingPosts = [];
+    for (var r = 0; r < allRelated.length; r++) {
+      if (!seenUrls[allRelated[r].url]) {
+        remainingPosts.push(allRelated[r]);
+      }
+    }
+
+    var nextIndex = 0;
     var step = 5;
 
-    relatedLoadMoreBtn.addEventListener('click', function () {
-      var allPosts = getRelatedPosts();
+    if (remainingPosts.length === 0) {
+      relatedLoadMoreWrap.hidden = true;
+    }
 
-      if (currentIndex >= allPosts.length) {
+    relatedLoadMoreBtn.addEventListener('click', function () {
+      if (nextIndex >= remainingPosts.length) {
         relatedLoadMoreWrap.hidden = true;
         return;
       }
 
-      var endIndex = Math.min(currentIndex + step, allPosts.length);
+      var endIndex = Math.min(nextIndex + step, remainingPosts.length);
       var frag = document.createDocumentFragment();
 
-      for (var i = currentIndex; i < endIndex; i++) {
-        var post = allPosts[i];
-
+      for (var i = nextIndex; i < endIndex; i++) {
+        var post = remainingPosts[i];
         if (!post) continue;
 
         var li = document.createElement('li');
@@ -974,15 +990,14 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       var firstNew = frag.firstChild;
 
       relatedPostsList.appendChild(frag);
-      currentIndex = endIndex;
+      nextIndex = endIndex;
 
-      if (currentIndex >= allPosts.length) {
+      if (nextIndex >= remainingPosts.length) {
         relatedLoadMoreWrap.hidden = true;
       }
 
       if (firstNew) {
         var newLink = firstNew.querySelector('a');
-
         if (newLink) {
           newLink.focus();
         }
