@@ -214,11 +214,9 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       {%- assign gy = page.date | date: "%Y" | plus: 0 -%}
       {%- assign gm = page.date | date: "%m" | plus: 0 -%}
       {%- assign gd = page.date | date: "%d" | plus: 0 -%}
-
       {%- assign gy1600 = gy | minus: 1600 -%}
       {%- assign gm0 = gm | minus: 1 -%}
       {%- assign gd0 = gd | minus: 1 -%}
-
       {%- case gm0 -%}
         {%- when 0 -%}{%- assign g_days_before = 0 -%}
         {%- when 1 -%}{%- assign g_days_before = 31 -%}
@@ -233,7 +231,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         {%- when 10 -%}{%- assign g_days_before = 304 -%}
         {%- when 11 -%}{%- assign g_days_before = 334 -%}
       {%- endcase -%}
-
       {%- assign part1 = gy1600 | times: 365 -%}
       {%- assign gy3   = gy1600 | plus: 3 -%}
       {%- assign gy99  = gy1600 | plus: 99 -%}
@@ -241,37 +238,30 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       {%- assign part2 = gy3   | divided_by: 4 -%}
       {%- assign part3 = gy99  | divided_by: 100 -%}
       {%- assign part4 = gy399 | divided_by: 400 -%}
-
       {%- assign g_day_no = part1 | plus: part2 | minus: part3 | plus: part4 | plus: gd0 | plus: g_days_before -%}
-
       {%- assign gy_mod4   = gy | modulo: 4 -%}
       {%- assign gy_mod100 = gy | modulo: 100 -%}
       {%- assign gy_mod400 = gy | modulo: 400 -%}
       {%- assign is_leap = false -%}
       {%- if gy_mod4 == 0 and gy_mod100 != 0 -%}{%- assign is_leap = true -%}{%- endif -%}
       {%- if gy_mod400 == 0 -%}{%- assign is_leap = true -%}{%- endif -%}
-
       {%- if gm0 > 1 and is_leap -%}
         {%- assign g_day_no = g_day_no | plus: 1 -%}
       {%- endif -%}
-
       {%- assign j_day_no = g_day_no | minus: 79 -%}
       {%- assign j_np = j_day_no | divided_by: 12053 -%}
       {%- assign j_day_no = j_day_no | modulo: 12053 -%}
-
       {%- assign j_np33 = j_np | times: 33 -%}
       {%- assign j_day_1461 = j_day_no | divided_by: 1461 -%}
       {%- assign j_day_1461_4 = j_day_1461 | times: 4 -%}
       {%- assign jy = 979 | plus: j_np33 | plus: j_day_1461_4 -%}
       {%- assign j_day_no = j_day_no | modulo: 1461 -%}
-
       {%- if j_day_no >= 366 -%}
         {%- assign jd1 = j_day_no | minus: 1 -%}
         {%- assign jy_inc = jd1 | divided_by: 365 -%}
         {%- assign jy = jy | plus: jy_inc -%}
         {%- assign j_day_no = jd1 | modulo: 365 -%}
       {%- endif -%}
-
       {%- if j_day_no < 186 -%}
         {%- assign jm = j_day_no | divided_by: 31 | plus: 1 -%}
         {%- assign jd = j_day_no | modulo: 31 | plus: 1 -%}
@@ -280,7 +270,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         {%- assign jm = jm_calc | divided_by: 30 | plus: 7 -%}
         {%- assign jd = jm_calc | modulo: 30 | plus: 1 -%}
       {%- endif -%}
-
       {%- case jm -%}
         {%- when 1  -%}{%- assign jm_name = "فروردین" -%}
         {%- when 2  -%}{%- assign jm_name = "اردیبهشت" -%}
@@ -295,10 +284,8 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         {%- when 11 -%}{%- assign jm_name = "بهمن" -%}
         {%- when 12 -%}{%- assign jm_name = "اسفند" -%}
       {%- endcase -%}
-
       {%- assign jd_fa = jd | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
       {%- assign jy_fa = jy | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
-
       {%- assign pre_parts = content | split: '<pre' -%}
       {%- assign content_no_code = pre_parts[0] -%}
       {%- for pre_part in pre_parts offset: 1 -%}
@@ -318,7 +305,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         {%- assign reading_time = 1 -%}
       {%- endif -%}
       {%- assign reading_time_fa = reading_time | append: "" | replace: "0","۰" | replace: "1","۱" | replace: "2","۲" | replace: "3","۳" | replace: "4","۴" | replace: "5","۵" | replace: "6","۶" | replace: "7","۷" | replace: "8","۸" | replace: "9","۹" -%}
-
       <header class="post-header">
         <nav class="post-breadcrumb" aria-label="مسیر صفحه">
           <ol role="list">
@@ -442,9 +428,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 <script>
 (function () {
   'use strict';
-
   var byId = function (id) { return document.getElementById(id); };
-
   var searchForm = document.querySelector('.header-search-form');
   var searchInput = byId('liveSearch');
   var resultsBox = byId('liveSearchResults');
@@ -458,7 +442,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var searchClose = byId('searchClose');
   var headerDefault = byId('headerDefault');
   var headerSearch = byId('headerSearch');
-
   var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
   var MAX_RESULTS = 10;
   var DEBOUNCE_MS = 200;
@@ -467,15 +450,12 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var activeIndex = -1;
   var debounceTimer = null;
   var statusTimer = null;
-
   var searchPostsCache = null;
-
   function matchesSelector(el, selector) {
     if (!el || el.nodeType !== 1) return false;
     var fn = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
     return fn ? fn.call(el, selector) : false;
   }
-
   function findClosest(el, selector) {
     if (!el || el.nodeType !== 1) return null;
     if (typeof el.closest === 'function') return el.closest(selector);
@@ -486,13 +466,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return null;
   }
-
   function toPersianDigits(n) {
     return String(n).replace(/[0-9]/g, function (d) {
       return '۰۱۲۳۴۵۶۷۸۹'[+d];
     });
   }
-
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
     if (c >= 0x06F0 && c <= 0x06F9) return String.fromCharCode(c - 0x06F0 + 48);
@@ -508,7 +486,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     var lower = ch.toLowerCase();
     return lower.length === 1 ? lower : ch;
   }
-
   function fold(s) {
     s = String(s);
     var out = '';
@@ -517,7 +494,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return out.replace(/\s+/g, ' ').trim();
   }
-
   function getSearchPosts() {
     if (searchPostsCache !== null) return searchPostsCache;
     var arr = [];
@@ -539,9 +515,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     searchPostsCache = arr;
     return arr;
   }
-
   var relatedPostsCache = null;
-
   function getRelatedPosts() {
     if (relatedPostsCache !== null) return relatedPostsCache;
     var arr = [];
@@ -563,9 +537,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     relatedPostsCache = arr;
     return arr;
   }
-
   var articleContent = document.querySelector('.article-content');
-
   if (articleContent) {
     var directChildren = articleContent.children;
     for (var tIdx = 0; tIdx < directChildren.length; tIdx++) {
@@ -578,13 +550,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     }
   }
-
   function announce(msg) {
     if (!liveStatus) return;
     clearTimeout(statusTimer);
     statusTimer = setTimeout(function () { liveStatus.textContent = msg; }, 300);
   }
-
   function closeResults() {
     if (!resultsBox || resultsBox.hidden) return;
     resultsBox.hidden = true;
@@ -596,7 +566,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       searchInput.removeAttribute('aria-activedescendant');
     }
   }
-
   function setActiveOption(idx) {
     if (!optionEls.length || !searchInput) return;
     if (activeIndex >= 0 && optionEls[activeIndex]) {
@@ -621,7 +590,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     }
   }
-
   function renderResults(rawTerm) {
     if (!resultsBox || !searchInput) return;
     var term = fold(rawTerm);
@@ -685,7 +653,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     searchInput.setAttribute('aria-expanded', 'true');
     announce(total === 0 ? 'نتیجه‌ای یافت نشد' : toPersianDigits(total) + ' نتیجه یافت شد');
   }
-
   function openSearchPanel() {
     if (!headerDefault || !headerSearch) return;
     if (menuToggle && menuToggle.checked) {
@@ -698,7 +665,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     if (searchToggle) searchToggle.setAttribute('aria-expanded', 'true');
     if (searchInput) searchInput.focus();
   }
-
   function closeSearchPanel() {
     if (!headerDefault || !headerSearch) return;
     headerSearch.hidden = true;
@@ -712,10 +678,8 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       searchToggle.focus();
     }
   }
-
   if (searchToggle) searchToggle.addEventListener('click', openSearchPanel);
   if (searchClose) searchClose.addEventListener('click', closeSearchPanel);
-
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       clearTimeout(debounceTimer);
@@ -723,13 +687,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       debounceTimer = setTimeout(function () { renderResults(val); }, DEBOUNCE_MS);
       if (clearBtn) clearBtn.hidden = val === '';
     });
-
     searchInput.addEventListener('focus', function () {
       var val = searchInput.value;
       if (clearBtn) clearBtn.hidden = val === '';
       if (fold(val)) renderResults(val);
     });
-
     searchInput.addEventListener('keydown', function (e) {
       if (e.isComposing) return;
       var key = e.key;
@@ -763,7 +725,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     });
   }
-
   if (clearBtn) {
     clearBtn.addEventListener('click', function () {
       if (!searchInput) return;
@@ -774,14 +735,12 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       announce('');
     });
   }
-
   document.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !findClosest(t, '.live-search-wrapper')) {
       closeResults();
     }
   });
-
   if (menuToggle) {
     menuToggle.setAttribute('aria-expanded', menuToggle.checked ? 'true' : 'false');
     menuToggle.addEventListener('change', function () {
@@ -798,7 +757,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     });
   }
-
   document.addEventListener('keydown', function (e) {
     if (e.isComposing) return;
     if (e.key !== 'Escape' && e.key !== 'Esc') return;
@@ -812,7 +770,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       document.documentElement.classList.remove('nav-open');
     }
   });
-
   var navLinks = document.querySelectorAll('.mobile-nav a');
   for (var n = 0; n < navLinks.length; n++) {
     navLinks[n].addEventListener('click', function () {
@@ -823,7 +780,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       document.documentElement.classList.remove('nav-open');
     });
   }
-
   function createTextCard(post) {
     var a = document.createElement('a');
     a.href = post.url;
@@ -837,7 +793,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     a.appendChild(text);
     return a;
   }
-
   if (relatedPostsList && relatedLoadMoreBtn && relatedLoadMoreWrap) {
     var existingLinks = relatedPostsList.querySelectorAll('a');
     var seenUrls = {};
@@ -878,6 +833,5 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   }
 })();
 </script>
-
 </body>
 </html>
