@@ -201,9 +201,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 <script>
 (function () {
   'use strict';
-
   var byId = function (id) { return document.getElementById(id); };
-
   var searchForm = document.querySelector('.header-search-form');
   var searchInput = byId('liveSearch');
   var resultsBox = byId('liveSearchResults');
@@ -216,7 +214,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var searchClose = byId('searchClose');
   var headerDefault = byId('headerDefault');
   var headerSearch = byId('headerSearch');
-
   var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
   var MAX_RESULTS = 10;
   var DEBOUNCE_MS = 200;
@@ -226,13 +223,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var debounceTimer = null;
   var statusTimer = null;
   var postsCache = null;
-
   function matchesSelector(el, selector) {
     if (!el || el.nodeType !== 1) return false;
     var fn = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
     return fn ? fn.call(el, selector) : false;
   }
-
   function findClosest(el, selector) {
     if (!el || el.nodeType !== 1) return null;
     if (typeof el.closest === 'function') return el.closest(selector);
@@ -243,7 +238,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return null;
   }
-
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
     if (c >= 0x06F0 && c <= 0x06F9) return String.fromCharCode(c - 0x06F0 + 48);
@@ -259,7 +253,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     var lower = ch.toLowerCase();
     return lower.length === 1 ? lower : ch;
   }
-
   function fold(s) {
     s = String(s);
     var out = '';
@@ -268,13 +261,10 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return out;
   }
-
   function getPosts() {
     if (postsCache !== null) return postsCache;
-
     var arr = [];
     var el = byId('postsData');
-
     if (el) {
       try {
         var parsed = JSON.parse(el.textContent);
@@ -289,17 +279,14 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       } catch (err) {}
       el.textContent = '';
     }
-
     postsCache = arr;
     return arr;
   }
-
   function announce(msg) {
     if (!liveStatus) return;
     clearTimeout(statusTimer);
     statusTimer = setTimeout(function () { liveStatus.textContent = msg; }, 300);
   }
-
   function closeResults() {
     if (!resultsBox || resultsBox.hidden) return;
     resultsBox.hidden = true;
@@ -311,7 +298,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       searchInput.removeAttribute('aria-activedescendant');
     }
   }
-
   function setActiveOption(idx) {
     if (!optionEls.length || !searchInput) return;
     if (activeIndex >= 0 && optionEls[activeIndex]) {
@@ -336,7 +322,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     }
   }
-
   function renderResults(rawTerm) {
     if (!resultsBox || !searchInput) return;
     var term = fold(rawTerm);
@@ -344,13 +329,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     optionEls = [];
     activeIndex = -1;
     searchInput.removeAttribute('aria-activedescendant');
-
     if (!term) {
       closeResults();
       announce('');
       return;
     }
-
     var allPosts = getPosts();
     var matched = [];
     for (var i = 0; i < allPosts.length; i++) {
@@ -358,7 +341,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     var total = matched.length;
     var limited = matched.slice(0, MAX_RESULTS);
-
     if (total === 0) {
       var empty = document.createElement('li');
       empty.className = 'no-result';
@@ -399,64 +381,48 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
       resultsBox.appendChild(frag);
     }
-
     resultsBox.hidden = false;
     searchInput.setAttribute('aria-expanded', 'true');
     announce(total === 0 ? 'نتیجه‌ای یافت نشد' : total + ' نتیجه یافت شد');
   }
-
   function openSearchPanel() {
     if (!headerDefault || !headerSearch) return;
-
     if (menuToggle && menuToggle.checked) {
       menuToggle.checked = false;
       document.documentElement.classList.remove('nav-open');
     }
-
     headerDefault.hidden = true;
     headerSearch.hidden = false;
-
     if (searchToggle) {
       searchToggle.setAttribute('aria-expanded', 'true');
     }
-
     if (searchInput) {
       searchInput.focus();
     }
   }
-
   function closeSearchPanel() {
     if (!headerDefault || !headerSearch) return;
-
     headerSearch.hidden = true;
     headerDefault.hidden = false;
-
     if (searchInput) {
       searchInput.value = '';
     }
-
     closeResults();
-
     if (clearBtn) {
       clearBtn.hidden = true;
     }
-
     announce('');
-
     if (searchToggle) {
       searchToggle.setAttribute('aria-expanded', 'false');
       searchToggle.focus();
     }
   }
-
   if (searchToggle) {
     searchToggle.addEventListener('click', openSearchPanel);
   }
-
   if (searchClose) {
     searchClose.addEventListener('click', closeSearchPanel);
   }
-
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       clearTimeout(debounceTimer);
@@ -464,13 +430,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       debounceTimer = setTimeout(function () { renderResults(val); }, DEBOUNCE_MS);
       if (clearBtn) clearBtn.hidden = val === '';
     });
-
     searchInput.addEventListener('focus', function () {
       var val = searchInput.value;
       if (clearBtn) clearBtn.hidden = val === '';
       if (fold(val)) renderResults(val);
     });
-
     searchInput.addEventListener('keydown', function (e) {
       if (e.isComposing) return;
       var key = e.key;
@@ -504,7 +468,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     });
   }
-
   if (clearBtn) {
     clearBtn.addEventListener('click', function () {
       if (!searchInput) return;
@@ -515,19 +478,16 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       announce('');
     });
   }
-
   document.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !findClosest(t, '.live-search-wrapper')) {
       closeResults();
     }
   });
-
   if (menuToggle) {
     menuToggle.addEventListener('change', function () {
       document.documentElement.classList.toggle('nav-open', menuToggle.checked);
     });
-
     window.addEventListener('pageshow', function (e) {
       if (e && e.persisted) {
         menuToggle.checked = false;
@@ -537,22 +497,18 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     });
   }
-
   document.addEventListener('keydown', function (e) {
     if (e.isComposing) return;
     if (e.key !== 'Escape' && e.key !== 'Esc') return;
-
     if (headerSearch && !headerSearch.hidden) {
       closeSearchPanel();
       return;
     }
-
     if (menuToggle && menuToggle.checked) {
       menuToggle.checked = false;
       document.documentElement.classList.remove('nav-open');
     }
   });
-
   var navLinks = document.querySelectorAll('.mobile-nav a');
   for (var n = 0; n < navLinks.length; n++) {
     navLinks[n].addEventListener('click', function () {
@@ -562,7 +518,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       document.documentElement.classList.remove('nav-open');
     });
   }
-
   function createTextCard(post) {
     var a = document.createElement('a');
     a.href = post.url;
@@ -576,21 +531,17 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     a.appendChild(text);
     return a;
   }
-
   if (loadMoreBtn && postsList) {
     var currentIndex = postsList.children.length;
     var step = 5;
     var totalFromAttr = parseInt(loadMoreBtn.getAttribute('data-total'), 10);
     var currentTotal = isNaN(totalFromAttr) ? -1 : totalFromAttr;
-
     function updateLoadBtn() {
       if (currentTotal >= 0 && currentIndex >= currentTotal) {
         loadMoreBtn.hidden = true;
       }
     }
-
     updateLoadBtn();
-
     loadMoreBtn.addEventListener('click', function () {
       var allPosts = getPosts();
       currentTotal = allPosts.length;
