@@ -83,7 +83,7 @@ layout: null
       {%- if lp_pub_iso != '' -%}
       "datePublished": {{ lp_pub_iso | jsonify }},
       "dateModified": {{ lp_mod_iso | jsonify }},
-      {%- endif -%}
+      {%- endif -%},
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "https://blunder.ir/blog/icon.svg"
@@ -95,7 +95,7 @@ layout: null
 <style>
 *,*::before,*::after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
-:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-card: transparent; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
+:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
 html { scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', Tahoma, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; word-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-left: auto; margin-right: auto; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; background-color: var(--bg-shell); position: relative; }
@@ -159,24 +159,27 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 .live-search-results .more-result a { -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
 .posts-list { list-style: none; padding: 0; margin: 0; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; gap: 1rem; }
 .posts-list li { border-radius: var(--r-lg); }
-.post-card { display: block; position: relative; overflow: hidden; border-radius: inherit; text-decoration: none; color: #ffffff; background-color: var(--bg-elev); -webkit-tap-highlight-color: transparent; }
-.post-card img { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; -webkit-transition: -webkit-transform var(--dur); transition: transform var(--dur); }
-.post-card--hero img { aspect-ratio: 1 / 1; }
-.post-card:hover img { -webkit-transform: scale(1.04); transform: scale(1.04); }
-.post-card--fallback { background-color: var(--bg-fallback); }
-.post-card--fallback img { object-fit: contain; }
-.post-card--fallback:hover img { -webkit-transform: none; transform: none; }
+.post-card { display: block; position: relative; overflow: hidden; border-radius: inherit; text-decoration: none; color: var(--text); background-color: var(--bg-elev); border: 1px solid var(--border); -webkit-tap-highlight-color: transparent; -webkit-transition: border-color var(--dur), background-color var(--dur), -webkit-transform var(--dur-fast), box-shadow var(--dur-fast); transition: border-color var(--dur), background-color var(--dur), transform var(--dur-fast), box-shadow var(--dur-fast); }
+.post-card:hover { border-color: var(--accent); background-color: var(--accent-bg); -webkit-transform: translateY(-2px); transform: translateY(-2px); -webkit-box-shadow: 0 6px 20px rgba(13, 148, 136, 0.08); box-shadow: 0 6px 20px rgba(13, 148, 136, 0.08); }
 .post-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-@supports not (aspect-ratio: 16 / 9) {
-  .post-card { position: relative; padding-top: 56.25%; }
-  .post-card--hero { padding-top: 100%; }
-  .post-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.post-card--hero { background-color: var(--bg-elev); color: #ffffff; border: 0; -webkit-transform: none; transform: none; -webkit-box-shadow: none; box-shadow: none; }
+.post-card--hero:hover { background-color: var(--bg-elev); border: 0; -webkit-transform: none; transform: none; -webkit-box-shadow: none; box-shadow: none; }
+.post-card--hero img { width: 100%; height: auto; display: block; aspect-ratio: 1 / 1; object-fit: cover; -webkit-transition: -webkit-transform var(--dur); transition: transform var(--dur); }
+.post-card--hero:hover img { -webkit-transform: scale(1.04); transform: scale(1.04); }
+.post-card--hero.post-card--fallback { background-color: var(--bg-fallback); }
+.post-card--hero.post-card--fallback img { object-fit: contain; }
+.post-card--hero.post-card--fallback:hover img { -webkit-transform: none; transform: none; }
+@supports not (aspect-ratio: 1 / 1) {
+  .post-card--hero { position: relative; padding-top: 100%; }
+  .post-card--hero img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 }
 .post-badge { position: absolute; top: 1rem; inset-inline-start: 1rem; display: inline-flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; background-color: var(--accent); color: #ffffff; font-size: 0.7rem; font-weight: 700; line-height: 1; padding: 0.35rem 0.7rem; border-radius: 999px; -webkit-box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); z-index: 3; pointer-events: none; }
 .post-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: end; -webkit-justify-content: flex-end; -ms-flex-pack: end; justify-content: flex-end; padding: 1rem 1.25rem 1.25rem; background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.92)), color-stop(40%, rgba(0, 0, 0, 0.55)), color-stop(75%, rgba(0, 0, 0, 0))); background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0) 75%); pointer-events: none; z-index: 2; }
-.post-title { color: #ffffff; font-size: 1.05rem; font-weight: 700; line-height: 1.5; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-align: start; -webkit-transition: color var(--dur); transition: color var(--dur); }
-.post-card--hero .post-title { font-size: 1.3rem; font-weight: 800; line-height: 1.45; -webkit-line-clamp: 3; line-clamp: 3; }
-.post-card:hover .post-title { color: var(--header-accent); }
+.post-title { color: #ffffff; font-size: 1.3rem; font-weight: 800; line-height: 1.45; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-align: start; }
+.post-card--hero:hover .post-title { color: var(--header-accent); }
+.post-text { display: block; padding: 1.25rem 1.25rem; }
+.post-title-text { color: var(--text); font-size: 1.15rem; font-weight: 700; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; -webkit-transition: color var(--dur); transition: color var(--dur); }
+.post-card:hover .post-title-text { color: var(--accent); }
 .load-more-wrap { display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; margin-top: 2rem; }
 .load-more-btn { font-family: inherit; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: var(--bg-elev); color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.2rem; line-height: 1.4; border-radius: var(--r-md); border: 0; -webkit-transition: background-color var(--dur), -webkit-transform var(--dur-fast), color var(--dur); transition: background-color var(--dur), transform var(--dur-fast), color var(--dur); min-height: 48px; cursor: pointer; -ms-touch-action: manipulation; touch-action: manipulation; }
 .load-more-btn svg { display: block; -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; -webkit-margin-start: 0.5rem; margin-inline-start: 0.5rem; }
@@ -247,27 +250,32 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     <h2 class="sr-only">آخرین پست‌های بلاندر</h2>
     <ul class="posts-list" id="postsList" role="list">
       {%- for post in site.posts limit:20 -%}
-        {%- assign p_img = '' -%}
-        {%- if post.image and post.image != '' -%}
-          {%- assign p_img = post.image -%}
-          {%- unless p_img contains '://' -%}
-            {%- assign p_img = 'https://blunder.ir' | append: p_img -%}
-          {%- endunless -%}
-        {%- endif -%}
         <li>
-          <a href="https://blunder.ir{{ post.url | escape }}" class="post-card{% if forloop.first %} post-card--hero{% endif %}{% if p_img == '' %} post-card--fallback{% endif %}">
-            {%- if p_img != '' -%}
-              <img src="{{ p_img | escape }}" alt="" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async" width="800" height="{% if forloop.first %}800{% else %}450{% endif %}">
-            {%- else -%}
-              <img src="https://blunder.ir/blog/icon.svg" alt="" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async" width="800" height="{% if forloop.first %}800{% else %}450{% endif %}">
-            {%- endif -%}
-            {%- if forloop.first -%}
+        {%- if forloop.first -%}
+          {%- if hero_img != '' -%}
+            <a href="https://blunder.ir{{ post.url | escape }}" class="post-card post-card--hero" aria-label="{{ post.title | escape }}">
+              <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="800" height="800">
               <span class="post-badge">جدیدترین</span>
-            {%- endif -%}
-            <span class="post-overlay">
-              <span class="post-title">{{ post.title | escape }}</span>
+              <span class="post-overlay">
+                <span class="post-title">{{ post.title | escape }}</span>
+              </span>
+            </a>
+          {%- else -%}
+            <a href="https://blunder.ir{{ post.url | escape }}" class="post-card post-card--hero post-card--fallback" aria-label="{{ post.title | escape }}">
+              <img src="https://blunder.ir/blog/icon.svg" alt="" fetchpriority="high" decoding="async" width="800" height="800">
+              <span class="post-badge">جدیدترین</span>
+              <span class="post-overlay">
+                <span class="post-title">{{ post.title | escape }}</span>
+              </span>
+            </a>
+          {%- endif -%}
+        {%- else -%}
+          <a href="https://blunder.ir{{ post.url | escape }}" class="post-card">
+            <span class="post-text">
+              <span class="post-title-text">{{ post.title | escape }}</span>
             </span>
           </a>
+        {%- endif -%}
         </li>
       {%- endfor -%}
     </ul>
@@ -282,14 +290,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
-{%- assign p_img = '' -%}
-{%- if post.image and post.image != '' -%}
-  {%- assign p_img = post.image -%}
-  {%- unless p_img contains '://' -%}
-    {%- assign p_img = 'https://blunder.ir' | append: p_img -%}
-  {%- endunless -%}
-{%- endif -%}
-{"t":{{ post.title | jsonify | replace: '<', '\u003C' }},"u":{{ post.url | prepend: 'https://blunder.ir' | jsonify | replace: '<', '\u003C' }},"i":{{ p_img | jsonify | replace: '<', '\u003C' }}}{%- unless forloop.last -%},{%- endunless -%}
+{"t":{{ post.title | jsonify | replace: '<', '\u003C' }},"u":{{ post.url | prepend: 'https://blunder.ir' | jsonify | replace: '<', '\u003C' }}}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
@@ -377,7 +378,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         for (var i = 0; i < parsed.length; i++) {
           var p = parsed[i];
           if (p && typeof p.t === 'string' && typeof p.u === 'string' && p.t && p.u) {
-            arr.push({ title: p.t, url: p.u, image: typeof p.i === 'string' ? p.i : '', folded: fold(p.t) });
+            arr.push({ title: p.t, url: p.u, folded: fold(p.t) });
           }
         }
       }
@@ -656,39 +657,17 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     });
   }
 
-  function createCard(post, isHero) {
+  function createTextCard(post) {
     var a = document.createElement('a');
     a.href = post.url;
     a.className = 'post-card';
-    if (isHero) a.classList.add('post-card--hero');
-
-    var hasImg = !!post.image;
-    if (!hasImg) a.classList.add('post-card--fallback');
-
-    var img = document.createElement('img');
-    img.alt = '';
-    img.decoding = 'async';
-    img.loading = isHero ? 'eager' : 'lazy';
-    img.width = 800;
-    img.height = isHero ? 800 : 450;
-    img.src = hasImg ? post.image : 'https://blunder.ir/blog/icon.svg';
-    a.appendChild(img);
-
-    if (isHero) {
-      var badge = document.createElement('span');
-      badge.className = 'post-badge';
-      badge.textContent = 'جدیدترین';
-      a.appendChild(badge);
-    }
-
-    var overlay = document.createElement('span');
-    overlay.className = 'post-overlay';
+    var text = document.createElement('span');
+    text.className = 'post-text';
     var title = document.createElement('span');
-    title.className = 'post-title';
+    title.className = 'post-title-text';
     title.textContent = post.title;
-    overlay.appendChild(title);
-    a.appendChild(overlay);
-
+    text.appendChild(title);
+    a.appendChild(text);
     return a;
   }
 
@@ -725,7 +704,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         var post = allPosts[i];
         if (!post) continue;
         var li = document.createElement('li');
-        li.appendChild(createCard(post, false));
+        li.appendChild(createTextCard(post));
         frag.appendChild(li);
       }
       var firstNew = frag.firstChild;
