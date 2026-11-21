@@ -123,9 +123,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 <script>
 (function () {
   'use strict';
-
   var byId = function (id) { return document.getElementById(id); };
-
   var searchInput = byId('liveSearchHeader');
   var clearBtn = byId('headerSearchClearBtn');
   var postsList = byId('postsList');
@@ -133,12 +131,10 @@ html.nav-open, html.nav-open body { overflow: hidden; }
   var searchStatus = byId('searchStatus');
   var menuToggle = byId('menu-toggle');
   var searchForm = document.querySelector('.header-search-form');
-
   var debounceTimer = null;
   var statusTimer = null;
   var DEBOUNCE_MS = 200;
   var postsCache = null;
-
   function getQueryParamQ() {
     var search = window.location.search || '';
     if (typeof URLSearchParams === 'function') {
@@ -163,7 +159,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return '';
   }
-
   function setUrlQuery(q) {
     if (!window.history || typeof window.history.replaceState !== 'function') return;
     try {
@@ -178,7 +173,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
         return;
       }
     } catch (err) {}
-
     try {
       var loc = window.location;
       var base = loc.pathname;
@@ -186,7 +180,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       window.history.replaceState({}, '', base + nextQuery + (loc.hash || ''));
     } catch (err) {}
   }
-
   function foldChar(ch) {
     var c = ch.charCodeAt(0);
     if (c >= 0x06F0 && c <= 0x06F9) return String.fromCharCode(c - 0x06F0 + 48);
@@ -202,7 +195,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     var lower = ch.toLowerCase();
     return lower.length === 1 ? lower : ch;
   }
-
   function fold(s) {
     s = String(s);
     var out = '';
@@ -211,13 +203,10 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     }
     return out;
   }
-
   function getPosts() {
     if (postsCache !== null) return postsCache;
-
     var arr = [];
     var el = byId('postsData');
-
     if (el) {
       try {
         var parsed = JSON.parse(el.textContent);
@@ -232,17 +221,14 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       } catch (err) {}
       el.textContent = '';
     }
-
     postsCache = arr;
     return arr;
   }
-
   function announce(msg) {
     if (!searchStatus) return;
     clearTimeout(statusTimer);
     statusTimer = setTimeout(function () { searchStatus.textContent = msg; }, 300);
   }
-
   function createTextCard(post) {
     var a = document.createElement('a');
     a.href = post.url;
@@ -256,14 +242,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     a.appendChild(text);
     return a;
   }
-
   function renderList(term) {
     var normalizedTerm = fold(term);
-
     if (postsList) {
       postsList.innerHTML = '';
     }
-
     if (!normalizedTerm) {
       if (postsEmpty) {
         postsEmpty.textContent = 'برای شروع، عبارت مورد نظر خود را در کادر جستجوی بالا وارد کنید.';
@@ -273,16 +256,13 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       announce('');
       return;
     }
-
     var allPosts = getPosts();
     var filtered = [];
-
     for (var i = 0; i < allPosts.length; i++) {
       if (allPosts[i].folded.indexOf(normalizedTerm) !== -1) {
         filtered.push(allPosts[i]);
       }
     }
-
     if (filtered.length === 0) {
       if (postsEmpty) {
         postsEmpty.textContent = 'هیچ مطلبی یافت نشد.';
@@ -292,28 +272,22 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       announce('نتیجه‌ای یافت نشد');
       return;
     }
-
     if (postsEmpty) {
       postsEmpty.hidden = true;
     }
-
     var fragment = document.createDocumentFragment();
-
     for (var k = 0; k < filtered.length; k++) {
       var item = filtered[k];
       var li = document.createElement('li');
       li.appendChild(createTextCard(item));
       fragment.appendChild(li);
     }
-
     if (postsList) {
       postsList.appendChild(fragment);
     }
-
     setUrlQuery(term);
     announce(filtered.length + ' نتیجه یافت شد');
   }
-
   if (searchForm) {
     searchForm.addEventListener('submit', function (e) {
       if (e && typeof e.preventDefault === 'function') e.preventDefault();
@@ -322,7 +296,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     });
   }
-
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       clearTimeout(debounceTimer);
@@ -335,7 +308,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       }
     });
   }
-
   if (clearBtn) {
     clearBtn.addEventListener('click', function () {
       if (!searchInput) return;
@@ -345,13 +317,11 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       renderList('');
     });
   }
-
   if (menuToggle) {
     menuToggle.addEventListener('change', function () {
       document.documentElement.classList.toggle('nav-open', menuToggle.checked);
     });
   }
-
   document.addEventListener('keydown', function (e) {
     if (e.isComposing) return;
     if (e.key !== 'Escape' && e.key !== 'Esc') return;
@@ -360,7 +330,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       document.documentElement.classList.remove('nav-open');
     }
   });
-
   var navLinks = document.querySelectorAll('.mobile-nav a');
   for (var n = 0; n < navLinks.length; n++) {
     navLinks[n].addEventListener('click', function () {
@@ -370,9 +339,7 @@ html.nav-open, html.nav-open body { overflow: hidden; }
       document.documentElement.classList.remove('nav-open');
     });
   }
-
   var initialQuery = getQueryParamQ();
-
   if (initialQuery) {
     if (searchInput) {
       searchInput.value = initialQuery;
