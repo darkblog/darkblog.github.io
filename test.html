@@ -16,13 +16,11 @@ layout: null
   {%- assign lp_pub_iso = lp_pub | date_to_xmlschema -%}
   {%- assign lp_mod_iso = lp_mod | date_to_xmlschema -%}
 {%- endif -%}
-
 <title>بلاندر؛ تاریخ + سرگرمی</title>
 <meta name="description" content="وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.">
 <link rel="canonical" href="https://blunder.ir/">
 <link rel="icon" type="image/svg+xml" href="https://blunder.ir/blog/icon.svg">
 <link rel="preload" href="https://blunder.ir/blog/yekan.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-
 {%- assign hero_post = latest_post -%}
 {%- assign hero_img = '' -%}
 {%- if hero_post and hero_post.image and hero_post.image != '' -%}
@@ -32,9 +30,7 @@ layout: null
   {%- endunless -%}
   <link rel="preload" href="{{ hero_img | escape }}" as="image" fetchpriority="high">
 {%- endif -%}
-
 <meta name="theme-color" content="#000000">
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -189,7 +185,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 <a class="skip-link" href="#main">پرش به محتوا</a>
 <div class="page-wrapper">
   <input type="checkbox" id="menu-toggle" class="sr-only" aria-label="باز و بسته کردن منو">
-
   <header class="site-header">
     <div class="header-inner" id="headerDefault">
       <div class="header-actions">
@@ -205,12 +200,10 @@ html.nav-open, html.nav-open body { overflow: hidden; }
           </svg>
         </button>
       </div>
-
       <a href="https://blunder.ir/" class="brand" aria-label="صفحه اصلی بلاندر">
         <img src="https://blunder.ir/blog/logo.svg" alt="بلاندر" width="144" height="40" fetchpriority="high" decoding="async">
       </a>
     </div>
-
     <div class="header-search" id="headerSearch" hidden>
       <form action="https://blunder.ir/search" method="get" class="header-search-form" role="search">
         <button type="button" class="header-icon-btn search-close" id="searchClose" aria-label="بستن جستجو">
@@ -219,7 +212,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
-
         <div class="live-search-wrapper">
           <label for="liveSearch" class="sr-only">جستجو</label>
           <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
@@ -229,19 +221,16 @@ html.nav-open, html.nav-open body { overflow: hidden; }
           <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
           <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         </div>
-
         <button type="submit" class="sr-only">جستجو</button>
       </form>
     </div>
   </header>
-
   <nav class="mobile-nav" aria-label="منوی اصلی">
     <ul role="list">
       <li><a href="https://blunder.ir/">صفحه اصلی</a></li>
       <li><a href="https://blunder.ir/blog">وبلاگ بلاندر</a></li>
     </ul>
   </nav>
-
   <main id="main" class="main-content" tabindex="-1">
     <h1 class="sr-only">بلاندر</h1>
     <h2 class="sr-only">آخرین پست‌های بلاندر</h2>
@@ -283,7 +272,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
     {%- endif -%}
   </main>
 </div>
-
 <script type="application/json" id="postsData">
 [
 {%- for post in site.posts -%}
@@ -291,7 +279,6 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 {%- endfor -%}
 ]
 </script>
-
 <script>
 (function () {
   'use strict';
