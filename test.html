@@ -21,6 +21,7 @@ layout: null
 <meta name="description" content="وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.">
 <link rel="canonical" href="https://blunder.ir/">
 <link rel="icon" type="image/svg+xml" href="https://blunder.ir/blog/icon.svg">
+<link rel="preload" href="https://blunder.ir/blog/vazir.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
 
 {%- assign hero_post = latest_post -%}
 {%- assign hero_img = '' -%}
@@ -79,11 +80,9 @@ layout: null
       "name": "بلاندر؛ تاریخ + سرگرمی",
       "description": "وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.",
       "isPartOf": { "@id": "https://blunder.ir/#website" },
-      "publisher": { "@id": "https://blunder.ir/#organization" },
-      {%- if lp_pub_iso != '' -%}
+      "publisher": { "@id": "https://blunder.ir/#organization" }{%- if lp_pub_iso != '' -%},
       "datePublished": {{ lp_pub_iso | jsonify }},
-      "dateModified": {{ lp_mod_iso | jsonify }},
-      {%- endif -%},
+      "dateModified": {{ lp_mod_iso | jsonify }}{%- endif -%},
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "https://blunder.ir/blog/icon.svg"
@@ -95,9 +94,10 @@ layout: null
 <style>
 *,*::before,*::after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
+@font-face { font-family: 'Vazirmatn'; src: url('https://blunder.ir/blog/vazir.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
 :root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --text-dim: #a1a1aa; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
 html { scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', Tahoma, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-wrap: break-word; word-wrap: break-word; }
+body { font-family: 'Vazirmatn', 'Vazir', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', Tahoma, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; overflow-wrap: break-word; word-wrap: break-word; }
 .page-wrapper { max-width: var(--max-w); width: 100%; margin-left: auto; margin-right: auto; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; background-color: var(--bg-shell); position: relative; }
 main { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; width: 100%; }
 a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
