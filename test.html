@@ -33,59 +33,6 @@ layout: null
   <link rel="preload" href="{{ hero_img | escape }}" as="image" fetchpriority="high">
 {%- endif -%}
 <meta name="theme-color" content="#000000">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://blunder.ir/#organization",
-      "name": "بلاندر",
-      "url": "https://blunder.ir/",
-      "logo": { "@type": "ImageObject", "url": "https://blunder.ir/blog/icon.svg" },
-      "sameAs": [
-        "https://www.facebook.com/ehsanchehri/",
-        "https://www.youtube.com/@endchess",
-        "https://www.instagram.com/ehsanchehri",
-        "https://x.com/pbstwi",
-        "https://www.linkedin.com/in/ehsanchehri",
-        "https://t.me/s/linkedulist",
-        "https://www.pinterest.com/ehsanchehri/"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://blunder.ir/#website",
-      "url": "https://blunder.ir/",
-      "name": "بلاندر",
-      "publisher": { "@id": "https://blunder.ir/#organization" },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://blunder.ir/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://blunder.ir/#webpage",
-      "url": "https://blunder.ir/",
-      "name": "بلاندر؛ تاریخ + سرگرمی",
-      "description": "وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.",
-      "isPartOf": { "@id": "https://blunder.ir/#website" },
-      "publisher": { "@id": "https://blunder.ir/#organization" }{%- if lp_pub_iso != '' -%},
-      "datePublished": {{ lp_pub_iso | jsonify }},
-      "dateModified": {{ lp_mod_iso | jsonify }}{%- endif -%},
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://blunder.ir/blog/icon.svg"
-      }
-    }
-  ]
-}
-</script>
 <style>
 *,*::before,*::after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
