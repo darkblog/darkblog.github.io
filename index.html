@@ -8,653 +8,151 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 {%- assign latest_post = site.posts.first -%}
-{%- assign lp_pub_iso = '' -%}
-{%- assign lp_mod_iso = '' -%}
-{%- if latest_post -%}
-  {%- assign lp_pub = latest_post.date -%}
-  {%- assign lp_mod = latest_post.last_modified_at | default: latest_post.date -%}
-  {%- assign lp_pub_iso = lp_pub | date_to_xmlschema -%}
-  {%- assign lp_mod_iso = lp_mod | date_to_xmlschema -%}
-{%- endif -%}
+{%- assign sorted_tags = site.tags | sort -%}
 <title>بلاندر؛ تاریخ + سرگرمی</title>
 <meta name="description" content="وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.">
 <link rel="canonical" href="https://blunder.ir/">
-<link rel="icon" type="image/svg+xml" href="https://blunder.ir/blog/icon.svg">
-<link rel="preload" href="https://blunder.ir/blog/yekan.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+<link rel="preconnect" href="https://blunder.sirv.com" crossorigin>
+<link rel="preconnect" href="https://blunder.sirv.com">
+<link rel="icon" type="image/svg+xml" href="https://blunder.sirv.com/icon.svg">
+<link rel="preload" href="https://blunder.sirv.com/yekan.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
 {%- assign hero_post = latest_post -%}
 {%- assign hero_img = '' -%}
 {%- if hero_post and hero_post.image and hero_post.image != '' -%}
   {%- assign hero_img = hero_post.image -%}
   {%- unless hero_img contains '://' -%}
+    {%- unless hero_img.first == '/' -%}
+      {%- assign hero_img = '/' | append: hero_img -%}
+    {%- endunless -%}
     {%- assign hero_img = 'https://blunder.ir' | append: hero_img -%}
   {%- endunless -%}
   <link rel="preload" href="{{ hero_img | escape }}" as="image" fetchpriority="high">
 {%- endif -%}
 <meta name="theme-color" content="#000000">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://blunder.ir/#organization",
-      "name": "بلاندر",
-      "url": "https://blunder.ir/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://blunder.ir/blog/icon.svg"
-      },
-      "sameAs": [
-        "https://www.facebook.com/ehsanchehri/",
-        "https://www.youtube.com/@endchess",
-        "https://www.instagram.com/ehsanchehri",
-        "https://x.com/pbstwi",
-        "https://www.linkedin.com/in/ehsanchehri",
-        "https://t.me/s/linkedulist",
-        "https://www.pinterest.com/ehsanchehri/"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://blunder.ir/#website",
-      "url": "https://blunder.ir/",
-      "name": "بلاندر",
-      "publisher": { "@id": "https://blunder.ir/#organization" },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://blunder.ir/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://blunder.ir/#webpage",
-      "url": "https://blunder.ir/",
-      "name": "بلاندر؛ تاریخ + سرگرمی",
-      "description": "وب‌سایت بلاندر با کنجکاوی در تاریخ ایران و جهان شما رو با خودش همراه می‌کنه. مقالات دست اول تحلیلی از مشاهیر و کشورهای جهان.",
-      "isPartOf": { "@id": "https://blunder.ir/#website" },
-      "publisher": { "@id": "https://blunder.ir/#organization" }{%- if lp_pub_iso != '' -%},
-      "datePublished": {{ lp_pub_iso | jsonify }},
-      "dateModified": {{ lp_mod_iso | jsonify }}{%- endif -%},
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://blunder.ir/blog/icon.svg"
-      }
-    }
-  ]
-}
-</script>
 <style>
 *,*::before,*::after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; }
-[hidden] { display: none !important; }
-@font-face { font-family: 'Yekan'; font-style: normal; font-display: swap; font-weight: 100 900; src: url('https://blunder.ir/blog/yekan.woff2') format('woff2'); }
-:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --pad-x-lg: clamp(1rem, 3vw, 2rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --border-h: #d4d4d8; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --accent-ring: rgba(13, 148, 136, 0.25); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
-html { scroll-padding-top: calc(var(--header-h) + 1rem); -webkit-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; }
-body { font-family: 'Yekan', 'Yekan Bakh', 'Vazir', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', Tahoma, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; overflow-wrap: break-word; word-wrap: break-word; }
-.page-wrapper { max-width: var(--max-w); width: 100%; margin-left: auto; margin-right: auto; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; background-color: var(--bg-shell); position: relative; }
-main { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; width: 100%; }
-a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-.site-header :focus-visible, .mobile-nav :focus-visible { outline-color: var(--header-accent); }
+@font-face { font-family: 'Yekan'; font-style: normal; font-display: swap; font-weight: 100 900; src: url('https://blunder.sirv.com/yekan.woff2') format('woff2'); }
+:root { --max-w: 767px; --header-h: 5rem; --fs-base: 1.125rem; --pad-x: clamp(1rem, 3vw, 1.5rem); --bg-page: #ffffff; --bg-shell: #ffffff; --bg-elev: #f7f7f7; --bg-fallback: #111111; --border: #e4e4e7; --text: #18181b; --text-body: #3f3f46; --text-muted: #71717a; --accent: #0d9488; --accent-bg: rgba(13, 148, 136, 0.10); --header-bg: #000000; --header-border: #2a2a2a; --header-text: #ffffff; --header-accent: #2dd4bf; --r-sm: 0.5rem; --r-md: 0.75rem; --r-lg: 1rem; --dur: 0.25s; --dur-fast: 0.15s; --safe-r: env(safe-area-inset-right, 0px); --safe-l: env(safe-area-inset-left, 0px); --safe-b: env(safe-area-inset-bottom, 0px); color-scheme: light; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { font-family: 'Yekan', 'Yekan Bakh', 'Vazir', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', Tahoma, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 400; font-size: var(--fs-base); background-color: var(--bg-page); color: var(--text); line-height: 1.6; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; overflow-wrap: break-word; }
+.page-wrapper { max-width: var(--max-w); width: 100%; margin-left: auto; margin-right: auto; display: flex; flex-direction: column; flex: 1; background-color: var(--bg-shell); position: relative; }
+main { flex: 1; width: 100%; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.site-header :focus-visible { outline-color: var(--header-accent); }
 .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; -webkit-clip-path: inset(50%) !important; clip-path: inset(50%) !important; white-space: nowrap !important; border: 0 !important; }
-.skip-link { position: fixed; inset-inline-start: 1rem; top: 1rem; padding: 0.75rem 1.25rem; background: var(--accent); color: #ffffff; font-weight: 700; border-radius: var(--r-md); -webkit-transform: translateY(-250%); transform: translateY(-250%); -webkit-transition: -webkit-transform var(--dur-fast); transition: transform var(--dur-fast); z-index: 100; text-decoration: none; }
-.skip-link:focus { -webkit-transform: translateY(0); transform: translateY(0); }
+.skip-link { position: fixed; inset-inline-start: 1rem; top: 1rem; padding: 0.75rem 1.25rem; background: var(--accent); color: #ffffff; font-weight: 700; border-radius: var(--r-md); transform: translateY(-250%); transition: transform var(--dur-fast); z-index: 100; text-decoration: none; }
+.skip-link:focus { transform: translateY(0); }
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background-color: var(--header-bg); border-bottom: 1px solid var(--header-border); max-width: var(--max-w); margin-left: auto; margin-right: auto; width: 100%; }
-.header-inner { height: var(--header-h); display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; padding-left: max(var(--pad-x), var(--safe-r)); padding-right: max(var(--pad-x), var(--safe-l)); }
-.header-actions { display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; gap: 0.25rem; -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; }
-.brand { display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; text-decoration: none; color: var(--header-text); -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; -webkit-box-flex: 0; -webkit-flex-grow: 0; -ms-flex-positive: 0; flex-grow: 0; min-width: 48px; min-height: 48px; line-height: 0; }
-.brand img { height: 2.5rem; width: auto; max-width: 100%; display: block; }
-.header-icon-btn { display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; background: transparent; border: 0; padding: 0; cursor: pointer; color: var(--header-text); -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; -webkit-box-flex: 0; -webkit-flex-grow: 0; -ms-flex-positive: 0; flex-grow: 0; min-width: 48px; min-height: 48px; border-radius: 0.375rem; -webkit-transition: color var(--dur); transition: color var(--dur); -ms-touch-action: manipulation; touch-action: manipulation; line-height: 1; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-.header-icon-btn:hover { color: var(--header-accent); }
-.header-icon-btn:focus-visible { outline: 3px solid var(--header-accent); outline-offset: 2px; }
-.header-icon-btn svg { display: block; }
-.hamburger { display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; background: transparent; border: 0; padding: 0; cursor: pointer; -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; -webkit-box-flex: 0; -webkit-flex-grow: 0; -ms-flex-positive: 0; flex-grow: 0; -ms-touch-action: manipulation; touch-action: manipulation; min-width: 48px; min-height: 48px; border-radius: 0.375rem; line-height: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-.hamburger__bar { display: block; width: 1.75rem; height: 0.125rem; background-color: var(--header-text); -webkit-transition: -webkit-transform var(--dur), opacity var(--dur); transition: transform var(--dur), opacity var(--dur); }
-.hamburger__bar:first-child { margin-bottom: 0.375rem; }
-.hamburger__bar:last-child { margin-top: 0.375rem; }
-#menu-toggle:focus-visible ~ .site-header .hamburger { outline: 3px solid var(--header-accent); outline-offset: 2px; }
-#menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(1) { -webkit-transform: translateY(0.5rem) rotate(45deg); transform: translateY(0.5rem) rotate(45deg); }
-#menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(2) { opacity: 0; }
-#menu-toggle:checked ~ .site-header .hamburger .hamburger__bar:nth-child(3) { -webkit-transform: translateY(-0.5rem) rotate(-45deg); transform: translateY(-0.5rem) rotate(-45deg); }
-.header-search { height: var(--header-h); display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; padding-left: max(var(--pad-x), var(--safe-r)); padding-right: max(var(--pad-x), var(--safe-l)); }
-.header-search-form { display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; width: 100%; }
-.header-search-form > * + * { -webkit-margin-start: 0.5rem; margin-inline-start: 0.5rem; }
-.header-search .live-search-wrapper { -webkit-box-flex: 1; -webkit-flex: 1 1 0%; -ms-flex: 1 1 0%; flex: 1 1 0%; margin-bottom: 0; }
-.mobile-nav { position: fixed; top: var(--header-h); bottom: 0; left: 0; right: 0; max-width: var(--max-w); margin-left: auto; margin-right: auto; background-color: var(--header-bg); padding-top: 2rem; padding-bottom: max(2rem, var(--safe-b)); padding-left: max(var(--pad-x-lg), var(--safe-r)); padding-right: max(var(--pad-x-lg), var(--safe-l)); z-index: 49; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; -webkit-box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); -webkit-transform: translateY(-8px); transform: translateY(-8px); opacity: 0; visibility: hidden; -webkit-transition: -webkit-transform var(--dur), opacity var(--dur), visibility 0s var(--dur); transition: transform var(--dur), opacity var(--dur), visibility 0s var(--dur); -ms-overflow-style: none; scrollbar-width: none; }
-.mobile-nav::-webkit-scrollbar { display: none; }
-#menu-toggle:checked ~ .mobile-nav { -webkit-transform: translateY(0); transform: translateY(0); opacity: 1; visibility: visible; -webkit-transition: -webkit-transform var(--dur), opacity var(--dur), visibility 0s; transition: transform var(--dur), opacity var(--dur), visibility 0s; }
-html.nav-open, html.nav-open body { overflow: hidden; }
-.mobile-nav ul { display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; list-style: none; padding: 0; margin: 0; }
-.mobile-nav li + li { margin-top: 1.75rem; }
-.mobile-nav a { color: var(--header-text); text-decoration: none; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); min-height: 48px; line-height: 1.6; -webkit-transition: color var(--dur); transition: color var(--dur); }
-.mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--header-accent); }
+.header-inner { height: var(--header-h); display: flex; align-items: center; padding-left: max(var(--pad-x), var(--safe-r)); padding-right: max(var(--pad-x), var(--safe-l)); }
+.tag-nav { flex: 1 1 0%; min-width: 0; display: flex; gap: 0.5rem; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; padding: 0.25rem 0; -webkit-overflow-scrolling: touch; }
+.tag-nav::-webkit-scrollbar { display: none; }
+.tag-btn { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 0.875rem; background: rgba(255, 255, 255, 0.08); color: var(--header-text); border: 1px solid transparent; border-radius: 999px; font-family: inherit; font-size: 0.875rem; font-weight: 500; line-height: 1; min-height: 36px; cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; transition: background-color var(--dur), color var(--dur), border-color var(--dur); user-select: none; }
+.tag-btn:hover { background: rgba(255, 255, 255, 0.15); }
 .main-content { padding-top: calc(var(--header-h) + 2rem); padding-bottom: max(2.5rem, var(--safe-b)); padding-left: max(var(--pad-x), var(--safe-r)); padding-right: max(var(--pad-x), var(--safe-l)); background-color: var(--bg-shell); width: 100%; }
-.live-search-wrapper { display: block; position: relative; margin-bottom: 1.5rem; width: 100%; }
-.live-search-input { width: 100%; padding-top: 0.8rem; padding-bottom: 0.8rem; padding-inline-start: 3.5rem; padding-inline-end: 3rem; font-family: inherit; font-size: 1rem; line-height: 1.6; border: 1px solid #dfe1e5; border-radius: 24px; background-color: #ffffff; background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='20'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%235f6368'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='11'%20cy='11'%20r='7'/%3E%3Cline%20x1='21'%20y1='21'%20x2='16.65'%20y2='16.65'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem 1.25rem; color: var(--text-body); min-height: 48px; -webkit-appearance: none; -moz-appearance: none; appearance: none; -webkit-transition: -webkit-box-shadow var(--dur), border-color var(--dur), background-color var(--dur); transition: box-shadow var(--dur), border-color var(--dur), background-color var(--dur); }
-[dir="ltr"] .live-search-input { background-position: left 1rem center; }
-.live-search-input:hover { -webkit-box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); border-color: transparent; }
-.live-search-input:focus { background-color: #ffffff; -webkit-box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); border-color: transparent; outline: none; }
-.live-search-input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-.live-search-input::-webkit-input-placeholder { color: #5f6368; opacity: 1; }
-.live-search-input::-moz-placeholder { color: #5f6368; opacity: 1; }
-.live-search-input:-ms-input-placeholder { color: #5f6368; opacity: 1; }
-.live-search-input::placeholder { color: #5f6368; opacity: 1; }
-.live-search-input::-webkit-search-cancel-button, .live-search-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
-.live-search-input::-moz-search-clear-button { display: none; }
-.search-clear-btn { position: absolute; inset-inline-end: 0.6rem; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); background: transparent; border: 0; color: #70757a; font-size: 1.5rem; line-height: 1; cursor: pointer; min-width: 40px; min-height: 40px; border-radius: 50%; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-transition: color var(--dur), background-color var(--dur); transition: color var(--dur), background-color var(--dur); -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-.search-clear-btn:hover { color: #202124; background: #f1f3f4; }
-.live-search-results { position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0; background-color: var(--bg-elev); border: 0; border-radius: var(--r-lg); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; max-height: 60vh; z-index: 20; list-style: none; padding: 0; margin: 0; -webkit-box-shadow: 0 10px 34px rgba(0, 0, 0, 0.14); box-shadow: 0 10px 34px rgba(0, 0, 0, 0.14); }
-.live-search-results li { border-bottom: 1px solid var(--border); list-style: none; }
-.live-search-results li:last-child { border-bottom: none; }
-.live-search-results a { color: var(--text-body); text-decoration: none; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; text-align: start; font-size: 0.95rem; line-height: 1.6; padding: 0.8rem 1.2rem; min-height: 48px; -webkit-transition: color var(--dur), background-color var(--dur); transition: color var(--dur), background-color var(--dur); }
-.live-search-results a:hover, .live-search-results a:focus-visible { color: var(--accent); background-color: rgba(0, 0, 0, 0.04); }
-.live-search-results li[aria-selected="true"] a { color: var(--accent); background-color: var(--accent-bg); }
-.live-search-results .no-result { color: var(--text-muted); padding: 1rem 1.2rem; text-align: center; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; min-height: 48px; }
-.live-search-results .more-result a { -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
-.posts-list { list-style: none; padding: 0; margin: 0; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; gap: 1rem; }
+.posts-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
 .posts-list li { border-radius: var(--r-lg); }
-.post-card { display: block; position: relative; overflow: hidden; border-radius: inherit; text-decoration: none; color: var(--text); background-color: var(--bg-elev); border: 1px solid var(--border); -webkit-tap-highlight-color: transparent; -webkit-transition: border-color var(--dur), background-color var(--dur), -webkit-transform var(--dur-fast), box-shadow var(--dur-fast); transition: border-color var(--dur), background-color var(--dur), transform var(--dur-fast), box-shadow var(--dur-fast); }
-.post-card:hover { border-color: var(--accent); background-color: var(--accent-bg); -webkit-transform: translateY(-2px); transform: translateY(-2px); -webkit-box-shadow: 0 6px 20px rgba(13, 148, 136, 0.08); box-shadow: 0 6px 20px rgba(13, 148, 136, 0.08); }
+.post-card { display: block; position: relative; overflow: hidden; border-radius: inherit; text-decoration: none; color: var(--text); background-color: var(--bg-elev); border: 1px solid var(--border); -webkit-tap-highlight-color: transparent; transition: border-color var(--dur), background-color var(--dur), transform var(--dur-fast), box-shadow var(--dur-fast); }
+.post-card:hover { border-color: var(--accent); background-color: var(--accent-bg); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 148, 136, 0.08); }
 .post-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.post-card--hero { background-color: var(--bg-elev); color: #ffffff; border: 0; -webkit-transform: none; transform: none; -webkit-box-shadow: none; box-shadow: none; }
-.post-card--hero:hover { background-color: var(--bg-elev); border: 0; -webkit-transform: none; transform: none; -webkit-box-shadow: none; box-shadow: none; }
-.post-card--hero img { width: 100%; height: auto; display: block; aspect-ratio: 1 / 1; object-fit: cover; -webkit-transition: -webkit-transform var(--dur); transition: transform var(--dur); }
-.post-card--hero:hover img { -webkit-transform: scale(1.04); transform: scale(1.04); }
+.post-card--hero { background-color: var(--bg-elev); color: #ffffff; border: 0; transform: none; box-shadow: none; }
+.post-card--hero:hover { background-color: var(--bg-elev); border: 0; transform: none; box-shadow: none; }
+.post-card--hero img { width: 100%; height: auto; display: block; aspect-ratio: 1 / 1; object-fit: cover; transition: transform var(--dur); }
+.post-card--hero:hover img { transform: scale(1.04); }
 .post-card--hero.post-card--fallback { background-color: var(--bg-fallback); }
 .post-card--hero.post-card--fallback img { object-fit: contain; }
-.post-card--hero.post-card--fallback:hover img { -webkit-transform: none; transform: none; }
+.post-card--hero.post-card--fallback:hover img { transform: none; }
 @supports not (aspect-ratio: 1 / 1) { .post-card--hero { position: relative; padding-top: 100%; } .post-card--hero img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } }
-.post-badge { position: absolute; top: 1rem; inset-inline-start: 1rem; display: inline-flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; background-color: var(--accent); color: #ffffff; font-size: 0.7rem; font-weight: 700; line-height: 1; padding: 0.35rem 0.7rem; border-radius: 999px; -webkit-box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); z-index: 3; pointer-events: none; }
-.post-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: end; -webkit-justify-content: flex-end; -ms-flex-pack: end; justify-content: flex-end; padding: 1rem 1.25rem 1.25rem; background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.92)), color-stop(40%, rgba(0, 0, 0, 0.55)), color-stop(75%, rgba(0, 0, 0, 0))); background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0) 75%); pointer-events: none; z-index: 2; }
+.post-badge { position: absolute; top: 1rem; inset-inline-start: 1rem; display: inline-flex; align-items: center; justify-content: center; background-color: var(--accent); color: #ffffff; font-size: 0.7rem; font-weight: 700; line-height: 1; padding: 0.35rem 0.7rem; border-radius: 999px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); z-index: 3; pointer-events: none; }
+.post-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem 1.25rem 1.25rem; background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0) 75%); pointer-events: none; z-index: 2; }
 .post-title { color: #ffffff; font-size: 1.3rem; font-weight: 700; line-height: 1.45; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6); display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-align: start; }
 .post-card--hero:hover .post-title { color: var(--header-accent); }
 .post-text { display: block; padding: 1.25rem 1.25rem; }
-.post-title-text { color: var(--text); font-size: 1.1rem; font-weight: 600; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; -webkit-transition: color var(--dur); transition: color var(--dur); }
+.post-title-text { color: var(--text); font-size: 1.1rem; font-weight: 600; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color var(--dur); }
 .post-card:hover .post-title-text { color: var(--accent); }
-.load-more-wrap { display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; margin-top: 2rem; }
-.load-more-btn { font-family: inherit; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; padding: 0.8rem 2.5rem; background-color: var(--bg-elev); color: var(--text); text-decoration: none; font-weight: 600; font-size: 1.1rem; line-height: 1.4; border-radius: var(--r-md); border: 0; -webkit-transition: background-color var(--dur), -webkit-transform var(--dur-fast), color var(--dur); transition: background-color var(--dur), transform var(--dur-fast), color var(--dur); min-height: 48px; cursor: pointer; -ms-touch-action: manipulation; touch-action: manipulation; }
-.load-more-btn svg { display: block; -webkit-flex-shrink: 0; -ms-flex-negative: 0; flex-shrink: 0; -webkit-margin-start: 0.5rem; margin-inline-start: 0.5rem; }
-.load-more-btn:hover { background-color: var(--accent-bg); color: var(--accent); -webkit-transform: scale(1.02); transform: scale(1.02); }
-.load-more-btn:active { -webkit-transform: scale(0.97); transform: scale(0.97); color: var(--accent); }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { -webkit-animation-duration: 0.01ms !important; animation-duration: 0.01ms !important; -webkit-animation-iteration-count: 1 !important; animation-iteration-count: 1 !important; -webkit-transition-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+.tag-content { display: none; }
+{%- for tag in sorted_tags -%}{%- assign i = forloop.index -%}
+#tag-{{ i }}:checked ~ main #content-{{ i }} { display: block; }
+#tag-{{ i }}:checked ~ header .tag-btn[for="tag-{{ i }}"] { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+#tag-{{ i }}:focus-visible ~ header .tag-btn[for="tag-{{ i }}"] { outline: 3px solid var(--header-accent); outline-offset: 2px; }
+{%- endfor -%}
+#tag-0:checked ~ main #content-0 { display: block; }
+#tag-0:checked ~ header .tag-btn[for="tag-0"] { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+#tag-0:focus-visible ~ header .tag-btn[for="tag-0"] { outline: 3px solid var(--header-accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">پرش به محتوا</a>
 <div class="page-wrapper">
-  <input type="checkbox" id="menu-toggle" class="sr-only" aria-label="باز و بسته کردن منو">
+  <input type="radio" name="tag-filter" id="tag-0" class="sr-only" checked aria-label="بلاندر">
+  {%- for tag in sorted_tags -%}
+    {%- assign i = forloop.index -%}
+    <input type="radio" name="tag-filter" id="tag-{{ i }}" class="sr-only" aria-label="{{ tag[0] | escape }}">
+  {%- endfor -%}
   <header class="site-header">
-    <div class="header-inner" id="headerDefault">
-      <div class="header-actions">
-        <label for="menu-toggle" class="hamburger">
-          <span class="hamburger__bar"></span>
-          <span class="hamburger__bar"></span>
-          <span class="hamburger__bar"></span>
-        </label>
-        <button type="button" class="header-icon-btn search-toggle" id="searchToggle" aria-label="باز کردن جستجو" aria-expanded="false" aria-controls="headerSearch">
-          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="7"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-      </div>
-      <a href="https://blunder.ir/" class="brand" aria-label="صفحه اصلی بلاندر">
-        <img src="https://blunder.ir/blog/logo.svg" alt="بلاندر" width="144" height="40" fetchpriority="high" decoding="async">
-      </a>
-    </div>
-    <div class="header-search" id="headerSearch" hidden>
-      <form action="https://blunder.ir/search" method="get" class="header-search-form" role="search">
-        <button type="button" class="header-icon-btn search-close" id="searchClose" aria-label="بستن جستجو">
-          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-        <div class="live-search-wrapper">
-          <label for="liveSearch" class="sr-only">جستجو</label>
-          <input type="search" id="liveSearch" name="q" class="live-search-input" placeholder="جستجو..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="liveSearchResults" aria-autocomplete="list" aria-haspopup="listbox">
-          <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="پاک کردن جستجو" hidden>
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <ul class="live-search-results" id="liveSearchResults" role="listbox" aria-label="نتایج جستجو" hidden></ul>
-          <div id="liveSearchStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-        </div>
-        <button type="submit" class="sr-only">جستجو</button>
-      </form>
+    <div class="header-inner">
+      <nav class="tag-nav" aria-label="فیلتر بر اساس تگ">
+        <label for="tag-0" class="tag-btn">بلاندر</label>
+        {%- for tag in sorted_tags -%}
+          {%- assign i = forloop.index -%}
+          <label for="tag-{{ i }}" class="tag-btn">{{ tag[0] | escape }}</label>
+        {%- endfor -%}
+      </nav>
     </div>
   </header>
-  <nav class="mobile-nav" aria-label="منوی اصلی">
-    <ul role="list">
-      <li><a href="https://blunder.ir/">صفحه اصلی</a></li>
-      <li><a href="https://blunder.ir/blog">وبلاگ بلاندر</a></li>
-    </ul>
-  </nav>
   <main id="main" class="main-content" tabindex="-1">
     <h1 class="sr-only">بلاندر</h1>
-    <h2 class="sr-only">آخرین پست‌های بلاندر</h2>
-    <ul class="posts-list" id="postsList" role="list">
-      {%- for post in site.posts limit:20 -%}
-        <li>
-        {%- if forloop.first -%}
-          {%- if hero_img != '' -%}
-            <a href="https://blunder.ir{{ post.url | escape }}" class="post-card post-card--hero" aria-label="{{ post.title | escape }}">
-              <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="800" height="800">
-              <span class="post-badge">جدیدترین</span>
-              <span class="post-overlay">
-                <span class="post-title">{{ post.title | escape }}</span>
-              </span>
-            </a>
+    <div class="tag-content" id="content-0">
+      <ul class="posts-list" role="list">
+        {%- for post in site.posts limit:20 -%}
+          <li>
+          {%- if forloop.first -%}
+            {%- if hero_img != '' -%}
+              <a href="https://blunder.ir{{ post.url | escape }}" class="post-card post-card--hero" aria-label="{{ post.title | escape }}">
+                <img src="{{ hero_img | escape }}" alt="" fetchpriority="high" decoding="async" width="800" height="800">
+                <span class="post-badge">جدیدترین</span>
+                <span class="post-overlay">
+                  <span class="post-title">{{ post.title | escape }}</span>
+                </span>
+              </a>
+            {%- else -%}
+              <a href="https://blunder.ir{{ post.url | escape }}" class="post-card post-card--hero post-card--fallback" aria-label="{{ post.title | escape }}">
+                <img src="https://blunder.sirv.com/icon.svg" alt="" fetchpriority="high" decoding="async" width="800" height="800">
+                <span class="post-badge">جدیدترین</span>
+                <span class="post-overlay">
+                  <span class="post-title">{{ post.title | escape }}</span>
+                </span>
+              </a>
+            {%- endif -%}
           {%- else -%}
-            <a href="https://blunder.ir{{ post.url | escape }}" class="post-card post-card--hero post-card--fallback" aria-label="{{ post.title | escape }}">
-              <img src="https://blunder.ir/blog/icon.svg" alt="" fetchpriority="high" decoding="async" width="800" height="800">
-              <span class="post-badge">جدیدترین</span>
-              <span class="post-overlay">
-                <span class="post-title">{{ post.title | escape }}</span>
+            <a href="https://blunder.ir{{ post.url | escape }}" class="post-card">
+              <span class="post-text">
+                <span class="post-title-text">{{ post.title | escape }}</span>
               </span>
             </a>
           {%- endif -%}
-        {%- else -%}
-          <a href="https://blunder.ir{{ post.url | escape }}" class="post-card">
-            <span class="post-text">
-              <span class="post-title-text">{{ post.title | escape }}</span>
-            </span>
-          </a>
-        {%- endif -%}
-        </li>
-      {%- endfor -%}
-    </ul>
-    {%- if site.posts.size > 0 -%}
-    <div class="load-more-wrap">
-      <a href="https://blunder.ir/blog" id="loadMoreBtn" class="load-more-btn" data-total="{{ site.posts.size }}">مقالات بیشتر<svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+          </li>
+        {%- endfor -%}
+      </ul>
     </div>
-    {%- endif -%}
+    {%- for tag in sorted_tags -%}
+      {%- assign i = forloop.index -%}
+      {%- assign tag_posts = tag[1] -%}
+      <div class="tag-content" id="content-{{ i }}">
+        <ul class="posts-list" role="list">
+          {%- for post in tag_posts -%}
+            <li>
+              <a href="https://blunder.ir{{ post.url | escape }}" class="post-card">
+                <span class="post-text">
+                  <span class="post-title-text">{{ post.title | escape }}</span>
+                </span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endfor -%}
   </main>
 </div>
-<script type="application/json" id="postsData">
-[
-{%- for post in site.posts -%}
-{"t":{{ post.title | jsonify | replace: '<', '\u003C' }},"u":{{ post.url | prepend: 'https://blunder.ir' | jsonify | replace: '<', '\u003C' }}}{%- unless forloop.last -%},{%- endunless -%}
-{%- endfor -%}
-]
-</script>
-<script>
-(function () {
-  'use strict';
-  var byId = function (id) { return document.getElementById(id); };
-  var searchInput = byId('liveSearch');
-  var resultsBox = byId('liveSearchResults');
-  var clearBtn = byId('searchClearBtn');
-  var liveStatus = byId('liveSearchStatus');
-  var menuToggle = byId('menu-toggle');
-  var postsList = byId('postsList');
-  var loadMoreBtn = byId('loadMoreBtn');
-  var searchToggle = byId('searchToggle');
-  var searchClose = byId('searchClose');
-  var headerDefault = byId('headerDefault');
-  var headerSearch = byId('headerSearch');
-  var debounceTimer = null;
-  var statusTimer = null;
-  var DEBOUNCE_MS = 200;
-  var MAX_RESULTS = 10;
-  var idCounter = 0;
-  var optionEls = [];
-  var activeIndex = -1;
-  var postsCache = null;
-  function matchesSelector(el, selector) {
-    if (!el || el.nodeType !== 1) return false;
-    var fn = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
-    return fn ? fn.call(el, selector) : false;
-  }
-  function findClosest(el, selector) {
-    if (!el || el.nodeType !== 1) return null;
-    if (typeof el.closest === 'function') return el.closest(selector);
-    var curr = el;
-    while (curr && curr.nodeType === 1) {
-      if (matchesSelector(curr, selector)) return curr;
-      curr = curr.parentElement;
-    }
-    return null;
-  }
-  var searchForm = searchInput ? findClosest(searchInput, 'form') : null;
-  var SEARCH_URL = searchForm ? (searchForm.getAttribute('action') || 'https://blunder.ir/search') : 'https://blunder.ir/search';
-  function foldChar(ch) {
-    var c = ch.charCodeAt(0);
-    if (c >= 0x06F0 && c <= 0x06F9) return String.fromCharCode(c - 0x06F0 + 48);
-    if (c >= 0x0660 && c <= 0x0669) return String.fromCharCode(c - 0x0660 + 48);
-    if (c === 0x064A || c === 0x0649 || c === 0x06CC || c === 0x0626) return '\u06CC';
-    if (c === 0x0643 || c === 0x06A9) return '\u06A9';
-    if (c === 0x0623 || c === 0x0625 || c === 0x0622 || c === 0x0671) return '\u0627';
-    if (c === 0x0629) return '\u0647';
-    if (c === 0x0624) return '\u0648';
-    if (c >= 0x064B && c <= 0x0652) return '';
-    if (c === 0x0640 || c === 0x200C || c === 0x200D || c === 0x200E || c === 0x200F) return '';
-    if (c === 32 || c === 9 || c === 10 || c === 13 || c === 0x00A0) return '';
-    var lower = ch.toLowerCase();
-    return lower.length === 1 ? lower : ch;
-  }
-  function fold(s) {
-    s = String(s);
-    var out = '';
-    for (var i = 0; i < s.length; i++) {
-      out += foldChar(s.charAt(i));
-    }
-    return out;
-  }
-  function getPosts() {
-    if (postsCache !== null) return postsCache;
-    var el = byId('postsData');
-    var raw = el ? el.textContent : '[]';
-    var arr = [];
-    try {
-      var parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        for (var i = 0; i < parsed.length; i++) {
-          var p = parsed[i];
-          if (p && typeof p.t === 'string' && typeof p.u === 'string' && p.t && p.u) {
-            arr.push({ title: p.t, url: p.u, folded: fold(p.t) });
-          }
-        }
-      }
-    } catch (err) {}
-    postsCache = arr;
-    if (el) el.textContent = '';
-    return arr;
-  }
-  function announce(msg) {
-    if (!liveStatus) return;
-    clearTimeout(statusTimer);
-    statusTimer = setTimeout(function () { liveStatus.textContent = msg; }, 300);
-  }
-  function closeResults() {
-    if (!resultsBox || resultsBox.hidden) return;
-    resultsBox.hidden = true;
-    resultsBox.innerHTML = '';
-    optionEls = [];
-    activeIndex = -1;
-    if (searchInput) {
-      searchInput.setAttribute('aria-expanded', 'false');
-      searchInput.removeAttribute('aria-activedescendant');
-    }
-  }
-  function setActiveOption(idx) {
-    if (!optionEls.length || !searchInput) return;
-    if (activeIndex >= 0 && optionEls[activeIndex]) {
-      optionEls[activeIndex].setAttribute('aria-selected', 'false');
-    }
-    activeIndex = idx;
-    if (activeIndex < 0) {
-      searchInput.removeAttribute('aria-activedescendant');
-      return;
-    }
-    var el = optionEls[activeIndex];
-    if (!el) return;
-    el.setAttribute('aria-selected', 'true');
-    searchInput.setAttribute('aria-activedescendant', el.id);
-    if (resultsBox) {
-      var boxRect = resultsBox.getBoundingClientRect();
-      var elRect = el.getBoundingClientRect();
-      if (elRect.top < boxRect.top) {
-        resultsBox.scrollTop -= (boxRect.top - elRect.top);
-      } else if (elRect.bottom > boxRect.bottom) {
-        resultsBox.scrollTop += (elRect.bottom - boxRect.bottom);
-      }
-    }
-  }
-  function renderResults(rawTerm) {
-    if (!resultsBox || !searchInput) return;
-    var term = fold(rawTerm);
-    resultsBox.innerHTML = '';
-    optionEls = [];
-    activeIndex = -1;
-    searchInput.removeAttribute('aria-activedescendant');
-    if (!term) {
-      closeResults();
-      announce('');
-      return;
-    }
-    var allPosts = getPosts();
-    var matched = [];
-    for (var i = 0; i < allPosts.length; i++) {
-      if (allPosts[i].folded.indexOf(term) !== -1) matched.push(allPosts[i]);
-    }
-    var total = matched.length;
-    var limited = matched.slice(0, MAX_RESULTS);
-    if (total === 0) {
-      var empty = document.createElement('li');
-      empty.className = 'no-result';
-      empty.setAttribute('role', 'option');
-      empty.setAttribute('aria-disabled', 'true');
-      empty.setAttribute('aria-selected', 'false');
-      empty.textContent = 'هیچ مطلبی یافت نشد';
-      resultsBox.appendChild(empty);
-    } else {
-      var frag = document.createDocumentFragment();
-      for (var k = 0; k < limited.length; k++) {
-        var item = limited[k];
-        var li = document.createElement('li');
-        li.setAttribute('role', 'option');
-        li.id = 'search-opt-' + (idCounter++);
-        li.setAttribute('aria-selected', 'false');
-        var a = document.createElement('a');
-        a.href = item.url;
-        a.tabIndex = -1;
-        a.textContent = item.title;
-        li.appendChild(a);
-        frag.appendChild(li);
-        optionEls.push(li);
-      }
-      if (total > MAX_RESULTS) {
-        var more = document.createElement('li');
-        more.className = 'more-result';
-        more.setAttribute('role', 'option');
-        more.id = 'search-opt-' + (idCounter++);
-        more.setAttribute('aria-selected', 'false');
-        var moreA = document.createElement('a');
-        moreA.href = SEARCH_URL + '?q=' + encodeURIComponent(rawTerm);
-        moreA.textContent = 'نمایش همهٔ ' + total + ' نتیجه';
-        moreA.tabIndex = -1;
-        more.appendChild(moreA);
-        frag.appendChild(more);
-        optionEls.push(more);
-      }
-      resultsBox.appendChild(frag);
-    }
-    resultsBox.hidden = false;
-    searchInput.setAttribute('aria-expanded', 'true');
-    announce(total === 0 ? 'نتیجه‌ای یافت نشد' : total + ' نتیجه یافت شد');
-  }
-  function openSearchPanel() {
-    if (!headerDefault || !headerSearch) return;
-    if (menuToggle && menuToggle.checked) {
-      menuToggle.checked = false;
-      document.documentElement.classList.remove('nav-open');
-    }
-    headerDefault.hidden = true;
-    headerSearch.hidden = false;
-    if (searchToggle) {
-      searchToggle.setAttribute('aria-expanded', 'true');
-    }
-    if (searchInput) {
-      searchInput.focus();
-    }
-  }
-  function closeSearchPanel() {
-    if (!headerDefault || !headerSearch) return;
-    headerSearch.hidden = true;
-    headerDefault.hidden = false;
-    if (searchInput) {
-      searchInput.value = '';
-    }
-    closeResults();
-    if (clearBtn) {
-      clearBtn.hidden = true;
-    }
-    announce('');
-    if (searchToggle) {
-      searchToggle.setAttribute('aria-expanded', 'false');
-      searchToggle.focus();
-    }
-  }
-  if (searchToggle) {
-    searchToggle.addEventListener('click', openSearchPanel);
-  }
-  if (searchClose) {
-    searchClose.addEventListener('click', closeSearchPanel);
-  }
-  if (searchInput) {
-    searchInput.addEventListener('input', function () {
-      clearTimeout(debounceTimer);
-      var val = searchInput.value;
-      debounceTimer = setTimeout(function () { renderResults(val); }, DEBOUNCE_MS);
-      if (clearBtn) clearBtn.hidden = val === '';
-    });
-    searchInput.addEventListener('focus', function () {
-      var val = searchInput.value;
-      if (clearBtn) clearBtn.hidden = val === '';
-      if (fold(val)) renderResults(val);
-    });
-    searchInput.addEventListener('keydown', function (e) {
-      if (e.isComposing) return;
-      var key = e.key;
-      if (key === 'ArrowDown' || key === 'Down') {
-        if (!optionEls.length) return;
-        e.preventDefault();
-        setActiveOption(activeIndex + 1 >= optionEls.length ? 0 : activeIndex + 1);
-        return;
-      }
-      if (key === 'ArrowUp' || key === 'Up') {
-        if (!optionEls.length) return;
-        e.preventDefault();
-        setActiveOption(activeIndex - 1 < 0 ? optionEls.length - 1 : activeIndex - 1);
-        return;
-      }
-      if (key === 'Enter') {
-        if (activeIndex >= 0 && optionEls[activeIndex]) {
-          e.preventDefault();
-          var activeLink = optionEls[activeIndex].querySelector('a');
-          if (activeLink) activeLink.click();
-        }
-        return;
-      }
-      if (key === 'Escape' || key === 'Esc') {
-        if (resultsBox && !resultsBox.hidden) {
-          e.preventDefault();
-          if (typeof e.stopPropagation === 'function') e.stopPropagation();
-          closeResults();
-          announce('');
-        }
-      }
-    });
-  }
-  if (clearBtn) {
-    clearBtn.addEventListener('click', function () {
-      if (!searchInput) return;
-      searchInput.value = '';
-      searchInput.focus();
-      closeResults();
-      clearBtn.hidden = true;
-      announce('');
-    });
-  }
-  document.addEventListener('click', function (e) {
-    var t = e.target;
-    if (!t || !findClosest(t, '.live-search-wrapper')) {
-      closeResults();
-    }
-  });
-  if (menuToggle) {
-    menuToggle.addEventListener('change', function () {
-      document.documentElement.classList.toggle('nav-open', menuToggle.checked);
-    });
-    window.addEventListener('pageshow', function (e) {
-      if (e && e.persisted) {
-        menuToggle.checked = false;
-        document.documentElement.classList.remove('nav-open');
-        if (headerDefault) headerDefault.hidden = false;
-        if (headerSearch) headerSearch.hidden = true;
-      }
-    });
-  }
-  document.addEventListener('keydown', function (e) {
-    if (e.isComposing) return;
-    if (e.key !== 'Escape' && e.key !== 'Esc') return;
-    if (headerSearch && !headerSearch.hidden) {
-      closeSearchPanel();
-      return;
-    }
-    if (menuToggle && menuToggle.checked) {
-      menuToggle.checked = false;
-      document.documentElement.classList.remove('nav-open');
-    }
-  });
-  var navLinks = document.querySelectorAll('.mobile-nav a');
-  for (var n = 0; n < navLinks.length; n++) {
-    navLinks[n].addEventListener('click', function () {
-      if (menuToggle) {
-        menuToggle.checked = false;
-      }
-      document.documentElement.classList.remove('nav-open');
-    });
-  }
-  function createTextCard(post) {
-    var a = document.createElement('a');
-    a.href = post.url;
-    a.className = 'post-card';
-    var text = document.createElement('span');
-    text.className = 'post-text';
-    var title = document.createElement('span');
-    title.className = 'post-title-text';
-    title.textContent = post.title;
-    text.appendChild(title);
-    a.appendChild(text);
-    return a;
-  }
-  if (loadMoreBtn && postsList) {
-    var currentIndex = postsList.children.length;
-    var step = 10;
-    var totalFromAttr = parseInt(loadMoreBtn.getAttribute('data-total'), 10);
-    var currentTotal = isNaN(totalFromAttr) ? -1 : totalFromAttr;
-    var archiveHref = loadMoreBtn.getAttribute('href') || 'https://blunder.ir/blog';
-    function updateLoadBtn() {
-      if (currentTotal >= 0 && currentIndex >= currentTotal) {
-        loadMoreBtn.setAttribute('href', archiveHref);
-        loadMoreBtn.setAttribute('data-expanded', 'true');
-      }
-    }
-    updateLoadBtn();
-    loadMoreBtn.addEventListener('click', function (e) {
-      if (loadMoreBtn.getAttribute('data-expanded') === 'true') {
-        return;
-      }
-      var allPosts = getPosts();
-      currentTotal = allPosts.length;
-      if (currentIndex >= allPosts.length) {
-        updateLoadBtn();
-        return;
-      }
-      if (e && typeof e.preventDefault === 'function') e.preventDefault();
-      var endIndex = Math.min(currentIndex + step, allPosts.length);
-      var frag = document.createDocumentFragment();
-      for (var i = currentIndex; i < endIndex; i++) {
-        var post = allPosts[i];
-        if (!post) continue;
-        var li = document.createElement('li');
-        li.appendChild(createTextCard(post));
-        frag.appendChild(li);
-      }
-      var firstNew = frag.firstChild;
-      postsList.appendChild(frag);
-      currentIndex = endIndex;
-      updateLoadBtn();
-      if (firstNew) {
-        var newLink = firstNew.querySelector('a');
-        if (newLink) newLink.focus();
-      }
-    });
-  }
-})();
-</script>
 </body>
 </html>
